@@ -16,7 +16,8 @@
 }
 
 .paragraph {
-    width: 40%;
-    padding: 5%;
+    width: 90%;
+    padding: 1%;
     border: aliceblue;
+    justify-content: center;
 }
