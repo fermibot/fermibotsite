@@ -5,7 +5,11 @@
     <title>Normals</title>
     <link href="../index.css" rel="stylesheet" type="text/css">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js">
+    </script>
 </head>
+
 <body>
 
 <p>
@@ -23,11 +27,65 @@
 <p>If you have a two-dimensional curve defined by the parametric equations x = x(t) and y = y(t)</p>
 
 <p>Examples:</p>
+
 <ul>
     <li>Parametric Equation of a circle is x = x(t) = +Sin(t) and y = y(t) = +Cos(t)</li>
     <li>Tangent to any point on the circle T<sub>x</sub>(t) = x'(t) = Cos(t) and T<sub>y</sub>(t) = y'(t) = -Sin(t)</li>
     <li>Normal at any point is N<sub>x</sub>(t) = x''(t) = -Sin(t) and N<sub>y</sub>(t) = y''(t) = -Cos(t)</li>
 </ul>
+
+<div>
+    <script type="math/tex; mode=display" id="MathJax-Element-3">\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}</script>
+</div>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mi>y</mi>
+    <mn>(</mn>
+    <mi>t</mi>
+    <mn>)</mn>
+    <msup>
+        <mi>x</mi>
+        <mn>2</mn>
+    </msup>
+    <mo>+</mo>
+    <mi>b</mi>
+    <mi>x</mi>
+    <mo>+</mo>
+    <mi>c</mi>
+    <mo>=</mo>
+    <mn>0</mn>
+</math>
+
+<br>
+
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mi>x</mi>
+    <mo>=</mo>
+    <mrow>
+        <mfrac>
+            <mrow>
+                <mo>&#x2212;</mo>
+                <mi>b</mi>
+                <mo>&#x00B1;</mo>
+                <msqrt>
+                    <msup>
+                        <mi>b</mi>
+                        <mn>2</mn>
+                    </msup>
+                    <mo>&#x2212;</mo>
+                    <mn>4</mn>
+                    <mi>a</mi>
+                    <mi>c</mi>
+                </msqrt>
+            </mrow>
+            <mrow>
+                <mn>2</mn>
+                <mi>a</mi>
+            </mrow>
+        </mfrac>
+    </mrow>
+</math>
 
 
 <hr>
