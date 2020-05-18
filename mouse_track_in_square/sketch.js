@@ -6,7 +6,7 @@ ys = 66;
 let num = 15;
 let mx = [];
 let my = [];
-
+//setup
 function setup() {
   createCanvas(720, 400);
   bx = width / 2.0;
