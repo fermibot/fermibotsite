@@ -1,6 +1,8 @@
 let bx;
 let by;
-let boxSize = 75;
+let boxSize = 150;
+xs = 466;
+ys = 66;
 let num = 15;
 let mx = [];
 let my = [];
@@ -11,7 +13,7 @@ function setup() {
   by = height / 2.0;
   rectMode(RADIUS);
   strokeWeight(2);
-  
+
   noStroke();
   fill(255, 153);
   for (let i = 0; i < num; i++) {
@@ -23,24 +25,29 @@ function setup() {
 function draw() {
   background(255,99,71);
   rect(bx, by, boxSize, boxSize);
+
   if (
-    mouseX > bx - boxSize &&
-    mouseX < bx + boxSize &&
-    mouseY > by - boxSize &&
-    mouseY < by + boxSize
+      mouseX > bx - boxSize &&
+      mouseX < bx + boxSize &&
+      mouseY > by - boxSize &&
+      mouseY < by + boxSize
   )
   {
 
-  // Cycle through the array, using a different entry on each frame.
-  // Using modulo (%) like this is faster than moving all the values over.
-  let which = frameCount % num;
-  mx[which] = mouseX;
-  my[which] = mouseY;
+    // Cycle through the array, using a different entry on each frame.
+    // Using modulo (%) like this is faster than moving all the values over.
+    let which = frameCount % num;
+    mx[which] = mouseX;
+    my[which] = mouseY;
 
-  for (let i = 0; i < num; i++) {
-    // which+1 is the smallest (the oldest in the array)
-    let index = (which + i) % num;
-    ellipse(mx[index], my[index], i, i);
-  }
+    for (let i = 0; i < num; i++) {
+      // which+1 is the smallest (the oldest in the array)
+      let index = (which + i) % num;
+      ellipse(mx[index], my[index], i, i);
+    }
+    textSize(16);
+    textAlign(CENTER);
+    text("(" + floor(mouseX-211) + ", " + floor(349-mouseY) + ")", xs,ys);
+
   }
 }
