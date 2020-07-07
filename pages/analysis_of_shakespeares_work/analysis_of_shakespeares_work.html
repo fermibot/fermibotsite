@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analysis of Shakespeare's work</title>
+</head>
+<body>
+<figure>
+    <img src='shakespeare_3-01.jpg' alt='missing' width="80%"/>
+    <figcaption style="align-content: center">Image created by Mr. Chandra Sekhar Kounduri for fermibot
+    </figcaption>
+</figure>
+<h1>Analysis of Shakespeare's Work</h1>
+<p>
+    After learning about Zipf's law, I wanted to find those patterns myself. I am learning python3 now and I was looking
+    at examples on how to read text files and the individual lines in them. I have found the complete works of
+    Shakespeare on this page. <a href="http://shakespeare.mit.edu/">http://shakespeare.mit.edu/</a>
+</p>
+
+<p>
+    More information on the Zipf's law is available here:
+</p>
+<ul>
+    <li><a href="">Wikipedia link</a></li>
+    <li><a href="">Vsauce youtube video</a></li>
+</ul>
+
+<p>
+    After getting text from the web pages into text files,  these text files were imported into the python environment
+    and analysis was performed on it. The analysis of the complete works has resulted in the following observations.
+    Presented below is the output of the python console. I have used Anaconda 4.2.0 with Python 3.5 version.
+    The goal is to count the number of occurrences of each of the English alphabet.
+</p>
+
+<figure>
+    <img src='william_shakespeare_comedy_analysis_cumulative.png' alt='missing' width="80%"/>
+</figure>
+
+<hr>
+
+
+A table is attached below for reference.
+<table width="145">
+    <tbody>
+    <tr>
+        <td width="67"><strong>Letter</strong></td>
+        <td width="78"><strong>Letter count</strong></td>
+    </tr>
+    <tr>
+        <td>e</td>
+        <td>424718</td>
+    </tr>
+    <tr>
+        <td>t</td>
+        <td>300213</td>
+    </tr>
+    <tr>
+        <td>o</td>
+        <td>287878</td>
+    </tr>
+    <tr>
+        <td>a</td>
+        <td>250548</td>
+    </tr>
+    <tr>
+        <td>h</td>
+        <td>227474</td>
+    </tr>
+    <tr>
+        <td>s</td>
+        <td>224207</td>
+    </tr>
+    <tr>
+        <td>n</td>
+        <td>222907</td>
+    </tr>
+    <tr>
+        <td>r</td>
+        <td>216036</td>
+    </tr>
+    <tr>
+        <td>i</td>
+        <td>206018</td>
+    </tr>
+    <tr>
+        <td>l</td>
+        <td>151036</td>
+    </tr>
+    <tr>
+        <td>d</td>
+        <td>139409</td>
+    </tr>
+    <tr>
+        <td>u</td>
+        <td>117145</td>
+    </tr>
+    <tr>
+        <td>m</td>
+        <td>98215</td>
+    </tr>
+    <tr>
+        <td>y</td>
+        <td>87237</td>
+    </tr>
+    <tr>
+        <td>w</td>
+        <td>76331</td>
+    </tr>
+    <tr>
+        <td>f</td>
+        <td>70909</td>
+    </tr>
+    <tr>
+        <td>c</td>
+        <td>69184</td>
+    </tr>
+    <tr>
+        <td>g</td>
+        <td>59685</td>
+    </tr>
+    <tr>
+        <td>p</td>
+        <td>48470</td>
+    </tr>
+    <tr>
+        <td>b</td>
+        <td>48311</td>
+    </tr>
+    <tr>
+        <td>v</td>
+        <td>35293</td>
+    </tr>
+    <tr>
+        <td>k</td>
+        <td>30909</td>
+    </tr>
+    <tr>
+        <td>x</td>
+        <td>4671</td>
+    </tr>
+    <tr>
+        <td>q</td>
+        <td>2862</td>
+    </tr>
+    <tr>
+        <td>j</td>
+        <td>2829</td>
+    </tr>
+    <tr>
+        <td>z</td>
+        <td>1350</td>
+    </tr>
+    </tbody>
+</table>
+
+<h4>Graph of the data done in microsoft excel:</h4>
+
+<p>We can see that the count mimics an exponentially dropping distribution.</p>
+
+<figure><img src='william_shakespeare_comedy_analysis_cumulative_graph.png' alt='missing' width="80%"/></figure>
+
+<h3>Analysis of Words</h3>
+A similar analysis has been done on the words and it resulted in some interesting results. In this case though, the
+following procedure has been done. An  empty dictionary has been created and all the text files have been read
+consecutively while updating the newer words in the dictionary. The plot of the top 50 words is given below.
+
+<figure><img src='words_plot.png' alt='missing' width="80%"/></figure>
+
+<p>
+    We can see that the top used words are 'the', 'and', 'i', etc. There are also some archaic words that were used
+    often. Examples include - 'thee', 'thou', 'thy' and some others. Please note that there were more than 30,000 unique
+    words in all his work. The above plot has only the top 50 used words.
+</p>
+<hr/>
+
+<h3>Code</h3>
+<ul>
+    <li>The code used for letter analysis is available here <a href="will_shake_analysis_letter_analysis.pdf">PDF</a>.
+    </li>
+    <li>The code used for word analysis is available here <a href="will_shake_analysis_word_analysis.pdf">PDF</a></li>
+    <li>The coe to extract all the <a style="color: darkred; background: yellow">Need a new page</a></li>
+</ul>
+
+</body>
+</html>
