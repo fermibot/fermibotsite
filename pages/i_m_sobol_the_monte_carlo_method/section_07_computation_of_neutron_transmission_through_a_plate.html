@@ -45,8 +45,8 @@
 
 The simulation of this problem was done in two phases. All the code has been presented at the end.
 <ul>
-    <li><em>Phase:1</em> involved the simulation of the neutron paths using Python</li>
-    <li><em>Phase:2</em> involved the plotting of the phase 01 data using Wolfram Mathematica</li>
+    <li><em>Phase-01</em> involved the simulation of the neutron paths using Python</li>
+    <li><em>Phase-02</em> involved the plotting of the <em>phase-01</em> data using Wolfram Mathematica</li>
 </ul>
 <em>Reading the images:</em>
 <ul>
@@ -69,23 +69,17 @@ The simulation of this problem was done in two phases. All the code has been pr
         </ul>
     </li>
 </ul>
-<p style="text-align:center;">Visualization</p>
-<a href="https://fermibot.files.wordpress.com/2018/09/i_m_sobol_the_monte_carlo_method_section_7_reflected.png"><img
-        class="alignnone size-full wp-image-3153"
-        src="https://fermibot.files.wordpress.com/2018/09/i_m_sobol_the_monte_carlo_method_section_7_reflected.png"
-        alt="" width="788" height="860"/></a><a
-        href="https://fermibot.files.wordpress.com/2018/09/i_m_sobol_the_monte_carlo_method_section_7_passed.png"><img
-        class="alignnone size-full wp-image-3154"
-        src="https://fermibot.files.wordpress.com/2018/09/i_m_sobol_the_monte_carlo_method_section_7_passed.png" alt=""
-        width="788" height="861"/></a>
 
-<a href="https://fermibot.files.wordpress.com/2018/09/i_m_sobol_the_monte_carlo_method_section_7_absorbed.png"><img
-        class="alignnone size-full wp-image-3155"
-        src="https://fermibot.files.wordpress.com/2018/09/i_m_sobol_the_monte_carlo_method_section_7_absorbed.png"
-        alt="" width="788" height="862"/></a>
+<h3>Visualization</h3>
 
-&nbsp;
-<p style="text-align:left;">Statistics</p>
+<a href="Section_07_Reflected.svg" target='_blank'><img class="centered_image" src="Section_07_Reflected.svg"
+                                                        alt=''/></a> <br><br>
+<a href="Section_07_Passed.svg" target="_blank"><img class="centered_image" src="Section_07_Passed.svg" alt=""/></a>
+<br><br>
+<a href="Section_07_Absorbed.svg" target="_blank"><img class="centered_image" src="Section_07_Absorbed.svg" alt=""/></a>
+<br><br>
+
+<h3>Statistics</h3>
 
 <ul>
     <li style="text-align:left;">Each of the following charts below shows the same data in three different formats.</li>
@@ -103,17 +97,6 @@ The simulation of this problem was done in two phases. All the code has been pr
         </ul>
     </li>
 </ul>
-<p style="text-align:center;"><a
-        href="https://fermibot.files.wordpress.com/2018/09/i_m_sobol_the_monte_carlo_method_section_7_10000_neutrons_distributions.png"> </a><a
-        href="https://fermibot.files.wordpress.com/2018/09/i_m_sobol_the_monte_carlo_method_section_7_10000_neutrons_distributions.png"><img
-        class="alignnone wp-image-3157"
-        src="https://fermibot.files.wordpress.com/2018/09/i_m_sobol_the_monte_carlo_method_section_7_10000_neutrons_distributions.png"
-        alt="" width="507" height="957"/></a></p>
-<a href="https://fermibot.files.wordpress.com/2018/09/i_m_sobol_the_monte_carlo_method_section_7_1000_neutrons_distributions.png"><img
-        class="wp-image-3159 aligncenter"
-        src="https://fermibot.files.wordpress.com/2018/09/i_m_sobol_the_monte_carlo_method_section_7_1000_neutrons_distributions.png"
-        alt="" width="510" height="973"/></a>
-
 
 <!--Todo: Get a local version of the JS. Ask Vardhan for assistance-->
 
@@ -123,7 +106,7 @@ The simulation of this problem was done in two phases. All the code has been pr
     document.addEventListener("adobe_dc_view_sdk.ready", function () {
         var adobeDCView = new AdobeDC.View({
             clientId: "a74f0c6c71684e75813cfcfc53526769",
-            divId: "adobe-dc-view"
+            divId: "adobe-dc-view-01"
         });
         adobeDCView.previewFile({
             content: {location: {url: "section_07_Density.pdf"}},
@@ -142,7 +125,7 @@ The simulation of this problem was done in two phases. All the code has been pr
     document.addEventListener("adobe_dc_view_sdk.ready", function () {
         var adobeDCView = new AdobeDC.View({
             clientId: "a74f0c6c71684e75813cfcfc53526769",
-            divId: "adobe-dc-view"
+            divId: "adobe-dc-view-02"
         });
         adobeDCView.previewFile({
             content: {location: {url: "section_07_PointDensity.pdf"}},
@@ -162,7 +145,7 @@ The simulation of this problem was done in two phases. All the code has been pr
     document.addEventListener("adobe_dc_view_sdk.ready", function () {
         var adobeDCView = new AdobeDC.View({
             clientId: "a74f0c6c71684e75813cfcfc53526769",
-            divId: "adobe-dc-view"
+            divId: "adobe-dc-view-03"
         });
         adobeDCView.previewFile({
             content: {location: {url: "section_07_SmoothDensity.pdf"}},
@@ -175,10 +158,8 @@ The simulation of this problem was done in two phases. All the code has been pr
     });
 </script>
 
-<hr/>
 
-<strong>Code</strong>
-
+<h2>Code</h2>
 <h3>Python Code: </h3>
 <p>This code needs to be run before running the simulation</p>
 <pre><code class="language-python">
