@@ -117,7 +117,7 @@ The simulation of this problem was done in two phases. All the code has been pr
 
 <!--Todo: Get a local version of the JS. Ask Vardhan for assistance-->
 
-<div id="adobe-dc-view" style="width: 800px;"></div>
+<div id="adobe-dc-view-01" style="width: 60%; align-content: center"></div>
 <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
 <script type="text/javascript">
     document.addEventListener("adobe_dc_view_sdk.ready", function () {
@@ -136,18 +136,58 @@ The simulation of this problem was done in two phases. All the code has been pr
     });
 </script>
 
+<div id="adobe-dc-view-02" style="width: 60%; align-content: center"></div>
+<script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+<script type="text/javascript">
+    document.addEventListener("adobe_dc_view_sdk.ready", function () {
+        var adobeDCView = new AdobeDC.View({
+            clientId: "a74f0c6c71684e75813cfcfc53526769",
+            divId: "adobe-dc-view"
+        });
+        adobeDCView.previewFile({
+            content: {location: {url: "section_07_PointDensity.pdf"}},
+            metaData: {fileName: "section_07_PointDensity.pdf"}
+        }, {
+            embedMode: "IN_LINE",
+            showDownloadPDF: false,
+            showPrintPDF: false
+        });
+    });
+</script>
+
+
+<div id="adobe-dc-view-03" style="width: 60%; align-content: center"></div>
+<script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+<script type="text/javascript">
+    document.addEventListener("adobe_dc_view_sdk.ready", function () {
+        var adobeDCView = new AdobeDC.View({
+            clientId: "a74f0c6c71684e75813cfcfc53526769",
+            divId: "adobe-dc-view"
+        });
+        adobeDCView.previewFile({
+            content: {location: {url: "section_07_SmoothDensity.pdf"}},
+            metaData: {fileName: "section_07_SmoothDensity.pdf"}
+        }, {
+            embedMode: "IN_LINE",
+            showDownloadPDF: false,
+            showPrintPDF: false
+        });
+    });
+</script>
+
 <hr/>
 
 <strong>Code</strong>
 
-<em>Python Code: </em>This runs the simulation
-<pre>from mathematica.random_functions import *
+<h3>Python Code: </h3>
+<p>This code needs to be run before running the simulation</p>
+<pre><code class="language-python">
+from mathematica.random_functions import *
 from mathematica.monitoring import *
 import csv
 
 for t in range(0, 1000):
-    _filePath = "D:\Mathematica Files 4K\probability_problems\i_m_sobol_the_monte_carlo_method" \
-                "\i_m_sobol_the_monte_carlo_method_section_7"
+    _filePath = "path_to_your_folder"
     _exportFileName = _filePath + "\\i_m_sobol_the_monte_carlo_method_section_7_temp_" + str(t) + ".csv"
 
     TimeTagMessage('Opening file ' + _exportFileName)
@@ -167,118 +207,77 @@ for t in range(0, 1000):
             TimeTagMessage("\t\tWriting row # " + str(i + 1) + " to the file")
 
     TimeTagMessage('Closing the file ' + _exportFileName)
-    __file.close()</pre>
-<em>Mathematica Code:</em> This plots the python exported data
-<pre>ClearAll[yRandomizer];
+    __file.close()
+</code></pre>
+
+
+<h3>Mathematica Code:</h3>
+<p>The code below plots the exported data from the python script above</p>
+<pre><code class="language-Mathematica">
+
+ClearAll[yRandomizer];
 yRandomizer[list_List] :=
     Module[{yRand = RandomReal[{-.02, .02}]}, {{-1, yRand}} ~ Join ~
-        MapThread[{#1, #2} &amp;, {list, {yRand} ~ Join ~
-            RandomReal[{-1, 1}, Length@list - 1]}]]
+        MapThread[{#1, #2} &amp;, {list, {yRand} ~ Join ~ RandomReal[{-1, 1}, Length@list - 1]}]]
 
 Module[{data =
-    DeleteCases[
-      Import[StringReplace[NotebookFileName[], ".nb" -&gt; ".csv"]], {}],
-  collisions, last, reflected, absorbed, passed, plotDataReflected,
-  plotDataPassed, plotDataAbsorbed},
-  collisions = {Length[#], Last[#]} &amp; /@ data;
-  last = Last /@ data;
-  reflected = Select[data, (Last[#] &lt; 0) &amp;];
-  absorbed = Select[data, (0 &lt;= Last@# &lt;= 2) &amp;];
-  passed = Select[data, (Last@# &gt; 2) &amp;];
-  plotDataReflected = yRandomizer /@ reflected;
-  plotDataPassed = yRandomizer /@ passed;
-  plotDataAbsorbed = yRandomizer /@ absorbed;
+    DeleteCases[Import[StringReplace[NotebookFileName[], ".nb" -&gt; ".csv"]], {}],
+    collisions, last, reflected, absorbed, passed, plotDataReflected, plotDataPassed, plotDataAbsorbed},
+    collisions = {Length[#], Last[#]} &amp; /@ data;
+    last = Last /@ data;
+    reflected = Select[data, (Last[#] &lt; 0) &amp;];
+    absorbed = Select[data, (0 &lt;= Last@# &lt;= 2) &amp;];
+    passed = Select[data, (Last@# &gt; 2) &amp;];
+    plotDataReflected = yRandomizer /@ reflected;
+    plotDataPassed = yRandomizer /@ passed;
+    plotDataAbsorbed = yRandomizer /@ absorbed;
 
-  Echo[Length /@ {passed, reflected, absorbed}];
+    Echo[Length /@ {passed, reflected, absorbed}];
 
-  Framed@Column[Graphics[
-    {
-      {Red, Opacity[0.1], Arrowheads@0.02,
-        Thickness@0, #[plotDataReflected]},
-      {Gray, Opacity[0.04], Arrowheads@0.02,
-        Thickness@0, #[plotDataPassed]},
-      {Gray, Opacity[0.04], Arrowheads@0.02,
-        Thickness@0, #[plotDataAbsorbed]},
-      {InfiniteLine[{{0, -1}, {0, 1}}]},
-      {InfiniteLine[{{2, -1}, {2, 1}}]}
-    }
-    , PlotRange -&gt; All, ImageSize -&gt; 788,
-    PlotLabel -&gt;
-        "Reflected Neutrons: " &lt;&gt; ToString@# &lt;&gt;
-            " representation"] &amp; /@ {Arrow, BSplineCurve}]
-]
+    Framed@Column[
+        Graphics[{
+          {Red, Opacity[0.1], Arrowheads@0.02, Thickness@0, #[plotDataReflected]},
+          {Gray, Opacity[0.04], Arrowheads@0.02,Thickness@0, #[plotDataPassed]},
+          {Gray, Opacity[0.04], Arrowheads@0.02, Thickness@0, #[plotDataAbsorbed]},
+          {InfiniteLine[{{0, -1}, {0, 1}}]},
+          {InfiniteLine[{{2, -1}, {2, 1}}]}
+        }
+        , PlotRange -&gt; All, ImageSize -&gt; 788
+        , PlotLabel -&gt; "Reflected Neutrons: " &lt;&gt; ToString@# &lt;&gt; " representation"] &amp; /@ {Arrow, BSplineCurve}]
+    ]
 
-(*Need to run python code before running this one*)
-Module[{multiSimData,
-  printTemporary = PrintTemporary["Beginning analysis"]},
-  multiSimData =
-      Module[{data = DeleteCases[Import[#], {}], reflected, absorbed,
-        passed},
-        reflected = Select[data, (Last[#] &lt; 0) &amp;];
-        absorbed = Select[data, (0 &lt;= Last@# &lt;= 2) &amp;];
-        passed = Select[data, (Last@# &gt; 2) &amp;];
-        NotebookDelete[printTemporary];
-        printTemporary =
-            PrintTemporary[Style["Analyzing the file " &lt;&gt; #, Darker@Green]];
-        Length /@ {passed, reflected, absorbed}
-      ] &amp; /@
-          SortBy[FileNames["*temp*", NotebookDirectory[]],
-            ToExpression@Last[StringSplit[StringDelete[#, ".csv"], "_"]] &amp;];
-  Export[StringReplace[NotebookFileName[], ".nb" -&gt; "_1000.xlsx"],
-    multiSimData]
-]
+    (*Need to run python code before running this one*)
+    Module[{multiSimData,
+      printTemporary = PrintTemporary["Beginning analysis"]},
+      multiSimData =
+          Module[{data = DeleteCases[Import[#], {}], reflected, absorbed,
+            passed},
+            reflected = Select[data, (Last[#] &lt; 0) &amp;];
+            absorbed = Select[data, (0 &lt;= Last@# &lt;= 2) &amp;];
+            passed = Select[data, (Last@# &gt; 2) &amp;];
+            NotebookDelete[printTemporary];
+            printTemporary =
+                PrintTemporary[Style["Analyzing the file " &lt;&gt; #, Darker@Green]];
+            Length /@ {passed, reflected, absorbed}
+          ] &amp; /@
+              SortBy[FileNames["*temp*", NotebookDirectory[]],
+                ToExpression@Last[StringSplit[StringDelete[#, ".csv"], "_"]] &amp;];
+      Export[StringReplace[NotebookFileName[], ".nb" -&gt; "_1000.xlsx"],
+        multiSimData]
+    ]
 
-Column@Module[{data =
-    Import[StringReplace[NotebookFileName[], ".nb" -&gt; "_1000.xlsx"]][[
-        1]]}, data =
-    Association@
-        MapThread[#1 -&gt; #2 &amp;, {{"Passed", "Reflected", "Absorbed"},
-          Transpose[data]}];
-DistributionChart[data, ImageSize -&gt; 500,
-  ChartLabels -&gt;
-      Placed[{"Mean = " &lt;&gt; ToString@# &amp; /@ (Mean /@ Values@data),
-        Keys@data}, {Above, Below}], ChartElementFunction -&gt; #,
-  PlotLabel -&gt;
-      "1000 Neutron Statistics for Barrier Width = 2 units &amp; \
-Absorption number = 10"] &amp; /@ {"PointDensity", "SmoothDensity",
-  "Density"}
-]</pre>
+    Column@Module[{data =
+        Import[StringReplace[NotebookFileName[], ".nb" -&gt; "_1000.xlsx"]][[1]]}, data =
+        Association@MapThread[#1 -&gt; #2 &amp;, {{"Passed", "Reflected", "Absorbed"}, Transpose[data]}];
+        DistributionChart[data
+            , ImageSize -&gt; 500
+            , ChartLabels -&gt; Placed[{"Mean = " &lt;&gt; ToString@# &amp; /@ (Mean /@ Values@data), Keys@data}, {Above, Below}]
+            , ChartElementFunction -&gt; #
+            ,   PlotLabel -&gt; "1000 Neutron Statistics for Barrier Width = 2 units &amp; Absorption number = 10"] &amp; /@
+            {"PointDensity", "SmoothDensity", "Density"}
+    ]
+</code></pre>
 
-<hr/>
-<p style="text-align:center;">End of the post ;)</p>
-
-
-<hr/>
-
-<span style="color:#ffffff;">.</span>
-
-<span style="color:#ffffff;">.</span>
-
-<span style="color:#ffffff;">.</span>
-
-<span style="color:#ffffff;">.</span>
-
-<span style="color:#ffffff;">.</span>
-
-<span style="color:#ffffff;">.</span>
-
-<span style="color:#ffffff;">.</span>
-
-<span style="color:#ffffff;">.</span>
-
-<span style="color:#ffffff;">.</span>
-
-<span style="color:#ffffff;">.</span>
-
-<span style="color:#ffffff;">.</span>
-
-<span style="color:#ffffff;">.</span>
-
-<span style="color:#ffffff;">.</span>
-
-<span style="color:#ffffff;">.</span>
-
-&nbsp;
 
 </body>
 </html>
