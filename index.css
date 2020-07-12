@@ -36,3 +36,12 @@
     margin-right: auto;
     width: 80%;
 }
+
+.empty_grid {
+    display: inline-block;
+    width: 10%;
+    height: 100px;
+    /*float: left;*/
+    margin: 0;
+    text-align: center;
+}
