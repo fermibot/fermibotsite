@@ -11,7 +11,7 @@
     <script>hljs.initHighlightingOnLoad();</script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--    <link rel="stylesheet" href="../../external_libraries/bootstrap/bootstrap.min.css">css-->
+    <link rel="stylesheet" href="../../external_libraries/bootstrap/bootstrap.min.css">
     <script src="../../external_libraries/bootstrap/jquery.min.js"></script>
     <script src="../../external_libraries/bootstrap/popper.min.js"></script>
     <script src="../../external_libraries/bootstrap/bootstrap.min.js"></script>
@@ -69,7 +69,7 @@ at the Monte Carlo Method of calculation of definite integrals. The Algorithm i
 
 <hr/>
 
-<strong>Simulation</strong>
+<h5>Simulation</h5>
 <ul>
     <li>The function to be integrated is \(Sin(0.5 \pi x)\) in the range \([0, 2]\)</li>
     <li>The probability function chosen for this range is Triangular with range [0, 2] and the apex at 1</li>
@@ -88,7 +88,8 @@ at the Monte Carlo Method of calculation of definite integrals. The Algorithm i
 
 
 <p>After you have these functions setup, there are only few steps to the calculation of the integral (OR) more aptly the
-    estimation of the integral. Using η as per the algorithm outlined above, we estimate the integral. The following
+    estimation of the integral. Using \(\eta\) as per the algorithm outlined above, we estimate the integral. The
+    following
     series of images shows the integral calculated using various sample sizes. Observe how the estimation of the
     integral more and more precise when the sample size increases. The accuracy has not changed much but the precision
     greatly becomes better &#x1F600;
@@ -104,7 +105,7 @@ at the Monte Carlo Method of calculation of definite integrals. The Algorithm i
 
 <hr/>
 
-<strong>Code</strong>
+<h5>Code</h5>
 <pre><code class="language-Mathematica">
     ClearAll[toIntegrate, probabilityFunction, cdfProbabilityFunction];
 
