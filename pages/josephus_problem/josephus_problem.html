@@ -24,56 +24,66 @@
     <h1>Joesphus Problem</h1>
 </div>
 
-<h5>Background</h5>
-<p>
-    There are countless versions of this problem circulating in the internet. The problem is frequently stated as <em>"100
-    people standing in a circle waiting to be executed in a specific sequence. The first person (person \(i\)) with the
-    sword executes the person that is next in the circle (person \(i + 1\)) passing on the sword to the next person
-    alive. This continues to go-on until only one person remains"</em>. <br><br>This one described above is a special
-    case of the Josephus Problem. The more general case would be where the number of people is \(n\) and the sword is
-    passed on from \((k-2)^{th}\) to the \(k^{th}\) person after killing the \((k-1)^{th}\) person. We will look at few
-    general cases of the problem. We will also look at some code on the way with some visuals. The table below is is the
-    sequence of the deaths of 100 people standing in a loop. There is also an animation at the end of the table.
-</p>
 
-<h5>Key</h5>
-<ul>
-    <li>Each row represents an iteration.</li>
-    <li>1 - Alive
-        <del>(and possibly healthy)</del>
-    </li>
-    <li>0 - Dead</li>
-</ul>
+<div class="container-lg">
 
-<h5>\(k=1\)</h5>
-<a href="josephus_problem_k_1.svg" target='_blank'><img class="centered_image" src="josephus_problem_k_1.svg"
-                                                        alt=''/></a>
+    <h5>Background</h5>
+    <p>
+        There are countless versions of this problem circulating in the internet. The problem is frequently stated as
+        <em>"100
+            people standing in a circle waiting to be executed in a specific sequence. The first person (person \(i\))
+            with the
+            sword executes the person that is next in the circle (person \(i + 1\)) passing on the sword to the next
+            person
+            alive. This continues to go-on until only one person remains"</em>. <br><br>This one described above is a
+        special
+        case of the Josephus Problem. The more general case would be where the number of people is \(n\) and the sword
+        is
+        passed on from \((k-2)^{th}\) to the \(k^{th}\) person after killing the \((k-1)^{th}\) person. We will look at
+        few
+        general cases of the problem. We will also look at some code on the way with some visuals. The table below is is
+        the
+        sequence of the deaths of 100 people standing in a loop. There is also an animation at the end of the table.
+    </p>
 
-<h5>\(k=5\)</h5>
-<a href="josephus_problem_k_5.svg" target='_blank'><img class="centered_image" src="josephus_problem_k_5.svg"
-                                                        alt=''/></a><br><br>
+    <h5>Key</h5>
+    <ul>
+        <li>Each row represents an iteration.</li>
+        <li>1 - Alive
+            <del>(and possibly healthy)</del>
+        </li>
+        <li>0 - Dead</li>
+    </ul>
 
-<p>The one left alive is \(73^{rd}\) person. An animated version of the problem is shown below.</p>
+    <h5>\(k=1\)</h5>
+    <a href="josephus_problem_k_1.svg" target='_blank'><img class="centered_image" src="josephus_problem_k_1.svg"
+                                                            alt=''/></a>
 
-<a href="josephus_problem.gif" target="_blank" rel="noopener"><img src="josephus_problem.gif" alt=""
-                                                                   class="centered_image"/></a>
+    <h5>\(k=5\)</h5>
+    <a href="josephus_problem_k_5.svg" target='_blank'><img class="centered_image" src="josephus_problem_k_5.svg"
+                                                            alt=''/></a><br><br>
 
-<h5>Code:</h5>
+    <p>The one left alive is \(73^{rd}\) person. An animated version of the problem is shown below.</p>
 
-<div id="adobe-dc-view" style="height: 700px; width: 60%;"></div>
-<script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-<script type="text/javascript">
-    document.addEventListener("adobe_dc_view_sdk.ready", function () {
-        var adobeDCView = new AdobeDC.View({clientId: "a74f0c6c71684e75813cfcfc53526769", divId: "adobe-dc-view"});
-        adobeDCView.previewFile({
-            content: {location: {url: "josephus_problem.pdf"}},
-            metaData: {fileName: "josephus_problem.pdf"}
-        }, {embedMode: "SIZED_CONTAINER"});
-    });
-</script>
+    <a href="josephus_problem.gif" target="_blank" rel="noopener"><img src="josephus_problem.gif" alt=""
+                                                                       class="centered_image"/></a>
+
+    <h5>Code:</h5>
+
+    <div id="adobe-dc-view" style="height: 700px; width: 60%;"></div>
+    <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+    <script type="text/javascript">
+        document.addEventListener("adobe_dc_view_sdk.ready", function () {
+            var adobeDCView = new AdobeDC.View({clientId: "a74f0c6c71684e75813cfcfc53526769", divId: "adobe-dc-view"});
+            adobeDCView.previewFile({
+                content: {location: {url: "josephus_problem.pdf"}},
+                metaData: {fileName: "josephus_problem.pdf"}
+            }, {embedMode: "SIZED_CONTAINER"});
+        });
+    </script>
 
 
-<pre><code class="language-Mathematica">
+    <pre><code class="language-Mathematica">
 
     (*k=1*)
     Module[{sequences, alive, replacer},
@@ -138,6 +148,8 @@
         ]
     ]
 </code></pre>
+
+</div>
 
 </body>
 </html>
