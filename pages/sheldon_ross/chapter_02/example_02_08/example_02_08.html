@@ -90,7 +90,11 @@
     <p>Solving for \(p\), we get the following solutions. \(p = 0; p = 0.66667; p = 1\). The code for solving that is
         pasted below.</p>
     <pre><code class="language-Mathematica">
-    Module[{n = 4}, Solve[\!\(\*UnderoverscriptBox[\(\[Sum]\), \(i = 1\), \(2\)]\(Binomial[2, i]\*SuperscriptBox[\(p\), \(i\)]\*SuperscriptBox[\((1 - p)\), \(2 - i\)]\)\) == \!\(\*UnderoverscriptBox[\(\[Sum]\), \(i = 0.5  n\), \(n\)]\(Binomial[n,i]\*SuperscriptBox[\(p\), \(i\)]\*SuperscriptBox[\((1 - p)\), \(n - i\)]\)\), p]]
+    Module[{n = 4},
+        Solve[
+            Sum[Binomial[2, i] Power[p, i] Power[1 - p, 2 - i], {i, 1, 2}] ==
+            Sum[Binomial[n, i] Power[p, i] Power[1 - p, n - i], {i, 0.5 n, n}],p]
+        ]
     </code></pre>
 
     <p>Graphically, and comparing the 2-Engine Plane to the 4-Engine planes, we see a nice pattern taking shape.</p>
