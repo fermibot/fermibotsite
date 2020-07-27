@@ -29,6 +29,11 @@
     width: 60%;
 }
 
+.centered_image_auto_width {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .centered_header_image {
     display: block;
@@ -48,7 +53,7 @@
 
 
 @media (min-width: 1200px) {
-    .row > .col-lg-4:nth-child(3n+1) {
+    .row > .col-lg-5:nth-child(3n+1) {
         clear: left;
     }
 }
@@ -56,5 +61,6 @@
 @media (max-width: 992px) {
     .row > .col-sm-6:nth-child(2n+1) {
         clear: left;
+    ()
     }
 }
