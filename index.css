@@ -64,3 +64,8 @@
     ()
     }
 }
+
+.fermibot_preview_card {
+    padding: 5px;
+    border: solid #0b2e13;
+}
