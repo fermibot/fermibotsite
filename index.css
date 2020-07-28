@@ -37,8 +37,8 @@
 
 .centered_header_image {
     display: block;
-    /*margin-left: auto;*/
-    /*margin-right: auto;*/
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 10px;
 }
 
