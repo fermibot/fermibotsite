@@ -37,9 +37,9 @@
 
 .centered_header_image {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+    margin-bottom: 10px;
 }
 
 .empty_grid {

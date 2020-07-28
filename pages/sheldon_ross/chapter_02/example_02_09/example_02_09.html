@@ -17,41 +17,45 @@
     <script>hljs.initHighlightingOnLoad();</script>
 
 </head>
-<body>
+
+<body class="container-lg">
 <div class="jumbotron text-center">
     <h1>Sheldon Ross 10: Example 2.09</h1>
 </div>
 
-<div class="container-lg">
-    <p><strong>Question:</strong> Suppose that a particular trait of a person (such as eye color or left handedness) is
-        classified on the basis of one pair of genes and suppose that d represents a dominant gene and r a recessive
-        gene. Thus a person with dd genes is pure dominance, one with rr is pure recessive, and one with rd is hybrid.
-        The pure dominance and the hybrid are alike in appearance. Children receive one gene from each parent. If, with
-        respect to a particular trait, two hybrid parents have a total of four children, what is the probability that
-        exactly three of the four children have the outward appearance of the dominant gene? </p>
+<a href="example_02_09_distribution_chart.svg" target="_blank"><img
+        src="sheldon-ross-10-example-2-9-left-handedness.jpg"
+        class="centered_header_image container-lg"></a>
 
-    <h5>Step 01: Creation of the variables</h5>
-    <pre><code class="language-Mathematica">
+<p><strong>Question:</strong> Suppose that a particular trait of a person (such as eye color or left handedness) is
+    classified on the basis of one pair of genes and suppose that d represents a dominant gene and r a recessive
+    gene. Thus a person with dd genes is pure dominance, one with rr is pure recessive, and one with rd is hybrid.
+    The pure dominance and the hybrid are alike in appearance. Children receive one gene from each parent. If, with
+    respect to a particular trait, two hybrid parents have a total of four children, what is the probability that
+    exactly three of the four children have the outward appearance of the dominant gene? </p>
+
+<h5>Step 01: Creation of the variables</h5>
+<pre><code class="language-Mathematica">
     Module[{parent1 = Style["dr", 12, Red], parent2 = Style["rr", 12, Darker@Green]}, {parent1, parent2}]
     </code></pre>
-    <h5>Step 02: Possible Children</h5>
-    <p>Since both of the parents are mixed, any of the child born to this set of parents would receive either “r” or “d”
-        from either of the parents. The types of children possible from this union are as follows.
-    </p>
-    <pre><code class="language-Mathematica">
+<h5>Step 02: Possible Children</h5>
+<p>Since both of the parents are mixed, any of the child born to this set of parents would receive either “r” or “d”
+    from either of the parents. The types of children possible from this union are as follows.
+</p>
+<pre><code class="language-Mathematica">
     Module[{parent1 = Style["d", 12, Red], parent2 = Style["r", 12, Darker@Green], children},
         children = Tuples[{parent1, parent2}, 2];
         Table[Apply[StringJoin, ToString[#, StandardForm] & /@ children[[r]]], {r, 1, Length@children}]]</code></pre>
-    <p>Amongst the progeny, the children “dd”, “dr”, “rd” would be outwardly display the dominant characteristics. This
-        is \(\frac{3}{4}\).</p>
-    <h5>Step 03: Numerical Solution</h5>
-    <p>According to the question, we need to find the probability that 3 out of 4 children would have the outward
-        appearance of the dominant gene. This is a binomial type problem and below is the numerical answer.
-        \[{4\choose 3} {\frac{3}{4}}^{3} {(1-\frac{3}{4})}^{1} = \frac{27}{64} \approx 0.421875 \]</p>
-    <h5>Step 04: Simulation</h5>
-    <p>We can also do a simulation of the same to see how the probabilities match up to the results calculated
-        numerically.</p>
-    <pre><code class="language-Mathematica">
+<p>Amongst the progeny, the children “dd”, “dr”, “rd” would be outwardly display the dominant characteristics. This
+    is \(\frac{3}{4}\).</p>
+<h5>Step 03: Numerical Solution</h5>
+<p>According to the question, we need to find the probability that 3 out of 4 children would have the outward
+    appearance of the dominant gene. This is a binomial type problem and below is the numerical answer.
+    \[{4\choose 3} {\frac{3}{4}}^{3} {(1-\frac{3}{4})}^{1} = \frac{27}{64} \approx 0.421875 \]</p>
+<h5>Step 04: Simulation</h5>
+<p>We can also do a simulation of the same to see how the probabilities match up to the results calculated
+    numerically.</p>
+<pre><code class="language-Mathematica">
 
     ClearAll[childrenColor, progeny];
     (*This function colors the string. This function has not been used here by the way*)
@@ -67,19 +71,19 @@
 
     GraphicsGrid[Partition[progeny[#] & /@ {25, 100, 200, 500, 1000, 5000, 10000, 20000, 50000}, 3], ImageSize -> 700]
     </code></pre>
-    <p>You can see that the proportions (and the probabilities) match up at high numbers with the ratio being roughly
-        \(\frac{1}{4}\).<br>If only 4 children are allowed, then the probability of 3 of four children having an
-        outwardly appearance of the dominant gene is \(\frac{27}{64} \approx 0.421875\) according to our calculation
-        earlier. This is seen below. Notice that we are repeating the allowed trials. For example, the first chart in
-        the set has a number 10 under it. This means that this is a distribution of probability of 3 dominant children
-        in a population where 10 paris of parents are allowed to have 4 children each. Observe how the distribution gets
-        narrower with larger population.</p>
+<p>You can see that the proportions (and the probabilities) match up at high numbers with the ratio being roughly
+    \(\frac{1}{4}\).<br>If only 4 children are allowed, then the probability of 3 of four children having an
+    outwardly appearance of the dominant gene is \(\frac{27}{64} \approx 0.421875\) according to our calculation
+    earlier. This is seen below. Notice that we are repeating the allowed trials. For example, the first chart in
+    the set has a number 10 under it. This means that this is a distribution of probability of 3 dominant children
+    in a population where 10 paris of parents are allowed to have 4 children each. Observe how the distribution gets
+    narrower with larger population.</p>
 
-    <a href="example_02_09_bar_chart.svg" target="_blank"><img class="centered_image"
-                                                               src="example_02_09_distribution_chart.svg"
-                                                               style="padding-bottom: 10px" alt=""></a>
+<a href="example_02_09_bar_chart.svg" target="_blank"><img class="centered_image"
+                                                           src="example_02_09_distribution_chart.svg"
+                                                           style="padding-bottom: 10px" alt=""></a>
 
-    <pre><code class="language-Mathematica">
+<pre><code class="language-Mathematica">
     (*Modified function for this part*)
     progeny[number_] := Module[{parent1 = "d", parent2 = "r", children, barData},
     children =StringJoin @@@ RandomChoice[{parent1, parent2}, {number, 2}]]
@@ -97,11 +101,11 @@
         ]
     </code></pre>
 
-    <a href="example_02_09_distribution_chart.svg" target='_blank'><img class="centered_image"
-                                                                        src="example_02_09_distribution_chart.svg"
-                                                                        style="padding-bottom: 10px"
-                                                                        alt=''/></a>
-</div>
+<a href="example_02_09_distribution_chart.svg" target='_blank'><img class="centered_image"
+                                                                    src="example_02_09_distribution_chart.svg"
+                                                                    style="padding-bottom: 10px"
+                                                                    alt=''/></a>
+
 
 </body>
 </html>
