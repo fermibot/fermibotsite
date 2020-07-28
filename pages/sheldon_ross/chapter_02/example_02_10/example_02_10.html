@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sheldon Ross 10: Example 2.10</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../../external_libraries/bootstrap/bootstrap.min.css">
+    <script src="../../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <link rel="stylesheet" href="../../../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../../../index.css">
+    <script src="../../../../js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+<body class="container-lg">
+<div class="jumbotron text-center">
+    <h1>Sheldon Ross 10: Example 2.10</h1>
+</div>
+
+
+<p><strong>Question</strong> Suppose that the number of typographical errors on a single page of this
+    book has a Poisson distribution with parameter \(\lambda = 1\). Calculate the probability that there is
+    at least Sone error on this page. <br>
+    This is a problem that has a straightforward calculation. In addition to solving the problem, we will also do a
+    simulation to get a realization of the mean reaching \(\lambda\) in the long run. Also trying some cool
+    visualizations here 😉</p>
+
+
+<h5>Step 01: Numerical Solution</h5>
+<p>We need the probability that the number of errors is at-least one.
+    \[P\{X \ge 1\} = 1 - P\{X = 0\} = e^{-\lambda} \frac{\lambda^{x}}{x!}\]
+</p>
+<h5>Step 02: Simulation and Visualization</h5>
+<p>In each of the squares, the thin horizontal lines are the number of events that happened in that second. The
+    red line tracks mean as the events accumulate. See how the mean reaches the equilibrium gradually (even though
+    they start out in a rugged manner).</p>
+
+<a href="sheldon_ross_example_2.10.svg" target='_blank'><img class="centered_image"
+                                                             src="sheldon_ross_example_2.10.svg"
+                                                             style="padding-bottom: 10px" alt=''/></a>
+<pre><code class="language-Mathematica">
+    plot[] := Module[{poisson, sample = 500, movingProbability, scale = 0.001},
+    poisson = RandomVariate[PoissonDistribution[1], sample];
+    movingProbability = Transpose[{Reverse[Accumulate[poisson]/Range[sample]], scale*Range[sample]}];
+    Graphics[{
+        Table[{Opacity[0.1], Line[{{0, scale*r}, {poisson[[r]], scale r}}]}, {r, 1, sample}], {Red, Line[movingProbability]}},
+        ImageSize -> 240,
+        AspectRatio -> 1,
+        Frame -> True,
+        FrameTicks -> {Automatic, None},
+        PlotRange -> {{0, 6}, All}]
+    ]
+    plot[number_] := Parallelize[Table[plot[], number]]
+    Export[StringReplace[NotebookFileName[], ".nb" -> ".svg"], GraphicsGrid[Partition[plot[30], 3]], ImageSize -> 754, ImageResolution -> 600]
+</code></pre>
+
+
+</body>
+</html>
