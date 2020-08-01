@@ -17,12 +17,12 @@
     <script>hljs.initHighlightingOnLoad();</script>
 
 </head>
-<body>
+<body class="container-lg">
 <div class="jumbotron text-center">
     <h1>Sheldon Ross 10: Example 2.8</h1>
 </div>
 
-<div class="container-lg">
+<div>
     <a href="sheldon-ross-10-example-2.8flight.jpg" target="_blank"><img src="sheldon-ross-10-example-2.8flight.jpg"
                                                                          class="container-lg centered_header_image"></a>
 
@@ -43,7 +43,8 @@
      TableForm[Table[Apply[StringJoin,ToString[#, StandardForm] & /@ configs[[n]]], {n, 1, Length@configs}]]]
     </code></pre>
 
-    <a href="2_engine_config.svg" target='_blank'><img class="centered_image_auto_width" src="2_engine_config.svg"
+    <a href="2_engine_config.svg" target='_blank'><img class="centered_image_auto_width"
+                                                       src="2_engine_config.svg"
                                                        style="padding-bottom: 10px"
                                                        alt=''/></a>
 
@@ -54,7 +55,8 @@
      configs = (replacer /@ Union@SortBy[Select[Tuples[{0, 1}, engines], Plus @@ # >= 0.5 engines &], Plus @@ # &]);
      TableForm[Table[Apply[StringJoin,ToString[#, StandardForm] & /@ configs[[n]]], {n, 1, Length@configs}]]]
     </code></pre>
-    <a href="4_engine_config.svg" target='_blank'><img class="centered_image_auto_width" src="4_engine_config.svg"
+    <a href="4_engine_config.svg" target='_blank'><img class="centered_image_auto_width"
+                                                       src="4_engine_config.svg"
                                                        style="padding-bottom: 10px"
                                                        alt=''/></a>
 
@@ -65,7 +67,8 @@
      configs = (replacer /@ Union@SortBy[Select[Tuples[{0, 1}, engines], Plus @@ # >= 0.5 engines &], Plus @@ # &]);
      TableForm[Partition[Table[Apply[StringJoin, ToString[#, StandardForm] & /@ configs[[n]]], {n, 1, Length@configs}], 7]]]
     </code></pre>
-    <a href="6_engine_config.svg" target='_blank'><img class="centered_image_auto_width" src="6_engine_config.svg"
+    <a href="6_engine_config.svg" target='_blank'><img class="centered_image_auto_width"
+                                                       src="6_engine_config.svg"
                                                        style="padding-bottom: 10px"
                                                        alt=''/></a>
 
@@ -78,7 +81,8 @@
     TableForm@Partition[Join @@ {Table[Apply[StringJoin,ToString[#, StandardForm] & /@ configs[[n]]], {n, 1, Length@configs}],
     Table[Style[StringJoin @@ Table["\[Checkmark]", engines], White], 5]}, 8]]
     </code></pre>
-    <a href="8_engine_config.svg" target='_blank'><img class="centered_image_auto_width" src="8_engine_config.svg"
+    <a href="8_engine_config.svg" target='_blank'><img class="centered_image_auto_width"
+                                                       src="8_engine_config.svg"
                                                        style="padding-bottom: 10px"
                                                        alt=''/></a>
 
@@ -116,7 +120,7 @@
     </code></pre>
 
 
-    <a href="2_4_engine_equality.svg" target='_blank'><img class="centered_image"
+    <a href="2_4_engine_equality.svg" target='_blank'><img class="container-md"
                                                            src="2_4_engine_equality.svg"
                                                            style="padding-bottom: 10px"
                                                            alt=''/></a>
@@ -133,7 +137,7 @@
                 Frame -> True]
         ]
     </code></pre>
-    <a href="2_16_engine_equality.svg" target='_blank'><img class="centered_image"
+    <a href="2_16_engine_equality.svg" target='_blank'><img class="container-md"
                                                             src="2_16_engine_equality.svg"
                                                             style="padding-bottom: 10px"
                                                             alt=''/></a>
