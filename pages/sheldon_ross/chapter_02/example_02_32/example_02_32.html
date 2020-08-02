@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sheldon Ross 10: Example 2.32</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../../external_libraries/bootstrap/bootstrap.min.css">
+    <script src="../../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <link rel="stylesheet" href="../../../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../../../index.css">
+    <script src="../../../../js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+<body class="container-lg">
+<div class="jumbotron text-center">
+    <h1>Sheldon Ross 10: Example 2.32</h1>
+</div>
+<a href="sheldon-ross-10-example-2-32-fermi_mart-couponblue-01.jpg" target="_blank"><img
+        src="sheldon-ross-10-example-2-32-fermi_mart-couponblue-01.jpg"
+        class="container-lg"></a>
+
+<hr>
+<h5>Question</h5>
+<p> Suppose there are 25 different types of coupons and suppose that each time one obtains a coupon, it is
+    equally likely to be any one of the 25 types. Compute the expected number of different types that are contained in a
+    set of 10 coupons.</p>
+<hr>
+<h5>Numerical Approach</h5>
+<p>It was a little difficult to understand the text’s interpretation of the problem so here is another way. Imagine it
+    this way, there are 25 different coupons and we need to calculate the probability of any of those coupons to make it
+    to the list of 10. Or, we can also say that the probability that the number of coupons in the set of 10 is one. Sum
+    them up and we would get the expected number of different coupons. Just like the previous example, we get</p>
+
+<p>
+    \[x = \Sigma x_{i} : 1 \le i \le 25\]
+    \[E[x] = E[\Sigma x_{i}] = \Sigma E[x_{i}]\]
+    \[E[x_{i}] = 1 – (\frac{24}{25})^{10}\]
+    \[\implies \Sigma [x_{i}] = 25 * (1 – (\frac{24}{25})^{10}) \approx 8.37918\]
+</p>
+<hr>
+
+<h5>Simulation</h5>
+<p>This part is very straightforward. We will create a list of numbers from 1 through 25 and do a random choice of 10
+    instead of a random sample of 10. This would mean that you are allowing the program to repeat the selection of the
+    numbers from the master list of 1 through 25. We repeat this process a bunch of times. Then we do a union of each
+    set of 10 and count the number of unique coupons in each of the set. Let us see how the simulation brings out the
+    answer.</p>
+
+<pre><code class="language-Mathematica">
+    Module[{coupons = Range[25], barData, trials = 1000000},
+        barData = Reverse@Sort@ Counts[Length /@ Union /@ RandomChoice[coupons, {trials, 10}]];
+        Labeled[BarChart[barData, ChartLabels -> Keys@barData,
+            LabelingFunction -> (Placed[#, Above] &),
+            AxesLabel -> {None, Style["Count", 15]}, ImageSize -> 788,
+            PlotLabel -> ToString[trials] <> " trials", Frame -> True], "Number of unique coupons"]
+    ]
+
+    Export[StringReplace[NotebookFileName[], ".nb" -> ".svg"], %, ImageSize -> 788]
+</code></pre>
+
+<a href="sheldon_ross_example_2.32.svg" target="_blank"><img src="sheldon_ross_example_2.32.svg"
+                                                             class="container-md"></a>
+
+<hr>
+<p>Calculation wise, for a million trials, the answer turns out to be 8.38043 which is close to the calculated answer of
+    8.37918. Code for the calculation is give below</p>
+
+<pre><code class="language-Mathematica">
+    Module[{coupons = Range[25], barData, trials = 1000000},
+        barData = N@Mean[Length /@ Union /@ RandomChoice[coupons, {trials, 10}]]]
+
+</code></pre>
+<hr>
+
+</body>
+</html>
