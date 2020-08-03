@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sheldon Ross 10: Example 2.38</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../../external_libraries/bootstrap/bootstrap.min.css">
+    <script src=".././../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <link rel="stylesheet" href="../../../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../../../index.css">
+    <script src="../../../../js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+<body class="container-lg">
+<div class="jumbotron text-center">
+    <h1>Sheldon Ross 10: Example 2.38 (Order Statistics)</h1>
+</div>
+
+<a href="sheldon-ross-10-example-2.38-order-statistics.jpg" target="_blank"><img
+        src="sheldon-ross-10-example-2.38-order-statistics.jpg"
+        class="container-lg"></a>
+<hr>
+
+<h5>Question</h5>
+<p>(Order Statistics) Let \(X_{(1)}, ..., X_{(n)}\) be independent and
+    identically distributed continuous random variables with probability distribution \(F\) and density
+    function \(F’(x) = f(x)\). If we let \(X_{(i)}\) denote the \(i_{th}\) smallest of these random
+    variables, then \(X_{(1)}, ..., X_{(n)}\) are called the order statistics. To obtain the distribution of
+    X(i), note that X(i) will be less than or equal to x if and only if at least i of the n random variables
+    \(X_{(1)}, ..., X_{(n)}\) are less than or equal to \(x\).</p>
+<hr>
+
+
+<h5>Solution</h5>
+<p>Putting this problem in another way, let us say you generate a list of random numbers. For the example’s sake let the
+    variate be having a standard normal distribution. Here is a list of 10 random normal numbers.
+    \[\{-1.04703, -0.273997, 0.850384, 0.277371, 1.39499, 1.03797, -0.266823, 0.501695, 0.929459, 0.971281\}\]
+    Now we order the list,
+    \[\{-1.04703, -0.273997, -0.266823, 0.277371, 0.501695, 0.850384, 0.929459, 0.971281, 1.03797, 1.39499\}\]
+</p>
+
+<p>If we have several of these ordered lists, we are interested in what the density of the distribution of an \(i^{th}\)
+    element from across several lists (or samples) would be. The image below shows the one such list of numbers. Observe
+    that each row is ordered and we take the “similarly ranked” elements and look at their distributions. In the image,
+    we would be taking each column at a time and looking at their distributions. For fitting the table in a single page,
+    I have only taken 10 number per row. In this next section we would see the distributions for different sample
+    sizes.</p>
+<p>Unsorted table looks like this</p>
+<a href="sheldon_ross_example_02_38_unsorted.svg" target='_blank'><img class="container-md"
+                                                                       src="sheldon_ross_example_02_38_unsorted.svg"
+                                                                       style="padding-bottom: 10px" alt=''/></a>
+<p>sorted table looks like this</p>
+<a href="sheldon_ross_example_02_38_sorted.svg" target='_blank'><img class="container-md"
+                                                                     src="sheldon_ross_example_02_38_sorted.svg"
+                                                                     style="padding-bottom: 10px" alt=''/></a>
+
+<p>The image below is an animation. It might take a few seconds to load.</p>
+<a href="sheldon_ross_example_02_38_01.gif" target='_blank'><img class="container-md"
+                                                                 src="sheldon_ross_example_02_38_01.gif"
+                                                                 style="padding-bottom: 10px" alt=''/></a>
+<hr>
+
+<h5>Standard Normal Distribution</h5>
+<pre><code class="language-Mathematica">
+    </code></pre>
+<ol>
+    <li>The data consists of 1000 vectors each with a length of 30. After the individual vectors have been sorted, the
+        random numbers of ranks 1 through 30 have been extracted and the distributions of these ranked random numbers
+        have have been shown sequentially.
+    </li>
+    <li> Plot: The first distribution in each of the chart shows the complete data, the smaller ranged variables that
+        are following these are the ranked numbers. For example, x1 is the distribution of the all the smallest numbers
+        in each of the vector. This that x1 is made of 1000 numbers.
+    </li>
+    <li>Observe how the range of the rank is heavily dependent on the rank of the variable itself within its own sample
+        (or vector here)
+    </li>
+</ol>
+<p><strong>Note:</strong> All the three images below are showing the same data with a different “ChartElementFunction”
+</p>
+
+<a href="sheldon_ross_example_02_38_normal_HistogramDensity.svg" target='_blank'><img class="container-md"
+                                                                                      src="sheldon_ross_example_02_38_normal_HistogramDensity.svg"
+                                                                                      style="padding-bottom: 10px"
+                                                                                      alt=''/></a>
+<a href="sheldon_ross_example_02_38_normal_PointDensity.svg" target='_blank'><img class="container-md"
+                                                                                  src="sheldon_ross_example_02_38_normal_PointDensity.svg"
+                                                                                  style="padding-bottom: 10px" alt=''/></a>
+<a href="sheldon_ross_example_02_38_normal_SmoothDensity.svg" target='_blank'><img class="container-md"
+                                                                                   src="sheldon_ross_example_02_38_normal_SmoothDensity.svg"
+                                                                                   style="padding-bottom: 10px" alt=''/></a>
+
+<hr>
+<h5>Standard Uniform Distribution</h5>
+<pre><code class="language-Mathematica">
+    </code></pre>
+<p>The data creation method is the same as explained above for the normal distribution.</p>
+<a href="sheldon_ross_example_02_38_uniform_HistogramDensity.svg" target='_blank'><img class="container-md"
+                                                                                       src="sheldon_ross_example_02_38_uniform_HistogramDensity.svg"
+                                                                                       style="padding-bottom: 10px"
+                                                                                       alt=''/></a>
+<a href="sheldon_ross_example_02_38_uniform_PointDensity.svg" target='_blank'><img class="container-md"
+                                                                                   src="sheldon_ross_example_02_38_uniform_PointDensity.svg"
+                                                                                   style="padding-bottom: 10px" alt=''/></a>
+<a href="sheldon_ross_example_02_38_uniform_SmoothDensity.svg" target='_blank'><img class="container-md"
+                                                                                    src="sheldon_ross_example_02_38_uniform_SmoothDensity.svg"
+                                                                                    style="padding-bottom: 10px"
+                                                                                    alt=''/></a>
+<hr>
+
+
+<h5>Exponential Distribution with \(\lambda=1\)</h5>
+<pre><code class="language-Mathematica">
+    </code></pre>
+<a href="sheldon_ross_example_02_38_exponential_HistogramDensity.svg" target='_blank'><img class="container-md"
+                                                                                           src="sheldon_ross_example_02_38_exponential_HistogramDensity.svg"
+                                                                                           style="padding-bottom: 10px"
+                                                                                           alt=''/></a>
+<a href="sheldon_ross_example_02_38_exponential_PointDensity.svg" target='_blank'><img class="container-md"
+                                                                                       src="sheldon_ross_example_02_38_exponential_PointDensity.svg"
+                                                                                       style="padding-bottom: 10px"
+                                                                                       alt=''/></a>
+<a href="sheldon_ross_example_02_38_exponential_SmoothDensity.svg" target='_blank'><img class="container-md"
+                                                                                        src="sheldon_ross_example_02_38_exponential_SmoothDensity.svg"
+                                                                                        style="padding-bottom: 10px"
+                                                                                        alt=''/></a>
+<hr>
+
+<h5>Chi-Square Distribution with \(k=1\)</h5>
+<pre><code class="language-Mathematica">
+    </code></pre>
+<a href="sheldon_ross_example_02_38_chiSquare_HistogramDensity.svg" target='_blank'><img class="container-md"
+                                                                                         src="sheldon_ross_example_02_38_chiSquare_HistogramDensity.svg"
+                                                                                         style="padding-bottom: 10px"
+                                                                                         alt=''/></a>
+<a href="sheldon_ross_example_02_38_chiSquare_PointDensity.svg" target='_blank'><img class="container-md"
+                                                                                     src="sheldon_ross_example_02_38_chiSquare_PointDensity.svg"
+                                                                                     style="padding-bottom: 10px"
+                                                                                     alt=''/></a>
+<a href="sheldon_ross_example_02_38_chiSquare_SmoothDensity.svg" target='_blank'><img class="container-md"
+                                                                                      src="sheldon_ross_example_02_38_chiSquare_SmoothDensity.svg"
+                                                                                      style="padding-bottom: 10px"
+                                                                                      alt=''/></a>
+<hr>
+
+
+<h5>Gamma Distribution with \(k=2, \theta=2\)</h5>
+<pre><code class="language-Mathematica">
+    </code></pre>
+<a href="sheldon_ross_example_02_38_gamma_HistogramDensity.svg" target='_blank'><img class="container-md"
+                                                                                     src="sheldon_ross_example_02_38_gamma_HistogramDensity.svg"
+                                                                                     style="padding-bottom: 10px"
+                                                                                     alt=''/></a>
+<a href="sheldon_ross_example_02_38_gamma_PointDensity.svg" target='_blank'><img class="container-md"
+                                                                                 src="sheldon_ross_example_02_38_gamma_PointDensity.svg"
+                                                                                 style="padding-bottom: 10px"
+                                                                                 alt=''/></a>
+<a href="sheldon_ross_example_02_38_gamma_SmoothDensity.svg" target='_blank'><img class="container-md"
+                                                                                  src="sheldon_ross_example_02_38_gamma_SmoothDensity.svg"
+                                                                                  style="padding-bottom: 10px" alt=''/></a>
+<hr>
+
+<a href="" target='_blank'><img class="container-md" src="" style="padding-bottom: 10px" alt=''/></a>
+
+
+</body>
+</html>
