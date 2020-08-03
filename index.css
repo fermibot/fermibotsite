@@ -61,7 +61,6 @@
 @media (max-width: 992px) {
     .row > .col-sm-6:nth-child(2n+1) {
         clear: left;
-    ()
     }
 }
 
