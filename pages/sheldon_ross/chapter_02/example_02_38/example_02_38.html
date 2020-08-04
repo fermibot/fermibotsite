@@ -5,7 +5,7 @@
     <title>Sheldon Ross 10: Example 2.38</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../../../external_libraries/bootstrap/bootstrap.min.css">
-    <script src=".././../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../../external_libraries/bootstrap/jquery.min.js"></script>
     <script src="../../../../external_libraries/bootstrap/popper.min.js"></script>
     <script src="../../../../external_libraries/bootstrap/bootstrap.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -68,7 +68,20 @@
 
 <h5>Standard Normal Distribution</h5>
 <pre><code class="language-Mathematica">
-    </code></pre>
+Module[{data, divisions = 30, plots, chartTypes = {"PointDensity", "HistogramDensity", "SmoothDensity"}},
+    data = Transpose[Sort[#] & /@ RandomVariate[NormalDistribution[], {1000, divisions}]];
+    plots = DistributionChart[Join @@ {{Flatten@data}, data}
+        , ChartLabels -> Join @@ {{Style["All", Red]}, Style[Subscript["x", ToString[#]], 12] & /@ Range@divisions}
+        , ImageSize -> 788
+        , AspectRatio -> 0.5
+        , GridLines -> {Range[divisions + 1], Range[-6, 6, 1]}
+        , ChartElementFunction -> #
+        , AxesLabel -> {"Distribution", "Rank of the random number"}] & /@ chartTypes;
+    Export[StringReplace[NotebookFileName[], ".nb" -> "_normal_" <> ToString[chartTypes[[#]]] <> ".svg"], plots[[#]]
+    , ImageSize -> 788
+    , ImageResolution -> 500] & /@ Range@Length@chartTypes
+ ]
+</code></pre>
 <ol>
     <li>The data consists of 1000 vectors each with a length of 30. After the individual vectors have been sorted, the
         random numbers of ranks 1 through 30 have been extracted and the distributions of these ranked random numbers
@@ -99,7 +112,20 @@
 <hr>
 <h5>Standard Uniform Distribution</h5>
 <pre><code class="language-Mathematica">
-    </code></pre>
+Module[{data, divisions = 30, plots, chartTypes = {"PointDensity", "HistogramDensity", "SmoothDensity"}},
+    data = Transpose[Sort[#] & /@ RandomVariate[UniformDistribution[], {1000, divisions}]]
+    plots = DistributionChart[Join @@ {{Flatten@data}, data}
+        , ChartLabels -> Join @@ {{Style["All", Red]}, Style[Subscript["x", ToString[#]], 12] & /@ Range@divisions}
+        , ImageSize -> 788
+        , AspectRatio -> 0.5
+        , GridLines -> {Range[divisions + 1], Range[-6, 6, 1]}
+        , ChartElementFunction -> #
+        , AxesLabel -> {"Distribution", "Rank of the random number"}] & /@ chartTypes;
+    Export[StringReplace[NotebookFileName[], ".nb" -> "_normal_" <> ToString[chartTypes[[#]]] <> ".svg"], plots[[#]]
+    , ImageSize -> 788
+    , ImageResolution -> 500] & /@ Range@Length@chartTypes
+ ]
+</code></pre>
 <p>The data creation method is the same as explained above for the normal distribution.</p>
 <a href="sheldon_ross_example_02_38_uniform_HistogramDensity.svg" target='_blank'><img class="container-md"
                                                                                        src="sheldon_ross_example_02_38_uniform_HistogramDensity.svg"
@@ -117,7 +143,20 @@
 
 <h5>Exponential Distribution with \(\lambda=1\)</h5>
 <pre><code class="language-Mathematica">
-    </code></pre>
+Module[{data, divisions = 30, plots, chartTypes = {"PointDensity", "HistogramDensity", "SmoothDensity"}},
+    data = Transpose[Sort[#] & /@ RandomVariate[ExponentialDistribution[1], {1000, divisions}]];
+    plots = DistributionChart[Join @@ {{Flatten@data}, data}
+        , ChartLabels -> Join @@ {{Style["All", Red]}, Style[Subscript["x", ToString[#]], 12] & /@ Range@divisions}
+        , ImageSize -> 788
+        , AspectRatio -> 0.5
+        , GridLines -> {Range[divisions + 1], Range[-6, 6, 1]}
+        , ChartElementFunction -> #
+        , AxesLabel -> {"Distribution", "Rank of the random number"}] & /@ chartTypes;
+    Export[StringReplace[NotebookFileName[], ".nb" -> "_normal_" <> ToString[chartTypes[[#]]] <> ".svg"], plots[[#]]
+    , ImageSize -> 788
+    , ImageResolution -> 500] & /@ Range@Length@chartTypes
+ ]
+</code></pre>
 <a href="sheldon_ross_example_02_38_exponential_HistogramDensity.svg" target='_blank'><img class="container-md"
                                                                                            src="sheldon_ross_example_02_38_exponential_HistogramDensity.svg"
                                                                                            style="padding-bottom: 10px"
@@ -134,7 +173,20 @@
 
 <h5>Chi-Square Distribution with \(k=1\)</h5>
 <pre><code class="language-Mathematica">
-    </code></pre>
+Module[{data, divisions = 30, plots, chartTypes = {"PointDensity", "HistogramDensity", "SmoothDensity"}},
+    data = Transpose[Sort[#] & /@ RandomVariate[ChiSquareDistribution[1], {1000, divisions}]];
+    plots = DistributionChart[Join @@ {{Flatten@data}, data}
+        , ChartLabels -> Join @@ {{Style["All", Red]}, Style[Subscript["x", ToString[#]], 12] & /@ Range@divisions}
+        , ImageSize -> 788
+        , AspectRatio -> 0.5
+        , GridLines -> {Range[divisions + 1], Range[-6, 6, 1]}
+        , ChartElementFunction -> #
+        , AxesLabel -> {"Distribution", "Rank of the random number"}] & /@ chartTypes;
+    Export[StringReplace[NotebookFileName[], ".nb" -> "_normal_" <> ToString[chartTypes[[#]]] <> ".svg"], plots[[#]]
+    , ImageSize -> 788
+    , ImageResolution -> 500] & /@ Range@Length@chartTypes
+ ]
+</code></pre>
 <a href="sheldon_ross_example_02_38_chiSquare_HistogramDensity.svg" target='_blank'><img class="container-md"
                                                                                          src="sheldon_ross_example_02_38_chiSquare_HistogramDensity.svg"
                                                                                          style="padding-bottom: 10px"
@@ -152,7 +204,20 @@
 
 <h5>Gamma Distribution with \(k=2, \theta=2\)</h5>
 <pre><code class="language-Mathematica">
-    </code></pre>
+Module[{data, divisions = 30, plots, chartTypes = {"PointDensity", "HistogramDensity", "SmoothDensity"}},
+    data = Transpose[Sort[#] & /@ RandomVariate[GammaDistribution[2, 2], {1000, divisions}]];
+    plots = DistributionChart[Join @@ {{Flatten@data}, data}
+        , ChartLabels -> Join @@ {{Style["All", Red]}, Style[Subscript["x", ToString[#]], 12] & /@ Range@divisions}
+        , ImageSize -> 788
+        , AspectRatio -> 0.5
+        , GridLines -> {Range[divisions + 1], Range[-6, 6, 1]}
+        , ChartElementFunction -> #
+        , AxesLabel -> {"Distribution", "Rank of the random number"}] & /@ chartTypes;
+    Export[StringReplace[NotebookFileName[], ".nb" -> "_normal_" <> ToString[chartTypes[[#]]] <> ".svg"], plots[[#]]
+    , ImageSize -> 788
+    , ImageResolution -> 500] & /@ Range@Length@chartTypes
+ ]
+</code></pre>
 <a href="sheldon_ross_example_02_38_gamma_HistogramDensity.svg" target='_blank'><img class="container-md"
                                                                                      src="sheldon_ross_example_02_38_gamma_HistogramDensity.svg"
                                                                                      style="padding-bottom: 10px"
