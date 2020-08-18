@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sheldon Ross 10: Example 3.16 (Analyzing the Quick-Sort Algorithm)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../../external_libraries/bootstrap/bootstrap.min.css">
+    <script src="../../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <link rel="stylesheet" href="../../../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../../../index.css">
+    <script src="../../../../js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+<body class="container-lg">
+<div class="jumbotron text-center">
+    <h1>Sheldon Ross 10: Example 3.16 (Analyzing the Quick-Sort Algorithm)</h1>
+</div>
+
+<h5>Question</h5>
+<p>Suppose we are given a set of n distinct values \(x_1, ..., x_{n}\) and we desire to put these values in
+    increasing order or, as it is commonly called, to sort them. An efficient procedure for accomplishing this is the
+    quick-sort algorithm, which is defined recursively as follows:
+<p>
+
+<ul>
+    <li>When \(n = 2\) the algorithm compares the two values and puts them in the appropriate order.</li>
+    <li>When \(n > 2\) it starts by choosing at random one of the n values say, xi and then compares each of the other
+        \(n − 1\)
+    </li>
+    <li>values with \(x_i\), noting which are smaller and which are larger than \(x_i\).</li>
+</ul>
+
+<p>Letting \(S_i\) denote the set of elements smaller than \(x_i\), and \(^{-}S_i\) the set of elements greater than
+    \(x_{i}\), the algorithm now sorts the set Si and the set \(^{-}S_i\). The final ordering, therefore, consists of
+    the ordered set of the elements in \(S_{i}\), then \(x_{i}\), and then the ordered set of the elements in
+    \(^{-}S_{i}\).</p>
+
+<p>For instance, suppose that the set of elements is 10, 5, 8, 2, 1, 4, 7.</p>
+
+<p>We start by choosing one of these values at random (that is, each of the 7 values has probability of \(\frac{1}{7}\)
+    of being chosen). Suppose, for instance that the value 4 is chosen.</p>
+
+<ul>
+    <li>We then compare 4 with each of the other six values to obtain {2, 1}, 4, {10, 5, 8, 7}</li>
+    <li>We now sort the set {2, 1} to obtain 1, 2, 4, {10, 5, 8, 7}</li>
+    <li>Next we choose a value at random from {10, 5, 8, 7} say 7 is chosen and compare each of the other three values
+        with 7 to obtain 1, 2, 4, 5, 7, {10, 8}
+    </li>
+    <li>Finally, we sort {10, 8} to end up with 1, 2, 4, 5, 7, 8, 10</li>
+</ul>
+
+The textbook then goes on for nearly two full pages to explain the efficiency to calculate the expected number of
+comparisons when the number of elements in the list is \(n\). Please look at it, if you want the detailed derivation.
+For this post, I would like to stick to the simulation part.
+
+<hr>
+
+<h5>Pre-Simulation</h5>
+<p>This part is just to see if the code is working properly. For the simulation, I have written two
+    implementations of Quick-Sort. One in python and another one in Mathematica. I would be using the Python version
+    here for the actual sorting and the tracking of the sorting while importing the same file into Mathematica for the
+    graphics. Here are 10 instances of a sorting sequence of a randomly sampled sequence of numbers from 1 to 200. Note
+    how the selection for each of the instances is random</p>
+
+<p>All the animations are together ~20MB in size, so it till take a while before they all load. Until they fully load
+    they might appear nonsensical :) </p>
+
+<a href="" target="_blank"><img src="" class="container-lg"></a>
+
+<hr>
+
+<pre><code class="language-Mathematica">
+</code></pre>
+
+<a href="" target='_blank'><img class="container-md" src="" style="padding-bottom: 10px" alt=''/></a>
+
+
+</body>
+</html>
