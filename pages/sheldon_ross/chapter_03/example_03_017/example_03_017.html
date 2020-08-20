@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sheldon Ross 10: Example 3.17</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../../external_libraries/bootstrap/bootstrap.min.css">
+    <script src="../../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <link rel="stylesheet" href="../../../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../../../index.css">
+    <script src="../../../../js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+<body class="container-lg">
+<div class="jumbotron text-center">
+    <h1>Sheldon Ross 10: Example 3.17</h1>
+</div>
+
+<a href="img_4113.jpg" target="_blank"><img src="img_4113.jpg" class="container-lg"></a>
+
+<hr>
+
+<h5>Question</h5>
+<p>In the match problem of Example 2.31 involving \(n\), \(n > 1\), individuals, find the conditional expected number of
+    matches given that the first person did not have a match.</p>
+<ul>
+    <li><a href="../../chapter_02/example_02_031/example_02_031.html">Example 2.31</a></li>
+</ul>
+
+<hr>
+
+<h5>Analytical Solution</h5>
+
+<p>As we see from the the problem’s description, 2.31 has been reiterated with a condition. This can be solved by
+    applying the method of the conditional expectations
+    \[E[X] = E[E[X|X=x]] ⇒ E[X] = E[X|X_1=0] P\{X_1=0\} + E[X|X_1=1] P\{X_1=1\}\]
+</p>
+
+<ul>
+    <li>\(E[X] = 1\) (from problem 2.31)</li>
+    <li>\(E[X|X1=0]\) is an unknown</li>
+    <li>\(P\{X_1=0\} = 1-P\{X_1 \ne 1\} = 1 – \frac{1}{n} = \frac{n-1}{n}\)</li>
+    <li>\(E[X|X1=1]\)</li>
+    <ul>
+        <li> Since the first one is a match and there are n-1 left, the probability of match of each of them is 1⁄n-1
+        </li>
+        <li>The expected number of matches from the set of n-1 would be then equal to one</li>
+        <li>Since the first one is already a match, the quantity \(E[X|X_{1}=1] = 1 + 1 = 2\)</li>
+    </ul>
+    <li>\(P\{X_{1}=1\} = \frac{1}{n}\) (from problem 2.31)</li>
+</ul>
+<p>Plugging these in the equality above, we get \(E[X|X_{1}=0] = \frac{n-2}{n-1}\)</p>
+
+<hr>
+
+
+<h5>Observations</h5>
+
+<ul>
+    <li>There is one significant change of the expected value as compared to scenario 2.31.</li>
+    <li>In 2.31, the expected value was a constant</li>
+    <li>With a condition that the first one is not a match, the probability has become a function of the number of
+        items (or hats)
+    </li>
+    <li>This would give us a variable number of hats to make additional observations in the simulation (which is the
+        next section)
+    </li>
+</ul>
+<hr>
+
+<h5>Simulations</h5>
+<p>The simulations have been summarized in the chart below. What is being shown in the chart?</p>
+<ul>
+    <li>Each bar has 1000 points
+        <ul>
+            <li>each point is mean value of the number of matches for i iterations</li>
+        </ul>
+    </li>
+    <li>The number of iterations per point can be seen as a number below the bar</li>
+    <li>Reading the first bar as an example
+        <ul>
+            <li>It has number 10 written below it</li>
+            <li>This means that each point is the average of 10 values</li>
+            <li>Each value is the count of number of matches in a set of alphabets and it has been made sure that that
+                first element is not a match (which is a requirement from the problem statement)
+            </li>
+        </ul>
+    </li>
+    <li>Horizontal Bar: If you look closely there is a horizontal bar shown in the chart. This has been kept at 0.96
+        <ul>
+            <li>Why 0.96? Since the alphabet, has 26 letters, the expected value from theory is \(\frac{26-1}{26-2} =
+                0.96\)
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<pre><code class="language-Mathematica">
+</code></pre>
+
+<a href="" target='_blank'><img class="container-md" src="" style="padding-bottom: 10px" alt=''/></a>
+
+
+</body>
+</html>
