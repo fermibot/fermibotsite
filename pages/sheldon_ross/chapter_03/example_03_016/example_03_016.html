@@ -26,36 +26,36 @@
 
 
 <h5>Question</h5>
-<p>Suppose we are given a set of n distinct values \(x_1, ..., x_{n}\) and we desire to put these values in
-    increasing order or, as it is commonly called, to sort them. An efficient procedure for accomplishing this is the
-    quick-sort algorithm, which is defined recursively as follows:
+<p>Suppose we are given a set of n distinct values \(x_1, ..., x_{n}\) and we desire to put these values in
+    increasing order or, as it is commonly called, to sort them. An efficient procedure for accomplishing this is the
+    quick-sort algorithm, which is defined recursively as follows:
 <p>
 
 <ul>
     <li>When \(n = 2\) the algorithm compares the two values and puts them in the appropriate order.</li>
-    <li>When \(n > 2\) it starts by choosing at random one of the n values say, xi and then compares each of the other
-        \(n − 1\)
+    <li>When \(n > 2\) it starts by choosing at random one of the n values say, \(x_i\) and then compares each of the
+        other \(n − 1\)
     </li>
-    <li>values with \(x_i\), noting which are smaller and which are larger than \(x_i\).</li>
+    <li>values with \(x_i\), noting which are smaller and which are larger than \(x_i\).</li>
 </ul>
 
-<p>Letting \(S_i\) denote the set of elements smaller than \(x_i\), and \(^{-}S_i\) the set of elements greater than
-    \(x_{i}\), the algorithm now sorts the set S_{i} and the set \(^{-}S_i\). The final ordering, therefore, consists of
-    the ordered set of the elements in \(S_{i}\), then \(x_{i}\), and then the ordered set of the elements in
+<p>Letting \(S_i\) denote the set of elements smaller than \(x_i\), and \(^{-}S_i\) the set of elements greater than
+    \(x_{i}\), the algorithm now sorts the set S_{i} and the set \(^{-}S_i\). The final ordering, therefore, consists of
+    the ordered set of the elements in \(S_{i}\), then \(x_{i}\), and then the ordered set of the elements in
     \(^{-}S_{i}\).</p>
 
-<p>For instance, suppose that the set of elements is 10, 5, 8, 2, 1, 4, 7.</p>
+<p>For instance, suppose that the set of elements is 10, 5, 8, 2, 1, 4, 7.</p>
 
-<p>We start by choosing one of these values at random (that is, each of the 7 values has probability of \(\frac{1}{7}\)
+<p>We start by choosing one of these values at random (that is, each of the 7 values has probability of \(\frac{1}{7}\)
     of being chosen). Suppose, for instance that the value 4 is chosen.</p>
 
 <ul>
-    <li>We then compare 4 with each of the other six values to obtain {2, 1}, 4, {10, 5, 8, 7}</li>
-    <li>We now sort the set {2, 1} to obtain 1, 2, 4, {10, 5, 8, 7}</li>
-    <li>Next we choose a value at random from {10, 5, 8, 7} say 7 is chosen and compare each of the other three values
-        with 7 to obtain 1, 2, 4, 5, 7, {10, 8}
+    <li>We then compare 4 with each of the other six values to obtain {2, 1}, 4, {10, 5, 8, 7}</li>
+    <li>We now sort the set {2, 1} to obtain 1, 2, 4, {10, 5, 8, 7}</li>
+    <li>Next we choose a value at random from {10, 5, 8, 7} say 7 is chosen and compare each of the other three values
+        with 7 to obtain 1, 2, 4, 5, 7, {10, 8}
     </li>
-    <li>Finally, we sort {10, 8} to end up with 1, 2, 4, 5, 7, 8, 10</li>
+    <li>Finally, we sort {10, 8} to end up with 1, 2, 4, 5, 7, 8, 10</li>
 </ul>
 
 The textbook then goes on for nearly two full pages to explain the efficiency to calculate the expected number of
@@ -72,7 +72,7 @@ For this post, I would like to stick to the simulation part.
     how the selection for each of the instances is random</p>
 
 <p>All the animations are together ~20MB in size, so it till take a while before they all load. Until they fully load
-    they might appear nonsensical :) </p>
+    they might appear nonsensical :) </p>
 
 <a href="sheldon_ross_example_3.16_animation_data_000.gif" target='_blank'><img class="container-md"
                                                                                 src="sheldon_ross_example_3.16_animation_data_000.gif"
