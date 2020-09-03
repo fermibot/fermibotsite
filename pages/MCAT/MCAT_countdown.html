@@ -5,77 +5,8 @@
     <title>Time Left for MCAT Exam</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../external_libraries/bootstrap/bootstrap.min.css">
-    <script src="../../external_libraries/bootstrap/jquery.min.js"></script>
-    <script src="../../external_libraries/bootstrap/popper.min.js"></script>
-    <script src="../../external_libraries/bootstrap/bootstrap.min.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
-
     <link rel="stylesheet" href="../../js/highlight/styles/default.css">
     <link rel="stylesheet" href="../../index.css">
-    <script src="../../js/highlight/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-
-    <script>
-        function countdownTimer(dateString, elementID) {
-            let countDownDate = new Date(dateString).getTime();
-
-            // Update the count down every 1 second
-            let x = setInterval(function () {
-                let now = new Date().getTime();
-                let distance = countDownDate - now;
-                let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById(elementID).innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-
-                if (distance < 0) {
-                    clearInterval(x);
-                    document.getElementById(elementID).innerHTML = "EXPIRED";
-                }
-            }, 1000);
-        }
-
-        countdownTimer("June 24, 2021 00:00:00", "MCAT");
-        countdownTimer("June 24, 2021 00:00:00", "research");
-        countdownTimer("Nov 01, 2021 00:00:00", "work");
-
-        let MCAT_data = {
-            "biochemistry": {overall_pages: 224, completed_pages: 46, passes_required: 3, passes_done: 0},
-            "CARS": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
-            "physics_and_math": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
-            "biology": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
-            "general_chemistry": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
-            "organic_chemistry": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
-            "psychology_and_sociology": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
-            "science_workbook": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
-            "CARS_workbook": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
-            "in_class_companion": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
-        };
-
-        let biochemistry = MCAT_data["biochemistry"]["completed_pages"] / MCAT_data["biochemistry"]["overall_pages"];
-        let CARS = MCAT_data["CARS"]["completed_pages"] / MCAT_data["CARS"]["overall_pages"];
-        let physics_and_math = MCAT_data["physics_and_math"]["completed_pages"] / MCAT_data["physics_and_math"]["overall_pages"];
-        let biology = MCAT_data["biology"]["completed_pages"] / MCAT_data["biology"]["overall_pages"];
-        let general_chemistry = MCAT_data["general_chemistry"]["completed_pages"] / MCAT_data["general_chemistry"]["overall_pages"];
-        let organic_chemistry = MCAT_data["organic_chemistry"]["completed_pages"] / MCAT_data["organic_chemistry"]["overall_pages"];
-        let psychology_and_sociology = MCAT_data["psychology_and_sociology"]["completed_pages"] / MCAT_data["psychology_and_sociology"]["overall_pages"];
-        let science_workbook = MCAT_data["science_workbook"]["completed_pages"] / MCAT_data["science_workbook"]["overall_pages"];
-        let CARS_workbook = MCAT_data["biochemistry"]["CARS_workbook"] / MCAT_data["CARS_workbook"]["overall_pages"];
-        let in_class_companion = MCAT_data["biochemistry"]["in_class_companion"] / MCAT_data["in_class_companion"]["overall_pages"];
-
-        // document.getElementById("MCAT_overall").innerText = "<progress max=\"100\" value=\"50\"></progress>";
-        function write_progress() {
-            console.log(biochemistry);
-            document.getElementById("a").innerHTML = "20";
-            document.getElementById("b").innerHTML = "30";
-        }
-
-        write_progress();
-
-    </script>
 </head>
 <body class="container-lg">
 <div class="jumbotron text-center">
@@ -84,25 +15,72 @@
 
 
 <div id="MCAT_table" class="table" style=>
-    <table style="table-layout: fixed">
+    <table style="table-layout: fixed;">
         <tr>
             <th style="width: 20%">Item</th>
-            <th style="width: 23%">Time Left</th>
-            <th style="width: 45%">Progress</th>
-            <th>Page Link</th>
+            <th style="width: 25%">Time Left</th>
+            <th style="width: 55%">Progress</th>
         </tr>
         <tr>
             <td>MCAT</td>
             <td id="MCAT"></td>
             <td>
-                <table class="table-light" style="table-layout: fixed; table-border-color-dark: #0b2e13">
-                    <tr class=>
+                <table class="table-light"
+                       style="table-layout: fixed; table-border-color-dark: #0b2e13; background: #f3f6f6">
+                    <tr>
                         <th>Subject</th>
-                        <th>%</th>
+                        <th>Percent Done</th>
+                        <th>Passes Done (off 3)</th>
                     </tr>
                     <tr>
-                        <td id="a"></td>
-                        <td id="b"></td>
+                        <td>Biology</td>
+                        <td id="biology"></td>
+                        <td id="biology_pass"></td>
+                    </tr>
+                    <tr>
+                        <td>Biochemistry</td>
+                        <td id="biochemistry"></td>
+                        <td id="biochemistry_pass"></td>
+                    </tr>
+                    <tr>
+                        <td>CARS</td>
+                        <td id="CARS"></td>
+                        <td id="CARS_pass"></td>
+                    </tr>
+                    <tr>
+                        <td>Cars Workbook</td>
+                        <td id="CARS_workbook"></td>
+                        <td id="CARS_workbook_pass"></td>
+                    </tr>
+                    <tr>
+                        <td>General Chemistry</td>
+                        <td id="general_chemistry"></td>
+                        <td id="general_chemistry_pass"></td>
+                    </tr>
+                    <tr>
+                        <td>In Class Companion</td>
+                        <td id="in_class_companion"></td>
+                        <td id="in_class_companion_pass"></td>
+                    </tr>
+                    <tr>
+                        <td>Organic Chemistry</td>
+                        <td id="organic_chemistry"></td>
+                        <td id="organic_chemistry_pass"></td>
+                    </tr>
+                    <tr>
+                        <td>Physics and Math</td>
+                        <td id="physics_and_math"></td>
+                        <td id="physics_and_math_pass"></td>
+                    </tr>
+                    <tr>
+                        <td>Psychology and Sociology</td>
+                        <td id="psychology_and_sociology"></td>
+                        <td id="psychology_and_sociology_pass"></td>
+                    </tr>
+                    <tr>
+                        <td>Science Workbook</td>
+                        <td id="science_workbook"></td>
+                        <td id="science_workbook_pass"></td>
                     </tr>
                 </table>
             </td>
@@ -137,6 +115,72 @@
 
 <a href="../images/east_windsor_road_2020_08_15_cinematic.jpg" target="_blank"><img
         src="../images/east_windsor_road_2020_08_15_cinematic.jpg" class="container-lg" alt=""></a>
+
+
+<script>
+    function countdownTimer(date_string, element_id) {
+        let countDownDate = new Date(date_string).getTime();
+
+        // Update the count down every 1 second
+        let x = setInterval(function () {
+            let now = new Date().getTime();
+            let distance = countDownDate - now;
+            let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById(element_id).innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById(element_id).innerHTML = "EXPIRED";
+            }
+        }, 1000);
+    }
+
+    countdownTimer("June 24, 2021 00:00:00", "MCAT");
+    countdownTimer("June 24, 2021 00:00:00", "research");
+    countdownTimer("Nov 01, 2021 00:00:00", "work");
+
+    const MCAT_data = {
+        "biology": {overall_pages: 589, completed_pages: 40, passes_required: 3, passes_done: 0},
+        "biochemistry": {overall_pages: 224, completed_pages: 46, passes_required: 3, passes_done: 0},
+        "CARS": {overall_pages: 368, completed_pages: 0, passes_required: 3, passes_done: 0},
+        "CARS_workbook": {overall_pages: 268, completed_pages: 0, passes_required: 3, passes_done: 0},
+        "general_chemistry": {overall_pages: 338, completed_pages: 40, passes_required: 3, passes_done: 0},
+        "in_class_companion": {overall_pages: 253, completed_pages: 0, passes_required: 3, passes_done: 0},
+        "organic_chemistry": {overall_pages: 259, completed_pages: 32, passes_required: 3, passes_done: 0},
+        "physics_and_math": {overall_pages: 576, completed_pages: 47, passes_required: 3, passes_done: 0},
+        "psychology_and_sociology": {overall_pages: 404, completed_pages: 36, passes_required: 3, passes_done: 0},
+        "science_workbook": {overall_pages: 772, completed_pages: 0, passes_required: 3, passes_done: 0},
+    };
+
+    function write_progress(element_id) {
+        let percent_done = MCAT_data[element_id]["completed_pages"] / MCAT_data[element_id]["overall_pages"];
+        document.getElementById(element_id).innerHTML = "<progress max=\"1\" value=\"" + percent_done + "\"></progress>";
+    }
+
+
+    function write_passes(element_id) {
+        let number = MCAT_data[element_id]["passes_done"] / MCAT_data[element_id]["passes_required"];
+        console.log(element_id + "_pass");
+        document.getElementById(element_id + "_pass").innerHTML = "<progress max=\"1\" value=\"" + number + "\"></progress>";
+    }
+
+    for (const mcatDataKey in MCAT_data) {
+        write_progress(mcatDataKey);
+        write_passes(mcatDataKey);
+    }
+</script>
+
+<script src="../../external_libraries/bootstrap/jquery.min.js"></script>
+<script src="../../external_libraries/bootstrap/popper.min.js"></script>
+<script src="../../external_libraries/bootstrap/bootstrap.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+<script src="../../js/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 
 </body>
 </html>
