@@ -16,66 +16,7 @@
     <script src="../../js/highlight/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 
-    <script>
-        function countdownTimer(dateString, elementID) {
-            let countDownDate = new Date(dateString).getTime();
 
-            // Update the count down every 1 second
-            let x = setInterval(function () {
-                let now = new Date().getTime();
-                let distance = countDownDate - now;
-                let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById(elementID).innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-
-                if (distance < 0) {
-                    clearInterval(x);
-                    document.getElementById(elementID).innerHTML = "EXPIRED";
-                }
-            }, 1000);
-        }
-
-        countdownTimer("June 24, 2021 00:00:00", "MCAT");
-        countdownTimer("June 24, 2021 00:00:00", "research");
-        countdownTimer("Nov 01, 2021 00:00:00", "work");
-
-        let MCAT_data = {
-            "biochemistry": {overall_pages: 224, completed_pages: 46, passes_required: 3, passes_done: 0},
-            "CARS": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
-            "physics_and_math": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
-            "biology": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
-            "general_chemistry": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
-            "organic_chemistry": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
-            "psychology_and_sociology": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
-            "science_workbook": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
-            "CARS_workbook": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
-            "in_class_companion": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
-        };
-
-        let biochemistry = MCAT_data["biochemistry"]["completed_pages"] / MCAT_data["biochemistry"]["overall_pages"];
-        let CARS = MCAT_data["CARS"]["completed_pages"] / MCAT_data["CARS"]["overall_pages"];
-        let physics_and_math = MCAT_data["physics_and_math"]["completed_pages"] / MCAT_data["physics_and_math"]["overall_pages"];
-        let biology = MCAT_data["biology"]["completed_pages"] / MCAT_data["biology"]["overall_pages"];
-        let general_chemistry = MCAT_data["general_chemistry"]["completed_pages"] / MCAT_data["general_chemistry"]["overall_pages"];
-        let organic_chemistry = MCAT_data["organic_chemistry"]["completed_pages"] / MCAT_data["organic_chemistry"]["overall_pages"];
-        let psychology_and_sociology = MCAT_data["psychology_and_sociology"]["completed_pages"] / MCAT_data["psychology_and_sociology"]["overall_pages"];
-        let science_workbook = MCAT_data["science_workbook"]["completed_pages"] / MCAT_data["science_workbook"]["overall_pages"];
-        let CARS_workbook = MCAT_data["biochemistry"]["CARS_workbook"] / MCAT_data["CARS_workbook"]["overall_pages"];
-        let in_class_companion = MCAT_data["biochemistry"]["in_class_companion"] / MCAT_data["in_class_companion"]["overall_pages"];
-
-        // document.getElementById("MCAT_overall").innerText = "<progress max=\"100\" value=\"50\"></progress>";
-        function write_progress() {
-            console.log(biochemistry);
-            document.getElementById("a").innerHTML = "20";
-            document.getElementById("b").innerHTML = "30";
-        }
-
-        write_progress();
-
-    </script>
 </head>
 <body class="container-lg">
 <div class="jumbotron text-center">
@@ -138,5 +79,65 @@
 <a href="../images/east_windsor_road_2020_08_15_cinematic.jpg" target="_blank"><img
         src="../images/east_windsor_road_2020_08_15_cinematic.jpg" class="container-lg" alt=""></a>
 
+<script>
+    function countdownTimer(dateString, elementID) {
+        let countDownDate = new Date(dateString).getTime();
+
+        // Update the count down every 1 second
+        let x = setInterval(function () {
+            let now = new Date().getTime();
+            let distance = countDownDate - now;
+            let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById(elementID).innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById(elementID).innerHTML = "EXPIRED";
+            }
+        }, 1000);
+    }
+
+    countdownTimer("June 24, 2021 00:00:00", "MCAT");
+    countdownTimer("June 24, 2021 00:00:00", "research");
+    countdownTimer("Nov 01, 2021 00:00:00", "work");
+
+    let MCAT_data = {
+        "biochemistry": {overall_pages: 224, completed_pages: 46, passes_required: 3, passes_done: 0},
+        "CARS": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
+        "physics_and_math": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
+        "biology": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
+        "general_chemistry": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
+        "organic_chemistry": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
+        "psychology_and_sociology": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
+        "science_workbook": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
+        "CARS_workbook": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
+        "in_class_companion": {overall_pages: 10, completed_pages: 0, passes_required: 3, passes_done: 0},
+    };
+
+    let biochemistry = MCAT_data["biochemistry"]["completed_pages"] / MCAT_data["biochemistry"]["overall_pages"];
+    let CARS = MCAT_data["CARS"]["completed_pages"] / MCAT_data["CARS"]["overall_pages"];
+    let physics_and_math = MCAT_data["physics_and_math"]["completed_pages"] / MCAT_data["physics_and_math"]["overall_pages"];
+    let biology = MCAT_data["biology"]["completed_pages"] / MCAT_data["biology"]["overall_pages"];
+    let general_chemistry = MCAT_data["general_chemistry"]["completed_pages"] / MCAT_data["general_chemistry"]["overall_pages"];
+    let organic_chemistry = MCAT_data["organic_chemistry"]["completed_pages"] / MCAT_data["organic_chemistry"]["overall_pages"];
+    let psychology_and_sociology = MCAT_data["psychology_and_sociology"]["completed_pages"] / MCAT_data["psychology_and_sociology"]["overall_pages"];
+    let science_workbook = MCAT_data["science_workbook"]["completed_pages"] / MCAT_data["science_workbook"]["overall_pages"];
+    let CARS_workbook = MCAT_data["biochemistry"]["CARS_workbook"] / MCAT_data["CARS_workbook"]["overall_pages"];
+    let in_class_companion = MCAT_data["biochemistry"]["in_class_companion"] / MCAT_data["in_class_companion"]["overall_pages"];
+
+    // document.getElementById("MCAT_overall").innerText = "<progress max=\"100\" value=\"50\"></progress>";
+    function write_progress() {
+        console.log(biochemistry);
+        document.getElementById("a").innerHTML = "20";
+        document.getElementById("b").innerHTML = "30";
+    }
+
+    write_progress();
+
+</script>
 </body>
 </html>
