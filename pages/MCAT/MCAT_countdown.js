@@ -6,7 +6,7 @@ const MCAT_data = {
     "general_chemistry": {"overall_pages": 338, "completed_pages": 40, "passes_required": 3, "passes_done": 0},
     "in_class_companion": {"overall_pages": 253, "completed_pages": 0, "passes_required": 3, "passes_done": 0},
     "organic_chemistry": {"overall_pages": 259, "completed_pages": 32, "passes_required": 3, "passes_done": 0},
-    "physics_and_math": {"overall_pages": 576, "completed_pages": 47, "passes_required": 3, "passes_done": 0},
+    "physics_and_math": {"overall_pages": 576, "completed_pages": 68, "passes_required": 3, "passes_done": 0},
     "psychology_and_sociology": {"overall_pages": 404, "completed_pages": 36, "passes_required": 3, "passes_done": 0},
     "science_workbook": {"overall_pages": 772, "completed_pages": 0, "passes_required": 3, "passes_done": 0}
 }
