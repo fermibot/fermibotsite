@@ -19,8 +19,8 @@
     <table style="table-layout: fixed;">
         <tr>
             <th style="width: 20%">Item</th>
-            <th style="width: 25%">Time Left</th>
-            <th style="width: 55%">Progress</th>
+            <th style="width: 20%">Time Left</th>
+            <th style="width: 60%">Progress</th>
         </tr>
         <tr>
             <td>MCAT</td>
@@ -49,7 +49,7 @@
                         <td id="CARS_pass"></td>
                     </tr>
                     <tr>
-                        <td>Cars Workbook</td>
+                        <td>CARS Workbook</td>
                         <td id="CARS_workbook"></td>
                         <td id="CARS_workbook_pass"></td>
                     </tr>
@@ -82,6 +82,11 @@
                         <td>Science Workbook</td>
                         <td id="science_workbook"></td>
                         <td id="science_workbook_pass"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="1">Overall</td>
+                        <td colspan="1" id="overall"></td>
+                        <td colspan="1" id="overall_pass"></td>
                     </tr>
                 </table>
             </td>
@@ -156,10 +161,25 @@
         document.getElementById(element_id + "_pass").innerHTML = "<progress max=\"1\" value=\"" + number + "\"></progress>";
     }
 
-    for (const mcatDataKey in MCAT_data) {
-        write_progress(mcatDataKey);
-        write_passes(mcatDataKey);
+    for (const mcat_data_key in MCAT_data) {
+        write_progress(mcat_data_key);
+        write_passes(mcat_data_key);
     }
+
+    let overall_sum = 0
+    let completed_sum = 0;
+    let overall_pass_sum = 0
+    let completed_pass_sum = 0;
+    for (const mcat_data_key in MCAT_data) {
+        overall_sum += MCAT_data[mcat_data_key]["overall_pages"];
+        completed_sum += MCAT_data[mcat_data_key]["completed_pages"];
+        overall_pass_sum += MCAT_data[mcat_data_key]["passes_required"];
+        completed_pass_sum += MCAT_data[mcat_data_key]["passes_done"];
+    }
+
+    document.getElementById("overall").innerHTML = "<progress max=\"1\" value=\"" + (completed_sum / overall_sum) + "\"></progress>";
+    document.getElementById("overall_pass").innerHTML = "<progress max=\"1\" value=\"" + (completed_pass_sum / overall_pass_sum) + "\"></progress>";
+
 </script>
 
 <script src="../../external_libraries/bootstrap/jquery.min.js"></script>
