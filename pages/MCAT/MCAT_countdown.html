@@ -119,8 +119,26 @@
     </table>
 </div>
 
-<a href="../images/east_windsor_road_2020_08_15_cinematic.jpg" target="_blank"><img
-        src="../images/east_windsor_road_2020_08_15_cinematic.jpg" class="container-lg" alt=""></a>
+
+<!--<a href="../images/east_windsor_road_2020_08_15_cinematic.jpg" target="_blank"><img-->
+<!--        src="../images/east_windsor_road_2020_08_15_cinematic.jpg" class="container-lg" alt=""></a>-->
+
+
+<div class="container-lg carousel carousel-fade">
+    <img class="my_slides container-lg" src="../../pages/images/1.jpg" style="width:100%" alt="">
+    <img class="my_slides container-lg" src="../../pages/images/2.jpg" style="width:100%" alt="">
+    <img class="my_slides container-lg" src="../../pages/images/3.jpg" style="width:100%" alt="">
+    <img class="my_slides container-lg" src="../../pages/images/4.jpg" style="width:100%" alt="">
+    <img class="my_slides container-lg" src="../../pages/images/5.jpg" style="width:100%" alt="">
+    <img class="my_slides container-lg" src="../../pages/images/6.jpg" style="width:100%" alt="">
+    <img class="my_slides container-lg" src="../../pages/images/7.jpg" style="width:100%" alt="">
+    <img class="my_slides container-lg" src="../../pages/images/8.jpg" style="width:100%" alt="">
+    <img class="my_slides container-lg" src="../../pages/images/9.jpg" style="width:100%" alt="">
+    <img class="my_slides container-lg" src="../../pages/images/10.jpg" style="width:100%" alt="">
+    <img class="my_slides container-lg" src="../../pages/images/11.jpg" style="width:100%" alt="">
+</div>
+
+
 
 
 <script>
@@ -180,6 +198,22 @@
     document.getElementById("overall").innerHTML = "<progress max=\"1\" value=\"" + (completed_sum / overall_sum) + "\"></progress>";
     document.getElementById("overall_pass").innerHTML = "<progress max=\"1\" value=\"" + (completed_pass_sum / overall_pass_sum) + "\"></progress>";
 
+    let carousel_index = 0;
+    carousel();
+
+    function carousel() {
+        let i;
+        let x = document.getElementsByClassName("my_slides");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        carousel_index++;
+        if (carousel_index > x.length) {
+            carousel_index = 1
+        }
+        x[carousel_index - 1].style.display = "block";
+        setTimeout(carousel, 5000);
+    }
 </script>
 
 <script src="../../external_libraries/bootstrap/jquery.min.js"></script>
