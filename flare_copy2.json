@@ -1,0 +1,307 @@
+[
+  {
+    "name": "main.month.january",
+    "imports": [
+      "main.keywords.big",
+      "main.keywords.liquorice",
+      "main.keywords.brindled",
+      "main.keywords.softener",
+      "main.keywords.imperiously",
+      "main.keywords.arterial",
+      "main.keywords.abolition",
+      "main.keywords.rudeness",
+      "main.keywords.traumatic",
+      "main.keywords.flaw",
+      "main.keywords.petting",
+      "main.keywords.harbinger",
+      "main.keywords.paddock",
+      "main.keywords.countless",
+      "main.keywords.merchant",
+      "main.keywords.semicircle",
+      "main.keywords.isolated",
+      "main.keywords.rimless",
+      "main.keywords.erudite",
+      "main.keywords.alewife",
+      "main.keywords.visionary",
+      "main.keywords.unharness",
+      "main.keywords.exobiology",
+      "main.keywords.jackhammer",
+      "main.keywords.imbiber",
+      "main.keywords.unquestioningly",
+      "main.keywords.chromatic",
+      "main.keywords.warbler",
+      "main.keywords.knacker",
+      "main.keywords.evolutionism",
+      "main.keywords.untapped",
+      "main.keywords.exegesis",
+      "main.keywords.harmonized",
+      "main.keywords.wristband",
+      "main.keywords.crocheting",
+      "main.keywords.emphatic",
+      "main.keywords.outwith",
+      "main.keywords.explore",
+      "main.keywords.recommencement",
+      "main.keywords.oiliness",
+      "main.keywords.softening",
+      "main.keywords.anthologist",
+      "main.keywords.comparably",
+      "main.keywords.commonweal",
+      "main.keywords.undamaged",
+      "main.keywords.frustration",
+      "main.keywords.clocks",
+      "main.keywords.cybernetics",
+      "main.keywords.larch",
+      "main.keywords.trendy",
+      "main.keywords.vanish",
+      "main.keywords.erupt",
+      "main.keywords.negotiable",
+      "main.keywords.terrier",
+      "main.keywords.prorogue",
+      "main.keywords.vulnerably",
+      "main.keywords.nominator",
+      "main.keywords.incorporate",
+      "main.keywords.itemize",
+      "main.keywords.finch"
+    ]
+  },
+  {
+    "name": "main.keywords.big",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.liquorice",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.brindled",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.softener",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.imperiously",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.arterial",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.abolition",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.rudeness",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.traumatic",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.flaw",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.petting",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.harbinger",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.paddock",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.countless",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.merchant",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.semicircle",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.isolated",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.rimless",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.erudite",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.alewife",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.visionary",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.unharness",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.exobiology",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.jackhammer",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.imbiber",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.unquestioningly",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.chromatic",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.warbler",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.knacker",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.evolutionism",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.untapped",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.exegesis",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.harmonized",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.wristband",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.crocheting",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.emphatic",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.outwith",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.explore",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.recommencement",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.oiliness",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.softening",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.anthologist",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.comparably",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.commonweal",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.undamaged",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.frustration",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.clocks",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.cybernetics",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.larch",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.trendy",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.vanish",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.erupt",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.negotiable",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.terrier",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.prorogue",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.vulnerably",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.nominator",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.incorporate",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.itemize",
+    "imports": []
+  },
+  {
+    "name": "main.keywords.finch",
+    "imports": []
+  }
+]
