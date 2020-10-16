@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/d3.v6.min.js"></script>
+    <script src="psr_b1919+21.js"></script>
+</head>
+<body>
+
+
+<script>
+
+    // const data = d3.csvParseRows(await FileAttachment("psr_b1919+21.csv").text(), d3.autoType);
+    const svg = d3.select("body").append("svg").attr("width", innerWidth).attr("height", innerHeight);
+
+    const margin = {"top": 100, right: 20, "bottom": 20, "left": 20};
+    const overlap = 16;
+    x = x = d3.scaleLinear()
+        .domain([0, data[0].length - 1])
+        .range([margin.left, innerWidth - margin.right]);
+    y = y = d3.scalePoint()
+        .domain(data.map((d, i) => i))
+        .range([margin.top, innerHeight - margin.bottom]);
+    z = d3.scaleLinear()
+        .domain([
+            d3.min(data, d => d3.min(d)),
+            d3.max(data, d => d3.max(d))
+        ])
+        .range([0, -overlap * y.step()]);
+
+
+    const series = svg.append("g")
+        .selectAll("g")
+        .data(data)
+        .join("g")
+        .attr("transform", (d, i) => `translate(0,${y(i) + 1})`);
+
+    xAxis = g => g
+        .attr("transform", `translate(0,${innerHeight - margin.bottom})`)
+        .call(d3.axisBottom(x.copy().domain([0, 92])).ticks(innerWidth / 80))
+        .call(g => g.select(".domain").remove())
+        .call(g => g.select(".tick:first-of-type text").append("tspan").attr("x", 10).text(" ms"));
+
+    area = d3.area()
+        .defined(d => !isNaN(d))
+        .x((d, i) => x(i))
+        .y0(0)
+        .y1(z);
+
+
+    line = area.lineY1();
+
+    series.append("path").attr("fill", "#fff").attr("d", area);
+    series.append("path").attr("fill", "none").attr("stroke", "black").attr("d", line);
+    svg.append("d", line);
+    svg.append("g").call(xAxis);
+
+
+</script>
+
+
+</body>
+</html>
