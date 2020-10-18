@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="../js/d3.v6.min.js"></script>
+    <script src="../../js/d3.v6.min.js"></script>
     <script src="psr_b1919+21.js"></script>
 </head>
 <body>
@@ -16,10 +16,10 @@
 
     const margin = {"top": 100, right: 20, "bottom": 20, "left": 20};
     const overlap = 16;
-    x = x = d3.scaleLinear()
+    x = d3.scaleLinear()
         .domain([0, data[0].length - 1])
         .range([margin.left, innerWidth - margin.right]);
-    y = y = d3.scalePoint()
+    y = d3.scalePoint()
         .domain(data.map((d, i) => i))
         .range([margin.top, innerHeight - margin.bottom]);
     z = d3.scaleLinear()
