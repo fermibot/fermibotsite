@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Radial Tidy Tree</title>
+    <script src="../../js/d3.v6.min.js"></script>
+    <script src="flare.js"></script>
+</head>
+<body>
+
+<script>
+
+    const width = 954;
+    const height = 954;
+    const inner_radius = Math.min(width, height) * 0.5 - 90;
+    const outer_radius = inner_radius + 10;
+    const translate = "translate(500, 500)"
+
+    let rename = name => name.substring(name.indexOf(".") + 1, name.lastIndexOf("."));
+
+    let chord = d3.chordDirected()
+        .padAngle(10 / inner_radius)
+        .sortSubgroups(d3.descending)
+        .sortChords(d3.descending)
+
+    const data = Array.from(d3.rollup(pre_data
+            .flatMap(({name: source, imports}) => imports.map(target => [rename(source), rename(target)])),
+        ({0: [source, target], length: value}) => ({source, target, value}), link => link.join())
+        .values());
+
+
+    const svg = d3.select("body").append("svg").attr("width", innerWidth).attr("height", innerHeight);
+
+    let names = Array.from(new Set(data.flatMap(d => [d.source, d.target]))).sort(d3.ascending);
+    const index = new Map(names.map((name, i) => [name, i]));
+    const matrix = Array.from(index, () => new Array(names.length).fill(0));
+
+    for (const {source, target, value} of data) {
+        matrix[index.get(source)][index.get(target)] += value;
+    }
+    ;
+
+    let color = d3.scaleOrdinal(names, d3.quantize(d3.interpolateRainbow, names.length));
+
+    let arc = d3.arc()
+        .innerRadius(inner_radius)
+        .outerRadius(outer_radius);
+
+    let ribbon = d3.ribbonArrow()
+        .radius(inner_radius - 1)
+        .padAngle(1 / inner_radius);
+
+
+    const chords = chord(matrix);
+
+    const group = svg.append("g")
+        .attr("font-size", 10)
+        .attr("font-family", "sans-serif")
+        .attr("transform", translate)
+        .selectAll("g")
+        .data(chords.groups)
+        .join("g");
+
+    group.append("path")
+        .attr("fill", d => color(names[d.index]))
+        .attr("d", arc);
+
+    group.append("text")
+        .each(d => (d.angle = (d.startAngle + d.endAngle) / 2))
+        .attr("dy", "0.35em")
+        .attr("transform", d => `
+        rotate(${(d.angle * 180 / Math.PI - 90)})
+        translate(${outer_radius + 5})
+        ${d.angle > Math.PI ? "rotate(180)" : ""}
+      `)
+        .attr("text-anchor", d => d.angle > Math.PI ? "end" : null)
+        .text(d => names[d.index]);
+
+    group.append("title").text(d => `${names[d.index]}
+    ${d3.sum(chords, c => (c.source.index === d.index) * c.source.value)} outgoing →
+    ${d3.sum(chords, c => (c.target.index === d.index) * c.source.value)} incoming ←`);
+
+    svg.append("g")
+        .attr("fill-opacity", 0.75)
+        .selectAll("path")
+        .data(chords)
+        .join("path")
+        .attr("transform", translate)
+        .style("mix-blend-mode", "multiply")
+        .attr("fill", d => color(names[d.target.index]))
+        .attr("d", ribbon)
+        .append("title")
+        .text(d => `${names[d.source.index]} → ${names[d.target.index]} ${d.source.value}`);
+
+
+    rename = name => name.substring(name.indexOf(".") + 1, name.lastIndexOf("."));
+
+
+</script>
+
+</body>
+</html>

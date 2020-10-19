@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Horizon Chart</title>
+    <script src="../../js/d3.v6.min.js"></script>
+    <script src="horizon_chart.js"></script>
+</head>
+<body>
+
+<script>
+    const width = 800;
+    const radius = width / 2;
+    const translate = "translate(500, 500)";
+    const svg = d3.select("body").append("svg").attr("width", innerWidth).attr("height", innerHeight).style("font", "10px sans-serif");
+
+    const g = svg.append("g")
+        .selectAll("g")
+        .data(data.series.map(d => Object.assign({
+            clipId: DOM.uid("clip"),
+            pathId: DOM.uid("path")
+        }, d)))
+        .join("g")
+        .attr("transform", (d, i) => `translate(0,${i * (step + 1) + margin.top})`);
+
+
+</script>
+
+</body>
+</html>
