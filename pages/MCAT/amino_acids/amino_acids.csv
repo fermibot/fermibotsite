@@ -1,0 +1,21 @@
+amino_acid,ph,polarity,essentiality,one_letter_name,three_letter_name,sulphur_containing
+Aspartic Acid,Acidic,Polar,Non-essential,D,Asp,No Sulfur
+Glutamic Acid,Acidic,Polar,Non-essential,E,Glu,No Sulfur
+Lysine,Basic,Polar,Essential,K,Lys,No Sulfur
+Arginine,Basic,Polar,Conditionally-Essential,R,Arg,No Sulfur
+Histidine,Basic,Polar,Essential,H,His,No Sulfur
+Glycine,Neutral,Non Polar,Conditionally-Essential,G,Gly,No Sulfur
+Alanine,Neutral,Non Polar,Non-essential,S,Ala,No Sulfur
+Valine,Neutral,Non Polar,Essential,V,Val,No Sulfur
+Leucine,Neutral,Non Polar,Essential,L,Leu,No Sulfur
+Isoleucine,Neutral,Non Polar,Essential,I,Ile,No Sulfur
+Phenylalanine,Neutral,Non Polar,Essential,F,Phe,No Sulfur
+Tryptophan,Neutral,Non Polar,Essential,W,Trp,No Sulfur
+Serine,Neutral,Polar,Non-essential,S,Ser,No Sulfur
+Threonine,Neutral,Polar,Essential,T,Thr,No Sulfur
+Tyrosine,Neutral,Polar,Conditionally-Essential,Y,Tyr,No Sulfur
+Aspargine,Neutral,Polar,Non-essential,N,Asn,No Sulfur
+Glutamine,Neutral,Polar,Conditionally-Essential,Q,Gln,No Sulfur
+Cysteine,Neutral,Polar,Conditionally-Essential,C,Cys,Has Sulfur
+Methionine,Neutral,Non Polar,Essential,M,Met,Has Sulfur
+Proline,Neutral,Non Polar,Conditionally-Essential,P,Pro,No Sulfur

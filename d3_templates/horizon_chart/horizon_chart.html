@@ -5,6 +5,7 @@
     <title>Horizon Chart</title>
     <script src="../../js/d3.v6.min.js"></script>
     <script src="horizon_chart.js"></script>
+    <script src="../../js/observable/src/dom/uid.js"></script>
 </head>
 <body>
 
@@ -17,8 +18,8 @@
     const g = svg.append("g")
         .selectAll("g")
         .data(data.series.map(d => Object.assign({
-            clipId: DOM.uid("clip"),
-            pathId: DOM.uid("path")
+            clipId: uid("clip"),
+            pathId: uid("path")
         }, d)))
         .join("g")
         .attr("transform", (d, i) => `translate(0,${i * (step + 1) + margin.top})`);
