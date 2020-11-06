@@ -1,418 +1,422 @@
 [
-  {
-    "name": "main.amino_acid.Aspartic Acid",
-    "imports": [
-      "main.ph.Acidic",
-      "main.polarity.Polar",
-      "main.essentiality.Non-essential",
-      "main.one_letter_name.D",
-      "main.three_letter_name.Asp",
-      "main.sulphur_containing.No Sulfur"
-    ]
-  },
-  {
-    "name": "main.amino_acid.Glutamic Acid",
-    "imports": [
-      "main.ph.Acidic",
-      "main.polarity.Polar",
-      "main.essentiality.Non-essential",
-      "main.one_letter_name.E",
-      "main.three_letter_name.Glu",
-      "main.sulphur_containing.No Sulfur"
-    ]
-  },
-  {
-    "name": "main.amino_acid.Lysine",
-    "imports": [
-      "main.ph.Basic",
-      "main.polarity.Polar",
-      "main.essentiality.Essential",
-      "main.one_letter_name.K",
-      "main.three_letter_name.Lys",
-      "main.sulphur_containing.No Sulfur"
-    ]
-  },
-  {
-    "name": "main.amino_acid.Arginine",
-    "imports": [
-      "main.ph.Basic",
-      "main.polarity.Polar",
-      "main.essentiality.Conditionally-Essential",
-      "main.one_letter_name.R",
-      "main.three_letter_name.Arg",
-      "main.sulphur_containing.No Sulfur"
-    ]
-  },
-  {
-    "name": "main.amino_acid.Histidine",
-    "imports": [
-      "main.ph.Basic",
-      "main.polarity.Polar",
-      "main.essentiality.Essential",
-      "main.one_letter_name.H",
-      "main.three_letter_name.His",
-      "main.sulphur_containing.No Sulfur"
-    ]
-  },
-  {
-    "name": "main.amino_acid.Glycine",
-    "imports": [
-      "main.ph.Neutral",
-      "main.polarity.Non Polar",
-      "main.essentiality.Conditionally-Essential",
-      "main.one_letter_name.G",
-      "main.three_letter_name.Gly",
-      "main.sulphur_containing.No Sulfur"
-    ]
-  },
-  {
-    "name": "main.amino_acid.Alanine",
-    "imports": [
-      "main.ph.Neutral",
-      "main.polarity.Non Polar",
-      "main.essentiality.Non-essential",
-      "main.one_letter_name.S",
-      "main.three_letter_name.Ala",
-      "main.sulphur_containing.No Sulfur"
-    ]
-  },
-  {
-    "name": "main.amino_acid.Valine",
-    "imports": [
-      "main.ph.Neutral",
-      "main.polarity.Non Polar",
-      "main.essentiality.Essential",
-      "main.one_letter_name.V",
-      "main.three_letter_name.Val",
-      "main.sulphur_containing.No Sulfur"
-    ]
-  },
-  {
-    "name": "main.amino_acid.Leucine",
-    "imports": [
-      "main.ph.Neutral",
-      "main.polarity.Non Polar",
-      "main.essentiality.Essential",
-      "main.one_letter_name.L",
-      "main.three_letter_name.Leu",
-      "main.sulphur_containing.No Sulfur"
-    ]
-  },
-  {
-    "name": "main.amino_acid.Isoleucine",
-    "imports": [
-      "main.ph.Neutral",
-      "main.polarity.Non Polar",
-      "main.essentiality.Essential",
-      "main.one_letter_name.I",
-      "main.three_letter_name.Ile",
-      "main.sulphur_containing.No Sulfur"
-    ]
-  },
-  {
-    "name": "main.amino_acid.Phenylalanine",
-    "imports": [
-      "main.ph.Neutral",
-      "main.polarity.Non Polar",
-      "main.essentiality.Essential",
-      "main.one_letter_name.F",
-      "main.three_letter_name.Phe",
-      "main.sulphur_containing.No Sulfur"
-    ]
-  },
-  {
-    "name": "main.amino_acid.Tryptophan",
-    "imports": [
-      "main.ph.Neutral",
-      "main.polarity.Non Polar",
-      "main.essentiality.Essential",
-      "main.one_letter_name.W",
-      "main.three_letter_name.Trp",
-      "main.sulphur_containing.No Sulfur"
-    ]
-  },
-  {
-    "name": "main.amino_acid.Serine",
-    "imports": [
-      "main.ph.Neutral",
-      "main.polarity.Polar",
-      "main.essentiality.Non-essential",
-      "main.one_letter_name.S",
-      "main.three_letter_name.Ser",
-      "main.sulphur_containing.No Sulfur"
-    ]
-  },
-  {
-    "name": "main.amino_acid.Threonine",
-    "imports": [
-      "main.ph.Neutral",
-      "main.polarity.Polar",
-      "main.essentiality.Essential",
-      "main.one_letter_name.T",
-      "main.three_letter_name.Thr",
-      "main.sulphur_containing.No Sulfur"
-    ]
-  },
-  {
-    "name": "main.amino_acid.Tyrosine",
-    "imports": [
-      "main.ph.Neutral",
-      "main.polarity.Polar",
-      "main.essentiality.Conditionally-Essential",
-      "main.one_letter_name.Y",
-      "main.three_letter_name.Tyr",
-      "main.sulphur_containing.No Sulfur"
-    ]
-  },
-  {
-    "name": "main.amino_acid.Aspargine",
-    "imports": [
-      "main.ph.Neutral",
-      "main.polarity.Polar",
-      "main.essentiality.Non-essential",
-      "main.one_letter_name.N",
-      "main.three_letter_name.Asn",
-      "main.sulphur_containing.No Sulfur"
-    ]
-  },
-  {
-    "name": "main.amino_acid.Glutamine",
-    "imports": [
-      "main.ph.Neutral",
-      "main.polarity.Polar",
-      "main.essentiality.Conditionally-Essential",
-      "main.one_letter_name.Q",
-      "main.three_letter_name.Gln",
-      "main.sulphur_containing.No Sulfur"
-    ]
-  },
-  {
-    "name": "main.amino_acid.Cysteine",
-    "imports": [
-      "main.ph.Neutral",
-      "main.polarity.Polar",
-      "main.essentiality.Conditionally-Essential",
-      "main.one_letter_name.C",
-      "main.three_letter_name.Cys",
-      "main.sulphur_containing.Has Sulfur"
-    ]
-  },
-  {
-    "name": "main.amino_acid.Methionine",
-    "imports": [
-      "main.ph.Neutral",
-      "main.polarity.Non Polar",
-      "main.essentiality.Essential",
-      "main.one_letter_name.M",
-      "main.three_letter_name.Met",
-      "main.sulphur_containing.Has Sulfur"
-    ]
-  },
-  {
-    "name": "main.amino_acid.Proline",
-    "imports": [
-      "main.ph.Neutral",
-      "main.polarity.Non Polar",
-      "main.essentiality.Conditionally-Essential",
-      "main.one_letter_name.P",
-      "main.three_letter_name.Pro",
-      "main.sulphur_containing.No Sulfur"
-    ]
-  },
-  {
-    "name": "main.essentiality.Conditionally-Essential",
-    "imports": []
-  },
-  {
-    "name": "main.essentiality.Essential",
-    "imports": []
-  },
-  {
-    "name": "main.essentiality.Non-essential",
-    "imports": []
-  },
-  {
-    "name": "main.one_letter_name.C",
-    "imports": []
-  },
-  {
-    "name": "main.one_letter_name.D",
-    "imports": []
-  },
-  {
-    "name": "main.one_letter_name.E",
-    "imports": []
-  },
-  {
-    "name": "main.one_letter_name.F",
-    "imports": []
-  },
-  {
-    "name": "main.one_letter_name.G",
-    "imports": []
-  },
-  {
-    "name": "main.one_letter_name.H",
-    "imports": []
-  },
-  {
-    "name": "main.one_letter_name.I",
-    "imports": []
-  },
-  {
-    "name": "main.one_letter_name.K",
-    "imports": []
-  },
-  {
-    "name": "main.one_letter_name.L",
-    "imports": []
-  },
-  {
-    "name": "main.one_letter_name.M",
-    "imports": []
-  },
-  {
-    "name": "main.one_letter_name.N",
-    "imports": []
-  },
-  {
-    "name": "main.one_letter_name.P",
-    "imports": []
-  },
-  {
-    "name": "main.one_letter_name.Q",
-    "imports": []
-  },
-  {
-    "name": "main.one_letter_name.R",
-    "imports": []
-  },
-  {
-    "name": "main.one_letter_name.S",
-    "imports": []
-  },
-  {
-    "name": "main.one_letter_name.T",
-    "imports": []
-  },
-  {
-    "name": "main.one_letter_name.V",
-    "imports": []
-  },
-  {
-    "name": "main.one_letter_name.W",
-    "imports": []
-  },
-  {
-    "name": "main.one_letter_name.Y",
-    "imports": []
-  },
-  {
-    "name": "main.ph.Acidic",
-    "imports": []
-  },
-  {
-    "name": "main.ph.Basic",
-    "imports": []
-  },
-  {
-    "name": "main.ph.Neutral",
-    "imports": []
-  },
-  {
-    "name": "main.polarity.Non Polar",
-    "imports": []
-  },
-  {
-    "name": "main.polarity.Polar",
-    "imports": []
-  },
-  {
-    "name": "main.sulphur_containing.Has Sulfur",
-    "imports": []
-  },
-  {
-    "name": "main.sulphur_containing.No Sulfur",
-    "imports": []
-  },
-  {
-    "name": "main.three_letter_name.Ala",
-    "imports": []
-  },
-  {
-    "name": "main.three_letter_name.Arg",
-    "imports": []
-  },
-  {
-    "name": "main.three_letter_name.Asn",
-    "imports": []
-  },
-  {
-    "name": "main.three_letter_name.Asp",
-    "imports": []
-  },
-  {
-    "name": "main.three_letter_name.Cys",
-    "imports": []
-  },
-  {
-    "name": "main.three_letter_name.Gln",
-    "imports": []
-  },
-  {
-    "name": "main.three_letter_name.Glu",
-    "imports": []
-  },
-  {
-    "name": "main.three_letter_name.Gly",
-    "imports": []
-  },
-  {
-    "name": "main.three_letter_name.His",
-    "imports": []
-  },
-  {
-    "name": "main.three_letter_name.Ile",
-    "imports": []
-  },
-  {
-    "name": "main.three_letter_name.Leu",
-    "imports": []
-  },
-  {
-    "name": "main.three_letter_name.Lys",
-    "imports": []
-  },
-  {
-    "name": "main.three_letter_name.Met",
-    "imports": []
-  },
-  {
-    "name": "main.three_letter_name.Phe",
-    "imports": []
-  },
-  {
-    "name": "main.three_letter_name.Pro",
-    "imports": []
-  },
-  {
-    "name": "main.three_letter_name.Ser",
-    "imports": []
-  },
-  {
-    "name": "main.three_letter_name.Thr",
-    "imports": []
-  },
-  {
-    "name": "main.three_letter_name.Trp",
-    "imports": []
-  },
-  {
-    "name": "main.three_letter_name.Tyr",
-    "imports": []
-  },
-  {
-    "name": "main.three_letter_name.Val",
-    "imports": []
-  }
+	{
+		"name":"main.amino_acid.Aspartic Acid",
+		"imports":[
+			"main.ph.Acidic",
+			"main.polarity.Polar",
+			"main.essentiality.Non-essential",
+			"main.one_letter_name.D",
+			"main.three_letter_name.Asp",
+			"main.sulphur_containing.No Sulfur"
+		]
+	},
+	{
+		"name":"main.amino_acid.Glutamic Acid",
+		"imports":[
+			"main.ph.Acidic",
+			"main.polarity.Polar",
+			"main.essentiality.Non-essential",
+			"main.one_letter_name.E",
+			"main.three_letter_name.Glu",
+			"main.sulphur_containing.No Sulfur"
+		]
+	},
+	{
+		"name":"main.amino_acid.Lysine",
+		"imports":[
+			"main.ph.Basic",
+			"main.polarity.Polar",
+			"main.essentiality.Essential",
+			"main.one_letter_name.K",
+			"main.three_letter_name.Lys",
+			"main.sulphur_containing.No Sulfur"
+		]
+	},
+	{
+		"name":"main.amino_acid.Arginine",
+		"imports":[
+			"main.ph.Basic",
+			"main.polarity.Polar",
+			"main.essentiality.Conditionally-Essential",
+			"main.one_letter_name.R",
+			"main.three_letter_name.Arg",
+			"main.sulphur_containing.No Sulfur"
+		]
+	},
+	{
+		"name":"main.amino_acid.Histidine",
+		"imports":[
+			"main.ph.Basic",
+			"main.polarity.Polar",
+			"main.essentiality.Essential",
+			"main.one_letter_name.H",
+			"main.three_letter_name.His",
+			"main.sulphur_containing.No Sulfur"
+		]
+	},
+	{
+		"name":"main.amino_acid.Glycine",
+		"imports":[
+			"main.ph.Neutral",
+			"main.polarity.Non Polar",
+			"main.essentiality.Conditionally-Essential",
+			"main.one_letter_name.G",
+			"main.three_letter_name.Gly",
+			"main.sulphur_containing.No Sulfur"
+		]
+	},
+	{
+		"name":"main.amino_acid.Alanine",
+		"imports":[
+			"main.ph.Neutral",
+			"main.polarity.Non Polar",
+			"main.essentiality.Non-essential",
+			"main.one_letter_name.A",
+			"main.three_letter_name.Ala",
+			"main.sulphur_containing.No Sulfur"
+		]
+	},
+	{
+		"name":"main.amino_acid.Valine",
+		"imports":[
+			"main.ph.Neutral",
+			"main.polarity.Non Polar",
+			"main.essentiality.Essential",
+			"main.one_letter_name.V",
+			"main.three_letter_name.Val",
+			"main.sulphur_containing.No Sulfur"
+		]
+	},
+	{
+		"name":"main.amino_acid.Leucine",
+		"imports":[
+			"main.ph.Neutral",
+			"main.polarity.Non Polar",
+			"main.essentiality.Essential",
+			"main.one_letter_name.L",
+			"main.three_letter_name.Leu",
+			"main.sulphur_containing.No Sulfur"
+		]
+	},
+	{
+		"name":"main.amino_acid.Isoleucine",
+		"imports":[
+			"main.ph.Neutral",
+			"main.polarity.Non Polar",
+			"main.essentiality.Essential",
+			"main.one_letter_name.I",
+			"main.three_letter_name.Ile",
+			"main.sulphur_containing.No Sulfur"
+		]
+	},
+	{
+		"name":"main.amino_acid.Phenylalanine",
+		"imports":[
+			"main.ph.Neutral",
+			"main.polarity.Non Polar",
+			"main.essentiality.Essential",
+			"main.one_letter_name.F",
+			"main.three_letter_name.Phe",
+			"main.sulphur_containing.No Sulfur"
+		]
+	},
+	{
+		"name":"main.amino_acid.Tryptophan",
+		"imports":[
+			"main.ph.Neutral",
+			"main.polarity.Non Polar",
+			"main.essentiality.Essential",
+			"main.one_letter_name.W",
+			"main.three_letter_name.Trp",
+			"main.sulphur_containing.No Sulfur"
+		]
+	},
+	{
+		"name":"main.amino_acid.Serine",
+		"imports":[
+			"main.ph.Neutral",
+			"main.polarity.Polar",
+			"main.essentiality.Non-essential",
+			"main.one_letter_name.S",
+			"main.three_letter_name.Ser",
+			"main.sulphur_containing.No Sulfur"
+		]
+	},
+	{
+		"name":"main.amino_acid.Threonine",
+		"imports":[
+			"main.ph.Neutral",
+			"main.polarity.Polar",
+			"main.essentiality.Essential",
+			"main.one_letter_name.T",
+			"main.three_letter_name.Thr",
+			"main.sulphur_containing.No Sulfur"
+		]
+	},
+	{
+		"name":"main.amino_acid.Tyrosine",
+		"imports":[
+			"main.ph.Neutral",
+			"main.polarity.Polar",
+			"main.essentiality.Conditionally-Essential",
+			"main.one_letter_name.Y",
+			"main.three_letter_name.Tyr",
+			"main.sulphur_containing.No Sulfur"
+		]
+	},
+	{
+		"name":"main.amino_acid.Aspargine",
+		"imports":[
+			"main.ph.Neutral",
+			"main.polarity.Polar",
+			"main.essentiality.Non-essential",
+			"main.one_letter_name.N",
+			"main.three_letter_name.Asn",
+			"main.sulphur_containing.No Sulfur"
+		]
+	},
+	{
+		"name":"main.amino_acid.Glutamine",
+		"imports":[
+			"main.ph.Neutral",
+			"main.polarity.Polar",
+			"main.essentiality.Conditionally-Essential",
+			"main.one_letter_name.Q",
+			"main.three_letter_name.Gln",
+			"main.sulphur_containing.No Sulfur"
+		]
+	},
+	{
+		"name":"main.amino_acid.Cysteine",
+		"imports":[
+			"main.ph.Neutral",
+			"main.polarity.Polar",
+			"main.essentiality.Conditionally-Essential",
+			"main.one_letter_name.C",
+			"main.three_letter_name.Cys",
+			"main.sulphur_containing.Has Sulfur"
+		]
+	},
+	{
+		"name":"main.amino_acid.Methionine",
+		"imports":[
+			"main.ph.Neutral",
+			"main.polarity.Non Polar",
+			"main.essentiality.Essential",
+			"main.one_letter_name.M",
+			"main.three_letter_name.Met",
+			"main.sulphur_containing.Has Sulfur"
+		]
+	},
+	{
+		"name":"main.amino_acid.Proline",
+		"imports":[
+			"main.ph.Neutral",
+			"main.polarity.Non Polar",
+			"main.essentiality.Conditionally-Essential",
+			"main.one_letter_name.P",
+			"main.three_letter_name.Pro",
+			"main.sulphur_containing.No Sulfur"
+		]
+	},
+	{
+		"name":"main.essentiality.Conditionally-Essential",
+		"imports":[]
+	},
+	{
+		"name":"main.essentiality.Essential",
+		"imports":[]
+	},
+	{
+		"name":"main.essentiality.Non-essential",
+		"imports":[]
+	},
+	{
+		"name":"main.one_letter_name.A",
+		"imports":[]
+	},
+	{
+		"name":"main.one_letter_name.C",
+		"imports":[]
+	},
+	{
+		"name":"main.one_letter_name.D",
+		"imports":[]
+	},
+	{
+		"name":"main.one_letter_name.E",
+		"imports":[]
+	},
+	{
+		"name":"main.one_letter_name.F",
+		"imports":[]
+	},
+	{
+		"name":"main.one_letter_name.G",
+		"imports":[]
+	},
+	{
+		"name":"main.one_letter_name.H",
+		"imports":[]
+	},
+	{
+		"name":"main.one_letter_name.I",
+		"imports":[]
+	},
+	{
+		"name":"main.one_letter_name.K",
+		"imports":[]
+	},
+	{
+		"name":"main.one_letter_name.L",
+		"imports":[]
+	},
+	{
+		"name":"main.one_letter_name.M",
+		"imports":[]
+	},
+	{
+		"name":"main.one_letter_name.N",
+		"imports":[]
+	},
+	{
+		"name":"main.one_letter_name.P",
+		"imports":[]
+	},
+	{
+		"name":"main.one_letter_name.Q",
+		"imports":[]
+	},
+	{
+		"name":"main.one_letter_name.R",
+		"imports":[]
+	},
+	{
+		"name":"main.one_letter_name.S",
+		"imports":[]
+	},
+	{
+		"name":"main.one_letter_name.T",
+		"imports":[]
+	},
+	{
+		"name":"main.one_letter_name.V",
+		"imports":[]
+	},
+	{
+		"name":"main.one_letter_name.W",
+		"imports":[]
+	},
+	{
+		"name":"main.one_letter_name.Y",
+		"imports":[]
+	},
+	{
+		"name":"main.ph.Acidic",
+		"imports":[]
+	},
+	{
+		"name":"main.ph.Basic",
+		"imports":[]
+	},
+	{
+		"name":"main.ph.Neutral",
+		"imports":[]
+	},
+	{
+		"name":"main.polarity.Non Polar",
+		"imports":[]
+	},
+	{
+		"name":"main.polarity.Polar",
+		"imports":[]
+	},
+	{
+		"name":"main.sulphur_containing.Has Sulfur",
+		"imports":[]
+	},
+	{
+		"name":"main.sulphur_containing.No Sulfur",
+		"imports":[]
+	},
+	{
+		"name":"main.three_letter_name.Ala",
+		"imports":[]
+	},
+	{
+		"name":"main.three_letter_name.Arg",
+		"imports":[]
+	},
+	{
+		"name":"main.three_letter_name.Asn",
+		"imports":[]
+	},
+	{
+		"name":"main.three_letter_name.Asp",
+		"imports":[]
+	},
+	{
+		"name":"main.three_letter_name.Cys",
+		"imports":[]
+	},
+	{
+		"name":"main.three_letter_name.Gln",
+		"imports":[]
+	},
+	{
+		"name":"main.three_letter_name.Glu",
+		"imports":[]
+	},
+	{
+		"name":"main.three_letter_name.Gly",
+		"imports":[]
+	},
+	{
+		"name":"main.three_letter_name.His",
+		"imports":[]
+	},
+	{
+		"name":"main.three_letter_name.Ile",
+		"imports":[]
+	},
+	{
+		"name":"main.three_letter_name.Leu",
+		"imports":[]
+	},
+	{
+		"name":"main.three_letter_name.Lys",
+		"imports":[]
+	},
+	{
+		"name":"main.three_letter_name.Met",
+		"imports":[]
+	},
+	{
+		"name":"main.three_letter_name.Phe",
+		"imports":[]
+	},
+	{
+		"name":"main.three_letter_name.Pro",
+		"imports":[]
+	},
+	{
+		"name":"main.three_letter_name.Ser",
+		"imports":[]
+	},
+	{
+		"name":"main.three_letter_name.Thr",
+		"imports":[]
+	},
+	{
+		"name":"main.three_letter_name.Trp",
+		"imports":[]
+	},
+	{
+		"name":"main.three_letter_name.Tyr",
+		"imports":[]
+	},
+	{
+		"name":"main.three_letter_name.Val",
+		"imports":[]
+	}
 ]
