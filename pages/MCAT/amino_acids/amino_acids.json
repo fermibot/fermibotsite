@@ -7,7 +7,8 @@
 			"main.essentiality.Non-essential",
 			"main.one_letter_name.D",
 			"main.three_letter_name.Asp",
-			"main.sulphur_containing.No Sulfur"
+			"main.sulphur_containing.No Sulfur",
+			"main.side_chain.Acetate"
 		]
 	},
 	{
@@ -18,7 +19,8 @@
 			"main.essentiality.Non-essential",
 			"main.one_letter_name.E",
 			"main.three_letter_name.Glu",
-			"main.sulphur_containing.No Sulfur"
+			"main.sulphur_containing.No Sulfur",
+			"main.side_chain.Propionate"
 		]
 	},
 	{
@@ -29,7 +31,8 @@
 			"main.essentiality.Essential",
 			"main.one_letter_name.K",
 			"main.three_letter_name.Lys",
-			"main.sulphur_containing.No Sulfur"
+			"main.sulphur_containing.No Sulfur",
+			"main.side_chain.Lysyl ((CH2)4NH2)"
 		]
 	},
 	{
@@ -40,7 +43,8 @@
 			"main.essentiality.Conditionally-Essential",
 			"main.one_letter_name.R",
 			"main.three_letter_name.Arg",
-			"main.sulphur_containing.No Sulfur"
+			"main.sulphur_containing.No Sulfur",
+			"main.side_chain.Alpha-Carboxylic"
 		]
 	},
 	{
@@ -51,7 +55,8 @@
 			"main.essentiality.Essential",
 			"main.one_letter_name.H",
 			"main.three_letter_name.His",
-			"main.sulphur_containing.No Sulfur"
+			"main.sulphur_containing.No Sulfur",
+			"main.side_chain.Imidazole"
 		]
 	},
 	{
@@ -62,7 +67,8 @@
 			"main.essentiality.Conditionally-Essential",
 			"main.one_letter_name.G",
 			"main.three_letter_name.Gly",
-			"main.sulphur_containing.No Sulfur"
+			"main.sulphur_containing.No Sulfur",
+			"main.side_chain.H"
 		]
 	},
 	{
@@ -73,7 +79,8 @@
 			"main.essentiality.Non-essential",
 			"main.one_letter_name.A",
 			"main.three_letter_name.Ala",
-			"main.sulphur_containing.No Sulfur"
+			"main.sulphur_containing.No Sulfur",
+			"main.side_chain.Methyl"
 		]
 	},
 	{
@@ -84,7 +91,8 @@
 			"main.essentiality.Essential",
 			"main.one_letter_name.V",
 			"main.three_letter_name.Val",
-			"main.sulphur_containing.No Sulfur"
+			"main.sulphur_containing.No Sulfur",
+			"main.side_chain.Isopropyl"
 		]
 	},
 	{
@@ -95,7 +103,8 @@
 			"main.essentiality.Essential",
 			"main.one_letter_name.L",
 			"main.three_letter_name.Leu",
-			"main.sulphur_containing.No Sulfur"
+			"main.sulphur_containing.No Sulfur",
+			"main.side_chain.Isobutyl"
 		]
 	},
 	{
@@ -106,7 +115,8 @@
 			"main.essentiality.Essential",
 			"main.one_letter_name.I",
 			"main.three_letter_name.Ile",
-			"main.sulphur_containing.No Sulfur"
+			"main.sulphur_containing.No Sulfur",
+			"main.side_chain.sec-Butyl"
 		]
 	},
 	{
@@ -117,7 +127,8 @@
 			"main.essentiality.Essential",
 			"main.one_letter_name.F",
 			"main.three_letter_name.Phe",
-			"main.sulphur_containing.No Sulfur"
+			"main.sulphur_containing.No Sulfur",
+			"main.side_chain.Methyl-Phenyl"
 		]
 	},
 	{
@@ -128,7 +139,8 @@
 			"main.essentiality.Essential",
 			"main.one_letter_name.W",
 			"main.three_letter_name.Trp",
-			"main.sulphur_containing.No Sulfur"
+			"main.sulphur_containing.No Sulfur",
+			"main.side_chain.Indole"
 		]
 	},
 	{
@@ -139,7 +151,8 @@
 			"main.essentiality.Non-essential",
 			"main.one_letter_name.S",
 			"main.three_letter_name.Ser",
-			"main.sulphur_containing.No Sulfur"
+			"main.sulphur_containing.No Sulfur",
+			"main.side_chain.Hydroxy-methyl"
 		]
 	},
 	{
@@ -150,7 +163,8 @@
 			"main.essentiality.Essential",
 			"main.one_letter_name.T",
 			"main.three_letter_name.Thr",
-			"main.sulphur_containing.No Sulfur"
+			"main.sulphur_containing.No Sulfur",
+			"main.side_chain.Hydroxy-ethyl"
 		]
 	},
 	{
@@ -161,18 +175,20 @@
 			"main.essentiality.Conditionally-Essential",
 			"main.one_letter_name.Y",
 			"main.three_letter_name.Tyr",
-			"main.sulphur_containing.No Sulfur"
+			"main.sulphur_containing.No Sulfur",
+			"main.side_chain.Methyl-phenol"
 		]
 	},
 	{
-		"name":"main.amino_acid.Aspargine",
+		"name":"main.amino_acid.Asparagine",
 		"imports":[
 			"main.ph.Neutral",
 			"main.polarity.Polar",
 			"main.essentiality.Non-essential",
 			"main.one_letter_name.N",
 			"main.three_letter_name.Asn",
-			"main.sulphur_containing.No Sulfur"
+			"main.sulphur_containing.No Sulfur",
+			"main.side_chain.Carboxamide"
 		]
 	},
 	{
@@ -183,7 +199,8 @@
 			"main.essentiality.Conditionally-Essential",
 			"main.one_letter_name.Q",
 			"main.three_letter_name.Gln",
-			"main.sulphur_containing.No Sulfur"
+			"main.sulphur_containing.No Sulfur",
+			"main.side_chain.Glutamine"
 		]
 	},
 	{
@@ -194,7 +211,8 @@
 			"main.essentiality.Conditionally-Essential",
 			"main.one_letter_name.C",
 			"main.three_letter_name.Cys",
-			"main.sulphur_containing.Has Sulfur"
+			"main.sulphur_containing.Has Sulfur",
+			"main.side_chain.Thiol"
 		]
 	},
 	{
@@ -205,7 +223,8 @@
 			"main.essentiality.Essential",
 			"main.one_letter_name.M",
 			"main.three_letter_name.Met",
-			"main.sulphur_containing.Has Sulfur"
+			"main.sulphur_containing.Has Sulfur",
+			"main.side_chain.S-methly-thioether"
 		]
 	},
 	{
@@ -216,7 +235,8 @@
 			"main.essentiality.Conditionally-Essential",
 			"main.one_letter_name.P",
 			"main.three_letter_name.Pro",
-			"main.sulphur_containing.No Sulfur"
+			"main.sulphur_containing.No Sulfur",
+			"main.side_chain.Pyrrolidine"
 		]
 	},
 	{
@@ -329,6 +349,86 @@
 	},
 	{
 		"name":"main.polarity.Polar",
+		"imports":[]
+	},
+	{
+		"name":"main.side_chain.Acetate",
+		"imports":[]
+	},
+	{
+		"name":"main.side_chain.Alpha-Carboxylic",
+		"imports":[]
+	},
+	{
+		"name":"main.side_chain.Carboxamide",
+		"imports":[]
+	},
+	{
+		"name":"main.side_chain.Glutamine",
+		"imports":[]
+	},
+	{
+		"name":"main.side_chain.H",
+		"imports":[]
+	},
+	{
+		"name":"main.side_chain.Hydroxy-ethyl",
+		"imports":[]
+	},
+	{
+		"name":"main.side_chain.Hydroxy-methyl",
+		"imports":[]
+	},
+	{
+		"name":"main.side_chain.Imidazole",
+		"imports":[]
+	},
+	{
+		"name":"main.side_chain.Indole",
+		"imports":[]
+	},
+	{
+		"name":"main.side_chain.Isobutyl",
+		"imports":[]
+	},
+	{
+		"name":"main.side_chain.Isopropyl",
+		"imports":[]
+	},
+	{
+		"name":"main.side_chain.Lysyl ((CH2)4NH2)",
+		"imports":[]
+	},
+	{
+		"name":"main.side_chain.Methyl",
+		"imports":[]
+	},
+	{
+		"name":"main.side_chain.Methyl-phenol",
+		"imports":[]
+	},
+	{
+		"name":"main.side_chain.Methyl-Phenyl",
+		"imports":[]
+	},
+	{
+		"name":"main.side_chain.Propionate",
+		"imports":[]
+	},
+	{
+		"name":"main.side_chain.Pyrrolidine",
+		"imports":[]
+	},
+	{
+		"name":"main.side_chain.sec-Butyl",
+		"imports":[]
+	},
+	{
+		"name":"main.side_chain.S-methly-thioether",
+		"imports":[]
+	},
+	{
+		"name":"main.side_chain.Thiol",
 		"imports":[]
 	},
 	{
