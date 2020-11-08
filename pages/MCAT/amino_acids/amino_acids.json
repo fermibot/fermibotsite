@@ -44,7 +44,7 @@
 			"main.one_letter_name.R",
 			"main.three_letter_name.Arg",
 			"main.sulphur_containing.No Sulfur",
-			"main.side_chain.Alpha-Carboxylic"
+			"main.side_chain.Guanidino group"
 		]
 	},
 	{
@@ -356,15 +356,15 @@
 		"imports":[]
 	},
 	{
-		"name":"main.side_chain.Alpha-Carboxylic",
-		"imports":[]
-	},
-	{
 		"name":"main.side_chain.Carboxamide",
 		"imports":[]
 	},
 	{
 		"name":"main.side_chain.Glutamine",
+		"imports":[]
+	},
+	{
+		"name":"main.side_chain.Guanidino group",
 		"imports":[]
 	},
 	{

@@ -2,7 +2,7 @@ amino_acid,ph,polarity,essentiality,one_letter_name,three_letter_name,sulphur_co
 Aspartic Acid,Acidic,Polar,Non-essential,D,Asp,No Sulfur,Acetate
 Glutamic Acid,Acidic,Polar,Non-essential,E,Glu,No Sulfur,Propionate
 Lysine,Basic,Polar,Essential,K,Lys,No Sulfur,Lysyl ((CH2)4NH2)
-Arginine,Basic,Polar,Conditionally-Essential,R,Arg,No Sulfur,Alpha-Carboxylic
+Arginine,Basic,Polar,Conditionally-Essential,R,Arg,No Sulfur,Guanidino group
 Histidine,Basic,Polar,Essential,H,His,No Sulfur,Imidazole
 Glycine,Neutral,Non Polar,Conditionally-Essential,G,Gly,No Sulfur,H
 Alanine,Neutral,Non Polar,Non-essential,A,Ala,No Sulfur,Methyl

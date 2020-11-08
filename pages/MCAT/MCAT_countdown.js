@@ -1,6 +1,6 @@
 const MCAT_data = {
     "biology": {"overall_pages": 589, "completed_pages": 80 + 16, "passes_required": 3, "passes_done": 0},
-    "biochemistry": {"overall_pages": 213, "completed_pages": 63 * 3, "passes_required": 3, "passes_done": 0},
+    "biochemistry": {"overall_pages": 213, "completed_pages": 103 * 3, "passes_required": 3, "passes_done": 0},
     "CARS": {"overall_pages": 368, "completed_pages": 60, "passes_required": 3, "passes_done": 0},
     "CARS_workbook": {"overall_pages": 268, "completed_pages": 0, "passes_required": 3, "passes_done": 0},
     "general_chemistry": {"overall_pages": 338, "completed_pages": 50, "passes_required": 3, "passes_done": 1},
