@@ -1,0 +1,17 @@
+[
+  {
+    "name": "main.disaccharide.sucrose",
+    "imports": [
+      "main.monosaccharide.glucose",
+      "main.monosaccharide.fructose"
+    ]
+  },
+  {
+    "name": "main.monosaccharide.fructose",
+    "imports": []
+  },
+  {
+    "name": "main.monosaccharide.glucose",
+    "imports": []
+  }
+]
