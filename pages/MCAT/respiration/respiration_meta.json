@@ -434,6 +434,89 @@
           "Glycogen Phophorylase"
         ]
       }
+    },
+    "Pentose Phosphate Pathway": {
+      "Pentose Phosphate Pathway Step:00": {
+        "in": [
+          "Glucose-6-Phosphate",
+          "NADP+",
+          "Glucose-6-Phosphate Dehydrogenase"
+        ],
+        "out": [
+          "NADPH",
+          "6-Phosphogluconate"
+        ]
+      },
+      "Pentose Phosphate Pathway Step:01": {
+        "in": [
+          "6-Phosphogluconate",
+          "NADP+"
+        ],
+        "out": [
+          "NADPH",
+          "CO2",
+          "Ribulose-5-Phosphate"
+        ]
+      },
+      "Pentose Phosphate Pathway Step:02-01": {
+        "in": [
+          "Ribulose-5-Phosphate"
+        ],
+        "out": [
+          "Ribose-5-Phosphate"
+        ]
+      },
+      "Pentose Phosphate Pathway Step:02-02": {
+        "in": [
+          "Ribulose-5-Phosphate"
+        ],
+        "out": [
+          "Xylulose-5-Phosphate"
+        ]
+      },
+      "Pentose Phosphate Pathway Step:03-01": {
+        "in": [
+          "Xylulose-5-Phosphate",
+          "Erythrose (4 Carbons)"
+        ],
+        "out": [
+          "Fructose-6-Phosphate",
+          "Glyceraldehyde 3-Phosphate"
+        ]
+      },
+      "Pentose Phosphate Pathway Step:03-02": {
+        "in": [
+          "Xylulose-5-Phosphate",
+          "Ribose-5-Phosphate"
+        ],
+        "out": [
+          "Glyceraldehyde 3-Phosphate",
+          "Sedoheptulose-7-Phosphate"
+        ]
+      },
+      "Pentose Phosphate Pathway Step:04": {
+        "in": [
+          "Glyceraldehyde 3-Phosphate",
+          "Sedoheptulose-7-Phosphate"
+        ],
+        "out": [
+          "Erythrose (4 Carbons)",
+          "Fructose-6-Phosphate",
+          "Respiration.Glycolysis.Glycolysis Step:02",
+          "Respiration.Glycolysis.Glycolysis Step:03"
+        ]
+      },
+      "Pentose Phosphate Pathway Step:05": {
+        "in": [
+          "Fructose-6-Phosphate",
+          "Fructose-6-Phosphate"
+        ],
+        "out": [
+          "2 Glyceraldehyde 3-Phosphate",
+          "Respiration.Glycolysis.Glycolysis Step:04",
+          "Respiration.Glycolysis.Glycolysis Step:05"
+        ]
+      }
     }
   }
 }

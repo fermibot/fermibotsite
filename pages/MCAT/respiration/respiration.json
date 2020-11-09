@@ -33,7 +33,8 @@
 		"imports":[
 			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:10",
 			"main.Respiration.Glycogen Metabolism.Glycogen Metabolism Step:02",
-			"main.Respiration.Glycolysis.Glycolysis Step:02"
+			"main.Respiration.Glycolysis.Glycolysis Step:02",
+			"main.Respiration.Pentose Phosphate Pathway.Pentose Phosphate Pathway Step:00"
 		]
 	},
 	{
@@ -50,7 +51,8 @@
 		"name":"main.Fructose-6-Phosphate",
 		"imports":[
 			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:09",
-			"main.Respiration.Glycolysis.Glycolysis Step:03"
+			"main.Respiration.Glycolysis.Glycolysis Step:03",
+			"main.Respiration.Pentose Phosphate Pathway.Pentose Phosphate Pathway Step:05"
 		]
 	},
 	{
@@ -510,7 +512,8 @@
 		"name":"main.Glyceraldehyde 3-Phosphate",
 		"imports":[
 			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:06A",
-			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:07B"
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:07B",
+			"main.Respiration.Pentose Phosphate Pathway.Pentose Phosphate Pathway Step:04"
 		]
 	},
 	{
@@ -720,6 +723,119 @@
 		"name":"main.Glycogen Phophorylase",
 		"imports":[
 			"main.Respiration.Glycogen Metabolism.Glycogen Metabolism Step:05"
+		]
+	},
+	{
+		"name":"main.Respiration.Pentose Phosphate Pathway.Pentose Phosphate Pathway Step:00",
+		"imports":[
+			"main.6-Phosphogluconate",
+			"main.NADPH"
+		]
+	},
+	{
+		"name":"main.NADP+",
+		"imports":[
+			"main.Respiration.Pentose Phosphate Pathway.Pentose Phosphate Pathway Step:00",
+			"main.Respiration.Pentose Phosphate Pathway.Pentose Phosphate Pathway Step:01"
+		]
+	},
+	{
+		"name":"main.Glucose-6-Phosphate Dehydrogenase",
+		"imports":[
+			"main.Respiration.Pentose Phosphate Pathway.Pentose Phosphate Pathway Step:00"
+		]
+	},
+	{
+		"name":"main.NADPH",
+		"imports":[]
+	},
+	{
+		"name":"main.6-Phosphogluconate",
+		"imports":[
+			"main.Respiration.Pentose Phosphate Pathway.Pentose Phosphate Pathway Step:01"
+		]
+	},
+	{
+		"name":"main.Respiration.Pentose Phosphate Pathway.Pentose Phosphate Pathway Step:01",
+		"imports":[
+			"main.CO2",
+			"main.NADPH",
+			"main.Ribulose-5-Phosphate"
+		]
+	},
+	{
+		"name":"main.Ribulose-5-Phosphate",
+		"imports":[
+			"main.Respiration.Pentose Phosphate Pathway.Pentose Phosphate Pathway Step:02-01",
+			"main.Respiration.Pentose Phosphate Pathway.Pentose Phosphate Pathway Step:02-02"
+		]
+	},
+	{
+		"name":"main.Respiration.Pentose Phosphate Pathway.Pentose Phosphate Pathway Step:02-01",
+		"imports":[
+			"main.Ribose-5-Phosphate"
+		]
+	},
+	{
+		"name":"main.Ribose-5-Phosphate",
+		"imports":[
+			"main.Respiration.Pentose Phosphate Pathway.Pentose Phosphate Pathway Step:03-02"
+		]
+	},
+	{
+		"name":"main.Respiration.Pentose Phosphate Pathway.Pentose Phosphate Pathway Step:02-02",
+		"imports":[
+			"main.Xylulose-5-Phosphate"
+		]
+	},
+	{
+		"name":"main.Xylulose-5-Phosphate",
+		"imports":[
+			"main.Respiration.Pentose Phosphate Pathway.Pentose Phosphate Pathway Step:03-01",
+			"main.Respiration.Pentose Phosphate Pathway.Pentose Phosphate Pathway Step:03-02"
+		]
+	},
+	{
+		"name":"main.Respiration.Pentose Phosphate Pathway.Pentose Phosphate Pathway Step:03-01",
+		"imports":[
+			"main.Fructose-6-Phosphate",
+			"main.Glyceraldehyde 3-Phosphate"
+		]
+	},
+	{
+		"name":"main.Erythrose (4 Carbons)",
+		"imports":[
+			"main.Respiration.Pentose Phosphate Pathway.Pentose Phosphate Pathway Step:03-01"
+		]
+	},
+	{
+		"name":"main.Respiration.Pentose Phosphate Pathway.Pentose Phosphate Pathway Step:03-02",
+		"imports":[
+			"main.Glyceraldehyde 3-Phosphate",
+			"main.Sedoheptulose-7-Phosphate"
+		]
+	},
+	{
+		"name":"main.Sedoheptulose-7-Phosphate",
+		"imports":[
+			"main.Respiration.Pentose Phosphate Pathway.Pentose Phosphate Pathway Step:04"
+		]
+	},
+	{
+		"name":"main.Respiration.Pentose Phosphate Pathway.Pentose Phosphate Pathway Step:04",
+		"imports":[
+			"main.Erythrose (4 Carbons)",
+			"main.Fructose-6-Phosphate",
+			"main.Respiration.Glycolysis.Glycolysis Step:02",
+			"main.Respiration.Glycolysis.Glycolysis Step:03"
+		]
+	},
+	{
+		"name":"main.Respiration.Pentose Phosphate Pathway.Pentose Phosphate Pathway Step:05",
+		"imports":[
+			"main.2 Glyceraldehyde 3-Phosphate",
+			"main.Respiration.Glycolysis.Glycolysis Step:04",
+			"main.Respiration.Glycolysis.Glycolysis Step:05"
 		]
 	}
 ]
