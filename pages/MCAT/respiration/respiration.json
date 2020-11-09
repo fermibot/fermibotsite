@@ -260,6 +260,7 @@
 	{
 		"name":"main.Glucose",
 		"imports":[
+			"main.Respiration.Glycogen Metabolism.Glycogen Metabolism Step:01",
 			"main.Respiration.Pyruvate Dehyrogenase Complex.Pyruvate Dehyrogenase Complex Step:01"
 		]
 	},
@@ -672,6 +673,12 @@
 		"name":"main.Respiration.Hormonal Regulation.Hormonal Regulation Step:02B",
 		"imports":[
 			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:00"
+		]
+	},
+	{
+		"name":"main.Respiration.Glycogen Metabolism.Glycogen Metabolism Step:01",
+		"imports":[
+			"main.Glucose"
 		]
 	}
 ]
