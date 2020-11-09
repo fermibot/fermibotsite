@@ -3,14 +3,16 @@
 		"name":"main.Respiration.Glycolysis.Glycolysis Step:01",
 		"imports":[
 			"main.ADP",
-			"main.G-6-P",
+			"main.Glucose-6-Phosphate",
 			"main.Hexokinase"
 		]
 	},
 	{
-		"name":"main.G",
+		"name":"main.Glucose",
 		"imports":[
-			"main.Respiration.Glycolysis.Glycolysis Step:01"
+			"main.Respiration.Glycogen Metabolism.Glycogen Metabolism Step:01",
+			"main.Respiration.Glycolysis.Glycolysis Step:01",
+			"main.Respiration.Pyruvate Dehyrogenase Complex.Pyruvate Dehyrogenase Complex Step:01"
 		]
 	},
 	{
@@ -27,8 +29,10 @@
 		]
 	},
 	{
-		"name":"main.G-6-P",
+		"name":"main.Glucose-6-Phosphate",
 		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:10",
+			"main.Respiration.Glycogen Metabolism.Glycogen Metabolism Step:02",
 			"main.Respiration.Glycolysis.Glycolysis Step:02"
 		]
 	},
@@ -39,12 +43,13 @@
 	{
 		"name":"main.Respiration.Glycolysis.Glycolysis Step:02",
 		"imports":[
-			"main.F-6-P"
+			"main.Fructose-6-Phosphate"
 		]
 	},
 	{
-		"name":"main.F-6-P",
+		"name":"main.Fructose-6-Phosphate",
 		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:09",
 			"main.Respiration.Glycolysis.Glycolysis Step:03"
 		]
 	},
@@ -52,11 +57,11 @@
 		"name":"main.Respiration.Glycolysis.Glycolysis Step:03",
 		"imports":[
 			"main.ADP",
-			"main.F-1,6-bP"
+			"main.Fructose-1,6-Biphosphate"
 		]
 	},
 	{
-		"name":"main.F-1,6-bP",
+		"name":"main.Fructose-1,6-Biphosphate",
 		"imports":[
 			"main.Respiration.Glycolysis.Glycolysis Step:04"
 		]
@@ -64,11 +69,11 @@
 	{
 		"name":"main.Respiration.Glycolysis.Glycolysis Step:04",
 		"imports":[
-			"main.2 Gde-3-P"
+			"main.2 Glyceraldehyde 3-Phosphate"
 		]
 	},
 	{
-		"name":"main.2 Gde-3-P",
+		"name":"main.2 Glyceraldehyde 3-Phosphate",
 		"imports":[
 			"main.Respiration.Glycolysis.Glycolysis Step:05"
 		]
@@ -76,7 +81,7 @@
 	{
 		"name":"main.Respiration.Glycolysis.Glycolysis Step:05",
 		"imports":[
-			"main.2 1,3-bP-Gate",
+			"main.2 1,3-Bisphosphoglycerate",
 			"main.2 H+",
 			"main.2 NADH"
 		]
@@ -106,44 +111,48 @@
 		]
 	},
 	{
-		"name":"main.2 1,3-bP-Gate",
+		"name":"main.2 1,3-Bisphosphoglycerate",
 		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:06",
 			"main.Respiration.Glycolysis.Glycolysis Step:06"
 		]
 	},
 	{
 		"name":"main.Respiration.Glycolysis.Glycolysis Step:06",
 		"imports":[
-			"main.2 3-P-Gate"
+			"main.2 3-Phosphoglycerate"
 		]
 	},
 	{
-		"name":"main.2 3-P-Gate",
+		"name":"main.2 3-Phosphoglycerate",
 		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:05",
 			"main.Respiration.Glycolysis.Glycolysis Step:07"
 		]
 	},
 	{
 		"name":"main.Respiration.Glycolysis.Glycolysis Step:07",
 		"imports":[
-			"main.2 2-P-Gate"
+			"main.2 2-Phosphoglycerate"
 		]
 	},
 	{
-		"name":"main.2 2-P-Gate",
+		"name":"main.2 2-Phosphoglycerate",
 		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:04",
 			"main.Respiration.Glycolysis.Glycolysis Step:08"
 		]
 	},
 	{
 		"name":"main.Respiration.Glycolysis.Glycolysis Step:08",
 		"imports":[
-			"main.2 PEP"
+			"main.2 Phosphoenolpyruvate (PEP)"
 		]
 	},
 	{
-		"name":"main.2 PEP",
+		"name":"main.2 Phosphoenolpyruvate (PEP)",
 		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:03",
 			"main.Respiration.Glycolysis.Glycolysis Step:09"
 		]
 	},
@@ -258,13 +267,6 @@
 		]
 	},
 	{
-		"name":"main.Glucose",
-		"imports":[
-			"main.Respiration.Glycogen Metabolism.Glycogen Metabolism Step:01",
-			"main.Respiration.Pyruvate Dehyrogenase Complex.Pyruvate Dehyrogenase Complex Step:01"
-		]
-	},
-	{
 		"name":"main.CoA-SH",
 		"imports":[
 			"main.Respiration.Pyruvate Dehyrogenase Complex.Pyruvate Dehyrogenase Complex Step:01"
@@ -356,6 +358,7 @@
 	{
 		"name":"main.Pi",
 		"imports":[
+			"main.Respiration.Glycogen Metabolism.Glycogen Metabolism Step:05",
 			"main.Respiration.Krebs Cycle.Krebs Cycle Stage:03-01"
 		]
 	},
@@ -478,21 +481,9 @@
 		"imports":[]
 	},
 	{
-		"name":"main.2 Phosphoenolpyruvate (PEP)",
-		"imports":[
-			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:03"
-		]
-	},
-	{
 		"name":"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:03",
 		"imports":[
 			"main.2 2-Phosphoglycerate"
-		]
-	},
-	{
-		"name":"main.2 2-Phosphoglycerate",
-		"imports":[
-			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:04"
 		]
 	},
 	{
@@ -502,22 +493,10 @@
 		]
 	},
 	{
-		"name":"main.2 3-Phosphoglycerate",
-		"imports":[
-			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:05"
-		]
-	},
-	{
 		"name":"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:05",
 		"imports":[
 			"main.2 1,3-Bisphosphoglycerate",
 			"main.2 ADP"
-		]
-	},
-	{
-		"name":"main.2 1,3-Bisphosphoglycerate",
-		"imports":[
-			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:06"
 		]
 	},
 	{
@@ -592,21 +571,9 @@
 		]
 	},
 	{
-		"name":"main.Fructose-6-Phosphate",
-		"imports":[
-			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:09"
-		]
-	},
-	{
 		"name":"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:09",
 		"imports":[
 			"main.Glucose-6-Phosphate"
-		]
-	},
-	{
-		"name":"main.Glucose-6-Phosphate",
-		"imports":[
-			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:10"
 		]
 	},
 	{
@@ -678,7 +645,81 @@
 	{
 		"name":"main.Respiration.Glycogen Metabolism.Glycogen Metabolism Step:01",
 		"imports":[
-			"main.Glucose"
+			"main.Glucose-6-Phosphate"
+		]
+	},
+	{
+		"name":"main.Respiration.Glycogen Metabolism.Glycogen Metabolism Step:02",
+		"imports":[
+			"main.Glucose-1-Phosphate",
+			"main.Phosphoglucomutase"
+		]
+	},
+	{
+		"name":"main.Phosphoglucomutase",
+		"imports":[
+			"main.Respiration.Glycogen Metabolism.Glycogen Metabolism Step:02"
+		]
+	},
+	{
+		"name":"main.Glucose-1-Phosphate",
+		"imports":[
+			"main.Respiration.Glycogen Metabolism.Glycogen Metabolism Step:03"
+		]
+	},
+	{
+		"name":"main.Respiration.Glycogen Metabolism.Glycogen Metabolism Step:03",
+		"imports":[
+			"main.PPi",
+			"main.UDP-Glucose",
+			"main.UDP-Glucose Pyrophosphorylase"
+		]
+	},
+	{
+		"name":"main.UTP",
+		"imports":[
+			"main.Respiration.Glycogen Metabolism.Glycogen Metabolism Step:03"
+		]
+	},
+	{
+		"name":"main.UDP-Glucose Pyrophosphorylase",
+		"imports":[
+			"main.Respiration.Glycogen Metabolism.Glycogen Metabolism Step:03"
+		]
+	},
+	{
+		"name":"main.UDP-Glucose",
+		"imports":[
+			"main.Respiration.Glycogen Metabolism.Glycogen Metabolism Step:04"
+		]
+	},
+	{
+		"name":"main.PPi",
+		"imports":[]
+	},
+	{
+		"name":"main.Respiration.Glycogen Metabolism.Glycogen Metabolism Step:04",
+		"imports":[
+			"main.Glycogen"
+		]
+	},
+	{
+		"name":"main.Glycogen",
+		"imports":[
+			"main.Respiration.Glycogen Metabolism.Glycogen Metabolism Step:05"
+		]
+	},
+	{
+		"name":"main.Respiration.Glycogen Metabolism.Glycogen Metabolism Step:05",
+		"imports":[
+			"main.Glucose-1-Phosphate",
+			"main.Glycogen Phophorylase"
+		]
+	},
+	{
+		"name":"main.Glycogen Phophorylase",
+		"imports":[
+			"main.Respiration.Glycogen Metabolism.Glycogen Metabolism Step:05"
 		]
 	}
 ]

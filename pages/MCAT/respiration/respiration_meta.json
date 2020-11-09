@@ -3,81 +3,81 @@
     "Glycolysis": {
       "Glycolysis Step:01": {
         "in": [
-          "G",
+          "Glucose",
           "ATP",
           "Hexokinase"
         ],
         "out": [
-          "G-6-P",
+          "Glucose-6-Phosphate",
           "ADP",
           "Hexokinase"
         ]
       },
       "Glycolysis Step:02": {
         "in": [
-          "G-6-P"
+          "Glucose-6-Phosphate"
         ],
         "out": [
-          "F-6-P"
+          "Fructose-6-Phosphate"
         ]
       },
       "Glycolysis Step:03": {
         "in": [
-          "F-6-P",
+          "Fructose-6-Phosphate",
           "ATP"
         ],
         "out": [
           "ADP",
-          "F-1,6-bP"
+          "Fructose-1,6-Biphosphate"
         ]
       },
       "Glycolysis Step:04": {
         "in": [
-          "F-1,6-bP"
+          "Fructose-1,6-Biphosphate"
         ],
         "out": [
-          "2 Gde-3-P"
+          "2 Glyceraldehyde 3-Phosphate"
         ]
       },
       "Glycolysis Step:05": {
         "in": [
-          "2 Gde-3-P",
+          "2 Glyceraldehyde 3-Phosphate",
           "2 Pi",
           "2 NAD+"
         ],
         "out": [
           "2 NADH",
           "2 H+",
-          "2 1,3-bP-Gate"
+          "2 1,3-Bisphosphoglycerate"
         ]
       },
       "Glycolysis Step:06": {
         "in": [
-          "2 1,3-bP-Gate"
+          "2 1,3-Bisphosphoglycerate"
         ],
         "out": [
-          "2 3-P-Gate"
+          "2 3-Phosphoglycerate"
         ]
       },
       "Glycolysis Step:07": {
         "in": [
-          "2 3-P-Gate"
+          "2 3-Phosphoglycerate"
         ],
         "out": [
-          "2 2-P-Gate"
+          "2 2-Phosphoglycerate"
         ]
       },
       "Glycolysis Step:08": {
         "in": [
-          "2 2-P-Gate"
+          "2 2-Phosphoglycerate"
         ],
         "out": [
-          "2 PEP"
+          "2 Phosphoenolpyruvate (PEP)"
         ]
       },
       "Glycolysis Step:09": {
         "in": [
-          "2 PEP",
+          "2 Phosphoenolpyruvate (PEP)",
           "2 ADP",
           "Pyruvate Kinase"
         ],
@@ -389,7 +389,50 @@
         "in": [
           "Glucose"
         ],
-        "out": ["Glucose"]
+        "out": [
+          "Glucose-6-Phosphate"
+        ]
+      },
+      "Glycogen Metabolism Step:02": {
+        "in": [
+          "Glucose-6-Phosphate",
+          "Phosphoglucomutase"
+        ],
+        "out": [
+          "Phosphoglucomutase",
+          "Glucose-1-Phosphate"
+        ]
+      },
+      "Glycogen Metabolism Step:03": {
+        "in": [
+          "Glucose-1-Phosphate",
+          "UTP",
+          "UDP-Glucose Pyrophosphorylase"
+        ],
+        "out": [
+          "UDP-Glucose",
+          "PPi",
+          "UDP-Glucose Pyrophosphorylase"
+        ]
+      },
+      "Glycogen Metabolism Step:04": {
+        "in": [
+          "UDP-Glucose"
+        ],
+        "out": [
+          "Glycogen"
+        ]
+      },
+      "Glycogen Metabolism Step:05": {
+        "in": [
+          "Glycogen",
+          "Glycogen Phophorylase",
+          "Pi"
+        ],
+        "out": [
+          "Glucose-1-Phosphate",
+          "Glycogen Phophorylase"
+        ]
       }
     }
   }
