@@ -95,11 +95,15 @@
 	},
 	{
 		"name":"main.2 NADH",
-		"imports":[]
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:06"
+		]
 	},
 	{
 		"name":"main.2 H+",
-		"imports":[]
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:06"
+		]
 	},
 	{
 		"name":"main.2 1,3-bP-Gate",
@@ -147,7 +151,7 @@
 		"name":"main.Respiration.Glycolysis.Glycolysis Step:09",
 		"imports":[
 			"main.2 ATP",
-			"main.2 Pyruvate",
+			"main.2 Pyruvate (3 Carbons)",
 			"main.Pyruvate Kinase"
 		]
 	},
@@ -164,12 +168,17 @@
 		]
 	},
 	{
-		"name":"main.2 Pyruvate",
-		"imports":[]
+		"name":"main.2 Pyruvate (3 Carbons)",
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:01"
+		]
 	},
 	{
 		"name":"main.2 ATP",
-		"imports":[]
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:01",
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:05"
+		]
 	},
 	{
 		"name":"main.Respiration.Fermentation.Anaerobic Pathway 01 Step:01",
@@ -266,6 +275,403 @@
 	},
 	{
 		"name":"main.Acetyl-CoA",
+		"imports":[
+			"main.Respiration.Krebs Cycle.Krebs Cycle Stage:01"
+		]
+	},
+	{
+		"name":"main.Respiration.Krebs Cycle.Krebs Cycle Stage:01",
+		"imports":[
+			"main.Citric Acid (6 Carbons)",
+			"main.CoA-SH",
+			"main.H+"
+		]
+	},
+	{
+		"name":"main.Oxaloacetate",
+		"imports":[
+			"main.Respiration.Krebs Cycle.Krebs Cycle Stage:01"
+		]
+	},
+	{
+		"name":"main.Citric Acid (6 Carbons)",
+		"imports":[
+			"main.Respiration.Krebs Cycle.Krebs Cycle Stage:02-01"
+		]
+	},
+	{
+		"name":"main.Respiration.Krebs Cycle.Krebs Cycle Stage:02-01",
+		"imports":[
+			"main.Isocitrate (6 Carbons)"
+		]
+	},
+	{
+		"name":"main.Isocitrate (6 Carbons)",
+		"imports":[
+			"main.Respiration.Krebs Cycle.Krebs Cycle Stage:02-02"
+		]
+	},
+	{
+		"name":"main.Respiration.Krebs Cycle.Krebs Cycle Stage:02-02",
+		"imports":[
+			"main.CO2",
+			"main.NADH",
+			"main.α-Ketoglutarate (5 Carbons)"
+		]
+	},
+	{
+		"name":"main.α-Ketoglutarate (5 Carbons)",
+		"imports":[
+			"main.Respiration.Krebs Cycle.Krebs Cycle Stage:02-03"
+		]
+	},
+	{
+		"name":"main.Respiration.Krebs Cycle.Krebs Cycle Stage:02-03",
+		"imports":[
+			"main.CO2",
+			"main.NADH",
+			"main.Succinyl-CoA (4 Carbons)"
+		]
+	},
+	{
+		"name":"main.Succinyl-CoA (4 Carbons)",
+		"imports":[
+			"main.Respiration.Krebs Cycle.Krebs Cycle Stage:03-01"
+		]
+	},
+	{
+		"name":"main.Respiration.Krebs Cycle.Krebs Cycle Stage:03-01",
+		"imports":[
+			"main.GTP",
+			"main.Succinate (4 Carbons)"
+		]
+	},
+	{
+		"name":"main.GDP",
+		"imports":[
+			"main.Respiration.Krebs Cycle.Krebs Cycle Stage:03-01"
+		]
+	},
+	{
+		"name":"main.Pi",
+		"imports":[
+			"main.Respiration.Krebs Cycle.Krebs Cycle Stage:03-01"
+		]
+	},
+	{
+		"name":"main.GTP",
 		"imports":[]
+	},
+	{
+		"name":"main.Succinate (4 Carbons)",
+		"imports":[
+			"main.Respiration.Krebs Cycle.Krebs Cycle Stage:03-02"
+		]
+	},
+	{
+		"name":"main.Respiration.Krebs Cycle.Krebs Cycle Stage:03-02",
+		"imports":[
+			"main.FADH2",
+			"main.Frumarate (4 Carbons)"
+		]
+	},
+	{
+		"name":"main.FADH2",
+		"imports":[]
+	},
+	{
+		"name":"main.Frumarate (4 Carbons)",
+		"imports":[
+			"main.Respiration.Krebs Cycle.Krebs Cycle Stage:03-03"
+		]
+	},
+	{
+		"name":"main.Respiration.Krebs Cycle.Krebs Cycle Stage:03-03",
+		"imports":[
+			"main.Malate (4 Carbons)"
+		]
+	},
+	{
+		"name":"main.H20",
+		"imports":[
+			"main.Respiration.Krebs Cycle.Krebs Cycle Stage:03-03"
+		]
+	},
+	{
+		"name":"main.Malate (4 Carbons)",
+		"imports":[
+			"main.Respiration.Krebs Cycle.Krebs Cycle Stage:03-04"
+		]
+	},
+	{
+		"name":"main.Respiration.Krebs Cycle.Krebs Cycle Stage:03-04",
+		"imports":[
+			"main.NADH",
+			"main.Oxaloacetate"
+		]
+	},
+	{
+		"name":"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:00",
+		"imports":[
+			"main.2 Pyruvate (3 Carbons)"
+		]
+	},
+	{
+		"name":"main.Amino Acids",
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:00",
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:02"
+		]
+	},
+	{
+		"name":"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:01",
+		"imports":[
+			"main.2 ADP",
+			"main.2 Oxaloacetate (4 Carbons)",
+			"main.2 Pi",
+			"main.2 Pyruvate (3 Carbons)",
+			"main.Pyruvate Carboxylase"
+		]
+	},
+	{
+		"name":"main.2 CO2",
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:01"
+		]
+	},
+	{
+		"name":"main.Pyruvate Carboxylase",
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:01"
+		]
+	},
+	{
+		"name":"main.2 Oxaloacetate (4 Carbons)",
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:02"
+		]
+	},
+	{
+		"name":"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:02",
+		"imports":[
+			"main.2 CO2",
+			"main.2 GDP",
+			"main.2 Phosphoenolpyruvate (PEP)",
+			"main.PEP Carboxykinase"
+		]
+	},
+	{
+		"name":"main.2 GTP",
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:02"
+		]
+	},
+	{
+		"name":"main.PEP Carboxykinase",
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:02"
+		]
+	},
+	{
+		"name":"main.2 GDP",
+		"imports":[]
+	},
+	{
+		"name":"main.2 Phosphoenolpyruvate (PEP)",
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:03"
+		]
+	},
+	{
+		"name":"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:03",
+		"imports":[
+			"main.2 2-Phosphoglycerate"
+		]
+	},
+	{
+		"name":"main.2 2-Phosphoglycerate",
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:04"
+		]
+	},
+	{
+		"name":"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:04",
+		"imports":[
+			"main.2 3-Phosphoglycerate"
+		]
+	},
+	{
+		"name":"main.2 3-Phosphoglycerate",
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:05"
+		]
+	},
+	{
+		"name":"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:05",
+		"imports":[
+			"main.2 1,3-Bisphosphoglycerate",
+			"main.2 ADP"
+		]
+	},
+	{
+		"name":"main.2 1,3-Bisphosphoglycerate",
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:06"
+		]
+	},
+	{
+		"name":"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:06",
+		"imports":[
+			"main.2 NAD+",
+			"main.Glyceraldehyde 3-Phosphate"
+		]
+	},
+	{
+		"name":"main.Glyceraldehyde 3-Phosphate",
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:06A",
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:07B"
+		]
+	},
+	{
+		"name":"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:06A",
+		"imports":[
+			"main.Dihydroxyacetone Phosphate",
+			"main.Glycerol"
+		]
+	},
+	{
+		"name":"main.Dihydroxyacetone Phosphate",
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:06B",
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:07A"
+		]
+	},
+	{
+		"name":"main.Glycerol",
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:06B"
+		]
+	},
+	{
+		"name":"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:06B",
+		"imports":[
+			"main.Glyceraldehyde 3-Phosphate"
+		]
+	},
+	{
+		"name":"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:07A",
+		"imports":[
+			"main.Fructose-1,6-Bisphosphate"
+		]
+	},
+	{
+		"name":"main.Fructose-1,6-Bisphosphate",
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:08"
+		]
+	},
+	{
+		"name":"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:07B",
+		"imports":[
+			"main.Fructose-1,6-Bisphosphate"
+		]
+	},
+	{
+		"name":"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:08",
+		"imports":[
+			"main.Fructose-1,6-Bisphosphatase",
+			"main.Fructose-6-Phosphate"
+		]
+	},
+	{
+		"name":"main.Fructose-1,6-Bisphosphatase",
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:08"
+		]
+	},
+	{
+		"name":"main.Fructose-6-Phosphate",
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:09"
+		]
+	},
+	{
+		"name":"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:09",
+		"imports":[
+			"main.Glucose-6-Phosphate"
+		]
+	},
+	{
+		"name":"main.Glucose-6-Phosphate",
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:10"
+		]
+	},
+	{
+		"name":"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:10",
+		"imports":[
+			"main.Glucose",
+			"main.Glucose-6-Phosphatase"
+		]
+	},
+	{
+		"name":"main.Glucose-6-Phosphatase",
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:10"
+		]
+	},
+	{
+		"name":"main.Respiration.Hormonal Regulation.Hormonal Regulation Step:01",
+		"imports":[
+			"main.Fructose-1.6-Bisphosphatase",
+			"main.Phosphofructokinase"
+		]
+	},
+	{
+		"name":"main.Fructose-2,6-Bisphosphatase",
+		"imports":[
+			"main.Respiration.Hormonal Regulation.Hormonal Regulation Step:01"
+		]
+	},
+	{
+		"name":"main.Insulin+",
+		"imports":[
+			"main.Respiration.Hormonal Regulation.Hormonal Regulation Step:01"
+		]
+	},
+	{
+		"name":"main.Glucagon-",
+		"imports":[
+			"main.Respiration.Hormonal Regulation.Hormonal Regulation Step:01"
+		]
+	},
+	{
+		"name":"main.Phosphofructokinase",
+		"imports":[
+			"main.Respiration.Hormonal Regulation.Hormonal Regulation Step:02A"
+		]
+	},
+	{
+		"name":"main.Fructose-1.6-Bisphosphatase",
+		"imports":[
+			"main.Respiration.Hormonal Regulation.Hormonal Regulation Step:02B"
+		]
+	},
+	{
+		"name":"main.Respiration.Hormonal Regulation.Hormonal Regulation Step:02A",
+		"imports":[
+			"main.Glycolysis"
+		]
+	},
+	{
+		"name":"main.Glycolysis",
+		"imports":[]
+	},
+	{
+		"name":"main.Respiration.Hormonal Regulation.Hormonal Regulation Step:02B",
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:00"
+		]
 	}
 ]
