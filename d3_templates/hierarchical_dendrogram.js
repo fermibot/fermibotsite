@@ -16,7 +16,7 @@ function hierarchical_dendrogram(json_file) {
         });
 
     var svg = d3.select("body").append("svg")
-        .attr("width", diameter)
+        .attr("width", diameter + 200)
         .attr("height", diameter)
         .append("g")
         .attr("transform", "translate(" + radius + "," + radius + ")");

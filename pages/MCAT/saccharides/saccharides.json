@@ -1,0 +1,128 @@
+[
+  {
+    "name": "main.disaccharide.Sucrose",
+    "imports": [
+      "main.monosaccharide.Glucose",
+      "main.monosaccharide.Fructose",
+      "main.linkage.start.Glc-α-1",
+      "main.linkage.end.2-Fru"
+    ]
+  },
+  {
+    "name": "main.disaccharide.Lactose",
+    "imports": [
+      "main.monosaccharide.Glucose",
+      "main.monosaccharide.Galactose",
+      "main.linkage.start.Gal-β-1",
+      "main.linkage.end.4-Glc"
+    ]
+  },
+  {
+    "name": "main.disaccharide.Maltose",
+    "imports": [
+      "main.monosaccharide.Glucose",
+      "main.monosaccharide.Glucose",
+      "main.linkage.start.Glc-α-1",
+      "main.linkage.end.4-Glc"
+    ]
+  },
+  {
+    "name": "main.disaccharide.Cellobiose",
+    "imports": [
+      "main.monosaccharide.Glucose",
+      "main.monosaccharide.Glucose",
+      "main.linkage.start.Glc-β-1",
+      "main.linkage.end.4-Glc"
+    ]
+  },
+  {
+    "name": "main.polysaccharide.Glycogen",
+    "imports": [
+      "main.monosaccharide.Glucose",
+      "main.monosaccharide.Glucose",
+      "main.linkage.start.Glc-α-1",
+      "main.linkage.end.4-Glc",
+      "main.linkage.end.6-Glc"
+    ]
+  },
+  {
+    "name": "main.polysaccharide.Cellulose",
+    "imports": [
+      "main.monosaccharide.Glucose",
+      "main.monosaccharide.Glucose",
+      "main.linkage.start.Glc-β-1",
+      "main.linkage.end.4-Glc"
+    ]
+  },
+  {
+    "name": "main.enzyme.Maltase",
+    "imports": [
+      "main.disaccharide.Maltose"
+    ]
+  },
+  {
+    "name": "main.enzyme.Lactase",
+    "imports": [
+      "main.disaccharide.Lactose"
+    ]
+  },
+  {
+    "name": "main.enzyme.Sucrase",
+    "imports": [
+      "main.disaccharide.Sucrose"
+    ]
+  },
+  {
+    "name": "main.enzyme.Glycogen phosphorylase",
+    "imports": [
+      "main.polysaccharide.Glycogen"
+    ]
+  },
+  {
+    "name": "main.enzyme.Cellulase",
+    "imports": [
+      "main.polysaccharide.Cellulose"
+    ]
+  },  {
+    "name": "main.enzyme.Cellobiase",
+    "imports": [
+      "main.disaccharide.Cellobiose"
+    ]
+  },
+  {
+    "name": "main.monosaccharide.Fructose",
+    "imports": []
+  },
+  {
+    "name": "main.monosaccharide.Glucose",
+    "imports": []
+  },
+  {
+    "name": "main.monosaccharide.Galactose",
+    "imports": []
+  },
+  {
+    "name": "main.linkage.start.Glc-α-1",
+    "imports": []
+  },
+  {
+    "name": "main.linkage.end.2-Fru",
+    "imports": []
+  },
+  {
+    "name": "main.linkage.end.4-Glc",
+    "imports": []
+  },
+  {
+    "name": "main.linkage.start.Gal-β-1",
+    "imports": []
+  },
+  {
+    "name": "main.linkage.start.Glc-β-1",
+    "imports": []
+  },
+  {
+    "name": "main.linkage.end.6-Glc",
+    "imports": []
+  }
+]

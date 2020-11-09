@@ -1,0 +1,271 @@
+[
+	{
+		"name":"main.Respiration.Glycolysis.Glycolysis Step:01",
+		"imports":[
+			"main.ADP",
+			"main.G-6-P",
+			"main.Hexokinase"
+		]
+	},
+	{
+		"name":"main.G",
+		"imports":[
+			"main.Respiration.Glycolysis.Glycolysis Step:01"
+		]
+	},
+	{
+		"name":"main.ATP",
+		"imports":[
+			"main.Respiration.Glycolysis.Glycolysis Step:01",
+			"main.Respiration.Glycolysis.Glycolysis Step:03"
+		]
+	},
+	{
+		"name":"main.Hexokinase",
+		"imports":[
+			"main.Respiration.Glycolysis.Glycolysis Step:01"
+		]
+	},
+	{
+		"name":"main.G-6-P",
+		"imports":[
+			"main.Respiration.Glycolysis.Glycolysis Step:02"
+		]
+	},
+	{
+		"name":"main.ADP",
+		"imports":[]
+	},
+	{
+		"name":"main.Respiration.Glycolysis.Glycolysis Step:02",
+		"imports":[
+			"main.F-6-P"
+		]
+	},
+	{
+		"name":"main.F-6-P",
+		"imports":[
+			"main.Respiration.Glycolysis.Glycolysis Step:03"
+		]
+	},
+	{
+		"name":"main.Respiration.Glycolysis.Glycolysis Step:03",
+		"imports":[
+			"main.ADP",
+			"main.F-1,6-bP"
+		]
+	},
+	{
+		"name":"main.F-1,6-bP",
+		"imports":[
+			"main.Respiration.Glycolysis.Glycolysis Step:04"
+		]
+	},
+	{
+		"name":"main.Respiration.Glycolysis.Glycolysis Step:04",
+		"imports":[
+			"main.2 Gde-3-P"
+		]
+	},
+	{
+		"name":"main.2 Gde-3-P",
+		"imports":[
+			"main.Respiration.Glycolysis.Glycolysis Step:05"
+		]
+	},
+	{
+		"name":"main.Respiration.Glycolysis.Glycolysis Step:05",
+		"imports":[
+			"main.2 1,3-bP-Gate",
+			"main.2 H+",
+			"main.2 NADH"
+		]
+	},
+	{
+		"name":"main.2 Pi",
+		"imports":[
+			"main.Respiration.Glycolysis.Glycolysis Step:05"
+		]
+	},
+	{
+		"name":"main.2 NAD+",
+		"imports":[
+			"main.Respiration.Glycolysis.Glycolysis Step:05"
+		]
+	},
+	{
+		"name":"main.2 NADH",
+		"imports":[]
+	},
+	{
+		"name":"main.2 H+",
+		"imports":[]
+	},
+	{
+		"name":"main.2 1,3-bP-Gate",
+		"imports":[
+			"main.Respiration.Glycolysis.Glycolysis Step:06"
+		]
+	},
+	{
+		"name":"main.Respiration.Glycolysis.Glycolysis Step:06",
+		"imports":[
+			"main.2 3-P-Gate"
+		]
+	},
+	{
+		"name":"main.2 3-P-Gate",
+		"imports":[
+			"main.Respiration.Glycolysis.Glycolysis Step:07"
+		]
+	},
+	{
+		"name":"main.Respiration.Glycolysis.Glycolysis Step:07",
+		"imports":[
+			"main.2 2-P-Gate"
+		]
+	},
+	{
+		"name":"main.2 2-P-Gate",
+		"imports":[
+			"main.Respiration.Glycolysis.Glycolysis Step:08"
+		]
+	},
+	{
+		"name":"main.Respiration.Glycolysis.Glycolysis Step:08",
+		"imports":[
+			"main.2 PEP"
+		]
+	},
+	{
+		"name":"main.2 PEP",
+		"imports":[
+			"main.Respiration.Glycolysis.Glycolysis Step:09"
+		]
+	},
+	{
+		"name":"main.Respiration.Glycolysis.Glycolysis Step:09",
+		"imports":[
+			"main.2 ATP",
+			"main.2 Pyruvate",
+			"main.Pyruvate Kinase"
+		]
+	},
+	{
+		"name":"main.2 ADP",
+		"imports":[
+			"main.Respiration.Glycolysis.Glycolysis Step:09"
+		]
+	},
+	{
+		"name":"main.Pyruvate Kinase",
+		"imports":[
+			"main.Respiration.Glycolysis.Glycolysis Step:09"
+		]
+	},
+	{
+		"name":"main.2 Pyruvate",
+		"imports":[]
+	},
+	{
+		"name":"main.2 ATP",
+		"imports":[]
+	},
+	{
+		"name":"main.Respiration.Fermentation.Anaerobic Pathway 01 Step:01",
+		"imports":[
+			"main.Acetylaldehyde",
+			"main.CO2"
+		]
+	},
+	{
+		"name":"main.Pyruvate",
+		"imports":[
+			"main.Respiration.Fermentation.Anaerobic Pathway 01 Step:01",
+			"main.Respiration.Fermentation.Anaerobic Pathway 02 Step:01",
+			"main.Respiration.Pyruvate Dehyrogenase Complex.Pyruvate Dehyrogenase Complex Step:01"
+		]
+	},
+	{
+		"name":"main.H+",
+		"imports":[
+			"main.Respiration.Fermentation.Anaerobic Pathway 01 Step:01",
+			"main.Respiration.Fermentation.Anaerobic Pathway 01 Step:02",
+			"main.Respiration.Fermentation.Anaerobic Pathway 02 Step:01"
+		]
+	},
+	{
+		"name":"main.CO2",
+		"imports":[]
+	},
+	{
+		"name":"main.Acetylaldehyde",
+		"imports":[
+			"main.Respiration.Fermentation.Anaerobic Pathway 01 Step:02"
+		]
+	},
+	{
+		"name":"main.Respiration.Fermentation.Anaerobic Pathway 01 Step:02",
+		"imports":[
+			"main.Ethanol",
+			"main.NAD+"
+		]
+	},
+	{
+		"name":"main.NADH+",
+		"imports":[
+			"main.Respiration.Fermentation.Anaerobic Pathway 01 Step:02",
+			"main.Respiration.Fermentation.Anaerobic Pathway 02 Step:01"
+		]
+	},
+	{
+		"name":"main.NAD+",
+		"imports":[
+			"main.Respiration.Pyruvate Dehyrogenase Complex.Pyruvate Dehyrogenase Complex Step:01"
+		]
+	},
+	{
+		"name":"main.Ethanol",
+		"imports":[]
+	},
+	{
+		"name":"main.Respiration.Fermentation.Anaerobic Pathway 02 Step:01",
+		"imports":[
+			"main.Lactate",
+			"main.NAD+"
+		]
+	},
+	{
+		"name":"main.Lactate",
+		"imports":[]
+	},
+	{
+		"name":"main.Respiration.Pyruvate Dehyrogenase Complex.Pyruvate Dehyrogenase Complex Step:01",
+		"imports":[
+			"main.Acetyl-CoA",
+			"main.CO2",
+			"main.H+",
+			"main.NADH"
+		]
+	},
+	{
+		"name":"main.Glucose",
+		"imports":[
+			"main.Respiration.Pyruvate Dehyrogenase Complex.Pyruvate Dehyrogenase Complex Step:01"
+		]
+	},
+	{
+		"name":"main.CoA-SH",
+		"imports":[
+			"main.Respiration.Pyruvate Dehyrogenase Complex.Pyruvate Dehyrogenase Complex Step:01"
+		]
+	},
+	{
+		"name":"main.NADH",
+		"imports":[]
+	},
+	{
+		"name":"main.Acetyl-CoA",
+		"imports":[]
+	}
+]
