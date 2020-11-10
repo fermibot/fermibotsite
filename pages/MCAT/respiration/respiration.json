@@ -122,7 +122,15 @@
 	{
 		"name":"main.Respiration.Glycolysis.Glycolysis Step:06",
 		"imports":[
-			"main.2 3-Phosphoglycerate"
+			"main.2 3-Phosphoglycerate",
+			"main.2 ATP"
+		]
+	},
+	{
+		"name":"main.2 ADP",
+		"imports":[
+			"main.Respiration.Glycolysis.Glycolysis Step:06",
+			"main.Respiration.Glycolysis.Glycolysis Step:09"
 		]
 	},
 	{
@@ -130,6 +138,13 @@
 		"imports":[
 			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:05",
 			"main.Respiration.Glycolysis.Glycolysis Step:07"
+		]
+	},
+	{
+		"name":"main.2 ATP",
+		"imports":[
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:01",
+			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:05"
 		]
 	},
 	{
@@ -167,12 +182,6 @@
 		]
 	},
 	{
-		"name":"main.2 ADP",
-		"imports":[
-			"main.Respiration.Glycolysis.Glycolysis Step:09"
-		]
-	},
-	{
 		"name":"main.Pyruvate Kinase",
 		"imports":[
 			"main.Respiration.Glycolysis.Glycolysis Step:09"
@@ -182,13 +191,6 @@
 		"name":"main.2 Pyruvate (3 Carbons)",
 		"imports":[
 			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:01"
-		]
-	},
-	{
-		"name":"main.2 ATP",
-		"imports":[
-			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:01",
-			"main.Respiration.Gluconeogenesis.Gluconeogenesis Step:05"
 		]
 	},
 	{
