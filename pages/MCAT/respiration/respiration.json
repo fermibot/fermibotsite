@@ -178,7 +178,9 @@
 		"imports":[
 			"main.2 ATP",
 			"main.2 Pyruvate (3 Carbons)",
-			"main.Pyruvate Kinase"
+			"main.Pyruvate Kinase",
+			"main.Respiration.Fermentation.Anaerobic Pathway 01 Step:01",
+			"main.Respiration.Fermentation.Anaerobic Pathway 02 Step:01"
 		]
 	},
 	{
@@ -198,6 +200,13 @@
 		"imports":[
 			"main.Acetylaldehyde",
 			"main.CO2"
+		]
+	},
+	{
+		"name":"main.Respiration.Fermentation.Anaerobic Pathway 02 Step:01",
+		"imports":[
+			"main.Lactate",
+			"main.NAD+"
 		]
 	},
 	{
@@ -249,13 +258,6 @@
 	{
 		"name":"main.Ethanol",
 		"imports":[]
-	},
-	{
-		"name":"main.Respiration.Fermentation.Anaerobic Pathway 02 Step:01",
-		"imports":[
-			"main.Lactate",
-			"main.NAD+"
-		]
 	},
 	{
 		"name":"main.Lactate",

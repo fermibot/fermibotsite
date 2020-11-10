@@ -86,7 +86,9 @@
         "out": [
           "2 Pyruvate (3 Carbons)",
           "2 ATP",
-          "Pyruvate Kinase"
+          "Pyruvate Kinase",
+          "Respiration.Fermentation.Anaerobic Pathway 01 Step:01",
+          "Respiration.Fermentation.Anaerobic Pathway 02 Step:01"
         ]
       }
     },
