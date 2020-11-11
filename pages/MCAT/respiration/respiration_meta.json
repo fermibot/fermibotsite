@@ -24,11 +24,13 @@
       "Glycolysis Step:03": {
         "in": [
           "Fructose-6-Phosphate",
-          "ATP"
+          "ATP",
+          "Phosphofructokinase"
         ],
         "out": [
           "ADP",
-          "Fructose-1,6-Biphosphate"
+          "Fructose-1,6-Biphosphate",
+          "Phosphofructokinase"
         ]
       },
       "Glycolysis Step:04": {
@@ -48,7 +50,9 @@
         "out": [
           "2 NADH",
           "2 H+",
-          "2 1,3-Bisphosphoglycerate"
+          "2 1,3-Bisphosphoglycerate",
+          "Respiration.Fermentation.Anaerobic Pathway 01 Step:01",
+          "Respiration.Fermentation.Anaerobic Pathway 02 Step:01"
         ]
       },
       "Glycolysis Step:06": {
@@ -88,7 +92,8 @@
           "2 ATP",
           "Pyruvate Kinase",
           "Respiration.Fermentation.Anaerobic Pathway 01 Step:01",
-          "Respiration.Fermentation.Anaerobic Pathway 02 Step:01"
+          "Respiration.Fermentation.Anaerobic Pathway 02 Step:01",
+          "Respiration.Pyruvate Dehyrogenase Complex.Pyruvate Dehyrogenase Complex Step:01"
         ]
       }
     },
@@ -106,7 +111,7 @@
       "Anaerobic Pathway 01 Step:02": {
         "in": [
           "Acetylaldehyde",
-          "NADH+",
+          "NADH",
           "H+"
         ],
         "out": [
@@ -117,12 +122,33 @@
       "Anaerobic Pathway 02 Step:01": {
         "in": [
           "Pyruvate",
-          "NADH+",
+          "NADH",
           "H+"
         ],
         "out": [
           "NAD+",
           "Lactate"
+        ]
+      }
+    },
+    "Cori Cycle": {
+      "Cori Cycle (Liver) Step: 01": {
+        "in": [
+          "Lactate",
+          "Respiration.Fermentation.Anaerobic Pathway 02 Step:01",
+          "NAD+"
+        ],
+        "out": [
+          "NADH+",
+          "H+"
+        ]
+      },
+      "Cori Cycle (Liver) Step: 02": {
+        "in": [
+          "NAD+"
+        ],
+        "out": [
+          "ATP"
         ]
       }
     },
@@ -132,13 +158,16 @@
           "Glucose",
           "Pyruvate",
           "CoA-SH",
-          "NAD+"
+          "NAD+",
+          "Pyruvate Dehydrogenase"
         ],
         "out": [
           "NADH",
           "H+",
           "CO2",
-          "Acetyl-CoA"
+          "Acetyl-CoA",
+          "Pyruvate Dehydrogenase",
+          "Respiration.Krebs Cycle.Krebs Cycle Stage:01"
         ]
       }
     },
@@ -376,7 +405,7 @@
           "Phosphofructokinase"
         ],
         "out": [
-          "Glycolysis"
+          "Respiration.Glycolysis.Glycolysis Step:01"
         ]
       },
       "Hormonal Regulation Step:02B": {
