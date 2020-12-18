@@ -1,0 +1,555 @@
+{
+  "Respiration": {
+    "Glycolysis": {
+      "Glycolysis Step:01": {
+        "in": [
+          "Glucose",
+          "ATP",
+          "Hexokinase"
+        ],
+        "out": [
+          "Glucose-6-Phosphate",
+          "ADP",
+          "Hexokinase"
+        ]
+      },
+      "Glycolysis Step:02": {
+        "in": [
+          "Glucose-6-Phosphate"
+        ],
+        "out": [
+          "Fructose-6-Phosphate"
+        ]
+      },
+      "Glycolysis Step:03": {
+        "in": [
+          "Fructose-6-Phosphate",
+          "ATP",
+          "Phosphofructokinase"
+        ],
+        "out": [
+          "ADP",
+          "Fructose-1,6-Biphosphate",
+          "Phosphofructokinase"
+        ]
+      },
+      "Glycolysis Step:04": {
+        "in": [
+          "Fructose-1,6-Biphosphate"
+        ],
+        "out": [
+          "2 Glyceraldehyde 3-Phosphate"
+        ]
+      },
+      "Glycolysis Step:05": {
+        "in": [
+          "2 Glyceraldehyde 3-Phosphate",
+          "2 Pi",
+          "2 NAD+"
+        ],
+        "out": [
+          "2 NADH",
+          "2 H+",
+          "2 1,3-Bisphosphoglycerate",
+          "Respiration.Fermentation.Anaerobic Pathway 01 Step:01",
+          "Respiration.Fermentation.Anaerobic Pathway 02 Step:01"
+        ]
+      },
+      "Glycolysis Step:06": {
+        "in": [
+          "2 1,3-Bisphosphoglycerate",
+          "2 ADP"
+        ],
+        "out": [
+          "2 3-Phosphoglycerate",
+          "2 ATP"
+        ]
+      },
+      "Glycolysis Step:07": {
+        "in": [
+          "2 3-Phosphoglycerate"
+        ],
+        "out": [
+          "2 2-Phosphoglycerate"
+        ]
+      },
+      "Glycolysis Step:08": {
+        "in": [
+          "2 2-Phosphoglycerate"
+        ],
+        "out": [
+          "2 Phosphoenolpyruvate (PEP)"
+        ]
+      },
+      "Glycolysis Step:09": {
+        "in": [
+          "2 Phosphoenolpyruvate (PEP)",
+          "2 ADP",
+          "Pyruvate Kinase"
+        ],
+        "out": [
+          "2 Pyruvate (3 Carbons)",
+          "2 ATP",
+          "Pyruvate Kinase",
+          "Respiration.Fermentation.Anaerobic Pathway 01 Step:01",
+          "Respiration.Fermentation.Anaerobic Pathway 02 Step:01",
+          "Respiration.Pyruvate Dehyrogenase Complex.Pyruvate Dehyrogenase Complex Step:01"
+        ]
+      }
+    },
+    "Fermentation": {
+      "Anaerobic Pathway 01 Step:01": {
+        "in": [
+          "Pyruvate",
+          "H+"
+        ],
+        "out": [
+          "CO2",
+          "Acetylaldehyde"
+        ]
+      },
+      "Anaerobic Pathway 01 Step:02": {
+        "in": [
+          "Acetylaldehyde",
+          "NADH",
+          "H+"
+        ],
+        "out": [
+          "NAD+",
+          "Ethanol"
+        ]
+      },
+      "Anaerobic Pathway 02 Step:01": {
+        "in": [
+          "Pyruvate",
+          "NADH",
+          "H+"
+        ],
+        "out": [
+          "NAD+",
+          "Lactate"
+        ]
+      }
+    },
+    "Cori Cycle": {
+      "Cori Cycle (Liver) Step: 01": {
+        "in": [
+          "Lactate",
+          "Respiration.Fermentation.Anaerobic Pathway 02 Step:01",
+          "NAD+"
+        ],
+        "out": [
+          "NADH+",
+          "H+"
+        ]
+      },
+      "Cori Cycle (Liver) Step: 02": {
+        "in": [
+          "NAD+"
+        ],
+        "out": [
+          "ATP"
+        ]
+      }
+    },
+    "Pyruvate Dehyrogenase Complex": {
+      "Pyruvate Dehyrogenase Complex Step:01": {
+        "in": [
+          "Glucose",
+          "Pyruvate",
+          "CoA-SH",
+          "NAD+",
+          "Pyruvate Dehydrogenase"
+        ],
+        "out": [
+          "NADH",
+          "H+",
+          "CO2",
+          "Acetyl-CoA",
+          "Pyruvate Dehydrogenase",
+          "Respiration.Krebs Cycle.Krebs Cycle Stage:01"
+        ]
+      }
+    },
+    "Krebs Cycle": {
+      "Krebs Cycle Stage:01": {
+        "in": [
+          "Oxaloacetate",
+          "Acetyl-CoA"
+        ],
+        "out": [
+          "Citric Acid (6 Carbons)",
+          "CoA-SH",
+          "H+"
+        ]
+      },
+      "Krebs Cycle Stage:02-01": {
+        "in": [
+          "Citric Acid (6 Carbons)"
+        ],
+        "out": [
+          "Isocitrate (6 Carbons)"
+        ]
+      },
+      "Krebs Cycle Stage:02-02": {
+        "in": [
+          "Isocitrate (6 Carbons)"
+        ],
+        "out": [
+          "NADH",
+          "CO2",
+          "α-Ketoglutarate (5 Carbons)"
+        ]
+      },
+      "Krebs Cycle Stage:02-03": {
+        "in": [
+          "α-Ketoglutarate (5 Carbons)"
+        ],
+        "out": [
+          "NADH",
+          "CO2",
+          "Succinyl-CoA (4 Carbons)"
+        ]
+      },
+      "Krebs Cycle Stage:03-01": {
+        "in": [
+          "Succinyl-CoA (4 Carbons)",
+          "GDP",
+          "Pi"
+        ],
+        "out": [
+          "GTP",
+          "Succinate (4 Carbons)"
+        ]
+      },
+      "Krebs Cycle Stage:03-02": {
+        "in": [
+          "Succinate (4 Carbons)"
+        ],
+        "out": [
+          "FADH2",
+          "Frumarate (4 Carbons)"
+        ]
+      },
+      "Krebs Cycle Stage:03-03": {
+        "in": [
+          "Frumarate (4 Carbons)",
+          "H20"
+        ],
+        "out": [
+          "Malate (4 Carbons)"
+        ]
+      },
+      "Krebs Cycle Stage:03-04": {
+        "in": [
+          "Malate (4 Carbons)"
+        ],
+        "out": [
+          "NADH",
+          "Oxaloacetate"
+        ]
+      }
+    },
+    "Gluconeogenesis": {
+      "Gluconeogenesis Step:00": {
+        "in": [
+          "Amino Acids"
+        ],
+        "out": [
+          "2 Pyruvate (3 Carbons)"
+        ]
+      },
+      "Gluconeogenesis Step:01": {
+        "in": [
+          "2 Pyruvate (3 Carbons)",
+          "2 CO2",
+          "Pyruvate Carboxylase",
+          "2 ATP"
+        ],
+        "out": [
+          "2 Pyruvate (3 Carbons)",
+          "Pyruvate Carboxylase",
+          "2 ADP",
+          "2 Pi",
+          "2 Oxaloacetate (4 Carbons)"
+        ]
+      },
+      "Gluconeogenesis Step:02": {
+        "in": [
+          "2 Oxaloacetate (4 Carbons)",
+          "Amino Acids",
+          "2 GTP",
+          "PEP Carboxykinase"
+        ],
+        "out": [
+          "PEP Carboxykinase",
+          "2 GDP",
+          "2 CO2",
+          "2 Phosphoenolpyruvate (PEP)"
+        ]
+      },
+      "Gluconeogenesis Step:03": {
+        "in": [
+          "2 Phosphoenolpyruvate (PEP)"
+        ],
+        "out": [
+          "2 2-Phosphoglycerate"
+        ]
+      },
+      "Gluconeogenesis Step:04": {
+        "in": [
+          "2 2-Phosphoglycerate"
+        ],
+        "out": [
+          "2 3-Phosphoglycerate"
+        ]
+      },
+      "Gluconeogenesis Step:05": {
+        "in": [
+          "2 3-Phosphoglycerate",
+          "2 ATP"
+        ],
+        "out": [
+          "2 1,3-Bisphosphoglycerate",
+          "2 ADP"
+        ]
+      },
+      "Gluconeogenesis Step:06": {
+        "in": [
+          "2 1,3-Bisphosphoglycerate",
+          "2 NADH",
+          "2 H+"
+        ],
+        "out": [
+          "Glyceraldehyde 3-Phosphate",
+          "2 NAD+"
+        ]
+      },
+      "Gluconeogenesis Step:06A": {
+        "in": [
+          "Glyceraldehyde 3-Phosphate"
+        ],
+        "out": [
+          "Dihydroxyacetone Phosphate",
+          "Glycerol"
+        ]
+      },
+      "Gluconeogenesis Step:06B": {
+        "in": [
+          "Dihydroxyacetone Phosphate",
+          "Glycerol"
+        ],
+        "out": [
+          "Glyceraldehyde 3-Phosphate"
+        ]
+      },
+      "Gluconeogenesis Step:07A": {
+        "in": [
+          "Dihydroxyacetone Phosphate"
+        ],
+        "out": [
+          "Fructose-1,6-Bisphosphate"
+        ]
+      },
+      "Gluconeogenesis Step:07B": {
+        "in": [
+          "Glyceraldehyde 3-Phosphate"
+        ],
+        "out": [
+          "Fructose-1,6-Bisphosphate"
+        ]
+      },
+      "Gluconeogenesis Step:08": {
+        "in": [
+          "Fructose-1,6-Bisphosphate",
+          "Fructose-1,6-Bisphosphatase"
+        ],
+        "out": [
+          "Fructose-1,6-Bisphosphatase",
+          "Fructose-6-Phosphate"
+        ]
+      },
+      "Gluconeogenesis Step:09": {
+        "in": [
+          "Fructose-6-Phosphate"
+        ],
+        "out": [
+          "Glucose-6-Phosphate"
+        ]
+      },
+      "Gluconeogenesis Step:10": {
+        "in": [
+          "Glucose-6-Phosphate",
+          "Glucose-6-Phosphatase"
+        ],
+        "out": [
+          "Glucose-6-Phosphatase",
+          "Glucose"
+        ]
+      }
+    },
+    "Hormonal Regulation": {
+      "Hormonal Regulation Step:01": {
+        "in": [
+          "Fructose-2,6-Bisphosphatase",
+          "Insulin+",
+          "Glucagon-"
+        ],
+        "out": [
+          "Phosphofructokinase",
+          "Fructose-1.6-Bisphosphatase"
+        ]
+      },
+      "Hormonal Regulation Step:02A": {
+        "in": [
+          "Phosphofructokinase"
+        ],
+        "out": [
+          "Respiration.Glycolysis.Glycolysis Step:01"
+        ]
+      },
+      "Hormonal Regulation Step:02B": {
+        "in": [
+          "Fructose-1.6-Bisphosphatase"
+        ],
+        "out": [
+          "Respiration.Gluconeogenesis.Gluconeogenesis Step:00"
+        ]
+      }
+    },
+    "Glycogen Metabolism": {
+      "Glycogen Metabolism Step:01": {
+        "in": [
+          "Glucose"
+        ],
+        "out": [
+          "Glucose-6-Phosphate"
+        ]
+      },
+      "Glycogen Metabolism Step:02": {
+        "in": [
+          "Glucose-6-Phosphate",
+          "Phosphoglucomutase"
+        ],
+        "out": [
+          "Phosphoglucomutase",
+          "Glucose-1-Phosphate"
+        ]
+      },
+      "Glycogen Metabolism Step:03": {
+        "in": [
+          "Glucose-1-Phosphate",
+          "UTP",
+          "UDP-Glucose Pyrophosphorylase"
+        ],
+        "out": [
+          "UDP-Glucose",
+          "PPi",
+          "UDP-Glucose Pyrophosphorylase"
+        ]
+      },
+      "Glycogen Metabolism Step:04": {
+        "in": [
+          "UDP-Glucose"
+        ],
+        "out": [
+          "Glycogen"
+        ]
+      },
+      "Glycogen Metabolism Step:05": {
+        "in": [
+          "Glycogen",
+          "Glycogen Phophorylase",
+          "Pi"
+        ],
+        "out": [
+          "Glucose-1-Phosphate",
+          "Glycogen Phophorylase"
+        ]
+      }
+    },
+    "Pentose Phosphate Pathway": {
+      "Pentose Phosphate Pathway Step:00": {
+        "in": [
+          "Glucose-6-Phosphate",
+          "NADP+",
+          "Glucose-6-Phosphate Dehydrogenase"
+        ],
+        "out": [
+          "NADPH",
+          "6-Phosphogluconate"
+        ]
+      },
+      "Pentose Phosphate Pathway Step:01": {
+        "in": [
+          "6-Phosphogluconate",
+          "NADP+"
+        ],
+        "out": [
+          "NADPH",
+          "CO2",
+          "Ribulose-5-Phosphate"
+        ]
+      },
+      "Pentose Phosphate Pathway Step:02-01": {
+        "in": [
+          "Ribulose-5-Phosphate"
+        ],
+        "out": [
+          "Ribose-5-Phosphate"
+        ]
+      },
+      "Pentose Phosphate Pathway Step:02-02": {
+        "in": [
+          "Ribulose-5-Phosphate"
+        ],
+        "out": [
+          "Xylulose-5-Phosphate"
+        ]
+      },
+      "Pentose Phosphate Pathway Step:03-01": {
+        "in": [
+          "Xylulose-5-Phosphate",
+          "Erythrose (4 Carbons)"
+        ],
+        "out": [
+          "Fructose-6-Phosphate",
+          "Glyceraldehyde 3-Phosphate"
+        ]
+      },
+      "Pentose Phosphate Pathway Step:03-02": {
+        "in": [
+          "Xylulose-5-Phosphate",
+          "Ribose-5-Phosphate"
+        ],
+        "out": [
+          "Glyceraldehyde 3-Phosphate",
+          "Sedoheptulose-7-Phosphate"
+        ]
+      },
+      "Pentose Phosphate Pathway Step:04": {
+        "in": [
+          "Glyceraldehyde 3-Phosphate",
+          "Sedoheptulose-7-Phosphate"
+        ],
+        "out": [
+          "Erythrose (4 Carbons)",
+          "Fructose-6-Phosphate",
+          "Respiration.Glycolysis.Glycolysis Step:02",
+          "Respiration.Glycolysis.Glycolysis Step:03"
+        ]
+      },
+      "Pentose Phosphate Pathway Step:05": {
+        "in": [
+          "Fructose-6-Phosphate",
+          "Fructose-6-Phosphate"
+        ],
+        "out": [
+          "2 Glyceraldehyde 3-Phosphate",
+          "Respiration.Glycolysis.Glycolysis Step:04",
+          "Respiration.Glycolysis.Glycolysis Step:05"
+        ]
+      }
+    }
+  }
+}
