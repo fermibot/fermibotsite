@@ -1,0 +1,94 @@
+{
+  "Metabolism": {
+    "Metabolism": {
+      "Glycogenolysis": {
+        "in": [
+          "Glycogen"
+        ],
+        "out": [
+          "Glucose"
+        ]
+      },
+      "Glycogenesis": {
+        "in": [
+          "Glucose"
+        ],
+        "out": [
+          "Glycogen"
+        ]
+      },
+      "Glycolysis": {
+        "in": [
+          "Glucose"
+        ],
+        "out": [
+          "Pyruvate"
+        ]
+      },
+      "Pyruvate": {
+        "in": [
+          "Glycolysis",
+          "Glucogenic Amino Acids"
+        ],
+        "out": [
+          "OAA",
+          "Acetyl-CoA"
+        ]
+      },
+      "Gluconeogenesis": {
+        "in": [
+          "OAA"
+        ],
+        "out": [
+          "Glucose"
+        ]
+      },
+      "Fatty Acid Synthesis": {
+        "in": [
+          "Acetyl-CoA"
+        ],
+        "out": [
+          "Fatty Acids"
+        ]
+      },
+      "Fatty Acid Oxidation": {
+        "in": [
+          "Fatty Acids"
+        ],
+        "out": [
+          "Acetyl-CoA"
+        ]
+      },
+      "Ketogenesis": {
+        "in": [
+          "Acetyl-CoA"
+        ],
+        "out": [
+          "Ketone Bodies"
+        ]
+      },
+      "Protein Catabolism": {
+        "in": [
+        ],
+        "out": [
+          "Glucogenic Amino Acids",
+          "Ketogenic Amino Acids"
+        ]
+      },
+      "Ketogenic Amino Acids": {
+        "in": [],
+        "out": [
+          "Acetyl-CoA"
+        ]
+      },
+      "Krebs Cycle": {
+        "in": [
+          "Acetyl-CoA"
+        ],
+        "out": [
+          "Acetyl-CoA"
+        ]
+      }
+    }
+  }
+}

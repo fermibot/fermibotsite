@@ -1,0 +1,127 @@
+[
+	{
+		"name":"main.Metabolism.Metabolism.Glycogenolysis",
+		"imports":[
+			"main.Glucose"
+		]
+	},
+	{
+		"name":"main.Glycogen",
+		"imports":[
+			"main.Metabolism.Metabolism.Glycogenolysis"
+		]
+	},
+	{
+		"name":"main.Glucose",
+		"imports":[
+			"main.Metabolism.Metabolism.Glycogenesis",
+			"main.Metabolism.Metabolism.Glycolysis"
+		]
+	},
+	{
+		"name":"main.Metabolism.Metabolism.Glycogenesis",
+		"imports":[
+			"main.Glycogen"
+		]
+	},
+	{
+		"name":"main.Metabolism.Metabolism.Glycolysis",
+		"imports":[
+			"main.Pyruvate"
+		]
+	},
+	{
+		"name":"main.Pyruvate",
+		"imports":[]
+	},
+	{
+		"name":"main.Metabolism.Metabolism.Pyruvate",
+		"imports":[
+			"main.Acetyl-CoA",
+			"main.OAA"
+		]
+	},
+	{
+		"name":"main.Glycolysis",
+		"imports":[
+			"main.Metabolism.Metabolism.Pyruvate"
+		]
+	},
+	{
+		"name":"main.Glucogenic Amino Acids",
+		"imports":[
+			"main.Metabolism.Metabolism.Pyruvate"
+		]
+	},
+	{
+		"name":"main.OAA",
+		"imports":[
+			"main.Metabolism.Metabolism.Gluconeogenesis"
+		]
+	},
+	{
+		"name":"main.Acetyl-CoA",
+		"imports":[
+			"main.Metabolism.Metabolism.Fatty Acid Synthesis",
+			"main.Metabolism.Metabolism.Ketogenesis",
+			"main.Metabolism.Metabolism.Krebs Cycle"
+		]
+	},
+	{
+		"name":"main.Metabolism.Metabolism.Gluconeogenesis",
+		"imports":[
+			"main.Glucose"
+		]
+	},
+	{
+		"name":"main.Metabolism.Metabolism.Fatty Acid Synthesis",
+		"imports":[
+			"main.Fatty Acids"
+		]
+	},
+	{
+		"name":"main.Fatty Acids",
+		"imports":[
+			"main.Metabolism.Metabolism.Fatty Acid Oxidation"
+		]
+	},
+	{
+		"name":"main.Metabolism.Metabolism.Fatty Acid Oxidation",
+		"imports":[
+			"main.Acetyl-CoA"
+		]
+	},
+	{
+		"name":"main.Metabolism.Metabolism.Ketogenesis",
+		"imports":[
+			"main.Ketone Bodies"
+		]
+	},
+	{
+		"name":"main.Ketone Bodies",
+		"imports":[]
+	},
+	{
+		"name":"main.Metabolism.Metabolism.Protein Catabolism",
+		"imports":[
+			"main.Glucogenic Amino Acids",
+			"main.Ketogenic Amino Acids"
+		]
+	},
+	{
+		"name":"main.Ketogenic Amino Acids",
+		"imports":[]
+	},
+	{
+		"name":"main.Metabolism.Metabolism.Ketogenic Amino Acids",
+		"imports":[
+			"main.Acetyl-CoA"
+		]
+	},
+	{
+		"name":"main.Metabolism.Metabolism.Krebs Cycle",
+		"imports":[
+			"main.Acetyl-CoA"
+		]
+	}
+]
