@@ -1,5 +1,5 @@
 const MCAT_data = {
-    "biology": {"overall_pages": 589, "completed_pages": 98 * 3, "passes_required": 3, "passes_done": 0},
+    "biology": {"overall_pages": 589, "completed_pages": 101 * 3, "passes_required": 3, "passes_done": 0},
     "biochemistry": {"overall_pages": 213, "completed_pages": 213, "passes_required": 3, "passes_done": 3},
     "CARS": {"overall_pages": 368, "completed_pages": 60, "passes_required": 3, "passes_done": 0},
     "CARS_workbook": {"overall_pages": 268, "completed_pages": 0, "passes_required": 3, "passes_done": 0},
