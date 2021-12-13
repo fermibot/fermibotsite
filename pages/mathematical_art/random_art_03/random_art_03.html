@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random Art 03</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../external_libraries/bootstrap/bootstrap.min.css">
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <link rel="stylesheet" href="../../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../../index.css">
+    <script src="../../../js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+<body class="container-lg">
+<div class="jumbotron text-center">
+    <h1>Random Art 03</h1>
+</div>
+
+<pre>First posted on June 24, 2016 by fermibot</pre>
+
+<h5>The Rose</h5>
+<p><strong>How has this been made?</strong>
+    This is just a simple usage of rotation. There are several squares in the figure and they have been rotated. The
+    code is very simple and is written below. You can paste that in mathematica to obtain the image that has been
+    presented below it.</p>
+
+<pre><code class="language-Mathematica">
+Graphics[
+    Table[
+        Rotate[{
+            Opacity[0.017],
+            Pink,
+            EdgeForm[{Thin, RandomChoice[{Green, Darker[Green], Lighter[Blue]}], Opacity[0.15]}],
+            Rectangle[{-r, -r}, {r, r}]}, r^2], {r, \[Pi], 10 \[Pi], \[Pi]/13}]]
+</code></pre>
+
+
+<div class="container col-1">
+    <!--    <div class="centered_image"><img src="rose_2_highres.png"></div>-->
+</div>
+
+<a href="" target="rose_2_highres.png"><img src="rose_1.png" class="container-lg"></a>
+
+<p>The variables of the rectangle like the corners (size), the edge color are a function of the angle. The size the of
+    the rectangle varies as a square of the angle. Other factors like the edge of the rectangle are random between three
+    colors. For the randomization of the colors, the colors Dark Green, Green and Light Blue have been listed and the
+    mathematica function called as RandomChoice has been applied on the list. So, for every rectangle, the color will be
+    picked randomly. Randomness is important to give a natural feel to an object. It displays a sense of the reality in
+    the sense that there are errors and the makes it feel more manual and humanly. <br> <br>
+
+    Applying Randomness to the size along with the color for the above image will give the following. The code and the
+    image have been posted shown below</p>
+
+<pre><code class="language-Mathematica">
+Graphics[
+    Table[
+        Rotate[{
+            Opacity[0.017],
+            Pink,
+            EdgeForm[{Thin, RandomChoice[{Green, Darker[Green], Lighter[Blue]}], Opacity[0.15]}],
+            Rectangle[{-r, -r}, {r, r}]}, r^2 + 1000 RandomReal[{1/r, -(1/r)}]], {r, \[Pi], 10 \[Pi], \[Pi]/13}]]
+</code></pre>
+
+<a href="" target="rose_3_rand_highres.png"><img src="rose_3_rand.png" class="container-lg"></a>
+<hr>
+
+<h5>Rectangular Array of Squares</h5>
+<p>I was plotting some squares in the form of a rectangular array. The image is shown below.</p>
+<a href="" target=""><img src="rec_array_hires1.png" class="container-lg"></a>
+<p>Since each square in the array can be controlled for the position and the orientation, some modifications have been
+    made and the following the different ideas obtained from it.</p>
+<hr>
+
+<h5>Post It Notes</h5>
+<h6>1. Grey Scale (without randomness in the position)</h6>
+<p>The rectangular array has been modified to assign randomness to the orientation of each one and also randomness in
+    the color (The Gray Scale). The resultant looks like many post-it notes on the board.</p>
+<a href="" target=""><img src="rec_array_grsc_hires.png" class="container-lg"></a>
+<br><br>
+<h6>1. Grey Scale (with randomness in the position)</h6>
+<p>The image above in the has been given an additional randomness in the position and the following is the result.</p>
+<a href="" target=""><img src="rec_array_grsc_rp_hires.png" class="container-lg"></a>
+<br><br>
+
+<h6>2. Similar Colors (without randomness in the position)</h6>
+<a href="" target=""><img src="post_it_hires.png" class="container-lg"></a>
+<br><br>
+<h6>2. Similar Colors (with randomness in the position)</h6>
+<a href="" target=""><img src="rec_array_yellow_rp_hires.png" class="container-lg"></a>
+<br><br>
+
+<h6>3. Different Colors</h6>
+<p>My favorite one is posted below and the rest of the colors are in sequence Red to Yellow to Green to Blue to Violet
+    to Red</p>
+<a href="" target=""><img src="color_0-5hires.png" class="container-lg"></a>
+
+<h6>The rest of the colors</h6>
+<p>All of the below colors might not be clear but it is just to show all the hues.</p>
+<a href="" target=""><img src="color_0-hires.png" class="container-lg"></a> <br>
+<a href="" target=""><img src="color_0-1hires.png" class="container-lg"></a> <br>
+<a href="" target=""><img src="color_0-2hires.png" class="container-lg"></a> <br>
+<a href="" target=""><img src="color_0-3hires.png" class="container-lg"></a> <br>
+<a href="" target=""><img src="color_0-4hires.png" class="container-lg"></a> <br>
+<a href="" target=""><img src="color_0-5hires.png" class="container-lg"></a> <br>
+<a href="" target=""><img src="color_0-6hires.png" class="container-lg"></a> <br>
+<a href="" target=""><img src="color_0-7hires.png" class="container-lg"></a> <br>
+<a href="" target=""><img src="color_0-8hires.png" class="container-lg"></a> <br>
+<a href="" target=""><img src="color_0-9hires.png" class="container-lg"></a> <br>
+<hr>
+
+<h5>Canvas Like Structures</h5>
+<a href="" target=""><img src="color_canvas_hires_0.png" class="container-lg"></a> <br>
+<a href="" target=""><img src="color_canvas_hires_0-1.png" class="container-lg"></a> <br>
+<a href="" target=""><img src="color_canvas_hires_0-5.png" class="container-lg"></a> <br>
+<a href="" target=""><img src="rec_array_gs_hires.png" class="container-lg"></a> <br><br>
+<h6>A more distorted version</h6>
+<a href="" target=""><img src="rec_array_gs_disver_hires.png" class="container-lg"></a>
+
+<hr>
+<h5>Canvas Animation</h5>
+<p>It might appear as if some lines are moving to and fro between the squares. But if you notice carefully, you can see
+    that it is just the squares slightly rotating about their position.</p>
+<a href="" target=""><img src="canvas_animation.gif" class="container-lg"></a>
+<hr>
+</body>
+</html>
