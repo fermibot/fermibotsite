@@ -1,0 +1,17 @@
+[
+  {
+    "name": "data.data.B",
+    "size": 56,
+    "imports": [
+      "data.data.C"
+    ]
+  },
+  {
+    "name": "data.data.A",
+    "size": 5,
+    "imports": [
+      "data.data.C",
+      "data.data.A"
+    ]
+  }
+]
