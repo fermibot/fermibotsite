@@ -1,7 +1,5 @@
-function hierarchical_dendrogram(json_file) {
-    var diameter = 960,
-        radius = diameter / 2,
-        innerRadius = radius - 120;
+function hierarchical_dendrogram(json_file, object_name) {
+    var diameter = 960, radius = diameter / 2, innerRadius = radius - 120;
 
     var cluster = d3.cluster()
         .size([360, innerRadius]);
@@ -15,14 +13,13 @@ function hierarchical_dendrogram(json_file) {
             return d.x / 180 * Math.PI;
         });
 
-    var svg = d3.select("body").append("svg")
-        .attr("width", diameter + 600)
-        .attr("height", diameter + 600)
+    var svg = d3.select("#" + object_name).append("svg")
+        .attr("width", diameter)
+        .attr("height", diameter)
         .append("g")
-        .attr("transform", "translate(" + (radius + 200) + "," + (radius + 50) + ")");
+        .attr("transform", "translate(" + (radius) + "," + (radius) + ")");
 
-    var link = svg.append("g").selectAll(".link"),
-        node = svg.append("g").selectAll(".node");
+    var link = svg.append("g").selectAll(".link"), node = svg.append("g").selectAll(".node");
 
     d3.json(json_file, function (error, classes) {
         if (error) throw error;
@@ -124,8 +121,7 @@ function hierarchical_dendrogram(json_file) {
 
     // Return a list of imports for the given array of nodes.
     function packageImports(nodes) {
-        var map = {},
-            imports = [];
+        var map = {}, imports = [];
 
         // Compute a map from name to node.
         nodes.forEach(function (d) {
