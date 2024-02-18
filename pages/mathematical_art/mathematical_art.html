@@ -1,51 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
 <head>
     <meta charset="UTF-8">
-    <title>Mathematical Art</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../../external_libraries/bootstrap/bootstrap.min.css">
-    <script src="../../external_libraries/bootstrap/jquery.min.js"></script>
-    <script src="../../external_libraries/bootstrap/popper.min.js"></script>
-    <script src="../../external_libraries/bootstrap/bootstrap.min.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    <title>Respiration</title>
 
-    <link rel="stylesheet" href="../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../d3_templates/hierarchical_dendrogram.css">
     <link rel="stylesheet" href="../../index.css">
-    <script src="../../js/highlight/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 
+
+    <script src="../../d3/d3.v4.min.js"></script>
+    <script src="../../d3_templates/hierarchical_dendrogram.js"></script>
+    <script src="../../automation/loadHeaderFooter.js"></script>
 </head>
+
 <body class="container-lg">
-<div class="jumbotron text-center">
-    <h1>Mathematical Art</h1>
+
+
+<div class="container-fluid">
+    <div id="header-placeholder"></div>
+
+
+    <div class="jumbotron text-center p-3">
+        <h1>Mathematical Art</h1>
+    </div>
+
+    <figure class="figure">
+        <a href="timon-klauser-3MAmj1ZKSZA-unsplash.jpg" target="_blank"><img
+                src="timon-klauser-3MAmj1ZKSZA-unsplash.jpg" class="container-lg"></a>
+        <figcaption class="figure-caption text-center" style="font-size: smaller">Image from Unsplash</figcaption>
+    </figure>
+
+
+    <div class="d-grid gap-3 p-3" style="grid-template-columns: 1fr 1fr 1fr;">
+        <div><a href="random_art_13/random_art_13.html">Random Art 13</a></div>
+        <div><a href="random_art_12/random_art_12.html">Random Art 12</a></div>
+        <div><a href="random_art_11/random_art_11.html">Random Art 11</a></div>
+        <div><a href="random_art_10/random_art_10.html">Random Art 10</a></div>
+        <div><a href="random_art_07/random_art_07.html">Random Art 07</a></div>
+        <div><a href="random_art_03/random_art_03.html">Random Art 03</a></div>
+        <div><a href="random_art_02/random_art_02.html">Random Art 02</a></div>
+        <div><a href="random_art_01/random_art_01.html">Random Art 01</a></div>
+    </div>
+
+
+    <div class="b-section-divider"></div>
+    <div id="footer-placeholder"></div>
+
 </div>
 
-<figure class="figure">
-    <a href="timon-klauser-3MAmj1ZKSZA-unsplash.jpg" target="_blank"><img
-            src="timon-klauser-3MAmj1ZKSZA-unsplash.jpg" class="container-lg"></a>
-    <figcaption class="figure-caption text-center" style="font-size: smaller">Image from Unsplash</figcaption>
-</figure>
 
-
-<a href="" target="_blank"><img src="" class="container-lg"></a>
-
-<ul>
-    <li><a href="random_art_13/random_art_13.html">Random Art 13</a></li>
-    <li><a href="random_art_12/random_art_12.html">Random Art 12</a></li>
-    <li><a href="random_art_11/random_art_11.html">Random Art 11</a></li>
-    <li><a href="random_art_10/random_art_10.html">Random Art 10</a></li>
-    <li><a href="random_art_07/random_art_07.html">Random Art 07</a></li>
-    <li><a href="random_art_03/random_art_03.html">Random Art 03</a></li>
-    <li><a href="random_art_02/random_art_02.html">Random Art 02</a></li>
-    <li><a href="random_art_01/random_art_01.html">Random Art 01</a></li>
-</ul>
-
-<hr>
-
-<pre><code class="language-Mathematica">
-</code></pre>
+<script>
+    hierarchical_dendrogram("respiration.json", "respiration_d3_object");
+    loadHeaderFooter("../../automation/header.html", "../../automation/footer.html")
+</script>
 
 <a href="" target='_blank'><img class="container-md" src="" style="padding-bottom: 10px" alt=''/></a>
 
