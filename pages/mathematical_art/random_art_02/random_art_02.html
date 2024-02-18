@@ -13,44 +13,68 @@
 
     <link rel="stylesheet" href="../../../js/highlight/styles/default.css">
     <link rel="stylesheet" href="../../../index.css">
+
+    <script src="../../../d3/d3.v4.min.js"></script>
     <script src="../../../js/highlight/highlight.pack.js"></script>
+    <script src="../../../automation/loadHeaderFooter.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 
 </head>
-<body class="container-lg">
-<div class="jumbotron text-center">
-    <h1>Random Art 02</h1>
+<body class="container-xl">
+
+
+
+<div class="">
+    <div id="header-placeholder"></div>
+    <div class="b-section-divider"></div>
+
+
+
+    <div class="jumbotron text-center">
+        <h1>Random Art 02</h1>
+    </div>
+
+    <pre>First posted on January 10, 2016 by fermibot</pre>
+
+    <h5>Specimen 01</h5>
+    <p>This is a moving spiral that is surrounded by flagella like objects. You can see that the flagella are constantly
+        changing the way they look because they are all random walks starting from the line.</p>
+    <a href="" target="_blank"><img src="spiral-hair.gif" class="container-lg"></a>
+    <hr>
+
+    <h5>Specimen 02</h5>
+    <a href="" target="_blank"><img src="rand_art2_sun_hres.png" class="container-lg"></a>
+    <hr>
+
+    <h5>Specimen 03</h5>
+    <a href="" target="_blank"><img src="infinity_hair.gif" class="container-lg"></a>
+    <hr>
+
+    <h5>Specimen 04: Albert Einstein</h5>
+    <a href="" target="_blank"><img src="rand_art_einstien_hres.png" class="container-lg"></a>
+    <a href="" target="_blank"><img src="rand_art_einstein_inv_hres1.png" class="container-lg"></a>
+    <a href="" target="_blank"><img src="rand_art_einstien_hres21.png" class="container-lg"></a>
+    <a href="" target="_blank"><img src="rand_art_einstein_inv_hres2.png" class="container-lg"></a>
+    <hr>
+
+    <h5>Specimen 05: Professor Calculus</h5>
+    <strong>With Hair 😉</strong>
+    <a href="" target="_blank"><img src="rand_art_prof_calculus_hres21.png" class="container-lg"></a>
+    <strong>His usual self</strong>
+    <a href="" target="_blank"><img src="rand_art_prof_calculus_hres.png" class="container-lg"></a>
+    <hr>
+
+
+
+    <div class="b-section-divider"></div>
+    <div id="footer-placeholder"></div>
+
 </div>
 
-<pre>First posted on January 10, 2016 by fermibot</pre>
 
-<h5>Specimen 01</h5>
-<p>This is a moving spiral that is surrounded by flagella like objects. You can see that the flagella are constantly
-    changing the way they look because they are all random walks starting from the line.</p>
-<a href="" target="_blank"><img src="spiral-hair.gif" class="container-lg"></a>
-<hr>
-
-<h5>Specimen 02</h5>
-<a href="" target="_blank"><img src="rand_art2_sun_hres.png" class="container-lg"></a>
-<hr>
-
-<h5>Specimen 03</h5>
-<a href="" target="_blank"><img src="infinity_hair.gif" class="container-lg"></a>
-<hr>
-
-<h5>Specimen 04: Albert Einstein</h5>
-<a href="" target="_blank"><img src="rand_art_einstien_hres.png" class="container-lg"></a>
-<a href="" target="_blank"><img src="rand_art_einstein_inv_hres1.png" class="container-lg"></a>
-<a href="" target="_blank"><img src="rand_art_einstien_hres21.png" class="container-lg"></a>
-<a href="" target="_blank"><img src="rand_art_einstein_inv_hres2.png" class="container-lg"></a>
-<hr>
-
-<h5>Specimen 05: Professor Calculus</h5>
-<strong>With Hair 😉</strong>
-<a href="" target="_blank"><img src="rand_art_prof_calculus_hres21.png" class="container-lg"></a>
-<strong>His usual self</strong>
-<a href="" target="_blank"><img src="rand_art_prof_calculus_hres.png" class="container-lg"></a>
-<hr>
+<script>
+    loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html")
+</script>
 
 </body>
 </html>

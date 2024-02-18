@@ -15,106 +15,134 @@
     <link rel="stylesheet" href="../../../index.css">
     <script src="../../../js/highlight/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../../../automation/loadHeaderFooter.js"></script>
+    <script src="../../../d3/d3.v4.min.js"></script>
 
 </head>
 <body class="container-lg">
-<div class="jumbotron text-center">
-    <h1>Random Art 07</h1>
+
+
+<div class="container-fluid">
+    <div id="header-placeholder"></div>
+    <div class="b-section-divider"></div>
+
+    <div>
+        <br>
+        <br>
+    </div>
+
+    <div class="container-fluid">
+        <div class="jumbotron text-center">
+            <h1>Random Art 07</h1>
+        </div>
+
+        <p>This would be the seventh one in the Random Art Series. Although I have not used random numbers for this
+            post, I
+            still chose to embed this in the series and hence the name.</p>
+
+        <div class="centered_image"><img src="random_art_07_01.png"></div>
+        <div class="centered_image"><img src="random_art_07_02.png"></div>
+        <div class="centered_image"><img src="random_art_07_03.png"></div>
+        <div class="centered_image"><img src="random_art_07_04.png"></div>
+        <div class="centered_image"><img src="random_art_07_05.png"></div>
+        <div class="centered_image"><img src="random_art_07_06.png"></div>
+        <div class="centered_image"><img src="random_art_07_07.png"></div>
+        <hr>
+
+        <h5>Code</h5>
+        <p>The above images have been generated using Mathematica 11. The code is provided below. Let me know of any
+            questions.</p>
+        <pre><code class="language-Mathematica">
+    ClearAll[digitPad];
+    digitPad[number_, pad_, padObject_ : 0] :=
+        StringPadLeft[ToString[number], pad, padObject]
+    exportFileName :=
+        NotebookDirectory[] <> "random_art_07_" <>
+            digitPad[Max[
+              ToExpression[StringTake[StringDelete[#, ".png"], -2]] & /@
+                  FileNames["*png", NotebookDirectory[]]] + 1, 2, "0"] <> ".png"
+
+    Module[{export},
+      export =
+          Module[{iterations = 1000},
+            iterations =
+                Graphics[
+                  Table[{Hue[Divide[t, 2 \[Pi]]], Opacity@0.005,
+                    Disk[{Sin[t], Cos[t]}, 0.5]}, {t, Divide[2 \[Pi], iterations],
+                    2 \[Pi], Divide[2 \[Pi], iterations]}], ImageSize -> 788]];
+    (*Export[exportFileName,export]*)
+    ]
+
+    Module[{export},
+      export =
+          Module[{iterations = 2000},
+            iterations =
+                Graphics[
+                  Table[Rotate[{EdgeForm[{Black, Opacity[0.2],
+                    Thickness[0.001]}], FaceForm[{Hue[0.4], Opacity@0.02}],
+                    Rectangle[{Sin[t], Cos[t]}]}, t], {t,
+                    Divide[2 \[Pi], iterations], 2 \[Pi],
+                    Divide[2 \[Pi], iterations]}], ImageSize -> 788]];
+      (*Export[exportFileName,export]*);
+
+    ]
+
+    Module[{export},
+      export =
+          Module[{iterations = 500},
+            iterations =
+                Graphics[
+                  Table[Rotate[{EdgeForm[{Black, Opacity[0.2],
+                    Thickness[0.001]}], FaceForm[{Hue[0.4], Opacity@0.02}],
+                    Rectangle[{Sin[t], Cos[t]}]}, t], {t,
+                    Divide[2 \[Pi], iterations], 2 \[Pi],
+                    Divide[2 \[Pi], iterations]}], ImageSize -> 788]];
+      (*Export[exportFileName,export]*);
+
+    ]
+
+    Module[{export},
+      export =
+          Module[{iterations = 2000},
+            iterations =
+                Graphics[
+                  Table[Rotate[{EdgeForm[{Black, Opacity[0.2], Thickness[0.001]}],
+                    FaceForm[{Hue[0.6], Opacity@0.02}],
+                    Rectangle[E^(-0.1 t) {Cos[2 t], Sin[2 t]},
+                      E^(-0.1 t) {Cos[2 t] + 0.2, Sin[2 t] + 0.2}]}, t], {t,
+                    Divide[2 \[Pi], iterations], 4 \[Pi],
+                    Divide[2 \[Pi], iterations]}], ImageSize -> 788]];
+    (*Export[exportFileName,export];*)
+    ]
+
+    Module[{export},
+      export =
+          Module[{iterations = 200},
+            iterations =
+                Graphics[
+                  Table[Rotate[{EdgeForm[{Black, Opacity[0.2], Thickness[0.001]}],
+                    FaceForm[{Hue[0.7], Opacity@0.02}],
+                    Rectangle[{Cos[t], Sin[2 t]}, {Cos[t] + 1, Sin[t] + 1}]},
+                    t], {t, Divide[2 \[Pi], iterations], 2 \[Pi],
+                    Divide[2 \[Pi], iterations]}], ImageSize -> 788]];
+      (*Export[exportFileName,export];*)
+      export
+    ]
+</code></pre>
+        <hr>
+    </div>
+
+
+    <div class="b-section-divider"></div>
+    <div id="footer-placeholder"></div>
+
 </div>
 
-<p>This would be the seventh one in the Random Art Series. Although I have not used random numbers for this post, I
-    still chose to embed this in the series and hence the name.</p>
 
-<div class="centered_image"><img src="random_art_07_01.png"></div>
-<div class="centered_image"><img src="random_art_07_02.png"></div>
-<div class="centered_image"><img src="random_art_07_03.png"></div>
-<div class="centered_image"><img src="random_art_07_04.png"></div>
-<div class="centered_image"><img src="random_art_07_05.png"></div>
-<div class="centered_image"><img src="random_art_07_06.png"></div>
-<div class="centered_image"><img src="random_art_07_07.png"></div>
-<hr>
+<script>
+    loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html")
+</script>
 
-<h5>Code</h5>
-<p>The above images have been generated using Mathematica 11. The code is provided below. Let me know of any
-    questions.</p>
-<pre><code class="language-Mathematica">
-ClearAll[digitPad];
-digitPad[number_, pad_, padObject_ : 0] :=
-    StringPadLeft[ToString[number], pad, padObject]
-exportFileName :=
-    NotebookDirectory[] <> "random_art_07_" <>
-        digitPad[Max[
-          ToExpression[StringTake[StringDelete[#, ".png"], -2]] & /@
-              FileNames["*png", NotebookDirectory[]]] + 1, 2, "0"] <> ".png"
-
-Module[{export},
-  export =
-      Module[{iterations = 1000},
-        iterations =
-            Graphics[
-              Table[{Hue[Divide[t, 2 \[Pi]]], Opacity@0.005,
-                Disk[{Sin[t], Cos[t]}, 0.5]}, {t, Divide[2 \[Pi], iterations],
-                2 \[Pi], Divide[2 \[Pi], iterations]}], ImageSize -> 788]];
-(*Export[exportFileName,export]*)
-]
-
-Module[{export},
-  export =
-      Module[{iterations = 2000},
-        iterations =
-            Graphics[
-              Table[Rotate[{EdgeForm[{Black, Opacity[0.2],
-                Thickness[0.001]}], FaceForm[{Hue[0.4], Opacity@0.02}],
-                Rectangle[{Sin[t], Cos[t]}]}, t], {t,
-                Divide[2 \[Pi], iterations], 2 \[Pi],
-                Divide[2 \[Pi], iterations]}], ImageSize -> 788]];
-  (*Export[exportFileName,export]*);
-
-]
-
-Module[{export},
-  export =
-      Module[{iterations = 500},
-        iterations =
-            Graphics[
-              Table[Rotate[{EdgeForm[{Black, Opacity[0.2],
-                Thickness[0.001]}], FaceForm[{Hue[0.4], Opacity@0.02}],
-                Rectangle[{Sin[t], Cos[t]}]}, t], {t,
-                Divide[2 \[Pi], iterations], 2 \[Pi],
-                Divide[2 \[Pi], iterations]}], ImageSize -> 788]];
-  (*Export[exportFileName,export]*);
-
-]
-
-Module[{export},
-  export =
-      Module[{iterations = 2000},
-        iterations =
-            Graphics[
-              Table[Rotate[{EdgeForm[{Black, Opacity[0.2], Thickness[0.001]}],
-                FaceForm[{Hue[0.6], Opacity@0.02}],
-                Rectangle[E^(-0.1 t) {Cos[2 t], Sin[2 t]},
-                  E^(-0.1 t) {Cos[2 t] + 0.2, Sin[2 t] + 0.2}]}, t], {t,
-                Divide[2 \[Pi], iterations], 4 \[Pi],
-                Divide[2 \[Pi], iterations]}], ImageSize -> 788]];
-(*Export[exportFileName,export];*)
-]
-
-Module[{export},
-  export =
-      Module[{iterations = 200},
-        iterations =
-            Graphics[
-              Table[Rotate[{EdgeForm[{Black, Opacity[0.2], Thickness[0.001]}],
-                FaceForm[{Hue[0.7], Opacity@0.02}],
-                Rectangle[{Cos[t], Sin[2 t]}, {Cos[t] + 1, Sin[t] + 1}]},
-                t], {t, Divide[2 \[Pi], iterations], 2 \[Pi],
-                Divide[2 \[Pi], iterations]}], ImageSize -> 788]];
-  (*Export[exportFileName,export];*)
-  export
-]
-</code></pre>
-<hr>
 
 </body>
 </html>
