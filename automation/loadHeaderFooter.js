@@ -1,5 +1,6 @@
 function loadHeaderFooter(headerPath, footerPath) {
     document.addEventListener("DOMContentLoaded", function () {
+
         // Load the header
         fetch(headerPath)
             .then(response => response.text())
@@ -13,5 +14,7 @@ function loadHeaderFooter(headerPath, footerPath) {
             .then(html => {
                 document.getElementById("footer-placeholder").innerHTML = html;
             });
+
+
     });
 }
