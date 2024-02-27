@@ -31,5 +31,30 @@
 
 <a href="" target='_blank'><img class="container-md" src="" style="padding-bottom: 10px" alt=''/></a>
 
+
+<div class="container-xl">
+    <div id="header-placeholder"></div>
+    <div class="b-section-divider"></div>
+
+
+    <h1 class="d-grid gap-3 justify-content-center p-3">Respiration</h1>
+
+    <div class="container-fluid">
+        <div class="d-flex flex-wrap justify-content-center p-3" id="respiration_d3_object"></div>
+    </div>
+
+
+    <div class="b-section-divider"></div>
+    <div id="footer-placeholder"></div>
+
+</div>
+
+
+<script>
+    hierarchical_dendrogram("respiration.json", "respiration_d3_object");
+    loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html")
+</script>
+
+
 </body>
 </html>

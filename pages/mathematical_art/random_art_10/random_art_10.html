@@ -7,45 +7,59 @@
     <link rel="stylesheet" href="../../../external_libraries/bootstrap/bootstrap.min.css">
     <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
     <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
-    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
 
     <link rel="stylesheet" href="../../../js/highlight/styles/default.css">
     <link rel="stylesheet" href="../../../index.css">
+    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
+
+    <script src="../../../d3/d3.v4.min.js"></script>
+    <script src="../../../automation/loadHeaderFooter.js"></script>
     <script src="../../../js/highlight/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 
 </head>
 <body class="container-lg">
-<div class="jumbotron text-center">
-    <h1>Random Art 10</h1>
+
+
+
+<div class="container-xl">
+    <div id="header-placeholder"></div>
+<!--    <div class="b-section-divider"></div>-->
+
+    <div class="jumbotron text-center">
+        <h1>Random Art 10</h1>
+    </div>
+
+    <a href="" target="_blank"><img src="random_art_10_sub_rays_dense_20.svg" class="container-lg"></a>
+    <a href="" target="_blank"><img src="random_art_10_sub_rays_dense_40.svg" class="container-lg"></a>
+    <a href="" target='_blank'><img class="container-md" src="" style="padding-bottom: 10px" alt=''/></a>
+
+    <strong>Full Code</strong>
+    <div class="container-md" id="adobe-dc-view" style="height: 700px; width: 60%;"></div>
+
+    <div class="b-section-divider"></div>
+    <div id="footer-placeholder"></div>
+
 </div>
 
-<a href="" target="_blank"><img src="random_art_10_sub_rays_dense_20.svg" class="container-lg"></a>
-<a href="" target="_blank"><img src="random_art_10_sub_rays_dense_40.svg" class="container-lg"></a>
-
-<hr>
-
-<pre><code class="language-Mathematica">
-</code></pre>
-
-<a href="" target='_blank'><img class="container-md" src="" style="padding-bottom: 10px" alt=''/></a>
 
 
-<!--<strong>Full Code</strong>-->
+<script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+<script type="text/javascript">
+    document.addEventListener("adobe_dc_view_sdk.ready", function () {
+        var adobeDCView = new AdobeDC.View({clientId: "a74f0c6c71684e75813cfcfc53526769", divId: "adobe-dc-view"});
+        adobeDCView.previewFile({
+            content: {location: {url: "random_art_10.pdf"}},
+            metaData: {fileName: "random_art_10.pdf"}
+        }, {embedMode: "SIZED_CONTAINER"});
+    });
+</script>
 
-<!--<div class="container-md" id="adobe-dc-view" style="height: 700px; width: 60%;"></div>-->
-<!--<script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>-->
-<!--<script type="text/javascript">-->
-<!--    document.addEventListener("adobe_dc_view_sdk.ready", function () {-->
-<!--        var adobeDCView = new AdobeDC.View({clientId: "a74f0c6c71684e75813cfcfc53526769", divId: "adobe-dc-view"});-->
-<!--        adobeDCView.previewFile({-->
-<!--            content: {location: {url: "<PDF_PATH>"}},-->
-<!--            metaData: {fileName: "<PDF_PATH>"}-->
-<!--        }, {embedMode: "SIZED_CONTAINER"});-->
-<!--    });-->
-<!--</script>-->
+<script>
+    loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html")
+</script>
 
 
 </body>
