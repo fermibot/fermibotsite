@@ -2,33 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../external_libraries/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../index.css">
+
+
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
-    <link rel="stylesheet" href="../../js/highlight/styles/default.css">
+
     <script src="../../js/highlight/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../../external_libraries/bootstrap/bootstrap.min.css">
     <script src="../../external_libraries/bootstrap/jquery.min.js"></script>
     <script src="../../external_libraries/bootstrap/popper.min.js"></script>
-    <script src="../../external_libraries/bootstrap/bootstrap.min.js"></script>
+    <script src="../../bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="../../d3/d3.v4.min.js"></script>
+    <script src="../../automation/loadHeaderFooter.js"></script>
 
     <title>Kresyzig Example 1.2</title>
 
 </head>
 <body>
 
-<div class="jumbotron text-center">
-    <h1>Kresyzig Example 1.2</h1>
-</div>
 
+<div class="container-xl align-content-lg-center">
 
-<div class="container-lg align-content-lg-center">
+    <div id="header-placeholder"></div>
+
+    <div class="jumbotron text-center">
+        <h1>Kresyzig Example 1.2</h1>
+    </div>
 
     <img src="kreyszig-example-1.2_2-01.jpg"/>
-    <h5>Question: </h5>
+    <br><br>
+    <h5 class="">Question</h5>
 
     <!--TODO: Import this from a text file and use the same in the Chapter_01.html-->
     <p>A tank contains 200 gallons of water in which 40lb of salt pounds is dissolved. Five gallons of brine each
@@ -196,9 +207,15 @@
         ]
     ]
 </code></pre>
+
+    <div id="footer-placeholder"></div>
+
 </div>
 
-<hr/>
+
+<script>
+    loadHeaderFooter("../../automation/header.html", "../../automation/footer.html")
+</script>
 
 </body>
 </html>
