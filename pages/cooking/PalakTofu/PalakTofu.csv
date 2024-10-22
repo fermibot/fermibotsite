@@ -7,6 +7,8 @@ Starch,Tofu: coated,1
 Salt,Salt (½ tsp),1
 Salt (½ tsp),Tofu: coated,1
 Cumin,Ground Cumin,1
+Cumin,Cumin Seeds,1
+Mustard,Mustard Seeds,1
 Cinnamon,Cinnamon (¼ tsp),1
 Coriander,Ground Coriander,1
 Ground Coriander,Ground Coriander (½ tsp),1
@@ -16,9 +18,10 @@ Cayenne Pepper,Cayenne Pepper (¼ tsp),1
 Cayenne Pepper (¼ tsp),Tofu: coated,1
 Garam Masala,Garam Masala (1 tsp),1
 Garam Masala (1 tsp),Tofu: coated,1
-Tofu: coated,Tofu: air fried (15 min),1
+Tofu: coated,Tofu: air fried (15 min),7
+Coconut Cream,Cook,1
 Spinach,Spinach: chopped,1
-Spinach: chopped,Spinach Curry,1
+Spinach: chopped,Cook,1
 Milk,Milk: non-dairy,1
 Milk: non-dairy,Milk: non-dairy (1 cup),1
 Milk: non-dairy (1 cup),Ground paste,1
@@ -29,21 +32,23 @@ Cashews (¼ cup),Ground paste,1
 Ginger,Ginger (1-inch),1
 Ginger (1-inch),Ground paste,1
 Oil,Sunflower Oil,1
-Ground Cumin (½ tsp),Sauté,1
-Garlic: chopped,Sauté,1
+Ground Cumin (½ tsp),Cook,1
 Chilli,Chilli: chopped, 1
 Chilli: chopped,Chilli: chopped (2), 1
-Garam Masala (1 tsp),Sauté,1
-Onion,Onion 1,1
-Onion 1,Ground paste,1
+Garam Masala (1 tsp),Cook,1
+Onion,Onion: 1,1
+Onion: 1,Ground paste,1
 Sunflower Oil,Sauté,1
-Ground paste,Sauté,1
-Sauté,Spinach Curry,1
-Maple Syrup,Maple Syrup (1½ tsp),1
-Maple Syrup (1½ tsp),Spinach Curry,1
-Coconut Cream,Spinach Curry,1
-Cinnamon (¼ tsp),Sauté,1
+Mustard Seeds,Sauté,1
+Cumin Seeds,Sauté,1
+Ground paste,Sauté,5
+Garlic: chopped,Sauté,1
 Chilli: chopped (2),Sauté,1
-Ground Coriander (½ tsp),Spinach Curry,1
-Tofu: air fried (15 min),Palak Tofu,1
-Spinach Curry,Palak Tofu,1
+Sauté,Cook,10
+Cook,Spinach Curry,17
+Maple Syrup,Maple Syrup (1½ tsp),1
+Maple Syrup (1½ tsp),Cook,1
+Cinnamon (¼ tsp),Cook,1
+Ground Coriander (½ tsp),Cook,1
+Tofu: air fried (15 min),Palak Tofu,7
+Spinach Curry,Palak Tofu,17
