@@ -19,34 +19,27 @@
 </head>
 <body class="container-lg">
 <div class="jumbotron text-center">
-    <h1>Probability | Binomial Distribution | 001 Best Tire Forward </h1>
+    <h1>Sheldon Ross 10: Example 2.8</h1>
 </div>
 
 <div>
-    <a href="sheldon_ross_10_example_02_008_image_001.png" target="_blank"><img
-            src="sheldon_ross_10_example_02_008_image_001.png"
-            class="container-lg centered_header_image"></a>
+    <a href="sheldon-ross-10-example-2.8flight.jpg" target="_blank"><img src="sheldon-ross-10-example-2.8flight.jpg"
+                                                                         class="container-lg centered_header_image"></a>
 
-    <p></p>
-    <p><strong>Question:</strong> Consider the following scenario</p>
-    <ul>
-        <li>There is a car with x number of tires</li>
-        <li>Probability that a given tire fails in a journey is \(p\)</li>
-        <li>And the probability it does not fail is \(1-p\)</li>
-        <li>The car will (reasonably) operational with at least 50% of functional tires</li>
-        <li><strong>What is the probability that overall car with be functional?</strong></li>
-    </ul>
-
-    <hr>
-
-    <h4 style="text-align: center">Part 1: Visualization</h4>
-    <p>Consider the check and cross marks to be the tires. A check indicates a functional tires and a cross indicates
-        a failed tire. </p>
-    <h5>Success configurations for a 2-Tire Vehicle</h5>
+    <p>This example has already been done neatly in the textbook, but this is an attempt to explain the ideas
+        visually.</p>
+    <p><strong>Question:</strong> “Suppose that an airplane engine will fail, when in flight, with probability 1−p
+        independently from engine to engine; suppose that the airplane will make a successful flight if at least 50
+        percent of its engines remain operative. For what values of p is a four-engine plane preferable to a two-engine
+        plane?”</p>
+    <h4>Part 1: Visualization</h4>
+    <p>Consider the check and cross marks to be the engines. A check indicates a functional engine and a cross indicates
+        a failed engine. </p>
+    <h5>Success configurations for a 2-Engine Plane</h5>
     <pre><code class="language-Mathematica">
-    Module[{marks = {Style["\[Checkmark]", Darker@Green], Style["✗", Red]}, replacer, configs, tires = 2},
+    Module[{marks = {Style["\[Checkmark]", Darker@Green], Style["✗", Red]}, replacer, configs, engines = 2},
      replacer[list_List] := Table[If[list[[n]] == 1, marks[[1]], marks[[2]]], {n, 1, Length@list}];
-     configs = (replacer /@ Union@SortBy[Select[Tuples[{0, 1}, tires], Plus @@ # >= 0.5 tires &], Plus @@ # &]);
+     configs = (replacer /@ Union@SortBy[Select[Tuples[{0, 1}, engines], Plus @@ # >= 0.5 engines &], Plus @@ # &]);
      TableForm[Table[Apply[StringJoin,ToString[#, StandardForm] & /@ configs[[n]]], {n, 1, Length@configs}]]]
     </code></pre>
 
@@ -55,11 +48,11 @@
                                                        style="padding-bottom: 10px"
                                                        alt=''/></a>
 
-    <h5>Success configurations for a 4-Tire Vehicle</h5>
+    <h5>Success configurations for a 4-Engine Plane</h5>
     <pre><code class="language-Mathematica">
-    Module[{marks = {Style["\[Checkmark]", Darker@Green], Style["✗", Red]}, replacer, configs, tires = 4},
+    Module[{marks = {Style["\[Checkmark]", Darker@Green], Style["✗", Red]}, replacer, configs, engines = 4},
      replacer[list_List] := Table[If[list[[n]] == 1, marks[[1]], marks[[2]]], {n, 1, Length@list}];
-     configs = (replacer /@ Union@SortBy[Select[Tuples[{0, 1}, tires], Plus @@ # >= 0.5 tires &], Plus @@ # &]);
+     configs = (replacer /@ Union@SortBy[Select[Tuples[{0, 1}, engines], Plus @@ # >= 0.5 engines &], Plus @@ # &]);
      TableForm[Table[Apply[StringJoin,ToString[#, StandardForm] & /@ configs[[n]]], {n, 1, Length@configs}]]]
     </code></pre>
     <a href="4_engine_config.svg" target='_blank'><img class="centered_image_auto_width"
@@ -67,11 +60,11 @@
                                                        style="padding-bottom: 10px"
                                                        alt=''/></a>
 
-    <h5>Success configurations for a 6-Tire Vehicle</h5>
+    <h5>Success configurations for a 6-Engine Plane</h5>
     <pre><code class="language-Mathematica">
-    Module[{marks = {Style["\[Checkmark]", Darker@Green], Style["✗", Red]}, replacer, configs, tires = 6},
+    Module[{marks = {Style["\[Checkmark]", Darker@Green], Style["✗", Red]}, replacer, configs, engines = 6},
      replacer[list_List] := Table[If[list[[n]] == 1, marks[[1]], marks[[2]]], {n, 1, Length@list}];
-     configs = (replacer /@ Union@SortBy[Select[Tuples[{0, 1}, tires], Plus @@ # >= 0.5 tires &], Plus @@ # &]);
+     configs = (replacer /@ Union@SortBy[Select[Tuples[{0, 1}, engines], Plus @@ # >= 0.5 engines &], Plus @@ # &]);
      TableForm[Partition[Table[Apply[StringJoin, ToString[#, StandardForm] & /@ configs[[n]]], {n, 1, Length@configs}], 7]]]
     </code></pre>
     <a href="6_engine_config.svg" target='_blank'><img class="centered_image_auto_width"
@@ -80,13 +73,13 @@
                                                        alt=''/></a>
 
 
-    <h5>Success configurations for a 8-Tire Vehicle</h5>
+    <h5>Success configurations for a 8-Engine Plane</h5>
     <pre><code class="language-Mathematica">
-    Module[{marks = {Style["\[Checkmark]", Darker@Green], Style["✗", Red]}, replacer, configs, tires = 8},
+    Module[{marks = {Style["\[Checkmark]", Darker@Green], Style["✗", Red]}, replacer, configs, engines = 8},
     replacer[list_List] := Table[If[list[[n]] == 1, marks[[1]], marks[[2]]], {n, 1, Length@list}];
-    configs = (replacer /@ Union@SortBy[Select[Tuples[{0, 1}, tires], Plus @@ # >= 0.5 tires &], Plus @@ # &]);
+    configs = (replacer /@ Union@SortBy[Select[Tuples[{0, 1}, engines], Plus @@ # >= 0.5 engines &], Plus @@ # &]);
     TableForm@Partition[Join @@ {Table[Apply[StringJoin,ToString[#, StandardForm] & /@ configs[[n]]], {n, 1, Length@configs}],
-    Table[Style[StringJoin @@ Table["\[Checkmark]", tires], White], 5]}, 8]]
+    Table[Style[StringJoin @@ Table["\[Checkmark]", engines], White], 5]}, 8]]
     </code></pre>
     <a href="8_engine_config.svg" target='_blank'><img class="centered_image_auto_width"
                                                        src="8_engine_config.svg"
@@ -94,11 +87,11 @@
                                                        alt=''/></a>
 
     <hr>
-    <h4 style="text-align: center">Part 2: Mathematical Modeling</h4>
-    <p>Mathematical modelling is straightforward since the objective is clear. For a vehicle with 2n tires, we need
-        at-least n tires working. Total probability for a successful flight is
+    <h4>Part 2: Mathematical Modeling</h4>
+    <p>Mathematical modelling is straightforward since the objective is clear. For a plane with 2n engines, we need
+        at-least n engines working. Total probability for a successful flight is
         \[\underset{n}{\Sigma} C_{k} p^{k}(1-p)^{2n-k} : k \ge n\]</p>
-    <p>The question asks the probability for which the 2-Tire vehicle is preferable to the 4-Tire vehicle. For this we
+    <p>The question asks the probability for which the 2-Engine Plane is preferable to the 4-Engine Plane. For this we
         need \(2n\) be equal to 2 and 4.
         The expansion results in the following. \[2p(1 − p) + p^{2} = 6p^{2} + (1 − p)^{2} + 4p^{3}(1 − p) + p^{4}\]</p>
     <p>Solving for \(p\), we get the following solutions. \(p = 0; p = 0.66667; p = 1\). The code for solving that is
@@ -111,7 +104,7 @@
         ]
     </code></pre>
 
-    <p>Graphically, and comparing the 2-Tire vehicle to the 4-Tire vehicle, we see a nice pattern taking shape.</p>
+    <p>Graphically, and comparing the 2-Engine Plane to the 4-Engine planes, we see a nice pattern taking shape.</p>
 
 
     <pre><code class="language-Mathematica">
@@ -120,17 +113,17 @@
         Table[Sum[
             Binomial[r, i] Power[p, i] Power[(1 - p), r - i], {i, 0.5 r, r}], {r, 2, maxE, 2}], {p, 0, 1},
                 ImageSize -> 575,
-                AxesLabel -> {"p", "p for 50% or more tires"},
-                PlotLegends -> Table["No. of Tires = " <> ToString[n], {n, 2, maxE, 2}],
+                AxesLabel -> {"p", "p for 50% or more engines"},
+                PlotLegends -> Table["No. of Engines = " <> ToString[n], {n, 2, maxE, 2}],
                 Frame -> True]
         ]
     </code></pre>
 
 
     <a href="2_4_tire_equality.svg" target='_blank'><img class="container-md"
-                                                         src="2_4_tire_equality.svg"
-                                                         style="padding-bottom: 10px"
-                                                         alt=''/></a>
+                                                           src="2_4_tire_equality.svg"
+                                                           style="padding-bottom: 10px"
+                                                           alt=''/></a>
 
 
     <pre><code class="language-Mathematica">
@@ -139,13 +132,13 @@
         Table[Sum[
             Binomial[r, i] Power[p, i] Power[(1 - p), r - i], {i, 0.5 r, r}], {r, 2, maxE, 2}], {p, 0, 1},
                 ImageSize -> 575,
-                AxesLabel -> {"p", "p for 50% or more tires"},
-                PlotLegends -> Table["No. of Tires = " <> ToString[n], {n, 2, maxE, 2}],
+                AxesLabel -> {"p", "p for 50% or more engines"},
+                PlotLegends -> Table["No. of Engines = " <> ToString[n], {n, 2, maxE, 2}],
                 Frame -> True]
         ]
     </code></pre>
-    <a href="2_16_tire_equality.svg" target='_blank'><img class="container-md"
-                                                            src="2_16_tire_equality.svg"
+    <a href="2_16_engine_equality.svg" target='_blank'><img class="container-md"
+                                                            src="2_16_engine_equality.svg"
                                                             style="padding-bottom: 10px"
                                                             alt=''/></a>
 
