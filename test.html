@@ -1,19 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <!-- Bootstrap CSS -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to Icon Converter</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .icon-container {
+            position: relative;
+            margin-top: -40px;
+            z-index: 1;
+        }
+        .section-icon {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #4361ee;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+    </style>
 </head>
-<body>
-<div class="d-flex align-items-center">
-    <!-- Tiny image (16x16 pixels) -->
-    <img src="pages/probability/02_018/Probability_Geometric_HowMuchWait.png" class="img-fluid" style="width:16px; height:16px;" alt="icon">
+<body class="bg-light">
+<div class="container py-5">
+    <h1 class="text-center mb-4">Large Images as Small Icons</h1>
 
-    <!-- Link with spacing -->
-    <a href="https://example.com" class="ms-2 text-decoration-none">Click Here</a>
+    <div class="row g-4">
+        <!-- Nature Section -->
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="icon-container d-flex justify-content-center">
+                    <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=80"
+                         class="section-icon"
+                         alt="Nature Icon">
+                </div>
+                <div class="card-body text-center pt-5">
+                    <h3>Nature</h3>
+                    <p>Landscape image transformed to circular icon</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technology Section -->
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="icon-container d-flex justify-content-center">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&h=1000&q=80"
+                         class="section-icon"
+                         alt="Technology Icon">
+                </div>
+                <div class="card-body text-center pt-5">
+                    <h3>Technology</h3>
+                    <p>Square image converted to circular icon</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education Section -->
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="icon-container d-flex justify-content-center">
+                    <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1200&q=80"
+                         class="section-icon"
+                         alt="Education Icon">
+                </div>
+                <div class="card-body text-center pt-5">
+                    <h3>Education</h3>
+                    <p>Portrait image resized to icon dimensions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="mt-5 text-center text-muted">
+        <p>Bootstrap Image to Icon Technique</p>
+    </footer>
 </div>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
