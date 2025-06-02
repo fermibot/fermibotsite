@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Probability | Bernoulli Distribution | Where Is My Coat?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../external_libraries/bootstrap/bootstrap.min.css">
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <link rel="stylesheet" href="../../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../../index.css">
+    <script src="../../../js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+<body class="container-lg">
+
+<div class="jumbotron text-center">
+    <h1>Probability | Bernoulli Distribution | Where Is My Coat?</h1>
+</div>
+
+<a href="Probability_Bernoulli_WhereIsMyCoat.png" target="_blank"><img src="Probability_Bernoulli_WhereIsMyCoat.png"
+                                                                       class="container-lg"></a>
+<hr>
+<h5>Problem</h5>
+<p>At a party N men throw their coats into the center of a room. The coats are mixed up and each man randomly selects
+    one. Find the expected number of men who select their own coats.</p>
+
+<strong>Reference</strong> <p>Sheldon Ross Probability Modelling Edition 10</p>
+<hr>
+
+<h5>Solution</h5>
+<p>Firstly let us define \(x\) as the sum of the number of men who got their coat correctly. In a group of \(n\)
+    individuals, a person gets a \(1\) if he gets his own coat and \(0\) if not. The resultant would be the total number
+    of men who get their own coats. \[x = \Sigma x_{i} : 1 \le i \le n\] \[E[x] = E[\Sigma x_{i}] = \Sigma E[x_{i}]\]
+    Since each of the \(x_{i}\) is a bernoulli variable, the expectation of \(x_{i}\) is
+    \[(1 * \frac{1}{n} ) + ( 0 * \frac{n-1}{n}) = \frac{1}{n} ⇒ \Sigma[x_{i}] = (n * \frac{1}{n}) = 1\]
+</p>
+
+<hr>
+<h5>Simulation</h5>
+<p>We will now do a simulation of the example and see how the men get their coats when randomly choosing them.
+<ul>
+    <li>For the visualization, we will look at 26 people whose names are A through Z.</li>
+    <li>The image shows several scenarios. The first line are the men who threw the coat.</li>
+    <li>The rows that follow are the various scenarios in which they picked up their coats.</li>
+    <li>From the calculation above, in each scenario (or each row in the image), the expected match is one. Look through
+        each row to see how many greens are there per row.
+    </li>
+    <li><strong>Notice that it is around one.</strong></li>
+
+</ul>
+</p>
+
+<pre><code class="language-Mathematica">
+    ClearAll[listCompare];
+    listCompare[masterSample_List, randomSample_List] :=
+        Module[{alphabet = masterSample, sample = randomSample},
+            Table[
+                If[alphabet[[n]] == sample[[n]],
+                Style[sample[[n]], Darker@Green, Underlined, 15],
+                Style[sample[[n]], Red, 15]],
+       {n, 1, Length[sample]}]]
+
+    Module[{alphabet = Alphabet[], scenarios = Table[RandomSample[Alphabet[], 26], 100], reSelection, tableForm},
+    reSelection = {Style[#, Bold, 15] & /@ Alphabet[]}~Join~(listCompare[alphabet, #] & /@ scenarios);
+    reSelection = styledStringJoin[#, " | "] & /@ reSelection;
+    tableForm = TableForm@reSelection;
+
+    Export[StringReplace[NotebookFileName[], ".nb" -> ".png"], tableForm, ImageSize -> 788, ImageResolution -> 900]]
+</code></pre>
+
+<a href="sheldon_ross_example_02_31.svg" target='_blank'><img class="img-fluid centered_image"
+                                                              src="sheldon_ross_example_02_31.svg"
+                                                              style="padding-bottom: 10px" alt=''/></a>
+
+<p>The image below shows a simulation done with 100000 trials. The bar chart shows the counts of occurrences in which
+    correct selections were made (if any). Out of the 100000 trials in this experiment </p>
+
+<ul>
+    <li> In 37721 instances, <strong>1</strong> man chose his coat correctly</li>
+    <li>In 35820 instances, <strong>none</strong> of the men chose their coat correctly</li>
+    <li>In 18725 instances, <strong>2</strong> men chose their coat correctly</li>
+    <li>In 6098 instances, <strong>3</strong> men chose their coat correctly</li>
+</ul>
+<p> and so on ..</p>
+
+<pre><code class="language-Mathematica">
+    Module[{list = Range[26], sample, barData, trials = 100000},
+        sample := RandomSample[list, Length@list];
+        barData = Reverse[Sort[Counts[
+                        Table[Plus @@ Table[If[list[[n]] == sample[[n]], 1, 0], {n, 1, Length@list}], trials]]]];
+    BarChart[barData, ChartLabels -> Keys@barData, LabelingFunction -> (Placed[#, Above] &), PlotLabel -> ToString[trials] <> " trials"]]
+
+    Export[StringReplace[NotebookFileName[], ".nb" -> "_02.png"], %, ImageSize -> 788, ImageResolution -> 900]
+</code></pre>
+
+<a href="sheldon_ross_example_2.31_02.svg" target='_blank'><img class="container-md d-md-block"
+                                                                src="sheldon_ross_example_2.31_02.svg"
+                                                                style="padding-bottom: 10px" alt=''/></a>
+
+<p style="color: red">The mean correct choices from this simulation is 1.0033 which is close enough to the expected
+    value of 1.</p>
+<hr>
+
+</body>
+</html>
