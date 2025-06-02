@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Probability | Poisson Distribution | At Least One Error</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../external_libraries/bootstrap/bootstrap.min.css">
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <link rel="stylesheet" href="../../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../../index.css">
+    <script src="../../../js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+<body class="container-lg">
+<div class="jumbotron text-center">
+    <h1>Probability | Poisson Distribution | At Least One Error</h1>
+</div>
+
+<a href="sheldon-ross-10-example-2-10carrot.jpg" target="_blank"><img src="sheldon-ross-10-example-2-10carrot.jpg"
+                                                                      class="container-lg centered_header_image"></a>
+
+<p><strong>Question</strong> Suppose that the number of broken threads on a given T-shirt of a line of clothing is a
+    Poisson distribution with parameter \(\lambda = 1\). Calculate the probability that there is at least 1 one broken
+    thread.</p>
+<ul>
+    <li>We will solve the problem numerically.</li>
+    <li>Perform a simulation to get a realization of the mean reaching \(\lambda\) in the long run.</li>
+    <li>Visualize results 😉</li>
+</ul>
+
+
+<p><strong>Reference: </strong>Sheldon Ross Probability Modelling Edition 10</p>
+
+<hr>
+<h5>Step 01: Numerical Solution</h5>
+<p>We need the probability that the number of errors is at-least one.
+    \[P\{X \ge 1\} = 1 - P\{X = 0\}\]
+    \[P\{X \ge 1\} = 1 - e^{-\lambda} \frac{\lambda^{0}}{0!}; \lambda = 1\]
+    \[P\{X \ge 1\} = 1 - e^{-1} \frac{1^{0}}{0!}\]
+    \[P\{X \ge 1\} = 1 - \frac{1}{e}\]
+    \[P\{X \ge 1\} \approx 0.632\]
+</p>
+<h5>Step 02: Simulation and Visualization</h5>
+<p>In each of the squares, the thin horizontal lines are the number of events that happened in that second. The
+    red line tracks mean as the events accumulate. See how the mean reaches the equilibrium gradually (even though
+    they start out in a rugged manner).</p>
+
+<a href="sheldon_ross_example_02_10.svg" target='_blank'><img class="centered_image_auto_width"
+                                                              src="sheldon_ross_example_02_10.svg"
+                                                              style="padding-bottom: 10px" alt=''/></a>
+<pre><code class="language-Mathematica">
+    plot[] := Module[{poisson, sample = 500, movingProbability, scale = 0.001},
+    poisson = RandomVariate[PoissonDistribution[1], sample];
+    movingProbability = Transpose[{Reverse[Accumulate[poisson]/Range[sample]], scale*Range[sample]}];
+    Graphics[{
+        Table[{Opacity[0.1], Line[{{0, scale*r}, {poisson[[r]], scale r}}]}, {r, 1, sample}], {Red, Line[movingProbability]}},
+        ImageSize -> 240,
+        AspectRatio -> 1,
+        Frame -> True,
+        FrameTicks -> {Automatic, None},
+        PlotRange -> {{0, 6}, All}]
+    ]
+    plot[number_] := Parallelize[Table[plot[], number]]
+    Export[StringReplace[NotebookFileName[], ".nb" -> ".svg"], GraphicsGrid[Partition[plot[30], 3]], ImageSize -> 754, ImageResolution -> 600]
+</code></pre>
+
+
+</body>
+</html>
