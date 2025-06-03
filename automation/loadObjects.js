@@ -50,8 +50,8 @@ function styleImageIcons(className) {
 
 
         // Apply styles to each element
-        element.style.width = '200px';
-        element.style.height = '200px';
+        element.style.width = '256px';
+        element.style.height = '256px';
         element.style.objectFit = 'cover';
         element.style.borderRadius = '50%';
         element.style.border = `2px solid ${'lightblue'}`;

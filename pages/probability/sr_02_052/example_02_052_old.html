@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sheldon Ross 10: Example 2.52</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../external_libraries/bootstrap/bootstrap.min.css">
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <link rel="stylesheet" href="../../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../../index.css">
+    <script src="../../../js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+<body class="container-lg">
+<div class="jumbotron text-center">
+    <h1>Sheldon Ross 10: Example 2.52</h1>
+</div>
+
+<a href="sheldon-ross-10-example-2-52-fancy-battery_corrected-01.jpg" target="_blank"><img
+        src="sheldon-ross-10-example-2-52-fancy-battery_corrected-01.jpg"
+        class="container-lg"></a>
+<hr>
+
+<h5>Question</h5>
+<p>The lifetime of a special type of battery is a random variable with mean 40 hours and standard deviation
+    20\(^\dagger\). hours A battery is used until it fails, at which point it is replaced by a new ne. Assuming a
+    stockpile of 25 such batteries, the lifetimes of which are independent, approximate the probability that over 1100
+    hours of use can be obtained.</p>
+
+<p>For the convenience, I will slightly deviate from the numbers in the question</p>
+
+<ul>
+    <li>That the random variable has an exponential distribution with a lifetime of 40 hours. This means that the rate
+        of the exponential distribution is \(\lambda=\frac{1}{40}\)
+    </li>
+    <ul>
+        <li>This makes sure that we can simulate the variable with a non-negative lifetime</li>
+        <li>Hence making us make inferences about the physical entities like batteries, bulbs and essentially anything
+            that has a lifetime > 0
+        </li>
+    </ul>
+    <li>This in-turn means that both the mean the the standard deviation of the of the distribution would be
+        40\(^\dagger\) minutes
+    </li>
+</ul>
+<hr>
+
+<h5>Numerical Solution</h5>
+<p>Essentially the idea is to use the mean and the standard deviation in the central limit theorem to make calculations
+    on the probability. For applying the central limit theorem, we need
+</p>
+
+<ul>
+    <li>The value of the \(x\) (which here is the lifetime)
+        <ul>
+            <li>this is usually a dummy placeholder until we have an objective</li>
+            <li>Since the objective is clear for this variable, \(x = 1100\) hours</li>
+        </ul>
+    </li>
+    <li>The expected value of the random variable
+        <ul>
+            <li>The expected value of the sum of the 25 random variables is the sum of the expected value of the 25
+                random variables
+            </li>
+            <li>Symbolically, \(E[x] = E[\underset{x}{\Sigma} x_{i}] = \underset{x}{\Sigma} E[x_{i}] : 1 \le i \le 25\)
+                for the problem
+            </li>
+        </ul>
+    </li>
+    <li>The variance of the sum of the variables, is the sum of the variances of the random variables
+        <ul>
+            <li>hence the standard deviation of the sum of the random variable would be the square root of the sum of
+                the variances of the individual random variables
+            </li>
+        </ul>
+    </li>
+</ul>
+<p>Needed: \(P \{ X \ge 1100 \}\) where \(X\) is the sum of 25 independent and identically distributed
+    exponential random variables</p>
+<p>Using the central limit theorem we get
+    \[P\{\frac{\overset{25}{\underset{i=1}{\Sigma}}x_i}{40\sqrt{25}} > \frac{(1100 - 1000)}{40\sqrt{25}}\} = 1 -
+    \Phi(0.5)
+    \approx 0.305338\]
+</p>
+<hr>
+
+<h5>Simulation (Calculation)</h5>
+<p>
+    We can also use simulation to see how closely it matches up to the calculated value. This should be a fairly simple
+    calculation and shown in the images below.<br><br> <em>How to read the image?</em></p>
+<ul>
+    <li>Each of the Histogram density is an experiment done for 1000 trials</li>
+    <li>What is changing between the different densities?
+        <ul>
+            <li>First density: 100 x 25 batteries tested 1000 times and the proportion of > 1100 cumulative times
+                calculated in each case and plotted as a distribution
+            </li>
+            <li>Second density: 1000 x 25 batteries tested 1000 times and the proportion of > 1100 cumulative times
+                calculated in each case and plotted as a distribution
+            </li>
+            <li>Third density: 2000 x 25 batteries tested 1000 times and the proportion of > 1100 cumulative times
+                calculated in each case and plotted as a distribution
+            </li>
+        </ul>
+    </li>
+</ul>
+
+
+<pre><code class="language-Mathematica">
+DistributionChart[
+    Table[Table[Module[{data = Plus @@@ RandomVariate[ExponentialDistribution[1/40], {r, 25}]},
+    N[Length[Select[data, # > 1100 &]]/r]], 1000], {r, {100, 1000, 2000}}]
+    , ChartElementFunction -> "HistogramDensity"
+    , ChartLabels -> {100, 1000, 2000}]
+
+Export[StringReplace[NotebookFileName[], ".nb" -> "_lifeTime_calculation.svg"], %]
+</code></pre>
+
+<a href="sheldon_ross_example_02_52_lifeTime_calculation.svg" target='_blank'><img
+        class="container-md centered_image_auto_width"
+        src="sheldon_ross_example_02_52_lifeTime_calculation.svg"
+        style="padding-bottom: 10px" alt=''/></a>
+<hr>
+
+<h5>Simulation (Visualization)</h5>
+<p></p>
+<pre><code class="language-Mathematica">
+ClearAll[lifeTimeMapper, lifeTimePoint];
+
+lifeTimeMapper[list_List, r_: 0] := Module[{coordinates = {{0, r}}}, coordinates = coordinates~Join~({#, r} & /@ list)]
+lifeTimePoint[list_, limit_: 1100] := {If[#[[1]] <= limit, Red, Green], PointSize[0.005], Point[#]} & /@ list;
+
+Module[{data = Accumulate /@ RandomVariate[ExponentialDistribution[1/40], {1000, 25}]},
+    Graphics[{
+        {Thickness[0.005], Green, Line[{{1100, 0}, {1100, 10 Length@data}}]},
+   Parallelize[{Thickness[0], Line[#]} & /@ (MapThread[lifeTimeMapper, {data, 10 Range[Length@data]}])],
+   Parallelize[lifeTimePoint[#] & /@ (MapThread[lifeTimeMapper, {data, 10 Range[Length@data]}])]
+   }, Frame -> True, FrameTicks -> {True, None}]
+]
+
+Export[StringReplace[NotebookFileName[],".nb" -> "_lifeTime_image.svg"], %]
+</code></pre>
+
+<h6>The below image is about 17MB, it might take a while to load it depending on your download speed</h6>
+<a href="sheldon_ross_example_02_52_lifeTime_image.svg" target='_blank'><img
+        class="container-md centered_image_auto_width"
+        src="sheldon_ross_example_02_52_lifeTime_image.svg"
+        style="padding-bottom: 10px" alt=''/></a>
+<hr>
+
+
+</body>
+</html>

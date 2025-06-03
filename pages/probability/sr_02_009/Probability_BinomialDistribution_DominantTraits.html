@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Probability | Binomial Distribution | Dominant Traits 🧬</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../external_libraries/bootstrap/bootstrap.min.css">
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <link rel="stylesheet" href="../../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../../index.css">
+    <script src="../../../js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="container-lg">
+<div class="jumbotron text-center">
+    <h1>Probability | Binomial Distribution | Dominant Traits 🧬</h1>
+</div>
+
+<a href="Probability_BinomialDistribution_DominantTraits.png" target="_blank"><img
+        src="Probability_BinomialDistribution_DominantTraits.png"
+        class="centered_header_image container-lg"></a>
+
+<p><strong>Question:</strong>
+<ul>
+    <li> Suppose that a particular trait of a person is classified on the basis of one pair of genes and suppose that d
+        represents a dominant gene and r a recessive gene.
+    </li>
+    <li>Thus, a person with dd genes is pure dominance, one with rr is pure recessive, and one with rd is hybrid.</li>
+    <li>There is no outwardly difference between the appearances of hybrid or pure dominant.</li>
+    <li>If, with respect to a particular trait, two hybrid parents have a total of four children, what is the
+        probability that exactly three of the four children have the outward appearance of the dominant gene?
+    </li>
+
+</ul>
+</p>
+
+<h5>Step 01: Creation of the variables</h5>
+<pre><code class="language-Mathematica">
+    Module[{parent1 = Style["dr", 12, Red], parent2 = Style["rr", 12, Darker@Green]}, {parent1, parent2}]
+    </code></pre>
+<h5>Step 02: Possible Children</h5>
+<p>Since both of the parents are mixed, any of the child born to this set of parents would receive either “r” or “d”
+    from either of the parents. The types of children possible from this union are as follows.
+</p>
+<pre><code class="language-Mathematica">
+    Module[{parent1 = Style["d", 12, Red], parent2 = Style["r", 12, Darker@Green], children},
+        children = Tuples[{parent1, parent2}, 2];
+        Table[Apply[StringJoin, ToString[#, StandardForm] & /@ children[[r]]], {r, 1, Length@children}]]</code></pre>
+<p>Amongst the progeny, the children “dd”, “dr”, “rd” would be outwardly display the dominant characteristics. This
+    is \(\frac{3}{4}\).</p>
+<h5>Step 03: Numerical Solution</h5>
+<p>According to the question, we need to find the probability that 3 out of 4 children would have the outward
+    appearance of the dominant gene. This is a binomial type problem and below is the numerical answer.
+    \[{4\choose 3} {\frac{3}{4}}^{3} {(1-\frac{3}{4})}^{1} = \frac{27}{64} \approx 0.421875 \]</p>
+<h5>Step 04: Simulation</h5>
+<p>We can also do a simulation of the same to see how the probabilities match up to the results calculated
+    numerically.</p>
+<pre><code class="language-Mathematica">
+
+    ClearAll[childrenColor, progeny];
+    (*This function colors the string. This function has not been used here by the way*)
+    childrenColor[child_String] := Module[{list = StringSplit[child, ""]},
+      Table[If[list[[r]] == "r", Style["r", Darker@Green], Style["d", 12, Red]], {r, 1, Length@list}]]
+
+    (*This function simulates the progeny given a number*)
+    progeny[number_] :=
+     Module[{parent1 = "d", parent2 = "r", children, barData},
+      children = StringJoin @@@ RandomChoice[{parent1, parent2}, {number, 2}];
+      barData = Transpose[{Length[#], #[[1]]} & /@ Gather@children];
+      BarChart[barData[[1]], ChartLabels -> barData[[2]], PlotLabel -> ToString[number] <> " children"]]
+
+    GraphicsGrid[Partition[progeny[#] & /@ {25, 100, 200, 500, 1000, 5000, 10000, 20000, 50000}, 3], ImageSize -> 700]
+    </code></pre>
+<p>You can see that the proportions (and the probabilities) match up at high numbers with the ratio being roughly
+    \(\frac{1}{4}\).<br>If only 4 children are allowed, then the probability of 3 of four children having an
+    outwardly appearance of the dominant gene is \(\frac{27}{64} \approx 0.421875\) according to our calculation
+    earlier. This is seen below. Notice that we are repeating the allowed trials. For example, the first chart in
+    the set has a number 10 under it. This means that this is a distribution of probability of 3 dominant children
+    in a population where 10 paris of parents are allowed to have 4 children each. Observe how the distribution gets
+    narrower with larger population.</p>
+
+<a href="example_02_09_bar_chart.svg" target="_blank"><img class="centered_image"
+                                                           src="example_02_09_distribution_chart.svg"
+                                                           style="padding-bottom: 10px" alt=""></a>
+
+<pre><code class="language-Mathematica">
+    (*Modified function for this part*)
+    progeny[number_] := Module[{parent1 = "d", parent2 = "r", children, barData},
+    children =StringJoin @@@ RandomChoice[{parent1, parent2}, {number, 2}]]
+
+    exactly3Dominant[trials_] :=
+        Module[{three = Length@Cases[Length[Cases[#, "dd" | "dr" | "rd"]] & /@ Table[progeny[4], trials], 3]}, three/trials]
+
+    Module[{trials = {10, 25, 50, 100, 200, 300, 500, 750, 1000, 2000, 5000, 10000}},
+        DistributionChart[Table[exactly3Dominant[#], 100] & /@ trials,
+            ChartElementFunction -> "HistogramDensity",
+            ImageSize -> 700,
+            PlotLabel -> "Distribution of fixed trials repeated 100 times.",
+            ChartLabels -> trials,
+            AxesLabel -> {"Trials", "Probability"}]
+        ]
+    </code></pre>
+
+<a href="example_02_09_distribution_chart.svg" target='_blank'><img class="centered_image"
+                                                                    src="example_02_09_distribution_chart.svg"
+                                                                    style="padding-bottom: 10px"
+                                                                    alt=''/></a>
+
+
+</body>
+</html>
