@@ -2,24 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sheldon Ross 10: Example 3.23</title>
+    <title>Probability | Conditional | Joint Poisson</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../../../../external_libraries/bootstrap/bootstrap.min.css">
-    <script src="../../../../external_libraries/bootstrap/jquery.min.js"></script>
-    <script src="../../../../external_libraries/bootstrap/popper.min.js"></script>
-    <script src="../../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../../external_libraries/bootstrap/bootstrap.min.css">
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
 
-    <link rel="stylesheet" href="../../../../js/highlight/styles/default.css">
-    <link rel="stylesheet" href="../../../../index.css">
-    <script src="../../../../js/highlight/highlight.pack.js"></script>
+    <link rel="stylesheet" href="../../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../../index.css">
+    <script src="../../../js/highlight/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 
 </head>
 <body class="container-lg">
 <div class="jumbotron text-center">
-    <h1>Sheldon Ross 10: Example 3.23</h1>
+    <h1>Probability | Conditional | Joint Poisson</h1>
 </div>
 
 <a href="sheldon-ross-10-example-3-23yoga-01.jpg" target="_blank"><img src="sheldon-ross-10-example-3-23yoga-01.jpg"
@@ -34,22 +34,19 @@
 
 <h5>Solution</h5>
 <p>Dissecting the problem. I will try giving a brief explanation of the solution here. For a high detail of the
-    problem, please refer to the text</p>
-<ul>
-    <li>Notice that there a constraint on the sum itself but \(n\) and \(m\) themselves could be variables given that
-        they add up-to a number
-    </li>
-    <li>The probability that we need can be denoted as follows</li>
-    <ul>
-        <li>\(P\{N_1=n, N_2=m\} = \underset{i}{\Sigma} P\{N_1=n, N_2=m | N = i\} P\{N=i\}\)</li>
-        <li>Then, the probability that \(P\{N=i\}\) is poisson distribution \(e^{-\lambda} \frac{λ^{n+m}}{(n+m)!}\)</li>
-    </ul>
-    <li>since there are two components to the poisson count, we need to introduce a binomial here and simplifying them
-        we get two probabilities as \[P\{N_1=n\} = e^{-\lambda p} \frac{(λp)^n}{n!}\]
-        \[P\{N_2=m\} = e{-\lambda^{(1-p)}} \frac{(\lambda(1-p))^m}{m!}\]
-    </li>
-</ul>
+    problem, please refer to the text. Notice that there a constraint on the sum itself but \(n\) and \(m\) themselves
+    could be variables given that they add up-to a number. The probability that we need can be denoted as follows.
+    \[P\{N_1=n, N_2=m\} = \overset{\infty}{\underset{i=0}{\Sigma}} P\{N_1=n, N_2=m | N = i\} P\{N=i\}\] where \( N = N_1
+    + N_2\). The probability that \(P\{N=i\}\) is a poisson distribution shown as \[e^{-\lambda}
+    \frac{λ^{n+m}}{(n+m)!}\] Since there are two components to the poisson count, we need to introduce a binomial here
+    and simplifying them we get two probabilities as \[P\{N_1=n\} = e^{-\lambda p} \frac{(\lambda p)^n}{n!}\]
+    \[P\{N_2=m\} = e^{-\lambda q} \frac{(\lambda q)^m}{m!}\]
+
+</p>
+
+<p><strong>Reference: </strong>Sheldon Ross Probability Modelling Edition 10</p>
 <hr>
+
 
 <h5>Simulations</h5>
 <p>Approach to the simulations for this problem</p>
