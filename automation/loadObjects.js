@@ -9,11 +9,11 @@ function loadHeaderFooter(headerPath, footerPath) {
             });
 
         // Load the footer
-        fetch(footerPath)
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById("footer-placeholder").innerHTML = html;
-            });
+        // fetch(footerPath)
+        //     .then(response => response.text())
+        //     .then(html => {
+        //         document.getElementById("footer-placeholder").innerHTML = html;
+        //     });
 
 
     });
