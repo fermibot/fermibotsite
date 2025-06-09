@@ -96,28 +96,111 @@
         \[g'(x) \implies x = \frac{n}{e}\]
 
     </li>
-    <li>As per this result, the best strategy is to let go of the first \(\frac{n}{e}\) prizes with the probability of
-        success \(\approx 0.3678\)
+    <li>As per this result, the best strategy is to let go of the first \(\frac{n}{e}\) prizes and select the next prize
+        that is best of all the prizes seen before.
     </li>
 </ul>
 
 
-</p>
+</body>
 <hr>
 
 <h5>Simulations</h5>
 <p>Approach to the simulations for this problem</p>
 
 
-<pre><code class="language-Mathematica">
-</code></pre>
+<p>In the example below, we have \(n = 20\) and we can reject \(k\) values from \(0\) to \(19\), however, do note that
+    after rejecting \(19\) out of the \(20\) possible options, we do will just have to <em>accept</em> what is left, it is not
+    more of a choice than being left with only one choice. </p>
+
+<a href="Prbability_Strategy_TheSecretaryProblem.png" target="_blank"><img
+        src="Prbability_Strategy_TheSecretaryProblem.png"
+        class="container-lg"></a>
+
+<pre><code class="language-python">
+import random
+import pandas as pd
+
+df_compiled = {}
 
 
-<li>We will look at these for the probability values from 0.1 to 0.9 in steps of 0.1</li>
-<ul>
-    <li>so the probabilities would be {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9}</li>
-</ul>
-</ul>
+n = 20
+for iterations in range(1000, 10000, 1000):
+    print(f"Strategy|N: {n}|Iterations: {iterations}")
+
+    df_compiled[iterations] = {}
+
+    for reject in range(n):
+
+
+        rejected = [True] * reject + [False] * (n - reject)
+
+        wins = []
+
+        for _ in range(iterations):
+            my_list = list(range(n))
+            random.shuffle(my_list)
+            df_compiled[iterations][str(reject)] = None
+
+            df = pd.DataFrame({'index': range(n), 'prize': my_list, 'reject': rejected})
+
+            df['cummax'] = df['prize'].cummax()
+            df['new'] = (df['prize'] >= df['cummax']) & ~df['reject']
+
+            selection = df[df['new']].head(1)
+            if selection.shape[0] == 1:
+                wins.append(selection['cummax'].iloc[0])
+            else:
+                wins.append(None)
+
+        df_compiled[iterations][str(reject)] = wins.count(n - 1)
+
+df_compiled = pd.DataFrame(df_compiled)
+
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Convert win counts to success rates
+success_rates = df_compiled.copy()
+for iterations in df_compiled.columns:
+    success_rates[iterations] = df_compiled[iterations] / iterations
+
+# Plot settings
+plt.figure(figsize=(10, 6))
+sns.set_style("whitegrid")
+plt.title(f"Secretary Problem Success Rates (n={n})", fontsize=14)
+plt.xlabel("Number of Initial Rejects (k)", fontsize=12)
+plt.ylabel("Success Rate", fontsize=12)
+plt.xticks(range(1, 9))
+
+# Plot each iteration curve
+colors = ['red', 'yellow', 'green', 'blue', 'pink', 'black', 'brown']
+colors = [
+    '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd',
+    '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf',
+    '#aec7e8', '#ffbb78', '#98df8a', '#ff9896', '#c5b0d5',
+    '#f7b6d2', '#d64f92', '#12aab5', '#00cc96', '#b892ff',
+    '#ff9a8a', '#ffd700', '#7fffd4', '#a83c3f'
+]
+for i, iterations in enumerate(df_compiled.columns):
+    plt.plot(
+        success_rates.index.astype(int),
+        df_compiled[iterations],
+        marker='.',
+        label=f'{iterations} iterations',
+        color=colors[i]
+    )
+
+# Theoretical optimum line (n/e ≈ 3.678)
+plt.axvline(x=n/2.718, color='k', linestyle='--', alpha=0.7, label=f'Optimal k (n/e ≈ {n/2.718})')
+plt.legend()
+plt.show()
+
+</code>
+
+
+</pre>
 
 
 </html>
