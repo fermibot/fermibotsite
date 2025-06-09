@@ -1,31 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="../../index.css" rel="stylesheet" type="text/css">
+    <title>Probability | Strategy | Best Prize Selection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../external_libraries/bootstrap/bootstrap.min.css">
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
-    <link rel="stylesheet" href="../../js/highlight/styles/default.css">
-    <script src="../../js/highlight/highlight.pack.js"></script>
+
+    <link rel="stylesheet" href="../../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../../index.css">
+    <script src="../../../js/highlight/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 </head>
-<body>
-<h1>A fair 8-sided dice from a fair 6-sided dice</h1>
+<body class="container-lg">
+<div class="jumbotron text-center"><h1>A fair 8-sided dice from a fair 6-sided dice</h1></div>
 <p>
     The following are the histograms of the simulated fair 6-sided dice and a fair 8-sided dice generated using the 6
     sided dice. The simulation shows that the distribution is uniform. This page provides you two different languages to
     simulate the data - Wolfram Mathematica and Python. Feel free to copy the code and run it on your computer.
 </p>
 
-<div class="centered_image">
-    <div class="row" , align="center">
-        <img src="6_sided_dice.svg" , style="width: 45%">
-    </div>
-    <div class="row" , align="center">
-        <img src="8_sided_dice.svg" , style="width: 45%">
-    </div>
-</div>
+
+<a href="6_sided_dice.svg" target="_blank"><img src="6_sided_dice.svg" class="container-sm centered_image_auto_width"
+                                                style="width: 50%"></a>
+<a href="8_sided_dice.svg" target="_blank"><img src="8_sided_dice.svg" class="container-sm centered_image_auto_width"
+                                                style="width: 50%"></a>
+<hr>
 
 <h3>Mathematica Code</h3>
 <pre><code class="language-Mathematica">
