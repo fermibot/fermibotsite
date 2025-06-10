@@ -76688,8 +76688,8 @@
            * Returns a random number fitting a Gaussian, or
            * normal, distribution. There is theoretically no minimum or maximum
            * value that <a href="#/p5/randomGaussian">randomGaussian()</a> might return. Rather, there is
-           * just a very low probability that values far from the mean will be
-           * returned; and a higher probability that numbers near the mean will
+           * just a very low Probability that values far from the mean will be
+           * returned; and a higher Probability that numbers near the mean will
            * be returned.
            *
            * Takes either 0, 1 or 2 arguments.<br>

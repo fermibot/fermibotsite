@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sheldon Ross Chapter 02</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../external_libraries/bootstrap/bootstrap.min.css">
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="container-xl align-items-center">
+
+<div class="jumbotron text-center">
+    <h1>THIS PAGE AND THE REST OF THE SITE UNDER CONSTRUCTION</h1>
+    <h5>The content is being incremented at one new page per day. In the mean time checkout <a
+            href="https:/www.fermibot.com">fermibot.com</a>
+    </h5>
+</div>
+
+<div class="jumbotron text-center">
+    <h1>Sheldon Ross Chapter 03: Conditional Probability and Conditional Expectation</h1>
+</div>
+
+<div class="jumbotron p-3 p-md-5 text-info rounded" style="background: seashell">
+    <div class="row mb-2">
+        <div class="col-md-6">
+            <div class="card mb-5 box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src="../../Probability/sr_03_016/img_4046corrected.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Example 3.16 (Analyzing the Quick-Sort Algorithm)</h5>
+                    <p class="card-text">Suppose we are given a set of n distinct values \(x_{1}, ..., x_{n}\) and we
+                        desire to put these values in increasing order or, as it is commonly called, to sort them.
+                        <a href="../../Probability/sr_03_016/Algorithms_SortingAlgorithms_Quicksort.html">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-5 box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src="../../Probability/sr_03_017/img_4113.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Example 3.17</h5>
+                    <p class="card-text">In the match problem of Example 2.31 involving \(n\), \(n > 1\), individuals,
+                        find the conditional expected number of matches given that the first person did not have a
+                        match.<a href="../../Probability/sr_03_017/Probability_Conditional_FindMyCoat_02.html">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src="../../Probability/sr_03_023/sheldon-ross-10-example-3-23yoga-01.jpg"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Example 3.23</h5>
+                    <p class="card-text">Suppose that the number of people who visit a yoga studio each day is a Poisson
+                        random variable with mean \(\lambda\). Suppose further that each person who visits is,
+                        independently, female with probability \(p\) or male with probability \(1−p\). Find the joint
+                        probability that exactly \(n\) women and m men visit the academy today.
+                        <a href="../../Probability/sr_03_023/Probability_Conditional_JointPoisson.html">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top"
+                     src="../../Probability/sr_03_025/Probability_Strategy_BestPrizeSelection.jpg"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Example 3.25 (The best prize problem)</h5>
+                    <p class="card-text">Suppose that we are to be presented with \(n\)
+                        distinct prizes in sequence. After being presented with a prize we must immediately decide
+                        whether to accept it or reject it and consider the next prize. The only information we are given
+                        when deciding whether to accept a prize is the relative rank of that prize compared to ones
+                        already seen. That is, for instance, when the fifth prize is presented we learn how it compares
+                        with the first four prizes already seen. Suppose that once a prize is rejected it is lost, and
+                        that our objective is to maximize the probability of obtaining the best prize. Assuming that all
+                        \(n!\) orderings of the prizes are equally likely, how well can we do?
+                        <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src="example_03_027/sheldon-ross-10-example-3-27-the-ballot-problem-01-01.jpg"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Example 3.27 (The Ballot Problem)</h5>
+                    <p class="card-text">In an election, candidate \(A\) receives \(n\) votes, and candidate \(B\)
+                        receives \(m\) votes where \(n > m\). Assuming that all orderings are equally likely, show that
+                        the probability that \(A\) is always ahead in the count of votes is \(\frac{n−m}{n+m}\)
+                        <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img id="replace_image_00" class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Example 3.28</h5>
+                    <p class="card-text">Let \(U_{1},U_{2}, ...\) be a sequence of independent uniform \((0, 1)\)
+                        random variables, and let \(N = min(n ≥ 2: U_{n} > U_{n−1})\) & \(M = min(n \ge 1: U_{1} + · · ·
+                        + U_{n} > 1)\). That is, \(N\) is the index of the first uniform random variable that is larger
+                        than its immediate predecessor, and \(M\) is the number of uniform random variables we need sum
+                        to exceed 1. Surprisingly, \(N\) and \(M\) have the same probability distribution, and their
+                        common mean is \(e!\)<a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src="example_03_030/sheldon-ross-10-example-3-30_population.jpg"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Example 3.30</h5>
+                    <p class="card-text">A population consists of m families. Let \(X_{j}\) denote the size of
+                        family \(j\) and suppose that \(X_{1}, ... , X_{m}\) are independent random variables having the
+                        common probability mass function \(p(k) = P(X_{j} = k)\) such that \(\underset{k}{\Sigma}p_{k} =
+                        1\) with mean \(\mu = \underset{k}{\Sigma}kp_{k}\) <br>Suppose a member of the population is
+                        randomly chosen, in that the selection is equally likely to be any of the members of the
+                        population, and let \(S_{i}\) be the event that the selected individual is from a family of size
+                        \(i\). Argue that \(P(S_{i}) \rightarrow \frac{ip_{i}}{\mu}\) as \(m \rightarrow \infty\)
+                        <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top"
+                     src="example_03_011/sheldon-ross-10-example-3.11-the-expectation-of-the-sum-of-a-random-number-of-random-variables.jpg"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Example 3.11 (The Expectation of the Sum of a Random Number of Random
+                        Variables)</h5>
+                    <p class="card-text"><strong></strong> Suppose that the expected number of accidents per week at an
+                        industrial plant is four. Suppose also that the numbers of workers injured in each accident are
+                        independent random variables with a common mean of 2. Assume also that the number of workers
+                        injured in each accident is independent of the number of accidents that occur. What is the
+                        expected number of injuries during a week? <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src="example_03_032/example-3-32-automobile-insurance-01.jpg"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Example 3.32 (Automobile Insurance)</h5>
+                    <p class="card-text"><strong></strong> An automobile insurance company classifies each of
+                        its policyholders as being of one of the types \(i = 1, ..., k\). It supposes that the numbers
+                        of accidents that a type i policyholder has in successive years are independent Poisson random
+                        variables with mean \(λ_{i}: i = 1, ..., k\). The probability that a newly insured policyholder
+                        is type \(i\) is \(p_{i}\) such that \(\underset{i}{\Sigma} p_{i} = 1\).
+                    <ol>
+                        <li>
+                            Given that a policyholder had n accidents in her first year, what is the expected number
+                            that she has in her second year?
+                        </li>
+                        <li>What is the conditional probability that she has m accidents in her second year?</li>
+                    </ol>
+                    <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src="example_03_013/mouse-2_2.jpg"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Example 3.13 (Mouse trapped in a maze)</h5>
+                    <p class="card-text"> A mouse is trapped in a maze. Initially it has to
+                        choose one of two directions. If it goes to the right, then it will wander around in the maze
+                        for 3 minutes and will then return to its initial position. If it goes to the left, then with
+                        probability \(\frac{1}{3}\) , it will depart the maze after 2 minutes of traveling, and with
+                        probability \(\frac{2}{3}\) it will return to its initial position after 5 minutes of traveling.
+                        Assume that the mouse is at all times equally likely to go to the left or the right. Let \(T\)
+                        denote the number of minutes that it will be trapped in the maze.What is \(E[T]^{*}\)?
+                        <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src="section_03_06_01/sheldon-ross-10-section-3.6.1-a-list-model-01.jpg"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Section 3.6.1 (A List Model)</h5>
+                    <p class="card-text"> Consider \(n\) elements \(\rightarrow e_{1}, e_{2}, ...,
+                        e_{n}\) that are initially arranged in some ordered list. At each unit of time a request is made
+                        for one of these elements—ej being requested, independently of the past, with probability
+                        \(P_{j}\). After being requested the element is then moved to the front of the list. That is,
+                        for instance, if the present ordering is \(e_{1}, e_{2}, e_{3}, e_{4}\) and \(e_{3}\) is
+                        requested, then the next ordering is \(e_{3}, e_{1}, e_{2}, e_{4}\). We are interested in
+                        determining the expected position of the element requested after this process has been in
+                        operation for a long time.<a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top"
+                     src="section_03_06_03/sheldon-ross-10-section-3.6.3-e28093-uniform-priors-01.jpg"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Section 3.6.3</h5>
+                    <p class="card-text">Uniform Priors For many applications, we assume \(p\) to be constant and
+                        calculate the probabilities of \(k\) occurrences out of \(n\) trials. It would be
+                        straightforward to calculate and anticipate how the probabilities might look like. How about the
+                        case when the probability creating the binomial is itself a distribution? Interesting isn’t it?
+                        <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.02</h5>
+                    <p class="card-text"> Let \(X_{1}\) and \(X_{2}\) be independent
+                        geometric random variables having the same parameter \(p\). Guess the value of \(P\{X_{1}=i |
+                        X_{1}+X_{2}=n\}\)
+                        <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.08</h5>
+                    <p class="card-text"> An unbiased die is successively rolled. Let X and Y denote, respectively, the
+                        number of rolls necessary to obtain a six and a five. Find
+                    <ol>
+                        <li>\(E[X]\)</li>
+                        <li>\(E[X|Y = 1]\)</li>
+                        <li>\(E[X|Y = 5]\)</li>
+                    </ol>
+                    <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.13</h5>
+                    <p class="card-text">Let \(X\) be exponential with mean
+                        \(\frac{1}{\lambda}\) that is, \(f_{X}(x) = \lambda e^{−\lambda x} : 0 < x < \infty\). Find
+                        \(E[X|X > 1]\) <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src="exercise_03_020/sheldon-ross-10-exercise-3.20_miner_no-cigar-01.jpg"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.20</h5>
+                    <p class="card-text"><strong></strong> Consider Example 3.13, which refers to a miner trapped in a
+                        mine. Let \(N\) denote the total number of doors selected before the miner reaches safety. Also,
+                        let \(T_{i}\) denote the travel time corresponding to the ith choice, i ≥ 1. Again let X denote
+                        the time when the miner reaches safety. Give an identity that relates \(X\) to \(N\) and the
+                        \(T_{i}\)
+                    <ol>
+                        <li>What is \(E[N]\)?</li>
+                        <li>What is \(E[T_{N}]\)?</li>
+                        <li>What is \(E[\underset{i}{\Sigma}T_{i}|N = n]\)?</li>
+                        <li>Using the preceding, what is \(E[X]\)?</li>
+                    </ol>
+                    <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.22</h5>
+                    <p class="card-text"> Suppose that independent trials, each of which is equally likely to have
+                        any of m outcomes, are performed until the same outcome occurs \(k\) consecutive times. If \(N\)
+                        denotes the number of trials, show that \(E[N] = \frac{mk-1}{m-1}\)
+                        <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src="exercise_03_023/sheldon-ross-10-exercise-3.23_coins-pattern-01.jpg"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.23</h5>
+                    <p class="card-text">A coin having probability p of coming up heads is successively
+                        flipped until two of most recent three flips are heads. Let N denote the number of flips. (Note
+                        that the first two flips are heads, then \(N = 2\).) Find \(E[N]\).
+                        <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src="exercise_03_026/sheldon-ross-10-exercise-3.26_poker-faces_2.jpg"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.26</h5>
+                    <p class="card-text">You have two opponents with whom you alternate
+                        play. Whenever you play \(A\), win with probability \(p_{A}\); whenever you play \(B\), you win
+                        with probability \(p_{B}\), where \(p_{B}\) > \(p_{A}\). If your objective is to minimize the
+                        expected number of games you need to play to win two in a row, should you start with \(A\) or
+                        with \(B\)<a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">__CARD__TITLE__</h5>
+                    <p class="card-text"><strong>Exercise 3.27</strong> A coin that comes up heads with probability
+                        \(p\) is continually flipped until the pattern \(TH\) appears. (That is, you stop flipping when
+                        the most recent flip lands heads, the two immediately preceding it lands tails.) Let \(X\)
+                        denote the number of flips , and find \(E[X]\).
+                        <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src="exercise_03_029/sheldon-ross-10-exercise-3.29_pixel-target_1-01.jpg"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.29</h5>
+                    <p class="card-text"> Two players take turns shooting at a target,
+                        with each shot by player \(i\) hitting the with probability \(p_{i}: i = 1, 2\). Shooting ends
+                        when two consecutive shots hit target. Let \(\mu_{i}\) denote the mean number of shots taken
+                        when player \(i\) shoots first, = 1, 2.
+                    <ul>
+                        <li>Find μ1 and μ2</li>
+                        <li>Let \(h_{i}\) denote the mean number of times that the target is hit when player \(i\)
+                            shoots first, given \(i = 1, 2\).
+                        </li>
+                    </ul>
+                    <p>Find \(h_{1}\) and \(h_{2}\)</p>
+                    <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.31</h5>
+                    <p class="card-text"> Each element in a sequence of binary data is either 1 with probability
+                        \(p\) or 0 with \(1 − p\). A maximal subsequence of consecutive values having identical is
+                        called a run. For instance, if the outcome sequence is \(1, 1, 0, 1, 1, 1, 0\), first run is of
+                        length 2, the second is of length 1, and the third is of length 3
+                    <ol>
+                        <li>Find the expected length of the first run</li>
+                        <li>Find the expected length of the second run</li>
+                    </ol>
+                    <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src="exercise_03_034/sheldon-ross-10-exercise-3.34_kill-the-6_2.jpg"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.34</h5>
+                    <p class="card-text">A set of n dice is thrown. All those that land on six are put aside, and
+                        the others are again thrown. This is repeated until all the dice have landed on six. Let N
+                        denote the number of throws needed. (For instance, suppose that \(n = 3\) and that on the
+                        initial throw exactly two of the dice land on six. Then the other die will be thrown, and if it
+                        lands on six, then \(N = 2\)). Let \(m_{n} = E[N]\). Derive a recursive formula for mn and use
+                        it to calculate \(m_{i}: i = 2, 3, 4\) and to show that \(m_{5} \approx 13.024\)
+                        <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.35</h5>
+                    <p class="card-text">Consider \(n\) multinomial trials, where each trial independently results
+                        in outcome \(i\) with probability \(p_{i}\) such that \(\overset{k}{\underset{i=1}{\Sigma}}p_{i}
+                        = 1\). With \(X_{i}\) equal to the number of trials that result in the outcome \(i\), find
+                        \(E[X_{1}|X_{2}>0]\).<a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.40</h5>
+                    <p class="card-text"> A prisoner is trapped in a cell containing three doors. The first door
+                        leads to a tunnel that returns him to his cell after two days of travel. The second leads to a
+                        tunnel that returns him to his cell after three days of travel. The third door leads immediately
+                        to freedom.
+                    <ol>
+                        <li>Assuming that the prisoner will always select doors 1, 2, and 3 with probabilities 0.5, 0.3,
+                            0.2, what is the expected number of days until he reaches freedom?
+                        </li>
+                        <li>Assuming that the prisoner is always equally likely to choose among those doors that he has
+                            not used, what is the expected number of days until he reaches freedom? (In this version,
+                            for instance, if the prisoner initially tries door 1, then when he returns to the cell, he
+                            will now select only from doors 2 and
+                        </li>
+                        <li>For parts (1) and (2) find the variance of the number of days until the prisoner reaches
+                            freedom.
+                        </li>
+                    </ol>
+                    <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.44</h5>
+                    <p class="card-text">The number of customers entering a store on a given day is Poisson
+                        distributed with mean \(\lambda = 10\). The amount of money spent by a customer is uniformly
+                        distributed over \((0, 100)\). Find the mean and variance of the amount of money that the store
+                        takes in on a given day.<a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.45</h5>
+                    <p class="card-text"> An individual traveling on the real line is trying to reach the origin.
+                        However, the larger the desired step, the greater is the variance in the result of that step.
+                        Specifically, whenever the person is at location \(x\), he next moves to a location having mean
+                        0 and variance \(\beta x^{2}\). Let \(X_{n}\) denote the position of the individual after having
+                        taken \(n\) steps. Supposing that \(X_{0} = x_{0}\) find \(E[X_{n}]\) and \(Var(X_{n})\)
+                        <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.49</h5>
+                    <p class="card-text">A and B play a series of games with A winning each game with probability
+                        \(p\). The overall winner is the first player to have won two more games than the other
+                    <ol>
+                        <li>Find the probability that A is the overall winner.</li>
+                        <li>Find the expected number of games played</li>
+                    </ol>
+                    <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.50</h5>
+                    <p class="card-text"> There are three coins in a barrel. These coins, when flipped, will come up
+                        heads with respective probabilities \(0.3, 0.5, 0.7\). A coin is randomly selected from among
+                        these three and is then flipped ten times. Let N be the number of heads obtained on the ten
+                        flips. \(P\{N = 0\}\), \(P\{N = n\}, n = 0, 1, ..., 10\). Does \(N\) have a binomial
+                        distribution? If you win \(\$1\) each time a head appears and you lose \(\$1\) each time a tail
+                        appears, is this a fair game? Explain.
+                        <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.51</h5>
+                    <p class="card-text">If \(X\) is geometric with parameter \(p\), find the probability that \(X\) is
+                        even.<a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.53</h5>
+                    <p class="card-text">Suppose \(X\) is a Poisson random variable with mean \(\lambda\). The
+                        parameter \(\lambda\) is itself a random variable whose distribution is exponential with mean 1.
+                        Show that \(P\{X =n\} = (\frac{1}{2})^{n+1}\) <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.54</h5>
+                    <p class="card-text">A coin is randomly selected from a group of ten coins, the nth coin having
+                        a probability \(\frac{n}{10}\) of coming up heads. The coin is then repeatedly flipped until a
+                        head appears. Let \(N\) denote the number of flips necessary. What is the probability
+                        distribution of \(N\)? Is \(N\) a geometric random variable? When would \(N\) be a geometric
+                        random variable; that is, what would have to be done differently?
+                        <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.55</h5>
+                    <p class="card-text">You are invited to a party. Suppose the times at which invitees are entering
+                        the party is independent uniform \((0,1)\) random variable. Suppose that, aside from yourself,
+                        the number of other people who are invited is a Poisson random variable with a mean of 10.
+                    <ol>
+                        <li>Find the expected number of people who arrive before you</li>
+                        <li>Find the probability that you are the nth person to arrive</li>
+                    </ol>
+                    <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.56</h5>
+                    <p class="card-text">Data indicate that the number of traffic accidents in Berkeley on a rainy
+                        day is a Poisson random variable with mean 9, whereas on a dry day it is a Poisson random
+                        variable with mean 3. Let \(X\) denote the number of traffic accidents tomorrow. If it will rain
+                        tomorrow with probability 0.6, find \(E[X]\), \(P\{X = 0\}\), \(X = Var(X)\)
+                        <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.57</h5>
+                    <p class="card-text">The number of storms in the upcoming rainy season is Poisson distributed
+                        but with a parameter value that is uniformly distributed over \((0, 5)\). That is, \(\Lambda\)
+                        is uniformly distributed over \((0, 5)\), and given that \(\Lambda = \lambda\), the number of
+                        storms is Poisson with mean \(\lambda\). Find the probability there are at least three storms
+                        this season.<a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.60</h5>
+                    <p class="card-text">Two players alternate flipping a coin that comes up heads with probability
+                        \(p\). The first one to obtain a head is declared the winner. We are interested in the
+                        probability that the first player to flip is the winner. Before determining this probability,
+                        which we will call \(f(p)\), answer the following questions.
+                    <ol>
+                        <li>Do you think that \(f(p)\) is a monotone function of \(p\)? If so, is it increasing or
+                            decreasing?
+                        </li>
+                        <li>What do you think is the value of \(\underset{p \rightarrow 1}{lim} \: f(p)\)</li>
+                        <li>What do you think is the value of \(\underset{p \rightarrow 0}{lim} \: f(p)\)</li>
+                        <li>Find \(f(p)\)</li>
+                    </ol>
+                    <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src="exercise_03_062/sheldon-ross-10-exercise-3.62_everyone-wins-01.jpg"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.62</h5>
+                    <p class="card-text">A, B, and C are evenly matched tennis players. Initially, A and B play a
+                        set, and the winner then plays C. This continues, with the winner always playing the waiting
+                        player, until one of the players has won two sets in a row. That player is then declared the
+                        overall winner. Find the probability that A is the overall winner.
+                        <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.63</h5>
+                    <p class="card-text">Suppose there are n types of coupons, and that the type of each new coupon
+                        obtained is independent of past selections and is equally likely to be any of the n types.
+                        Suppose one continues collecting until a complete set of at least one of each type is obtained.
+                    <ol>
+                        <li>Find the probability that there is exactly one \(type-i\) coupon in the final collection.
+                            Hint: Condition on \(T\), the number of types that are collected before the first type i
+                            appears
+                        </li>
+                        <li>Find the expected number of types that appear exactly once in the final collection</li>
+                    </ol>
+                    <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.64</h5>
+                    <p class="card-text">A and B roll a pair of dice in turn, with A rolling first. A’s objective
+                        is to obtain a sum of 6, and B’s is to obtain a sum of 7. The game ends when either player
+                        reaches his or her objective, and that player is declared the winner.
+                    <ol>
+                        <li>Find the probability that A is the winner</li>
+                        <li>Find the expected number of rolls of the dice</li>
+                        <li>Find the variance of the number of rolls of the dice</li>
+                    </ol>
+                    <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src="exercise_03_066/sheldon-ross-10-exercise-3.66_soccer.webp"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.66</h5>
+                    <p class="card-text">The opponents of soccer team A are of two types: either they are a class 1
+                        or a class 2 team. The number of goals team A scores against a class-i opponent is a Poisson
+                        random variable with mean \(\lambda_{i}\), where \(\lambda_{1} = 2\), \(\lambda_{2} = 3\). This
+                        weekend the team has two games against teams they are not very familiar with. Assuming that the
+                        first team they play is a class 1 team with probability 0.6 and the second is, independently of
+                        the class of the first team, a class 1 team with probability 0.3, determine the following
+                    <ul>
+                        <li>expected number of goals team A will score this weekend</li>
+                        <li>the probability that team A will score a total of five goals</li>
+                    </ul>
+                    <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.67</h5>
+                    <p class="card-text">A coin having probability \(p\) of coming up heads is continually flipped.
+                        Let \(P_{j}(n)\) denote the probability that a run of \(j\) successive heads occurs within the
+                        first \(n\) flips.
+                    <ol>
+                        <li>Argue that \(P_{j}(n) = P_{j}(n − 1) + P_{j} (1 − p)[1 − P_{j}(n − j − 1)]\)</li>
+                        <li>By conditioning on the first non-head to appear, derive another equation relating
+                            \(P_{j}(n)\) to the quantities \(P_{j}(n − k): k = 1, ..., j\)
+                        </li>
+                    </ol>
+                    <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.73</h5>
+                    <p class="card-text">Suppose that we continually roll a die until the sum of all throws exceeds
+                        100. What is the most likely value of this total when you stop?
+                        <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src="exercise_03_074/sheldon_ross_10_exercise_3.074_tree.png"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.74</h5>
+                    <p class="card-text">There are five components. The components act independently, with
+                        component \(i\) working with probability \(p_{i}: i = 1, 2, 3, 4, 5\). These components form a
+                        system as shown in Figure below. The system is said to work if a signal originating at the left
+                        end of the diagram can reach the right end, where it can pass through a component only if that
+                        component is working. (For instance, if components 1 and 4 both work, then the system also
+                        works.) What is the probability that the system works?
+                        <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.90</h5>
+                    <p class="card-text">The number of accidents in each period is a Poisson random variable with mean
+                        5. With \(X_{n}, n \ge 1\), equal to the number of accidents in period \(n\), find \(E[N]\) when
+                    <ol>
+                        <li>\(N = min(n: X_{n−2} = 2, X_{n−1} = 1, X_{n} = 0)\)</li>
+                        <li>\(N = min(n: X_{n−3} = 2, X_{n−2} = 1, X_{n−1} = 0, X_{n}= 2)\)</li>
+                    </ol>
+                    <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.91</h5>
+                    <p class="card-text">Find the expected number of flips of a coin, which comes up heads with
+                        probability \(p\), that is necessary to obtain the pattern \(h, t, h, h, t, h, t, h\).
+                        <a href="">Read more</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img class="card-img-top" src="exercise_03_092/sheldon-ross-10-exercise-3.92_penny_2-01.jpg"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.92</h5>
+                    <p class="card-text">The number of coins that Josh spots when walking to work is a Poisson random
+                        variable with mean 6. Each coin is equally likely to be a penny, a nickel, a dime, or a quarter.
+                        Josh ignores the pennies but picks up the other coins.</p>
+                    <ol>
+                        <li>Find the expected amount of money that Josh picks up on his way to work</li>
+                        <li>Find the variance of the amount of money that Josh picks up on his way to work</li>
+                        <li>Find the probability that Josh picks up exactly 25 cents on his way to work</li>
+                    </ol>
+                    <a href="__PAGE__LINK__">Read More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-5 card box-shadow" style="margin: 5px;">
+                <img id="replace_image" class="card-img-top" src=""
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise 3.96</h5>
+                    <p class="card-text">Consider a large population of families, and suppose that the number of
+                        children in the different families is independent Poisson random variables with mean
+                        \(\lambda\). Show that the number of siblings of a randomly chosen child is also Poisson
+                        distributed with mean \(\lambda\) <a href="__PAGE__LINK__">Read More</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    // function getElementsByIdStartsWith(container, selectorTag, prefix) {
+    //     let items = [];
+    //     let myPosts = document.getElementById(container).getElementsByTagName(selectorTag);
+    //     for (let i = 0; i < myPosts.length; i++) {
+    //         omitting undefined null check for brevity
+    // if (myPosts[i].id.lastIndexOf(prefix, 0) === 0) {
+    //     items.push(myPosts[i]);
+    // }
+    // }
+    // return items;
+    // }
+    //
+    // let postedOnes = getElementsByIdStartsWith("posts", "div", "post-");
+
+    let image_list = [
+        "1.jpg",
+        "2.jpg",
+        "3.jpg",
+        "4.jpg",
+        "5.jpg",
+        "6.jpg",
+        "7.jpg",
+        "8.jpg",
+        "9.jpg",
+        "10.jpg",
+        "11.jpg",
+        "east_windsor_road_2020_08_15_cinematic.jpg",
+    ]
+
+    document.getElementById("replace_image").className = "card-img-top";
+    document.getElementById("replace_image").src = "../../images/8.jpg";
+
+    card_ids = console.log(document.querySelectorAll('[id^="replace"]'));
+    console.log(card_ids);
+
+
+</script>
+
+</body>
+</html>

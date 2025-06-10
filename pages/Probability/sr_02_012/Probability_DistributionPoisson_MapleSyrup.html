@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Probability | Poisson Distribution | Maple Syrup 🍁</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../external_libraries/bootstrap/bootstrap.min.css">
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <link rel="stylesheet" href="../../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../../index.css">
+    <script src="../../../js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+<body class="container-lg">
+<div class="jumbotron text-center">
+    <h1>Probability | Poisson Distribution | Maple Syrup 🍁</h1>
+</div>
+
+<a href="Probability_DistributionPoisson_MaplySyrup.png" target="_blank"><img
+        src="Probability_DistributionPoisson_MaplySyrup.png" class="container-lg"></a>
+
+<hr>
+<ul>
+    <li>This experiment consists of estimating of amount sap given by a large maple tree given off in a in one second
+        intervals
+    </li>
+    <li>If we know from past-experience that, on the average, 3.2 ml of sap is given off per second, what
+        is a good approximation to the probability that no more than two ml will be collected?
+    </li>
+    <li>For convenience, we will be treating</li>
+</ul>
+
+<h5>Section 01: Numerical Solution</h5>
+<p>The question is asking for the probability that the no more than two α-particles will appear. This is written as
+    \[P\{X \le 2\} = \Sigma e^{-\lambda} \frac{\lambda^{x}}{x!}: 0 \le x \le 2\] and the summation gives the value
+    \(\approx\) 0.382</p>
+<h5>Section 02: Simulation and Visualization</h5>
+<p>Longer waiting times will stabilize mean and this apparent from the figure below. The distributions of the
+    probabilities get tighter around the calculated value of 0.382 as the waiting times increase.</p>
+<pre><code class="language-Mathematica">
+    counter[count_] := Module[{data = RandomVariate[PoissonDistribution[3.2], count]}, Length[Select[data, # <= 2 &]]/count]
+
+    DistributionChart[
+        Table[counter[#], 1000] & /@ {5, 10, 20, 50, 100, 200, 500, 1000},
+            ChartElementFunction -> "HistogramDensity",
+            ChartLabels -> {5, 10, 20, 50, 100, 200, 500, 1000},
+            PlotLabel -> "P{x\[LessEqual]2} with the number of seconds of waiting time"
+    ]
+    </code></pre>
+
+<a href="sheldon_ross_example_2.12_distribution.svg" target='_blank'><img class="centered_image"
+                                                                          src="sheldon_ross_example_2.12_distribution.svg"
+                                                                          style="padding-bottom: 10px" alt=''/></a>
+
+<p>Let us say that you are a scientist observing the accumulation of these alpha particles and you allow them to
+    accumulate over time. You do several set of experiments to see how the mean values are approached at the limiting
+    case by running the experiment for a very long time. There are multiple ways to look at it but we will do it in the
+    following way.</p>
+
+<p><strong>Reading the plot:</strong> All the mean values start at 12 o’Clock position and observe that the variation is
+    very high at this point since the system has not stabilized yet. As the time progresses, the system stabilizes and
+    the mean values approach the theoretical value of 3.2. Note that the thick red band is the theoretical limit.
+    Several of these systems are randomly varying about the radius of 3.2.</p>
+
+<p><em> This plot has been constructed from scratch and you can do it too! Check the code below.</em></p>
+
+<a href="sheldon_ross_example_2.12_radial_custom.svg" target='_blank'><img class="centered_image"
+                                                                           src="sheldon_ross_example_2.12_radial_custom.svg"
+                                                                           style="padding-bottom: 10px" alt=''/></a>
+
+<pre><code class="language-Mathematica">
+
+    ClearAll[cumulativeRange, radialLine];
+
+    cumulativeRange[list_List] := Accumulate[list]/Range[Length@list];
+    radialLine[data_] := {Opacity[0.05], Thickness[0], Line[Table[{data[[r]] Sin[2 r \[Degree]], data[[r]] Cos[2 r \[Degree]]}, {r, 1, Length@data}]]};
+
+    Export[NotebookDirectory[] <> "poisson_01.png",
+        Module[{data = Table[cumulativeRange[RandomVariate[PoissonDistribution[3.2], 180]], 500]},
+        Graphics[Join @@ {
+                    {Red, Thickness[0.005], Circle[{0, 0}, 3.2]},
+                    {Opacity[0.01], Black, Thickness[0], radialLine[#] & /@ data}},
+            Frame -> True]],
+        ImageSize -> 754
+    ]
+</code></pre>
+
+
+</body>
+</html>

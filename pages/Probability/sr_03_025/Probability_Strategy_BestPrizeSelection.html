@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Probability | Strategy | Best Prize Selection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../external_libraries/bootstrap/bootstrap.min.css">
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <link rel="stylesheet" href="../../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../../index.css">
+    <script src="../../../js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+<body class="container-lg">
+<div class="jumbotron text-center">
+    <h1>Probability | Strategy | Best Prize Selection</h1>
+</div>
+
+<a href="Probability_Strategy_BestPrizeSelection.jpg" target="_blank"><img
+        src="Probability_Strategy_BestPrizeSelection.jpg"
+        class="container-lg"></a>
+<hr>
+
+<h5>Question</h5>
+<p>Suppose that we are to be presented with n distinct prizes in sequence. After being presented with a prize
+    we must immediately decide whether to accept it or reject it and consider the next prize. The only information we
+    are given when deciding whether to accept a prize is the relative rank of that prize compared to ones already seen.
+    That is, for instance, when the fifth prize is presented we learn how it compares with the first four prizes already
+    seen. Suppose that once a prize is rejected it is lost, and that our objective is to maximize the probability of
+    obtaining the best prize. Assuming that all n! orderings of the prizes are equally likely, how well can we do?
+
+</p>
+
+<p><strong>Reference: </strong>Sheldon Ross Probability Modelling Edition 10</p>
+<hr>
+
+<h5>Solution</h5>
+<p>Below is a more detailed explanation than the text's clear yet concise approach.
+
+<ul>
+    <li>In order to get a systematic way of rejection, let us say that when the gifts are shown to us in sequence, we
+        would be rejecting the first k and then accept the first prize that is larger than all the first k
+        This means that we need to calculate the probability that we get the first prize when the first k are rejected
+    </li>
+    <li>Systematically we can write \[P_k(best) = \underset{i}{\Sigma} P_k(best \mid k=i) P(k=i)\]</li>
+    <li>The first of the multiplier is \(\underset{i}{\Sigma} P_k(best \mid k=i)\) is dependent on \(i\) has two
+        distinct
+        sets.
+    </li>
+    <ul>
+        <li>\([i \le k]\) When we accept a prize before getting to the best one, the probability of getting the best
+            prize is zero \[P_k(best \mid k=i) = 0 \mid i \le k\]
+        </li>
+        <li>\([i > k]\) This is the probability that the first \(i-1\) contain \(k\) good positions and this would be
+            \[P_k(best \mid k=i) = \frac{k}{i-1} \mid i > k\]
+        </li>
+    </ul>
+    <li>\(P(k=i)\) would be independent of \(i\) and equal to \[\frac{1}{n}\]</li>
+    <li>Bringing all of the above together
+
+        \[P_k(best) = \overset{k}{\underset{i=2}{\Sigma}} P_k(best \mid k=i)
+        P(k=i) +
+        \overset{n}{\underset{i=k+1}{\Sigma}} P_k(best \mid k=i) P(k=i)\]
+
+        \[P_k(best) = \underset{i}{\Sigma} P_k(best \mid k=i) = 0 * P(k=i) +
+        \overset{n}{\underset{i=k+1}{\Sigma}} \frac{k}{i-1} \frac{1}{n}\]
+
+
+        \[P_k(best) = \frac{k}{n} \overset{n}{\underset{i=k+1}{\Sigma}}
+        \frac{1}{i-1} \]
+
+        \[P_k(best) \approx \frac{k}{n} \int_k^{n-1} \frac{1}{x}\]
+
+        \[P_k(best) \approx \frac{k}{n} log(\frac{n-1}{k}) \]
+
+        \[P_k(best) \approx \frac{k}{n} log(\frac{n}{k}) \]
+
+    </li>
+    <li>To optimize this, we need to differentiate the above. Changing the form of above, we get
+
+        \[g(x) = \frac{x}{n} log(\frac{n}{x})\]
+        \[g'(x) \implies \frac{1}{n} log(\frac{n}{x}) - \frac{1}{n} = 0\]
+
+        \[g'(x) \implies log(\frac{n}{x}) = 1\]
+
+        \[g'(x) \implies e^{log(\frac{n}{x})} = e^1\]
+
+        \[g'(x) \implies \frac{n}{x} = e\]
+
+        \[g'(x) \implies x = \frac{n}{e}\]
+
+    </li>
+    <li>As per this result, the best strategy is to let go of the first \(\frac{n}{e}\) prizes and select the next prize
+        that is best of all the prizes seen before.
+    </li>
+</ul>
+
+
+</body>
+<hr>
+
+<h5>Simulations</h5>
+<p>Approach to the simulations for this problem</p>
+
+
+<p>In the example below, we have \(n = 20\) and we can reject \(k\) values from \(0\) to \(19\), however, do note that
+    after rejecting \(19\) out of the \(20\) possible options, we do will just have to <em>accept</em> what is left, it is not
+    more of a choice than being left with only one choice. </p>
+
+<a href="Prbability_Strategy_TheSecretaryProblem.png" target="_blank"><img
+        src="Prbability_Strategy_TheSecretaryProblem.png"
+        class="container-lg"></a>
+
+<pre><code class="language-python">
+import random
+import pandas as pd
+
+df_compiled = {}
+
+
+n = 20
+for iterations in range(1000, 10000, 1000):
+    print(f"Strategy|N: {n}|Iterations: {iterations}")
+
+    df_compiled[iterations] = {}
+
+    for reject in range(n):
+
+
+        rejected = [True] * reject + [False] * (n - reject)
+
+        wins = []
+
+        for _ in range(iterations):
+            my_list = list(range(n))
+            random.shuffle(my_list)
+            df_compiled[iterations][str(reject)] = None
+
+            df = pd.DataFrame({'index': range(n), 'prize': my_list, 'reject': rejected})
+
+            df['cummax'] = df['prize'].cummax()
+            df['new'] = (df['prize'] >= df['cummax']) & ~df['reject']
+
+            selection = df[df['new']].head(1)
+            if selection.shape[0] == 1:
+                wins.append(selection['cummax'].iloc[0])
+            else:
+                wins.append(None)
+
+        df_compiled[iterations][str(reject)] = wins.count(n - 1)
+
+df_compiled = pd.DataFrame(df_compiled)
+
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Convert win counts to success rates
+success_rates = df_compiled.copy()
+for iterations in df_compiled.columns:
+    success_rates[iterations] = df_compiled[iterations] / iterations
+
+# Plot settings
+plt.figure(figsize=(10, 6))
+sns.set_style("whitegrid")
+plt.title(f"Secretary Problem Success Rates (n={n})", fontsize=14)
+plt.xlabel("Number of Initial Rejects (k)", fontsize=12)
+plt.ylabel("Success Rate", fontsize=12)
+plt.xticks(range(1, 9))
+
+# Plot each iteration curve
+colors = ['red', 'yellow', 'green', 'blue', 'pink', 'black', 'brown']
+colors = [
+    '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd',
+    '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf',
+    '#aec7e8', '#ffbb78', '#98df8a', '#ff9896', '#c5b0d5',
+    '#f7b6d2', '#d64f92', '#12aab5', '#00cc96', '#b892ff',
+    '#ff9a8a', '#ffd700', '#7fffd4', '#a83c3f'
+]
+for i, iterations in enumerate(df_compiled.columns):
+    plt.plot(
+        success_rates.index.astype(int),
+        df_compiled[iterations],
+        marker='.',
+        label=f'{iterations} iterations',
+        color=colors[i]
+    )
+
+# Theoretical optimum line (n/e ≈ 3.678)
+plt.axvline(x=n/2.718, color='k', linestyle='--', alpha=0.7, label=f'Optimal k (n/e ≈ {n/2.718})')
+plt.legend()
+plt.show()
+
+</code>
+
+
+</pre>
+
+
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Probability | Binomial Distribution | Best Tire Forward</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../external_libraries/bootstrap/bootstrap.min.css">
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <link rel="stylesheet" href="../../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../../index.css">
+    <script src="../../../js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+<body class="container-lg">
+<div class="jumbotron text-center">
+    <h1>Probability | Binomial Distribution | Best Tire Forward</h1>
+</div>
+
+<div>
+    <a href="sheldon_ross_10_example_02_008_image_001.png" target="_blank"><img
+            src="sheldon_ross_10_example_02_008_image_001.png"
+            class="container-lg centered_header_image"></a>
+
+    <p></p>
+    <p><strong>Question:</strong> Consider the following scenario</p>
+    <ul>
+        <li>There is a car with x number of tires</li>
+        <li>Probability that a given tire fails in a journey is \(p\)</li>
+        <li>And the probability it does not fail is \(1-p\)</li>
+        <li>The car will (reasonably) operational with at least 50% of functional tires</li>
+        <li><strong>What is the probability that overall car with be functional?</strong></li>
+    </ul>
+
+    <hr>
+
+    <h4 style="text-align: center">Part 1: Visualization</h4>
+    <p>Consider the check and cross marks to be the tires. A check indicates a functional tires and a cross indicates
+        a failed tire. </p>
+    <h5>Success configurations for a 2-Tire Vehicle</h5>
+    <pre><code class="language-Mathematica">
+    Module[{marks = {Style["\[Checkmark]", Darker@Green], Style["✗", Red]}, replacer, configs, tires = 2},
+     replacer[list_List] := Table[If[list[[n]] == 1, marks[[1]], marks[[2]]], {n, 1, Length@list}];
+     configs = (replacer /@ Union@SortBy[Select[Tuples[{0, 1}, tires], Plus @@ # >= 0.5 tires &], Plus @@ # &]);
+     TableForm[Table[Apply[StringJoin,ToString[#, StandardForm] & /@ configs[[n]]], {n, 1, Length@configs}]]]
+    </code></pre>
+
+    <a href="2_engine_config.svg" target='_blank'><img class="centered_image_auto_width"
+                                                       src="2_engine_config.svg"
+                                                       style="padding-bottom: 10px"
+                                                       alt=''/></a>
+
+    <h5>Success configurations for a 4-Tire Vehicle</h5>
+    <pre><code class="language-Mathematica">
+    Module[{marks = {Style["\[Checkmark]", Darker@Green], Style["✗", Red]}, replacer, configs, tires = 4},
+     replacer[list_List] := Table[If[list[[n]] == 1, marks[[1]], marks[[2]]], {n, 1, Length@list}];
+     configs = (replacer /@ Union@SortBy[Select[Tuples[{0, 1}, tires], Plus @@ # >= 0.5 tires &], Plus @@ # &]);
+     TableForm[Table[Apply[StringJoin,ToString[#, StandardForm] & /@ configs[[n]]], {n, 1, Length@configs}]]]
+    </code></pre>
+    <a href="4_engine_config.svg" target='_blank'><img class="centered_image_auto_width"
+                                                       src="4_engine_config.svg"
+                                                       style="padding-bottom: 10px"
+                                                       alt=''/></a>
+
+    <h5>Success configurations for a 6-Tire Vehicle</h5>
+    <pre><code class="language-Mathematica">
+    Module[{marks = {Style["\[Checkmark]", Darker@Green], Style["✗", Red]}, replacer, configs, tires = 6},
+     replacer[list_List] := Table[If[list[[n]] == 1, marks[[1]], marks[[2]]], {n, 1, Length@list}];
+     configs = (replacer /@ Union@SortBy[Select[Tuples[{0, 1}, tires], Plus @@ # >= 0.5 tires &], Plus @@ # &]);
+     TableForm[Partition[Table[Apply[StringJoin, ToString[#, StandardForm] & /@ configs[[n]]], {n, 1, Length@configs}], 7]]]
+    </code></pre>
+    <a href="6_engine_config.svg" target='_blank'><img class="centered_image_auto_width"
+                                                       src="6_engine_config.svg"
+                                                       style="padding-bottom: 10px"
+                                                       alt=''/></a>
+
+
+    <h5>Success configurations for a 8-Tire Vehicle</h5>
+    <pre><code class="language-Mathematica">
+    Module[{marks = {Style["\[Checkmark]", Darker@Green], Style["✗", Red]}, replacer, configs, tires = 8},
+    replacer[list_List] := Table[If[list[[n]] == 1, marks[[1]], marks[[2]]], {n, 1, Length@list}];
+    configs = (replacer /@ Union@SortBy[Select[Tuples[{0, 1}, tires], Plus @@ # >= 0.5 tires &], Plus @@ # &]);
+    TableForm@Partition[Join @@ {Table[Apply[StringJoin,ToString[#, StandardForm] & /@ configs[[n]]], {n, 1, Length@configs}],
+    Table[Style[StringJoin @@ Table["\[Checkmark]", tires], White], 5]}, 8]]
+    </code></pre>
+    <a href="8_engine_config.svg" target='_blank'><img class="centered_image_auto_width"
+                                                       src="8_engine_config.svg"
+                                                       style="padding-bottom: 10px"
+                                                       alt=''/></a>
+
+    <hr>
+    <h4 style="text-align: center">Part 2: Mathematical Modeling</h4>
+    <p>Mathematical modelling is straightforward since the objective is clear. For a vehicle with 2n tires, we need
+        at-least n tires working. Total probability for a successful flight is
+        \[\underset{n}{\Sigma} C_{k} p^{k}(1-p)^{2n-k} : k \ge n\]</p>
+    <p>The question asks the probability for which the 2-Tire vehicle is preferable to the 4-Tire vehicle. For this we
+        need \(2n\) be equal to 2 and 4.
+        The expansion results in the following. \[2p(1 − p) + p^{2} = 6p^{2} + (1 − p)^{2} + 4p^{3}(1 − p) + p^{4}\]</p>
+    <p>Solving for \(p\), we get the following solutions. \(p = 0; p = 0.66667; p = 1\). The code for solving that is
+        pasted below.</p>
+    <pre><code class="language-Mathematica">
+    Module[{n = 4},
+        Solve[
+            Sum[Binomial[2, i] Power[p, i] Power[1 - p, 2 - i], {i, 1, 2}] ==
+            Sum[Binomial[n, i] Power[p, i] Power[1 - p, n - i], {i, 0.5 n, n}],p]
+        ]
+    </code></pre>
+
+    <p>Graphically, and comparing the 2-Tire vehicle to the 4-Tire vehicle, we see a nice pattern taking shape.</p>
+
+
+    <pre><code class="language-Mathematica">
+    Module[{maxE = 4},
+        Plot[Evaluate@
+        Table[Sum[
+            Binomial[r, i] Power[p, i] Power[(1 - p), r - i], {i, 0.5 r, r}], {r, 2, maxE, 2}], {p, 0, 1},
+                ImageSize -> 575,
+                AxesLabel -> {"p", "p for 50% or more tires"},
+                PlotLegends -> Table["No. of Tires = " <> ToString[n], {n, 2, maxE, 2}],
+                Frame -> True]
+        ]
+    </code></pre>
+
+
+    <a href="2_4_tire_equality.svg" target='_blank'><img class="container-md"
+                                                         src="2_4_tire_equality.svg"
+                                                         style="padding-bottom: 10px"
+                                                         alt=''/></a>
+
+
+    <pre><code class="language-Mathematica">
+    Module[{maxE = 16},
+        Plot[Evaluate@
+        Table[Sum[
+            Binomial[r, i] Power[p, i] Power[(1 - p), r - i], {i, 0.5 r, r}], {r, 2, maxE, 2}], {p, 0, 1},
+                ImageSize -> 575,
+                AxesLabel -> {"p", "p for 50% or more tires"},
+                PlotLegends -> Table["No. of Tires = " <> ToString[n], {n, 2, maxE, 2}],
+                Frame -> True]
+        ]
+    </code></pre>
+    <a href="2_16_tire_equality.svg" target='_blank'><img class="container-md"
+                                                          src="2_16_tire_equality.svg"
+                                                          style="padding-bottom: 10px"
+                                                          alt=''/></a>
+
+</div>
+
+</body>
+</html>

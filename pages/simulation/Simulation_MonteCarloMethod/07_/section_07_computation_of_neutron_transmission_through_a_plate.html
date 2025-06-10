@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../../../index.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="../../../../js/highlight/styles/default.css">
+    <script src="../../../../js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <title>Section 07 - Computation of Neutron Transmission Through a Plate</title>
+</head>
+<body>
+
+<a href="computation-of-neutron-transmission-through-a-platewith-road-01.jpg">
+    <img class="centered_header_image"
+         src="computation-of-neutron-transmission-through-a-platewith-road-01.jpg" alt=""/></a>
+<h2>I.M. Sobol Section 07 - Computation of Neutron Transmission Through a Plate</h2>
+<p>The probabilistic laws of interaction of an individual elementary particle (neutron, photon, meson, etc.) with matter
+    are known. Usually it is needed to find the macroscopic characteristics of processes in which the number
+    of participating particles is enormous, such as densities, fluxes and so on.</p>
+
+<p>This situation is quite similar to that encountered in <a
+        href="../05_/section_05_simulation_of_a_mass_servicing_system.html">Section 05</a> and <a
+        href="../06_QualityAndReliabilityOfComplexDevices/section_06_reliability_simulation.html">Section 06</a>, and offers a very convenient object for the Monte
+    Carlo calculations. The neutron physics is probably the field where the Monte Carlo method is used more frequently
+    than anywhere else. We shall consider the simplest version of the problem of neutron transmission through a plate.
+</p>
+
+<p><em>Statement of the Problem:</em> Let the flux of neutrons with energy \(E_{0}\) be incident on a homogeneous
+    infinite plate \(0 < x \le h\). The angle of incidence is \(90^{\circ}\). Upon collision with atoms of the plate
+    material neutrons may be either elastically scattered or captured. Let us assume for simplicity that energy of
+    neutrons is not changed in scattering and that any direction of "recoil" of a neutron from an atom is equally
+    probable (this is sometimes the case in neutron collisions with heavy atoms).</p>
+
+<p>This would mean that the neutron could be absorbed or reflected or it simply passes through the plate, depending on
+    the thickness of it. Given that the neutron that enters could perpetually stay inside the place, we define here that
+    if the neutron happens to stay inside the plate for the 10 successive collisions, it is absorbed. If it is on the
+    left side of the place (the direction that it originally entered through) before it's tenth collision, and if it is
+    on the right side the plate before it completes 10 collisions, then it is regarded as passed.</p>
+
+<hr/>
+
+<strong>Simulation</strong>
+
+The simulation of this problem was done in two phases. All the code has been presented at the end.
+<ul>
+    <li><em>Phase-01</em> involved the simulation of the neutron paths using Python</li>
+    <li><em>Phase-02</em> involved the plotting of the <em>phase-01</em> data using Wolfram Mathematica</li>
+</ul>
+<em>Reading the images:</em>
+<ul>
+    <li>There are three <em>sets</em> of images shown below
+        <ul>
+            <li>the first one with the lines in blue shows the neutrons that have passed the plate</li>
+            <li>the second one with the lines in red shows the neutrons that got reflected</li>
+            <li>the third one with the lines in green shows the neutrons that got absorbed in the plate</li>
+        </ul>
+    </li>
+    <li>Each image that you see has two parts to it which essentially represent the same data
+        <ul>
+            <li>the first part on the top is simply a straight line that passes through all the point that the neutron
+                has visited
+            </li>
+            <li>the second part of the bottom is the B-Spline Curve that uses the same set of points as the plot that is
+                above it. This is just a smoothed out representation of the path of the neutrons and does not represent
+                the actual paths
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<h3>Visualization</h3>
+
+<a href="Section_07_Reflected.svg" target='_blank'><img class="centered_image" src="Section_07_Reflected.svg"
+                                                        alt=''/></a> <br><br>
+<a href="Section_07_Passed.svg" target="_blank"><img class="centered_image" src="Section_07_Passed.svg" alt=""/></a>
+<br><br>
+<a href="Section_07_Absorbed.svg" target="_blank"><img class="centered_image" src="Section_07_Absorbed.svg" alt=""/></a>
+<br><br>
+
+<h3>Statistics</h3>
+
+<ul>
+    <li style="text-align:left;">Each of the following charts below shows the same data in three different formats.</li>
+    <li>We see the statistics for the Neutrons that have
+        <ul>
+            <li>passed the barrier</li>
+            <li>reflected from the barrier</li>
+            <li>absorbed from the barrier</li>
+        </ul>
+    </li>
+    <li>There are 1000 data points in each of the chart and the number of neutrons per data point is shown on the top of
+        the chart
+        <ul>
+            <li>example <i>10000</i> <em>Neutrons</em> means that each point has 10000 neutrons</li>
+        </ul>
+    </li>
+</ul>
+
+<!--Todo: Get a local version of the JS. Ask Vardhan for assistance-->
+
+<div id="adobe-dc-view-01" style="width: 60%; align-content: center"></div>
+<script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+<script type="text/javascript">
+    document.addEventListener("adobe_dc_view_sdk.ready", function () {
+        var adobeDCView = new AdobeDC.View({
+            clientId: "a74f0c6c71684e75813cfcfc53526769",
+            divId: "adobe-dc-view-01"
+        });
+        adobeDCView.previewFile({
+            content: {location: {url: "section_07_Density.pdf"}},
+            metaData: {fileName: "section_07_Density.pdf"}
+        }, {
+            embedMode: "IN_LINE",
+            showDownloadPDF: false,
+            showPrintPDF: false
+        });
+    });
+</script>
+
+<div id="adobe-dc-view-02" style="width: 60%; align-content: center"></div>
+<script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+<script type="text/javascript">
+    document.addEventListener("adobe_dc_view_sdk.ready", function () {
+        var adobeDCView = new AdobeDC.View({
+            clientId: "a74f0c6c71684e75813cfcfc53526769",
+            divId: "adobe-dc-view-02"
+        });
+        adobeDCView.previewFile({
+            content: {location: {url: "section_07_PointDensity.pdf"}},
+            metaData: {fileName: "section_07_PointDensity.pdf"}
+        }, {
+            embedMode: "IN_LINE",
+            showDownloadPDF: false,
+            showPrintPDF: false
+        });
+    });
+</script>
+
+
+<div id="adobe-dc-view-03" style="width: 60%; align-content: center"></div>
+<script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+<script type="text/javascript">
+    document.addEventListener("adobe_dc_view_sdk.ready", function () {
+        var adobeDCView = new AdobeDC.View({
+            clientId: "a74f0c6c71684e75813cfcfc53526769",
+            divId: "adobe-dc-view-03"
+        });
+        adobeDCView.previewFile({
+            content: {location: {url: "section_07_SmoothDensity.pdf"}},
+            metaData: {fileName: "section_07_SmoothDensity.pdf"}
+        }, {
+            embedMode: "IN_LINE",
+            showDownloadPDF: false,
+            showPrintPDF: false
+        });
+    });
+</script>
+
+
+<h2>Code</h2>
+<h3>Python Code: </h3>
+<p>This code needs to be run before running the simulation</p>
+<pre><code class="language-python">
+from mathematica.random_functions import *
+from mathematica.monitoring import *
+import csv
+
+for t in range(0, 1000):
+    _filePath = "path_to_your_folder"
+    _exportFileName = _filePath + "\\i_m_sobol_the_monte_carlo_method_section_7_temp_" + str(t) + ".csv"
+
+    TimeTagMessage('Opening file ' + _exportFileName)
+    __file = open(_exportFileName, 'w')
+    TimeTagMessage('Opening writer object')
+    __writer = writer = csv.writer(__file, delimiter=',')
+    TimeTagMessage('Writing rows to the file')
+
+    for i in range(0, 1000):
+        _seed = RandomReal(0, 1)
+        _seedList = [_seed]
+        while 0 &lt;= _seed &lt;= 2 and _seedList.__len__() &lt;= 10:
+            _seed += RandomReal(-1, 1)
+            _seedList.append(_seed)
+        writer.writerow(_seedList)
+        if (i + 1) % 1000 == 0:
+            TimeTagMessage("\t\tWriting row # " + str(i + 1) + " to the file")
+
+    TimeTagMessage('Closing the file ' + _exportFileName)
+    __file.close()
+</code></pre>
+
+
+<h3>Mathematica Code:</h3>
+<p>The code below plots the exported data from the python script above</p>
+<pre><code class="language-Mathematica">
+
+ClearAll[yRandomizer];
+yRandomizer[list_List] :=
+    Module[{yRand = RandomReal[{-.02, .02}]}, {{-1, yRand}} ~ Join ~
+        MapThread[{#1, #2} &amp;, {list, {yRand} ~ Join ~ RandomReal[{-1, 1}, Length@list - 1]}]]
+
+Module[{data =
+    DeleteCases[Import[StringReplace[NotebookFileName[], ".nb" -&gt; ".csv"]], {}],
+    collisions, last, reflected, absorbed, passed, plotDataReflected, plotDataPassed, plotDataAbsorbed},
+    collisions = {Length[#], Last[#]} &amp; /@ data;
+    last = Last /@ data;
+    reflected = Select[data, (Last[#] &lt; 0) &amp;];
+    absorbed = Select[data, (0 &lt;= Last@# &lt;= 2) &amp;];
+    passed = Select[data, (Last@# &gt; 2) &amp;];
+    plotDataReflected = yRandomizer /@ reflected;
+    plotDataPassed = yRandomizer /@ passed;
+    plotDataAbsorbed = yRandomizer /@ absorbed;
+
+    Echo[Length /@ {passed, reflected, absorbed}];
+
+    Framed@Column[
+        Graphics[{
+          {Red, Opacity[0.1], Arrowheads@0.02, Thickness@0, #[plotDataReflected]},
+          {Gray, Opacity[0.04], Arrowheads@0.02,Thickness@0, #[plotDataPassed]},
+          {Gray, Opacity[0.04], Arrowheads@0.02, Thickness@0, #[plotDataAbsorbed]},
+          {InfiniteLine[{{0, -1}, {0, 1}}]},
+          {InfiniteLine[{{2, -1}, {2, 1}}]}
+        }
+        , PlotRange -&gt; All, ImageSize -&gt; 788
+        , PlotLabel -&gt; "Reflected Neutrons: " &lt;&gt; ToString@# &lt;&gt; " representation"] &amp; /@ {Arrow, BSplineCurve}]
+    ]
+
+    (*Need to run python code before running this one*)
+    Module[{multiSimData,
+      printTemporary = PrintTemporary["Beginning analysis"]},
+      multiSimData =
+          Module[{data = DeleteCases[Import[#], {}], reflected, absorbed,
+            passed},
+            reflected = Select[data, (Last[#] &lt; 0) &amp;];
+            absorbed = Select[data, (0 &lt;= Last@# &lt;= 2) &amp;];
+            passed = Select[data, (Last@# &gt; 2) &amp;];
+            NotebookDelete[printTemporary];
+            printTemporary =
+                PrintTemporary[Style["Analyzing the file " &lt;&gt; #, Darker@Green]];
+            Length /@ {passed, reflected, absorbed}
+          ] &amp; /@
+              SortBy[FileNames["*temp*", NotebookDirectory[]],
+                ToExpression@Last[StringSplit[StringDelete[#, ".csv"], "_"]] &amp;];
+      Export[StringReplace[NotebookFileName[], ".nb" -&gt; "_1000.xlsx"],
+        multiSimData]
+    ]
+
+    Column@Module[{data =
+        Import[StringReplace[NotebookFileName[], ".nb" -&gt; "_1000.xlsx"]][[1]]}, data =
+        Association@MapThread[#1 -&gt; #2 &amp;, {{"Passed", "Reflected", "Absorbed"}, Transpose[data]}];
+        DistributionChart[data
+            , ImageSize -&gt; 500
+            , ChartLabels -&gt; Placed[{"Mean = " &lt;&gt; ToString@# &amp; /@ (Mean /@ Values@data), Keys@data}, {Above, Below}]
+            , ChartElementFunction -&gt; #
+            ,   PlotLabel -&gt; "1000 Neutron Statistics for Barrier Width = 2 units &amp; Absorption number = 10"] &amp; /@
+            {"PointDensity", "SmoothDensity", "Density"}
+    ]
+</code></pre>
+
+
+</body>
+</html>

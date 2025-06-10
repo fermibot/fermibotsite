@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulation of a Mass Servicing System</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="../../../../js/highlight/styles/default.css">
+    <script src="../../../../js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+
+
+<a href="simulation-of-a-mass-servicing-system-02-corrected.jpg" style="align-content: center"
+   target="_blank" rel="noopener noreferrer"><img src="simulation-of-a-mass-servicing-system-02-corrected.jpg"
+                                                  alt="" style="width: 100%; align-content: center"/></a>
+
+<p><strong>Question:</strong> Consider one of the simplest systems of mass servicing. This system consists of \(n\)
+    lines (or channels, or servicing stations) each of which can "serve on the customers". The system receives requests
+    arriving at random moments of time. Each request arrives at the \(N_{1}\) line. If the arrival time of the k-th
+    request ( let us call it \(T_{k}\) ) finds this line free, the line starts servicing the request; this takes
+    \(t_{b}\) minutes (\(t_{b}\) is the holding time of the line). If \(N_{1}\) line is busy at the moment \(T_{k}\)
+    the request is immediately transferred to the \(N_{2}\) line and ... so on. Finally, if all n lines are busy at the
+    moment \(T_{k}\) , the system rejects the request. The problem is, what will be the (average) number of requests
+    serviced by the system during the period \(T\) and how many rejections will be given?</p>
+
+<hr/>
+
+<b>Simulation</b>
+
+The images would be a beautiful insight into the mass servicing. Note the following before moving on
+<ul>
+    <li>Firstly, it is a very long list of images (several pages long)</li>
+    <li>Each image has a label on the top of it showing
+        <ul>
+            <li>\(\lambda_{a}\) the rate of arrival rate of the customers and the times of the arrival are exponentially
+                distributed
+            </li>
+            <li>\(\lambda_{s}\) the rate of service for the customers and the service times are exponentially
+                distributed as well
+            </li>
+        </ul>
+    </li>
+    <li>The chart for each of the server has as blue line, which is binary in nature
+        <ul>
+            <li>the server is busy when the blue line is above the \(x\) axis and</li>
+            <li>the server is free when the blue line is on the \(x\) axis</li>
+        </ul>
+    </li>
+    <li>As you scroll down the images, you will see that the pattern of the images is changing as in, which server is
+        busy over the lifetime of the experiment
+    </li>
+    <li>Notice how the "busyness" of the servers that are in sequence is highly dependent on the rate of the service
+        <ul>
+            <li>when the rate of the service is comparable or lesser than the rate of the arrival, the servers at the
+                end also get some tasks as the first ones are taking a long time to finish what they have started and
+                the servers next in line are free to server the incoming customers
+            </li>
+            <li>when the rate of the service is very high compared the to the rate of arrival, the servers at the
+                beginning of the queue are busy for most of the lifetime and the ones at the end do not even get to see
+                any customers
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<hr/>
+
+<h2>Simulation Images</h2>
+
+
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_0.1.svg"
+                                     style="width: 60%" alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_0.2.svg"
+                                     style="width: 60%" alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_0.3.svg"
+                                     style="width: 60%" alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_0.4.svg"
+                                     style="width: 60%" alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_0.5.svg"
+                                     style="width: 60%" alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_0.6.svg"
+                                     style="width: 60%" alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_0.7.svg"
+                                     style="width: 60%" alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_0.8.svg"
+                                     style="width: 60%" alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_0.9.svg"
+                                     style="width: 60%" alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_1..svg" style="width: 60%"
+                                     alt="">
+</div>
+<br><br>
+
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_1.1.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_1.2.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_1.3.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_1.4.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_1.5.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_1.6.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_1.7.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_1.8.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_1.9.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_2..svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_2.1.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_2.2.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_2.3.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_2.4.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_2.5.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_2.6.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_2.7.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_2.8.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_2.9.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_3..svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_3.1.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_3.2.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_3.3.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_3.4.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_3.5.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_3.6.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_3.7.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_3.8.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_3.9.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_4..svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_4.1.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_4.2.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_4.3.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_4.4.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_4.5.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_4.6.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_4.7.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_4.8.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_4.9.svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="i_m_sobol_the_monte_carlo_method_section_5_rates_5_5..svg" style="width: 60%"
+                                     alt=""></div>
+<br><br>
+<div style="text-align:center;"><img src="" style="width: 60%" alt=""></div>
+<br><br>
+
+
+<hr/>
+
+<h3>Code</h3>
+<pre><code class="language-Mathematica">
+
+ClearAll[status, currentStatus];
+status[list_List, time_] := Boole[Or @@ (Min[#] &lt; time &lt;= Max[#] &amp; /@ list)]
+currentStatus[list_List, time_] := ! Min[#] &lt; time &lt;= Max[#] &amp;[Last[list]]
+
+Module[{servers = 10, serverStatus, nCustomers = 120,
+  arrivals, \[Lambda]a = 5, \[Lambda]s = #, firstFree, plot},
+  arrivals = Accumulate[RandomVariate[ExponentialDistribution[\[Lambda]a], nCustomers]];
+  serverStatus = ConstantArray[{{0, 0}}, servers];
+
+  Quiet@Table[
+    firstFree =
+        First[Position[
+          currentStatus[#, arrivals[[r]]] &amp; /@ serverStatus,
+          True]][[1]];
+    If[firstFree =!= Null,
+      firstFree = First[firstFree][[1]];
+      serverStatus[[firstFree]] =
+          serverStatus[[firstFree]] ~
+              Join ~ {{arrivals[[r]],
+            arrivals[[r]] +
+                RandomVariate[ExponentialDistribution[\[Lambda]s]]}};,
+      Print["No server free"]]
+    , {r, 1, Length@arrivals}];
+
+  plot =
+      Labeled[Framed@
+          Column[MapThread[
+            Plot[status[#1, r], {r, 1, 100}, Exclusions -&gt; None,
+              ExclusionsStyle -&gt; Red, ImageSize -&gt; 788,
+              AspectRatio -&gt; 0.1, Frame -&gt; True,
+              PlotRange -&gt; {{0, Max@arrivals}, {0, 1.1}},
+              PlotLabel -&gt; "Server " &lt;&gt; #2, FrameTicks -&gt; False,
+              FrameLabel -&gt; {None,
+                Style["NotBusy-Busy", Bold]}] &amp;, {serverStatus,
+              ToString /@ Range[Length@serverStatus]}]],
+        "\!\(\*SubscriptBox[\(\[Lambda]\), \(a\)]\) = " &lt;&gt;
+            ToString[\[Lambda]a] &lt;&gt;
+            " : \!\(\*SubscriptBox[\(\[Lambda]\), \(s\)]\) = " &lt;&gt;
+            ToString[\[Lambda]s], Top];
+
+  Export[
+    StringReplace[NotebookFileName[],
+      ".nb" -&gt;
+          "_rates_" &lt;&gt; ToString[\[Lambda]a] &lt;&gt; "_" &lt;&gt;
+              ToString[\[Lambda]s] &lt;&gt; ".png"], plot, ImageSize -&gt; 788,
+    ImageResolution -&gt; 1000]
+] &amp; /@ Range[0.1, 5, 0.1]
+
+</code>
+</pre>
+
+<hr/>
+&nbsp;
+</body>
+</html>
