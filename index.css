@@ -174,37 +174,6 @@
 }
 
 
-#slideshow-container {
-    position: relative;
-    max-width: 800px;
-    margin: auto;
-}
-
-.slide {
-    display: none;
-    width: 100%;
-}
-
-.active {
-    display: block;
-}
-
-.slideshow-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    justify-items: center;
-    align-items: center;
-}
-
-.slideshow-grid > div {
-    background: none !important;
-    border: none !important;
-    border-radius: 0 !important;
-    padding: 0 !important;
-}
-
-
 pre code {
     white-space: pre-wrap;
     word-break: break-word;
