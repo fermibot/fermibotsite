@@ -174,17 +174,3 @@
 }
 
 
-pre code {
-    white-space: pre-wrap;
-    word-break: break-word;
-    display: block;
-    overflow-x: auto;
-    max-width: 100vw;
-    box-sizing: border-box;
-}
-
-pre {
-    overflow-x: auto;
-    max-width: 100vw;
-    box-sizing: border-box;
-}
