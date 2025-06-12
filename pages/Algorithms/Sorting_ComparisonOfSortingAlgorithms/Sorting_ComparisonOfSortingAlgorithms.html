@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Algorithms | Sorting | Comparison Of Sorting Algorithms</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../external_libraries/bootstrap/bootstrap.min.css">
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <link rel="stylesheet" href="../../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../../index.css">
+    <script src="../../../js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <style>
+
+        #slideshow-container {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+        }
+
+        .active {
+            display: block;
+        }
+
+    </style>
+</head>
+
+<body class="container-lg">
+
+<div class="jumbotron text-center">
+    <h1>Algorithms | Sorting | Comparison Of Sorting Algorithms</h1>
+</div>
+
+
+<a href="simulation-of-a-mass-servicing-system-02-corrected.jpg" style=align-content: center"
+target="_blank" rel="noopener noreferrer"><img src="simulation-of-a-mass-servicing-system-02-corrected.jpg"
+                                               alt="" style="width: 100%; align-content: center"/></a>
+
+
+<hr>
+
+<p><strong>How to visualize sorting algorithms?</strong>The following animation attempts to do the same</p>
+
+<hr/>
+
+
+<h5>Simulation</h5>
+
+<p></p>
+
+
+<div class="container-fluid pb-3 p-5">
+    <div class="d-grid gap-3 centered_image" style="grid-template-columns: 1fr 1fr 1fr;">
+        <div class="bg-body-tertiary border rounded-3 p-3" id="Slides_Quick_Sort"></div>
+        <div class="bg-body-tertiary border rounded-3 p-3" id="Slides_Insertion_Sort"></div>
+        <div class="bg-body-tertiary border rounded-3 p-3" id="Slides_Selection_Sort"></div>
+        <div class="bg-body-tertiary border rounded-3 p-3" id="Slides_Shell_Sort"></div>
+    </div>
+</div>
+
+<!--<div class="d-grid gap-3" style="grid-template-columns: 1fr 1fr;">-->
+<!--    <div class="bg-body-tertiary border rounded-3 p-3">-->
+<!--        <div class="centered_image" id="Slides_Quick_Sort"></div>-->
+<!--        <div class="centered_image" id="Slides_Insertion_Sort"></div>-->
+<!--        <div class="centered_image" id="Slides_Selection_Sort"></div>-->
+<!--        <div class="centered_image" id="Slides_Shell_Sort"></div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<script>
+    function createSlideshow(options) {
+        // Destructure options with defaults
+        const {
+            containerId,
+            slideInterval = 200,
+            totalSlides = 52,
+            basePath = 'Quick_Sort/',
+            filePrefix = 'Quick_Sort_'
+        } = options;
+
+        // Get container element
+        const container = document.getElementById(containerId);
+        if (!container) {
+            console.error(`Container with ID "${containerId}" not found`);
+            return;
+        }
+
+        // Clear existing content
+        container.innerHTML = '';
+
+        // Create slides
+        const slides = [];
+        for (let i = 1; i <= totalSlides; i++) {
+            const slide = document.createElement('img');
+            const num = String(i).padStart(5, '0');
+            slide.src = `${basePath}${filePrefix}${num}.svg`;
+            slide.className = 'slide';
+            if (i === 1) slide.classList.add('active');
+            container.appendChild(slide);
+            slides.push(slide);
+        }
+
+        // Slideshow functionality
+        let currentIndex = 0;
+        let intervalId;
+
+        function showNextSlide() {
+            slides[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % slides.length;
+            slides[currentIndex].classList.add('active');
+        }
+
+        function start() {
+            if (slides.length > 0) {
+                intervalId = setInterval(showNextSlide, slideInterval);
+            }
+        }
+
+        // Initialize slideshow
+        start();
+
+        // Return control functions
+        return {
+            stop: () => clearInterval(intervalId),
+            restart: () => {
+                clearInterval(intervalId);
+                slides[currentIndex].classList.remove('active');
+                currentIndex = 0;
+                slides[currentIndex].classList.add('active');
+                start();
+            }
+        };
+    }
+
+    // Initialize the slideshow
+    const slideshowQuickSort = createSlideshow({
+        containerId: 'Slides_Quick_Sort',  // Element ID
+        slideInterval: 100,               // 100ms between slides
+        totalSlides: 52,                  // Number of slides
+        basePath: 'Quick_Sort/',
+        filePrefix: 'Quick_Sort_'
+    });
+
+    const slideshowInsertionSort = createSlideshow({
+        containerId: 'Slides_Insertion_Sort',  // Element ID
+        slideInterval: 100,               // 100ms between slides
+        totalSlides: 199,                  // Number of slides
+        basePath: 'Insertion_Sort/',
+        filePrefix: 'Insertion_Sort_'
+    });
+
+    const slideshowSelectionSort = createSlideshow({
+        containerId: 'Slides_Selection_Sort',  // Element ID
+        slideInterval: 100,               // 100ms between slides
+        totalSlides: 199,                  // Number of slides
+        basePath: 'Selection_Sort/',
+        filePrefix: 'Selection_Sort_'
+    });
+
+    const slideshowShellSort = createSlideshow({
+        containerId: 'Slides_Shell_Sort',  // Element ID
+        slideInterval: 100,               // 100ms between slides
+        totalSlides: 826,                  // Number of slides
+        basePath: 'Shell_Sort/',
+        filePrefix: 'Shell_Sort_'
+    });
+</script>
+<hr/>
+
+<h5>Code</h5>
+<pre><code class="language-Mathematica">
+
+SomeListQ[list_List] := Or @@ (ListQ /@ list);
+
+
+pivotedList[list_List] :=
+    Module[{pivotPosition, pivotValue, pivotList, prePivotList, postPivotList, skippedRange, length = Length@list, pivotedList},
+      pivotPosition = RandomChoice[Range[1, length]];
+      pivotValue = list[[pivotPosition]];
+      pivotList = {pivotValue};
+      prePivotList = {};
+      postPivotList = {};
+      skippedRange = Delete[Range[length], pivotPosition];
+
+      Table[Piecewise[
+        {
+          {AppendTo[pivotList, list[[r]]], list[[r]] == pivotValue},
+          {AppendTo[prePivotList, list[[r]]], list[[r]] < pivotValue},
+          {AppendTo[postPivotList, list[[r]]], list[[r]] > pivotValue}
+        }], {r, skippedRange}];
+      pivotedList = Join @@ {{postPivotList}, pivotList, {prePivotList}};
+      pivotedList
+    ];
+
+
+QuickSortTrack[listIn_List] := Module[{list = {listIn}, pivotOut, tracker = {}},
+  While[SomeListQ[list],
+    Table[
+      If[ListQ[list[[q]]],
+        pivotOut = DeleteCases[pivotedList[list[[q]]], {}];
+        list = Drop[list, {q}];
+        Table[list = Insert[list, pivotOut[[s]], q], {s, 1, Length@pivotOut}]];, {q, 1, Length@list}];
+    AppendTo[tracker, Flatten@list];];
+  Return@tracker
+];
+
+QuickSortTrackRaw[listIn_List] := Module[{list = {listIn}, pivotOut, tracker = {}},
+  While[SomeListQ[list],
+    Table[
+      If[ListQ[list[[q]]],
+        pivotOut = DeleteCases[pivotedList[list[[q]]], {}];
+        list = Drop[list, {q}];
+        Table[list = Insert[list, pivotOut[[s]], q], {s, 1, Length@pivotOut}]];, {q, 1, Length@list}];
+    AppendTo[tracker, list];];
+  Return@tracker
+];
+
+QuickSort[listIn_List] := Module[{list = {listIn}, pivotOut},
+  While[SomeListQ[list],
+    Table[
+      If[ListQ[list[[q]]],
+        pivotOut = DeleteCases[pivotedList[list[[q]]], {}];
+        list = Drop[list, {q}];
+        Table[list = Insert[list, pivotOut[[s]], q], {s, 1, Length@pivotOut}]];, {q, 1, Length@list}];
+  ];
+  Return@list
+];
+
+
+InsertionSortTrack[list_List] := Module[{listOut = list, temp, i, j, length, track = List[]},
+  length = Length@list;
+  For[i = 2, i <= length, i++,
+    For[j = i, j > 1 && listOut[[j]] < listOut[[j - 1]], j--,
+      temp = listOut[[j]];
+      listOut[[j]] = listOut[[j - 1]];
+      listOut[[j - 1]] = temp;
+    ];
+    AppendTo[track, listOut];
+  ];
+  track
+];
+
+InsertionSort[list_List] := Module[{listOut = list, temp, i, j, length},
+  length = Length@list;
+  For[i = 2, i <= length, i++,
+    For[j = i, j > 1 && listOut[[j]] < listOut[[j - 1]], j--,
+      temp = listOut[[j]];
+      listOut[[j]] = listOut[[j - 1]];
+      listOut[[j - 1]] = temp;
+    ]
+  ];
+  listOut
+];
+
+
+ShellSortTrack[list_List] := Module[{temp, i, j, h = 1, length, listOut, track = List[]},
+  listOut = list;
+  length = Length@list;
+  While[h < length / 3, h = 3 * h + 1];
+  While[h >= 1,
+    For[i = h, i < length + 1, i++,
+      For[j = i, j >= h && (listOut[[j]] < listOut[[j - h]]), j -= h,
+        temp = listOut[[j - h]];
+        listOut[[j - h]] = listOut[[j]];
+        listOut[[j]] = temp;
+      ];
+      AppendTo[track, listOut];
+    ];
+    h = Floor[h / 3];
+  ];
+  track
+];
+
+ShellSort[list_List] := Module[{temp, i, j, h = 1, length, listOut},
+  listOut = list;
+  length = Length@list;
+  While[h < length / 3, h = 3 * h + 1];
+  While[h >= 1,
+    For[i = h, i < length + 1, i++,
+      For[j = i, j >= h && (listOut[[j]] < listOut[[j - h]]), j -= h,
+        temp = listOut[[j - h]];
+        listOut[[j - h]] = listOut[[j]];
+        listOut[[j]] = temp;
+      ];
+    ];
+    h = Floor[h / 3];
+  ];
+  listOut
+];
+
+
+SelectionSortTrack[list_List] := Module[{listOut = list, min, length, temp, track = List[]},
+  length = Length@list;
+  For[i = 1, i <= length, i++,
+    min = i;
+    For[j = i + 1, j <= length, j++,
+      If[listOut[[j]] < listOut[[min]], min = j]];
+    temp = listOut[[i]];
+    listOut[[i]] = listOut[[min]];
+    listOut[[min]] = temp;
+    AppendTo[track, listOut];
+  ];
+  track
+];
+
+
+SelectionSort[list_List] := Module[{listOut = list, min, length, temp},
+  length = Length@list;
+  For[i = 1, i <= length, i++,
+    min = i;
+    For[j = i + 1, j <= length, j++,
+      If[listOut[[j]] < listOut[[min]], min = j]];
+    temp = listOut[[i]];
+    listOut[[i]] = listOut[[min]];
+    listOut[[min]] = temp;
+  ];
+  listOut
+];
+
+FactorialRecursive[n_] :=
+    Module[{result},
+      If[n == 1 || n == 0, result = 1, result = FactorialRecursive = n * FactorialRecursive[n - 1]];
+      result];
+
+
+
+ClearAll[ExportSelectionAlgorithm, ExportSelectionAlgorithmExecute, \
+ExportSelectionAlgorithmSVG]
+ExportSelectionAlgorithm[sortingFunction_Symbol, label_String] :=
+ Module[{images,
+   randomData =
+    Join @@ Import[NotebookDirectory[] <> "sorting_data.csv"],
+   durations},
+  images =
+   Labeled[BarChart[#, PlotRange -> {Automatic, {0, 1}},
+       FrameTicks -> None, AspectRatio -> 1, Frame -> True,
+       ImageSize -> 300], label, Top] & /@ sortingFunction[randomData];
+  durations = ConstantArray[0.2, Length@images];
+  durations[[-1]] = 6;
+  Export[NotebookDirectory[] <> label <> "_example.gif", images,
+   "DisplayDurations" -> durations,
+   "AnimationRepetitions" -> \[Infinity]]
+  ]
+
+ExportSelectionAlgorithmSVG[sortingFunction_Symbol, label_String] :=
+ Module[{images,
+   randomData =
+    Join @@ Import[NotebookDirectory[] <> "sorting_data.csv"],
+   durations, imageTags, sortingFunctionOutput, plotLabels},
+  sortingFunctionOutput = sortingFunction[randomData];
+  imageTags =
+   StringPadLeft[ToString[#], 5, "0"] & /@
+    Range@Length@sortingFunctionOutput;
+  plotLabels =
+   "Iteration: " <> # <> "/" <>
+      StringPadLeft[ToString[Length@sortingFunctionOutput], 5,
+       "0"] & /@ imageTags;
+  images =
+   MapThread[
+    Labeled[BarChart[#1, PlotRange -> {Automatic, {0, 1}},
+       FrameTicks -> None, AspectRatio -> 1, Frame -> True,
+       ImageSize -> 300], {StringReplace[
+        label, {"_" -> " "}], #2}, {Top,
+       Bottom}] &, {sortingFunctionOutput, plotLabels}];
+  durations[[-1]] = 6;
+  MapThread[
+   Export[NotebookDirectory[] <> "/" <> label <> "/" <> label <>
+      "_" <> #2 <> ".svg", #1] &, {images, imageTags}]
+  ]
+
+ExportSelectionAlgorithmExecute := Module[{functions},
+  functions =
+   Association@{"Selection_Sort" -> SelectionSortTrack,
+     "Insertion_Sort" -> InsertionSortTrack,
+     "Shell_Sort" -> ShellSortTrack, "Quick_Sort" -> QuickSortTrack
+     };
+  MapThread[
+   ExportSelectionAlgorithmSVG[#1, #2] &, {Values@functions,
+    Keys@functions}]
+  ]
+
+ExportSelectionAlgorithmExecute
+
+
+</code>
+</pre>
+
+<hr/>
+&nbsp;
+</body>
+</html>

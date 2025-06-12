@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../../external_libraries/bootstrap/bootstrap.min.css">
+    <script src="../../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="../../../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../../../index.css">
+    <script src="../../../../js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <title>Simulation | Monte Carlo Method | Quality And Reliability of Complex Devices</title>
+</head>
+
+<body class="container-lg">
+
+
+<div class="jumbotron text-center"><h1>Simulation | Monte Carlo Method | Quality And Reliability of Complex
+    Devices</h1></div>
+
+<a href="5-corrected.jpg"><img src="5-corrected.jpg" alt="" class="img-fluid"/></a>
+
+<hr>
+<p>Suppose we want to estimate the mean duration of failure-proof operation of the apparatus provided all
+    characteristics of the failure-proof operation of each of the elements are known. If we assume that the
+    duration of failure-proof operation of each element \(t_{k}\) is fixed, then the calculation of time t of
+    failure-proof operation of the whole unit presents no problems. For example, failure of anyone of the elements
+    of the unit drawn in \(Fig.18\) entails the failure of the whole unit, i.e. \[t = \min(t_{1}, t_{2}, t_{3},
+    t_{4})\] For the unit shown in \(Fig.19\) where one of the elements has a stand-by element
+    \[ t = \min(t_{1}, t_{2}, \max(t_{3}, t_{4}), t_{5})\] since when one element, \(N_{3}\) for example, will
+    break down, the unit will continue functioning on the remaining element \(N_{4}\)</p>
+
+<hr>
+<a href="i_m_sobol_the_monte_carlo_method_section_6-nb_fig_18.png"><img class="centered_image"
+                                                                        src="i_m_sobol_the_monte_carlo_method_section_6-nb_fig_18.png"
+                                                                        alt=""/></a>
+<br>
+<a href="i_m_sobol_the_monte_carlo_method_section_6-nb_fig_19.png"><img class="centered_image"
+                                                                        src="i_m_sobol_the_monte_carlo_method_section_6-nb_fig_19.png"
+                                                                        alt=""/></a>
+<hr/>
+
+<strong>Simulation</strong>
+
+There are a bunch of ways we can arrive at this simulation. But before that, look at the above images from the
+textbook.
+<ul>
+    <li>\(Fig.18\) shows four resistors connected in series. Let us define this connection as follows
+        \[R \asymp R \asymp R \asymp R \rightarrow 1-1-1-1\]
+    </li>
+    <li>\(Fig.19\) shows 5 resistors connected such that 3 and 4 are in parallel connected to the other ones
+        that are in
+        series \[R \asymp R \asymp R \parallel R \asymp R \rightarrow 1-1-2-1\]
+    </li>
+
+    <li> Given that you understand this notation, we will run simulations for the following configurations</li>
+
+    \[R \asymp R \asymp R \asymp R \rightarrow 1-1-1-1\]
+    \[R \parallel R \asymp R \asymp R \asymp R \rightarrow 2-1-1-1\]
+    \[R \parallel R \asymp R \parallel R \asymp R \asymp R \rightarrow 2-2-1-1\]
+    \[R \parallel R \asymp R \parallel R \asymp R \parallel R \asymp R \rightarrow 2-2-2-1\]
+    \[R \parallel R \asymp R \parallel R \asymp R \parallel R \asymp R \parallel R \rightarrow 2-2-2-2\]
+    \[R \parallel R \parallel R \asymp R \parallel R \asymp R \parallel R \asymp R \parallel R \rightarrow
+    3-2-2-2\]
+    \[R \parallel R \parallel R \asymp R \parallel R \parallel R \asymp R \parallel R \asymp R \parallel R
+    \rightarrow
+    3-3-2-2\]
+    \[R \parallel R \parallel R \asymp R \parallel R \parallel R \asymp R \parallel R \parallel R \asymp R
+    \parallel R
+    \rightarrow 3-3-3-2\]
+    \[R \parallel R \parallel R \asymp R \parallel R \parallel R \asymp R \parallel R \parallel R \asymp R
+    \parallel R \parallel R \rightarrow 3-3-3-3\]
+    <li>Also note that the study here is nothing to do with the actual resistances of the devices but only the
+        lifetimes
+    </li>
+    <li>All the resistors have same lifetime distribution which is exponential with a λ = 5</li>
+    <li>All the plots below represent the same data but with different chart styles. The names of the chart
+        styles in
+        sequence are
+        <ul>
+            <li><em>HistogramDensity</em></li>
+            <li><em>PointDensity</em></li>
+            <li><em>SmoothDensity</em></li>
+        </ul>
+    </li>
+    <li>Notice how the reliability increases as we increase the number of resistors that have a "backup parallel
+        resistor attached to it"
+        <ul>
+            <li>which is further enhanced by the number of parallel resistors at each junction</li>
+        </ul>
+    </li>
+</ul>
+<a href="i_m_sobol_section_06_Density.svg" target="_blank"><img
+        class="centered_image" src="i_m_sobol_section_06_Density.svg" alt=""/></a>
+&nbsp;
+<a href="i_m_sobol_section_06_HistogramDensity.svg" target="_blank"><img
+        class="centered_image" src="i_m_sobol_section_06_HistogramDensity.svg" alt=""/></a>
+&nbsp;
+<a href="i_m_sobol_section_06_PointDensity.svg" target="_blank"><img
+        class="centered_image" src="i_m_sobol_section_06_PointDensity.svg" alt=""/></a>
+&nbsp;
+<a href="i_m_sobol_section_06_SmoothDensity.svg" target="_blank"><img
+        class="centered_image" src="i_m_sobol_section_06_SmoothDensity.svg" alt=""/></a>
+&nbsp;
+
+<hr/>
+
+<h3>Code</h3>
+<pre><code class="language-Mathematica">
+Column@Module[{plotData},
+  plotData = Table[
+    With[{var = #},
+      Module[{
+        figs = <|
+          4 -> ({#[[1]], #[[2]], #[[3]], #[[4]]} &amp;),
+          5 -> ({Max[{#[[1]], #[[2]]}], #[[3]], #[[4]], #[[5]]} &amp;),
+          6 -> ({Max[{#[[1]], #[[2]]}], Max[{#[[3]], #[[4]]}], #[[5]], #[[6]]} &amp;),
+          7 -> ({Max[{#[[1]], #[[2]]}], Max[{#[[3]], #[[4]]}], Max[#[[5]], #[[6]]], #[[7]]} &amp;),
+          8 -> ({Max[{#[[1]], #[[2]]}], Max[{#[[3]], #[[4]]}], Max[#[[5]], #[[6]]], Max[#[[7]], #[[8]]]} &amp;),
+          9 -> ({Max[{#[[1]], #[[2]], #[[3]]}], Max[{#[[4]], #[[5]]}], Max[#[[6]], #[[7]]], Max[#[[8]], #[[9]]]} &amp;),
+          10 -> ({Max[{#[[1]], #[[2]], #[[3]]}], Max[{#[[4]], #[[5]], #[[6]]}], Max[#[[7]], #[[8]]], Max[#[[9]], #[[10]]]} &amp;)
+          11 -> ({Max[{#[[1]], #[[2]], #[[3]]}], Max[{#[[4]], #[[5]], #[[6]]}], Max[#[[7]], #[[8]], #[[9]]], Max[#[[10]], #[[11]]]} &amp;),
+          12 -> ({Max[{#[[1]], #[[2]], #[[3]]}], Max[{#[[4]], #[[5]], #[[6]]}], Max[#[[7]], #[[8]], #[[9]]], Max[#[[10]], #[[11]], #[[12]]]} &amp;)
+        |>,
+        lifeTimes, simulation},
+        lifeTimes = RandomVariate[ExponentialDistribution[5], {1, var}];
+        lifeTimes = figs[var][#] &amp; /@ lifeTimes;
+        simulation = Min /@ lifeTimes;
+        Mean@simulation]] &amp; /@ Range[4, 12], 2000];
+
+  DistributionChart[Transpose@plotData, ChartElementFunction -> #,
+    ChartLabels -> Placed[Rotate[#, 0 \[Pi]] &amp; /@ (StringJoin[# &lt;> "\n"] &amp; /@ {"1-1-1-1",
+          "  2-1-1-1", "2-2-1-1", "2-2-2-1", "2-2-2-2", "3-2-2-2",
+          "3-3-2-2", "3-3-3-2", "3-3-3-3"}), Above],
+    ImageSize -> 788,
+    PlotLabel -> "Configurations and Lifetime Profiles"] &amp; /@ {"SmoothDensity","PointDensity", "Density", "HistogramDensity"}]
+</code></pre>
+
+
+<div id="footer-placeholder"></div>
+
+
+<script>
+    loadHeaderFooter("../../automation/header.html", "../../automation/footer.html")
+
+</script>
+
+</body>
+</html>
