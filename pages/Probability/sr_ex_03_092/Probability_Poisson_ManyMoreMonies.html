@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Probability | Poisson Distribution | Many More Monies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../external_libraries/bootstrap/bootstrap.min.css">
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <link rel="stylesheet" href="../../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../../index.css">
+    <script src="../../../js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <style>
+        pre code {
+            white-space: pre-wrap;
+            word-break: break-word;
+            display: block;
+            overflow-x: auto;
+            max-width: 100vw;
+            box-sizing: border-box;
+        }
+
+        pre {
+            overflow-x: auto;
+            max-width: 100vw;
+            box-sizing: border-box;
+        }
+
+
+    </style>
+
+</head>
+<body class="container-lg container-fluid">
+<div class="jumbotron text-center">
+    <h1>Probability | Poisson Distribution | Many More Monies</h1>
+</div>
+
+<a href="Probability_Poisson_ManyMoreMonies.png" target="_blank"><img
+        src="Probability_Poisson_ManyMoreMonies.png" class="container-lg"></a>
+<hr>
+
+<div class="card p-3">
+    <h5>Question</h5>
+    <p>The number of coins that Henry spots when walking to park is a Poisson random variable with mean 6. Each
+        coin is equally likely to be a penny, a nickel, a dime, or a quarter. Henry ignores the pennies but picks up the
+        other coins.</p>
+    <ol>
+        <li>Find the expected amount of money that Henry picks up on his way to park.</li>
+        <li>Find the variance of the amount of money that Henry picks up on his way to park.</li>
+        <li>Find the probability that Henry picks up exactly 25 cents on his way to park.</li>
+    </ol>
+</div>
+
+<hr>
+<p><strong>Reference: </strong>Sheldon Ross Probability Modelling Edition 10</p>
+
+
+<br>
+
+<div class="card p-3">
+    <h5>Solution | Analytical</h5>
+
+    <p>There are three parts to the problem, and we can approach them systematically. Let us also assign symbols to
+        the coin types for easier reference.</p>
+    <ul>
+        <li>\(C_p\) is a penny</li>
+        <li>\(C_n\) is a nickel</li>
+        <li>\(C_d\) is a dime</li>
+        <li>\(C_q\) is a quarter</li>
+    </ul>
+
+</div>
+
+
+<div class="p-3 card">
+    <strong>1. Expected amount of money</strong>
+    <p>Expected amount of money is the easiest to solve amongst all the three questions. Let us tackle is
+        systematically</p>
+    <ul>
+        <li>All of the above coins \(\{C_p, C_n, C_d, C_q\}\) with the corresponding values of are equally likely to
+            be
+            found with a probability of
+            \(\frac{1}{4}\)
+        </li>
+        <li>Their values are \(C_p = 0¢, C_n = 5¢, C_d = 10¢, C_q = 25¢\)</li>
+        <li>The expected amount of money is \(E(N) E(C_x)\) where \(E(N)\) is the expected number of coins and
+            E(C_x) is
+            the expected amount per pick up.
+        </li>
+        <li>\(E(n) = \lambda = 6\)</li>
+        <li>\(E(C_x) = \Sigma C_x p_x= \frac{1}{4} (0 + 5 + 10 + 25) = 10¢\)</li>
+        <li>The expected money is hence \(6 * 10¢ = 60¢\)</li>
+    </ul>
+</div>
+
+
+<div class="p-3 card">
+    <p><strong>2. Variance of amount of money</strong></p>
+    <p>\(Var(C_x) = E(N) * Var(C_x) + (E[C_x])^2 * Var(N)\) where \(N\) is the <em>Poisson</em> random variate with
+        \(\lambda = 6\)</p>
+    <ul>
+        <li>\(E(N) = 6\)</li>
+        <li>\(Var(X) = E[C_x^2] − (E[C_x])^2\)</li>
+        <ul>
+            <li>\(E[C_x^2] = \frac{1}{4} (0^2 + 5^2 + 10^2 + 25^2) = \frac{750}{4} = 187.5\)</li>
+            <li>\((E[C_x])^2 = 10^2 = 100\)</li>
+        </ul>
+        <li>\(E[C_x])^2 = 10 ^ 2 = 100\)</li>
+        <li>\(Var(N) = 6\)</li>
+    </ul>
+    <p>Bringing all of the above together, \[Var(C_x) = E(N) * Var(C_x) + (E[C_x])^2 * Var(N) = 6 * 87.5 + 100 * 6 =
+        1125
+        \space ¢^2
+        \]</p>
+</div>
+
+<div class="card p-3">
+
+    <p><strong>3. \(P(\Sigma x) = 25¢\)</strong></p>
+    <p>We will solve this using simulation. Please scroll below</p>
+
+</div>
+
+<br>
+
+<div class="card p-3">
+    <h5>Solution | Simulation</h5><br>
+
+    <p><strong>1. Expected amount of money</strong>: The following code was used to calculate the mean money
+        collected
+        for
+        \(x\) iterations</p>
+    <ul>
+        <li>\(54.500 \rightarrow 10^1\) iterations</li>
+        <li>\(59.500 \rightarrow 10^2\) iterations</li>
+        <li>\(60.710 \rightarrow 10^3\) iterations</li>
+        <li>\(60.035 \rightarrow 10^4\) iterations</li>
+        <li>\(60.090 \rightarrow 10^5\) iterations</li>
+        <li>\(59.970 \rightarrow 10^6\) iterations</li>
+        <li>\(60.001 \rightarrow 10^7\) iterations</li>
+    </ul>
+
+    <pre><code class="language-Mathematica">coinsCollected := RandomChoice[{0, 5, 10, 25}, RandomVariate[PoissonDistribution[6]]]
+
+simulator[n_] := Module[{simulation}, simulation = Table[coinsCollected, n]; simulation]
+
+Mean[Total /@ simulator[1000]] // N
+</code></pre>
+
+</div>
+
+<div class="card p-3">
+    <p><strong>2. Variance of amount of money</strong>: The following code was used to calculate the mean money
+        collected
+        for
+        \(x\) iterations</p>
+
+    <ul>
+        <li>\(0917.778 \rightarrow 10^1\) iterations</li>
+        <li>\(0961.806 \rightarrow 10^2\) iterations</li>
+        <li>\(1107.360 \rightarrow 10^3\) iterations</li>
+        <li>\(1123.720 \rightarrow 10^4\) iterations</li>
+        <li>\(1127.500 \rightarrow 10^5\) iterations</li>
+        <li>\(1122.080 \rightarrow 10^6\) iterations</li>
+        <li>\(1124.250 \rightarrow 10^7\) iterations</li>
+    </ul>
+
+    <pre><code class="language-Mathematica">coinsCollected := RandomChoice[{0, 5, 10, 25}, RandomVariate[PoissonDistribution[6]]]
+
+simulator[n_] := Module[{simulation}, simulation = Table[coinsCollected, n]; simulation]
+
+Variance[Total /@ simulator[1000]] // N
+</code></pre>
+
+
+</div>
+
+<div class="card p-3">
+
+    <p><strong>3. \(P(\Sigma x) = 25¢\)</strong>: The following code was used to probability for \(x\) iterations
+    </p>
+    <ul>
+        <li>\(0.000000 \rightarrow 10^1\) iterations</li>
+        <li>\(0.050000 \rightarrow 10^2\) iterations</li>
+        <li>\(0.047000 \rightarrow 10^3\) iterations</li>
+        <li>\(0.047100 \rightarrow 10^4\) iterations</li>
+        <li>\(0.045640 \rightarrow 10^5\) iterations</li>
+        <li>\(0.045284 \rightarrow 10^6\) iterations</li>
+        <li>\(0.045526 \rightarrow 10^7\) iterations</li>
+    </ul>
+
+    <pre><code class="language-Mathematica">coinsCollected := RandomChoice[{0, 5, 10, 25}, RandomVariate[PoissonDistribution[6]]]
+
+iterations = 10000000;
+
+Length[Select[Total /@ simulator[iterations], # == 25 &]]/iterations // N
+</code></pre>
+</div>
+
+
+<br>
+
+<h5>Visualization</h5>
+<p>The following code was used for visualization</p>
+<div class="card p3">
+
+    <pre>
+        <code class="language-Mathematica">
+ClearAll[coinsCollected, mapperText, mapperBar, mapperTotal, simulator]
+
+totalTextPosX = 30;
+rectOffset = 31;
+xScaler = 0.05;
+
+coinsCollected :=
+ RandomChoice[{0, 5, 10, 25}, RandomVariate[PoissonDistribution[6]]]
+
+mapperText[y_, list_List] := Module[{counts, keys, values},
+  counts = Counts[list];
+  MapThread[{{Red},
+     Text[Style[#1, {Black, FontSize -> 10}], {#2, y}]} &, {Values@
+     counts, Keys@counts}]
+  ]
+mapperBar[total_, y_] := {Opacity[0.5], Gray,
+  Rectangle[{rectOffset, y - 0.05}, {rectOffset + xScaler*total,
+    y + 0.1}]}
+mapperTotal[total_,
+  y_] := {Text[
+   Style[StringPadRight[ToString[0.01*total], 4, "0"], {Black,
+     FontSize -> 10}], {totalTextPosX, y}]}
+
+simulator[n_] := Module[{simulation},
+  simulation = Table[coinsCollected, n];
+  simulation
+  ]
+
+plot := Module[{simulation, range, length, totals, a, b},
+  simulation = simulator[100];
+  totals = Total /@ simulation;
+  length = Length@simulation;
+  Echo[Mean@totals // N];
+  range = Range[100/length, 100, 100/length];
+  a = Graphics[{MapThread[mapperText[#1, #2] &, {range, simulation}],
+     {White,
+      Rectangle[{rectOffset, 0}, {rectOffset + xScaler*Max@totals,
+        Max@range}]},
+     MapThread[mapperTotal[#1, #2] &, {totals, range}],
+     MapThread[mapperBar[#1, #2] &, {totals, range}]
+     },
+    PlotRange -> All, Frame -> True,
+    FrameTicks -> {{{0, "x 1¢"}, {5, "x 5¢"}, {10, "x 10¢"}, {25,
+        "x 25¢"}, {totalTextPosX, "Total$"}}, Automatic},
+    GridLines -> {{0, 5, 10, 25}, Range[100]},
+    GridLinesStyle -> {{Thickness[.02], Opacity[0.0],
+       Green}, {Thickness[0], Gray, Opacity[0.1]}},
+    FrameLabel -> {None, "Iterations"},
+    ImageSize -> 800, AspectRatio -> 1.5]
+  ]
+
+Export[StringReplace[NotebookFileName[], {".nb" -> ".svg"}], plot]
+    </code></pre>
+</div>
+
+<a href="Probability_Poisson_ManyMoreMonies.svg" target="_blank"><img src="Probability_Poisson_ManyMoreMonies.svg"
+                                                                      class="container-lg"></a>
+<hr>
+
+
+<hr>
+
+</body>
+</html>
