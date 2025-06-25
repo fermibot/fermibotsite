@@ -8,7 +8,9 @@
     <meta charset="UTF-8">
     <title>Biology | Biochemistry | Amino Acids</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../../../external_libraries/bootstrap/bootstrap.min.css">
+<!--    <link rel="stylesheet" href="../../../external_libraries/bootstrap/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
+
     <script src="../../../automation/loadObjects.js"></script>
 
     <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
@@ -29,16 +31,17 @@
 
 
 </head>
-<body>
-
-<div class="container-lg container-fluid">
-    <div id="header-placeholder"></div>
+<body class="container-lg container-fluid">
 
 
-    <div class="jumbotron text-center">
-        <h1>Biology | Biochemistry | Amino Acids</h1>
-    </div>
+<div id="header-placeholder"></div>
 
+
+<div class="jumbotron text-center">
+    <h1>Biology | Biochemistry | Amino Acids</h1>
+</div>
+
+<div class="card p-3">
     <p>This page illustrates various naming notations for Amino Acids.</p>
 
     <p>Notation wise, Amino Acids have</p>
@@ -57,19 +60,21 @@
     </ul>
 
     <p>Most importantly, each amino acid has a unique organic group. Use the following diagram for an easy visual of all
-        the aforementioned notations and properties. <strong>Hover over each of the name in the chord diagram to
-            discover connections</strong>
+        the aforementioned notations and properties.
     </p>
 
-
-    <div class="container-fluid">
-        <div class="d-flex flex-wrap justify-content-center p-3" id="amino_acids_d3_object"></div>
-    </div>
-
-
-    <div id="footer-placeholder"></div>
-
 </div>
+
+<p class="card p-3 text-center"><strong>Hover over each of the name in the chord diagram to discover connections
+    \(\downarrow\)</strong></p>
+
+
+<div class="container-fluid">
+    <div class="d-flex flex-wrap justify-content-center p-3" id="amino_acids_d3_object"></div>
+</div>
+
+
+<div id="footer-placeholder"></div>
 
 
 <script>

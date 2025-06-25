@@ -1,5 +1,5 @@
 function hierarchical_dendrogram(json_file, object_name) {
-    var diameter = 960, radius = diameter / 2, innerRadius = radius - 120;
+    var diameter = 1000, radius = diameter / 2, innerRadius = radius - 100;
 
     var cluster = d3.cluster()
         .size([360, innerRadius]);
@@ -14,10 +14,10 @@ function hierarchical_dendrogram(json_file, object_name) {
         });
 
     var svg = d3.select("#" + object_name).append("svg")
-        .attr("width", diameter)
-        .attr("height", diameter + 150)
+        .attr("width", diameter + 120)
+        .attr("height", diameter + 120)
         .append("g")
-        .attr("transform", "translate(" + (radius) + "," + (radius + 50) + ")");
+        .attr("transform", "translate(" + (radius + 50) + "," + (radius + 50) + ")");
 
     var link = svg.append("g").selectAll(".link"), node = svg.append("g").selectAll(".node");
 

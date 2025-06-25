@@ -2,48 +2,64 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lipids</title>
+    <title>Biology | Biochemistry | Lipids Metabolism</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../external_libraries/bootstrap/bootstrap.min.css">
 
-    <link rel="stylesheet" href="../../../d3_templates/hierarchical_dendrogram.css">
+    <script src="../../../automation/loadObjects.js"></script>
+
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <link rel="stylesheet" href="../../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../../index.css">
+    <script src="../../../js/highlight/highlight.pack.js"></script>
+
+
     <link rel="stylesheet" href="../../../index.css">
     <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
-
-
+    <link rel="stylesheet" href="../../../d3_templates/hierarchical_dendrogram.css">
     <script src="../../../d3_templates/hierarchical_dendrogram.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="../../../automation/loadObjects.js"></script>
-
 </head>
-<body>
+
+<body class="container-lg container-fluid">
 
 
-<div class="container-xl">
-    <div id="header-placeholder"></div>
-    <div class="b-section-divider"></div>
+<div id="header-placeholder"></div>
 
 
-    <h1 class="d-grid gap-3 justify-content-center p-3">Lipids Metabolism</h1>
+<h1 class="jumbotron text-center">Biology | Biochemistry | Lipids Metabolism</h1>
 
-    <div>
-        <br>
-        <br>
-        <br>
-    </div>
-
-    <div class="container-fluid">
-        <div class="d-flex flex-wrap justify-content-center p-3" id="lipids_d3_object"></div>
-    </div>
-
-    <div>
-        <br>
-        <br>
-        <br>
-    </div>
-
-    <div class="b-section-divider"></div>
-    <div id="footer-placeholder"></div>
+<div class="card p-3">
+    <p>This page illustrates the various biochemical pathways for Lipids. The following subprocesses are being
+        outlined.</p>
+    <ul>
+        <li>Glycolysis</li>
+        <li>Anaerobic Pathways</li>
+        <li>Cori Cycle</li>
+        <li>Krebs Cycle | Stage 02</li>
+        <li>Gluconeogenesis</li>
+        <li>Hormonal Regulation</li>
+        <li>Glycogen Metabolism</li>
+        <li>Pentose Phosphate Pathway</li>
+    </ul>
 
 </div>
+
+<p class="card p-3 text-center"><strong>Hover over each of the name in the chord diagram to discover connections
+    \(\downarrow\)</strong></p>
+
+
+<div class="d-flex flex-wrap justify-content-center p-3" id="lipids_d3_object"></div>
+
+
+<div id="footer-placeholder"></div>
+
 
 <script>
     hierarchical_dendrogram("lipids.json", "lipids_d3_object");
