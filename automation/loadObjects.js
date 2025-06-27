@@ -8,7 +8,7 @@ function loadHeaderFooter(headerPath, footerPath) {
                 document.getElementById("header-placeholder").innerHTML = html;
             });
 
-        // Load the footer
+        // // Load the footer
         // fetch(footerPath)
         //     .then(response => response.text())
         //     .then(html => {
@@ -33,16 +33,7 @@ function loadThemeIcons(themePath) {
 
 function styleImageIcons(className) {
     const elements = document.getElementsByClassName(className);
-    const lightColors = [
-        '#E0FFFF', '#E6E6FA', '#ADD8E6', '#87CEFA', '#B0E0E6',
-        '#AFEEEE', '#98FB98', '#90EE90', '#F0E68C', '#FAFAD2',
-        '#FFFFE0', '#FFB6C1', '#FFC0CB', '#FFDAB9', '#FFE4B5',
-        '#FFE4E1', '#FFEFD5', '#D3D3D3', '#DCDCDC', '#E0E0E0',
-        '#F0F0F0', '#F5F5F5', '#F5DEB3', '#EEE8AA', '#D2B48C',
-        '#BC8F8F', '#DEB887', '#FFF0F5', '#FFF5EE', '#F0FFF0',
-        '#F5FFFA', '#F0F8FF', '#F8F8FF', '#FAF0E6', '#FAEBD7',
-        '#FDF5E6', '#FFFAF0'
-    ];
+    const lightColors = ['#E0FFFF', '#E6E6FA', '#ADD8E6', '#87CEFA', '#B0E0E6', '#AFEEEE', '#98FB98', '#90EE90', '#F0E68C', '#FAFAD2', '#FFFFE0', '#FFB6C1', '#FFC0CB', '#FFDAB9', '#FFE4B5', '#FFE4E1', '#FFEFD5', '#D3D3D3', '#DCDCDC', '#E0E0E0', '#F0F0F0', '#F5F5F5', '#F5DEB3', '#EEE8AA', '#D2B48C', '#BC8F8F', '#DEB887', '#FFF0F5', '#FFF5EE', '#F0FFF0', '#F5FFFA', '#F0F8FF', '#F8F8FF', '#FAF0E6', '#FAEBD7', '#FDF5E6', '#FFFAF0'];
 
     Array.from(elements).forEach(element => {
         // Randomly select a light color
