@@ -8,7 +8,7 @@ function loadHeaderFooter(headerPath, footerPath) {
                 document.getElementById("header-placeholder").innerHTML = html;
             });
 
-        // Load the footer
+        // // Load the footer
         // fetch(footerPath)
         //     .then(response => response.text())
         //     .then(html => {
