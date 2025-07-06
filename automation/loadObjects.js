@@ -1,19 +1,28 @@
-function loadHeaderFooter(headerPath, footerPath) {
+function loadHeaderFooter(headerPath, footerPath, themeTogglePath) {
     document.addEventListener("DOMContentLoaded", function () {
+
 
         // Load the header
         fetch(headerPath)
             .then(response => response.text())
             .then(html => {
-                document.getElementById("header-placeholder").innerHTML = html;
+                document.getElementById("header_placeholder").innerHTML = html;
             });
 
-        // // Load the footer
+        // Load the footer
         // fetch(footerPath)
         //     .then(response => response.text())
         //     .then(html => {
-        //         document.getElementById("footer-placeholder").innerHTML = html;
+        //         document.getElementById("footer_placeholder").innerHTML = html;
         //     });
+
+
+        // Load theme_toggle.html
+        fetch(themeTogglePath)
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("theme_toggle").innerHTML = html;
+            });
 
 
     });
