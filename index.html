@@ -23,15 +23,9 @@
     <script src="automation/loadObjects.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>loadThemeIcons()</script>
+
     <script>
         loadHeaderFooter("../automation/header.html", "../automation/footer.html", "../automation/theme_toggle.html")
-        loadThemeIcons("../automation/theme_icons_svg.html")
-        // fetch("../../../theme-toggle.html")
-        //     .then(response => response.text())
-        //     .then(html => {
-        //         document.getElementById("theme_icons_placeholder").innerHTML = html;
-        //     });
 
     </script>
 
@@ -539,6 +533,7 @@
 <div id="footer_placeholder"></div>
 
 <script>styleImageIcons("image-section-icon")</script>
+<script>loadThemeIcons("../automation/theme_icons_svg.html")</script>
 
 
 </body>
