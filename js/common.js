@@ -7,7 +7,8 @@ function createSlideshow(options) {
         basePath = 'Quick_Sort/',
         filePrefix = 'Quick_Sort_',
         paddingLength = 5,
-        finalSlideRepeats = 0  // New option: number of times to repeat final slide
+        finalSlideRepeats = 0,
+        startIndex = 1  // New parameter with default value 1
     } = options;
 
     // Get container element
@@ -22,12 +23,14 @@ function createSlideshow(options) {
 
     // Create slides
     const slides = [];
-    for (let i = 1; i <= totalSlides; i++) {
+    for (let i = 0; i < totalSlides; i++) {
         const slide = document.createElement('img');
-        const num = String(i).padStart(paddingLength, '0');
+        // Calculate slide number based on startIndex
+        const slideNumber = startIndex === 0 ? i : i + 1;
+        const num = String(slideNumber).padStart(paddingLength, '0');
         slide.src = `${basePath}${filePrefix}${num}.svg`;
         slide.className = 'slide';
-        if (i === 1) slide.classList.add('active');
+        if (i === 0) slide.classList.add('active');
         container.appendChild(slide);
         slides.push(slide);
     }

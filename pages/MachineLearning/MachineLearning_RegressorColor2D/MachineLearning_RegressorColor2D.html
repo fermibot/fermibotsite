@@ -22,6 +22,7 @@
 
     <script src="../../../js/common.js"></script>
     <script src="../../../automation/loadObjects.js"></script>
+    <script>loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html")</script>
     <script>hljs.initHighlightingOnLoad();</script>
 
 
@@ -144,9 +145,21 @@
         <br><h5>Comparison of the 4 scenarios</h5>
         <ul>
             <li>Linear Regressor <strong>Single</strong> Layer with <strong>Cartesian</strong> type data</li>
+            <ul>
+                <li>Trains Slowly and overall result at the end of the 20th epoch is poor</li>
+            </ul>
             <li>Linear Regressor <strong>Single</strong> Layer with <strong>Polar</strong> type data</li>
+            <ul>
+                <li>The overall result is better than the one with polar coordinates</li>
+            </ul>
             <li>Linear Regressor <strong>Multi</strong> Layer with <strong>Cartesian</strong> type data</li>
+            <ul>
+                <li>Trains better than its single layer counterpart and the end result does not look bad at all</li>
+            </ul>
             <li>Linear Regressor <strong>Multi</strong> Layer with <strong>Polar</strong> type data</li>
+            <ul>
+                <li>Trains fastest in terms of number of epochs</li>
+            </ul>
         </ul>
 
 
@@ -182,51 +195,58 @@
     </div>
 </div>
 
+<div class="p-5"></div>
+
 <script>
 
 
-    const x = createSlideshow({
-        containerId: 'Slides_RegressorLinearSingleLayer_PolarCoordinates_False',  // Element ID
-        slideInterval: 2000,               // time between slides (ms)
-        totalSlides: 19,                  // Number of slides
-        basePath: 'RegressorLinearSingleLayer_PolarCoordinates_False/',
-        filePrefix: 'RegressorLinearSingleLayer_PolarCoordinates_False_001_Data_epoch=',
-        paddingLength: 3,
-        finalSlideRepeats: 3
+    document.addEventListener('DOMContentLoaded', function () {
+        createSlideshow({
+            containerId: 'Slides_RegressorLinearSingleLayer_PolarCoordinates_False',  // Element ID
+            startIndex: 0,
+            slideInterval: 2000,               // time between slides (ms)
+            totalSlides: 19,                  // Number of slides
+            basePath: 'RegressorLinearSingleLayer_PolarCoordinates_False/',
+            filePrefix: 'RegressorLinearSingleLayer_PolarCoordinates_False_001_Data_epoch=',
+            paddingLength: 3,
+            finalSlideRepeats: 3
+        });
+
+        createSlideshow({
+            containerId: 'Slides_RegressorLinearSingleLayer_PolarCoordinates_True',  // Element ID
+            startIndex: 0,
+            slideInterval: 2000,               // time between slides (ms)
+            totalSlides: 19,                  // Number of slides
+            basePath: 'RegressorLinearSingleLayer_PolarCoordinates_True/',
+            filePrefix: 'RegressorLinearSingleLayer_PolarCoordinates_True_001_Data_epoch=',
+            paddingLength: 3,
+            finalSlideRepeats: 3
+        });
+
+        createSlideshow({
+            containerId: 'Slides_RegressorLinearMultiLayer_PolarCoordinates_False',  // Element ID
+            startIndex: 0,
+            slideInterval: 2000,               // time between slides (ms)
+            totalSlides: 20,                  // Number of slides
+            basePath: 'RegressorLinearMultiLayer_PolarCoordinates_False/',
+            filePrefix: 'RegressorLinearMultiLayer_PolarCoordinates_False_001_Data_epoch=',
+            paddingLength: 3,
+            finalSlideRepeats: 3
+        });
+
+        createSlideshow({
+            containerId: 'Slides_RegressorLinearMultiLayer_PolarCoordinates_True',  // Element ID
+            startIndex: 0,
+            slideInterval: 2000,               // time between slides (ms)
+            totalSlides: 20,                  // Number of slides
+            basePath: 'RegressorLinearMultiLayer_PolarCoordinates_True/',
+            filePrefix: 'RegressorLinearMultiLayer_PolarCoordinates_True_001_Data_epoch=',
+            paddingLength: 3,
+            finalSlideRepeats: 3
+        });
     });
 
-    const y = createSlideshow({
-        containerId: 'Slides_RegressorLinearSingleLayer_PolarCoordinates_True',  // Element ID
-        slideInterval: 2000,               // time between slides (ms)
-        totalSlides: 19,                  // Number of slides
-        basePath: 'RegressorLinearSingleLayer_PolarCoordinates_True/',
-        filePrefix: 'RegressorLinearSingleLayer_PolarCoordinates_True_001_Data_epoch=',
-        paddingLength: 3,
-        finalSlideRepeats: 3
-    });
 
-    createSlideshow({
-        containerId: 'Slides_RegressorLinearMultiLayer_PolarCoordinates_False',  // Element ID
-        slideInterval: 2000,               // time between slides (ms)
-        totalSlides: 20,                  // Number of slides
-        basePath: 'RegressorLinearMultiLayer_PolarCoordinates_False/',
-        filePrefix: 'RegressorLinearMultiLayer_PolarCoordinates_False_001_Data_epoch=',
-        paddingLength: 3,
-        finalSlideRepeats: 3
-    });
-
-    createSlideshow({
-        containerId: 'Slides_RegressorLinearMultiLayer_PolarCoordinates_True',  // Element ID
-        slideInterval: 2000,               // time between slides (ms)
-        totalSlides: 20,                  // Number of slides
-        basePath: 'RegressorLinearMultiLayer_PolarCoordinates_True/',
-        filePrefix: 'RegressorLinearMultiLayer_PolarCoordinates_True_001_Data_epoch=',
-        paddingLength: 3,
-        finalSlideRepeats: 3
-    });
-
-
-    loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html")
 </script>
 
 
