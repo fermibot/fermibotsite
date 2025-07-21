@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Machine Learning | Dimensionality Reduction</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--    <link rel="stylesheet" href="../../../external_libraries/bootstrap/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
+
+    <script src="../../../automation/loadObjects.js"></script>
+
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <link rel="stylesheet" href="../../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../../index.css">
+    <script src="../../../js/highlight/highlight.pack.js"></script>
+
+    <script src="../../../js/common.js"></script>
+    <script src="../../../automation/loadObjects.js"></script>
+    <script>loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html")</script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+    <style>
+
+        #slideshow-container {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .slideshow-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            justify-items: center;
+            align-items: center;
+        }
+
+        .slideshow-grid > div {
+            background: none !important;
+            border: none !important;
+            border-radius: 0 !important;
+            padding: 0 !important;
+        }
+
+        /* Responsive code block for mobile */
+        pre code {
+            white-space: pre-wrap;
+            word-break: break-word;
+            display: block;
+            overflow-x: auto;
+            max-width: 100vw;
+            box-sizing: border-box;
+        }
+
+        pre {
+            overflow-x: auto;
+            max-width: 100vw;
+            box-sizing: border-box;
+        }
+
+
+    </style>
+
+</head>
+
+<body class="container-lg">
+
+<div id="header_placeholder"></div>
+
+<div class="jumbotron-fluid text-center p-5 card">
+    <h1>Machine Learning | Dimensionality Reduction</h1>
+</div>
+
+
+<div class="container-md card">
+
+    <a href="MachineLearning_DimensionalityReduction_HeaderImage.png" target="_blank"><img
+            src="MachineLearning_DimensionalityReduction_HeaderImage.png"
+            class="container-lg centered_header_image"></a>
+
+    <div class="">
+        <br><h5>Scenario</h5>
+        <ul>
+            <li>Was there a time you were working with excessively large vectors (or matrices)?</li>
+            <li>And these vectors sure had rich information packed into them, but they are practically too large?</li>
+            <li>And wish how we could use all of that rich information approximately to make it a win-win?</li>
+        </ul>
+
+        <h5>Exploration</h5>
+        <ul>
+            <li>Dimensionality reduction is a common practice to use these large vectors in a practical sense.</li>
+            <li>Why?</li>
+            <ul>
+                <li>Since the vectors are smaller, we need lesser processing needs</li>
+                <li>When done well, the reduced vectors retain an identical relative similarity among the vectors</li>
+                <li>Ability to use a highly knowledgeable vector thus making our use case very powerful</li>
+            </ul>
+        </ul>
+
+        <h5>Sources</h5>
+        <p><strong>Original Vectors</strong> sourced from the model <em>deepseek-coder-1.3b-base</em></p>
+
+
+        <pre><code class="language-python">
+        model_name = "deepseek-ai/deepseek-coder-1.3b-base"
+        tokenizer = AutoTokenizer.from_pretrained(model_name)
+        model = AutoModelForCausalLM.from_pretrained(model_name)
+        print(f"DeepSeek-Coder model '{model_name}' and tokenizer loaded.")
+        </code></pre>
+
+        <p><strong></strong>Top 512 words of the english language have been encoded using the model above</p>
+
+        <h5>How to reduce dimensions?</h5>
+        <ul>
+            <li>There are innumerable methods to reduce dimensions for vectors, in this page we will explore the
+                following
+                <ul>
+                    <li>Autoencoder</li>
+                    <li>Variational Autoencoder</li>
+                    <li><a href="https://en.wikipedia.org/wiki/Principal_component_analysis">Principal Component
+                        Analysis (PCA)</a></li>
+                    <li>
+                        <a href="../../Algorithms/Algorithms_Hashing_LocallySensitiveHashing/Algorithms_Hashing_LocallySensitiveHashing.html">Locally
+                            Sensitive Hashing (LSH)</a>
+                    </li>
+                </ul>
+        </ul>
+
+
+        <h5>How to determine the best candidate?</h5>
+        <ul>
+            <li>Calculate all combinations pairwise similarities for a subset of the vectors. This exercise samples 1024
+                vectors
+            </li>
+            <li>Pick a ballpark output dimension size</li>
+            <li>Experiment with the available algorithms and various output dimensions</li>
+            <li>Calculate the similarities in the lower dimensional space</li>
+            <li>Subtract the corresponding similarities pairs of higher and lower dimensions</li>
+            <li>Plot the distributions</li>
+            <li>Pick the method with a distribution centered normally with a mean closest to 0 and with the least
+                variance
+            </li>
+        </ul>
+
+        <h5>Keys</h5>
+        <p>There are several abbreviations here and the guide below will help with the reading</p>
+        <ul>
+            <li>Original 2048 \(\rightarrow\) Raw vectors from the <em>deepseek-coder-1.3b-base</em> model</li>
+            <li>AE 0256 \(\rightarrow\) Autoencoder with encoder output dimensions of 256</li>
+            <li>VAE 0064 \(\rightarrow\) Variational Autoencoder with encoder output dimensions of 64</li>
+            <li>LSH 0128\(\rightarrow\) Locally Sensitive Hashing to output vectors of dimensions 128</li>
+            <li>PCA 0128\(\rightarrow\) Principal Component Analysis to hash vectors to dimensions 128</li>
+        </ul>
+
+        <h5>Observations</h5>
+        <p>From the distributions below, we can observe the following in the similarity space.</p>
+        <ul>
+            <li>Autoencoders can (in general) represent vectors with smaller variance.</li>
+            <li>Variational Autoencoders have relatively higher variance in comparison to Autoencoders</li>
+            <li>LSH has the least amount of variance of all techniques</li>
+            <li>PCA has the most symmetric mapping to the similarity space of all techniques</li>
+        </ul>
+
+        <h5>Victors?</h5>
+        <ul>
+            <li>Overall, the Autoencoders have been the best contenders because they preserve the aymmetry of the base
+                distribution of the raw vectors in the cosine-similarity space.
+            </li>
+            <li>Within the Autoenoders, the AA | 0064 has worked the best in this case</li>
+            <li>That one outlined as green in the histograms grid.</li>
+        </ul>
+
+
+        <hr>
+        <h5>Distribution Charts</h5>
+
+        <img class="centered_image_auto_width"
+             src="MachineLearning_DimensionalityReduction_DistributionChart_Original.svg">
+        <img class="centered_image_auto_width"
+             src="MachineLearning_DimensionalityReduction_DistributionChart_Delta.svg">
+
+
+        <hr>
+        <h5 class="">1. Base Distributions in <em>Cosine Similarity Space</em></h5>
+        <img class="centered_image_auto_width" src="MachineLearning_DimensionalityReduction_Histogram_Original.svg">
+
+        <hr>
+        <h5 class="">2. Difference distributions in <em>Cosine Similarity Space</em></h5>
+        <p>These are obtained by subtracting pairwise cosine similarities between the original and reduced
+            dimensions. For example, a given data point would be \(a_{2048} - a_{AE\ 0064}\) where \(a_{2048}\) is the
+            cosine similarity between a pair of words and \(a_{AE\ 0064}\) is the cosine similarity between the exact
+            same words but with the vectors obtained from the Autoencoder having an encoder output dimensions of 64.
+            Each distribution is made up of nearly 130,000 datapoints.
+        </p>
+        <img class="centered_image_auto_width" src="MachineLearning_DimensionalityReduction_Histogram_Delta.svg">
+
+        <hr>
+        <h5 class="">3. Base and Difference distributions in <em>Cosine Similarity Space</em></h5>
+        <img class="centered_image_auto_width"
+             src="MachineLearning_DimensionalityReduction_Histogram_OriginalAndDelta.svg">
+        <br>
+
+    </div>
+</div>
+
+<div class="container-md card">
+    <br><h5 class="">Full Code</h5>
+
+    <div class="">
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+            <iframe
+                    src="https://nbviewer.org/github/fermibot/python-projects/blob/main/machine_learning/MachineLearning_Fermibot_DimensionalityReduction/MachineLearning_Fermibot_DimensionalityReduction.ipynb"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+                    loading="lazy"
+            ></iframe>
+        </div>
+    </div>
+</div>
+
+<div class="p-5"></div>
+
+
+</body>
+</html>
