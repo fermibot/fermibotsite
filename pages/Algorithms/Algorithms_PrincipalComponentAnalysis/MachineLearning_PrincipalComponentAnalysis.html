@@ -90,8 +90,8 @@
 
 <div class="container-md card">
 
-    <a href="MachineLearning_DimensionalityReduction_HeaderImage.png" target="_blank"><img
-            src="MachineLearning_DimensionalityReduction_HeaderImage.png"
+    <a href="Algorithms_PrincipalComponentAnalysis_HeaderImage.png" target="_blank"><img
+            src="Algorithms_PrincipalComponentAnalysis_HeaderImage.png"
             class="container-lg centered_header_image"></a>
 
     <div class="">
@@ -149,26 +149,27 @@
         <p>There are several abbreviations here and the guide below will help with the reading</p>
         <ul>
             <li>Original | 2048 \(\rightarrow\) Raw vectors from the <em>deepseek-coder-1.3b-base</em> model</li>
-            <li>PCA | 0016\(\rightarrow\) Principal Component Analysis to hash vectors to dimensions 16</li>
-            <li>PCA | 0128\(\rightarrow\) Principal Component Analysis to hash vectors to dimensions 128</li>
+            <li>PCA | 0016\(\rightarrow\) Principal Component Analysis to hash vectors to dimensions 0016</li>
+            <li>PCA | 0128\(\rightarrow\) Principal Component Analysis to hash vectors to dimensions 0128</li>
         </ul>
 
         <h5>Observations</h5>
         <p>From the distributions below, we can observe the following in the similarity space.</p>
         <ul>
-            <li>Autoencoders can (in general) represent vectors with smaller variance.</li>
-            <li>Variational Autoencoders have relatively higher variance in comparison to Autoencoders</li>
-            <li>LSH has the least amount of variance of all techniques</li>
-            <li>PCA has the most symmetric mapping to the similarity space of all techniques</li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
         </ul>
 
         <h5>Victors?</h5>
         <ul>
-            <li>Overall, the Autoencoders have been the best contenders because they preserve the aymmetry of the base
-                distribution of the raw vectors in the cosine-similarity space.
-            </li>
-            <li>Within the Autoenoders, the AA | 0064 has worked the best in this case</li>
-            <li>That one outlined as green in the histograms grid.</li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
         </ul>
 
 
@@ -188,10 +189,10 @@
         <hr>
         <h5 class="">2. Difference distributions in <em>Cosine Similarity Space</em></h5>
         <p>These are obtained by subtracting pairwise cosine similarities between the original and reduced
-            dimensions. For example, a given data point would be \(a_{2048} - a_{AE\ 0064}\) where \(a_{2048}\) is the
-            cosine similarity between a pair of words and \(a_{AE\ 0064}\) is the cosine similarity between the exact
-            same words but with the vectors obtained from the Autoencoder having an encoder output dimensions of 64.
-            Each distribution is made up of nearly 130,000 datapoints.
+            dimensions. For example, a given data point would be \(a_{2048} - a_{PCA\ 0064}\) where \(a_{2048}\) is the
+            cosine similarity between a pair of words and \(a_{PCA\ 0064}\) is the cosine similarity between the exact
+            same words but with the vectors obtained from the PCA projector having output dimensions of 64. Each
+            distribution is made up of nearly 130,000 datapoints.
         </p>
         <img class="centered_image_auto_width" src="MachineLearning_PrincipalComponentAnalysis_Histogram_Delta.svg">
 
@@ -210,12 +211,15 @@
     <div class="">
         <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
             <iframe
+
                     src="https://nbviewer.org/github/fermibot/python-projects/blob/main/machine_learning/MachineLearning_PrincipalComponentAnalysis/MachineLearning_PrincipalComponentAnalysis.ipynb"
                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
                     loading="lazy"
             ></iframe>
         </div>
     </div>
+
+
 </div>
 
 <div class="p-5"></div>
