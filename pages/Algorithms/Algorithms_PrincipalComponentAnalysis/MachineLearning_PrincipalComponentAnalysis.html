@@ -108,12 +108,36 @@
 
         <h5>Algorithm</h5>
         <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li>Dimensions \((n_{features}, n_{samples}) \) | Start with the raw embeddings matrix that have to be
+                projected called as \(X\)
+            </li>
+            <li>Dimensions \((n_{features}, n_{samples})\) | Normalize every feature in this dataset \(X_{Std} = \frac{X
+                - \mu}{\sigma}\) where \(\mu\) is the per feature mean and \(\sigma\) is the per feature standard
+                deviation.
+            </li>
+            <li>Dimensions \((n_{features}, n_{features})\) | Calculate covariance matrix of the above as \[Cov =
+                \frac{X_{Std}^T \cdot X_{Std}}{n_{samples}-1}\]
+            </li>
+            <li>Dimensions \((n_{features}, n_{features})\) | Decompose the \(Cov\) matrix into its eigenvalues and
+                eigenvectors as \(Cov = W \cdot \Lambda \cdot W^{-1}\) where
+                <ul>
+                    <li class="text-center list-unstyled">\(\Lambda\) = diagonal matrix of eigen values shown as
+                        \((\lambda_1,\lambda_2,\lambda_3,...)\)
+                    </li>
+                    <li class="text-center list-unstyled">\(W\) = Matrix of eigenvectors (columns for principal
+                        components)
+                    </li>
+                </ul>
+            </li>
+            <li>Dimensions \((n_{features}, n_{features})\) | Sort Eigen Vectors in the descending order as
+                \((\lambda_{x1} \ge \lambda_{x2} \ge \lambda_{x3} \ge ...)\)
+            </li>
+            <li>Dimensions \((n_{features}, n_{k})\) | Select top \(k\) vectors. Where \(k\) is the dimension of
+                the preferred projection space and \(W_k\) is the projection matrix.
+            </li>
+            <li>Dimensions \((n_{samples}, n_{k})\) | Multiply \(X_{std}\) with \(W_k\) to create the projected matrix
+                \[X_{projected} = X_{std} \cdot W_k\]
+            </li>
         </ul>
 
         <h5>Sources</h5>
@@ -156,20 +180,19 @@
         <h5>Observations</h5>
         <p>From the distributions below, we can observe the following in the similarity space.</p>
         <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li>We can see in the distribution charts that just like the Original vectors, the projected vectors are
+                also exhibiting a similar skewness in the cosine similarity space.
+            </li>
+            <li>But the real usefulness of these vectors can be seen in the second distribution chart.</li>
+            <li>As we see, the differences are getting smaller and their peaks are getting very close to 0.</li>
         </ul>
 
         <h5>Victors?</h5>
         <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li>From the looks of it, any of the projections above the dimensions of 64 can be used as approximations
+            </li>
+            <li>All of them have been highlighted with a green box in the histogram charts</li>
+            <li>The histogram outlined in red is the original distribution. The one we are not trying to use.</li>
         </ul>
 
 
