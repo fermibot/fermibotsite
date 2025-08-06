@@ -9,20 +9,20 @@ function loadHeaderFooter(headerPath, footerPath, themeTogglePath) {
                 document.getElementById("header_placeholder").innerHTML = html;
             });
 
-        // // Load the footer
-        // fetch(footerPath)
-        //     .then(response => response.text())
-        //     .then(html => {
-        //         document.getElementById("footer_placeholder").innerHTML = html;
-        //     });
-        //
-        //
-        // // Load theme_toggle.html
-        // fetch(themeTogglePath)
-        //     .then(response => response.text())
-        //     .then(html => {
-        //         document.getElementById("theme_toggle").innerHTML = html;
-        //     });
+        // Load the footer
+        fetch(footerPath)
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("footer_placeholder").innerHTML = html;
+            });
+
+
+        // Load theme_toggle.html
+        fetch(themeTogglePath)
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("theme_toggle").innerHTML = html;
+            });
 
 
     });
