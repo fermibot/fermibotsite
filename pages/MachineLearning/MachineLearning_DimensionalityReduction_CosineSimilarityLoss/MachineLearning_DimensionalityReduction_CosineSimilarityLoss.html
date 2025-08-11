@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Machine Learning | Dimensionality Reduction | Cosine Similarity Loss</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--    <link rel="stylesheet" href="../../../external_libraries/bootstrap/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
+
+    <script src="../../../automation/loadObjects.js"></script>
+
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <link rel="stylesheet" href="../../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../../index.css">
+    <script src="../../../js/highlight/highlight.pack.js"></script>
+
+    <script src="../../../js/common.js"></script>
+    <script src="../../../automation/loadObjects.js"></script>
+    <script>loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html")</script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+    <style>
+
+        #slideshow-container {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .slideshow-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            justify-items: center;
+            align-items: center;
+        }
+
+        .slideshow-grid > div {
+            background: none !important;
+            border: none !important;
+            border-radius: 0 !important;
+            padding: 0 !important;
+        }
+
+        /* Responsive code block for mobile */
+        pre code {
+            white-space: pre-wrap;
+            word-break: break-word;
+            display: block;
+            overflow-x: auto;
+            max-width: 100vw;
+            box-sizing: border-box;
+        }
+
+        pre {
+            overflow-x: auto;
+            max-width: 100vw;
+            box-sizing: border-box;
+        }
+
+
+    </style>
+
+</head>
+
+<body class="container-lg p-5 card">
+
+<div id="header_placeholder"></div>
+
+<div class="jumbotron-fluid text-center p-2">
+    <h1>Machine Learning | Dimensionality Reduction | Cosine Similarity Loss</h1>
+</div>
+
+
+<div class="container-md">
+
+    <a href="MachineLearning_DimensionalityReduction_CosineSimilarityLoss.png" target="_blank"><img
+            src="MachineLearning_DimensionalityReduction_CosineSimilarityLoss.png"
+            class="container-lg centered_header_image"></a>
+
+    <div class="">
+        <br><h5>Scenario</h5>
+        <ul>
+            <li>This is a continuation of the article <a
+                    href="../MachineLearning_DimensionalityReduction/MachineLearning_DimensionalityReduction.html">DimensionalityReduction</a>
+            </li>
+        </ul>
+
+        <h5>Exploration</h5>
+        <ul>
+            <li>In practice Autoencoders can be used to dimensionality reduction and they work by the following idea.
+            </li>
+            <ul>
+                <li>Encoder block takes a high dimension vector and projects it to a lower dimension</li>
+                <li>Decoder block takes the output of the Encoder and attempts to reconstruct the original vector</li>
+                <li>After training, the encoder output can be used for compressing the high dimensional vectors.</li>
+            </ul>
+        </ul>
+
+        <ul>
+            <li>However, this exercise puts a slight twist on the and removes the decoder block altogether.</li>
+            <ul>
+                <li>Because of the objective is to get vectors that have the same relative similarity in the lower
+                    dimensional space as the relative similarity of the corresponding vectors in the higher dimensions,
+                    why not define the loss criterion the same way?
+                </li>
+                <li>Hence, we will define the loss criterion as \(MSE(a, b)\) where \[a =
+                    batch\_cosine\_similarity\_matrix(high\_dimension)\] and \[b =
+                    batch\_cosine\_similarity\_matrix(projected\_dimension)\]
+                </li>
+                <li>After training, the encoder output can be used for compressing the high dimensional vectors.</li>
+            </ul>
+        </ul>
+
+
+        <h5>Sources</h5>
+        <p>Same as the ones used in <a
+                href="../MachineLearning_DimensionalityReduction/MachineLearning_DimensionalityReduction.html">DimensionalityReduction</a>.
+            Vectors are sourced from the model <em>deepseek-coder-1.3b-base</em></p>
+
+
+        <pre><code class="language-python">
+        model_name = "deepseek-ai/deepseek-coder-1.3b-base"
+        tokenizer = AutoTokenizer.from_pretrained(model_name)
+        model = AutoModelForCausalLM.from_pretrained(model_name)
+        print(f"DeepSeek-Coder model '{model_name}' and tokenizer loaded.")
+        </code></pre>
+
+        <p><strong></strong>Top 512 words of the english language have been encoded using the model above</p>
+
+        <h5>How to reduce dimensions?</h5>
+        <ul>
+            <li>Previously, we have seen
+                <ul>
+                    <li>Autoencoder</li>
+                    <li>Variational Autoencoder</li>
+                    <li><a href="https://en.wikipedia.org/wiki/Principal_component_analysis">Principal Component
+                        Analysis (PCA)</a></li>
+                    <li>
+                        <a href="../../Algorithms/Algorithms_Hashing_LocallySensitiveHashing/Algorithms_Hashing_LocallySensitiveHashing.html">Locally
+                            Sensitive Hashing (LSH)</a>
+                    </li>
+                </ul>
+        </ul>
+
+
+        <h5>How to determine the best candidate?</h5>
+        <ul>
+            <li>Calculate all combinations pairwise similarities for a subset of the vectors</li>
+            <li>Pick a ballpark output dimension size</li>
+            <li>Experiment with the available algorithms and various output dimensions</li>
+            <li>Calculate the similarities in the lower dimensional space</li>
+            <li>Subtract the corresponding similarities pairs of higher and lower dimensions</li>
+            <li>Plot the distributions</li>
+            <li>Pick the method with a distribution centered normally with a mean closest to 0 and with the least
+                variance
+            </li>
+        </ul>
+
+        <h5>Keys</h5>
+        <p>There are several abbreviations here and the guide below will help with the reading</p>
+        <ul>
+            <li>Original 2048 \(\rightarrow\) Raw vectors from the <em>deepseek-coder-1.3b-base</em> model</li>
+            <li>Cosine Similarity Loss Encoder | 0016 \(\rightarrow\) Encoder with output dimensions of 0016</li>
+            <li>Cosine Similarity Loss Encoder | 0032 \(\rightarrow\) Encoder with output dimensions of 0032</li>
+            <li>Cosine Similarity Loss Encoder | 0064 \(\rightarrow\) Encoder with output dimensions of 0064</li>
+            <li>Cosine Similarity Loss Encoder | 0128 \(\rightarrow\) Encoder with output dimensions of 0128</li>
+            <li>Cosine Similarity Loss Encoder | 0256 \(\rightarrow\) Encoder with output dimensions of 0256</li>
+            <li>Cosine Similarity Loss Encoder | 0512 \(\rightarrow\) Encoder with output dimensions of 0512</li>
+            <li>Cosine Similarity Loss Encoder | 1024 \(\rightarrow\) Encoder with output dimensions of 1024</li>
+
+        </ul>
+
+        <h5>Observations</h5>
+        <p>From the distributions below, we can observe the following in the similarity space.</p>
+        <ul>
+            <li>Since all of the encoders are presented with the same type of loss (cosine similarity loss), the
+                histograms of the projected vectors look very similar to the histogram of raw data.
+            </li>
+            <li>There is little difference between the histogram profiles.</li>
+            <li>So the next decision-making aspect would be the size of the vector that is practical for the use case
+            </li>
+        </ul>
+
+        <h5>Victors?</h5>
+        <ul>
+            <li>Since the histogram profiles are similar we can use either
+            </li>
+            <ul>
+                <li>Cosine Similarity Loss Encoder | 0128</li>
+                <li>Cosine Similarity Loss Encoder | 0256</li>
+            </ul>
+        </ul>
+
+
+        <hr>
+        <h5>Distribution Charts</h5>
+
+        <img class="centered_image_auto_width"
+             src="MachineLearning_DimensionalityReduction_DistributionChart_CosineSimilarityLoss_Original.svg">
+        <img class="centered_image_auto_width"
+             src="MachineLearning_DimensionalityReduction_DistributionChart_CosineSimilarityLoss_Delta.svg">
+
+
+        <hr>
+        <h5 class="">1. Base Distributions in <em>Cosine Similarity Space</em></h5>
+        <img class="centered_image_auto_width"
+             src="MachineLearning_DimensionalityReduction_CosineSimilarityLoss_Histogram_Original.svg">
+
+        <hr>
+        <h5 class="">2. Difference distributions in <em>Cosine Similarity Space</em></h5>
+        <p>These are obtained by subtracting pairwise cosine similarities between the original and reduced
+            dimensions. For example, a given data point would be \(a_{2048} - a_{E\ 0064}\) where \(a_{2048}\) is the
+            cosine similarity between a pair of words and \(a_{E\ 0064}\) is the cosine similarity between the exact
+            same words but with the vectors obtained from the encoder having an encoder output dimensions of 64.
+            Each distribution is made up of nearly 130,000 datapoints.
+        </p>
+        <img class="centered_image_auto_width"
+             src="MachineLearning_DimensionalityReduction_CosineSimilarityLoss_Histogram_Delta.svg">
+
+        <hr>
+        <h5 class="">3. Base and Difference distributions in <em>Cosine Similarity Space</em></h5>
+        <p>Both the above in the same plot :)</p>
+        <img class="centered_image_auto_width"
+             src="MachineLearning_DimensionalityReduction_CosineSimilarityLoss_Histogram_OriginalAndDelta.svg">
+        <br>
+
+    </div>
+</div>
+
+<div class="container-md">
+    <br><h5 class="">Full Code</h5>
+
+    <div class="">
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+            <iframe
+                    src="https://nbviewer.org/github/fermibot/python-projects/blob/main/machine_learning/MachineLearning_DimensionalityReduction_CosineSimilarityLoss/MachineLearning_DimensionalityReduction_CosineSimilarityLoss.ipynb"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+                    loading="lazy"
+            ></iframe>
+        </div>
+    </div>
+</div>
+
+<div class="p-5"></div>
+
+
+</body>
+</html>
