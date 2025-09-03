@@ -64,12 +64,18 @@
 
 </div>
 
-<p class="text-center"><strong>Hover over each of the name in the chord diagram to discover connections
-    \(\downarrow\)</strong></p>
-
 
 <div class="container-fluid">
-    <div class="d-flex flex-wrap justify-content-center p-3" id="amino_acids_d3_object"></div>
+    <div>
+        <p>This diagram visually summarizes the book <em>Leil Lowndes'</em> How to Talk to Anyone: 92 Little Tricks for
+            Big Success in Relationships. The chord diagram below shows the book sections and the constituent chapters.
+        </p>
+        <p class="text-center"><strong>Instructions: </strong>Hover over each of the name in the chord diagram to
+            discover connections \(\downarrow\)</p>
+
+    </div>
+
+    <div class="d-flex flex-wrap justify-content-center p-3" id="how_to_talk_to_anyone_d3_object"></div>
 </div>
 
 
@@ -103,7 +109,7 @@
             return d.x / 180 * Math.PI;
         });
 
-    var svg = d3.select("#amino_acids_d3_object").append("svg")
+    var svg = d3.select("#how_to_talk_to_anyone_d3_object").append("svg")
         .attr("width", diameter)
         .attr("height", diameter)
         .append("g")
