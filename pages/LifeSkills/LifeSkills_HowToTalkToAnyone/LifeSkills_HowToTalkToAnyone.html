@@ -109,11 +109,14 @@
             return d.x / 180 * Math.PI;
         });
 
+    const translate_x = radius;
+    const translate_y = radius + 100;
+
     var svg = d3.select("#how_to_talk_to_anyone_d3_object").append("svg")
-        .attr("width", diameter)
-        .attr("height", diameter)
+        .attr("width", diameter + 200)
+        .attr("height", diameter + 200)
         .append("g")
-        .attr("transform", "translate(" + radius + "," + radius + ")");
+        .attr("transform", "translate(" + translate_x + "," + translate_y + ")");
 
     var link = svg.append("g").selectAll(".link"),
         node = svg.append("g").selectAll(".node");
@@ -176,8 +179,8 @@
                         .duration(200)
                         .style("opacity", 1);
                     tooltip.html(d.data.summary)
-                        .style("right", (radius) + "px")
-                        .style("top", (radius + innerRadius - 125) + "px");
+                        .style("right", (radius - 100) + "px")
+                        .style("top", (radius - 200) + "px");
                 }
 
                 // Your existing mouseover code
