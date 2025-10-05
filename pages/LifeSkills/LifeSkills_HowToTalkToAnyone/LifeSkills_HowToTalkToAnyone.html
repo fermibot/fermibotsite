@@ -90,7 +90,7 @@
         .style("border", "solid")
         .style("border-width", "1px")
         .style("border-radius", "5px")
-        .style("padding", "10px");
+        .style("padding", "20px");
 
 
     var diameter = 1200,
@@ -179,8 +179,8 @@
                         .duration(200)
                         .style("opacity", 1);
                     tooltip.html(d.data.summary)
-                        .style("right", (radius - 100) + "px")
-                        .style("top", (radius - 200) + "px");
+                        .style("right", (radius + 1) + "px")
+                        .style("top", (radius + 350) + "px");
                 }
 
                 // Your existing mouseover code
