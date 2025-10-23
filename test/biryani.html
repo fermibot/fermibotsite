@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recipe Timeline - Biryani Preparation</title>
-  <script src="https://unpkg.com/timelines-chart@2/dist/timelines-chart.min.js"></script>
+  <title>Vertical Recipe Timeline - Biryani Preparation</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <style>
     body {
@@ -36,8 +35,9 @@
     }
     #timeline {
       width: 100%;
-      height: 600px;
+      height: 700px;
       margin-bottom: 20px;
+      position: relative;
     }
     .legend {
       display: flex;
@@ -92,6 +92,34 @@
     li {
       margin-bottom: 5px;
     }
+    .timeline-event {
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .timeline-event:hover {
+      transform: scale(1.05);
+    }
+    .timeline-label {
+      font-size: 12px;
+      font-weight: 500;
+      fill: #333;
+    }
+    .timeline-category-label {
+      font-size: 14px;
+      font-weight: 600;
+      fill: #d35400;
+    }
+    .tooltip {
+      position: absolute;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      pointer-events: none;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 10;
+      max-width: 300px;
+    }
     @media (max-width: 768px) {
       .recipe-info {
         flex-direction: column;
@@ -101,10 +129,10 @@
 </head>
 <body>
 <div class="container">
-  <h1>Biryani Recipe Timeline</h1>
+  <h1>Vertical Biryani Recipe Timeline</h1>
 
   <div class="description">
-    <p>This interactive timeline visualizes the step-by-step process of making biryani, showing how different preparation stages overlap and sequence.</p>
+    <p>This vertical timeline visualizes the step-by-step process of making biryani, showing when each step occurs and how long it takes.</p>
   </div>
 
   <div class="recipe-info">
@@ -155,18 +183,14 @@
 
   <div class="instructions">
     <h3>How to Read the Timeline</h3>
-    <p>Each horizontal bar represents a cooking task. The position and length of the bar shows when the task starts and how long it takes. Tasks that overlap can be done simultaneously. Hover over any bar to see details about that step.</p>
+    <p>The vertical line represents time from 0 to 80 minutes. Each colored circle represents a cooking task, positioned at the time it starts. The horizontal position shows the category of the task. Hover over any circle to see details about that step.</p>
   </div>
 </div>
 
 <script>
   // Create timeline data based on the recipe
   function createRecipeTimelineData() {
-    // Base time - we'll use today at 10:00 AM as our starting point
-    const baseTime = new Date();
-    baseTime.setHours(10, 0, 0, 0);
-
-    // Define the recipe steps with start and end times (in minutes from baseTime)
+    // Define the recipe steps with start and end times (in minutes)
     const steps = [
       // Preparation group
       { group: "Preparation", label: "Fry Onions", start: 0, end: 10, category: "prep" },
@@ -191,68 +215,171 @@
       { group: "Final", label: "Garnish and Serve", start: 79, end: 80, category: "final" }
     ];
 
-    // Convert to the format required by timelines-chart
-    const groups = {};
-
-    steps.forEach(step => {
-      if (!groups[step.group]) {
-        groups[step.group] = {
-          group: step.group,
-          data: []
-        };
-      }
-
-      // Find or create the label within the group
-      let labelData = groups[step.group].data.find(item => item.label === step.label);
-      if (!labelData) {
-        labelData = {
-          label: step.label,
-          data: []
-        };
-        groups[step.group].data.push(labelData);
-      }
-
-      // Calculate start and end times
-      const startTime = new Date(baseTime.getTime() + step.start * 60000);
-      const endTime = new Date(baseTime.getTime() + step.end * 60000);
-
-      // Add the time segment
-      labelData.data.push({
-        timeRange: [startTime, endTime],
-        val: step.category
-      });
-    });
-
-    return Object.values(groups);
+    return steps;
   }
 
-  // Create the chart
-  function createTimelineChart() {
+  // Create the vertical timeline chart
+  function createVerticalTimeline() {
     const data = createRecipeTimelineData();
+    const container = document.getElementById('timeline');
+    const margin = { top: 30, right: 100, bottom: 30, left: 150 };
+    const width = container.clientWidth - margin.left - margin.right;
+    const height = container.clientHeight - margin.top - margin.bottom;
 
-    // Create the timeline chart
-    const chart = TimelinesChart(); // Initialize the chart
+    // Clear any existing SVG
+    d3.select("#timeline").selectAll("*").remove();
 
-    // Set the data and various options
-    chart.data(data)
-            .zQualitative(true)
-            .zColorScale(d3.scaleOrdinal()
-                    .domain(["prep", "rice", "rest", "jhol", "layer", "cook", "final"])
-                    .range(["#e74c3c", "#3498db", "#2ecc71", "#9b59b6", "#f1c40f", "#e67e22", "#1abc9c"]));
+    // Create SVG
+    const svg = d3.select("#timeline")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    // CORRECTED: Set the margin as a property
-    // chart.margin({ top: 30, right: 30, bottom: 50, left: 200 });
+    // Define color scale
+    const colorScale = d3.scaleOrdinal()
+            .domain(["prep", "rice", "rest", "jhol", "layer", "cook", "final"])
+            .range(["#e74c3c", "#3498db", "#2ecc71", "#9b59b6", "#f1c40f", "#e67e22", "#1abc9c"]);
 
-    // Finally, render the chart
-    const chartElement = document.getElementById('timeline');
-    chart(chartElement);
+    // Define scales
+    const yScale = d3.scaleLinear()
+            .domain([0, 80]) // Total time in minutes
+            .range([0, height]);
 
-    createLegend(); // Create your legend
-    return chart;
+    // Define category positions (horizontal offsets)
+    const categories = ["Preparation", "Rice Cooking", "Jhol Preparation", "Layering", "Cooking", "Final"];
+    const categoryScale = d3.scalePoint()
+            .domain(categories)
+            .range([0, width])
+            .padding(0.5);
+
+    // Draw the main timeline (vertical line)
+    svg.append("line")
+            .attr("x1", width / 2)
+            .attr("y1", 0)
+            .attr("x2", width / 2)
+            .attr("y2", height)
+            .attr("stroke", "#ddd")
+            .attr("stroke-width", 2);
+
+    // Add time markers and labels
+    const timeMarkers = [0, 10, 20, 30, 40, 50, 60, 70, 80];
+    svg.selectAll(".time-marker")
+            .data(timeMarkers)
+            .enter()
+            .append("line")
+            .attr("class", "time-marker")
+            .attr("x1", width / 2 - 10)
+            .attr("x2", width / 2 + 10)
+            .attr("y1", d => yScale(d))
+            .attr("y2", d => yScale(d))
+            .attr("stroke", "#999")
+            .attr("stroke-width", 1);
+
+    svg.selectAll(".time-label")
+            .data(timeMarkers)
+            .enter()
+            .append("text")
+            .attr("class", "time-label")
+            .attr("x", width / 2 - 20)
+            .attr("y", d => yScale(d))
+            .attr("text-anchor", "end")
+            .attr("alignment-baseline", "middle")
+            .attr("font-size", "12px")
+            .attr("fill", "#666")
+            .text(d => `${d} min`);
+
+    // Draw category labels
+    svg.selectAll(".category-label")
+            .data(categories)
+            .enter()
+            .append("text")
+            .attr("class", "timeline-category-label")
+            .attr("x", d => categoryScale(d))
+            .attr("y", -10)
+            .attr("text-anchor", "middle")
+            .text(d => d);
+
+    // Draw events (circles) for each step
+    const events = svg.selectAll(".timeline-event")
+            .data(data)
+            .enter()
+            .append("g")
+            .attr("class", "timeline-event")
+            .attr("transform", d => `translate(${categoryScale(d.group)}, ${yScale(d.start)})`);
+
+    // Draw circles for each event
+    events.append("circle")
+            .attr("r", 8)
+            .attr("fill", d => colorScale(d.category))
+            .attr("stroke", "#fff")
+            .attr("stroke-width", 2)
+            .on("mouseover", function(event, d) {
+              // Highlight the circle
+              d3.select(this).attr("r", 10);
+
+              // Draw a line to the timeline
+              svg.append("line")
+                      .attr("class", "event-connector")
+                      .attr("x1", categoryScale(d.group))
+                      .attr("y1", yScale(d.start))
+                      .attr("x2", width / 2)
+                      .attr("y2", yScale(d.start))
+                      .attr("stroke", colorScale(d.category))
+                      .attr("stroke-width", 1)
+                      .attr("stroke-dasharray", "3,3");
+
+              // Show tooltip
+              const tooltip = d3.select("body")
+                      .append("div")
+                      .attr("class", "tooltip")
+                      .style("position", "absolute")
+                      .style("background", "#fff")
+                      .style("border", "1px solid #ccc")
+                      .style("border-radius", "4px")
+                      .style("padding", "8px")
+                      .style("box-shadow", "0 2px 4px rgba(0,0,0,0.2)")
+                      .style("opacity", 0);
+
+              tooltip.transition()
+                      .duration(200)
+                      .style("opacity", 0.9);
+
+              tooltip.html(`
+          <strong>${d.label}</strong><br>
+          <span style="color: ${colorScale(d.category)}">${d.group}</span><br>
+          Duration: ${d.end - d.start} minutes<br>
+          Start: ${d.start} minutes<br>
+          End: ${d.end} minutes
+        `)
+                      .style("left", (event.pageX + 10) + "px")
+                      .style("top", (event.pageY - 28) + "px");
+            })
+            .on("mouseout", function(event, d) {
+              // Reset circle size
+              d3.select(this).attr("r", 8);
+
+              // Remove connector line
+              d3.selectAll(".event-connector").remove();
+
+              // Remove tooltip
+              d3.selectAll(".tooltip").remove();
+            });
+
+    // Add labels for events
+    events.append("text")
+            .attr("class", "timeline-label")
+            .attr("x", 15)
+            .attr("y", 4)
+            .attr("text-anchor", "start")
+            .text(d => d.label);
+
+    createLegend(colorScale);
   }
 
   // Create a legend for the chart
-  function createLegend() {
+  function createLegend(colorScale) {
     const legendData = [
       { category: "prep", label: "Preparation" },
       { category: "rice", label: "Rice Cooking" },
@@ -263,11 +390,10 @@
       { category: "final", label: "Final Steps" }
     ];
 
-    const colorScale = d3.scaleOrdinal()
-            .domain(["prep", "rice", "rest", "jhol", "layer", "cook", "final"])
-            .range(["#e74c3c", "#3498db", "#2ecc71", "#9b59b6", "#f1c40f", "#e67e22", "#1abc9c"]);
-
     const legendContainer = d3.select("#legend");
+
+    // Clear existing legend
+    legendContainer.selectAll("*").remove();
 
     legendData.forEach(item => {
       const legendItem = legendContainer.append("div")
@@ -284,7 +410,10 @@
 
   // Initialize the chart when the page loads
   document.addEventListener('DOMContentLoaded', function() {
-    createTimelineChart();
+    createVerticalTimeline();
+
+    // Recreate chart on window resize
+    window.addEventListener('resize', createVerticalTimeline);
   });
 </script>
 </body>
