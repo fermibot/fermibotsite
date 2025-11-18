@@ -60,6 +60,18 @@ function generateData(maxOffset, distributionType) {
     return {labels, probabilities};
 }
 
+// Calculate F1 Score
+function calculateF1Score(truePositives, falsePositives, falseNegatives) {
+    const precision = truePositives / (truePositives + falsePositives);
+    const recall = truePositives / (truePositives + falseNegatives);
+
+    if (precision + recall === 0) {
+        return 0;
+    }
+
+    return 2 * (precision * recall) / (precision + recall);
+}
+
 // Calculate ROC curve data
 function calculateROC(labels, probabilities) {
     const thresholds = Array.from({length: 101}, (_, i) => i / 100);
@@ -82,11 +94,13 @@ function calculateROC(labels, probabilities) {
 
         const tpr = truePositives / (truePositives + falseNegatives);
         const fpr = falsePositives / (falsePositives + trueNegatives);
+        const f1 = calculateF1Score(truePositives, falsePositives, falseNegatives);
 
         rocData.push({
             threshold,
             tpr: isNaN(tpr) ? 0 : tpr,
             fpr: isNaN(fpr) ? 0 : fpr,
+            f1: isNaN(f1) ? 0 : f1,
             truePositives,
             falsePositives,
             trueNegatives,
@@ -232,6 +246,149 @@ function createScatterPlot(data, threshold, distributionType) {
 }
 
 // Create ROC plot visualization
+// function createROCPlot(rocData, currentThresholdIndex) {
+//     const svg = d3.select("#roc-plot")
+//         .html("")
+//         .append("svg")
+//         .attr("width", METRICS_CONFIG.rocWidth + METRICS_CONFIG.margin.left + METRICS_CONFIG.margin.right)
+//         .attr("height", METRICS_CONFIG.rocHeight + METRICS_CONFIG.margin.top + METRICS_CONFIG.margin.bottom)
+//         .append("g")
+//         .attr("transform", `translate(${METRICS_CONFIG.margin.left},${METRICS_CONFIG.margin.top})`);
+//
+//     const xScale = d3.scaleLinear()
+//         .domain([-0.05, 1.05])
+//         .range([0, METRICS_CONFIG.rocWidth]);
+//
+//     const yScale = d3.scaleLinear()
+//         .domain([-0.05, 1.05])
+//         .range([METRICS_CONFIG.rocHeight, 0]);
+//
+//     // Add border around the entire plot area
+//     svg.append("rect")
+//         .attr("class", "plot-border")
+//         .attr("x", 0)
+//         .attr("y", 0)
+//         .attr("width", METRICS_CONFIG.rocWidth)
+//         .attr("height", METRICS_CONFIG.rocHeight);
+//
+//     // Add diagonal line (random classifier baseline)
+//     svg.append("line")
+//         .attr("class", "diagonal-line")
+//         .attr("x1", xScale(0))
+//         .attr("y1", yScale(0))
+//         .attr("x2", xScale(1))
+//         .attr("y2", yScale(1));
+//
+//     // Create line generator
+//     const line = d3.line()
+//         .x(d => xScale(d.fpr))
+//         .y(d => yScale(d.tpr))
+//         .curve(d3.curveMonotoneX);
+//
+//     // Add ROC curve up to current threshold
+//     const currentData = rocData.slice(0, currentThresholdIndex + 1);
+//
+//     // Add area under ROC curve
+//     const area = d3.area()
+//         .x(d => xScale(d.fpr))
+//         .y0(yScale(0))
+//         .y1(d => yScale(d.tpr))
+//         .curve(d3.curveMonotoneX);
+//
+//     svg.append("path")
+//         .datum(currentData)
+//         .attr("class", "roc-area")
+//         .attr("d", area);
+//
+//     // Add ROC curve line
+//     svg.append("path")
+//         .datum(currentData)
+//         .attr("class", "roc-line")
+//         .attr("d", line);
+//
+//     // Add current point
+//     if (currentThresholdIndex >= 0) {
+//         const currentPoint = rocData[currentThresholdIndex];
+//         svg.append("circle")
+//             .attr("cx", xScale(currentPoint.fpr))
+//             .attr("cy", yScale(currentPoint.tpr))
+//             .attr("r", 6)
+//             .attr("fill", "#ff6b00")
+//             .attr("stroke", "#000")
+//             .attr("stroke-width", 1);
+//
+//         // Create metrics labels group
+//         const metricsGroup = svg.append("g");
+//
+//         // Display current threshold, TPR, and FPR
+//         metricsGroup.append("text")
+//             .attr("class", "metrics-label")
+//             .attr("text-anchor", "middle")
+//             .attr("x", METRICS_CONFIG.rocWidth / 2)
+//             .attr("y", -60)
+//             .text(`Threshold: ${currentPoint.threshold.toFixed(2)}`);
+//
+//         metricsGroup.append("text")
+//             .attr("class", "metrics-label")
+//             .attr("text-anchor", "middle")
+//             .attr("x", METRICS_CONFIG.rocWidth / 2)
+//             .attr("y", -45)
+//             .text(`TPR: ${currentPoint.tpr.toFixed(3)} | FPR: ${currentPoint.fpr.toFixed(3)}`);
+//     }
+//
+//     // Add axes with borders on all four sides
+//     // Bottom axis
+//     svg.append("g")
+//         .attr("transform", `translate(0,${METRICS_CONFIG.rocHeight})`)
+//         .call(d3.axisBottom(xScale).ticks(10));
+//
+//     // Top axis
+//     svg.append("g")
+//         .call(d3.axisTop(xScale).ticks(10));
+//
+//     // Left axis
+//     svg.append("g")
+//         .call(d3.axisLeft(yScale).ticks(10));
+//
+//     // Right axis
+//     svg.append("g")
+//         .attr("transform", `translate(${METRICS_CONFIG.rocWidth}, 0)`)
+//         .call(d3.axisRight(yScale).ticks(10));
+//
+//     // Axis labels
+//     svg.append("text")
+//         .attr("class", "axis-label")
+//         .attr("text-anchor", "middle")
+//         .attr("x", METRICS_CONFIG.rocWidth / 2)
+//         .attr("y", METRICS_CONFIG.rocHeight + 35)
+//         .text("False Positive Rate");
+//
+//     svg.append("text")
+//         .attr("class", "axis-label")
+//         .attr("text-anchor", "middle")
+//         .attr("transform", "rotate(-90)")
+//         .attr("y", -40)
+//         .attr("x", -METRICS_CONFIG.rocHeight / 2)
+//         .text("True Positive Rate");
+//
+//     // Calculate and display combined F1 and AUC scores
+//     const auc = calculateAUC(rocData);
+//     const currentF1 = currentThresholdIndex >= 0 ? rocData[currentThresholdIndex].f1 : 0;
+//
+//     // Create combined metrics group
+//     const combinedMetricsGroup = svg.append("g");
+//
+//     // Display F1 and AUC on the same line with pipe separator
+//     combinedMetricsGroup.append("text")
+//         .attr("class", "metrics-label")
+//         .attr("text-anchor", "middle")
+//         .attr("x", METRICS_CONFIG.rocWidth / 2)
+//         .attr("y", -30)
+//         .text(`F1: ${currentF1.toFixed(4)} | AUC: ${auc.toFixed(4)}`);
+// }
+
+
+// Create ROC plot visualization
 function createROCPlot(rocData, currentThresholdIndex) {
     const svg = d3.select("#roc-plot")
         .html("")
@@ -256,6 +413,39 @@ function createROCPlot(rocData, currentThresholdIndex) {
         .attr("y", 0)
         .attr("width", METRICS_CONFIG.rocWidth)
         .attr("height", METRICS_CONFIG.rocHeight);
+
+    // Add gridlines for both X and Y directions (0 to 1 in steps of 0.1)
+    const gridlines = d3.range(0, 1.1, 0.1); // [0, 0.1, 0.2, ..., 1.0]
+
+    // Add vertical gridlines (for X direction) - extend to full bounding box height
+    svg.selectAll(".gridline-vertical")
+        .data(gridlines)
+        .enter()
+        .append("line")
+        .attr("class", "gridline")
+        .attr("x1", d => xScale(d))
+        .attr("y1", 0)  // Start at top of bounding box
+        .attr("x2", d => xScale(d))
+        .attr("y2", METRICS_CONFIG.rocHeight)  // Extend to bottom of bounding box
+        .attr("stroke", "#e0e0e0")  // Light gray color
+        .attr("stroke-width", 0.5)  // Very thin
+        .attr("stroke-dasharray", "2,2")  // Dashed pattern
+        .attr("opacity", 2);      // Semi-transparent
+
+    // Add horizontal gridlines (for Y direction) - extend to full bounding box width
+    svg.selectAll(".gridline-horizontal")
+        .data(gridlines)
+        .enter()
+        .append("line")
+        .attr("class", "gridline")
+        .attr("x1", 0)  // Start at left of bounding box
+        .attr("y1", d => yScale(d))
+        .attr("x2", METRICS_CONFIG.rocWidth)  // Extend to right of bounding box
+        .attr("y2", d => yScale(d))
+        .attr("stroke", "#e0e0e0")  // Light gray color
+        .attr("stroke-width", 0.5)  // Very thin
+        .attr("stroke-dasharray", "2,2")  // Dashed pattern
+        .attr("opacity", 1);      // Semi-transparent
 
     // Add diagonal line (random classifier baseline)
     svg.append("line")
@@ -306,28 +496,20 @@ function createROCPlot(rocData, currentThresholdIndex) {
         // Create metrics labels group
         const metricsGroup = svg.append("g");
 
-        // Add background for metrics labels
-        // metricsGroup.append("rect")
-        //     .attr("class", "label-background")
-        //     .attr("x", METRICS_CONFIG.rocWidth / 2 - 70)
-        //     .attr("y", -70)
-        //     .attr("width", 140)
-        //     .attr("height", 55);
-
-        // Display current threshold, TPR, and FPR - positioned much higher above the plot
+        // Display current threshold, TPR, and FPR
         metricsGroup.append("text")
             .attr("class", "metrics-label")
             .attr("text-anchor", "middle")
             .attr("x", METRICS_CONFIG.rocWidth / 2)
-            .attr("y", -60) // Position much higher above the plot
+            .attr("y", -60)
             .text(`Threshold: ${currentPoint.threshold.toFixed(2)}`);
 
         metricsGroup.append("text")
             .attr("class", "metrics-label")
             .attr("text-anchor", "middle")
             .attr("x", METRICS_CONFIG.rocWidth / 2)
-            .attr("y", -45) // Position much higher above the plot
-            .text(`TPR: ${currentPoint.tpr.toFixed(3)}, FPR: ${currentPoint.fpr.toFixed(3)}`);
+            .attr("y", -45)
+            .text(`TPR: ${currentPoint.tpr.toFixed(3)} | FPR: ${currentPoint.fpr.toFixed(3)}`);
     }
 
     // Add axes with borders on all four sides
@@ -365,23 +547,20 @@ function createROCPlot(rocData, currentThresholdIndex) {
         .attr("x", -METRICS_CONFIG.rocHeight / 2)
         .text("True Positive Rate");
 
-    // Calculate and display AUC with background
-    const aucGroup = svg.append("g");
-
-    // aucGroup.append("rect")
-    //     .attr("class", "label-background")
-    //     .attr("x", METRICS_CONFIG.rocWidth - 65)
-    //     .attr("y", -25)
-    //     .attr("width", 60)
-    //     .attr("height", 20);
-
+    // Calculate and display combined F1 and AUC scores
     const auc = calculateAUC(rocData);
-    aucGroup.append("text")
+    const currentF1 = currentThresholdIndex >= 0 ? rocData[currentThresholdIndex].f1 : 0;
+
+    // Create combined metrics group
+    const combinedMetricsGroup = svg.append("g");
+
+    // Display F1 and AUC on the same line with pipe separator
+    combinedMetricsGroup.append("text")
         .attr("class", "metrics-label")
-        .attr("text-anchor", "end")
+        .attr("text-anchor", "middle")
         .attr("x", METRICS_CONFIG.rocWidth / 2)
         .attr("y", -30)
-        .text(`AUC: ${auc.toFixed(3)}`);
+        .text(`F1: ${currentF1.toFixed(4)} | AUC: ${auc.toFixed(4)}`);
 }
 
 // Calculate Area Under Curve (AUC)
