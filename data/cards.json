@@ -1,0 +1,335 @@
+{
+  "cards": [
+    {
+      "category": "Bernoulli Distribution",
+      "icon": "pages/Images/Probability_DistributionBernoulli_IconImage.png",
+      "title": "Bernoulli Distribution",
+      "links": [
+        {
+          "text": "Probability | Bernoulli Distribution | Find My Coat! Part 01",
+          "url": "pages/Probability/sr_02_031/Probability_Bernoulli_FindMyCoat_01.html"
+        }
+      ]
+    },
+    {
+      "category": "Binomial Distribution",
+      "icon": "pages/Images/Probability_DistributionBinomial_IconImage.png",
+      "title": "Binomial Distribution",
+      "links": [
+        {
+          "text": "Probability | Binomial Distribution | Best Tire Forward",
+          "url": "pages/Probability/sr_02_008/Probability_DistributionBinomial_BestTireForward.html"
+        },
+        {
+          "text": "Probability | Binomial Distribution | Difference Of Counts",
+          "url": "pages/Probability/sr_ex_02_002/Probability_Binomial_DifferenceOfCounts.html"
+        },
+        {
+          "text": "Probability | Binomial Distribution | Dominant Traits 🧬",
+          "url": "pages/Probability/sr_02_009/Probability_BinomialDistribution_DominantTraits.html"
+        }
+      ]
+    },
+    {
+      "category": "Poisson Distribution",
+      "icon": "pages/Images/Probability_DistributionPoisson_IconImage.png",
+      "title": "Poisson Distribution",
+      "links": [
+        {
+          "text": "Probability | Poisson Distribution | Independent Sums",
+          "url": "pages/Probability/sr_02_037/example_02_037.html"
+        },
+        {
+          "text": "Probability | Poisson Distribution | At Least One Error",
+          "url": "pages/Probability/sr_02_010/Probability_DistributionPoisson_AtLeastOneError.html"
+        },
+        {
+          "text": "Probability | Poisson Distribution | Maple Syrup 🇨🇦",
+          "url": "pages/Probability/sr_02_012/Probability_DistributionPoisson_MapleSyrup.html"
+        },
+        {
+          "text": "Probability | Poisson Distribution | Siblings Distribution 👶",
+          "url": "pages/Probability/sr_ex_03_096/Probability_Poisson_SiblingsDistribution.html"
+        },
+        {
+          "text": "Probability | Poisson Distribution | Many More Monies",
+          "url": "pages/Probability/sr_ex_03_092/Probability_Poisson_ManyMoreMonies.html"
+        }
+      ]
+    },
+    {
+      "category": "Exponential Distribution",
+      "icon": "pages/Images/Probability_DistributionExponential_IconImage.png",
+      "title": "Exponential Distribution",
+      "links": [
+        {
+          "text": "Probability | Exponential Distribution | Batteries Durability",
+          "url": "pages/Probability/sr_02_052/Probability_DistributionExponential_BatteriesDurability.html"
+        }
+      ]
+    },
+    {
+      "category": "Geometric Distribution",
+      "icon": "pages/Images/Probability_DistributionGeometric_IconImage.png",
+      "title": "Geometric Distribution",
+      "links": [
+        {
+          "text": "Probability | Geometric Distribution | How much wait?",
+          "url": "pages/Probability/sr_02_018/Probability_Geometric_HowMuchWait.html"
+        }
+      ]
+    },
+    {
+      "category": "Conditional Probability",
+      "icon": "pages/Images/Probability_Conditional_IcomImage.png",
+      "title": "Conditional Probability",
+      "links": [
+        {
+          "text": "Probability | Conditional | Making A Biased System Useful!",
+          "url": "pages/Probability/sr_02_028/Probability_Conditional_MakingABiasedSystemUseful.html"
+        },
+        {
+          "text": "Probability | Conditional | Joint Poisson",
+          "url": "pages/Probability/sr_03_023/Probability_Conditional_JointPoisson.html"
+        }
+      ]
+    },
+    {
+      "category": "Expectation",
+      "icon": "pages/Images/Probability_Expectation_IconImage.png",
+      "title": "Expectation",
+      "links": [
+        {
+          "text": "Probability | Expectation | Unique Discount Coupons",
+          "url": "pages/Probability/sr_02_032/Probability_Expectation_UniqueDiscountCoupons.html"
+        },
+        {
+          "text": "Probability | Conditional | Find My Coat! Part 02",
+          "url": "pages/Probability/sr_03_017/Probability_Conditional_FindMyCoat_02.html"
+        }
+      ]
+    },
+    {
+      "category": "Miscellaneous Concepts",
+      "icon": "pages/Images/Probability_MiscellaneousConcepts_IconImage.png",
+      "title": "Miscellaneous Concepts",
+      "links": [
+        {
+          "text": "Probability | Inequalities | Markov and Chebyshev",
+          "url": "pages/Probability/sr_02_049/probability_inequalities_markov_chebyshev.html"
+        },
+        {
+          "text": "Probability | Order Statistics | Distributions",
+          "url": "pages/Probability/sr_02_038/Probability_OrderStatistics_Distributions.html"
+        }
+      ]
+    },
+    {
+      "category": "Strategy",
+      "icon": "pages/Images/Probability_Strategy_IconImage_02.png",
+      "title": "Strategy",
+      "links": [
+        {
+          "text": "Probability | Strategy | Best Prize Selection",
+          "url": "pages/Probability/sr_03_025/Probability_Strategy_BestPrizeSelection.html"
+        },
+        {
+          "text": "Probability | Strategy | Fair 8 Dice Using Fair 6",
+          "url": "pages/Probability/Probability_Stratrgy_Fair8DiceFromFair6/Probability_Stratrgy_Fair8DiceFromFair6.html"
+        },
+        {
+          "text": "Algorithms | Strategy | The Josephus Problem",
+          "url": "pages/Algorithms/Algorithms_Strategy_TheJosephusProblem/Algorithms_Strategy_TheJosephusProblem.html"
+        }
+      ]
+    },
+    {
+      "category": "Graphs",
+      "icon": "pages/Images/Probability_Graphs_LastVisitedNode.png",
+      "title": "Graphs",
+      "links": [
+        {
+          "text": "Probability | Graphs | Last Visited Node",
+          "url": "pages/Probability/sr_02_053/Probability_Graphs_LastVisitedNode.html"
+        }
+      ]
+    },
+    {
+      "category": "Algorithms | Sorting",
+      "icon": "pages/Images/Algorithms_Sorting_IconImage.png",
+      "title": "Algorithms | Sorting",
+      "links": [
+        {
+          "text": "Algorithms | Sorting | Quicksort",
+          "url": "pages/Probability/sr_03_016/Algorithms_SortingAlgorithms_Quicksort.html"
+        },
+        {
+          "text": "Algorithms | Sorting | Comparison Of Sorting Algorithms",
+          "url": "pages/Algorithms/Algorithms_Sorting_ComparisonOfSortingAlgorithms/Algorithms_Sorting_ComparisonOfSortingAlgorithms.html"
+        }
+      ]
+    },
+    {
+      "category": "Algorithms | Hashing",
+      "icon": "pages/Images/Algorithms_Hashing_IconImage.png",
+      "title": "Algorithms | Hashing",
+      "links": [
+        {
+          "text": "Algorithms | Hashing | Locally Sensitive Hashing",
+          "url": "pages/Algorithms/Algorithms_Hashing_LocallySensitiveHashing/Algorithms_Hashing_LocallySensitiveHashing.html"
+        },
+        {
+          "text": "Algorithms | Hashing | Principal Component Analysis",
+          "url": "pages/Algorithms/Algorithms_PrincipalComponentAnalysis/MachineLearning_PrincipalComponentAnalysis.html"
+        }
+      ]
+    },
+    {
+      "category": "Biology | Biochemistry",
+      "icon": "pages/Images/Biology_Biochemistry_IconImage.jpeg",
+      "title": "Biology | Biochemistry",
+      "links": [
+        {
+          "text": "Biology | Biochemistry | Amino Acids",
+          "url": "pages/Biology/Biology_Biochemistry_AminoAcids/amino_acids.html"
+        },
+        {
+          "text": "Biology | Biochemistry | Saccharides",
+          "url": "pages/Biology/Biology_Biochemistry_Saccharides/saccharides.html"
+        }
+      ]
+    },
+    {
+      "category": "Biology | Physiology",
+      "icon": "pages/Images/Biology_Physiology_IconImage.png",
+      "title": "Biology | Physiology",
+      "links": [
+        {
+          "text": "Biology | Physiology | Metabolic Processes",
+          "url": "pages/Biology/Biology_Physiology_Metabolism/metabolism.html"
+        },
+        {
+          "text": "Biology | Physiology | Respiration",
+          "url": "pages/Biology/Biology_Physiology_Respiration/respiration.html"
+        }
+      ]
+    },
+    {
+      "category": "The Monte Carlo Method",
+      "icon": "pages/Images/MonteCarlo_IconImage.png",
+      "title": "The Monte Carlo Method",
+      "links": [
+        {
+          "text": "Simulation | Monte Carlo Method | Reliability of Complex Devices",
+          "url": "pages/Simulation/Simulation_MonteCarloMethod_06_QualityAndReliabilityOfComplexDevices/section_06_reliability_simulation.html"
+        },
+        {
+          "text": "Simulation | Monte Carlo Method | Definite Integral",
+          "url": "pages/Simulation/Simulation_MonteCarloMethod_08_CalculationOfADefinitiveIntegral/08_CalculationOfADefiniteIntegral.html"
+        },
+        {
+          "text": "Simulation | Monte Carlo Method | Mass Servicing System",
+          "url": "pages/Simulation/Similation_MonteCarloMethod_05_MassServicingSystem/05_MassServicingSystem.html"
+        }
+      ]
+    },
+    {
+      "category": "Mathematics | Differential Equations",
+      "icon": "pages/Images/Math_General_IconImage.png",
+      "title": "Mathematics | Differential Equations",
+      "links": [
+        {
+          "text": "Kresysig Example 1.2",
+          "url": "pages/mathematics/Kreyszig_AdvancedEngineeringMathematics/kr_aem_ch_01_eg_002.html"
+        }
+      ]
+    },
+    {
+      "category": "Artificial Intelligence | Machine Learning",
+      "icon": "pages/Images/ArtificialIntelligence_IconImage.png",
+      "title": "Artificial Intelligence | Machine Learning",
+      "links": [
+        {
+          "text": "Machine Learning | Linear Perceptron in 2D Space",
+          "url": "pages/MachineLearning/MachineLearning_LinearPercepteron2D/MachineLearning_LinearPercepteron2D.html"
+        },
+        {
+          "text": "Machine Learning | 2D Color Regressor",
+          "url": "pages/MachineLearning/MachineLearning_RegressorColor2D/MachineLearning_RegressorColor2D.html"
+        },
+        {
+          "text": "Machine Learning | Dimensionality Reduction",
+          "url": "pages/MachineLearning/MachineLearning_DimensionalityReduction/MachineLearning_DimensionalityReduction.html"
+        },
+        {
+          "text": "Machine Learning | Dimensionality Reduction | Cosine Similarity Loss",
+          "url": "pages/MachineLearning/MachineLearning_DimensionalityReduction_CosineSimilarityLoss/MachineLearning_DimensionalityReduction_CosineSimilarityLoss.html"
+        },
+        {
+          "text": "Machine Learning | Linear Regression Using a Neural Network",
+          "url": "pages/MachineLearning/MachineLearning_LinearRegressionTraditionalAndNN/MachineLearning_LinearRegressionTraditionalAndNN.html"
+        },
+        {
+          "text": "Machine Learning | Hyperparameters | 01",
+          "url": "pages/MachineLearning/MachineLearning_Hyperparameters_01/MachineLearning_Hyperparameters_01.html"
+        },
+        {
+          "text": "Machine Learning | Logistic Regression",
+          "url": "pages/MachineLearning/MachineLearning_LogisticRegression/MachineLearning_LogisticRegression.html"
+        },
+        {
+          "text": "Machine Learning | Binary Classification Metrics",
+          "url": "pages/MachineLearning/MachineLearning_BinaryClassificationMetrics/MachineLearning_BinaryClassificationMetrics.html"
+        }
+      ]
+    },
+    {
+      "category": "Geometry",
+      "icon": "pages/Images/Geometry_IconImage.png",
+      "title": "Geometry",
+      "links": [
+        {
+          "text": "Geometry | Circles Illusion",
+          "url": "pages/MathematicalArt/Geometry_CirclesIllusion/Geometry_CirclesIllusion.html"
+        },
+        {
+          "text": "Geometry | Grid Illusion",
+          "url": "pages/MathematicalArt/Geometry_GridIllusion/Geometry_GridIllusion.html"
+        }
+      ]
+    },
+    {
+      "category": "Mathematical Art",
+      "icon": "pages/Images/MathematicalArt_IconImage_01.svg",
+      "title": "Mathematical Art",
+      "links": [
+        {
+          "text": "Mathematical Art | General",
+          "url": "pages/MathematicalArt/mathematical_art.html"
+        }
+      ]
+    },
+    {
+      "category": "Wellness",
+      "icon": "pages/Images/Wellness_IconImage.png",
+      "title": "Wellness",
+      "links": [
+        {
+          "text": "Wellness | Coherent Breathing",
+          "url": "pages/wellness/coherent_breathing/coherent_breathing.html"
+        }
+      ]
+    },
+    {
+      "category": "Life Skills",
+      "icon": "pages/Images/LifeSkills_IconImage.png",
+      "title": "Life Skills",
+      "links": [
+        {
+          "text": "Life Skills | Communication | Books Summary | How to Talk to Anyone",
+          "url": "pages/LifeSkills/LifeSkills_HowToTalkToAnyone/LifeSkills_HowToTalkToAnyone.html"
+        }
+      ]
+    }
+  ]
+}
