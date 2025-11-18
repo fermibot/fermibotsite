@@ -1,0 +1,140 @@
+/* Binary Classification Metrics Visualization Styles */
+.metrics-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin: 20px 0;
+}
+
+.control-container {
+    margin: 15px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.control-label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.control-value {
+    display: inline-block;
+    width: 40px;
+    text-align: right;
+}
+
+.point {
+    stroke: #000;
+    stroke-width: 1px;
+}
+
+.threshold-line {
+    stroke: #ff6b00;
+    stroke-width: 2px;
+    stroke-dasharray: 5,5;
+}
+
+.roc-line {
+    stroke: #3366cc;
+    stroke-width: 2px;
+    fill: none;
+}
+
+.roc-area {
+    fill: #3366cc;
+    fill-opacity: 0.2;
+}
+
+.diagonal-line {
+    stroke: #ff0000;
+    stroke-width: 1px;
+    stroke-dasharray: 3,3;
+}
+
+.axis-label {
+    font-size: 12px;
+}
+
+.plot-title {
+    color: #555;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.plot-wrapper {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+input[type="range"] {
+    width: 100%;
+}
+
+.distribution-info {
+    background-color: #e9f7fe;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.legend {
+    font-size: 12px;
+}
+
+.legend-item {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.legend-color {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    border: 1px solid #000;
+}
+
+.distribution-label {
+    font-size: 14px;
+    font-weight: bold;
+    text-anchor: middle;
+    fill: #333;
+}
+
+.metrics-label {
+    font-size: 12px;
+    text-anchor: middle;
+    fill: #333;
+}
+
+/* Border styles for plots */
+.plot-border {
+    stroke: #ccc;
+    stroke-width: 1px;
+    fill: none;
+}
+
+/* Background for legend and labels */
+.label-background {
+    fill: white;
+    fill-opacity: 0.85;
+    stroke: #ddd;
+    stroke-width: 1px;
+    rx: 4;
+    ry: 4;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .metrics-container {
+        padding: 10px;
+    }
+
+    .control-container {
+        margin: 10px 0;
+    }
+}

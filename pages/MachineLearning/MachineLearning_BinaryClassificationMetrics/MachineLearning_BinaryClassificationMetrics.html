@@ -1,30 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Machine Learning - Logistic Regression</title>
-  <script src="https://www.wolfram.com/cdf-player/plugin/v2.1/cdf.js"></script>
-  <style>
-    body {
-      margin: 0;
-      padding: 20px;
-      font-family: Arial, sans-serif;
-    }
-    #cdf-container {
-      width: 100%;
-      height: 600px;
-      border: 1px solid #ccc;
-    }
-  </style>
-</head>
-<body>
-<h1>Machine Learning - Logistic Regression</h1>
-<div id="cdf-container"></div>
+    <meta charset="UTF-8">
+    <title>Machine Learning | Binary Classification Metrics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<script>
-  var cdf = new cdfplugin();
-  cdf.embed("MachineLearning_BinaryClassificationMetrics.cdf", "cdf-container");
-</script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
+
+    <!-- Custom Binary Classification Metrics CSS -->
+    <link rel="stylesheet" href="MachineLearning_BinaryClassificationMetrics.css">
+
+    <!-- D3.js for visualization -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <!-- MathJax for equations -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <!-- Highlight.js for code syntax -->
+    <link rel="stylesheet" href="../../../js/highlight/styles/default.css">
+    <script src="../../../js/highlight/highlight.pack.js"></script>
+
+    <!-- Common scripts -->
+    <script src="../../../js/common.js"></script>
+    <script src="../../../automation/loadObjects.js"></script>
+    <script>
+        // Load header and footer
+        loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html");
+        // Initialize highlight.js
+        hljs.initHighlightingOnLoad();
+    </script>
+</head>
+
+<body class="container-lg card p-5">
+<div id="header_placeholder"></div>
+
+<div class="jumbotron-fluid text-center p-2">
+    <h1>Machine Learning | Binary Classification Metrics</h1>
+</div>
+
+<!-- Original Content Section -->
+<div class="container-md">
+    <div class="">
+        <br><h5>Objective</h5>
+        <p>In this post, we will discuss the basics of Binary Classification Metrics and ROC curves. We will explore how
+            different probability distributions affect classifier performance.</p>
+
+    </div>
+</div>
+
+<!-- Binary Classification Metrics Visualization Section -->
+<div class="metrics-container">
+    <h2>ROC Curve Visualization with Distribution Types</h2>
+    <p>This interactive visualization demonstrates how classification thresholds and distribution types affect the
+        Receiver Operating Characteristic (ROC) curve.</p>
+
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="control-container">
+                <div class="control-label">
+                    Threshold: <span id="threshold-value" class="control-value">0.00</span>
+                </div>
+                <input type="range" id="threshold-slider" min="0" max="100" value="0" class="slider">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="control-container">
+                <div class="control-label">
+                    Max Offset: <span id="maxOffset-value" class="control-value">0.20</span>
+                </div>
+                <input type="range" id="maxOffset-slider" min="0" max="20" value="4" class="slider">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="control-container">
+                <div class="control-label">
+                    Distribution Type:
+                </div>
+                <select id="distribution-selector" class="form-control">
+                    <option value="uniform">Uniform Distribution</option>
+                    <option value="triangular" selected>Triangular Distribution</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Centered Plots -->
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-8 text-center">
+            <h4 class="plot-title">Probability Distribution</h4>
+            <div id="scatter-plot" class="plot-wrapper"></div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-8 text-center">
+            <h4 class="plot-title">ROC Curve</h4>
+            <div id="roc-plot" class="plot-wrapper"></div>
+        </div>
+    </div>
+</div>
+
+
+<hr>
+
+<!--<div class="container-md">-->
+<!--    <br><h5 class="">Full Code is also available <a-->
+<!--        href="https://github.com/fermibot/python-projects/blob/main/MachineLearning/MachineLearning_Hyperparameters_01/MachineLearning_Hyperparameters_01.ipynb">here</a>-->
+<!--</h5>-->
+<!--</div>-->
+
+<div class="p-5"></div>
+
+<!-- Binary Classification Metrics Visualization Script -->
+<script src="MachineLearning_BinaryClassificationMetrics.js"></script>
+
+<div id="footer_placeholder"></div>
 </body>
 </html>
