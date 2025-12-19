@@ -1,0 +1,170 @@
+/* Custom styles for Rotating Squares Visualization */
+.metrics-container {
+    padding: 20px 0;
+}
+
+.control-container {
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.control-label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #495057;
+}
+
+.control-value {
+    font-weight: bold;
+    color: #0d6efd;
+    background-color: #e9ecef;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+}
+
+.slider {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.plot-title {
+    margin-bottom: 15px;
+    color: #343a40;
+    font-weight: 600;
+    border-bottom: 2px solid #dee2e6;
+    padding-bottom: 8px;
+}
+
+.visualization-wrapper {
+    width: 100%;
+    height: 600px;
+    background-color: white;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#svg-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: move; /* Indicates panning is available */
+}
+
+/* Tooltip styling */
+.tooltip {
+    position: absolute;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    border-radius: 6px;
+    font-size: 13px;
+    pointer-events: none;
+    z-index: 1000;
+    max-width: 300px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    backdrop-filter: blur(5px);
+}
+
+.tooltip h6 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #6ea8fe;
+    font-size: 14px;
+}
+
+.tooltip table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 5px 0;
+}
+
+.tooltip td {
+    padding: 3px 5px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.tooltip td:first-child {
+    font-weight: 600;
+    color: #adb5bd;
+}
+
+/* Color picker styling */
+.form-control-color {
+    height: 38px;
+    padding: 3px;
+    border: 2px solid #ced4da;
+    border-radius: 4px;
+}
+
+/* Checkbox styling */
+.form-check-input:checked {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+/* Parameter display cards */
+.card-header.bg-light {
+    background-color: #f8f9fa !important;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table-sm td {
+    padding: 4px 8px;
+}
+
+/* Hover effects for buttons */
+.btn:hover {
+    transform: translateY(-1px);
+    transition: transform 0.2s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .visualization-wrapper {
+        height: 400px;
+    }
+
+    .control-container {
+        padding: 10px;
+    }
+
+    .col-md-3, .col-md-6 {
+        margin-bottom: 15px;
+    }
+}
+
+/* Loading animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.visualization-wrapper {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Code block styling */
+pre code {
+    border-radius: 6px;
+    padding: 15px !important;
+    background-color: #f8f9fa !important;
+    border: 1px solid #dee2e6;
+}
+
+.alert-info pre {
+    margin-bottom: 0;
+}
+
+/* Mathematica code specific styling */
+.language-mathematica {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+}
