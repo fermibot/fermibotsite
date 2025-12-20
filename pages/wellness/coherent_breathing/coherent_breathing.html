@@ -116,6 +116,140 @@
             color: #5D2906;
             font-weight: 700;
         }
+
+        /* Programmable breathing section */
+        .programmable-section {
+            background: linear-gradient(135deg, #e8f4f8, #d4e8f0);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            border: 1px solid #b8d3e0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .programmable-card {
+            background: white;
+            border: 1px solid #a3c4d4;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .duration-selector {
+            margin-bottom: 15px;
+        }
+
+        .duration-label {
+            font-weight: 600;
+            color: #2c5a73;
+            margin-bottom: 8px;
+        }
+
+        .form-select {
+            border: 1px solid #a3c4d4;
+        }
+
+        .form-select:focus {
+            border-color: #8B4513;
+            box-shadow: 0 0 0 0.25rem rgba(139, 69, 19, 0.25);
+        }
+
+        .breath-visualizer {
+            height: 100px;
+            background: linear-gradient(to right, #e8f4f8, #d4e8f0);
+            border-radius: 10px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .breath-phase {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            transition: width 0.3s ease;
+        }
+
+        .phase-in {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+        }
+
+        .phase-pause1 {
+            background: linear-gradient(135deg, #ff9800, #ef6c00);
+        }
+
+        .phase-out {
+            background: linear-gradient(135deg, #2196f3, #1565c0);
+        }
+
+        .phase-pause2 {
+            background: linear-gradient(135deg, #9c27b0, #6a1b9a);
+        }
+
+        .current-phase-indicator {
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(139, 69, 19, 0.1);
+            border-radius: 8px;
+            font-weight: 600;
+            color: #8B4513;
+            text-align: center;
+        }
+
+        .cycle-counter {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2c5a73;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .pattern-summary {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 1px dashed #a3c4d4;
+        }
+
+        .pattern-summary h6 {
+            color: #2c5a73;
+            margin-bottom: 10px;
+        }
+
+        .pattern-summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .pattern-summary-label {
+            font-weight: 600;
+            color: #666;
+        }
+
+        .pattern-summary-value {
+            font-weight: 700;
+            color: #8B4513;
+        }
+
+        .total-duration {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2c5a73;
+            text-align: center;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 2px solid #a3c4d4;
+        }
     </style>
 </head>
 <body>
@@ -287,6 +421,151 @@
         </div>
     </div>
 
+    <!-- Programmable Breathing Section -->
+    <div class="programmable-section" id="programmableSection">
+        <h4 class="mb-4" style="color: #2c5a73; text-align: center;">🎛️ Custom Breathing Pattern Creator</h4>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="programmable-card">
+                    <h5 class="mb-4" style="color: #2c5a73;">Configure Your Breathing Pattern</h5>
+
+                    <div class="row">
+                        <!-- In Duration -->
+                        <div class="col-md-6 duration-selector">
+                            <div class="duration-label">🌬️ Inhale Duration</div>
+                            <select class="form-select" id="inDuration">
+                                <option value="5">5 seconds (BreathIn_DFlat3_5.mp3)</option>
+                                <option value="6">6 seconds (BreathIn_DFlat3_6.mp3)</option>
+                                <option value="7">7 seconds (BreathIn_DFlat3_7.mp3)</option>
+                                <option value="8">8 seconds (BreathIn_DFlat3_8.mp3)</option>
+                                <option value="9">9 seconds (BreathIn_DFlat3_9.mp3)</option>
+                            </select>
+                        </div>
+
+                        <!-- First Pause -->
+                        <div class="col-md-6 duration-selector">
+                            <div class="duration-label">⏸️ Pause After Inhale</div>
+                            <select class="form-select" id="pause1Duration">
+                                <option value="0">No pause</option>
+                                <option value="1">1 second (BreathPause_E3_1.mp3)</option>
+                                <option value="2">2 seconds (BreathPause_E3_2.mp3)</option>
+                                <option value="3">3 seconds (BreathPause_E3_3.mp3)</option>
+                                <option value="4">4 seconds (BreathPause_E3_4.mp3)</option>
+                                <option value="5">5 seconds (BreathPause_E3_5.mp3)</option>
+                                <option value="6">6 seconds (BreathPause_E3_6.mp3)</option>
+                                <option value="7">7 seconds (BreathPause_E3_7.mp3)</option>
+                                <option value="8">8 seconds (BreathPause_E3_8.mp3)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Out Duration -->
+                        <div class="col-md-6 duration-selector">
+                            <div class="duration-label">💨 Exhale Duration</div>
+                            <select class="form-select" id="outDuration">
+                                <option value="5">5 seconds (BreathOut_C3_5.mp3)</option>
+                                <option value="6">6 seconds (BreathOut_C3_6.mp3)</option>
+                                <option value="7">7 seconds (BreathOut_C3_7.mp3)</option>
+                                <option value="8">8 seconds (BreathOut_C3_8.mp3)</option>
+                                <option value="9">9 seconds (BreathOut_C3_9.mp3)</option>
+                            </select>
+                        </div>
+
+                        <!-- Second Pause -->
+                        <div class="col-md-6 duration-selector">
+                            <div class="duration-label">⏸️ Pause After Exhale</div>
+                            <select class="form-select" id="pause2Duration">
+                                <option value="0">No pause</option>
+                                <option value="1">1 second (BreathPause_E3_1.mp3)</option>
+                                <option value="2">2 seconds (BreathPause_E3_2.mp3)</option>
+                                <option value="3">3 seconds (BreathPause_E3_3.mp3)</option>
+                                <option value="4">4 seconds (BreathPause_E3_4.mp3)</option>
+                                <option value="5">5 seconds (BreathPause_E3_5.mp3)</option>
+                                <option value="6">6 seconds (BreathPause_E3_6.mp3)</option>
+                                <option value="7">7 seconds (BreathPause_E3_7.mp3)</option>
+                                <option value="8">8 seconds (BreathPause_E3_8.mp3)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Breath Visualizer -->
+                    <div class="breath-visualizer" id="breathVisualizer">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+
+                    <!-- Current Phase Indicator -->
+                    <div class="current-phase-indicator" id="currentPhase">
+                        Ready to start
+                    </div>
+
+                    <!-- Cycle Counter -->
+                    <div class="cycle-counter" id="cycleCounter">
+                        Cycle: 0
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="d-flex justify-content-center gap-3 mt-4">
+                        <button class="btn btn-outline-primary btn-lg" id="programmablePlay" disabled>
+                            ▶️ Start Custom Pattern
+                        </button>
+                        <button class="btn btn-outline-secondary btn-lg" id="programmablePause" disabled>
+                            ⏸️ Pause
+                        </button>
+                        <button class="btn btn-outline-secondary btn-lg" id="programmableStop" disabled>
+                            ⏹️ Stop
+                        </button>
+                    </div>
+
+                    <div class="audio-status mt-3 text-center">
+                        <span class="loading-status" id="programmableLoading">Loading audio files...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="programmable-card">
+                    <h5 class="mb-4" style="color: #2c5a73;">Pattern Summary</h5>
+
+                    <div class="pattern-summary">
+                        <h6>Current Settings:</h6>
+                        <div class="pattern-summary-item">
+                            <span class="pattern-summary-label">Inhale:</span>
+                            <span class="pattern-summary-value" id="summaryIn">5s</span>
+                        </div>
+                        <div class="pattern-summary-item">
+                            <span class="pattern-summary-label">Pause 1:</span>
+                            <span class="pattern-summary-value" id="summaryPause1">0s</span>
+                        </div>
+                        <div class="pattern-summary-item">
+                            <span class="pattern-summary-label">Exhale:</span>
+                            <span class="pattern-summary-value" id="summaryOut">5s</span>
+                        </div>
+                        <div class="pattern-summary-item">
+                            <span class="pattern-summary-label">Pause 2:</span>
+                            <span class="pattern-summary-value" id="summaryPause2">0s</span>
+                        </div>
+                        <div class="total-duration" id="totalDuration">
+                            Total: 10s per cycle
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <h6 style="color: #2c5a73;">How to Use:</h6>
+                        <ul style="font-size: 0.9rem; color: #666;">
+                            <li>Select durations for each phase</li>
+                            <li>Choose "No pause" for immediate transition</li>
+                            <li>Pattern will loop continuously</li>
+                            <li>Timer will track your session</li>
+                            <li>Only one pattern can play at a time</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="footer_placeholder"></div>
 </div>
 
@@ -413,6 +692,413 @@
                 if (card) {
                     card.classList.remove('currently-playing');
                 }
+            }
+        }
+    }
+
+    // Programmable Breathing Sequencer
+    class ProgrammableBreathingSequencer {
+        constructor(container, playerId, playerManager) {
+            this.container = container;
+            this.playerId = playerId;
+            this.playerManager = playerManager;
+            this.audioContext = null;
+            this.isPlaying = false;
+            this.isWebAudioSupported = !!window.AudioContext || !!window.webkitAudioContext;
+
+            // Audio buffers storage
+            this.audioBuffers = {
+                in: {},
+                out: {},
+                pause: {}
+            };
+
+            // Current settings
+            this.settings = {
+                inDuration: 5,
+                pause1Duration: 0,
+                outDuration: 5,
+                pause2Duration: 0
+            };
+
+            // Playback state
+            this.currentPhase = 'stopped';
+            this.cycleCount = 0;
+            this.currentSource = null;
+            this.nextPhaseTimeout = null;
+
+            // UI Elements
+            this.playBtn = document.getElementById('programmablePlay');
+            this.pauseBtn = document.getElementById('programmablePause');
+            this.stopBtn = document.getElementById('programmableStop');
+            this.loadingStatus = document.getElementById('programmableLoading');
+            this.currentPhaseElement = document.getElementById('currentPhase');
+            this.cycleCounterElement = document.getElementById('cycleCounter');
+            this.breathVisualizer = document.getElementById('breathVisualizer');
+
+            // Select elements
+            this.inDurationSelect = document.getElementById('inDuration');
+            this.pause1DurationSelect = document.getElementById('pause1Duration');
+            this.outDurationSelect = document.getElementById('outDuration');
+            this.pause2DurationSelect = document.getElementById('pause2Duration');
+
+            // Summary elements
+            this.summaryIn = document.getElementById('summaryIn');
+            this.summaryPause1 = document.getElementById('summaryPause1');
+            this.summaryOut = document.getElementById('summaryOut');
+            this.summaryPause2 = document.getElementById('summaryPause2');
+            this.totalDurationElement = document.getElementById('totalDuration');
+
+            this.init();
+        }
+
+        async init() {
+            if (!this.isWebAudioSupported) {
+                this.fallbackToHTML5Audio();
+                return;
+            }
+
+            try {
+                // Initialize Audio Context
+                this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+                // Load all audio files
+                await this.loadAllAudioFiles();
+
+                // Enable buttons
+                this.playBtn.disabled = false;
+                this.pauseBtn.disabled = false;
+                this.stopBtn.disabled = false;
+
+                // Update loading status
+                this.loadingStatus.textContent = 'Ready to play';
+                this.loadingStatus.style.color = '#4caf50';
+
+                // Set up event listeners
+                this.setupEventListeners();
+
+                // Initialize visualizer
+                this.updateVisualizer();
+                this.updateSummary();
+
+            } catch (error) {
+                console.error('Error initializing programmable sequencer:', error);
+                this.loadingStatus.textContent = 'Error loading audio files';
+                this.loadingStatus.style.color = '#f44336';
+            }
+        }
+
+        async loadAllAudioFiles() {
+            // Load In audio files (5-9 seconds)
+            for (let i = 5; i <= 9; i++) {
+                const url = `BreathIn_DFlat3_${i}.mp3`;
+                this.audioBuffers.in[i] = await this.loadAudioFile(url);
+            }
+
+            // Load Out audio files (5-9 seconds)
+            for (let i = 5; i <= 9; i++) {
+                const url = `BreathOut_C3_${i}.mp3`;
+                this.audioBuffers.out[i] = await this.loadAudioFile(url);
+            }
+
+            // Load Pause audio files (1-8 seconds)
+            for (let i = 1; i <= 8; i++) {
+                const url = `BreathPause_E3_${i}.mp3`;
+                this.audioBuffers.pause[i] = await this.loadAudioFile(url);
+            }
+        }
+
+        async loadAudioFile(url) {
+            try {
+                const response = await fetch(url);
+                const arrayBuffer = await response.arrayBuffer();
+                return await this.audioContext.decodeAudioData(arrayBuffer);
+            } catch (error) {
+                console.error(`Error loading audio file ${url}:`, error);
+                throw error;
+            }
+        }
+
+        fallbackToHTML5Audio() {
+            console.log('Web Audio API not supported for programmable sequencer');
+            this.isWebAudioSupported = false;
+            this.loadingStatus.textContent = 'Programmable patterns require Web Audio API (not supported in your browser)';
+            this.loadingStatus.style.color = '#f44336';
+        }
+
+        setupEventListeners() {
+            // Button event listeners
+            this.playBtn.addEventListener('click', () => this.play());
+            this.pauseBtn.addEventListener('click', () => this.pause());
+            this.stopBtn.addEventListener('click', () => this.stop());
+
+            // Select change listeners
+            this.inDurationSelect.addEventListener('change', () => this.updateSettings());
+            this.pause1DurationSelect.addEventListener('change', () => this.updateSettings());
+            this.outDurationSelect.addEventListener('change', () => this.updateSettings());
+            this.pause2DurationSelect.addEventListener('change', () => this.updateSettings());
+
+            // Resume audio context on first user interaction
+            const resumeAudioContext = () => {
+                if (this.audioContext && this.audioContext.state === 'suspended') {
+                    this.audioContext.resume();
+                }
+                document.removeEventListener('click', resumeAudioContext);
+                document.removeEventListener('touchstart', resumeAudioContext);
+            };
+
+            document.addEventListener('click', resumeAudioContext);
+            document.addEventListener('touchstart', resumeAudioContext);
+        }
+
+        updateSettings() {
+            // Get current values from select elements
+            this.settings.inDuration = parseInt(this.inDurationSelect.value);
+            this.settings.pause1Duration = parseInt(this.pause1DurationSelect.value);
+            this.settings.outDuration = parseInt(this.outDurationSelect.value);
+            this.settings.pause2Duration = parseInt(this.pause2DurationSelect.value);
+
+            // Update visualizer and summary
+            this.updateVisualizer();
+            this.updateSummary();
+
+            // If currently playing, stop and restart with new settings
+            if (this.isPlaying) {
+                this.stop();
+                this.play();
+            }
+        }
+
+        updateVisualizer() {
+            const { inDuration, pause1Duration, outDuration, pause2Duration } = this.settings;
+            const totalDuration = inDuration + pause1Duration + outDuration + pause2Duration;
+
+            // Clear visualizer
+            this.breathVisualizer.innerHTML = '';
+
+            // Calculate percentages for each phase
+            const inPercent = (inDuration / totalDuration) * 100;
+            const pause1Percent = (pause1Duration / totalDuration) * 100;
+            const outPercent = (outDuration / totalDuration) * 100;
+            const pause2Percent = (pause2Duration / totalDuration) * 100;
+
+            // Create phase elements
+            let leftPosition = 0;
+
+            // In phase
+            if (inDuration > 0) {
+                const inElement = document.createElement('div');
+                inElement.className = 'breath-phase phase-in';
+                inElement.style.left = `${leftPosition}%`;
+                inElement.style.width = `${inPercent}%`;
+                inElement.textContent = `IN (${inDuration}s)`;
+                this.breathVisualizer.appendChild(inElement);
+                leftPosition += inPercent;
+            }
+
+            // Pause 1 phase
+            if (pause1Duration > 0) {
+                const pause1Element = document.createElement('div');
+                pause1Element.className = 'breath-phase phase-pause1';
+                pause1Element.style.left = `${leftPosition}%`;
+                pause1Element.style.width = `${pause1Percent}%`;
+                pause1Element.textContent = `PAUSE (${pause1Duration}s)`;
+                this.breathVisualizer.appendChild(pause1Element);
+                leftPosition += pause1Percent;
+            }
+
+            // Out phase
+            if (outDuration > 0) {
+                const outElement = document.createElement('div');
+                outElement.className = 'breath-phase phase-out';
+                outElement.style.left = `${leftPosition}%`;
+                outElement.style.width = `${outPercent}%`;
+                outElement.textContent = `OUT (${outDuration}s)`;
+                this.breathVisualizer.appendChild(outElement);
+                leftPosition += outPercent;
+            }
+
+            // Pause 2 phase
+            if (pause2Duration > 0) {
+                const pause2Element = document.createElement('div');
+                pause2Element.className = 'breath-phase phase-pause2';
+                pause2Element.style.left = `${leftPosition}%`;
+                pause2Element.style.width = `${pause2Percent}%`;
+                pause2Element.textContent = `PAUSE (${pause2Duration}s)`;
+                this.breathVisualizer.appendChild(pause2Element);
+            }
+        }
+
+        updateSummary() {
+            const { inDuration, pause1Duration, outDuration, pause2Duration } = this.settings;
+            const totalDuration = inDuration + pause1Duration + outDuration + pause2Duration;
+
+            // Update summary elements
+            this.summaryIn.textContent = `${inDuration}s`;
+            this.summaryPause1.textContent = pause1Duration > 0 ? `${pause1Duration}s` : 'None';
+            this.summaryOut.textContent = `${outDuration}s`;
+            this.summaryPause2.textContent = pause2Duration > 0 ? `${pause2Duration}s` : 'None';
+            this.totalDurationElement.textContent = `Total: ${totalDuration}s per cycle`;
+        }
+
+        play() {
+            if (!this.isWebAudioSupported || this.isPlaying) return;
+
+            // Notify player manager to switch to this player
+            this.playerManager.switchToPlayer(this.playerId, this);
+
+            // Resume audio context if suspended
+            if (this.audioContext.state === 'suspended') {
+                this.audioContext.resume();
+            }
+
+            this.isPlaying = true;
+            this.currentPhase = 'in';
+            this.cycleCount = 0;
+
+            // Update UI
+            this.playBtn.disabled = true;
+            this.pauseBtn.disabled = false;
+            this.stopBtn.disabled = false;
+            this.playBtn.classList.add('active');
+            this.currentPhaseElement.textContent = 'Starting inhale...';
+
+            // Start the first phase
+            this.playNextPhase();
+        }
+
+        pause() {
+            if (!this.isWebAudioSupported || !this.isPlaying) return;
+
+            // Pause session timer
+            this.playerManager.sessionTimer.pause();
+
+            // Stop current audio
+            if (this.currentSource) {
+                this.currentSource.stop();
+                this.currentSource.disconnect();
+            }
+
+            // Clear any pending phase timeouts
+            if (this.nextPhaseTimeout) {
+                clearTimeout(this.nextPhaseTimeout);
+                this.nextPhaseTimeout = null;
+            }
+
+            this.isPlaying = false;
+            this.currentPhaseElement.textContent = 'Paused';
+
+            // Update UI
+            this.playBtn.disabled = false;
+            this.pauseBtn.disabled = true;
+            this.playBtn.classList.remove('active');
+        }
+
+        stop() {
+            if (!this.isWebAudioSupported) return;
+
+            // Notify player manager that this player stopped
+            this.playerManager.playerStopped(this.playerId);
+
+            // Stop session timer
+            this.playerManager.sessionTimer.stop();
+
+            // Stop current audio
+            if (this.currentSource) {
+                this.currentSource.stop();
+                this.currentSource.disconnect();
+            }
+
+            // Clear any pending phase timeouts
+            if (this.nextPhaseTimeout) {
+                clearTimeout(this.nextPhaseTimeout);
+                this.nextPhaseTimeout = null;
+            }
+
+            this.isPlaying = false;
+            this.currentPhase = 'stopped';
+            this.cycleCount = 0;
+            this.currentPhaseElement.textContent = 'Ready to start';
+            this.cycleCounterElement.textContent = 'Cycle: 0';
+
+            // Update UI
+            this.playBtn.disabled = false;
+            this.pauseBtn.disabled = true;
+            this.stopBtn.disabled = false;
+            this.playBtn.classList.remove('active');
+        }
+
+        playNextPhase() {
+            if (!this.isPlaying) return;
+
+            const { inDuration, pause1Duration, outDuration, pause2Duration } = this.settings;
+
+            // Determine which phase to play next
+            let nextPhase = '';
+            let audioBuffer = null;
+            let phaseDuration = 0;
+
+            switch (this.currentPhase) {
+                case 'in':
+                    audioBuffer = this.audioBuffers.in[inDuration];
+                    phaseDuration = inDuration;
+                    nextPhase = pause1Duration > 0 ? 'pause1' : 'out';
+                    this.currentPhaseElement.textContent = `Inhale (${inDuration}s)`;
+                    break;
+
+                case 'pause1':
+                    audioBuffer = this.audioBuffers.pause[pause1Duration];
+                    phaseDuration = pause1Duration;
+                    nextPhase = 'out';
+                    this.currentPhaseElement.textContent = `Pause after inhale (${pause1Duration}s)`;
+                    break;
+
+                case 'out':
+                    audioBuffer = this.audioBuffers.out[outDuration];
+                    phaseDuration = outDuration;
+                    nextPhase = pause2Duration > 0 ? 'pause2' : 'in';
+                    this.currentPhaseElement.textContent = `Exhale (${outDuration}s)`;
+                    break;
+
+                case 'pause2':
+                    audioBuffer = this.audioBuffers.pause[pause2Duration];
+                    phaseDuration = pause2Duration;
+                    nextPhase = 'in';
+                    this.currentPhaseElement.textContent = `Pause after exhale (${pause2Duration}s)`;
+
+                    // Increment cycle counter after completing a full cycle
+                    this.cycleCount++;
+                    this.cycleCounterElement.textContent = `Cycle: ${this.cycleCount}`;
+                    break;
+
+                default:
+                    // If no phase or stopped, start with 'in'
+                    this.currentPhase = 'in';
+                    audioBuffer = this.audioBuffers.in[inDuration];
+                    phaseDuration = inDuration;
+                    nextPhase = pause1Duration > 0 ? 'pause1' : 'out';
+                    this.currentPhaseElement.textContent = `Inhale (${inDuration}s)`;
+                    break;
+            }
+
+            // Play the audio for the current phase
+            if (audioBuffer && phaseDuration > 0) {
+                this.currentSource = this.audioContext.createBufferSource();
+                this.currentSource.buffer = audioBuffer;
+                this.currentSource.connect(this.audioContext.destination);
+                this.currentSource.start();
+
+                // Schedule next phase
+                this.nextPhaseTimeout = setTimeout(() => {
+                    this.currentPhase = nextPhase;
+                    this.playNextPhase();
+                }, phaseDuration * 1000);
+            } else if (phaseDuration === 0) {
+                // If phase duration is 0 (no pause), immediately go to next phase
+                setTimeout(() => {
+                    this.currentPhase = nextPhase;
+                    this.playNextPhase();
+                }, 0);
             }
         }
     }
@@ -690,9 +1376,18 @@
         );
         playerManager.registerPlayer('88', players.player88);
 
+        // Initialize programmable breathing sequencer
+        const programmableSequencer = new ProgrammableBreathingSequencer(
+            document.getElementById('programmableSection'),
+            'programmable',
+            playerManager
+        );
+        playerManager.registerPlayer('programmable', programmableSequencer);
+
         // Store players and timer for global access if needed
         window.audioPlayers = {
             ...players,
+            programmableSequencer,
             sessionTimer,
             playerManager
         };
