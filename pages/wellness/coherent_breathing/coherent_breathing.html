@@ -290,6 +290,70 @@
             margin-bottom: 5px;
         }
 
+        /* Ticker styles */
+        .breath-visualizer {
+            position: relative;
+        }
+
+        .breath-ticker {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background-color: #ff0000;
+            box-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+            z-index: 10;
+            transition: left 0.1s linear;
+            pointer-events: none;
+        }
+
+        /* Ticker dot at the top */
+        .breath-ticker::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -3px;
+            width: 8px;
+            height: 8px;
+            background-color: #ff0000;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(255, 0, 0, 1);
+        }
+
+        /* Ticker label */
+        .ticker-label {
+            position: absolute;
+            top: -25px;
+            left: -20px;
+            background-color: rgba(255, 0, 0, 0.9);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            white-space: nowrap;
+            z-index: 11;
+        }
+
+        /* Add a subtle animation for the ticker */
+        @keyframes tickerPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .breath-ticker.playing {
+            animation: tickerPulse 2s infinite;
+        }
+
+        /* Visual guide for ticker */
+        .ticker-guide {
+            font-size: 0.75rem;
+            color: #666;
+            text-align: center;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
         /* Responsive improvements */
         @media (max-width: 768px) {
             .programmable-section {
@@ -317,6 +381,21 @@
                 padding: 8px 16px;
                 font-size: 0.9rem;
             }
+
+            .ticker-label {
+                top: -22px;
+                font-size: 0.65rem;
+                left: -15px;
+            }
+        }
+
+        /* Highlight for the new standard pattern */
+        .standard-pattern-highlight {
+            border: 3px solid #4CAF50;
+            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.3);
+        }
+        .standard-pattern-highlight .card-title {
+            color: #388E3C;
         }
     </style>
 </head>
@@ -344,8 +423,44 @@
     <div class="audio-controls">
         <h4 class="mb-4" style="color: #8B4513; text-align: center;">Choose Your Breathing Pattern</h4>
 
+        <!-- New Standard 5.5-5.5 Pattern Row -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card h-100 standard-pattern-highlight" id="card-55.5">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">⭐ STANDARD: 5.5-5.5 Breathing Pattern</h5>
+                        <p class="card-text pattern-description">5.5 seconds inhale, 5.5 seconds exhale - The standard coherent breathing pattern for optimal heart rate variability</p>
+
+                        <!-- Seamless Web Audio API Player -->
+                        <div class="seamless-audio-player" data-audio-id="55.5">
+                            <div class="d-flex justify-content-center gap-2 mb-2">
+                                <button class="btn btn-outline-primary btn-play" disabled>
+                                    ▶️ Play
+                                </button>
+                                <button class="btn btn-outline-secondary btn-pause" disabled>
+                                    ⏸️ Pause
+                                </button>
+                                <button class="btn btn-outline-secondary btn-stop" disabled>
+                                    ⏹️ Stop
+                                </button>
+                            </div>
+                            <div class="audio-status">
+                                <span class="loading-status audio-loading">Loading audio...</span>
+                                <span class="time-status" style="display: none;"></span>
+                            </div>
+                            <!-- Hidden fallback audio element for browsers without Web Audio API -->
+                            <audio class="fallback-audio" controls loop style="display: none;">
+                                <source src="Coherent_Piano_5.5_5.5_fermibot.mp3" type="audio/mp3">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- First Row: 5-5 and 6-6 Patterns -->
         <div class="row">
-            <!-- First Row: 5-5 and 6-6 Patterns -->
             <div class="col-md-6 mb-4">
                 <div class="card h-100" id="card-55">
                     <div class="card-body text-center">
@@ -536,6 +651,7 @@
                             <div class="duration-label">🌬️ Inhale Duration</div>
                             <select class="form-select" id="inDuration">
                                 <option value="5">5s</option>
+                                <option value="5.5" selected>5.5s (Standard)</option>
                                 <option value="6">6s</option>
                                 <option value="7">7s</option>
                                 <option value="8">8s</option>
@@ -566,6 +682,7 @@
                             <div class="duration-label">💨 Exhale Duration</div>
                             <select class="form-select" id="outDuration">
                                 <option value="5">5s</option>
+                                <option value="5.5" selected>5.5s (Standard)</option>
                                 <option value="6">6s</option>
                                 <option value="7">7s</option>
                                 <option value="8">8s</option>
@@ -593,6 +710,9 @@
                     <!-- Breath Visualizer -->
                     <div class="breath-visualizer" id="breathVisualizer">
                         <!-- Will be populated by JavaScript -->
+                    </div>
+                    <div class="ticker-guide" id="tickerGuide">
+                        Red ticker shows current position in breathing cycle
                     </div>
 
                     <!-- Current Phase Indicator -->
@@ -632,7 +752,7 @@
                         <h6>Current Settings:</h6>
                         <div class="pattern-summary-item">
                             <span class="pattern-summary-label">Inhale:</span>
-                            <span class="pattern-summary-value" id="summaryIn">5s</span>
+                            <span class="pattern-summary-value" id="summaryIn">5.5s</span>
                         </div>
                         <div class="pattern-summary-item">
                             <span class="pattern-summary-label">Pause 1:</span>
@@ -640,14 +760,14 @@
                         </div>
                         <div class="pattern-summary-item">
                             <span class="pattern-summary-label">Exhale:</span>
-                            <span class="pattern-summary-value" id="summaryOut">5s</span>
+                            <span class="pattern-summary-value" id="summaryOut">5.5s</span>
                         </div>
                         <div class="pattern-summary-item">
                             <span class="pattern-summary-label">Pause 2:</span>
                             <span class="pattern-summary-value" id="summaryPause2">0s</span>
                         </div>
                         <div class="total-duration" id="totalDuration">
-                            Total: 10s per cycle
+                            Total: 11s per cycle
                         </div>
                     </div>
 
@@ -668,6 +788,7 @@
                             <li>Pattern will loop continuously</li>
                             <li>Timer will track your session</li>
                             <li>Only one pattern can play at a time</li>
+                            <li>Red ticker moves along the bar to show progress</li>
                         </ul>
                     </div>
                 </div>
@@ -820,7 +941,7 @@
         }
     }
 
-    // Programmable Breathing Sequencer - SIMPLIFIED VERSION
+    // Programmable Breathing Sequencer - WITH TICKER
     class ProgrammableBreathingSequencer {
         constructor(container, playerId, playerManager) {
             this.container = container;
@@ -839,9 +960,9 @@
 
             // Current settings
             this.settings = {
-                inDuration: 5,
+                inDuration: 5.5,
                 pause1Duration: 0,
-                outDuration: 5,
+                outDuration: 5.5,
                 pause2Duration: 0
             };
 
@@ -853,6 +974,13 @@
 
             // Custom Timer - using the same SessionTimer class
             this.customTimer = new SessionTimer('customPatternTimer');
+
+            // Ticker properties
+            this.tickerElement = null;
+            this.tickerInterval = null;
+            this.currentTickerPosition = 0;
+            this.cycleStartTime = null;
+            this.cycleDuration = 0;
 
             this.init();
         }
@@ -889,7 +1017,7 @@
                 // Initialize Audio Context
                 this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-                // Load all audio files
+                // Load all audio files (including 5.5 seconds)
                 await this.loadAllAudioFiles();
 
                 // Enable buttons
@@ -908,6 +1036,9 @@
                 this.updateVisualizer();
                 this.updateSummary();
 
+                // Create ticker
+                this.createTicker();
+
             } catch (error) {
                 console.error('Error initializing programmable sequencer:', error);
                 this.loadingStatus.textContent = 'Error loading audio files';
@@ -916,16 +1047,18 @@
         }
 
         async loadAllAudioFiles() {
-            // Load In audio files (5-9 seconds)
-            for (let i = 5; i <= 9; i++) {
-                const url = `BreathIn_DFlat3_${i}.mp3`;
-                this.audioBuffers.in[i] = await this.loadAudioFile(url);
+            // Load In audio files (5, 5.5, 6-9 seconds)
+            const inDurations = [5, 5.5, 6, 7, 8, 9];
+            for (let duration of inDurations) {
+                const url = `BreathIn_DFlat3_${duration}.mp3`;
+                this.audioBuffers.in[duration] = await this.loadAudioFile(url);
             }
 
-            // Load Out audio files (5-9 seconds)
-            for (let i = 5; i <= 9; i++) {
-                const url = `BreathOut_C3_${i}.mp3`;
-                this.audioBuffers.out[i] = await this.loadAudioFile(url);
+            // Load Out audio files (5, 5.5, 6-9 seconds)
+            const outDurations = [5, 5.5, 6, 7, 8, 9];
+            for (let duration of outDurations) {
+                const url = `BreathOut_C3_${duration}.mp3`;
+                this.audioBuffers.out[duration] = await this.loadAudioFile(url);
             }
 
             // Load Pause audio files (1-8 seconds)
@@ -984,14 +1117,19 @@
 
         updateSettings() {
             // Get current values from select elements
-            this.settings.inDuration = parseInt(this.inDurationSelect.value);
+            this.settings.inDuration = parseFloat(this.inDurationSelect.value);
             this.settings.pause1Duration = parseInt(this.pause1DurationSelect.value);
-            this.settings.outDuration = parseInt(this.outDurationSelect.value);
+            this.settings.outDuration = parseFloat(this.outDurationSelect.value);
             this.settings.pause2Duration = parseInt(this.pause2DurationSelect.value);
 
             // Update visualizer and summary
             this.updateVisualizer();
             this.updateSummary();
+
+            // Reset ticker if playing
+            if (this.isPlaying) {
+                this.resetTicker();
+            }
 
             // If currently playing, stop and restart with new settings
             if (this.isPlaying) {
@@ -1003,6 +1141,7 @@
         updateVisualizer() {
             const {inDuration, pause1Duration, outDuration, pause2Duration} = this.settings;
             const totalDuration = inDuration + pause1Duration + outDuration + pause2Duration;
+            this.cycleDuration = totalDuration;
 
             // Check if visualizer element exists
             if (!this.breathVisualizer) {
@@ -1064,6 +1203,9 @@
                 pause2Element.textContent = `PAUSE (${pause2Duration}s)`;
                 this.breathVisualizer.appendChild(pause2Element);
             }
+
+            // Re-create ticker to ensure it's on top
+            this.createTicker();
         }
 
         updateSummary() {
@@ -1076,6 +1218,89 @@
             this.summaryOut.textContent = `${outDuration}s`;
             this.summaryPause2.textContent = pause2Duration > 0 ? `${pause2Duration}s` : 'None';
             this.totalDurationElement.textContent = `Total: ${totalDuration}s per cycle`;
+        }
+
+        // Ticker methods
+        createTicker() {
+            // Remove existing ticker if it exists
+            if (this.tickerElement) {
+                this.tickerElement.remove();
+            }
+
+            // Create ticker element
+            this.tickerElement = document.createElement('div');
+            this.tickerElement.className = 'breath-ticker';
+
+            // Create ticker label
+            const tickerLabel = document.createElement('div');
+            tickerLabel.className = 'ticker-label';
+            tickerLabel.textContent = '●';
+            this.tickerElement.appendChild(tickerLabel);
+
+            // Add ticker to visualizer
+            this.breathVisualizer.appendChild(this.tickerElement);
+
+            // Reset ticker position
+            this.currentTickerPosition = 0;
+            this.updateTickerPosition(0);
+        }
+
+        updateTickerPosition(elapsedSeconds) {
+            if (!this.tickerElement || this.cycleDuration === 0) return;
+
+            // Calculate position as percentage of cycle
+            const positionPercent = (elapsedSeconds % this.cycleDuration) / this.cycleDuration * 100;
+            this.currentTickerPosition = positionPercent;
+
+            // Update ticker position
+            this.tickerElement.style.left = `${positionPercent}%`;
+
+            // Update ticker label with current time in cycle
+            const timeInCycle = elapsedSeconds % this.cycleDuration;
+            const label = this.tickerElement.querySelector('.ticker-label');
+            if (label) {
+                label.textContent = `${Math.floor(timeInCycle)}s`;
+            }
+        }
+
+        startTickerAnimation() {
+            if (this.tickerInterval) {
+                clearInterval(this.tickerInterval);
+            }
+
+            this.cycleStartTime = Date.now();
+
+            this.tickerInterval = setInterval(() => {
+                if (this.isPlaying) {
+                    const elapsedTime = (Date.now() - this.cycleStartTime) / 1000;
+                    this.updateTickerPosition(elapsedTime);
+                }
+            }, 100); // Update 10 times per second for smooth animation
+
+            // Add playing class for animation
+            if (this.tickerElement) {
+                this.tickerElement.classList.add('playing');
+            }
+        }
+
+        stopTickerAnimation() {
+            if (this.tickerInterval) {
+                clearInterval(this.tickerInterval);
+                this.tickerInterval = null;
+            }
+
+            // Reset ticker to start
+            this.updateTickerPosition(0);
+
+            // Remove playing class
+            if (this.tickerElement) {
+                this.tickerElement.classList.remove('playing');
+            }
+        }
+
+        resetTicker() {
+            this.cycleStartTime = Date.now();
+            this.updateTickerPosition(0);
         }
 
         play() {
@@ -1092,6 +1317,9 @@
             this.isPlaying = true;
             this.currentPhase = 'in';
             this.cycleCount = 0;
+
+            // Start ticker animation
+            this.startTickerAnimation();
 
             // Update UI
             this.playBtn.disabled = true;
@@ -1110,6 +1338,9 @@
 
             // Pause custom timer
             this.customTimer.pause();
+
+            // Pause ticker animation
+            this.stopTickerAnimation();
 
             // Stop current audio
             if (this.currentSource) {
@@ -1140,6 +1371,9 @@
 
             // Stop custom timer
             this.customTimer.stop();
+
+            // Stop ticker animation
+            this.stopTickerAnimation();
 
             // Stop current audio
             if (this.currentSource) {
@@ -1207,6 +1441,13 @@
                     // Increment cycle counter after completing a full cycle
                     this.cycleCount++;
                     this.cycleCounterElement.textContent = `Cycle: ${this.cycleCount}`;
+
+                    // Reset ticker for the next cycle
+                    setTimeout(() => {
+                        if (this.isPlaying) {
+                            this.resetTicker();
+                        }
+                    }, phaseDuration * 1000);
                     break;
 
                 default:
@@ -1473,6 +1714,16 @@
 
         // Initialize all pattern players
         const players = {};
+
+        // NEW: 5.5-5.5 pattern player (standard pattern)
+        const player55_5Container = document.querySelector('.seamless-audio-player[data-audio-id="55.5"]');
+        players.player55_5 = new SeamlessAudioPlayer(
+            player55_5Container,
+            'Coherent_Piano_5.5_5.5_fermibot.mp3',
+            '55.5',
+            playerManager
+        );
+        playerManager.registerPlayer('55.5', players.player55_5);
 
         // 5-5 pattern player (first row, first card)
         const player55Container = document.querySelector('.seamless-audio-player[data-audio-id="55"]');

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Poisson Process Visualization</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 20px;
+      background: #f8f9fa;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+    .description {
+      color: #7f8c8d;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .controls {
+      margin: 20px 0;
+      padding: 15px;
+      background: #f1f8ff;
+      border-radius: 5px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+    }
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    label {
+      font-weight: 600;
+    }
+    input[type="range"] {
+      width: 200px;
+    }
+    button {
+      padding: 8px 16px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+    .chart-container {
+      margin: 20px 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .chart {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 10px;
+      background: white;
+    }
+    .chart-title {
+      text-align: center;
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 5px;
+    }
+    .chart-svg {
+      width: 100%;
+      height: 200px;
+    }
+    .tooltip {
+      position: absolute;
+      padding: 8px;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      border-radius: 4px;
+      pointer-events: none;
+      font-size: 12px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .stats {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Poisson Process Visualization</h1>
+  <div class="description">
+    This interactive visualization shows multiple Poisson processes (λ=1).
+    Each chart displays individual observations (gray lines) and the running average (red line)
+    as more samples are collected. The law of large numbers suggests the running average should converge to λ=1.
+  </div>
+
+  <div class="controls">
+    <div class="control-group">
+      <label for="sampleCount">Number of Samples per Chart:</label>
+      <input type="range" id="sampleCount" min="50" max="1000" value="500" step="50">
+      <span id="sampleValue">500</span>
+    </div>
+
+    <div class="control-group">
+      <label for="chartCount">Number of Charts:</label>
+      <input type="range" id="chartCount" min="3" max="30" value="9" step="3">
+      <span id="chartValue">9</span>
+    </div>
+
+    <div class="control-group">
+      <label for="scaleFactor">Vertical Scale:</label>
+      <input type="range" id="scaleFactor" min="1" max="10" value="5" step="0.5">
+      <span id="scaleValue">5</span>
+    </div>
+
+    <button id="generateBtn">Generate New Charts</button>
+    <button id="resetBtn">Reset to Default</button>
+  </div>
+
+  <div id="chartsGrid" class="grid"></div>
+
+  <div class="stats">
+    <h3>Statistics</h3>
+    <div class="stats-grid" id="statsContainer"></div>
+  </div>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+  // Configuration
+  let config = {
+    sampleCount: 500,
+    chartCount: 9,
+    scaleFactor: 5,
+    poissonLambda: 1,
+    maxPoissonValue: 6
+  };
+
+  // Initialize
+  document.addEventListener('DOMContentLoaded', function() {
+    initializeControls();
+    generateCharts();
+  });
+
+  // Set up control event listeners
+  function initializeControls() {
+    // Sample count slider
+    const sampleSlider = document.getElementById('sampleCount');
+    const sampleValue = document.getElementById('sampleValue');
+    sampleSlider.addEventListener('input', function() {
+      config.sampleCount = +this.value;
+      sampleValue.textContent = this.value;
+    });
+
+    // Chart count slider
+    const chartSlider = document.getElementById('chartCount');
+    const chartValue = document.getElementById('chartValue');
+    chartSlider.addEventListener('input', function() {
+      config.chartCount = +this.value;
+      chartValue.textContent = this.value;
+    });
+
+    // Scale factor slider
+    const scaleSlider = document.getElementById('scaleFactor');
+    const scaleValue = document.getElementById('scaleValue');
+    scaleSlider.addEventListener('input', function() {
+      config.scaleFactor = +this.value;
+      scaleValue.textContent = this.value;
+    });
+
+    // Buttons
+    document.getElementById('generateBtn').addEventListener('click', generateCharts);
+    document.getElementById('resetBtn').addEventListener('click', function() {
+      config = {
+        sampleCount: 500,
+        chartCount: 9,
+        scaleFactor: 5,
+        poissonLambda: 1,
+        maxPoissonValue: 6
+      };
+      sampleSlider.value = config.sampleCount;
+      sampleValue.textContent = config.sampleCount;
+      chartSlider.value = config.chartCount;
+      chartValue.textContent = config.chartCount;
+      scaleSlider.value = config.scaleFactor;
+      scaleValue.textContent = config.scaleFactor;
+      generateCharts();
+    });
+  }
+
+  // Generate Poisson distribution samples
+  function generatePoissonSamples(n, lambda) {
+    const samples = [];
+    for (let i = 0; i < n; i++) {
+      // Simple Poisson random variate generation using inverse transform method
+      let L = Math.exp(-lambda);
+      let k = 0;
+      let p = 1;
+
+      do {
+        k++;
+        p *= Math.random();
+      } while (p > L);
+
+      samples.push(k - 1);
+    }
+    return samples;
+  }
+
+  // Calculate running average
+  function calculateRunningAverage(samples) {
+    const runningAvg = [];
+    let sum = 0;
+
+    for (let i = 0; i < samples.length; i++) {
+      sum += samples[i];
+      runningAvg.push({
+        index: i,
+        value: sum / (i + 1)
+      });
+    }
+
+    return runningAvg;
+  }
+
+  // Create a single chart
+  function createChart(containerId, samples) {
+    const margin = { top: 20, right: 20, bottom: 30, left: 40 };
+    const width = 280 - margin.left - margin.right;
+    const height = 180 - margin.top - margin.bottom;
+
+    // Clear existing chart
+    d3.select(`#${containerId}`).html('');
+
+    const svg = d3.select(`#${containerId}`)
+            .append('svg')
+            .attr('width', width + margin.left + margin.right)
+            .attr('height', height + margin.top + margin.bottom)
+            .append('g')
+            .attr('transform', `translate(${margin.left},${margin.top})`);
+
+    // Calculate scale factor for vertical positioning
+    const scale = config.scaleFactor * 0.001;
+
+    // Create scales
+    const xScale = d3.scaleLinear()
+            .domain([0, config.maxPoissonValue])
+            .range([0, width]);
+
+    const yScale = d3.scaleLinear()
+            .domain([0, config.sampleCount * scale])
+            .range([height, 0]);
+
+    // Add grid lines
+    svg.append('g')
+            .attr('class', 'grid')
+            .attr('transform', `translate(0,${height})`)
+            .call(d3.axisBottom(xScale)
+                    .tickSize(-height)
+                    .tickFormat('')
+            )
+            .style('stroke', '#e0e0e0')
+            .style('stroke-opacity', 0.5);
+
+    svg.append('g')
+            .attr('class', 'grid')
+            .call(d3.axisLeft(yScale)
+                    .tickSize(-width)
+                    .tickFormat('')
+            )
+            .style('stroke', '#e0e0e0')
+            .style('stroke-opacity', 0.5);
+
+    // Add axes
+    svg.append('g')
+            .attr('transform', `translate(0,${height})`)
+            .call(d3.axisBottom(xScale))
+            .style('font-size', '10px');
+
+    svg.append('g')
+            .call(d3.axisLeft(yScale)
+                    .tickFormat(d => Math.round(d / scale)))
+            .style('font-size', '10px');
+
+    // Add individual observation lines (gray lines)
+    samples.forEach((sample, index) => {
+      const yPos = yScale(index * scale);
+
+      svg.append('line')
+              .attr('x1', xScale(0))
+              .attr('y1', yPos)
+              .attr('x2', xScale(sample))
+              .attr('y2', yPos)
+              .attr('stroke', 'rgba(0, 0, 0, 0.1)')
+              .attr('stroke-width', 1)
+              .on('mouseover', function(event, d) {
+                d3.select('#tooltip')
+                        .style('opacity', 1)
+                        .html(`Sample ${index + 1}<br>Value: ${sample.toFixed(2)}`)
+                        .style('left', (event.pageX + 10) + 'px')
+                        .style('top', (event.pageY - 10) + 'px');
+              })
+              .on('mouseout', function() {
+                d3.select('#tooltip').style('opacity', 0);
+              });
+    });
+
+    // Calculate and add running average line (red line)
+    const runningAvg = calculateRunningAverage(samples);
+
+    const line = d3.line()
+            .x(d => xScale(d.value))
+            .y(d => yScale(d.index * scale))
+            .curve(d3.curveMonotoneX);
+
+    svg.append('path')
+            .datum(runningAvg)
+            .attr('fill', 'none')
+            .attr('stroke', '#e74c3c')
+            .attr('stroke-width', 2)
+            .attr('d', line)
+            .on('mouseover', function() {
+              d3.select(this)
+                      .attr('stroke-width', 3);
+            })
+            .on('mouseout', function() {
+              d3.select(this)
+                      .attr('stroke-width', 2);
+            })
+            .on('mousemove', function(event) {
+              const [x, y] = d3.pointer(event, this);
+              const xValue = xScale.invert(x);
+              const yIndex = Math.round(yScale.invert(y) / scale);
+
+              if (yIndex >= 0 && yIndex < runningAvg.length) {
+                const point = runningAvg[yIndex];
+                d3.select('#tooltip')
+                        .style('opacity', 1)
+                        .html(`Sample ${yIndex + 1}<br>Running average: ${point.value.toFixed(4)}`)
+                        .style('left', (event.pageX + 10) + 'px')
+                        .style('top', (event.pageY - 10) + 'px');
+              }
+            });
+
+    // Add reference line at lambda = 1
+    svg.append('line')
+            .attr('x1', xScale(config.poissonLambda))
+            .attr('y1', 0)
+            .attr('x2', xScale(config.poissonLambda))
+            .attr('y2', height)
+            .attr('stroke', '#3498db')
+            .attr('stroke-width', 1)
+            .attr('stroke-dasharray', '3,3');
+
+    // Add chart title with final average
+    const finalAvg = runningAvg[runningAvg.length - 1].value;
+    svg.append('text')
+            .attr('x', width / 2)
+            .attr('y', -5)
+            .attr('text-anchor', 'middle')
+            .style('font-size', '11px')
+            .style('fill', '#666')
+            .text(`Final avg: ${finalAvg.toFixed(3)}`);
+
+    return {
+      samples: samples,
+      finalAverage: finalAvg
+    };
+  }
+
+  // Generate all charts
+  function generateCharts() {
+    const grid = d3.select('#chartsGrid');
+    grid.html('');
+
+    const chartsPerRow = 3;
+    const chartData = [];
+
+    // Create chart containers
+    for (let i = 0; i < config.chartCount; i++) {
+      const chartId = `chart-${i}`;
+
+      const chartContainer = grid.append('div')
+              .attr('class', 'chart');
+
+      chartContainer.append('div')
+              .attr('class', 'chart-title')
+              .text(`Process ${i + 1}`);
+
+      chartContainer.append('div')
+              .attr('id', chartId)
+              .attr('class', 'chart-svg');
+
+      // Generate samples and create chart
+      const samples = generatePoissonSamples(config.sampleCount, config.poissonLambda);
+      const chartInfo = createChart(chartId, samples);
+      chartData.push(chartInfo);
+    }
+
+    // Update statistics
+    updateStatistics(chartData);
+  }
+
+  // Update statistics display
+  function updateStatistics(chartData) {
+    const finalAverages = chartData.map(d => d.finalAverage);
+    const mean = d3.mean(finalAverages);
+    const variance = d3.variance(finalAverages);
+    const stdDev = Math.sqrt(variance);
+
+    const statsContainer = d3.select('#statsContainer');
+    statsContainer.html('');
+
+    const stats = [
+      { label: 'Number of Processes', value: chartData.length },
+      { label: 'Samples per Process', value: config.sampleCount },
+      { label: 'Target λ', value: config.poissonLambda },
+      { label: 'Mean of Final Averages', value: mean.toFixed(4) },
+      { label: 'Standard Deviation', value: stdDev.toFixed(4) },
+      { label: 'Maximum Final Average', value: d3.max(finalAverages).toFixed(4) },
+      { label: 'Minimum Final Average', value: d3.min(finalAverages).toFixed(4) }
+    ];
+
+    stats.forEach(stat => {
+      statsContainer.append('div')
+              .html(`<strong>${stat.label}:</strong> ${stat.value}`);
+    });
+  }
+</script>
+</body>
+</html>
