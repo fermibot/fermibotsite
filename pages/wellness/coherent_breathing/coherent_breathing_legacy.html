@@ -1,0 +1,1787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wellness | Coherent Breathing</title>
+
+    <link rel="stylesheet" href="../../../d3_templates/hierarchical_dendrogram.css">
+    <link rel="stylesheet" href="../../../index.css">
+    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
+
+    <script src="../../../d3/d3.v4.min.js"></script>
+    <script src="../../../automation/loadObjects.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../js/highlight/styles/default.css">
+    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../external_libraries/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../index.css">
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <script src="../../../js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <style>
+        .audio-controls {
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 25px;
+            border: 1px solid #dee2e6;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .card {
+            border: 1px solid rgba(139, 69, 19, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            height: 100%;
+        }
+
+        .card-title {
+            color: #8B4513;
+            font-weight: 600;
+        }
+
+        .btn-outline-primary {
+            border-color: #8B4513;
+            color: #8B4513;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: #8B4513;
+            border-color: #8B4513;
+        }
+
+        .btn-outline-primary.active {
+            background-color: #8B4513;
+            color: white;
+        }
+
+        .btn-outline-secondary {
+            border-color: #6c757d;
+            color: #6c757d;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .audio-status {
+            font-size: 0.9rem;
+            margin-top: 10px;
+            color: #666;
+        }
+
+        .audio-loading {
+            color: #8B4513;
+            font-style: italic;
+        }
+
+        /* Session timer styles */
+        .session-timer-container {
+            background: linear-gradient(135deg, #fdf6e3, #f5e6d3);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 1px solid #e0c9a6;
+            text-align: center;
+        }
+
+        .session-timer {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #8B4513;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+        }
+
+        .timer-label {
+            font-size: 0.9rem;
+            color: #996633;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .currently-playing {
+            background-color: rgba(139, 69, 19, 0.05);
+            border: 2px solid #8B4513;
+            box-shadow: 0 5px 20px rgba(139, 69, 19, 0.15);
+        }
+
+        .currently-playing .card-title {
+            color: #5D2906;
+            font-weight: 700;
+        }
+
+        /* Programmable breathing section - Minimalist */
+        .programmable-section {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            border: 1px solid #dee2e6;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .programmable-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .duration-label {
+            font-weight: 600;
+            color: #5a5a5a;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .form-select {
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-size: 0.95rem;
+        }
+
+        .form-select:focus {
+            border-color: #8B4513;
+            box-shadow: 0 0 0 0.15rem rgba(139, 69, 19, 0.15);
+        }
+
+        /* Minimalist Breath Visualizer */
+        .breath-visualizer {
+            height: 60px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e9ecef;
+        }
+
+        .breath-phase {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: width 0.3s ease;
+        }
+
+        /* Softer phase colors */
+        .phase-in {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-right: 1px solid #b2dfb2;
+        }
+
+        .phase-pause1 {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border-right: 1px solid #ffcc80;
+        }
+
+        .phase-out {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-right: 1px solid #90caf9;
+        }
+
+        .phase-pause2 {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-right: 1px solid #ce93d8;
+        }
+
+        .current-phase-indicator {
+            margin-top: 15px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #5a5a5a;
+            text-align: center;
+            border: 1px solid #e9ecef;
+            font-size: 0.95rem;
+        }
+
+        .cycle-counter {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #5a5a5a;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .pattern-summary {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border: 1px solid #e9ecef;
+        }
+
+        .pattern-summary h6 {
+            color: #5a5a5a;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .pattern-summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .pattern-summary-label {
+            font-weight: 500;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .pattern-summary-value {
+            font-weight: 600;
+            color: #8B4513;
+            font-size: 0.9rem;
+        }
+
+        .total-duration {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #5a5a5a;
+            text-align: center;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        /* Custom Timer Styles */
+        .custom-timer-container {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 1px solid #dee2e6;
+            text-align: center;
+        }
+
+        .custom-timer {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c5a73;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+        }
+
+        .custom-timer-label {
+            font-size: 0.9rem;
+            color: #5a5a5a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        /* Ticker styles */
+        .breath-visualizer {
+            position: relative;
+        }
+
+        .breath-ticker {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background-color: #ff0000;
+            box-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+            z-index: 10;
+            transition: left 0.1s linear;
+            pointer-events: none;
+        }
+
+        /* Ticker dot at the top */
+        .breath-ticker::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -3px;
+            width: 8px;
+            height: 8px;
+            background-color: #ff0000;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(255, 0, 0, 1);
+        }
+
+        /* Ticker label */
+        .ticker-label {
+            position: absolute;
+            top: -25px;
+            left: -20px;
+            background-color: rgba(255, 0, 0, 0.9);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            white-space: nowrap;
+            z-index: 11;
+        }
+
+        /* Add a subtle animation for the ticker */
+        @keyframes tickerPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .breath-ticker.playing {
+            animation: tickerPulse 2s infinite;
+        }
+
+        /* Visual guide for ticker */
+        .ticker-guide {
+            font-size: 0.75rem;
+            color: #666;
+            text-align: center;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        /* Responsive improvements */
+        @media (max-width: 768px) {
+            .programmable-section {
+                padding: 15px;
+            }
+
+            .programmable-card {
+                padding: 15px;
+            }
+
+            .breath-visualizer {
+                height: 50px;
+                margin: 15px 0;
+            }
+
+            .breath-phase {
+                font-size: 0.75rem;
+            }
+
+            .custom-timer {
+                font-size: 1.5rem;
+            }
+
+            .btn-outline-primary, .btn-outline-secondary {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+
+            .ticker-label {
+                top: -22px;
+                font-size: 0.65rem;
+                left: -15px;
+            }
+        }
+
+        /* Highlight for the new standard pattern */
+        .standard-pattern-highlight {
+            border: 1px solid #4CAF50;
+            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.3);
+        }
+        .standard-pattern-highlight .card-title {
+            color: #388E3C;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-lg card p-5">
+    <div id="header_placeholder"></div>
+
+    <h1 class="d-grid gap-3 justify-content-center p-2 mb-4" style="color: #8B4513;">Wellness | Coherent Breathing</h1>
+
+    <p class="text-center mb-4" style="font-size: 1.1rem; color: #555;">Coherent breathing has personally benefited me
+        for many years.</p>
+
+
+    <!-- Session Timer Display -->
+    <div class="session-timer-container">
+        <div class="timer-label">Session Timer</div>
+        <div class="session-timer" id="sessionTimer">00:00:00</div>
+        <div class="mt-2" style="font-size: 0.8rem; color: #996633;">
+            ⏱️ Timer resets when switching patterns. Only one pattern plays at a time.
+        </div>
+    </div>
+
+    <!-- Audio Controls -->
+    <div class="audio-controls">
+        <h4 class="mb-4" style="color: #8B4513; text-align: center;">Choose Your Breathing Pattern</h4>
+
+        <!-- New Standard 5.5-5.5 Pattern Row -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card h-100 standard-pattern-highlight" id="card-55.5">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">⭐ [Standard] 5.5-5.5 Breathing Pattern</h5>
+                        <p class="card-text pattern-description">5.5 seconds inhale, 5.5 seconds exhale - The standard coherent breathing pattern for optimal heart rate variability</p>
+
+                        <!-- Seamless Web Audio API Player -->
+                        <div class="seamless-audio-player" data-audio-id="55.5">
+                            <div class="d-flex justify-content-center gap-2 mb-2">
+                                <button class="btn btn-outline-primary btn-play" disabled>
+                                    ▶️ Play
+                                </button>
+                                <button class="btn btn-outline-secondary btn-pause" disabled>
+                                    ⏸️ Pause
+                                </button>
+                                <button class="btn btn-outline-secondary btn-stop" disabled>
+                                    ⏹️ Stop
+                                </button>
+                            </div>
+                            <div class="audio-status">
+                                <span class="loading-status audio-loading">Loading audio...</span>
+                                <span class="time-status" style="display: none;"></span>
+                            </div>
+                            <!-- Hidden fallback audio element for browsers without Web Audio API -->
+                            <audio class="fallback-audio" controls loop style="display: none;">
+                                <source src="Coherent_Piano_5.5_5.5_fermibot.mp3" type="audio/mp3">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- First Row: 5-5 and 6-6 Patterns -->
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100" id="card-55">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">🌼 5-5 Breathing Pattern</h5>
+                        <p class="card-text pattern-description">5 seconds inhale, 5 seconds exhale - For energy and
+                            focus</p>
+
+                        <!-- Seamless Web Audio API Player -->
+                        <div class="seamless-audio-player" data-audio-id="55">
+                            <div class="d-flex justify-content-center gap-2 mb-2">
+                                <button class="btn btn-outline-primary btn-play" disabled>
+                                    ▶️ Play
+                                </button>
+                                <button class="btn btn-outline-secondary btn-pause" disabled>
+                                    ⏸️ Pause
+                                </button>
+                                <button class="btn btn-outline-secondary btn-stop" disabled>
+                                    ⏹️ Stop
+                                </button>
+                            </div>
+                            <div class="audio-status">
+                                <span class="loading-status audio-loading">Loading audio...</span>
+                                <span class="time-status" style="display: none;"></span>
+                            </div>
+                            <!-- Hidden fallback audio element for browsers without Web Audio API -->
+                            <audio class="fallback-audio" controls loop style="display: none;">
+                                <source src="Coherent_Piano_5_5_fermibot.mp3" type="audio/mp3">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card h-100" id="card-66">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">🌸 6-6 Breathing Pattern</h5>
+                        <p class="card-text pattern-description">6 seconds inhale, 6 seconds exhale - Perfect for
+                            relaxation</p>
+
+                        <!-- Seamless Web Audio API Player -->
+                        <div class="seamless-audio-player" data-audio-id="66">
+                            <div class="d-flex justify-content-center gap-2 mb-2">
+                                <button class="btn btn-outline-primary btn-play" disabled>
+                                    ▶️ Play
+                                </button>
+                                <button class="btn btn-outline-secondary btn-pause" disabled>
+                                    ⏸️ Pause
+                                </button>
+                                <button class="btn btn-outline-secondary btn-stop" disabled>
+                                    ⏹️ Stop
+                                </button>
+                            </div>
+                            <div class="audio-status">
+                                <span class="loading-status audio-loading">Loading audio...</span>
+                                <span class="time-status" style="display: none;"></span>
+                            </div>
+                            <!-- Hidden fallback audio element for browsers without Web Audio API -->
+                            <audio class="fallback-audio" controls loop style="display: none;">
+                                <source src="Coherent_Piano_6_6_fermibot.mp3" type="audio/mp3">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Second Row: 7-7 and 8-8 Patterns -->
+            <div class="col-md-6 mb-4">
+                <div class="card h-100" id="card-77">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">🌿 7-7 Breathing Pattern</h5>
+                        <p class="card-text pattern-description">7 seconds inhale, 7 seconds exhale - For deep
+                            relaxation</p>
+
+                        <!-- Seamless Web Audio API Player -->
+                        <div class="seamless-audio-player" data-audio-id="77">
+                            <div class="d-flex justify-content-center gap-2 mb-2">
+                                <button class="btn btn-outline-primary btn-play" disabled>
+                                    ▶️ Play
+                                </button>
+                                <button class="btn btn-outline-secondary btn-pause" disabled>
+                                    ⏸️ Pause
+                                </button>
+                                <button class="btn btn-outline-secondary btn-stop" disabled>
+                                    ⏹️ Stop
+                                </button>
+                            </div>
+                            <div class="audio-status">
+                                <span class="loading-status audio-loading">Loading audio...</span>
+                                <span class="time-status" style="display: none;"></span>
+                            </div>
+                            <!-- Hidden fallback audio element for browsers without Web Audio API -->
+                            <audio class="fallback-audio" controls loop style="display: none;">
+                                <source src="Coherent_Piano_7_7_fermibot.mp3" type="audio/mp3">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card h-100" id="card-88">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">🌊 8-8 Breathing Pattern</h5>
+                        <p class="card-text pattern-description">8 seconds inhale, 8 seconds exhale - For meditation and
+                            calm</p>
+
+                        <!-- Seamless Web Audio API Player -->
+                        <div class="seamless-audio-player" data-audio-id="88">
+                            <div class="d-flex justify-content-center gap-2 mb-2">
+                                <button class="btn btn-outline-primary btn-play" disabled>
+                                    ▶️ Play
+                                </button>
+                                <button class="btn btn-outline-secondary btn-pause" disabled>
+                                    ⏸️ Pause
+                                </button>
+                                <button class="btn btn-outline-secondary btn-stop" disabled>
+                                    ⏹️ Stop
+                                </button>
+                            </div>
+                            <div class="audio-status">
+                                <span class="loading-status audio-loading">Loading audio...</span>
+                                <span class="time-status" style="display: none;"></span>
+                            </div>
+                            <!-- Hidden fallback audio element for browsers without Web Audio API -->
+                            <audio class="fallback-audio" controls loop style="display: none;">
+                                <source src="Coherent_Piano_8_8_fermibot.mp3" type="audio/mp3">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <p class="text-muted" style="font-size: 0.9rem;">
+                <strong>Note:</strong> Using Web Audio API for seamless looping without gaps between cycles.
+                Only one pattern can play at a time. Timer resets when switching patterns.
+            </p>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <iframe
+                class="card-body align-self-lg-center row-cols-1"
+                width="640"
+                height="360"
+                src="https://www.youtube.com/embed/q06YIWCR2Js"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+        </iframe>
+
+        <iframe
+                class="card-body align-self-lg-center"
+                width="640"
+                height="360"
+                src="https://www.youtube.com/embed/Q_fFattg8N0?pp=ygUnYmVpbmcgYnJpbGxpYW50IGV2ZXJ5IHNpbmdsZSBkYXkgcGFydCAy2AYD"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+        </iframe>
+    </div>
+
+    <!-- Programmable Breathing Section -->
+    <div class="programmable-section" id="programmableSection">
+        <h4 class="mb-4" style="color: #2c5a73; text-align: center;">🎛️ Custom Breathing Pattern Creator</h4>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="programmable-card">
+                    <h5 class="mb-4" style="color: #2c5a73;">Configure Your Breathing Pattern</h5>
+
+                    <div class="row">
+                        <!-- In Duration -->
+                        <div class="col-md-6 duration-selector">
+                            <div class="duration-label">🌬️ Inhale Duration</div>
+                            <select class="form-select" id="inDuration">
+                                <option value="5">5s</option>
+                                <option value="5.5" selected>5.5s (Standard)</option>
+                                <option value="6">6s</option>
+                                <option value="7">7s</option>
+                                <option value="8">8s</option>
+                                <option value="9">9s</option>
+                            </select>
+                        </div>
+
+                        <!-- First Pause -->
+                        <div class="col-md-6 duration-selector">
+                            <div class="duration-label">⏸️ Pause After Inhale</div>
+                            <select class="form-select" id="pause1Duration">
+                                <option value="0">No pause</option>
+                                <option value="1">1s</option>
+                                <option value="2">2s</option>
+                                <option value="3">3s</option>
+                                <option value="4">4s</option>
+                                <option value="5">5s</option>
+                                <option value="6">6s</option>
+                                <option value="7">7s</option>
+                                <option value="8">8s</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Out Duration -->
+                        <div class="col-md-6 duration-selector">
+                            <div class="duration-label">💨 Exhale Duration</div>
+                            <select class="form-select" id="outDuration">
+                                <option value="5">5s</option>
+                                <option value="5.5" selected>5.5s (Standard)</option>
+                                <option value="6">6s</option>
+                                <option value="7">7s</option>
+                                <option value="8">8s</option>
+                                <option value="9">9s</option>
+                            </select>
+                        </div>
+
+                        <!-- Second Pause -->
+                        <div class="col-md-6 duration-selector">
+                            <div class="duration-label">⏸️ Pause After Exhale</div>
+                            <select class="form-select" id="pause2Duration">
+                                <option value="0">No pause</option>
+                                <option value="1">1s</option>
+                                <option value="2">2s</option>
+                                <option value="3">3s</option>
+                                <option value="4">4s</option>
+                                <option value="5">5s</option>
+                                <option value="6">6s</option>
+                                <option value="7">7s</option>
+                                <option value="8">8s</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Breath Visualizer -->
+                    <div class="breath-visualizer" id="breathVisualizer">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                    <div class="ticker-guide" id="tickerGuide">
+                        Red ticker shows current position in breathing cycle
+                    </div>
+
+                    <!-- Current Phase Indicator -->
+                    <div class="current-phase-indicator" id="currentPhase">
+                        Ready to start
+                    </div>
+
+                    <!-- Cycle Counter -->
+                    <div class="cycle-counter" id="cycleCounter">
+                        Cycle: 0
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="d-flex justify-content-center gap-3 mt-4">
+                        <button class="btn btn-outline-primary btn-lg" id="programmablePlay" disabled>
+                            ▶️ Start Custom Pattern
+                        </button>
+                        <button class="btn btn-outline-secondary btn-lg" id="programmablePause" disabled>
+                            ⏸️ Pause
+                        </button>
+                        <button class="btn btn-outline-secondary btn-lg" id="programmableStop" disabled>
+                            ⏹️ Stop
+                        </button>
+                    </div>
+
+                    <div class="audio-status mt-3 text-center">
+                        <span class="loading-status" id="programmableLoading">Loading audio files...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="programmable-card">
+                    <h5 class="mb-4" style="color: #2c5a73;">Pattern Summary</h5>
+
+                    <div class="pattern-summary">
+                        <h6>Current Settings:</h6>
+                        <div class="pattern-summary-item">
+                            <span class="pattern-summary-label">Inhale:</span>
+                            <span class="pattern-summary-value" id="summaryIn">5.5s</span>
+                        </div>
+                        <div class="pattern-summary-item">
+                            <span class="pattern-summary-label">Pause 1:</span>
+                            <span class="pattern-summary-value" id="summaryPause1">0s</span>
+                        </div>
+                        <div class="pattern-summary-item">
+                            <span class="pattern-summary-label">Exhale:</span>
+                            <span class="pattern-summary-value" id="summaryOut">5.5s</span>
+                        </div>
+                        <div class="pattern-summary-item">
+                            <span class="pattern-summary-label">Pause 2:</span>
+                            <span class="pattern-summary-value" id="summaryPause2">0s</span>
+                        </div>
+                        <div class="total-duration" id="totalDuration">
+                            Total: 11s per cycle
+                        </div>
+                    </div>
+
+                    <!-- Custom Timer Display -->
+                    <div class="custom-timer-container">
+                        <div class="custom-timer-label">Custom Pattern Timer</div>
+                        <div class="custom-timer" id="customPatternTimer">00:00:00</div>
+                        <div class="mt-2" style="font-size: 0.8rem; color: #6c757d;">
+                            ⏱️ Tracks only this custom pattern session
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <h6 style="color: #2c5a73;">How to Use:</h6>
+                        <ul style="font-size: 0.9rem; color: #666;">
+                            <li>Select durations for each phase</li>
+                            <li>Choose "No pause" for immediate transition</li>
+                            <li>Pattern will loop continuously</li>
+                            <li>Timer will track your session</li>
+                            <li>Only one pattern can play at a time</li>
+                            <li>Red ticker moves along the bar to show progress</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer_placeholder"></div>
+</div>
+
+<script>
+    loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html", "../../../automation/theme_toggle.html")
+</script>
+
+<script>
+    // Session Timer Manager
+    class SessionTimer {
+        constructor(timerElementId) {
+            this.timerElement = document.getElementById(timerElementId);
+            this.startTime = null;
+            this.elapsedTime = 0;
+            this.timerInterval = null;
+            this.isRunning = false;
+        }
+
+        start() {
+            if (this.isRunning) return;
+
+            this.startTime = Date.now() - this.elapsedTime;
+            this.isRunning = true;
+
+            this.timerInterval = setInterval(() => {
+                this.updateDisplay();
+            }, 1000);
+
+            this.updateDisplay();
+        }
+
+        pause() {
+            if (!this.isRunning) return;
+
+            this.elapsedTime = Date.now() - this.startTime;
+            this.isRunning = false;
+
+            if (this.timerInterval) {
+                clearInterval(this.timerInterval);
+                this.timerInterval = null;
+            }
+        }
+
+        stop() {
+            this.isRunning = false;
+            this.elapsedTime = 0;
+            this.startTime = null;
+
+            if (this.timerInterval) {
+                clearInterval(this.timerInterval);
+                this.timerInterval = null;
+            }
+
+            this.updateDisplay();
+        }
+
+        resetAndStart() {
+            this.stop();
+            this.start();
+        }
+
+        updateDisplay() {
+            let displayTime = this.elapsedTime;
+
+            if (this.isRunning && this.startTime) {
+                displayTime = Date.now() - this.startTime;
+            }
+
+            const hours = Math.floor(displayTime / 3600000);
+            const minutes = Math.floor((displayTime % 3600000) / 60000);
+            const seconds = Math.floor((displayTime % 60000) / 1000);
+
+            this.timerElement.textContent =
+                `${hours.toString().padStart(2, '0')}:` +
+                `${minutes.toString().padStart(2, '0')}:` +
+                `${seconds.toString().padStart(2, '0')}`;
+        }
+    }
+
+    // Audio Player Manager - controls all players
+    class AudioPlayerManager {
+        constructor(sessionTimer) {
+            this.sessionTimer = sessionTimer;
+            this.players = {};
+            this.currentPlayer = null;
+        }
+
+        registerPlayer(playerId, player) {
+            this.players[playerId] = player;
+        }
+
+        switchToPlayer(playerId, player) {
+            // If there's a currently playing player, stop it first
+            if (this.currentPlayer && this.currentPlayer !== playerId) {
+                // Stop the current player
+                this.players[this.currentPlayer].stop();
+
+                // If stopping the custom player, stop its custom timer
+                if (this.currentPlayer === 'programmable' && this.players['programmable'].customTimer) {
+                    this.players['programmable'].customTimer.stop();
+                }
+
+                // Remove active styling from previous player's card
+                const prevCard = document.getElementById(`card-${this.currentPlayer}`);
+                if (prevCard) {
+                    prevCard.classList.remove('currently-playing');
+                }
+            }
+
+            // Reset appropriate timer based on player type
+            if (playerId === 'programmable') {
+                // For custom player: reset and start custom timer
+                if (player.customTimer) {
+                    player.customTimer.resetAndStart();
+                }
+            } else {
+                // For regular players: reset and start main timer
+                this.sessionTimer.resetAndStart();
+            }
+
+            // Set new current player
+            this.currentPlayer = playerId;
+
+            // Add active styling to new player's card
+            const currentCard = document.getElementById(`card-${playerId}`);
+            if (currentCard) {
+                currentCard.classList.add('currently-playing');
+            }
+
+            return player;
+        }
+
+        playerStopped(playerId) {
+            // If the stopped player was the current player, clear current player
+            if (this.currentPlayer === playerId) {
+                this.currentPlayer = null;
+                // Remove active styling from card
+                const card = document.getElementById(`card-${playerId}`);
+                if (card) {
+                    card.classList.remove('currently-playing');
+                }
+            }
+        }
+    }
+
+    // Programmable Breathing Sequencer - WITH TICKER
+    class ProgrammableBreathingSequencer {
+        constructor(container, playerId, playerManager) {
+            this.container = container;
+            this.playerId = playerId;
+            this.playerManager = playerManager;
+            this.audioContext = null;
+            this.isPlaying = false;
+            this.isWebAudioSupported = !!window.AudioContext || !!window.webkitAudioContext;
+
+            // Audio buffers storage
+            this.audioBuffers = {
+                in: {},
+                out: {},
+                pause: {}
+            };
+
+            // Current settings
+            this.settings = {
+                inDuration: 5.5,
+                pause1Duration: 0,
+                outDuration: 5.5,
+                pause2Duration: 0
+            };
+
+            // Playback state
+            this.currentPhase = 'stopped';
+            this.cycleCount = 0;
+            this.currentSource = null;
+            this.nextPhaseTimeout = null;
+
+            // Custom Timer - using the same SessionTimer class
+            this.customTimer = new SessionTimer('customPatternTimer');
+
+            // Ticker properties
+            this.tickerElement = null;
+            this.tickerInterval = null;
+            this.currentTickerPosition = 0;
+            this.cycleStartTime = null;
+            this.cycleDuration = 0;
+
+            this.init();
+        }
+
+        async init() {
+            // First, get all DOM elements
+            this.playBtn = document.getElementById('programmablePlay');
+            this.pauseBtn = document.getElementById('programmablePause');
+            this.stopBtn = document.getElementById('programmableStop');
+            this.loadingStatus = document.getElementById('programmableLoading');
+            this.currentPhaseElement = document.getElementById('currentPhase');
+            this.cycleCounterElement = document.getElementById('cycleCounter');
+            this.breathVisualizer = document.getElementById('breathVisualizer');
+
+            // Select elements
+            this.inDurationSelect = document.getElementById('inDuration');
+            this.pause1DurationSelect = document.getElementById('pause1Duration');
+            this.outDurationSelect = document.getElementById('outDuration');
+            this.pause2DurationSelect = document.getElementById('pause2Duration');
+
+            // Summary elements
+            this.summaryIn = document.getElementById('summaryIn');
+            this.summaryPause1 = document.getElementById('summaryPause1');
+            this.summaryOut = document.getElementById('summaryOut');
+            this.summaryPause2 = document.getElementById('summaryPause2');
+            this.totalDurationElement = document.getElementById('totalDuration');
+
+            if (!this.isWebAudioSupported) {
+                this.fallbackToHTML5Audio();
+                return;
+            }
+
+            try {
+                // Initialize Audio Context
+                this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+                // Load all audio files (including 5.5 seconds)
+                await this.loadAllAudioFiles();
+
+                // Enable buttons
+                this.playBtn.disabled = false;
+                this.pauseBtn.disabled = false;
+                this.stopBtn.disabled = false;
+
+                // Update loading status
+                this.loadingStatus.textContent = 'Ready to play';
+                this.loadingStatus.style.color = '#4caf50';
+
+                // Set up event listeners
+                this.setupEventListeners();
+
+                // Initialize visualizer and summary
+                this.updateVisualizer();
+                this.updateSummary();
+
+                // Create ticker
+                this.createTicker();
+
+            } catch (error) {
+                console.error('Error initializing programmable sequencer:', error);
+                this.loadingStatus.textContent = 'Error loading audio files';
+                this.loadingStatus.style.color = '#f44336';
+            }
+        }
+
+        async loadAllAudioFiles() {
+            // Load In audio files (5, 5.5, 6-9 seconds)
+            const inDurations = [5, 5.5, 6, 7, 8, 9];
+            for (let duration of inDurations) {
+                const url = `BreathIn_DFlat3_${duration}.mp3`;
+                this.audioBuffers.in[duration] = await this.loadAudioFile(url);
+            }
+
+            // Load Out audio files (5, 5.5, 6-9 seconds)
+            const outDurations = [5, 5.5, 6, 7, 8, 9];
+            for (let duration of outDurations) {
+                const url = `BreathOut_C3_${duration}.mp3`;
+                this.audioBuffers.out[duration] = await this.loadAudioFile(url);
+            }
+
+            // Load Pause audio files (1-8 seconds)
+            for (let i = 1; i <= 8; i++) {
+                const url = `BreathPause_E3_${i}.mp3`;
+                this.audioBuffers.pause[i] = await this.loadAudioFile(url);
+            }
+        }
+
+        async loadAudioFile(url) {
+            try {
+                console.log(`Loading audio file: ${url}`);
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Failed to load ${url}: ${response.status} ${response.statusText}`);
+                }
+                const arrayBuffer = await response.arrayBuffer();
+                return await this.audioContext.decodeAudioData(arrayBuffer);
+            } catch (error) {
+                console.error(`Error loading audio file ${url}:`, error);
+                throw error;
+            }
+        }
+
+        fallbackToHTML5Audio() {
+            console.log('Web Audio API not supported for programmable sequencer');
+            this.isWebAudioSupported = false;
+            this.loadingStatus.textContent = 'Programmable patterns require Web Audio API (not supported in your browser)';
+            this.loadingStatus.style.color = '#f44336';
+        }
+
+        setupEventListeners() {
+            // Button event listeners
+            this.playBtn.addEventListener('click', () => this.play());
+            this.pauseBtn.addEventListener('click', () => this.pause());
+            this.stopBtn.addEventListener('click', () => this.stop());
+
+            // Select change listeners
+            this.inDurationSelect.addEventListener('change', () => this.updateSettings());
+            this.pause1DurationSelect.addEventListener('change', () => this.updateSettings());
+            this.outDurationSelect.addEventListener('change', () => this.updateSettings());
+            this.pause2DurationSelect.addEventListener('change', () => this.updateSettings());
+
+            // Resume audio context on first user interaction
+            const resumeAudioContext = () => {
+                if (this.audioContext && this.audioContext.state === 'suspended') {
+                    this.audioContext.resume();
+                }
+                document.removeEventListener('click', resumeAudioContext);
+                document.removeEventListener('touchstart', resumeAudioContext);
+            };
+
+            document.addEventListener('click', resumeAudioContext);
+            document.addEventListener('touchstart', resumeAudioContext);
+        }
+
+        updateSettings() {
+            // Get current values from select elements
+            this.settings.inDuration = parseFloat(this.inDurationSelect.value);
+            this.settings.pause1Duration = parseInt(this.pause1DurationSelect.value);
+            this.settings.outDuration = parseFloat(this.outDurationSelect.value);
+            this.settings.pause2Duration = parseInt(this.pause2DurationSelect.value);
+
+            // Update visualizer and summary
+            this.updateVisualizer();
+            this.updateSummary();
+
+            // Reset ticker if playing
+            if (this.isPlaying) {
+                this.resetTicker();
+            }
+
+            // If currently playing, stop and restart with new settings
+            if (this.isPlaying) {
+                this.stop();
+                this.play();
+            }
+        }
+
+        updateVisualizer() {
+            const {inDuration, pause1Duration, outDuration, pause2Duration} = this.settings;
+            const totalDuration = inDuration + pause1Duration + outDuration + pause2Duration;
+            this.cycleDuration = totalDuration;
+
+            // Check if visualizer element exists
+            if (!this.breathVisualizer) {
+                console.error('Breath visualizer element not found');
+                return;
+            }
+
+            // Clear visualizer
+            this.breathVisualizer.innerHTML = '';
+
+            // Calculate percentages for each phase
+            const inPercent = (inDuration / totalDuration) * 100;
+            const pause1Percent = (pause1Duration / totalDuration) * 100;
+            const outPercent = (outDuration / totalDuration) * 100;
+            const pause2Percent = (pause2Duration / totalDuration) * 100;
+
+            // Create phase elements
+            let leftPosition = 0;
+
+            // In phase
+            if (inDuration > 0) {
+                const inElement = document.createElement('div');
+                inElement.className = 'breath-phase phase-in';
+                inElement.style.left = `${leftPosition}%`;
+                inElement.style.width = `${inPercent}%`;
+                inElement.textContent = `IN (${inDuration}s)`;
+                this.breathVisualizer.appendChild(inElement);
+                leftPosition += inPercent;
+            }
+
+            // Pause 1 phase
+            if (pause1Duration > 0) {
+                const pause1Element = document.createElement('div');
+                pause1Element.className = 'breath-phase phase-pause1';
+                pause1Element.style.left = `${leftPosition}%`;
+                pause1Element.style.width = `${pause1Percent}%`;
+                pause1Element.textContent = `PAUSE (${pause1Duration}s)`;
+                this.breathVisualizer.appendChild(pause1Element);
+                leftPosition += pause1Percent;
+            }
+
+            // Out phase
+            if (outDuration > 0) {
+                const outElement = document.createElement('div');
+                outElement.className = 'breath-phase phase-out';
+                outElement.style.left = `${leftPosition}%`;
+                outElement.style.width = `${outPercent}%`;
+                outElement.textContent = `OUT (${outDuration}s)`;
+                this.breathVisualizer.appendChild(outElement);
+                leftPosition += outPercent;
+            }
+
+            // Pause 2 phase
+            if (pause2Duration > 0) {
+                const pause2Element = document.createElement('div');
+                pause2Element.className = 'breath-phase phase-pause2';
+                pause2Element.style.left = `${leftPosition}%`;
+                pause2Element.style.width = `${pause2Percent}%`;
+                pause2Element.textContent = `PAUSE (${pause2Duration}s)`;
+                this.breathVisualizer.appendChild(pause2Element);
+            }
+
+            // Re-create ticker to ensure it's on top
+            this.createTicker();
+        }
+
+        updateSummary() {
+            const {inDuration, pause1Duration, outDuration, pause2Duration} = this.settings;
+            const totalDuration = inDuration + pause1Duration + outDuration + pause2Duration;
+
+            // Update summary elements
+            this.summaryIn.textContent = `${inDuration}s`;
+            this.summaryPause1.textContent = pause1Duration > 0 ? `${pause1Duration}s` : 'None';
+            this.summaryOut.textContent = `${outDuration}s`;
+            this.summaryPause2.textContent = pause2Duration > 0 ? `${pause2Duration}s` : 'None';
+            this.totalDurationElement.textContent = `Total: ${totalDuration}s per cycle`;
+        }
+
+        // Ticker methods
+        createTicker() {
+            // Remove existing ticker if it exists
+            if (this.tickerElement) {
+                this.tickerElement.remove();
+            }
+
+            // Create ticker element
+            this.tickerElement = document.createElement('div');
+            this.tickerElement.className = 'breath-ticker';
+
+            // Create ticker label
+            const tickerLabel = document.createElement('div');
+            tickerLabel.className = 'ticker-label';
+            tickerLabel.textContent = '●';
+            this.tickerElement.appendChild(tickerLabel);
+
+            // Add ticker to visualizer
+            this.breathVisualizer.appendChild(this.tickerElement);
+
+            // Reset ticker position
+            this.currentTickerPosition = 0;
+            this.updateTickerPosition(0);
+        }
+
+        updateTickerPosition(elapsedSeconds) {
+            if (!this.tickerElement || this.cycleDuration === 0) return;
+
+            // Calculate position as percentage of cycle
+            const positionPercent = (elapsedSeconds % this.cycleDuration) / this.cycleDuration * 100;
+            this.currentTickerPosition = positionPercent;
+
+            // Update ticker position
+            this.tickerElement.style.left = `${positionPercent}%`;
+
+            // Update ticker label with current time in cycle
+            const timeInCycle = elapsedSeconds % this.cycleDuration;
+            const label = this.tickerElement.querySelector('.ticker-label');
+            if (label) {
+                label.textContent = `${Math.floor(timeInCycle)}s`;
+            }
+        }
+
+        startTickerAnimation() {
+            if (this.tickerInterval) {
+                clearInterval(this.tickerInterval);
+            }
+
+            this.cycleStartTime = Date.now();
+
+            this.tickerInterval = setInterval(() => {
+                if (this.isPlaying) {
+                    const elapsedTime = (Date.now() - this.cycleStartTime) / 1000;
+                    this.updateTickerPosition(elapsedTime);
+                }
+            }, 100); // Update 10 times per second for smooth animation
+
+            // Add playing class for animation
+            if (this.tickerElement) {
+                this.tickerElement.classList.add('playing');
+            }
+        }
+
+        stopTickerAnimation() {
+            if (this.tickerInterval) {
+                clearInterval(this.tickerInterval);
+                this.tickerInterval = null;
+            }
+
+            // Reset ticker to start
+            this.updateTickerPosition(0);
+
+            // Remove playing class
+            if (this.tickerElement) {
+                this.tickerElement.classList.remove('playing');
+            }
+        }
+
+        resetTicker() {
+            this.cycleStartTime = Date.now();
+            this.updateTickerPosition(0);
+        }
+
+        play() {
+            if (!this.isWebAudioSupported || this.isPlaying) return;
+
+            // Notify player manager to switch to this player
+            this.playerManager.switchToPlayer(this.playerId, this);
+
+            // Resume audio context if suspended
+            if (this.audioContext.state === 'suspended') {
+                this.audioContext.resume();
+            }
+
+            this.isPlaying = true;
+            this.currentPhase = 'in';
+            this.cycleCount = 0;
+
+            // Start ticker animation
+            this.startTickerAnimation();
+
+            // Update UI
+            this.playBtn.disabled = true;
+            this.pauseBtn.disabled = false;
+            this.stopBtn.disabled = false;
+            this.playBtn.classList.add('active');
+            this.currentPhaseElement.textContent = 'Starting inhale...';
+            this.cycleCounterElement.textContent = 'Cycle: 0';
+
+            // Start the first phase
+            this.playNextPhase();
+        }
+
+        pause() {
+            if (!this.isWebAudioSupported || !this.isPlaying) return;
+
+            // Pause custom timer
+            this.customTimer.pause();
+
+            // Pause ticker animation
+            this.stopTickerAnimation();
+
+            // Stop current audio
+            if (this.currentSource) {
+                this.currentSource.stop();
+                this.currentSource.disconnect();
+            }
+
+            // Clear any pending phase timeouts
+            if (this.nextPhaseTimeout) {
+                clearTimeout(this.nextPhaseTimeout);
+                this.nextPhaseTimeout = null;
+            }
+
+            this.isPlaying = false;
+            this.currentPhaseElement.textContent = 'Paused';
+
+            // Update UI
+            this.playBtn.disabled = false;
+            this.pauseBtn.disabled = true;
+            this.playBtn.classList.remove('active');
+        }
+
+        stop() {
+            if (!this.isWebAudioSupported) return;
+
+            // Notify player manager that this player stopped
+            this.playerManager.playerStopped(this.playerId);
+
+            // Stop custom timer
+            this.customTimer.stop();
+
+            // Stop ticker animation
+            this.stopTickerAnimation();
+
+            // Stop current audio
+            if (this.currentSource) {
+                this.currentSource.stop();
+                this.currentSource.disconnect();
+            }
+
+            // Clear any pending phase timeouts
+            if (this.nextPhaseTimeout) {
+                clearTimeout(this.nextPhaseTimeout);
+                this.nextPhaseTimeout = null;
+            }
+
+            this.isPlaying = false;
+            this.currentPhase = 'stopped';
+            this.cycleCount = 0;
+            this.currentPhaseElement.textContent = 'Ready to start';
+            this.cycleCounterElement.textContent = 'Cycle: 0';
+
+            // Update UI
+            this.playBtn.disabled = false;
+            this.pauseBtn.disabled = true;
+            this.stopBtn.disabled = false;
+            this.playBtn.classList.remove('active');
+        }
+
+        playNextPhase() {
+            if (!this.isPlaying) return;
+
+            const {inDuration, pause1Duration, outDuration, pause2Duration} = this.settings;
+
+            // Determine which phase to play next
+            let nextPhase = '';
+            let audioBuffer = null;
+            let phaseDuration = 0;
+
+            switch (this.currentPhase) {
+                case 'in':
+                    audioBuffer = this.audioBuffers.in[inDuration];
+                    phaseDuration = inDuration;
+                    nextPhase = pause1Duration > 0 ? 'pause1' : 'out';
+                    this.currentPhaseElement.textContent = `Inhale (${inDuration}s)`;
+                    break;
+
+                case 'pause1':
+                    audioBuffer = this.audioBuffers.pause[pause1Duration];
+                    phaseDuration = pause1Duration;
+                    nextPhase = 'out';
+                    this.currentPhaseElement.textContent = `Pause after inhale (${pause1Duration}s)`;
+                    break;
+
+                case 'out':
+                    audioBuffer = this.audioBuffers.out[outDuration];
+                    phaseDuration = outDuration;
+                    nextPhase = pause2Duration > 0 ? 'pause2' : 'in';
+                    this.currentPhaseElement.textContent = `Exhale (${outDuration}s)`;
+                    break;
+
+                case 'pause2':
+                    audioBuffer = this.audioBuffers.pause[pause2Duration];
+                    phaseDuration = pause2Duration;
+                    nextPhase = 'in';
+                    this.currentPhaseElement.textContent = `Pause after exhale (${pause2Duration}s)`;
+
+                    // Increment cycle counter after completing a full cycle
+                    this.cycleCount++;
+                    this.cycleCounterElement.textContent = `Cycle: ${this.cycleCount}`;
+
+                    // Reset ticker for the next cycle
+                    setTimeout(() => {
+                        if (this.isPlaying) {
+                            this.resetTicker();
+                        }
+                    }, phaseDuration * 1000);
+                    break;
+
+                default:
+                    // If no phase or stopped, start with 'in'
+                    this.currentPhase = 'in';
+                    audioBuffer = this.audioBuffers.in[inDuration];
+                    phaseDuration = inDuration;
+                    nextPhase = pause1Duration > 0 ? 'pause1' : 'out';
+                    this.currentPhaseElement.textContent = `Inhale (${inDuration}s)`;
+                    break;
+            }
+
+            // Play the audio for the current phase
+            if (audioBuffer && phaseDuration > 0) {
+                this.currentSource = this.audioContext.createBufferSource();
+                this.currentSource.buffer = audioBuffer;
+                this.currentSource.connect(this.audioContext.destination);
+                this.currentSource.start();
+
+                // Schedule next phase
+                this.nextPhaseTimeout = setTimeout(() => {
+                    this.currentPhase = nextPhase;
+                    this.playNextPhase();
+                }, phaseDuration * 1000);
+            } else if (phaseDuration === 0) {
+                // If phase duration is 0 (no pause), immediately go to next phase
+                setTimeout(() => {
+                    this.currentPhase = nextPhase;
+                    this.playNextPhase();
+                }, 0);
+            }
+        }
+    }
+
+    // Seamless Audio Player using Web Audio API
+    class SeamlessAudioPlayer {
+        constructor(container, audioUrl, playerId, playerManager) {
+            this.container = container;
+            this.audioUrl = audioUrl;
+            this.playerId = playerId;
+            this.playerManager = playerManager;
+            this.audioContext = null;
+            this.audioBuffer = null;
+            this.sourceNode = null;
+            this.isPlaying = false;
+            this.startTime = 0;
+            this.pauseTime = 0;
+            this.isWebAudioSupported = !!window.AudioContext || !!window.webkitAudioContext;
+
+            // UI Elements
+            this.playBtn = container.querySelector('.btn-play');
+            this.pauseBtn = container.querySelector('.btn-pause');
+            this.stopBtn = container.querySelector('.btn-stop');
+            this.loadingStatus = container.querySelector('.loading-status');
+            this.timeStatus = container.querySelector('.time-status');
+            this.fallbackAudio = container.querySelector('.fallback-audio');
+
+            this.init();
+        }
+
+        async init() {
+            if (this.isWebAudioSupported) {
+                try {
+                    // Initialize Audio Context (will be suspended until user interaction)
+                    this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+                    // Load and decode audio
+                    await this.loadAudio();
+
+                    // Enable buttons
+                    this.playBtn.disabled = false;
+                    this.pauseBtn.disabled = false;
+                    this.stopBtn.disabled = false;
+
+                    // Update status
+                    this.loadingStatus.textContent = 'Ready';
+                    this.loadingStatus.classList.remove('audio-loading');
+                    this.timeStatus.style.display = 'inline';
+
+                    // Set up event listeners
+                    this.setupEventListeners();
+
+                } catch (error) {
+                    console.error('Error initializing Web Audio:', error);
+                    this.fallbackToHTML5Audio();
+                }
+            } else {
+                this.fallbackToHTML5Audio();
+            }
+        }
+
+        async loadAudio() {
+            try {
+                const response = await fetch(this.audioUrl);
+                const arrayBuffer = await response.arrayBuffer();
+                this.audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
+            } catch (error) {
+                console.error('Error loading audio:', error);
+                throw error;
+            }
+        }
+
+        fallbackToHTML5Audio() {
+            console.log('Web Audio API not supported, falling back to HTML5 Audio');
+            this.isWebAudioSupported = false;
+
+            // Show the fallback audio controls
+            this.fallbackAudio.style.display = 'block';
+
+            // Hide Web Audio controls
+            this.playBtn.style.display = 'none';
+            this.pauseBtn.style.display = 'none';
+            this.stopBtn.style.display = 'none';
+            this.loadingStatus.textContent = 'Using standard audio player';
+            this.loadingStatus.classList.remove('audio-loading');
+        }
+
+        setupEventListeners() {
+            this.playBtn.addEventListener('click', () => this.play());
+            this.pauseBtn.addEventListener('click', () => this.pause());
+            this.stopBtn.addEventListener('click', () => this.stop());
+
+            // Resume audio context on first user interaction (required by browsers)
+            const resumeAudioContext = () => {
+                if (this.audioContext && this.audioContext.state === 'suspended') {
+                    this.audioContext.resume();
+                }
+                document.removeEventListener('click', resumeAudioContext);
+                document.removeEventListener('touchstart', resumeAudioContext);
+            };
+
+            document.addEventListener('click', resumeAudioContext);
+            document.addEventListener('touchstart', resumeAudioContext);
+        }
+
+        play() {
+            if (!this.isWebAudioSupported) return;
+
+            if (this.isPlaying) return;
+
+            if (this.audioContext.state === 'suspended') {
+                this.audioContext.resume();
+            }
+
+            // Notify player manager to switch to this player
+            this.playerManager.switchToPlayer(this.playerId, this);
+
+            this.sourceNode = this.audioContext.createBufferSource();
+            this.sourceNode.buffer = this.audioBuffer;
+            this.sourceNode.loop = true; // Seamless looping
+
+            // Connect to destination
+            this.sourceNode.connect(this.audioContext.destination);
+
+            // Calculate start time (resume from pause time or start from beginning)
+            const startOffset = this.pauseTime % this.audioBuffer.duration;
+
+            // Start playing
+            this.sourceNode.start(0, startOffset);
+            this.startTime = this.audioContext.currentTime - startOffset;
+            this.isPlaying = true;
+
+            // Update UI
+            this.playBtn.disabled = true;
+            this.pauseBtn.disabled = false;
+            this.playBtn.classList.add('active');
+            this.updateTimeDisplay();
+
+            // Set up periodic time updates
+            this.timeUpdateInterval = setInterval(() => this.updateTimeDisplay(), 100);
+
+            // Handle when audio naturally ends (shouldn't happen with loop=true, but just in case)
+            this.sourceNode.onended = () => {
+                if (this.isPlaying) {
+                    // Immediately restart for seamless playback
+                    this.stop();
+                    this.play();
+                }
+            };
+        }
+
+        pause() {
+            if (!this.isWebAudioSupported || !this.isPlaying) return;
+
+            // Pause session timer
+            this.playerManager.sessionTimer.pause();
+
+            // Calculate current play position
+            this.pauseTime = (this.audioContext.currentTime - this.startTime) % this.audioBuffer.duration;
+
+            // Stop the current source
+            this.sourceNode.stop();
+            this.sourceNode.disconnect();
+            this.isPlaying = false;
+
+            // Update UI
+            this.playBtn.disabled = false;
+            this.pauseBtn.disabled = true;
+            this.playBtn.classList.remove('active');
+
+            // Clear time update interval
+            clearInterval(this.timeUpdateInterval);
+        }
+
+        stop() {
+            if (!this.isWebAudioSupported) return;
+
+            // Notify player manager that this player stopped
+            this.playerManager.playerStopped(this.playerId);
+
+            // Stop session timer
+            this.playerManager.sessionTimer.stop();
+
+            if (this.isPlaying) {
+                this.sourceNode.stop();
+                this.sourceNode.disconnect();
+                this.isPlaying = false;
+            }
+
+            // Reset to beginning
+            this.pauseTime = 0;
+            this.startTime = 0;
+
+            // Update UI
+            this.playBtn.disabled = false;
+            this.pauseBtn.disabled = true;
+            this.playBtn.classList.remove('active');
+
+            // Clear time update interval
+            clearInterval(this.timeUpdateInterval);
+            this.updateTimeDisplay();
+        }
+
+        updateTimeDisplay() {
+            if (!this.isWebAudioSupported) return;
+
+            let currentTime = 0;
+            if (this.isPlaying) {
+                currentTime = (this.audioContext.currentTime - this.startTime) % this.audioBuffer.duration;
+            } else {
+                currentTime = this.pauseTime;
+            }
+
+            const totalTime = this.audioBuffer ? this.audioBuffer.duration : 0;
+
+            // Format time as MM:SS
+            const formatTime = (seconds) => {
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            };
+
+            this.timeStatus.textContent = `${formatTime(currentTime)} / ${formatTime(totalTime)}`;
+        }
+    }
+
+    // Initialize players when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        // Create session timer instance
+        const sessionTimer = new SessionTimer('sessionTimer');
+
+        // Create player manager instance
+        const playerManager = new AudioPlayerManager(sessionTimer);
+
+        // Initialize all pattern players
+        const players = {};
+
+        // NEW: 5.5-5.5 pattern player (standard pattern)
+        const player55_5Container = document.querySelector('.seamless-audio-player[data-audio-id="55.5"]');
+        players.player55_5 = new SeamlessAudioPlayer(
+            player55_5Container,
+            'Coherent_Piano_5.5_5.5_fermibot.mp3',
+            '55.5',
+            playerManager
+        );
+        playerManager.registerPlayer('55.5', players.player55_5);
+
+        // 5-5 pattern player (first row, first card)
+        const player55Container = document.querySelector('.seamless-audio-player[data-audio-id="55"]');
+        players.player55 = new SeamlessAudioPlayer(
+            player55Container,
+            'Coherent_Piano_5_5_fermibot.mp3',
+            '55',
+            playerManager
+        );
+        playerManager.registerPlayer('55', players.player55);
+
+        // 6-6 pattern player (first row, second card)
+        const player66Container = document.querySelector('.seamless-audio-player[data-audio-id="66"]');
+        players.player66 = new SeamlessAudioPlayer(
+            player66Container,
+            'Coherent_Piano_6_6_fermibot.mp3',
+            '66',
+            playerManager
+        );
+        playerManager.registerPlayer('66', players.player66);
+
+        // 7-7 pattern player (second row, first card)
+        const player77Container = document.querySelector('.seamless-audio-player[data-audio-id="77"]');
+        players.player77 = new SeamlessAudioPlayer(
+            player77Container,
+            'Coherent_Piano_7_7_fermibot.mp3',
+            '77',
+            playerManager
+        );
+        playerManager.registerPlayer('77', players.player77);
+
+        // 8-8 pattern player (second row, second card)
+        const player88Container = document.querySelector('.seamless-audio-player[data-audio-id="88"]');
+        players.player88 = new SeamlessAudioPlayer(
+            player88Container,
+            'Coherent_Piano_8_8_fermibot.mp3',
+            '88',
+            playerManager
+        );
+        playerManager.registerPlayer('88', players.player88);
+
+        // Initialize programmable breathing sequencer
+        const programmableSequencer = new ProgrammableBreathingSequencer(
+            document.getElementById('programmableSection'),
+            'programmable',
+            playerManager
+        );
+        playerManager.registerPlayer('programmable', programmableSequencer);
+
+        // Store players and timer for global access if needed
+        window.audioPlayers = {
+            ...players,
+            programmableSequencer,
+            sessionTimer,
+            playerManager
+        };
+    });
+</script>
+
+</body>
+</html>
