@@ -381,12 +381,12 @@
 
             <!-- Programmable Breathing Section -->
             <div class="programmable-section" id="programmableSection">
-                <div class="row">
+                <div class="row g-4">
                     <div class="col-lg-8">
-                        <div class="programmable-card">
+                        <div class="programmable-card h-100">
                             <h5 class="expert-color">Configure Your Breathing Pattern</h5>
 
-                            <div class="row">
+                            <div class="row g-3">
                                 <!-- In Duration -->
                                 <div class="col-md-6 duration-selector">
                                     <div class="duration-label">🌬️ Inhale Duration</div>
@@ -417,7 +417,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row g-3 mt-3">
                                 <!-- Out Duration -->
                                 <div class="col-md-6 duration-selector">
                                     <div class="duration-label">💨 Exhale Duration</div>
@@ -449,7 +449,7 @@
                             </div>
 
                             <!-- Breath Visualizer -->
-                            <div class="breath-visualizer" id="breathVisualizer">
+                            <div class="breath-visualizer mt-4" id="breathVisualizer">
                                 <!-- Will be populated by JavaScript -->
                             </div>
                             <div class="ticker-guide" id="tickerGuide">
@@ -486,10 +486,10 @@
                     </div>
 
                     <div class="col-lg-4">
-                        <div class="programmable-card">
+                        <div class="programmable-card h-100 d-flex flex-column">
                             <h5 class="expert-color">Pattern Summary</h5>
 
-                            <div class="pattern-summary">
+                            <div class="pattern-summary flex-grow-1">
                                 <h6>Current Settings:</h6>
                                 <div class="pattern-summary-item">
                                     <span class="pattern-summary-label">Inhale:</span>
@@ -513,55 +513,107 @@
                             </div>
 
                             <!-- Custom Timer Display -->
-                            <div class="custom-timer-container">
+                            <div class="custom-timer-container mt-3">
                                 <div class="custom-timer-label">Custom Pattern Timer</div>
                                 <div class="custom-timer" id="customPatternTimer">00:00:00</div>
                                 <div class="mt-2" style="font-size: 0.8rem; color: #6c757d;">
                                     ⏱️ Tracks only this custom pattern session
                                 </div>
                             </div>
-
-                            <div class="mt-4">
-                                <h6 class="expert-color">Expert Tips:</h6>
-                                <ul style="font-size: 0.9rem; color: #666;">
-                                    <li>Longer exhales (compared to inhales) promote relaxation</li>
-                                    <li>Add pauses to increase mindfulness</li>
-                                    <li>Experiment with 4-7-8 pattern (inhale 4s, hold 7s, exhale 8s)</li>
-                                    <li>Try box breathing (4-4-4-4 pattern)</li>
-                                    <li>Save successful patterns in a journal</li>
-                                </ul>
-                            </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expert Tips Card (New section, similar to practitioner tips) -->
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h5 class="expert-color">💡 Expert Tips</h5>
+                    <ul class="">
+                        <li class="">✅ Longer exhales (compared to inhales) promote relaxation</li>
+                        <li class="">✅ Add pauses to increase mindfulness and breath awareness</li>
+                        <li class="">✅ Experiment with 4-7-8 pattern (inhale 4s, hold 7s, exhale 8s)</li>
+                        <li class="">✅ Try box breathing (4-4-4-4 pattern) for focus and stress reduction</li>
+                        <li class="">✅ Save successful patterns in a journal for future reference</li>
+                        <li class="">✅ Adjust patterns based on your energy levels and time of day</li>
+                    </ul>
+                    <div class="text-center mt-4">
+                        <button class="btn expert-btn btn-sm" onclick="scrollToSection('beginnerSection')">
+                            🡅 Back to Beginner Level
+                        </button>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button class="btn practitioner-btn btn-sm" onclick="scrollToSection('expertSection')">
+                            🡇 Ready to Customize? Go to Expert Level
+                        </button>
                     </div>
                 </div>
             </div>
 
             <div class="card mt-4">
                 <div class="card-body">
-                    <h5 class="expert-color text-center">📊 Expert Pattern Ideas<br></h5>
-                    <div class="row">
+                    <h5 class="expert-color text-center">📊 Expert Pattern Ideas</h5>
+                    <div class="row mt-3">
                         <div class="col-md-4 mb-3">
                             <div class="card h-100">
-                                <div class="card-body">
-                                    <h6 class="card-title expert-color text-center">Calming Pattern</h6>
-                                    <p class="card-text small">Inhale: 4s<br>Exhale: 8s<br>Creates deep relaxation</p>
+                                <div class="card-body text-center">
+                                    <h6 class="card-title expert-color">🌊 Calming Pattern</h6>
+                                    <p class="card-text pattern-description">Inhale: 4s<br>Exhale: 8s<br>Creates deep
+                                        relaxation and calms the nervous system</p>
+                                    <div class="text-muted small">Perfect for evening practice</div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
                             <div class="card h-100">
-                                <div class="card-body">
-                                    <h6 class="card-title expert-color text-center">Box Breathing</h6>
-                                    <p class="card-text small">Inhale: 4s<br>Hold: 4s<br>Exhale: 4s<br>Hold: 4s<br>Great
-                                        for focus</p>
+                                <div class="card-body text-center">
+                                    <h6 class="card-title expert-color">📦 Box Breathing</h6>
+                                    <p class="card-text pattern-description">Inhale: 4s<br>Hold: 4s<br>Exhale: 4s<br>Hold:
+                                        4s<br>Great for focus and concentration</p>
+                                    <div class="text-muted small">Used by Navy SEALs</div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
                             <div class="card h-100">
-                                <div class="card-body">
-                                    <h6 class="card-title expert-color text-center">Energy Pattern</h6>
-                                    <p class="card-text small">Inhale: 6s<br>Exhale: 4s<br>Increases alertness</p>
+                                <div class="card-body text-center">
+                                    <h6 class="card-title expert-color">⚡ Energy Pattern</h6>
+                                    <p class="card-text pattern-description">Inhale: 6s<br>Exhale: 4s<br>Increases
+                                        alertness and energy levels</p>
+                                    <div class="text-muted small">Ideal for morning practice</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <h6 class="card-title expert-color">😴 Sleep Pattern</h6>
+                                    <p class="card-text pattern-description">Inhale: 4s<br>Hold: 7s<br>Exhale: 8s<br>Promotes
+                                        relaxation before sleep</p>
+                                    <div class="text-muted small">4-7-8 breathing technique</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <h6 class="card-title expert-color">🧠 Mindful Pattern</h6>
+                                    <p class="card-text pattern-description">Inhale: 5s<br>Hold: 3s<br>Exhale: 7s<br>Hold:
+                                        2s<br>Enhances mindfulness</p>
+                                    <div class="text-muted small">With balanced pauses</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <h6 class="card-title expert-color">❤️ Heart Coherence</h6>
+                                    <p class="card-text pattern-description">Inhale: 5.5s<br>Exhale: 5.5s<br>The
+                                        standard pattern for optimal heart rate variability</p>
+                                    <div class="text-muted small">Back to basics</div>
                                 </div>
                             </div>
                         </div>
