@@ -1,0 +1,700 @@
+/* Color Variables - Muted versions */
+:root {
+    --beginner-color: #2e7d32; /* Muted green (was #28a745) */
+    --practitioner-color: #1565c0; /* Muted blue (was #007bff) */
+    --expert-color: #37474f; /* Muted dark blue (was #2c5a73) */
+    --beginner-light: rgba(46, 125, 50, 0.1);
+    --practitioner-light: rgba(21, 101, 192, 0.1);
+    --expert-light: rgba(55, 71, 79, 0.1);
+
+    /* Font variables */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-sm: 0.875rem;
+    --font-size-xs: 0.75rem;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+}
+
+/* Base font settings */
+* {
+    font-family: var(--font-family) !important;
+}
+
+body {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
+}
+
+/* Color Classes */
+.beginner-color {
+    color: var(--beginner-color) !important;
+}
+
+.practitioner-color {
+    color: var(--practitioner-color) !important;
+}
+
+.expert-color {
+    color: var(--expert-color) !important;
+}
+
+.beginner-badge {
+    background-color: var(--beginner-color) !important;
+    color: white !important;
+    font-size: var(--font-size-sm) !important;
+    font-weight: var(--font-weight-medium) !important;
+}
+
+.practitioner-badge {
+    background-color: var(--practitioner-color) !important;
+    color: white !important;
+    font-size: var(--font-size-sm) !important;
+    font-weight: var(--font-weight-medium) !important;
+}
+
+.expert-badge {
+    background-color: var(--expert-color) !important;
+    color: white !important;
+    font-size: var(--font-size-sm) !important;
+    font-weight: var(--font-weight-medium) !important;
+}
+
+.beginner-btn {
+    background-color: var(--beginner-color) !important;
+    border-color: var(--beginner-color) !important;
+    color: white !important;
+    font-size: var(--font-size-base) !important;
+    font-weight: var(--font-weight-medium) !important;
+}
+
+.beginner-btn:hover {
+    background-color: #1b5e20 !important;
+    border-color: #1b5e20 !important;
+}
+
+.practitioner-btn {
+    background-color: var(--practitioner-color) !important;
+    border-color: var(--practitioner-color) !important;
+    color: white !important;
+    font-size: var(--font-size-base) !important;
+    font-weight: var(--font-weight-medium) !important;
+}
+
+.practitioner-btn:hover {
+    background-color: #0d47a1 !important;
+    border-color: #0d47a1 !important;
+}
+
+.audio-controls {
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 25px;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.card {
+    border: 1px solid rgba(139, 69, 19, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    height: 100%;
+}
+
+.card-title {
+    color: #8B4513;
+    font-weight: var(--font-weight-semibold);
+    font-size: 1.25rem !important;
+    margin-bottom: 0.75rem !important;
+}
+
+/* Consistent font sizes for all card titles */
+.card .card-title {
+    font-size: 1.25rem !important;
+    font-weight: var(--font-weight-semibold) !important;
+    line-height: 1.3 !important;
+}
+
+.card-text {
+    font-size: var(--font-size-base) !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1rem !important;
+}
+
+.btn-outline-primary {
+    border-color: #8B4513;
+    color: #8B4513;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-base) !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: #8B4513;
+    border-color: #8B4513;
+}
+
+.btn-outline-primary.active {
+    background-color: #8B4513;
+    color: white;
+}
+
+.btn-outline-secondary {
+    border-color: #6c757d;
+    color: #6c757d;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-base) !important;
+}
+
+.audio-status {
+    font-size: var(--font-size-sm);
+    margin-top: 10px;
+    color: #666;
+}
+
+.audio-loading {
+    color: #8B4513;
+    font-style: italic;
+}
+
+/* Level Navigation */
+.level-card {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.level-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.level-card.active-level {
+    border-color: #8B4513;
+    background-color: rgba(139, 69, 19, 0.05);
+}
+
+.level-card .card-title {
+    font-size: 1.5rem !important;
+    font-weight: var(--font-weight-semibold) !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.level-card .card-text {
+    font-size: var(--font-size-base) !important;
+    line-height: 1.4 !important;
+    margin-bottom: 1rem !important;
+}
+
+/* Section Headers */
+.level-section {
+    padding: 20px 0;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.section-header {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.section-header h2 {
+    font-size: 1.75rem !important;
+    font-weight: var(--font-weight-semibold) !important;
+    margin-bottom: 0.5rem !important;
+    line-height: 1.3 !important;
+}
+
+.section-header .lead {
+    font-size: 1.125rem !important;
+    font-weight: var(--font-weight-normal) !important;
+    line-height: 1.5 !important;
+    margin-bottom: 0 !important;
+}
+
+.beginner-header {
+    border-left: 5px solid var(--beginner-color);
+    background: linear-gradient(135deg, #f8f9fa, var(--beginner-light)) !important;
+}
+
+.practitioner-header {
+    border-left: 5px solid var(--practitioner-color);
+    background: linear-gradient(135deg, #f8f9fa, var(--practitioner-light)) !important;
+}
+
+.expert-header {
+    border-left: 5px solid var(--expert-color);
+    background: linear-gradient(135deg, #f8f9fa, var(--expert-light)) !important;
+}
+
+/* Session timer styles */
+.session-timer-container {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    border: 1px solid #dee2e6;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.session-timer {
+    font-size: 1.8rem;
+    font-weight: var(--font-weight-bold);
+    color: #8B4513;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 2px;
+}
+
+.timer-label {
+    font-size: var(--font-size-sm);
+    color: #996633;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    font-weight: var(--font-weight-medium);
+}
+
+.currently-playing {
+    background-color: rgba(139, 69, 19, 0.05);
+    border: 2px solid #8B4513;
+    box-shadow: 0 5px 20px rgba(139, 69, 19, 0.15);
+}
+
+.currently-playing .card-title {
+    color: #5D2906;
+    font-weight: var(--font-weight-bold);
+}
+
+/* Programmable breathing section - Minimalist */
+.programmable-section {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 30px;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.programmable-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.programmable-card h5 {
+    font-size: 1.25rem !important;
+    font-weight: var(--font-weight-semibold) !important;
+    margin-bottom: 1.25rem !important;
+}
+
+.duration-label {
+    font-weight: var(--font-weight-semibold);
+    color: #5a5a5a;
+    margin-bottom: 8px;
+    font-size: var(--font-size-base);
+}
+
+.form-select {
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: var(--font-size-base);
+    font-family: var(--font-family) !important;
+}
+
+.form-select:focus {
+    border-color: #8B4513;
+    box-shadow: 0 0 0 0.15rem rgba(139, 69, 19, 0.15);
+}
+
+/* Minimalist Breath Visualizer */
+.breath-visualizer {
+    height: 60px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    margin: 20px 0;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #e9ecef;
+}
+
+.breath-phase {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-sm);
+    transition: width 0.3s ease;
+}
+
+/* Softer phase colors */
+.phase-in {
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    border-right: 1px solid #b2dfb2;
+}
+
+.phase-pause1 {
+    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+    border-right: 1px solid #ffcc80;
+}
+
+.phase-out {
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    border-right: 1px solid #90caf9;
+}
+
+.phase-pause2 {
+    background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+    border-right: 1px solid #ce93d8;
+}
+
+.current-phase-indicator {
+    margin-top: 15px;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    font-weight: var(--font-weight-semibold);
+    color: #5a5a5a;
+    text-align: center;
+    border: 1px solid #e9ecef;
+    font-size: var(--font-size-base);
+}
+
+.cycle-counter {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: #5a5a5a;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.pattern-summary {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    border: 1px solid #e9ecef;
+}
+
+.pattern-summary h6 {
+    color: #5a5a5a;
+    margin-bottom: 10px;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+}
+
+.pattern-summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.pattern-summary-label {
+    font-weight: var(--font-weight-medium);
+    color: #666;
+    font-size: var(--font-size-sm);
+}
+
+.pattern-summary-value {
+    font-weight: var(--font-weight-semibold);
+    color: #8B4513;
+    font-size: var(--font-size-sm);
+}
+
+.total-duration {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: #5a5a5a;
+    text-align: center;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #e9ecef;
+}
+
+/* Custom Timer Styles */
+.custom-timer-container {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    border: 1px solid #dee2e6;
+    text-align: center;
+}
+
+.custom-timer {
+    font-size: 1.8rem;
+    font-weight: var(--font-weight-bold);
+    color: #8B4513;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 2px;
+}
+
+.custom-timer-label {
+    font-size: var(--font-size-sm);
+    color: #5a5a5a;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    font-weight: var(--font-weight-medium);
+}
+
+/* Ticker styles */
+.breath-visualizer {
+    position: relative;
+}
+
+.breath-ticker {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background-color: #ff0000;
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+    z-index: 10;
+    transition: left 0.1s linear;
+    pointer-events: none;
+}
+
+/* Ticker dot at the top */
+.breath-ticker::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -3px;
+    width: 8px;
+    height: 8px;
+    background-color: #ff0000;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 1);
+}
+
+/* Ticker label */
+.ticker-label {
+    position: absolute;
+    top: -25px;
+    left: -20px;
+    background-color: rgba(255, 0, 0, 0.9);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    white-space: nowrap;
+    z-index: 11;
+}
+
+/* Add a subtle animation for the ticker */
+@keyframes tickerPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.breath-ticker.playing {
+    animation: tickerPulse 2s infinite;
+}
+
+/* Visual guide for ticker */
+.ticker-guide {
+    font-size: var(--font-size-xs);
+    color: #666;
+    text-align: center;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* Highlight for the new standard pattern */
+.standard-pattern-highlight {
+    border: 1px solid #4CAF50;
+    box-shadow: 0 5px 20px rgba(76, 175, 80, 0.15); /* Reduced opacity */
+}
+.standard-pattern-highlight .card-title {
+    color: #388E3C;
+}
+
+/* Video container */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+/* Checklist styles - FIXED SPACING */
+.list-group {
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.list-group-item {
+    border: none;
+    padding: 8px 0 !important; /* Reduced from 12px */
+    background: transparent;
+    font-size: var(--font-size-base) !important;
+    line-height: 1.4 !important;
+    margin-bottom: 0 !important;
+}
+
+.list-group-item::before {
+    content: "•";
+    color: var(--beginner-color);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-right: 0.5em;
+    font-size: 1.2em;
+}
+
+/* Pattern description font consistency */
+.pattern-description {
+    font-size: var(--font-size-base) !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1rem !important;
+    color: #666 !important;
+}
+
+/* Headings consistency */
+h1, .h1 {
+    font-size: 2rem !important;
+    font-weight: var(--font-weight-semibold) !important;
+    line-height: 1.2 !important;
+}
+
+h2, .h2 {
+    font-size: 1.75rem !important;
+    font-weight: var(--font-weight-semibold) !important;
+    line-height: 1.3 !important;
+}
+
+h3, .h3 {
+    font-size: 1.5rem !important;
+    font-weight: var(--font-weight-semibold) !important;
+    line-height: 1.3 !important;
+}
+
+h4, .h4 {
+    font-size: 1.25rem !important;
+    font-weight: var(--font-weight-semibold) !important;
+    line-height: 1.3 !important;
+}
+
+h5, .h5 {
+    font-size: 1.125rem !important;
+    font-weight: var(--font-weight-semibold) !important;
+    line-height: 1.3 !important;
+}
+
+h6, .h6 {
+    font-size: 1rem !important;
+    font-weight: var(--font-weight-semibold) !important;
+    line-height: 1.3 !important;
+}
+
+/* Expert tips list */
+ul:not(.list-group) {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+ul:not(.list-group) li {
+    margin-bottom: 0.5rem;
+    font-size: var(--font-size-sm);
+    line-height: 1.4;
+}
+
+/* Note text consistency */
+.text-muted {
+    font-size: var(--font-size-sm) !important;
+    line-height: 1.4 !important;
+}
+
+/* Badge font consistency */
+.badge {
+    font-size: var(--font-size-xs) !important;
+    font-weight: var(--font-weight-medium) !important;
+    padding: 0.35em 0.65em !important;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .programmable-section {
+        padding: 15px;
+    }
+
+    .programmable-card {
+        padding: 15px;
+    }
+
+    .breath-visualizer {
+        height: 50px;
+        margin: 15px 0;
+    }
+
+    .breath-phase {
+        font-size: var(--font-size-xs);
+    }
+
+    .custom-timer {
+        font-size: 1.5rem;
+    }
+
+    .btn-outline-primary, .btn-outline-secondary {
+        padding: 8px 16px;
+        font-size: var(--font-size-sm) !important;
+    }
+
+    .ticker-label {
+        top: -22px;
+        font-size: 0.65rem;
+        left: -15px;
+    }
+
+    .section-header {
+        padding: 15px;
+    }
+
+    .section-header h2 {
+        font-size: 1.5rem !important;
+    }
+
+    .section-header .lead {
+        font-size: 1rem !important;
+    }
+
+    .level-card .card-title {
+        font-size: 1.25rem !important;
+    }
+
+    .card-title {
+        font-size: 1.125rem !important;
+    }
+
+    h1, .h1 {
+        font-size: 1.75rem !important;
+    }
+}
