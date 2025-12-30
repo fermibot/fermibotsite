@@ -90,6 +90,19 @@ body {
     border-color: #0d47a1 !important;
 }
 
+.expert-btn {
+    background-color: var(--expert-color) !important;
+    border-color: var(--expert-color) !important;
+    color: white !important;
+    font-size: var(--font-size-base) !important;
+    font-weight: var(--font-weight-medium) !important;
+}
+
+.expert-btn:hover {
+    background-color: #263238 !important;
+    border-color: #263238 !important;
+}
+
 .audio-controls {
     background: linear-gradient(to right, #f8f9fa, #e9ecef);
     padding: 25px;
@@ -233,6 +246,239 @@ body {
     border-left: 5px solid var(--expert-color);
     background: linear-gradient(135deg, #f8f9fa, var(--expert-light)) !important;
 }
+
+/* ============================================
+   UNIFIED CONTROL PANEL STYLES
+   ============================================ */
+
+.unified-control-panel {
+    background: linear-gradient(135deg, #fff, #f8f9fa);
+    border: 2px solid #8B4513;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 25px rgba(139, 69, 19, 0.15);
+}
+
+.control-panel-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.session-timer-inline {
+    text-align: center;
+}
+
+.session-timer-inline .timer-label {
+    font-size: var(--font-size-sm);
+    color: #996633;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    font-weight: var(--font-weight-medium);
+}
+
+.session-timer-inline .session-timer {
+    font-size: 2.2rem;
+    font-weight: var(--font-weight-bold);
+    color: #8B4513;
+    font-family: 'Courier New', monospace !important;
+    letter-spacing: 2px;
+}
+
+.unified-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.unified-buttons .btn {
+    min-width: 120px;
+    font-size: 1.1rem !important;
+    padding: 12px 24px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.unified-play {
+    background-color: #8B4513 !important;
+    border-color: #8B4513 !important;
+    color: white !important;
+}
+
+.unified-play:hover:not(:disabled) {
+    background-color: #6d3610 !important;
+    border-color: #6d3610 !important;
+    transform: scale(1.02);
+}
+
+.unified-play.active {
+    background-color: #5a2d0e !important;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.unified-pause {
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+    color: white !important;
+}
+
+.unified-pause:hover:not(:disabled) {
+    background-color: #5a6268 !important;
+}
+
+.unified-stop {
+    background-color: transparent !important;
+    border-color: #6c757d !important;
+    color: #6c757d !important;
+}
+
+.unified-stop:hover:not(:disabled) {
+    background-color: #6c757d !important;
+    color: white !important;
+}
+
+.unified-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.unified-status .loading-status {
+    font-size: var(--font-size-sm);
+    color: #8B4513;
+    font-style: italic;
+}
+
+.unified-status .selected-pattern {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: #5a5a5a;
+}
+
+/* ============================================
+   PATTERN SELECTOR CARD STYLES
+   ============================================ */
+
+.pattern-selector-card {
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pattern-selector-card:hover {
+    border-color: #8B4513;
+    background-color: rgba(139, 69, 19, 0.03);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.pattern-selector-card.selected {
+    border-color: #8B4513;
+    background-color: rgba(139, 69, 19, 0.08);
+    box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2);
+}
+
+.pattern-selector-card.playing {
+    border-color: #4CAF50;
+    background-color: rgba(76, 175, 80, 0.08);
+    animation: pulse-playing 2s infinite;
+}
+
+@keyframes pulse-playing {
+    0%, 100% { box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2); }
+    50% { box-shadow: 0 4px 25px rgba(76, 175, 80, 0.4); }
+}
+
+.pattern-selector-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+}
+
+.pattern-radio {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.pattern-selector-card.selected .pattern-radio {
+    border-color: #8B4513;
+}
+
+.radio-indicator {
+    width: 12px;
+    height: 12px;
+    background-color: transparent;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.pattern-selector-card.selected .radio-indicator {
+    background-color: #8B4513;
+}
+
+.pattern-selector-card.playing .pattern-radio {
+    border-color: #4CAF50;
+}
+
+.pattern-selector-card.playing .radio-indicator {
+    background-color: #4CAF50;
+}
+
+.pattern-info {
+    flex: 1;
+    text-align: center;
+}
+
+.pattern-title {
+    font-size: 1.1rem !important;
+    font-weight: var(--font-weight-semibold) !important;
+    color: #333;
+    margin-bottom: 5px !important;
+    text-align: center;
+}
+
+.pattern-selector-card.selected .pattern-title {
+    color: #5D2906;
+}
+
+.pattern-description {
+    font-size: var(--font-size-sm) !important;
+    color: #666 !important;
+    line-height: 1.4 !important;
+}
+
+/* Standard pattern highlight */
+.pattern-selector-card.standard-pattern-highlight {
+    border-color: #4CAF50;
+}
+
+.pattern-selector-card.standard-pattern-highlight.selected {
+    background-color: rgba(76, 175, 80, 0.08);
+}
+
+.pattern-selector-card.standard-pattern-highlight .pattern-title {
+    color: #388E3C;
+}
+
+/* ============================================
+   LEGACY STYLES (for programmable section)
+   ============================================ */
 
 /* Session timer styles */
 .session-timer-container {
@@ -436,6 +682,33 @@ body {
     margin-top: 20px;
     border: 1px solid #dee2e6;
     text-align: center;
+}
+
+/* Custom Timer at Top - Expert Section (like Practitioner timer) */
+.custom-timer-container-top {
+    background: linear-gradient(135deg, #fff, #f8f9fa);
+    border: 2px solid var(--expert-color);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(55, 71, 79, 0.15);
+}
+
+.custom-timer-container-top .custom-timer {
+    font-size: 2.2rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--expert-color);
+    font-family: 'Courier New', monospace !important;
+    letter-spacing: 2px;
+}
+
+.custom-timer-container-top .custom-timer-label {
+    font-size: var(--font-size-sm);
+    color: #5a6a72;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    font-weight: var(--font-weight-medium);
 }
 
 .custom-timer {
@@ -697,6 +970,31 @@ ul:not(.list-group) li {
     h1, .h1 {
         font-size: 1.75rem !important;
     }
+
+    /* Unified control panel responsive */
+    .unified-control-panel {
+        padding: 15px;
+    }
+
+    .session-timer-inline .session-timer {
+        font-size: 1.8rem;
+    }
+
+    .unified-buttons {
+        gap: 8px;
+    }
+
+    .unified-buttons .btn {
+        min-width: 100px;
+        font-size: 1rem !important;
+        padding: 10px 16px;
+    }
+
+    .pattern-selector-content {
+        gap: 10px;
+    }
+
+    .pattern-title {
+        font-size: 1rem !important;
+    }
 }
-
-

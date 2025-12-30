@@ -1,63 +1,250 @@
-// Initialize players when DOM is loaded
+// Global state for unified player
+let unifiedPlayer = null;
+let selectedPatternId = '55.5';
+let selectedAudioUrl = 'Coherent_Piano_5.5_5.5_fermibot.mp3';
+
+// Pattern selection function
+function selectPattern(card) {
+    // If currently playing, stop first
+    if (unifiedPlayer && unifiedPlayer.isPlaying) {
+        unifiedPlayer.stop();
+    }
+
+    // Remove selected class from all cards
+    document.querySelectorAll('.pattern-selector-card').forEach(c => {
+        c.classList.remove('selected');
+    });
+
+    // Add selected class to clicked card
+    card.classList.add('selected');
+
+    // Get pattern data
+    selectedPatternId = card.dataset.patternId;
+    selectedAudioUrl = card.dataset.audioUrl;
+
+    // Update display
+    const patternTitle = card.querySelector('.pattern-title').textContent.trim();
+    document.getElementById('selectedPatternDisplay').textContent = `Selected: ${patternTitle}`;
+
+    // Update the unified player's audio URL
+    if (unifiedPlayer) {
+        unifiedPlayer.setAudioUrl(selectedAudioUrl, selectedPatternId);
+    }
+}
+
+// Unified Audio Player using Web Audio API
+class UnifiedAudioPlayer {
+    constructor(sessionTimer) {
+        this.sessionTimer = sessionTimer;
+        this.audioContext = null;
+        this.audioBuffers = {}; // Cache for loaded audio buffers
+        this.currentBuffer = null;
+        this.sourceNode = null;
+        this.isPlaying = false;
+        this.startTime = 0;
+        this.pauseTime = 0;
+        this.isWebAudioSupported = !!window.AudioContext || !!window.webkitAudioContext;
+        this.currentPatternId = '55.5';
+
+        // UI Elements
+        this.playBtn = document.getElementById('unifiedPlay');
+        this.pauseBtn = document.getElementById('unifiedPause');
+        this.stopBtn = document.getElementById('unifiedStop');
+        this.loadingStatus = document.getElementById('unifiedLoadingStatus');
+
+        this.init();
+    }
+
+    async init() {
+        if (this.isWebAudioSupported) {
+            try {
+                // Initialize Audio Context
+                this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+                // Pre-load all pattern audio files
+                await this.preloadAllPatterns();
+
+                // Set initial buffer
+                this.currentBuffer = this.audioBuffers['55.5'];
+
+                // Enable buttons
+                this.playBtn.disabled = false;
+                this.pauseBtn.disabled = true;
+                this.stopBtn.disabled = false;
+
+                // Update status
+                this.loadingStatus.textContent = 'Ready';
+                this.loadingStatus.style.display = 'none';
+
+                // Set up event listeners
+                this.setupEventListeners();
+
+            } catch (error) {
+                console.error('Error initializing Web Audio:', error);
+                this.loadingStatus.textContent = 'Error loading audio files';
+                this.loadingStatus.style.color = '#f44336';
+            }
+        } else {
+            this.loadingStatus.textContent = 'Web Audio API not supported in this browser';
+            this.loadingStatus.style.color = '#f44336';
+        }
+    }
+
+    async preloadAllPatterns() {
+        const patterns = {
+            '55.5': 'Coherent_Piano_5.5_5.5_fermibot.mp3',
+            '55': 'Coherent_Piano_5_5_fermibot.mp3',
+            '66': 'Coherent_Piano_6_6_fermibot.mp3',
+            '77': 'Coherent_Piano_7_7_fermibot.mp3',
+            '88': 'Coherent_Piano_8_8_fermibot.mp3'
+        };
+
+        for (const [id, url] of Object.entries(patterns)) {
+            this.audioBuffers[id] = await this.loadAudio(url);
+        }
+    }
+
+    async loadAudio(url) {
+        try {
+            const response = await fetch(url);
+            const arrayBuffer = await response.arrayBuffer();
+            return await this.audioContext.decodeAudioData(arrayBuffer);
+        } catch (error) {
+            console.error('Error loading audio:', error);
+            throw error;
+        }
+    }
+
+    setAudioUrl(url, patternId) {
+        this.currentPatternId = patternId;
+        this.currentBuffer = this.audioBuffers[patternId];
+        this.pauseTime = 0; // Reset pause time when changing patterns
+    }
+
+    setupEventListeners() {
+        this.playBtn.addEventListener('click', () => this.play());
+        this.pauseBtn.addEventListener('click', () => this.pause());
+        this.stopBtn.addEventListener('click', () => this.stop());
+
+        // Resume audio context on first user interaction
+        const resumeAudioContext = () => {
+            if (this.audioContext && this.audioContext.state === 'suspended') {
+                this.audioContext.resume();
+            }
+            document.removeEventListener('click', resumeAudioContext);
+            document.removeEventListener('touchstart', resumeAudioContext);
+        };
+
+        document.addEventListener('click', resumeAudioContext);
+        document.addEventListener('touchstart', resumeAudioContext);
+    }
+
+    play() {
+        if (!this.isWebAudioSupported) return;
+        if (this.isPlaying) return;
+
+        if (this.audioContext.state === 'suspended') {
+            this.audioContext.resume();
+        }
+
+        // Start or resume session timer
+        if (this.pauseTime === 0) {
+            this.sessionTimer.resetAndStart();
+        } else {
+            this.sessionTimer.start();
+        }
+
+        this.sourceNode = this.audioContext.createBufferSource();
+        this.sourceNode.buffer = this.currentBuffer;
+        this.sourceNode.loop = true;
+
+        // Connect to destination
+        this.sourceNode.connect(this.audioContext.destination);
+
+        // Calculate start offset
+        const startOffset = this.pauseTime % this.currentBuffer.duration;
+
+        // Start playing
+        this.sourceNode.start(0, startOffset);
+        this.startTime = this.audioContext.currentTime - startOffset;
+        this.isPlaying = true;
+
+        // Update UI
+        this.playBtn.disabled = true;
+        this.pauseBtn.disabled = false;
+        this.playBtn.classList.add('active');
+
+        // Highlight selected card
+        document.querySelectorAll('.pattern-selector-card').forEach(card => {
+            if (card.dataset.patternId === this.currentPatternId) {
+                card.classList.add('playing');
+            }
+        });
+    }
+
+    pause() {
+        if (!this.isWebAudioSupported || !this.isPlaying) return;
+
+        // Pause session timer
+        this.sessionTimer.pause();
+
+        // Calculate current position
+        this.pauseTime = (this.audioContext.currentTime - this.startTime) % this.currentBuffer.duration;
+
+        // Stop the source
+        this.sourceNode.stop();
+        this.sourceNode.disconnect();
+        this.isPlaying = false;
+
+        // Update UI
+        this.playBtn.disabled = false;
+        this.pauseBtn.disabled = true;
+        this.playBtn.classList.remove('active');
+
+        // Remove playing class from cards
+        document.querySelectorAll('.pattern-selector-card').forEach(card => {
+            card.classList.remove('playing');
+        });
+    }
+
+    stop() {
+        if (!this.isWebAudioSupported) return;
+
+        // Stop session timer
+        this.sessionTimer.stop();
+
+        if (this.isPlaying) {
+            this.sourceNode.stop();
+            this.sourceNode.disconnect();
+            this.isPlaying = false;
+        }
+
+        // Reset
+        this.pauseTime = 0;
+        this.startTime = 0;
+
+        // Update UI
+        this.playBtn.disabled = false;
+        this.pauseBtn.disabled = true;
+        this.playBtn.classList.remove('active');
+
+        // Remove playing class from cards
+        document.querySelectorAll('.pattern-selector-card').forEach(card => {
+            card.classList.remove('playing');
+        });
+    }
+}
+
+// Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Create session timer instance
     const sessionTimer = new SessionTimer('sessionTimer');
 
-    // Create player manager instance
+    // Create player manager instance (still needed for programmable section)
     const playerManager = new AudioPlayerManager(sessionTimer);
 
-    // Initialize all pattern players
-    const players = {};
-
-    // NEW: 5.5-5.5 pattern player (standard pattern)
-    const player55_5Container = document.querySelector('.seamless-audio-player[data-audio-id="55.5"]');
-    players.player55_5 = new SeamlessAudioPlayer(
-        player55_5Container,
-        'Coherent_Piano_5.5_5.5_fermibot.mp3',
-        '55.5',
-        playerManager
-    );
-    playerManager.registerPlayer('55.5', players.player55_5);
-
-    // 5-5 pattern player (first row, first card)
-    const player55Container = document.querySelector('.seamless-audio-player[data-audio-id="55"]');
-    players.player55 = new SeamlessAudioPlayer(
-        player55Container,
-        'Coherent_Piano_5_5_fermibot.mp3',
-        '55',
-        playerManager
-    );
-    playerManager.registerPlayer('55', players.player55);
-
-    // 6-6 pattern player (first row, second card)
-    const player66Container = document.querySelector('.seamless-audio-player[data-audio-id="66"]');
-    players.player66 = new SeamlessAudioPlayer(
-        player66Container,
-        'Coherent_Piano_6_6_fermibot.mp3',
-        '66',
-        playerManager
-    );
-    playerManager.registerPlayer('66', players.player66);
-
-    // 7-7 pattern player (second row, first card)
-    const player77Container = document.querySelector('.seamless-audio-player[data-audio-id="77"]');
-    players.player77 = new SeamlessAudioPlayer(
-        player77Container,
-        'Coherent_Piano_7_7_fermibot.mp3',
-        '77',
-        playerManager
-    );
-    playerManager.registerPlayer('77', players.player77);
-
-    // 8-8 pattern player (second row, second card)
-    const player88Container = document.querySelector('.seamless-audio-player[data-audio-id="88"]');
-    players.player88 = new SeamlessAudioPlayer(
-        player88Container,
-        'Coherent_Piano_8_8_fermibot.mp3',
-        '88',
-        playerManager
-    );
-    playerManager.registerPlayer('88', players.player88);
+    // Initialize unified player for practitioner section
+    unifiedPlayer = new UnifiedAudioPlayer(sessionTimer);
 
     // Initialize programmable breathing sequencer
     const programmableSequencer = new ProgrammableBreathingSequencer(
@@ -67,23 +254,19 @@ document.addEventListener('DOMContentLoaded', () => {
     );
     playerManager.registerPlayer('programmable', programmableSequencer);
 
-    // Store players and timer for global access if needed
+    // Store for global access if needed
     window.audioPlayers = {
-        ...players,
+        unifiedPlayer,
         programmableSequencer,
         sessionTimer,
         playerManager
     };
 });
 
-
 // Add to coherent_breathing_main.js, at the end of DOMContentLoaded event
 document.addEventListener('DOMContentLoaded', () => {
-    // ... existing initialization code ...
-
     // Initialize Bootstrap alerts (if Bootstrap is loaded)
     if (typeof bootstrap !== 'undefined') {
-        // Enable Bootstrap dismiss functionality for alerts
         document.querySelectorAll('.alert').forEach(alertElement => {
             new bootstrap.Alert(alertElement);
         });
