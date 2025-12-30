@@ -129,16 +129,16 @@
         </div>
 
         <div class="card mt-4">
-            <div class="card-body">
-                <h5 class="card-title beginner-color">📝 Beginner's Checklist</h5>
-                <ul class="">
-                    <li class="">✅ Watch both videos to understand the concept</li>
-                    <li class="">✅ Find a comfortable, quiet place to practice</li>
-                    <li class="">✅ Start with just 5 minutes per day</li>
-                    <li class="">✅ Focus on consistency rather than duration</li>
-                    <li class="">✅ Move to Practitioner level when ready to try patterns</li>
+            <div class="card-body py-3">
+                <h5 class="card-title beginner-color mb-2">📝 Beginner's Checklist</h5>
+                <ul class="mb-2">
+                    <li>✅ Watch both videos to understand the concept</li>
+                    <li>✅ Find a comfortable, quiet place to practice</li>
+                    <li>✅ Start with just 5 minutes per day</li>
+                    <li>✅ Focus on consistency rather than duration</li>
+                    <li>✅ Move to Practitioner level when ready to try patterns</li>
                 </ul>
-                <div class="text-center mt-4">
+                <div class="text-center mt-3">
                     <button class="btn beginner-btn btn-sm" onclick="scrollToSection('practitionerSection')">
                         🡇 Ready to Practice? Go to Practitioner Level
                     </button>
@@ -158,62 +158,70 @@
         <!-- Unified Audio Controls -->
         <div class="audio-controls">
             <!-- Unified Control Panel -->
-            <div class="unified-control-panel mb-4">
-                <div class="control-panel-inner">
-                    <!-- Session Timer Display -->
-                    <div class="session-timer-inline">
-                        <div class="timer-label">Session Timer</div>
-                        <div class="session-timer" id="sessionTimer">00:00:00</div>
-                    </div>
+            <div class="row">
+                <div class="unified-control-panel mb-4 col-12">
+                    <div class="control-panel-inner">
+                        <!-- Session Timer Display -->
+                        <div class="session-timer-inline">
+                            <div class="timer-label">Session Timer</div>
+                            <div class="session-timer" id="sessionTimer">00:00:00</div>
+                        </div>
 
-                    <!-- Play/Pause/Stop Buttons -->
-                    <div class="unified-buttons">
-                        <button class="btn btn-primary btn-lg unified-play" id="unifiedPlay" disabled>
-                            ▶️ Play
-                        </button>
-                        <button class="btn btn-secondary btn-lg unified-pause" id="unifiedPause" disabled>
-                            ⏸️ Pause
-                        </button>
-                        <button class="btn btn-outline-secondary btn-lg unified-stop" id="unifiedStop" disabled>
-                            ⏹️ Stop
-                        </button>
-                    </div>
+                        <!-- Play/Pause/Stop Buttons -->
+                        <div class="unified-buttons">
+                            <button class="btn btn-primary btn-lg unified-play" id="unifiedPlay" disabled>
+                                ▶️ Play
+                            </button>
+                            <button class="btn btn-secondary btn-lg unified-pause" id="unifiedPause" disabled>
+                                ⏸️ Pause
+                            </button>
+                            <button class="btn btn-outline-secondary btn-lg unified-stop" id="unifiedStop" disabled>
+                                ⏹️ Stop
+                            </button>
+                        </div>
 
-                    <!-- Status Display -->
-                    <div class="unified-status">
-                        <span class="loading-status" id="unifiedLoadingStatus">Loading audio files...</span>
-                        <span class="selected-pattern" id="selectedPatternDisplay">Selected: 5.5-5.5 (Standard)</span>
+                        <!-- Status Display -->
+                        <div class="unified-status">
+                            <span class="loading-status" id="unifiedLoadingStatus">Loading audio files...</span>
+                            <span class="selected-pattern"
+                                  id="selectedPatternDisplay">Selected: 5.5-5.5 (Standard)</span>
+                        </div>
                     </div>
                 </div>
+
+
             </div>
 
             <!-- Pattern Selection Cards -->
             <h5 class="text-center mb-3" style="color: #666;">Select a Pattern:</h5>
 
-            <!-- Standard Pattern (Highlighted) -->
-            <div class="row mb-3">
-                <div class="col-12">
-                    <div class="pattern-selector-card selected standard-pattern-highlight"
-                         data-pattern-id="55.5"
-                         data-audio-url="Coherent_Piano_5.5_5.5_fermibot.mp3"
-                         onclick="selectPattern(this)">
-                        <div class="pattern-selector-content">
-                            <div class="pattern-radio">
-                                <span class="radio-indicator"></span>
-                            </div>
-                            <div class="pattern-info">
-                                <h5 class="pattern-title">⭐ 5.5-5.5 Breathing Pattern <span class="badge bg-success">Standard</span>
-                                </h5>
-                                <p class="pattern-description mb-0">5.5 seconds inhale, 5.5 seconds exhale - The
-                                    standard coherent breathing pattern for optimal heart rate variability</p>
+
+            <!-- Other Patterns Grid -->
+            <div class="row">
+
+                <!-- Standard Pattern (Highlighted) -->
+                <div class="col-md-6 col-6">
+                    <div>
+                        <div class="pattern-selector-card selected standard-pattern-highlight"
+                             data-pattern-id="55.5"
+                             data-audio-url="Coherent_Piano_5.5_5.5_fermibot.mp3"
+                             onclick="selectPattern(this)">
+                            <div class="pattern-selector-content">
+                                <div class="pattern-radio">
+                                    <span class="radio-indicator"></span>
+                                </div>
+                                <div class="pattern-info">
+                                    <h5 class="pattern-title">⭐ 5.5-5.5 Breathing Pattern <span
+                                            class="badge bg-success">Standard</span>
+                                    </h5>
+                                    <p class="pattern-description mb-0">5.5s inhale, 5.5s exhale | Pattern for optimal
+                                        HRV</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Other Patterns Grid -->
-            <div class="row">
                 <div class="col-md-6 mb-3">
                     <div class="pattern-selector-card"
                          data-pattern-id="55"
@@ -225,8 +233,7 @@
                             </div>
                             <div class="pattern-info">
                                 <h5 class="pattern-title">🌼 5-5 Breathing Pattern</h5>
-                                <p class="pattern-description mb-0">5 seconds inhale, 5 seconds exhale - For energy and
-                                    focus</p>
+                                <p class="pattern-description mb-0">5s inhale, 5s exhale | For energy and focus</p>
                             </div>
                         </div>
                     </div>
@@ -243,8 +250,7 @@
                             </div>
                             <div class="pattern-info">
                                 <h5 class="pattern-title">🌸 6-6 Breathing Pattern</h5>
-                                <p class="pattern-description mb-0">6 seconds inhale, 6 seconds exhale - Perfect for
-                                    relaxation</p>
+                                <p class="pattern-description mb-0">6s inhale, 6s exhale | Perfect for relaxation</p>
                             </div>
                         </div>
                     </div>
@@ -261,8 +267,7 @@
                             </div>
                             <div class="pattern-info">
                                 <h5 class="pattern-title">🌿 7-7 Breathing Pattern</h5>
-                                <p class="pattern-description mb-0">7 seconds inhale, 7 seconds exhale - For deep
-                                    relaxation</p>
+                                <p class="pattern-description mb-0">7s inhale, 7s exhale | For deep relaxation</p>
                             </div>
                         </div>
                     </div>
@@ -279,8 +284,7 @@
                             </div>
                             <div class="pattern-info">
                                 <h5 class="pattern-title">🌊 8-8 Breathing Pattern</h5>
-                                <p class="pattern-description mb-0">8 seconds inhale, 8 seconds exhale - For meditation
-                                    & calm</p>
+                                <p class="pattern-description mb-0">8s inhale, 8s exhale | For meditation & calm</p>
                             </div>
                         </div>
                     </div>
@@ -297,25 +301,22 @@
 
         <!-- Practitioner Tips -->
         <div class="card mt-4">
-            <div class="card-body">
-                <h5 class="card-title practitioner-color">💡 Practitioner Tips</h5>
-                <ul class="">
-                    <li class="">✅ Start with the 5.5-5.5 pattern for best heart rate variability results</li>
-                    <li class="">✅ Practice for 10-20 minutes daily for noticeable benefits</li>
-                    <li class="">✅ Breathe through your nose with your belly expanding</li>
-                    <li class="">✅ Keep your eyes closed and focus on the piano tones</li>
-                    <li class="">✅ Gradually increase duration as you become more comfortable</li>
+            <div class="card-body py-3">
+                <h5 class="card-title practitioner-color mb-2">💡 Practitioner Tips</h5>
+                <ul class="mb-2">
+                    <li>✅ Start with the 5.5-5.5 pattern for best heart rate variability results</li>
+                    <li>✅ Practice for 10-20 minutes daily for noticeable benefits</li>
+                    <li>✅ Breathe through your nose with your belly expanding</li>
+                    <li>✅ Keep your eyes closed and focus on the piano tones</li>
+                    <li>✅ Gradually increase duration as you become more comfortable</li>
                 </ul>
-                <div class="text-center mt-4">
+                <div class="text-center mt-3">
                     <button class="btn beginner-btn btn-sm" onclick="scrollToSection('beginnerSection')">
                         🡅 Back to Beginner Level
                     </button>
                     <button class="btn practitioner-btn btn-sm" onclick="scrollToSection('expertSection')">
                         🡇 Ready to Customize? Go to Expert Level
                     </button>
-                </div>
-                <div class="text-center mt-4">
-
                 </div>
             </div>
         </div>
@@ -331,12 +332,33 @@
 
         <div class="programmable-section" id="programmableSection">
             <!-- Custom Timer Display - At Top Like Practitioner Section -->
-            <div class="custom-timer-container-top mb-4">
-                <div class="custom-timer-label">Custom Pattern Timer</div>
-                <div class="custom-timer" id="customPatternTimer">00:00:00</div>
-                <div class="mt-2" style="font-size: 0.9rem; color: #6c757d;">
-                    ⏱️ Timer resets when you stop. Tracks only this custom pattern session.
+
+            <div class="row">
+
+                <div class="custom-timer-container-top mb-4 col-6">
+                    <div class="custom-timer-label">Custom Pattern Timer</div>
+                    <div class="custom-timer" id="customPatternTimer">00:00:00</div>
+                    <div class="mt-2" style="font-size: 0.9rem; color: #6c757d;">
+                        ⏱️ Timer resets when you stop. Tracks only this custom pattern session.
+                    </div>
                 </div>
+
+                <div class="custom-timer-container-top mb-4 col-6">
+                    <!-- Breath cycle visualizer -->
+                    <div class="breath-visualizer" id="breathVisualizer">
+                        <!-- Phases will be dynamically inserted here --></div>
+
+
+                    <div class="row">
+                        <!-- Current phase indicator -->
+                        <div class="current-phase-indicator col-6" id="currentPhase">Ready to start</div>
+
+                        <!-- Cycle counter -->
+                        <div class="current-phase-indicator col-6" id="cycleCounter"> Cycle: 0</div>
+
+                    </div>
+                </div>
+
             </div>
 
             <div class="row">
@@ -419,25 +441,9 @@
                 </div>
 
                 <!-- Right side: Visualizer and Summary -->
-                <div class="col-lg-6">
+                <div class="col-6">
                     <div class="programmable-card">
-                        <h5 class="expert-color text-center">📊 Visual Guide</h5>
 
-                        <!-- Breath cycle visualizer -->
-                        <div class="breath-visualizer" id="breathVisualizer">
-                            <!-- Phases will be dynamically inserted here -->
-                        </div>
-                        <div class="ticker-guide">🔴 Red line shows your position in the breathing cycle</div>
-
-                        <!-- Current phase indicator -->
-                        <div class="current-phase-indicator" id="currentPhase">
-                            Ready to start
-                        </div>
-
-                        <!-- Cycle counter -->
-                        <div class="cycle-counter" id="cycleCounter">
-                            Cycle: 0
-                        </div>
 
                         <!-- Pattern summary -->
                         <div class="pattern-summary">
@@ -469,17 +475,17 @@
 
         <!-- Expert Tips Card (New section, similar to practitioner tips) -->
         <div class="card mt-5">
-            <div class="card-body">
-                <h5 class="expert-color">💡 Expert Tips</h5>
-                <ul class="">
-                    <li class="">✅ Longer exhales (compared to inhales) promote relaxation</li>
-                    <li class="">✅ Add pauses to increase mindfulness and breath awareness</li>
-                    <li class="">✅ Experiment with 4-7-8 pattern (inhale 4s, hold 7s, exhale 8s)</li>
-                    <li class="">✅ Try box breathing (4-4-4-4 pattern) for focus and stress reduction</li>
-                    <li class="">✅ Save successful patterns in a journal for future reference</li>
-                    <li class="">✅ Adjust patterns based on your energy levels and time of day</li>
+            <div class="card-body py-3">
+                <h5 class="card-title expert-color mb-2">💡 Expert Tips</h5>
+                <ul class="mb-2">
+                    <li>✅ Longer exhales (compared to inhales) promote relaxation</li>
+                    <li>✅ Add pauses to increase mindfulness and breath awareness</li>
+                    <li>✅ Experiment with 4-7-8 pattern (inhale 4s, hold 7s, exhale 8s)</li>
+                    <li>✅ Try box breathing (4-4-4-4 pattern) for focus and stress reduction</li>
+                    <li>✅ Save successful patterns in a journal for future reference</li>
+                    <li>✅ Adjust patterns based on your energy levels and time of day</li>
                 </ul>
-                <div class="text-center mt-4">
+                <div class="text-center mt-3">
                     <button class="btn expert-btn btn-sm" onclick="scrollToSection('beginnerSection')">
                         🡅 Back to Beginner Level
                     </button>
@@ -487,7 +493,6 @@
                         🡅 Back to Practitioner Level
                     </button>
                 </div>
-
             </div>
         </div>
 
