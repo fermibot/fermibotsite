@@ -128,20 +128,25 @@
             </div>
         </div>
 
-        <div class="card mt-4">
-            <div class="card-body py-3">
-                <h5 class="card-title beginner-color mb-2">📝 Beginner's Checklist</h5>
-                <ul class="mb-2">
-                    <li>✅ Watch both videos to understand the concept</li>
-                    <li>✅ Find a comfortable, quiet place to practice</li>
-                    <li>✅ Start with just 5 minutes per day</li>
-                    <li>✅ Focus on consistency rather than duration</li>
-                    <li>✅ Move to Practitioner level when ready to try patterns</li>
-                </ul>
-                <div class="text-center mt-3">
-                    <button class="btn beginner-btn btn-sm" onclick="scrollToSection('practitionerSection')">
-                        🡇 Ready to Practice? Go to Practitioner Level
-                    </button>
+        <div class="card mt-4 tips-card">
+            <div class="card-body">
+                <h5 class="card-title beginner-color collapsible-header" onclick="toggleCollapse('beginnerChecklist', this)">
+                    📝 Beginner's Checklist
+                    <span class="collapse-icon">▼</span>
+                </h5>
+                <div class="collapsible-content" id="beginnerChecklist">
+                    <ul>
+                        <li>✅ Watch both videos to understand the concept</li>
+                        <li>✅ Find a comfortable, quiet place to practice</li>
+                        <li>✅ Start with just 5 minutes per day</li>
+                        <li>✅ Focus on consistency rather than duration</li>
+                        <li>✅ Move to Practitioner level when ready to try patterns</li>
+                    </ul>
+                    <div class="text-center">
+                        <button class="btn beginner-btn btn-sm" onclick="scrollToSection('practitionerSection')">
+                            🡇 Ready to Practice? Go to Practitioner Level
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -300,23 +305,28 @@
         </div>
 
         <!-- Practitioner Tips -->
-        <div class="card mt-4">
-            <div class="card-body py-3">
-                <h5 class="card-title practitioner-color mb-2">💡 Practitioner Tips</h5>
-                <ul class="mb-2">
-                    <li>✅ Start with the 5.5-5.5 pattern for best heart rate variability results</li>
-                    <li>✅ Practice for 10-20 minutes daily for noticeable benefits</li>
-                    <li>✅ Breathe through your nose with your belly expanding</li>
-                    <li>✅ Keep your eyes closed and focus on the piano tones</li>
-                    <li>✅ Gradually increase duration as you become more comfortable</li>
-                </ul>
-                <div class="text-center mt-3">
-                    <button class="btn beginner-btn btn-sm" onclick="scrollToSection('beginnerSection')">
-                        🡅 Back to Beginner Level
-                    </button>
-                    <button class="btn practitioner-btn btn-sm" onclick="scrollToSection('expertSection')">
-                        🡇 Ready to Customize? Go to Expert Level
-                    </button>
+        <div class="card mt-4 tips-card">
+            <div class="card-body">
+                <h5 class="card-title practitioner-color collapsible-header" onclick="toggleCollapse('practitionerTips', this)">
+                    💡 Practitioner Tips
+                    <span class="collapse-icon">▼</span>
+                </h5>
+                <div class="collapsible-content" id="practitionerTips">
+                    <ul>
+                        <li>✅ Start with the 5.5-5.5 pattern for best heart rate variability results</li>
+                        <li>✅ Practice for 10-20 minutes daily for noticeable benefits</li>
+                        <li>✅ Breathe through your nose with your belly expanding</li>
+                        <li>✅ Keep your eyes closed and focus on the piano tones</li>
+                        <li>✅ Gradually increase duration as you become more comfortable</li>
+                    </ul>
+                    <div class="text-center">
+                        <button class="btn beginner-btn btn-sm" onclick="scrollToSection('beginnerSection')">
+                            🡅 Back to Beginner Level
+                        </button>
+                        <button class="btn practitioner-btn btn-sm" onclick="scrollToSection('expertSection')">
+                            🡇 Ready to Customize? Go to Expert Level
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -474,24 +484,29 @@
         </div>
 
         <!-- Expert Tips Card (New section, similar to practitioner tips) -->
-        <div class="card mt-5">
-            <div class="card-body py-3">
-                <h5 class="card-title expert-color mb-2">💡 Expert Tips</h5>
-                <ul class="mb-2">
-                    <li>✅ Longer exhales (compared to inhales) promote relaxation</li>
-                    <li>✅ Add pauses to increase mindfulness and breath awareness</li>
-                    <li>✅ Experiment with 4-7-8 pattern (inhale 4s, hold 7s, exhale 8s)</li>
-                    <li>✅ Try box breathing (4-4-4-4 pattern) for focus and stress reduction</li>
-                    <li>✅ Save successful patterns in a journal for future reference</li>
-                    <li>✅ Adjust patterns based on your energy levels and time of day</li>
-                </ul>
-                <div class="text-center mt-3">
-                    <button class="btn expert-btn btn-sm" onclick="scrollToSection('beginnerSection')">
-                        🡅 Back to Beginner Level
-                    </button>
-                    <button class="btn practitioner-btn btn-sm" onclick="scrollToSection('practitionerSection')">
-                        🡅 Back to Practitioner Level
-                    </button>
+        <div class="card mt-4 tips-card">
+            <div class="card-body">
+                <h5 class="card-title expert-color collapsible-header" onclick="toggleCollapse('expertTips', this)">
+                    💡 Expert Tips
+                    <span class="collapse-icon">▼</span>
+                </h5>
+                <div class="collapsible-content" id="expertTips">
+                    <ul>
+                        <li>✅ Longer exhales (compared to inhales) promote relaxation</li>
+                        <li>✅ Add pauses to increase mindfulness and breath awareness</li>
+                        <li>✅ Experiment with 4-7-8 pattern (inhale 4s, hold 7s, exhale 8s)</li>
+                        <li>✅ Try box breathing (4-4-4-4 pattern) for focus and stress reduction</li>
+                        <li>✅ Save successful patterns in a journal for future reference</li>
+                        <li>✅ Adjust patterns based on your energy levels and time of day</li>
+                    </ul>
+                    <div class="text-center">
+                        <button class="btn expert-btn btn-sm" onclick="scrollToSection('beginnerSection')">
+                            🡅 Back to Beginner Level
+                        </button>
+                        <button class="btn practitioner-btn btn-sm" onclick="scrollToSection('practitionerSection')">
+                            🡅 Back to Practitioner Level
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -584,6 +599,21 @@
             card.classList.remove('active-level');
         });
         document.getElementById(sectionId + 'Card').classList.add('active-level');
+    }
+
+    // Toggle collapsible sections
+    function toggleCollapse(contentId, headerElement) {
+        const content = document.getElementById(contentId);
+        const icon = headerElement.querySelector('.collapse-icon');
+
+        content.classList.toggle('collapsed');
+        headerElement.classList.toggle('collapsed');
+
+        if (content.classList.contains('collapsed')) {
+            icon.textContent = '▶';
+        } else {
+            icon.textContent = '▼';
+        }
     }
 </script>
 
