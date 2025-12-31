@@ -25,7 +25,6 @@ class ProgrammableBreathingSequencer {
 
         // Playback state
         this.currentPhase = 'stopped';
-        this.cycleCount = 0;
         this.currentSource = null;
         this.nextPhaseTimeout = null;
 
@@ -55,7 +54,6 @@ class ProgrammableBreathingSequencer {
         this.stopBtn = document.getElementById('programmableStop');
         this.loadingStatus = document.getElementById('programmableLoading');
         this.currentPhaseElement = document.getElementById('currentPhase');
-        this.cycleCounterElement = document.getElementById('cycleCounter');
         this.breathVisualizer = document.getElementById('breathVisualizer');
 
         // Select elements
@@ -396,7 +394,6 @@ class ProgrammableBreathingSequencer {
 
         this.isPlaying = true;
         this.currentPhase = 'in';
-        this.cycleCount = 0;
 
         // Start ticker animation
         this.startTickerAnimation();
@@ -407,7 +404,6 @@ class ProgrammableBreathingSequencer {
         this.stopBtn.disabled = false;
         this.playBtn.classList.add('active');
         this.currentPhaseElement.textContent = 'Starting inhale...';
-        this.cycleCounterElement.textContent = 'Cycle: 0';
 
         // Start the first phase
         this.playNextPhase();
@@ -469,9 +465,7 @@ class ProgrammableBreathingSequencer {
 
         this.isPlaying = false;
         this.currentPhase = 'stopped';
-        this.cycleCount = 0;
         this.currentPhaseElement.textContent = 'Ready to start';
-        this.cycleCounterElement.textContent = 'Cycle: 0';
 
         // Update UI
         this.playBtn.disabled = false;
@@ -517,10 +511,6 @@ class ProgrammableBreathingSequencer {
                 phaseDuration = pause2Duration;
                 nextPhase = 'in';
                 this.currentPhaseElement.textContent = `Pause after exhale (${pause2Duration}s)`;
-
-                // Increment cycle counter after completing a full cycle
-                this.cycleCount++;
-                this.cycleCounterElement.textContent = `Cycle: ${this.cycleCount}`;
 
                 // Reset ticker for the next cycle
                 setTimeout(() => {
@@ -599,11 +589,11 @@ class ProgrammableBreathingSequencer {
             .attr('stroke', '#dee2e6')
             .attr('stroke-width', 2);
 
-        // Add center text - "Cycle"
+        // Add center text - empty (removed Cycle label)
         this.centerGroup.append('text')
             .attr('class', 'center-text')
             .attr('y', -15)
-            .text('Cycle');
+            .text('');
 
         // Add center time display
         this.circularCenterTime = this.centerGroup.append('text')
