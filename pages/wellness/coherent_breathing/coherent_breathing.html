@@ -382,6 +382,8 @@
                             <div class="col-6 mb-3">
                                 <label class="duration-label">Inhale Duration</label>
                                 <select class="form-select" id="inDuration">
+                                    <option value="3">3 seconds</option>
+                                    <option value="4">4 seconds</option>
                                     <option value="5">5 seconds</option>
                                     <option value="5.5" selected>5.5 seconds</option>
                                     <option value="6">6 seconds</option>
@@ -407,6 +409,8 @@
                             <div class="col-6 mb-3">
                                 <label class="duration-label">Exhale Duration</label>
                                 <select class="form-select" id="outDuration">
+                                    <option value="3">3 seconds</option>
+                                    <option value="4">4 seconds</option>
                                     <option value="5">5 seconds</option>
                                     <option value="5.5" selected>5.5 seconds</option>
                                     <option value="6">6 seconds</option>
@@ -514,69 +518,175 @@
         <div class="card mt-4">
             <div class="card-body">
                 <h5 class="expert-color text-center">📊 Expert Pattern Ideas</h5>
-                <div class="row mt-3">
+                <p class="text-center text-muted small mb-3">Click any pattern to apply it to the custom pattern creator above</p>
+
+                <!-- Pattern Ideas Grid - 3 per row -->
+                <div class="row">
+                    <!-- Row 1 -->
                     <div class="col-md-4 mb-3">
-                        <div class="card h-100">
+                        <div class="card h-100 pattern-idea-card"
+                             data-in="4" data-pause1="0" data-out="8" data-pause2="0"
+                             onclick="applyPatternIdea(this)">
                             <div class="card-body text-center">
                                 <h6 class="card-title expert-color">🌊 Calming Pattern</h6>
-                                <p class="card-text pattern-description">Inhale: 4s<br>Exhale: 8s<br>Creates deep
-                                    relaxation and calms the nervous system</p>
-                                <div class="text-muted small">Perfect for evening practice</div>
+                                <p class="card-text pattern-description">Inhale: 4s<br>Exhale: 8s<br>Creates deep relaxation</p>
+                                <div class="text-muted small">Perfect for evening</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <div class="card h-100">
+                        <div class="card h-100 pattern-idea-card"
+                             data-in="4" data-pause1="4" data-out="4" data-pause2="4"
+                             onclick="applyPatternIdea(this)">
                             <div class="card-body text-center">
-                                <h6 class="card-title expert-color">📦 Box Breathing</h6>
-                                <p class="card-text pattern-description">Inhale: 4s<br>Hold: 4s<br>Exhale: 4s<br>Hold:
-                                    4s<br>Great for focus and concentration</p>
+                                <h6 class="card-title expert-color">📦 Box Breathing <sup><a href="#ref-box" class="footnote-link">[1]</a></sup></h6>
+                                <p class="card-text pattern-description">Inhale: 4s<br>Hold: 4s<br>Exhale: 4s<br>Hold: 4s</p>
                                 <div class="text-muted small">Used by Navy SEALs</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <div class="card h-100">
+                        <div class="card h-100 pattern-idea-card"
+                             data-in="4" data-pause1="4" data-out="6" data-pause2="2"
+                             onclick="applyPatternIdea(this)">
                             <div class="card-body text-center">
-                                <h6 class="card-title expert-color">⚡ Energy Pattern</h6>
-                                <p class="card-text pattern-description">Inhale: 6s<br>Exhale: 4s<br>Increases
-                                    alertness and energy levels</p>
-                                <div class="text-muted small">Ideal for morning practice</div>
+                                <h6 class="card-title expert-color">🔷 Rectangular <sup><a href="#ref-rect" class="footnote-link">[2]</a></sup></h6>
+                                <p class="card-text pattern-description">Inhale: 4s<br>Hold: 4s<br>Exhale: 6s<br>Hold: 2s</p>
+                                <div class="text-muted small">SIU Medicine</div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row mt-2">
+
+                    <!-- Row 2 -->
                     <div class="col-md-4 mb-3">
-                        <div class="card h-100">
+                        <div class="card h-100 pattern-idea-card"
+                             data-in="4" data-pause1="4" data-out="8" data-pause2="0"
+                             onclick="applyPatternIdea(this)">
                             <div class="card-body text-center">
-                                <h6 class="card-title expert-color">😴 Sleep Pattern</h6>
-                                <p class="card-text pattern-description">Inhale: 4s<br>Hold: 7s<br>Exhale: 8s<br>Promotes
-                                    relaxation before sleep</p>
-                                <div class="text-muted small">4-7-8 breathing technique</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="card h-100">
-                            <div class="card-body text-center">
-                                <h6 class="card-title expert-color">🧠 Mindful Pattern</h6>
-                                <p class="card-text pattern-description">Inhale: 5s<br>Hold: 3s<br>Exhale: 7s<br>Hold:
-                                    2s<br>Enhances mindfulness</p>
-                                <div class="text-muted small">With balanced pauses</div>
+                                <h6 class="card-title expert-color">🧘 4-4-8 Pattern <sup><a href="#ref-448" class="footnote-link">[3]</a></sup></h6>
+                                <p class="card-text pattern-description">Inhale: 4s<br>Hold: 4s<br>Exhale: 8s</p>
+                                <div class="text-muted small">Research-backed relaxation</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <div class="card h-100">
+                        <div class="card h-100 pattern-idea-card"
+                             data-in="4" data-pause1="7" data-out="8" data-pause2="0"
+                             onclick="applyPatternIdea(this)">
                             <div class="card-body text-center">
-                                <h6 class="card-title expert-color">❤️ Heart Coherence</h6>
-                                <p class="card-text pattern-description">Inhale: 5.5s<br>Exhale: 5.5s<br>The
-                                    standard pattern for optimal heart rate variability</p>
+                                <h6 class="card-title expert-color">😴 4-7-8 Sleep <sup><a href="#ref-478" class="footnote-link">[4]</a></sup></h6>
+                                <p class="card-text pattern-description">Inhale: 4s<br>Hold: 7s<br>Exhale: 8s</p>
+                                <div class="text-muted small">Dr. Andrew Weil</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100 pattern-idea-card"
+                             data-in="5.5" data-pause1="0" data-out="5.5" data-pause2="0"
+                             onclick="applyPatternIdea(this)">
+                            <div class="card-body text-center">
+                                <h6 class="card-title expert-color">❤️ Heart Coherence <sup><a href="#ref-coherence" class="footnote-link">[5]</a></sup></h6>
+                                <p class="card-text pattern-description">Inhale: 5.5s<br>Exhale: 5.5s<br>Optimal HRV</p>
                                 <div class="text-muted small">Back to basics</div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Row 3 -->
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100 pattern-idea-card"
+                             data-in="3" data-pause1="0" data-out="8" data-pause2="0"
+                             onclick="applyPatternIdea(this)">
+                            <div class="card-body text-center">
+                                <h6 class="card-title expert-color">🌬️ Physiological Sigh <sup><a href="#ref-sigh" class="footnote-link">[6]</a></sup></h6>
+                                <p class="card-text pattern-description">Inhale: 3s<br>Exhale: 8s<br>Immediate Reset</p>
+                                <div class="text-muted small">Stanford Neurobiology</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100 pattern-idea-card"
+                             data-in="4" data-pause1="4" data-out="4" data-pause2="0"
+                             onclick="applyPatternIdea(this)">
+                            <div class="card-body text-center">
+                                <h6 class="card-title expert-color">🔺 Triangle <sup><a href="#ref-triangle" class="footnote-link">[7]</a></sup></h6>
+                                <p class="card-text pattern-description">Inhale: 4s<br>Hold: 4s<br>Exhale: 4s<br>Anti-Anxiety</p>
+                                <div class="text-muted small">Low-Stress Grounding</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100 pattern-idea-card"
+                             data-in="4" data-pause1="0" data-out="6" data-pause2="0"
+                             onclick="applyPatternIdea(this)">
+                            <div class="card-body text-center">
+                                <h6 class="card-title expert-color">🩺 Resonance 4:6 <sup><a href="#ref-resonance" class="footnote-link">[8]</a></sup></h6>
+                                <p class="card-text pattern-description">Inhale: 4s<br>Exhale: 6s<br>Blood Pressure</p>
+                                <div class="text-muted small">Clinical Biofeedback</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row 4 -->
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100 pattern-idea-card"
+                             data-in="3" data-pause1="0" data-out="6" data-pause2="0"
+                             onclick="applyPatternIdea(this)">
+                            <div class="card-body text-center">
+                                <h6 class="card-title expert-color">🧠 Vagal Loading <sup><a href="#ref-vagal" class="footnote-link">[9]</a></sup></h6>
+                                <p class="card-text pattern-description">Inhale: 3s<br>Exhale: 6s<br>Deep Calm</p>
+                                <div class="text-muted small">Polyvagal Theory</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add more patterns here - they will automatically flow into rows of 3 -->
+                </div>
+
+                <!-- References Section -->
+                <div class="references-section mt-4 pt-3 border-top">
+                    <h6 class="text-muted mb-2">📚 References <span class="small fw-normal">(click pattern name to apply)</span></h6>
+                    <ol class="references-list">
+                        <li id="ref-box">
+                            <strong class="reference-pattern-name" data-in="4" data-pause1="4" data-out="4" data-pause2="4" onclick="applyPatternFromReference(this)">Box Breathing:</strong>
+                            <a href="https://health.clevelandclinic.org/box-breathing-benefits" target="_blank" rel="noopener">Cleveland Clinic - Box Breathing Benefits</a>,
+                            <a href="https://www.bhf.org.uk/informationsupport/heart-matters-magazine/wellbeing/breathing-exercises" target="_blank" rel="noopener">British Heart Foundation - Breathing Exercises</a>
+                        </li>
+                        <li id="ref-rect">
+                            <strong class="reference-pattern-name" data-in="4" data-pause1="4" data-out="6" data-pause2="2" onclick="applyPatternFromReference(this)">Rectangular Breathing:</strong>
+                            <a href="https://www.siumed.edu/gme/breath-wellness" target="_blank" rel="noopener">SIU Medicine - Breath for Wellness</a>
+                        </li>
+                        <li id="ref-448">
+                            <strong class="reference-pattern-name" data-in="4" data-pause1="4" data-out="8" data-pause2="0" onclick="applyPatternFromReference(this)">4-4-8 Breathing:</strong>
+                            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11229811/" target="_blank" rel="noopener">PMC/NIH - Breathing Pattern Research</a>
+                        </li>
+                        <li id="ref-478">
+                            <strong class="reference-pattern-name" data-in="4" data-pause1="7" data-out="8" data-pause2="0" onclick="applyPatternFromReference(this)">4-7-8 Breathing:</strong>
+                            <a href="https://health.clevelandclinic.org/4-7-8-breathing" target="_blank" rel="noopener">Cleveland Clinic - 4-7-8 Breathing</a>,
+                            <a href="https://www.bhf.org.uk/informationsupport/heart-matters-magazine/wellbeing/breathing-exercises" target="_blank" rel="noopener">British Heart Foundation - Breathing Exercises</a>
+                        </li>
+                        <li id="ref-coherence">
+                            <strong class="reference-pattern-name" data-in="5.5" data-pause1="0" data-out="5.5" data-pause2="0" onclick="applyPatternFromReference(this)">Heart Coherence (5.5-5.5):</strong>
+                            <a href="https://pubmed.ncbi.nlm.nih.gov/24380741/" target="_blank" rel="noopener">PubMed - Heart Rate Variability & Breathing Research</a>
+                        </li>
+                        <li id="ref-sigh">
+                            <strong class="reference-pattern-name" data-in="3" data-pause1="0" data-out="8" data-pause2="0" onclick="applyPatternFromReference(this)">Physiological Sigh:</strong>
+                            <a href="https://doi.org/10.1016/j.xcrm.2022.100895" target="_blank" rel="noopener">Stanford - Cell Reports Medicine</a>
+                        </li>
+                        <li id="ref-triangle">
+                            <strong class="reference-pattern-name" data-in="4" data-pause1="4" data-out="4" data-pause2="0" onclick="applyPatternFromReference(this)">Triangle Breathing:</strong>
+                            <a href="https://doi.org/10.3390/brainsci13121612" target="_blank" rel="noopener">Brain Sciences Journal</a>,
+                            <a href="https://digitalcommons.lesley.edu/educational_studies_dissertations/1001" target="_blank" rel="noopener">Lesley University Research</a>
+                        </li>
+                        <li id="ref-resonance">
+                            <strong class="reference-pattern-name" data-in="4" data-pause1="0" data-out="6" data-pause2="0" onclick="applyPatternFromReference(this)">Resonance Breathing (4:6):</strong>
+                            <a href="https://doi.org/10.1152/ajpheart.01011.2013" target="_blank" rel="noopener">American Journal of Physiology - Heart</a>
+                        </li>
+                        <li id="ref-vagal">
+                            <strong class="reference-pattern-name" data-in="3" data-pause1="0" data-out="6" data-pause2="0" onclick="applyPatternFromReference(this)">Vagal Loading:</strong>
+                            <a href="https://doi.org/10.3390/medicines7100065" target="_blank" rel="noopener">MDPI Medicines - Polyvagal Theory</a>
+                        </li>
+                    </ol>
                 </div>
             </div>
         </div>
@@ -614,6 +724,124 @@
         } else {
             icon.textContent = '▼';
         }
+    }
+
+    // Apply pattern idea to custom pattern creator
+    function applyPatternIdea(card) {
+        // Get pattern values from data attributes
+        const inDuration = card.dataset.in;
+        const pause1Duration = card.dataset.pause1;
+        const outDuration = card.dataset.out;
+        const pause2Duration = card.dataset.pause2;
+
+        // Set the select element values
+        document.getElementById('inDuration').value = inDuration;
+        document.getElementById('pause1Duration').value = pause1Duration;
+        document.getElementById('outDuration').value = outDuration;
+        document.getElementById('pause2Duration').value = pause2Duration;
+
+        // Remove selected class from all pattern idea cards
+        document.querySelectorAll('.pattern-idea-card').forEach(c => {
+            c.classList.remove('pattern-idea-selected');
+        });
+
+        // Add selected class to clicked card
+        card.classList.add('pattern-idea-selected');
+
+        // Clear all reference highlights
+        document.querySelectorAll('.reference-pattern-name').forEach(r => {
+            r.classList.remove('reference-pattern-selected');
+        });
+
+        // Highlight corresponding reference if pattern has a footnote link
+        const footnoteLink = card.querySelector('.footnote-link');
+        if (footnoteLink) {
+            const refId = footnoteLink.getAttribute('href'); // e.g., "#ref-box"
+            if (refId) {
+                const refElement = document.querySelector(refId + ' .reference-pattern-name');
+                if (refElement) {
+                    refElement.classList.add('reference-pattern-selected');
+                }
+            }
+        }
+
+        // Trigger the update in the programmable sequencer
+        if (window.audioPlayers && window.audioPlayers.programmableSequencer) {
+            window.audioPlayers.programmableSequencer.updateSettings();
+        }
+
+        // Scroll to the pattern configuration section
+        document.getElementById('programmableSection').scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+
+        // Show a brief visual feedback
+        const patternName = card.querySelector('.card-title').textContent;
+        showPatternAppliedFeedback(patternName);
+    }
+
+    // Apply pattern from reference section
+    function applyPatternFromReference(element) {
+        // Get pattern values from data attributes
+        const inDuration = element.dataset.in;
+        const pause1Duration = element.dataset.pause1;
+        const outDuration = element.dataset.out;
+        const pause2Duration = element.dataset.pause2;
+
+        // Set the select element values
+        document.getElementById('inDuration').value = inDuration;
+        document.getElementById('pause1Duration').value = pause1Duration;
+        document.getElementById('outDuration').value = outDuration;
+        document.getElementById('pause2Duration').value = pause2Duration;
+
+        // Clear all pattern card highlights
+        document.querySelectorAll('.pattern-idea-card').forEach(c => {
+            c.classList.remove('pattern-idea-selected');
+        });
+
+        // Clear all reference highlights, then highlight this one
+        document.querySelectorAll('.reference-pattern-name').forEach(r => {
+            r.classList.remove('reference-pattern-selected');
+        });
+        element.classList.add('reference-pattern-selected');
+
+        // Trigger the update in the programmable sequencer
+        if (window.audioPlayers && window.audioPlayers.programmableSequencer) {
+            window.audioPlayers.programmableSequencer.updateSettings();
+        }
+
+        // Show a brief visual feedback
+        const patternName = element.textContent.replace(':', '');
+        showPatternAppliedFeedback(patternName);
+
+        // Scroll to the pattern configuration section
+        document.getElementById('programmableSection').scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+
+    // Show feedback when pattern is applied
+    function showPatternAppliedFeedback(patternName) {
+        // Create or get feedback element
+        let feedback = document.getElementById('patternAppliedFeedback');
+        if (!feedback) {
+            feedback = document.createElement('div');
+            feedback.id = 'patternAppliedFeedback';
+            feedback.className = 'pattern-applied-feedback';
+            document.body.appendChild(feedback);
+        }
+
+        // Clean pattern name
+        const cleanName = patternName.replace(/\s*\[\d+\]\s*/g, '').trim();
+        feedback.textContent = `✓ ${cleanName} applied!`;
+        feedback.classList.add('show');
+
+        // Hide after 2 seconds
+        setTimeout(() => {
+            feedback.classList.remove('show');
+        }, 2000);
     }
 </script>
 

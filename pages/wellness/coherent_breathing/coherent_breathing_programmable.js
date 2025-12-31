@@ -1,4 +1,4 @@
-// Programmable Breathing Sequencer - WITH TICKER
+// Programmable Breathing Sequencer - WITH TICKER AND CIRCULAR TRACKER
 class ProgrammableBreathingSequencer {
     constructor(container, playerId, playerManager) {
         this.container = container;
@@ -39,6 +39,12 @@ class ProgrammableBreathingSequencer {
         this.cycleStartTime = null;
         this.cycleDuration = 0;
 
+        // Circular tracker properties
+        this.circularTracker = null;
+        this.circularNeedle = null;
+        this.circularPhaseLabel = null;
+        this.circularCenterTime = null;
+
         this.init();
     }
 
@@ -64,6 +70,10 @@ class ProgrammableBreathingSequencer {
         this.summaryOut = document.getElementById('summaryOut');
         this.summaryPause2 = document.getElementById('summaryPause2');
         this.totalDurationElement = document.getElementById('totalDuration');
+
+        // Circular tracker elements
+        this.circularTrackerContainer = document.getElementById('circularTracker');
+        this.circularPhaseLabel = document.getElementById('circularPhaseLabel');
 
         if (!this.isWebAudioSupported) {
             this.fallbackToHTML5Audio();
@@ -96,6 +106,9 @@ class ProgrammableBreathingSequencer {
             // Create ticker
             this.createTicker();
 
+            // Create circular tracker
+            this.createCircularTracker();
+
         } catch (error) {
             console.error('Error initializing programmable sequencer:', error);
             this.loadingStatus.textContent = 'Error loading audio files';
@@ -104,15 +117,15 @@ class ProgrammableBreathingSequencer {
     }
 
     async loadAllAudioFiles() {
-        // Load In audio files (5, 5.5, 6-9 seconds)
-        const inDurations = [5, 5.5, 6, 7, 8, 9];
+        // Load In audio files (3, 4, 5, 5.5, 6-9 seconds)
+        const inDurations = [3, 4, 5, 5.5, 6, 7, 8, 9];
         for (let duration of inDurations) {
             const url = `BreathIn_DFlat3_${duration}.mp3`;
             this.audioBuffers.in[duration] = await this.loadAudioFile(url);
         }
 
-        // Load Out audio files (5, 5.5, 6-9 seconds)
-        const outDurations = [5, 5.5, 6, 7, 8, 9];
+        // Load Out audio files (3, 4, 5, 5.5, 6-9 seconds)
+        const outDurations = [3, 4, 5, 5.5, 6, 7, 8, 9];
         for (let duration of outDurations) {
             const url = `BreathOut_C3_${duration}.mp3`;
             this.audioBuffers.out[duration] = await this.loadAudioFile(url);
@@ -182,6 +195,9 @@ class ProgrammableBreathingSequencer {
         // Update visualizer and summary
         this.updateVisualizer();
         this.updateSummary();
+
+        // Update circular tracker
+        this.updateCircularTracker();
 
         // Reset ticker if playing
         if (this.isPlaying) {
@@ -327,10 +343,14 @@ class ProgrammableBreathingSequencer {
 
         this.cycleStartTime = Date.now();
 
+        // Start circular animation
+        this.startCircularAnimation();
+
         this.tickerInterval = setInterval(() => {
             if (this.isPlaying) {
                 const elapsedTime = (Date.now() - this.cycleStartTime) / 1000;
                 this.updateTickerPosition(elapsedTime);
+                this.updateCircularNeedle(elapsedTime);
             }
         }, 100); // Update 10 times per second for smooth animation
 
@@ -348,6 +368,9 @@ class ProgrammableBreathingSequencer {
 
         // Reset ticker to start
         this.updateTickerPosition(0);
+
+        // Stop circular animation
+        this.stopCircularAnimation();
 
         // Remove playing class
         if (this.tickerElement) {
@@ -535,6 +558,290 @@ class ProgrammableBreathingSequencer {
                 this.currentPhase = nextPhase;
                 this.playNextPhase();
             }, 0);
+        }
+    }
+
+    // ============================================
+    // CIRCULAR TRACKER METHODS
+    // ============================================
+
+    createCircularTracker() {
+        if (!this.circularTrackerContainer) return;
+
+        // Clear existing content
+        this.circularTrackerContainer.innerHTML = '';
+
+        const width = 400;
+        const height = 400;
+        const radius = Math.min(width, height) / 2 - 40;
+        const innerRadius = radius * 0.6;
+
+        // Create SVG
+        this.circularSvg = d3.select(this.circularTrackerContainer)
+            .append('svg')
+            .attr('viewBox', `0 0 ${width} ${height}`)
+            .attr('preserveAspectRatio', 'xMidYMid meet');
+
+        // Create main group centered
+        this.circularGroup = this.circularSvg.append('g')
+            .attr('transform', `translate(${width / 2}, ${height / 2})`);
+
+        // Create arcs group
+        this.arcsGroup = this.circularGroup.append('g').attr('class', 'arcs-group');
+
+        // Create center group for text
+        this.centerGroup = this.circularGroup.append('g').attr('class', 'center-group');
+
+        // Add center circle background
+        this.centerGroup.append('circle')
+            .attr('r', innerRadius - 5)
+            .attr('fill', '#f8f9fa')
+            .attr('stroke', '#dee2e6')
+            .attr('stroke-width', 2);
+
+        // Add center text - "Cycle"
+        this.centerGroup.append('text')
+            .attr('class', 'center-text')
+            .attr('y', -15)
+            .text('Cycle');
+
+        // Add center time display
+        this.circularCenterTime = this.centerGroup.append('text')
+            .attr('class', 'center-time')
+            .attr('y', 15)
+            .text('0');
+
+        // Add "Total: Xs" text
+        this.centerTotalText = this.centerGroup.append('text')
+            .attr('class', 'center-text')
+            .attr('y', 40)
+            .style('font-size', '11px')
+            .text('');
+
+        // Create needle group
+        this.needleGroup = this.circularGroup.append('g').attr('class', 'needle-group');
+
+        // Create needle line
+        this.needleLine = this.needleGroup.append('line')
+            .attr('class', 'tracker-needle-line')
+            .attr('x1', 0)
+            .attr('y1', -innerRadius + 10)
+            .attr('x2', 0)
+            .attr('y2', -radius + 5);
+
+        // Create needle dot at the end
+        this.needleDot = this.needleGroup.append('circle')
+            .attr('class', 'tracker-center-dot')
+            .attr('cx', 0)
+            .attr('cy', -radius + 5)
+            .attr('r', 8);
+
+        // Create center dot
+        this.centerDot = this.needleGroup.append('circle')
+            .attr('class', 'tracker-center-dot')
+            .attr('cx', 0)
+            .attr('cy', 0)
+            .attr('r', 6);
+
+        // Store dimensions for later use
+        this.circularDimensions = { width, height, radius, innerRadius };
+
+        // Draw initial arcs
+        this.updateCircularTracker();
+    }
+
+    updateCircularTracker() {
+        if (!this.circularSvg) return;
+
+        const { radius, innerRadius } = this.circularDimensions;
+        const { inDuration, pause1Duration, outDuration, pause2Duration } = this.settings;
+        const totalDuration = inDuration + pause1Duration + outDuration + pause2Duration;
+
+        // Define phases with their colors
+        const phases = [];
+        let currentAngle = -Math.PI / 2; // Start from top
+
+        // Phase color palette - vibrant but harmonious
+        const phaseColors = {
+            in: { main: '#4CAF50', light: '#81C784', label: 'INHALE' },
+            pause1: { main: '#FF9800', light: '#FFB74D', label: 'HOLD' },
+            out: { main: '#2196F3', light: '#64B5F6', label: 'EXHALE' },
+            pause2: { main: '#9C27B0', light: '#BA68C8', label: 'HOLD' }
+        };
+
+        // Calculate angles for each phase
+        if (inDuration > 0) {
+            const angle = (inDuration / totalDuration) * 2 * Math.PI;
+            phases.push({
+                startAngle: currentAngle,
+                endAngle: currentAngle + angle,
+                duration: inDuration,
+                type: 'in',
+                color: phaseColors.in
+            });
+            currentAngle += angle;
+        }
+
+        if (pause1Duration > 0) {
+            const angle = (pause1Duration / totalDuration) * 2 * Math.PI;
+            phases.push({
+                startAngle: currentAngle,
+                endAngle: currentAngle + angle,
+                duration: pause1Duration,
+                type: 'pause1',
+                color: phaseColors.pause1
+            });
+            currentAngle += angle;
+        }
+
+        if (outDuration > 0) {
+            const angle = (outDuration / totalDuration) * 2 * Math.PI;
+            phases.push({
+                startAngle: currentAngle,
+                endAngle: currentAngle + angle,
+                duration: outDuration,
+                type: 'out',
+                color: phaseColors.out
+            });
+            currentAngle += angle;
+        }
+
+        if (pause2Duration > 0) {
+            const angle = (pause2Duration / totalDuration) * 2 * Math.PI;
+            phases.push({
+                startAngle: currentAngle,
+                endAngle: currentAngle + angle,
+                duration: pause2Duration,
+                type: 'pause2',
+                color: phaseColors.pause2
+            });
+        }
+
+        // Create arc generator
+        const arc = d3.arc()
+            .innerRadius(innerRadius)
+            .outerRadius(radius)
+            .padAngle(0.02)
+            .cornerRadius(4);
+
+        // Create label arc (for positioning labels)
+        const labelArc = d3.arc()
+            .innerRadius((radius + innerRadius) / 2)
+            .outerRadius((radius + innerRadius) / 2);
+
+        // Update arcs
+        const arcs = this.arcsGroup.selectAll('.phase-arc')
+            .data(phases, d => d.type);
+
+        // Remove old arcs
+        arcs.exit().remove();
+
+        // Add new arcs
+        const enterArcs = arcs.enter()
+            .append('g')
+            .attr('class', 'phase-arc-group');
+
+        enterArcs.append('path')
+            .attr('class', d => `phase-arc circular-phase-${d.type}`);
+
+        enterArcs.append('text')
+            .attr('class', 'phase-label-text');
+
+        enterArcs.append('text')
+            .attr('class', 'phase-duration-text');
+
+        // Update all arcs
+        const allArcs = this.arcsGroup.selectAll('.phase-arc-group');
+
+        allArcs.select('path')
+            .transition()
+            .duration(300)
+            .attr('d', d => arc(d))
+            .style('fill', d => d.color.main);
+
+        // Update labels
+        allArcs.select('.phase-label-text')
+            .attr('transform', d => {
+                const centroid = labelArc.centroid(d);
+                return `translate(${centroid[0]}, ${centroid[1] - 8})`;
+            })
+            .text(d => d.color.label);
+
+        allArcs.select('.phase-duration-text')
+            .attr('transform', d => {
+                const centroid = labelArc.centroid(d);
+                return `translate(${centroid[0]}, ${centroid[1] + 8})`;
+            })
+            .text(d => `${d.duration}s`);
+
+        // Update center total text
+        this.centerTotalText.text(`Total: ${totalDuration}s`);
+
+        // Store phases for animation
+        this.circularPhases = phases;
+    }
+
+    updateCircularNeedle(elapsedSeconds) {
+        if (!this.needleGroup || this.cycleDuration === 0) return;
+
+        // Calculate angle based on elapsed time
+        const progress = (elapsedSeconds % this.cycleDuration) / this.cycleDuration;
+        const angle = progress * 360 - 90; // -90 to start from top
+
+        // Rotate needle group
+        this.needleGroup
+            .attr('transform', `rotate(${angle})`);
+
+        // Update center time display
+        const timeInCycle = elapsedSeconds % this.cycleDuration;
+        this.circularCenterTime.text(Math.floor(timeInCycle));
+
+        // Determine current phase and update label
+        this.updateCircularPhaseLabel(timeInCycle);
+    }
+
+    updateCircularPhaseLabel(timeInCycle) {
+        if (!this.circularPhases || !this.circularPhaseLabel) return;
+
+        const { inDuration, pause1Duration, outDuration, pause2Duration } = this.settings;
+        let currentPhaseName = '';
+        let phaseTime = 0;
+
+        if (timeInCycle < inDuration) {
+            currentPhaseName = 'Inhale';
+            phaseTime = inDuration - timeInCycle;
+        } else if (timeInCycle < inDuration + pause1Duration) {
+            currentPhaseName = 'Hold';
+            phaseTime = (inDuration + pause1Duration) - timeInCycle;
+        } else if (timeInCycle < inDuration + pause1Duration + outDuration) {
+            currentPhaseName = 'Exhale';
+            phaseTime = (inDuration + pause1Duration + outDuration) - timeInCycle;
+        } else {
+            currentPhaseName = 'Hold';
+            phaseTime = this.cycleDuration - timeInCycle;
+        }
+
+        this.circularPhaseLabel.textContent = `${currentPhaseName} - ${Math.ceil(phaseTime)}s remaining`;
+    }
+
+    startCircularAnimation() {
+        // Animation is handled by the ticker interval - just reset position
+        this.updateCircularNeedle(0);
+        if (this.circularPhaseLabel) {
+            this.circularPhaseLabel.textContent = 'Starting...';
+        }
+    }
+
+    stopCircularAnimation() {
+        // Reset needle to starting position
+        if (this.needleGroup) {
+            this.needleGroup.attr('transform', 'rotate(-90)');
+        }
+        if (this.circularCenterTime) {
+            this.circularCenterTime.text('0');
+        }
+        if (this.circularPhaseLabel) {
+            this.circularPhaseLabel.textContent = 'Ready to start';
         }
     }
 }

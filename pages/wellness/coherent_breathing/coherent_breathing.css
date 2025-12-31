@@ -1096,3 +1096,196 @@ ul:not(.list-group) li {
     max-height: 0;
     opacity: 0;
 }
+
+/* ============================================
+   INTERACTIVE PATTERN IDEA CARDS
+   ============================================ */
+
+.pattern-idea-card {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.pattern-idea-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(55, 71, 79, 0.2);
+    border-color: var(--expert-color);
+}
+
+.pattern-idea-card:active {
+    transform: translateY(-2px);
+}
+
+.pattern-idea-card.pattern-idea-selected {
+    border-color: var(--expert-color);
+    background: linear-gradient(135deg, rgba(55, 71, 79, 0.05), rgba(55, 71, 79, 0.1));
+    box-shadow: 0 4px 15px rgba(55, 71, 79, 0.25);
+}
+
+.pattern-idea-card.pattern-idea-selected .card-title {
+    color: #263238 !important;
+}
+
+.pattern-idea-card .card-body {
+    position: relative;
+}
+
+.pattern-idea-card::after {
+    content: '👆 Click to apply';
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    color: #999;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.pattern-idea-card:hover::after {
+    opacity: 1;
+}
+
+.pattern-idea-card.pattern-idea-selected::after {
+    content: '✓ Applied';
+    color: var(--expert-color);
+    opacity: 1;
+}
+
+/* Pattern applied feedback toast */
+.pattern-applied-feedback {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100px);
+    background: linear-gradient(135deg, var(--expert-color), #263238);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: var(--font-weight-semibold);
+    font-size: 1rem;
+    box-shadow: 0 4px 20px rgba(55, 71, 79, 0.4);
+    z-index: 10000;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.pattern-applied-feedback.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .pattern-idea-card::after {
+        display: none;
+    }
+
+    .pattern-applied-feedback {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+}
+
+/* ============================================
+   REFERENCES AND FOOTNOTES
+   ============================================ */
+
+.footnote-link {
+    color: var(--expert-color);
+    text-decoration: none;
+    font-size: 0.7rem;
+    vertical-align: super;
+    font-weight: var(--font-weight-semibold);
+}
+
+.footnote-link:hover {
+    color: #263238;
+    text-decoration: underline;
+}
+
+.references-section {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-top: 20px;
+}
+
+.references-section h6 {
+    font-size: 0.9rem;
+    font-weight: var(--font-weight-semibold);
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.references-list {
+    list-style-type: decimal;
+    padding-left: 20px;
+    margin-bottom: 0;
+}
+
+.references-list li {
+    font-size: 0.8rem;
+    color: #555;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.references-list li:last-child {
+    margin-bottom: 0;
+}
+
+.references-list li strong {
+    color: var(--expert-color);
+}
+
+.references-list li a {
+    color: #1565c0;
+    text-decoration: none;
+    word-break: break-word;
+}
+
+.references-list li a:hover {
+    text-decoration: underline;
+}
+
+/* Smooth scroll for footnote links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Highlight target when navigating via footnote - no layout shift */
+.references-list li {
+    border-left: 3px solid transparent;
+    padding-left: 8px;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.references-list li:target {
+    background-color: rgba(55, 71, 79, 0.08);
+    border-left-color: var(--expert-color);
+}
+
+/* Clickable reference pattern names */
+.reference-pattern-name {
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.reference-pattern-name:hover {
+    background-color: rgba(55, 71, 79, 0.15);
+    color: var(--expert-color);
+}
+
+.reference-pattern-name:active {
+    transform: scale(0.98);
+}
+
+.reference-pattern-name.reference-pattern-selected {
+    background-color: var(--expert-color);
+    color: white;
+}
