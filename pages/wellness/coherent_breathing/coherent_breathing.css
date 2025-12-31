@@ -1225,29 +1225,57 @@ ul:not(.list-group) li {
     margin-bottom: 0;
 }
 
-.references-list li {
+/* Main reference list items */
+.references-list > li {
     font-size: 0.8rem;
     color: #555;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     line-height: 1.5;
+    border-left: 3px solid transparent;
+    padding-left: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: 0 4px 4px 0;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-.references-list li:last-child {
+.references-list > li:last-child {
     margin-bottom: 0;
 }
 
-.references-list li strong {
+.references-list > li strong {
     color: var(--expert-color);
+    display: block;
+    margin-bottom: 4px;
 }
 
-.references-list li a {
+/* Nested reference links list (sub-bullets) */
+.reference-links {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 4px 0 0 0;
+}
+
+.reference-links li {
+    font-size: 0.75rem;
+    color: #666;
+    margin-bottom: 3px;
+    line-height: 1.4;
+}
+
+.reference-links li:last-child {
+    margin-bottom: 0;
+}
+
+.reference-links li a {
     color: #1565c0;
     text-decoration: none;
     word-break: break-word;
 }
 
-.references-list li a:hover {
+.reference-links li a:hover {
     text-decoration: underline;
+    color: #0d47a1;
 }
 
 /* Smooth scroll for footnote links */
@@ -1255,14 +1283,8 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Highlight target when navigating via footnote - no layout shift */
-.references-list li {
-    border-left: 3px solid transparent;
-    padding-left: 8px;
-    transition: border-color 0.3s ease, background-color 0.3s ease;
-}
-
-.references-list li:target {
+/* Highlight target when navigating via footnote */
+.references-list > li:target {
     background-color: rgba(55, 71, 79, 0.08);
     border-left-color: var(--expert-color);
 }
@@ -1270,10 +1292,11 @@ html {
 /* Clickable reference pattern names */
 .reference-pattern-name {
     cursor: pointer;
-    padding: 2px 6px;
+    padding: 3px 8px;
     border-radius: 4px;
     transition: all 0.2s ease;
     display: inline-block;
+    margin-bottom: 2px;
 }
 
 .reference-pattern-name:hover {
@@ -1285,7 +1308,23 @@ html {
     transform: scale(0.98);
 }
 
+/* Selected pattern highlighting */
 .reference-pattern-name.reference-pattern-selected {
     background-color: var(--expert-color);
     color: white;
+    box-shadow: 0 2px 4px rgba(55, 71, 79, 0.3);
+}
+
+/* Highlight the entire reference item when pattern is selected */
+.references-list > li:has(.reference-pattern-selected) {
+    background-color: rgba(55, 71, 79, 0.06);
+    border-left-color: var(--expert-color);
+}
+
+/* Fallback for browsers that don't support :has() */
+@supports not selector(:has(.reference-pattern-selected)) {
+    .reference-pattern-name.reference-pattern-selected {
+        background-color: var(--expert-color);
+        color: white;
+    }
 }
