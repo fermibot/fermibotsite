@@ -1,19 +1,51 @@
+/* ============================================
+   HIERARCHICAL DENDROGRAM - THEME SUPPORT
+   ============================================ */
+
+/* CSS Variables for Theming */
+:root {
+    /* Light Mode Colors */
+    --dendro-node-default: #6c757d;
+    --dendro-node-hover: #212529;
+    --dendro-link-default: #4682b4;
+    --dendro-node-source: #2ca02c;
+    --dendro-node-target: #d62728;
+    --dendro-link-source: #d62728;
+    --dendro-link-target: #2ca02c;
+}
+
+/* Dark Mode Colors */
+[data-bs-theme="dark"] {
+    --dendro-node-default: #adb5bd;
+    --dendro-node-hover: #f8f9fa;
+    --dendro-link-default: #6ea8d8;
+    --dendro-node-source: #51cf66;
+    --dendro-node-target: #ff6b6b;
+    --dendro-link-source: #ff6b6b;
+    --dendro-link-target: #51cf66;
+}
+
+/* Node Styles */
 .node {
     font: 300 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
-    fill: #919191;
+    fill: var(--dendro-node-default);
+    transition: fill 0.2s ease, font-weight 0.2s ease;
 }
 
 .node:hover {
-    fill: #000;
+    fill: var(--dendro-node-hover);
 }
 
+/* Link Styles */
 .link {
-    stroke: steelblue;
+    stroke: var(--dendro-link-default);
     stroke-opacity: 0.4;
     fill: none;
     pointer-events: none;
+    transition: stroke-opacity 0.2s ease, stroke-width 0.2s ease;
 }
 
+/* Interactive States */
 .node:hover,
 .node--source,
 .node--target {
@@ -21,11 +53,11 @@
 }
 
 .node--source {
-    fill: #2ca02c;
+    fill: var(--dendro-node-source);
 }
 
 .node--target {
-    fill: #d62728;
+    fill: var(--dendro-node-target);
 }
 
 .link--source,
@@ -35,9 +67,9 @@
 }
 
 .link--source {
-    stroke: #d62728;
+    stroke: var(--dendro-link-source);
 }
 
 .link--target {
-    stroke: #2ca02c;
+    stroke: var(--dendro-link-target);
 }

@@ -1,60 +1,182 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="auto">
 <head>
     <meta charset="UTF-8">
     <title>Biology | Physiology | Respiration</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
 
-    <script src="../../../automation/loadObjects.js"></script>
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="../../../index.css">
 
+    <!-- Visualization CSS -->
+    <link rel="stylesheet" href="../../../d3_templates/hierarchical_dendrogram.css">
+    <link rel="stylesheet" href="respiration.css">
+
+    <!-- Bootstrap JS -->
     <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
     <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
     <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+
+    <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
 
-    <link rel="stylesheet" href="../../../js/highlight/styles/default.css">
-    <link rel="stylesheet" href="../../../index.css">
-    <script src="../../../js/highlight/highlight.pack.js"></script>
-
-    <link rel="stylesheet" href="../../../d3_templates/hierarchical_dendrogram.css">
-    <link rel="stylesheet" href="../../../index.css">
-    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
+    <!-- D3.js v4 -->
     <script src="../../../d3/d3.v4.min.js"></script>
+
+    <!-- Visualization Scripts -->
     <script src="../../../d3_templates/hierarchical_dendrogram.js"></script>
+
+    <!-- Site Automation -->
     <script src="../../../automation/loadObjects.js"></script>
+
+    <!-- Color modes (dark/light theme) -->
+    <script src="../../../bootstrap/assets/color-modes.js"></script>
 </head>
 
 
-<body class="container-lg container-fluid card p-5">
+<body class="container-lg container-fluid p-4">
 
+<!-- Header -->
 <div id="header_placeholder"></div>
 
+<!-- Page Title -->
+<header class="mb-4">
+    <h1 class="jumbotron text-center p-3">Biology | Physiology | Respiration</h1>
+</header>
 
-<h1 class="jumbotron text-center p-2">Biology | Physiology | Respiration</h1>
+<!-- Introduction Section -->
+<section class="mb-4">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <h2 class="h4 mb-3">🔬 About Cellular Respiration</h2>
+        <p class="mb-3">
+            Cellular respiration is the set of metabolic reactions that convert biochemical energy from nutrients
+            into <strong>adenosine triphosphate (ATP)</strong>, the universal energy currency of cells. This complex
+            process involves multiple interconnected pathways that work together to extract maximum energy from glucose
+            molecules while managing byproducts and maintaining metabolic balance.
+        </p>
+        <p class="mb-3">
+            The visualization below shows the intricate network of metabolic pathways, enzymes, and intermediates
+            involved in this process. Each connection represents a biochemical relationship, revealing how different
+            pathways interact and depend on one another.
+        </p>
 
-<div class="p-3">
-    <p>This page illustrates the various subprocesses involved in [human] respiration.</p>
-    <ul>
-        <li>Glycolysis</li>
-        <li>Anaerobic Pathways</li>
-        <li>Cori Cycle</li>
-        <li>Krebs Cycle | Stage | 01</li>
-        <li>Krebs Cycle | Stage | 02</li>
-        <li>Hormonal Regulation</li>
-        <li>Glycogen Metabolism</li>
-        <li>Gluconeogenesis</li>
-        <li>Pentose Phosphate Pathway</li>
-    </ul>
+        <details class="pathway-details">
+            <summary class="fw-bold mb-2" style="cursor: pointer;">
+                📊 Metabolic Pathways Visualized
+            </summary>
+            <ul class="mt-2 mb-0">
+                <li><strong>Glycolysis</strong> - Breakdown of glucose to pyruvate (produces 2 ATP + 2 NADH)</li>
+                <li><strong>Anaerobic Pathways</strong> - Fermentation processes when oxygen is limited</li>
+                <li><strong>Cori Cycle</strong> - Lactate recycling between muscle and liver tissues</li>
+                <li><strong>Krebs Cycle | Stage 01</strong> - Citric acid cycle preparation phase</li>
+                <li><strong>Krebs Cycle | Stage 02</strong> - Oxidative decarboxylation and energy harvest</li>
+                <li><strong>Hormonal Regulation</strong> - Insulin, glucagon, and metabolic control</li>
+                <li><strong>Glycogen Metabolism</strong> - Energy storage (glycogenesis) and mobilization (glycogenolysis)</li>
+                <li><strong>Gluconeogenesis</strong> - Glucose synthesis from lactate, amino acids, and glycerol</li>
+                <li><strong>Pentose Phosphate Pathway</strong> - NADPH production for biosynthesis and ribose-5-phosphate for nucleotides</li>
+            </ul>
+        </details>
+    </div>
+</section>
 
+<!-- Legend Section -->
+<section class="mb-4">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <h2 class="h5 mb-3">🎨 Visualization Legend</h2>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="legend-item p-3 rounded">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="legend-color legend-default me-2"></span>
+                        <strong>Default Nodes</strong>
+                    </div>
+                    <p class="small mb-0 text-muted">Metabolic intermediates, enzymes, and pathway steps</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="legend-item p-3 rounded">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="legend-color legend-hover me-2"></span>
+                        <strong>Hovered Node</strong>
+                    </div>
+                    <p class="small mb-0 text-muted">Currently selected element for exploration</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="legend-item p-3 rounded">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="legend-color legend-source me-2"></span>
+                        <strong>Source Connections</strong>
+                    </div>
+                    <p class="small mb-0 text-muted">Elements that produce or lead to the hovered node</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="legend-item p-3 rounded">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="legend-color legend-target me-2"></span>
+                        <strong>Target Connections</strong>
+                    </div>
+                    <p class="small mb-0 text-muted">Elements produced by or resulting from the hovered node</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Key Concepts Section -->
+<section class="mb-4">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <h2 class="h5 mb-3">💡 Key Concepts</h2>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="concept-card">
+                    <h3 class="h6 fw-bold">⚡ Energy Yield</h3>
+                    <p class="small mb-0">
+                        Complete glucose oxidation produces approximately <strong>30-32 ATP molecules</strong>
+                        through glycolysis, Krebs cycle, and electron transport chain.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="concept-card">
+                    <h3 class="h6 fw-bold">🔄 Pathway Integration</h3>
+                    <p class="small mb-0">
+                        Metabolic pathways are interconnected, allowing cells to switch between
+                        energy production, storage, and biosynthesis based on cellular needs.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="concept-card">
+                    <h3 class="h6 fw-bold">🎛️ Regulation</h3>
+                    <p class="small mb-0">
+                        Hormones like insulin and glucagon regulate these pathways through allosteric
+                        enzyme control and gene expression, maintaining glucose homeostasis.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Visualization Instructions -->
+<div class="text-center mb-3">
+    <p class="mb-2">
+        <strong>Interactive Dendrogram Visualization</strong>
+    </p>
+    <p class="text-muted small">
+        Hover over any node to highlight connections and discover metabolic relationships \(\downarrow\)
+    </p>
 </div>
 
-<p class="p-3 text-center"><strong>Hover over each of the name in the chord diagram to discover connections
-    \(\downarrow\)</strong></p>
-
+<!-- Visualization Container -->
 <div class="container-fluid">
-    <div class="d-flex flex-wrap justify-content-center p-3" id="respiration_d3_object"></div>
+    <div class="d-flex flex-wrap justify-content-center" id="respiration_d3_object"></div>
 </div>
 
 

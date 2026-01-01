@@ -1,0 +1,419 @@
+/* ============================================
+   RESPIRATION PAGE - MODERN STYLING
+   ============================================ */
+
+/* CSS Variables for Theming */
+:root {
+    /* Light Mode Colors */
+    --resp-bg: #ffffff;
+    --resp-bg-secondary: #f8f9fa;
+    --resp-bg-tertiary: #e9ecef;
+    --resp-text: #212529;
+    --resp-text-muted: #6c757d;
+    --resp-border: #dee2e6;
+    --resp-card-shadow: rgba(0, 0, 0, 0.08);
+    --resp-accent: #0d6efd;
+
+    /* Spacing */
+    --resp-spacing-sm: 1rem;
+    --resp-spacing-md: 1.5rem;
+    --resp-spacing-lg: 2.5rem;
+
+    /* Border radius */
+    --resp-radius: 12px;
+}
+
+/* Dark Mode Colors */
+[data-bs-theme="dark"] {
+    --resp-bg: #1a1a2e;
+    --resp-bg-secondary: #16213e;
+    --resp-bg-tertiary: #0f1419;
+    --resp-text: #e0e0e0;
+    --resp-text-muted: #9ca3af;
+    --resp-border: #3a3a5a;
+    --resp-card-shadow: rgba(0, 0, 0, 0.3);
+    --resp-accent: #4dabf7;
+}
+
+/* Desktop base styles */
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+    background-color: var(--resp-bg) !important;
+    color: var(--resp-text) !important;
+}
+
+/* Modern page header */
+h1.jumbotron {
+    background: linear-gradient(135deg, var(--resp-bg-secondary) 0%, var(--resp-bg-tertiary) 100%);
+    border: 1px solid var(--resp-border);
+    border-radius: var(--resp-radius);
+    color: var(--resp-text);
+    font-weight: 600;
+    margin-bottom: var(--resp-spacing-lg);
+    box-shadow: 0 2px 8px var(--resp-card-shadow);
+}
+
+/* Content sections */
+.p-3 {
+    background-color: var(--resp-bg-secondary);
+    border: 1px solid var(--resp-border);
+    border-radius: var(--resp-radius);
+    color: var(--resp-text);
+}
+
+/* Text styling */
+p {
+    color: var(--resp-text);
+    line-height: 1.7;
+}
+
+strong {
+    color: var(--resp-text);
+    font-weight: 600;
+}
+
+/* Lists - modern styling */
+ul {
+    color: var(--resp-text);
+}
+
+ul li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--resp-border);
+    transition: background-color 0.2s ease;
+}
+
+ul li:last-child {
+    border-bottom: none;
+}
+
+ul li:hover {
+    background-color: var(--resp-bg-tertiary);
+    padding-left: 0.5rem;
+    border-radius: 6px;
+}
+
+/* Visualization container - modern card design */
+#respiration_d3_object {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    background-color: var(--resp-bg-secondary);
+    border: 1px solid var(--resp-border);
+    border-radius: var(--resp-radius);
+    padding: var(--resp-spacing-md);
+    box-shadow: 0 4px 12px var(--resp-card-shadow);
+    margin: var(--resp-spacing-md) 0;
+}
+
+#respiration_d3_object svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Instruction text - modern styling */
+.text-center {
+    color: var(--resp-text);
+}
+
+.text-center strong {
+    color: var(--resp-accent);
+    font-weight: 600;
+}
+
+/* Container - modern spacing */
+.container-fluid {
+    background-color: var(--resp-bg);
+}
+
+/* Collapsible pathway details */
+.pathway-details {
+    margin-top: 1rem;
+}
+
+.pathway-details summary {
+    color: var(--resp-accent);
+    padding: 0.75rem;
+    background-color: var(--resp-bg-tertiary);
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    user-select: none;
+}
+
+.pathway-details summary:hover {
+    background-color: var(--resp-border);
+}
+
+.pathway-details[open] summary {
+    margin-bottom: 0.75rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.pathway-details ul {
+    background-color: var(--resp-bg-tertiary);
+    padding: 1rem 1.5rem;
+    border-radius: 0 0 8px 8px;
+    margin: 0;
+}
+
+.pathway-details ul li {
+    border-bottom: 1px solid var(--resp-border);
+    padding: 0.75rem 0;
+}
+
+.pathway-details ul li:last-child {
+    border-bottom: none;
+}
+
+/* Header section */
+header {
+    margin-top: var(--resp-spacing-md);
+}
+
+/* Introduction section */
+section.mb-4 p {
+    margin-bottom: 0;
+    font-size: 1rem;
+}
+
+/* Visualization instruction text */
+.text-muted {
+    color: var(--resp-text-muted) !important;
+}
+
+/* Section headings */
+h2.h4, h2.h5 {
+    color: var(--resp-text);
+    font-weight: 600;
+}
+
+/* Legend items */
+.legend-item {
+    background-color: var(--resp-bg);
+    border: 1px solid var(--resp-border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.legend-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--resp-card-shadow);
+}
+
+/* Legend color indicators */
+.legend-color {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 2px solid var(--resp-border);
+    flex-shrink: 0;
+}
+
+/* Legend color variants - matching dendrogram colors */
+.legend-default {
+    background-color: var(--dendro-node-default);
+}
+
+.legend-hover {
+    background-color: var(--dendro-node-hover);
+}
+
+.legend-source {
+    background-color: var(--dendro-node-source);
+}
+
+.legend-target {
+    background-color: var(--dendro-node-target);
+}
+
+/* Concept cards */
+.concept-card {
+    padding: 1rem;
+    background-color: var(--resp-bg);
+    border: 1px solid var(--resp-border);
+    border-radius: 8px;
+    height: 100%;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.concept-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--resp-card-shadow);
+    border-color: var(--resp-accent);
+}
+
+.concept-card h3 {
+    color: var(--resp-accent);
+    margin-bottom: 0.5rem;
+}
+
+.concept-card p {
+    color: var(--resp-text);
+    line-height: 1.6;
+}
+
+/* ============================================
+   MOBILE OPTIMIZATION
+   ============================================ */
+
+/* Tablet and below (768px) */
+@media (max-width: 768px) {
+    /* Body padding - reduce on mobile */
+    body.container-lg.container-fluid.card.p-5 {
+        padding: 2rem 1.5rem !important;
+    }
+
+    /* Page title */
+    h1.jumbotron {
+        font-size: 1.5rem !important;
+        padding: 1rem !important;
+    }
+
+    /* Content padding */
+    .p-3 {
+        padding: 1.5rem !important;
+    }
+
+    /* Text blocks */
+    p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    /* Lists - better mobile spacing */
+    ul {
+        padding-left: 1.5rem;
+    }
+
+    ul li {
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    /* Visualization container */
+    #respiration_d3_object {
+        padding: 1rem !important;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Allow horizontal scrolling for dendrogram on mobile */
+    .d-flex.flex-wrap {
+        flex-wrap: nowrap !important;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Center instruction text */
+    .text-center strong {
+        font-size: 0.9rem;
+    }
+}
+
+/* Small mobile devices (576px and below) */
+@media (max-width: 576px) {
+    /* Minimal padding on tiny screens */
+    body.container-lg.container-fluid.card.p-5 {
+        padding: 1.5rem 1rem !important;
+    }
+
+    /* Page title - compact */
+    h1.jumbotron {
+        font-size: 1.25rem !important;
+        padding: 0.75rem !important;
+        line-height: 1.3;
+    }
+
+    /* Content padding - tighter */
+    .p-3 {
+        padding: 1rem !important;
+    }
+
+    /* Text - compact sizing */
+    p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    strong {
+        font-size: 1rem;
+    }
+
+    /* Lists - compact */
+    ul {
+        padding-left: 1.25rem;
+    }
+
+    ul li {
+        margin-bottom: 0.4rem;
+        font-size: 0.85rem;
+    }
+
+    /* Visualization - allow scrolling */
+    #respiration_d3_object {
+        padding: 0.5rem !important;
+    }
+
+    /* Instruction text */
+    .text-center strong {
+        font-size: 0.85rem;
+    }
+
+    /* Legend and concept cards - stack on mobile */
+    .legend-item,
+    .concept-card {
+        margin-bottom: 0.75rem;
+    }
+
+    /* Section headings - smaller on mobile */
+    h2.h4 {
+        font-size: 1.25rem !important;
+    }
+
+    h2.h5 {
+        font-size: 1.1rem !important;
+    }
+
+    /* Concept cards - full width on small screens */
+    .col-md-4,
+    .col-md-6 {
+        width: 100%;
+    }
+}
+
+/* Landscape mobile optimization */
+@media (max-width: 768px) and (orientation: landscape) {
+    /* Reduce vertical spacing in landscape */
+    body.container-lg.container-fluid.card.p-5 {
+        padding: 1rem !important;
+    }
+
+    h1.jumbotron {
+        padding: 0.5rem !important;
+        font-size: 1.35rem !important;
+    }
+
+    .p-3 {
+        padding: 1rem !important;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+    /* Better touch targets for interactive elements */
+    .node {
+        cursor: pointer;
+    }
+
+    /* Increase node hit area slightly */
+    .node:hover {
+        font-weight: 700;
+    }
+
+    /* Better tap highlighting */
+    * {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    }
+}
