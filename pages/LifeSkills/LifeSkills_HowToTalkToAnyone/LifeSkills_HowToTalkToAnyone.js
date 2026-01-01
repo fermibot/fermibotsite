@@ -243,8 +243,10 @@ function positionTooltip(event) {
     const tooltipHeight = 100; // approximate
 
     // Center horizontally, position higher vertically (subtract 80px offset)
-    const left = rect.left + (rect.width - tooltipWidth) / 2;
-    const top = rect.top + (rect.height - tooltipHeight) / 2 - 80 + window.scrollY;
+    // const left = rect.left + (rect.width - tooltipWidth) / 2;
+    // const top = rect.top + (rect.height - tooltipHeight) / 2 - 800 + window.scrollY;
+    const left = 200;
+    const top = 200;
 
     tooltip
         .style('left', Math.max(10, left) + 'px')
@@ -334,8 +336,10 @@ function positionInfoCard(event) {
     const cardWidth = 320;
     const cardHeight = 250; // Approximate height
 
-    const left = (viewportWidth - cardWidth) / 2;
-    const top = (viewportHeight - cardHeight) / 2 + window.scrollY;
+    // const left = (viewportWidth - cardWidth) / 2;
+    // const top = (viewportHeight - cardHeight) / 2 + window.scrollY;
+    const left = 200;
+    const top = 200;
 
     infoCard
         .style('left', Math.max(10, left) + 'px')
