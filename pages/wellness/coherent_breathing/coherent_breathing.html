@@ -26,12 +26,12 @@
 </head>
 <body>
 
-<div class="container-lg card p-5">
-    <div id="header_placeholder"></div>
+<div id="header_placeholder"></div>
 
-    <h1 class="d-grid gap-3 justify-content-center p-2 mb-4" style="color: #8B4513;">Wellness | Coherent Breathing</h1>
+<div class="container-lg coherent-breathing-page">
+    <h1 class="page-title">Wellness | Coherent Breathing</h1>
 
-    <p class="text-center mb-4" style="font-size: 1.1rem; color: #555;">
+    <p class="page-intro">
         A guided experience for everyone - from absolute beginners to breathing experts.<br>
         Choose your level to get started:
     </p>
@@ -74,12 +74,11 @@
     </div>
 
     <!-- Section 1: Beginner -->
-    <div id="beginnerSection" class="level-section mt-5">
+    <div id="beginnerSection" class="level-section">
         <div class="section-header beginner-header">
-            <h3 class="beginner-color center-flex">🌱 Beginner Level | Learn the Basics</h3>
-            <p class="center-flex justify-content-center">Start your coherent breathing journey with these educational
-                videos. Learn what
-                coherent breathing is, why it works, and how to get started.</p>
+            <h2 class="section-title beginner-color">🌱 Beginner Level | Learn the Basics</h2>
+            <p class="section-description">Start your coherent breathing journey with these educational
+                videos. Learn what coherent breathing is, why it works, and how to get started.</p>
         </div>
 
         <div class="row mt-4">
@@ -130,12 +129,19 @@
 
         <div class="card mt-4 tips-card">
             <div class="card-body">
-                <h5 class="card-title beginner-color collapsible-header"
-                    onclick="toggleCollapse('beginnerChecklist', this)">
-                    📝 Beginner's Checklist
-                    <span class="collapse-icon">▼</span>
-                </h5>
-                <div class="collapsible-content" id="beginnerChecklist">
+                <div class="tips-header-row">
+                    <h5 class="card-title beginner-color collapsible-header collapsed"
+                        onclick="toggleCollapse('beginnerChecklist', this)">
+                        📝 Beginner's Checklist
+                        <span class="collapse-icon">▶</span>
+                    </h5>
+                    <div class="tips-navigation-inline">
+                        <button class="btn beginner-btn btn-sm" onclick="scrollToSection('practitionerSection')">
+                            🡇 Practitioner Level
+                        </button>
+                    </div>
+                </div>
+                <div class="collapsible-content collapsed" id="beginnerChecklist">
                     <ul>
                         <li>✅ Watch both videos to understand the concept</li>
                         <li>✅ Find a comfortable, quiet place to practice</li>
@@ -143,21 +149,16 @@
                         <li>✅ Focus on consistency rather than duration</li>
                         <li>✅ Move to Practitioner level when ready to try patterns</li>
                     </ul>
-                    <div class="text-center">
-                        <button class="btn beginner-btn btn-sm" onclick="scrollToSection('practitionerSection')">
-                            🡇 Ready to Practice? Go to Practitioner Level
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Section 2: Practitioner -->
-    <div id="practitionerSection" class="level-section mt-5">
+    <div id="practitionerSection" class="level-section">
         <div class="section-header practitioner-header">
-            <h3 class="practitioner-color text-center">🔄 Practitioner Level | Practice with Patterns</h3>
-            <p class="">Choose from established breathing patterns. Each pattern is designed for specific benefits.
+            <h2 class="section-title practitioner-color">🔄 Practitioner Level | Practice with Patterns</h2>
+            <p class="section-description">Choose from established breathing patterns. Each pattern is designed for specific benefits.
                 Start with the standard 5.5-5.5 pattern for optimal results.</p>
         </div>
 
@@ -307,12 +308,22 @@
         <!-- Practitioner Tips -->
         <div class="card mt-4 tips-card">
             <div class="card-body">
-                <h5 class="card-title practitioner-color collapsible-header"
-                    onclick="toggleCollapse('practitionerTips', this)">
-                    💡 Practitioner Tips
-                    <span class="collapse-icon">▼</span>
-                </h5>
-                <div class="collapsible-content" id="practitionerTips">
+                <div class="tips-header-row">
+                    <h5 class="card-title practitioner-color collapsible-header collapsed"
+                        onclick="toggleCollapse('practitionerTips', this)">
+                        💡 Practitioner Tips
+                        <span class="collapse-icon">▶</span>
+                    </h5>
+                    <div class="tips-navigation-inline">
+                        <button class="btn beginner-btn btn-sm" onclick="scrollToSection('beginnerSection')">
+                            🡅 Beginner
+                        </button>
+                        <button class="btn practitioner-btn btn-sm" onclick="scrollToSection('expertSection')">
+                            🡇 Expert
+                        </button>
+                    </div>
+                </div>
+                <div class="collapsible-content collapsed" id="practitionerTips">
                     <ul>
                         <li>✅ Start with the 5.5-5.5 pattern for best heart rate variability results</li>
                         <li>✅ Practice for 10-20 minutes daily for noticeable benefits</li>
@@ -320,24 +331,16 @@
                         <li>✅ Keep your eyes closed and focus on the piano tones</li>
                         <li>✅ Gradually increase duration as you become more comfortable</li>
                     </ul>
-                    <div class="text-center">
-                        <button class="btn beginner-btn btn-sm" onclick="scrollToSection('beginnerSection')">
-                            🡅 Back to Beginner Level
-                        </button>
-                        <button class="btn practitioner-btn btn-sm" onclick="scrollToSection('expertSection')">
-                            🡇 Ready to Customize? Go to Expert Level
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Section 3: Expert -->
-    <div id="expertSection" class="level-section mt-5">
+    <div id="expertSection" class="level-section">
         <div class="section-header expert-header">
-            <h3 class="expert-color text-center">🎛️ Expert Level | Custom Pattern Creator</h3>
-            <p class="">Create your own breathing patterns with customizable inhale, exhale, and pause durations.
+            <h2 class="section-title expert-color">🎛️ Expert Level | Custom Pattern Creator</h2>
+            <p class="section-description">Create your own breathing patterns with customizable inhale, exhale, and pause durations.
                 Perfect for advanced practitioners who want to explore different breathing techniques.</p>
         </div>
 
@@ -485,11 +488,21 @@
         <!-- Expert Tips Card (New section, similar to practitioner tips) -->
         <div class="card mt-4 tips-card">
             <div class="card-body">
-                <h5 class="card-title expert-color collapsible-header" onclick="toggleCollapse('expertTips', this)">
-                    💡 Expert Tips
-                    <span class="collapse-icon">▼</span>
-                </h5>
-                <div class="collapsible-content" id="expertTips">
+                <div class="tips-header-row">
+                    <h5 class="card-title expert-color collapsible-header collapsed" onclick="toggleCollapse('expertTips', this)">
+                        💡 Expert Tips
+                        <span class="collapse-icon">▶</span>
+                    </h5>
+                    <div class="tips-navigation-inline">
+                        <button class="btn beginner-btn btn-sm" onclick="scrollToSection('beginnerSection')">
+                            🡅 Beginner
+                        </button>
+                        <button class="btn practitioner-btn btn-sm" onclick="scrollToSection('practitionerSection')">
+                            🡅 Practitioner
+                        </button>
+                    </div>
+                </div>
+                <div class="collapsible-content collapsed" id="expertTips">
                     <ul>
                         <li>✅ Longer exhales (compared to inhales) promote relaxation</li>
                         <li>✅ Add pauses to increase mindfulness and breath awareness</li>
@@ -498,14 +511,6 @@
                         <li>✅ Save successful patterns in a journal for future reference</li>
                         <li>✅ Adjust patterns based on your energy levels and time of day</li>
                     </ul>
-                    <div class="text-center">
-                        <button class="btn expert-btn btn-sm" onclick="scrollToSection('beginnerSection')">
-                            🡅 Back to Beginner Level
-                        </button>
-                        <button class="btn practitioner-btn btn-sm" onclick="scrollToSection('practitionerSection')">
-                            🡅 Back to Practitioner Level
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -939,9 +944,9 @@
             </div>
         </div>
     </div>
-
-    <div id="footer_placeholder"></div>
 </div>
+
+<div id="footer_placeholder"></div>
 
 <script>
     loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html", "../../../automation/theme_toggle.html")
