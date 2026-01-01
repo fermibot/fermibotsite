@@ -1,7 +1,7 @@
 // Global state for unified player
 let unifiedPlayer = null;
 let selectedPatternId = '55.5';
-let selectedAudioUrl = 'Coherent_Piano_5.5_5.5_fermibot.mp3';
+let selectedAudioUrl = 'Coherent_Piano_5.5_5.5.mp3';
 
 // Pattern selection function
 function selectPattern(card) {
@@ -92,11 +92,11 @@ class UnifiedAudioPlayer {
 
     async preloadAllPatterns() {
         const patterns = {
-            '55.5': 'Coherent_Piano_5.5_5.5_fermibot.mp3',
-            '55': 'Coherent_Piano_5_5_fermibot.mp3',
-            '66': 'Coherent_Piano_6_6_fermibot.mp3',
-            '77': 'Coherent_Piano_7_7_fermibot.mp3',
-            '88': 'Coherent_Piano_8_8_fermibot.mp3'
+            '55.5': 'Coherent_Piano_5.5_5.5.mp3',
+            '55': 'Coherent_Piano_5_5.mp3',
+            '66': 'Coherent_Piano_6_6.mp3',
+            '77': 'Coherent_Piano_7_7.mp3',
+            '88': 'Coherent_Piano_8_8.mp3'
         };
 
         for (const [id, url] of Object.entries(patterns)) {
