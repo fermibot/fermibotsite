@@ -174,10 +174,203 @@
 }
 
 .center-flex {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-        }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 
+/* ============================================
+   MOBILE OPTIMIZATION
+   ============================================ */
 
+/* Tablet and below (768px) */
+@media (max-width: 768px) {
+    /* Container padding - reduce on mobile */
+    .container-fluid.pb-3.p-5 {
+        padding: 2rem 1.5rem !important;
+    }
+
+    /* Welcome section grid - stack vertically on mobile */
+    .d-grid[style*="grid-template-columns: 1fr 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+
+    /* Categories section grid - single column on mobile */
+    .d-grid[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+
+    /* Welcome boxes - better mobile sizing */
+    .bg-body-tertiary.border.rounded-3 {
+        padding: 1.5rem !important;
+    }
+
+    /* Section icons - smaller on mobile */
+    .section-icon {
+        width: 150px;
+        height: 150px;
+        border-width: 2px;
+    }
+
+    /* Centered images - full width on mobile */
+    .centered_image {
+        width: 90%;
+    }
+
+    /* Typography adjustments */
+    h1 {
+        font-size: 1.75rem !important;
+    }
+
+    h2 {
+        font-size: 1.5rem !important;
+    }
+
+    h3 {
+        font-size: 1.25rem !important;
+        padding: 1.5rem 0 !important;
+    }
+
+    /* Text content - better readability */
+    p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    strong {
+        font-size: 1.05rem;
+    }
+
+    /* Images - responsive */
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Cards - better mobile spacing */
+    .card {
+        margin-bottom: 1.5rem;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+    }
+
+    /* Paragraph container */
+    .paragraph {
+        width: 100%;
+        padding: 0.5rem;
+    }
+}
+
+/* Small mobile devices (576px and below) */
+@media (max-width: 576px) {
+    /* Minimal padding on tiny screens */
+    .container-fluid.pb-3.p-5 {
+        padding: 1.5rem 1rem !important;
+    }
+
+    /* Tighter grid gaps */
+    .d-grid {
+        gap: 1rem !important;
+    }
+
+    /* Welcome boxes - compact padding */
+    .bg-body-tertiary.border.rounded-3 {
+        padding: 1rem !important;
+    }
+
+    /* Section icons - even smaller on tiny screens */
+    .section-icon {
+        width: 120px;
+        height: 120px;
+    }
+
+    /* Typography - compact on tiny screens */
+    h1 {
+        font-size: 1.5rem !important;
+    }
+
+    h2 {
+        font-size: 1.25rem !important;
+    }
+
+    h3 {
+        font-size: 1.1rem !important;
+        padding: 1rem 0 !important;
+    }
+
+    p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    strong {
+        font-size: 1rem;
+    }
+
+    /* Card compact spacing */
+    .card-body {
+        padding: 1rem;
+    }
+
+    /* Center image - more space on small screens */
+    .centered_image {
+        width: 100%;
+    }
+}
+
+/* Medium tablets (between 576px and 992px) */
+@media (min-width: 577px) and (max-width: 992px) {
+    /* Categories grid - 2 columns on tablets */
+    .d-grid[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 1.5rem !important;
+    }
+
+    /* Section icons - medium size on tablets */
+    .section-icon {
+        width: 175px;
+        height: 175px;
+    }
+}
+
+/* Touch-friendly improvements for all mobile devices */
+@media (hover: none) and (pointer: coarse) {
+    /* Better touch targets for links and buttons */
+    a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    /* Card links - easier to tap */
+    .card a {
+        display: block;
+        padding: 0.25rem;
+    }
+
+    /* Better tap highlighting */
+    * {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Landscape mobile optimization */
+@media (max-width: 768px) and (orientation: landscape) {
+    /* Reduce vertical spacing in landscape */
+    .container-fluid.pb-3.p-5 {
+        padding: 1.5rem !important;
+    }
+
+    .d-grid {
+        gap: 1rem !important;
+    }
+
+    h3 {
+        padding: 1rem 0 !important;
+    }
+}
