@@ -1422,23 +1422,13 @@ html {
     border-left-color: var(--expert-color);
 }
 
-/* Clickable reference pattern names */
+/* Reference pattern names - visual indicators only */
 .reference-pattern-name {
-    cursor: pointer;
     padding: 3px 8px;
     border-radius: 4px;
     transition: all 0.2s ease;
     display: inline-block;
     margin-bottom: 2px;
-}
-
-.reference-pattern-name:hover {
-    background-color: rgba(55, 71, 79, 0.15);
-    color: var(--expert-color);
-}
-
-.reference-pattern-name:active {
-    transform: scale(0.98);
 }
 
 /* Selected pattern highlighting */
