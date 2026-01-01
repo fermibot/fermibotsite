@@ -114,6 +114,9 @@
 /* Search Box */
 .search-container {
     position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .search-input {
@@ -144,6 +147,34 @@
     transform: translateY(-50%);
     color: var(--viz-text-muted);
     pointer-events: none;
+}
+
+.search-counter {
+    font-size: 0.75rem;
+    color: var(--viz-text-muted);
+    background-color: var(--viz-bg-secondary);
+    border: 1px solid var(--viz-border);
+    border-radius: 12px;
+    padding: 0.25rem 0.6rem;
+    white-space: nowrap;
+    min-width: 45px;
+    text-align: center;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.search-counter.visible {
+    opacity: 1;
+}
+
+.search-counter.has-results {
+    color: var(--section-06);
+    border-color: var(--section-06);
+}
+
+.search-counter.no-results {
+    color: var(--viz-text-muted);
 }
 
 /* Layout Toggle */
@@ -836,51 +867,227 @@
 }
 
 @media (max-width: 768px) {
+    /* Controls Bar - Touch-Friendly */
     .controls-bar {
         flex-direction: column;
         align-items: stretch;
+        gap: 0.75rem;
+        padding: 0.75rem;
     }
 
     .controls-left,
     .controls-right {
         justify-content: center;
-    }
-
-    .search-input {
         width: 100%;
     }
 
+    /* Search Container - Stack on Mobile */
+    .search-container {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    /* Search Input - Full Width & Touch-Friendly */
+    .search-input {
+        width: 100%;
+        min-height: 44px; /* iOS minimum touch target */
+        padding: 0.75rem 1rem 0.75rem 2.75rem;
+        font-size: 1rem; /* Prevents zoom on iOS */
+    }
+
+    .search-icon {
+        left: 1rem;
+        font-size: 1.1rem;
+    }
+
+    /* Search Counter - Mobile Adjustments */
+    .search-counter {
+        font-size: 0.8rem;
+        padding: 0.35rem 0.75rem;
+        min-width: 60px;
+    }
+
+    /* Buttons - Touch-Friendly Sizing */
+    .export-btn,
+    .layout-toggle .btn {
+        min-height: 44px;
+        padding: 0.75rem 1rem !important;
+        font-size: 0.9rem !important;
+    }
+
+    .controls-right {
+        gap: 0.5rem;
+    }
+
+    /* Layout Toggle - Better Mobile Layout */
     .layout-toggle {
         justify-content: center;
+        width: 100%;
     }
 
+    .layout-toggle .btn {
+        flex: 1;
+    }
+
+    /* Legend Items - Touch-Friendly */
+    .legend-item {
+        min-height: 44px;
+        padding: 0.75rem;
+    }
+
+    .legend-label {
+        font-size: 0.8rem;
+    }
+
+    /* Nodes - Better Visibility on Mobile */
     .node {
-        font-size: 9px;
+        font-size: 11px; /* Slightly larger for touch screens */
     }
 
+    /* Info Card - Full Mobile Optimization */
     .info-card {
-        width: 90vw;
-        left: 5vw !important;
-        right: 5vw !important;
+        width: 95vw;
+        left: 2.5vw !important;
+        right: 2.5vw !important;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .info-card-header {
+        padding: 1rem;
+    }
+
+    .info-card-chapter {
+        font-size: 1rem;
+    }
+
+    .info-card-summary {
+        font-size: 0.9rem;
+    }
+
+    .info-card-footer {
+        padding: 1rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .mark-learned-btn {
+        min-height: 44px;
+        padding: 0.5rem 1rem !important;
+        font-size: 0.85rem !important;
+    }
+
+    /* Tooltip - Better Mobile Positioning */
+    .tooltip {
+        max-width: 85vw;
+        font-size: 0.9rem;
+    }
+
+    /* Progress Modal - Full Mobile Width */
+    .progress-modal {
+        width: 95vw;
+        max-height: 90vh;
+    }
+
+    .progress-modal-header {
+        padding: 1rem;
+    }
+
+    .progress-modal-body {
+        padding: 1rem;
+    }
+
+    .progress-item {
+        min-height: 44px;
+        padding: 0.75rem;
+    }
+
+    .progress-item input[type="checkbox"] {
+        width: 22px;
+        height: 22px;
+    }
+
+    .progress-item-label {
+        font-size: 0.9rem;
+    }
+
+    /* Keyboard Shortcuts - Mobile Positioning */
+    .keyboard-help {
+        bottom: 0.5rem;
+        right: 0.5rem;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.7rem;
+    }
+
+    .keyboard-help kbd {
+        padding: 0.15rem 0.4rem;
+        font-size: 0.7rem;
     }
 }
 
 @media (max-width: 576px) {
+    /* Wrapper - Compact Padding */
     .visualization-wrapper {
-        padding: 1rem;
+        padding: 0.75rem;
+        gap: 0.75rem;
     }
 
-    .legend-sidebar {
+    /* Legend - Single Column on Small Screens */
+    .legend-top {
         padding: 0.75rem;
     }
 
-    .legend-item {
-        padding: 0.5rem;
+    .legend-items {
+        gap: 0.4rem;
     }
 
-    .layout-toggle .btn {
-        padding: 0.3rem 0.5rem;
+    .legend-item {
+        padding: 0.65rem;
+    }
+
+    .legend-label {
         font-size: 0.75rem;
+    }
+
+    .legend-count {
+        font-size: 0.6rem;
+        padding: 0.15rem 0.3rem;
+    }
+
+    /* Export Buttons - Stacked on Tiny Screens */
+    .controls-right {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .export-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Info Card - Maximum Space Usage */
+    .info-card {
+        width: 100vw;
+        left: 0 !important;
+        right: 0 !important;
+        border-radius: 0;
+        max-height: 100vh;
+    }
+
+    /* Progress Modal - Full Screen on Tiny Devices */
+    .progress-modal {
+        width: 100vw;
+        max-width: 100vw;
+        max-height: 100vh;
+        border-radius: 0;
+        top: 0;
+        left: 0;
+        transform: none;
+    }
+
+    /* Hide Keyboard Shortcuts on Very Small Screens */
+    .keyboard-help {
+        display: none !important;
     }
 }
 

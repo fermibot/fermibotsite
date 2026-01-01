@@ -524,6 +524,9 @@ function handleSearch(query) {
 
     if (!node || !link) return;
 
+    // Get counter element
+    const counter = document.getElementById('search-counter');
+
     // Clear section highlighting when searching
     if (state.searchQuery) {
         state.activeSections.clear();
@@ -538,6 +541,11 @@ function handleSearch(query) {
         link.classed('link--hidden', false);
         link.classed('link--highlighted', false);
         link.classed('link--dimmed', false);
+
+        // Hide counter
+        if (counter) {
+            counter.classList.remove('visible', 'has-results', 'no-results');
+        }
         return;
     }
 
@@ -574,6 +582,14 @@ function handleSearch(query) {
     });
 
     console.log('Found', matches, 'matches');
+
+    // Update counter display
+    if (counter) {
+        counter.textContent = `${matches} ${matches === 1 ? 'match' : 'matches'}`;
+        counter.classList.add('visible');
+        counter.classList.toggle('has-results', matches > 0);
+        counter.classList.toggle('no-results', matches === 0);
+    }
 
     // Highlight/dim links based on connected nodes
     link.each(function(d) {
