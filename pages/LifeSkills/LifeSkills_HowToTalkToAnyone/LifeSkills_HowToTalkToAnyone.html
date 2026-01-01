@@ -1,209 +1,131 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-
-
+<html lang="en" data-bs-theme="auto">
 <head>
-
-
     <meta charset="UTF-8">
     <title>Life Skills | Communication | Books Summary | How to Talk to Anyone</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--    <link rel="stylesheet" href="../../../external_libraries/bootstrap/bootstrap.min.css">-->
+
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
 
-    <script src="../../../automation/loadObjects.js"></script>
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="../../../index.css">
 
+    <!-- Visualization CSS -->
+    <link href="LifeSkills_HowToTalkToAnyone.css" rel="stylesheet">
+
+    <!-- Bootstrap JS -->
     <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
     <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
     <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+
+    <!-- MathJax for equations -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
 
-    <link rel="stylesheet" href="../../../js/highlight/styles/default.css">
-    <link rel="stylesheet" href="../../../index.css">
-    <script src="../../../js/highlight/highlight.pack.js"></script>
+    <!-- D3.js v7 -->
+    <script src="../../../d3/d3.v7.min.js"></script>
 
-
-    <script src="../../../d3/d3.v4.min.js"></script>
-    <script src="LifeSkills_HowToTalkToAnyone.js"></script>
-    <link href="LifeSkills_HowToTalkToAnyone.css" rel="stylesheet">
+    <!-- Site automation -->
     <script src="../../../automation/loadObjects.js"></script>
 
-    <style>
-
-        .tooltip {
-            position: absolute;
-            max-width: 300px;
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            line-height: 1.4;
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            padding: 10px;
-            pointer-events: none;
-            z-index: 1000;
-        }
-
-    </style>
-
-
+    <!-- Color modes (dark/light theme) -->
+    <script src="../../../bootstrap/assets/color-modes.js"></script>
 </head>
-<body class="container-lg container-fluid card p-5">
+<body class="container-lg container-fluid p-4">
 
-
+<!-- Header -->
 <div id="header_placeholder"></div>
 
+<!-- Page Title -->
+<header class="mb-4">
+    <h1 class="text-center mb-3">How to Talk to Anyone</h1>
+    <p class="text-center text-muted">
+        Interactive visualization of Leil Lowndes' 92 communication techniques
+    </p>
+</header>
 
-<h1 class="jumbotron-fluid text-center p-2">Life Skills | Communication | Books Summary | How to Talk to Anyone</h1>
-
-<div class="">
-    <p></p>
-    <p></p>
-
-</div>
-
-
-<div class="container-fluid">
-    <div>
-        <p>This diagram visually summarizes the book <em>Leil Lowndes'</em> How to Talk to Anyone: 92 Little Tricks for
-            Big Success in Relationships. The chord diagram below shows the book sections and the constituent chapters.
+<!-- Introduction -->
+<section class="mb-4">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <p class="mb-2">
+            This diagram visually summarizes <em>Leil Lowndes'</em> book
+            <strong>"How to Talk to Anyone: 92 Little Tricks for Big Success in Relationships"</strong>.
+            The visualization shows all 92 techniques organized across 9 sections.
         </p>
-        <p class="text-center"><strong>Instructions: </strong>Hover over each of the name in the chord diagram to
-            discover connections \(\downarrow\)</p>
+        <p class="mb-0 text-muted small">
+            <strong>Tips:</strong>
+            Hover over techniques to see connections and summaries.
+            Click to lock the selection.
+            Use the search box or click legend items to filter.
+            Press <kbd>/</kbd> to focus search, <kbd>Esc</kbd> to clear.
+        </p>
+    </div>
+</section>
 
+<!-- Main Visualization Wrapper -->
+<div class="visualization-wrapper">
+
+    <!-- Controls Bar -->
+    <div class="controls-bar">
+        <div class="controls-left">
+            <!-- Search -->
+            <div class="search-container">
+                <span class="search-icon">&#128269;</span>
+                <input type="text"
+                       id="search-input"
+                       class="search-input"
+                       placeholder="Search techniques... (press /)"
+                       autocomplete="off">
+            </div>
+        </div>
+
+        <div class="controls-right">
+            <!-- Export Buttons -->
+            <button id="export-png" class="btn btn-outline-secondary export-btn" title="Export as PNG">
+                <span>&#128190;</span> PNG
+            </button>
+            <button id="export-svg" class="btn btn-outline-secondary export-btn" title="Export as SVG">
+                <span>&#128196;</span> SVG
+            </button>
+        </div>
     </div>
 
-    <div class="d-flex flex-wrap justify-content-center p-3" id="how_to_talk_to_anyone_d3_object"></div>
+    <!-- Legend at Top (2-row grid) -->
+    <div class="legend-top" id="legend-container">
+        <!-- Legend content will be injected by JS -->
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="visualization-main">
+        <!-- Visualization Container -->
+        <div class="visualization-container" id="visualization-container">
+            <!-- Loading state -->
+            <div class="loading-overlay">
+                <div class="loading-spinner"></div>
+                <p>Loading visualization...</p>
+            </div>
+        </div>
+    </div>
 </div>
 
+<!-- Keyboard shortcuts help (subtle) -->
+<div class="keyboard-help d-none d-lg-block">
+    <kbd>/</kbd> Search &nbsp;
+    <kbd>Esc</kbd> Clear &nbsp;
+    <kbd>Click</kbd> Lock
+</div>
 
+<!-- Visualization Script -->
+<script src="LifeSkills_HowToTalkToAnyone.js"></script>
+
+<!-- Load Header/Footer -->
 <script>
-
-    // Add tooltip div to HTML (place this in your HTML file)
-    var tooltip = d3.select("body").append("div")
-        .attr("class", "tooltip")
-        .style("opacity", 0)
-        .style("position", "absolute")
-        .style("background-color", "white")
-        .style("border", "solid")
-        .style("border-width", "1px")
-        .style("border-radius", "5px")
-        .style("padding", "20px");
-
-
-    var diameter = 1200,
-        radius = diameter / 2,
-        innerRadius = radius - 250;
-
-    var cluster = d3.cluster()
-        .size([180, innerRadius]);
-
-    var line = d3.radialLine()
-        .curve(d3.curveBundle.beta(0.85))
-        .radius(function (d) {
-            return d.y;
-        })
-        .angle(function (d) {
-            return d.x / 180 * Math.PI;
-        });
-
-    const translate_x = radius;
-    const translate_y = radius + 100;
-
-    var svg = d3.select("#how_to_talk_to_anyone_d3_object").append("svg")
-        .attr("width", diameter + 200)
-        .attr("height", diameter + 200)
-        .append("g")
-        .attr("transform", "translate(" + translate_x + "," + translate_y + ")");
-
-    var link = svg.append("g").selectAll(".link"),
-        node = svg.append("g").selectAll(".node");
-
-    d3.json("LifeSkills_HowToTalkToAnyone.json", function (error, classes) {
-        if (error) throw error;
-
-        var root = packageHierarchy(classes)
-            .sum(function (d) {
-                return d.size;
-            });
-
-        cluster(root);
-
-        link = link
-            .data(packageImports(root.leaves()))
-            .enter().append("path")
-            .each(function (d) {
-                d.source = d[0], d.target = d[d.length - 1];
-            })
-            .attr("class", "link")
-            .attr("d", line);
-
-        // node = node
-        //     .data(root.leaves())
-        //     .enter().append("text")
-        //     .attr("class", "node")
-        //     .attr("dy", "0.31em")
-        //     .attr("transform", function (d) {
-        //         return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)");
-        //     })
-        //     .attr("text-anchor", function (d) {
-        //         return d.x < 180 ? "start" : "end";
-        //     })
-        //     .text(function (d) {
-        //         return d.data.key;
-        //     })
-        //     .on("mouseover", mouseovered)
-        //     .on("mouseout", mouseouted);
-
-        // Modify your node creation code to include tooltips
-        node = node
-            .data(root.leaves())
-            .enter().append("text")
-            .attr("class", "node")
-            .attr("dy", "0.31em")
-            .attr("transform", function (d) {
-                return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)");
-            })
-            .attr("text-anchor", function (d) {
-                return d.x < 180 ? "start" : "end";
-            })
-            .text(function (d) {
-                return d.data.key;
-            })
-            .on("mouseover", function (d) {
-                // Show tooltip with summary if available
-                if (d.data.summary) {
-                    tooltip.transition()
-                        .duration(200)
-                        .style("opacity", 1);
-                    tooltip.html(d.data.summary)
-                        .style("right", (radius + 1) + "px")
-                        .style("top", (radius + 350) + "px");
-                }
-
-                // Your existing mouseover code
-                mouseovered(d);
-            })
-            .on("mouseout", function (d) {
-                // Hide tooltip
-                tooltip.transition()
-                    .duration(500)
-                    .style("opacity", 0);
-
-                // Your existing mouseout code
-                mouseouted(d);
-            });
-    });
-
-
-    loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html")
-
-
+    loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html");
 </script>
 
-
+<!-- Footer -->
 <div id="footer_placeholder"></div>
 
 </body>
+</html>
