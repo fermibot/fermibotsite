@@ -3,6 +3,133 @@ let unifiedPlayer = null;
 let selectedPatternId = '55.5';
 let selectedAudioUrl = 'Coherent_Piano_5.5_5.5.mp3';
 
+// ============================================
+// BACKGROUND AUDIO PLAYBACK MANAGER
+// ============================================
+class BackgroundAudioManager {
+    constructor() {
+        this.wakeLock = null;
+        this.audioContexts = [];
+        this.setupVisibilityHandling();
+        this.setupWakeLock();
+    }
+
+    // Register an audio context for background playback support
+    registerAudioContext(audioContext) {
+        if (audioContext && !this.audioContexts.includes(audioContext)) {
+            this.audioContexts.push(audioContext);
+        }
+    }
+
+    // Setup visibility change handling to keep audio playing in background
+    setupVisibilityHandling() {
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                // Page is hidden (screen off, switched tabs, etc.)
+                console.log('Page hidden - maintaining audio playback');
+
+                // Ensure all audio contexts stay running
+                this.audioContexts.forEach(ctx => {
+                    if (ctx.state === 'suspended') {
+                        ctx.resume().catch(err => {
+                            console.warn('Could not resume audio context:', err);
+                        });
+                    }
+                });
+            } else {
+                // Page is visible again
+                console.log('Page visible - resuming normal operation');
+
+                // Resume any suspended audio contexts
+                this.audioContexts.forEach(ctx => {
+                    if (ctx.state === 'suspended') {
+                        ctx.resume().catch(err => {
+                            console.warn('Could not resume audio context:', err);
+                        });
+                    }
+                });
+
+                // Re-request wake lock if it was released
+                this.requestWakeLock();
+            }
+        });
+
+        // Handle page blur/focus events (iOS Safari)
+        window.addEventListener('blur', () => {
+            console.log('Window blurred - maintaining audio playback');
+            this.audioContexts.forEach(ctx => {
+                if (ctx.state === 'suspended') {
+                    ctx.resume().catch(err => console.warn('Resume failed:', err));
+                }
+            });
+        });
+
+        window.addEventListener('focus', () => {
+            console.log('Window focused');
+            this.requestWakeLock();
+        });
+    }
+
+    // Setup Wake Lock API to prevent screen from sleeping during playback
+    async setupWakeLock() {
+        if (!('wakeLock' in navigator)) {
+            console.log('Wake Lock API not supported');
+            return;
+        }
+
+        // Request wake lock when playback starts
+        await this.requestWakeLock();
+    }
+
+    async requestWakeLock() {
+        if (!('wakeLock' in navigator)) return;
+
+        try {
+            // Release existing wake lock if any
+            if (this.wakeLock !== null) {
+                await this.wakeLock.release();
+                this.wakeLock = null;
+            }
+
+            // Request new wake lock
+            this.wakeLock = await navigator.wakeLock.request('screen');
+            console.log('Wake Lock acquired');
+
+            // Listen for wake lock release
+            this.wakeLock.addEventListener('release', () => {
+                console.log('Wake Lock released');
+            });
+        } catch (err) {
+            console.warn('Wake Lock request failed:', err);
+        }
+    }
+
+    async releaseWakeLock() {
+        if (this.wakeLock !== null) {
+            try {
+                await this.wakeLock.release();
+                this.wakeLock = null;
+                console.log('Wake Lock manually released');
+            } catch (err) {
+                console.warn('Wake Lock release failed:', err);
+            }
+        }
+    }
+
+    // Call this when audio playback starts
+    onPlaybackStart() {
+        this.requestWakeLock();
+    }
+
+    // Call this when audio playback stops
+    onPlaybackStop() {
+        this.releaseWakeLock();
+    }
+}
+
+// Create global background audio manager
+const backgroundAudioManager = new BackgroundAudioManager();
+
 // Pattern selection function
 function selectPattern(card) {
     // If currently playing, stop first
@@ -60,6 +187,9 @@ class UnifiedAudioPlayer {
             try {
                 // Initialize Audio Context
                 this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+                // Register audio context for background playback
+                backgroundAudioManager.registerAudioContext(this.audioContext);
 
                 // Pre-load all pattern audio files
                 await this.preloadAllPatterns();
@@ -169,6 +299,9 @@ class UnifiedAudioPlayer {
         this.startTime = this.audioContext.currentTime - startOffset;
         this.isPlaying = true;
 
+        // Enable background playback
+        backgroundAudioManager.onPlaybackStart();
+
         // Update UI
         this.playBtn.disabled = true;
         this.pauseBtn.disabled = false;
@@ -218,6 +351,9 @@ class UnifiedAudioPlayer {
             this.sourceNode.disconnect();
             this.isPlaying = false;
         }
+
+        // Disable background playback and release wake lock
+        backgroundAudioManager.onPlaybackStop();
 
         // Reset
         this.pauseTime = 0;

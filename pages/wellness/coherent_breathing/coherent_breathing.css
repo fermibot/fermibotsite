@@ -1004,7 +1004,7 @@ ul:not(.list-group) li {
 }
 
 /* ============================================
-   RESPONSIVE DESIGN
+   RESPONSIVE DESIGN - MOBILE OPTIMIZATION
    ============================================ */
 
 @media (max-width: 768px) {
@@ -1013,19 +1013,79 @@ ul:not(.list-group) li {
     }
 
     .page-title {
-        font-size: 2rem !important;
+        font-size: 1.75rem !important;
+        line-height: 1.2;
     }
 
     .page-intro {
-        font-size: var(--font-size-base);
+        font-size: 0.95rem;
+        line-height: 1.5;
     }
 
     .level-section {
-        padding: var(--spacing-lg) 0;
+        padding: var(--spacing-md) 0;
     }
 
     .section-title {
-        font-size: 1.5rem !important;
+        font-size: 1.35rem !important;
+    }
+
+    .section-description {
+        font-size: 0.9rem !important;
+    }
+
+    /* Mobile-friendly cards */
+    .card {
+        margin-bottom: var(--spacing-md);
+    }
+
+    .card-title {
+        font-size: 1.1rem !important;
+    }
+
+    .card-body {
+        padding: var(--spacing-md);
+    }
+
+    /* Touch-friendly buttons */
+    .btn {
+        min-height: 44px;
+        padding: 0.75rem 1rem !important;
+        font-size: 0.95rem !important;
+    }
+
+    .btn-sm {
+        min-height: 38px;
+        padding: 0.5rem 0.75rem !important;
+        font-size: 0.85rem !important;
+    }
+
+    /* Pattern selector cards - stack vertically on mobile */
+    .pattern-selector-card {
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .pattern-selector-content {
+        gap: var(--spacing-sm);
+    }
+
+    .pattern-title {
+        font-size: 1rem !important;
+    }
+
+    /* Control panels */
+    .unified-control-panel {
+        padding: var(--spacing-md);
+    }
+
+    .unified-buttons {
+        gap: var(--spacing-xs);
+        width: 100%;
+    }
+
+    .unified-buttons .btn {
+        flex: 1;
+        min-width: 100px;
     }
 
     .programmable-section {

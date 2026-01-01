@@ -82,6 +82,11 @@ class ProgrammableBreathingSequencer {
             // Initialize Audio Context
             this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
+            // Register audio context for background playback
+            if (typeof backgroundAudioManager !== 'undefined') {
+                backgroundAudioManager.registerAudioContext(this.audioContext);
+            }
+
             // Load all audio files (including 5.5 seconds)
             await this.loadAllAudioFiles();
 
@@ -395,6 +400,11 @@ class ProgrammableBreathingSequencer {
         this.isPlaying = true;
         this.currentPhase = 'in';
 
+        // Enable background playback
+        if (typeof backgroundAudioManager !== 'undefined') {
+            backgroundAudioManager.onPlaybackStart();
+        }
+
         // Start ticker animation
         this.startTickerAnimation();
 
@@ -466,6 +476,11 @@ class ProgrammableBreathingSequencer {
         this.isPlaying = false;
         this.currentPhase = 'stopped';
         this.currentPhaseElement.textContent = 'Ready to start';
+
+        // Disable background playback and release wake lock
+        if (typeof backgroundAudioManager !== 'undefined') {
+            backgroundAudioManager.onPlaybackStop();
+        }
 
         // Update UI
         this.playBtn.disabled = false;
