@@ -1,0 +1,66 @@
+/* ============================================
+   GLOBAL THEME SUPPORT FOR ALL PAGES
+   ============================================
+   This file is automatically injected by loadObjects.js
+   to make all pages respond to dark/light themes
+*/
+
+/* Base theme colors */
+:root {
+    --bs-body-bg: #ffffff;
+    --bs-body-color: #212529;
+    --bs-border-color: #dee2e6;
+    --bs-card-bg: #ffffff;
+}
+
+[data-bs-theme="dark"] {
+    --bs-body-bg: #212529;
+    --bs-body-color: #dee2e6;
+    --bs-border-color: #495057;
+    --bs-card-bg: #2b3035;
+}
+
+/* Apply theme colors to body */
+body {
+    background-color: var(--bs-body-bg) !important;
+    color: var(--bs-body-color) !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Cards */
+.card {
+    background-color: var(--bs-card-bg) !important;
+    color: var(--bs-body-color) !important;
+    border-color: var(--bs-border-color) !important;
+}
+
+/* Borders */
+.border,
+.border-bottom,
+.border-top,
+.border-start,
+.border-end {
+    border-color: var(--bs-border-color) !important;
+}
+
+/* Background utilities */
+.bg-body-tertiary {
+    background-color: var(--bs-body-bg) !important;
+}
+
+/* Jumbotron */
+.jumbotron,
+.jumbotron-fluid {
+    background-color: var(--bs-card-bg) !important;
+    color: var(--bs-body-color) !important;
+}
+
+/* Links */
+a {
+    transition: color 0.2s ease;
+}
+
+/* Smooth transitions */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
