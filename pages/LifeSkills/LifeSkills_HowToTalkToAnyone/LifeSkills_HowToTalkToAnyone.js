@@ -1209,6 +1209,8 @@ function createLegend(container) {
     if (progressInline) {
         progressInline.style.cursor = 'pointer';
         progressInline.addEventListener('click', showProgressModal);
+        progressInline.addEventListener('mouseenter', showProgressTooltip);
+        progressInline.addEventListener('mouseleave', hideProgressTooltip);
     }
 }
 
