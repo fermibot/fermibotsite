@@ -1,115 +1,495 @@
 <footer style="
     background: var(--footer-bg);
     color: var(--footer-text);
-    padding: 30px 20px;
+    padding: 40px 20px 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border-top: 1px solid var(--footer-border);
-    text-align: center;
     transition: background-color 0.3s, color 0.3s;
+    position: relative;
 ">
     <style>
         :root {
             --footer-bg: #f8f9fa;
             --footer-text: #333;
             --footer-border: rgba(0, 0, 0, 0.1);
-            --footer-link: #3498db;
-            --footer-link-hover: #e74c3c;
-            --footer-button-bg: rgba(255, 255, 255, 0.7);
+            --footer-link: #667eea;
+            --footer-link-hover: #764ba2;
+            --footer-category-bg: rgba(102, 126, 234, 0.08);
         }
 
         [data-bs-theme='dark'] {
             --footer-bg: #212529;
             --footer-text: #f8f9fa;
             --footer-border: rgba(255, 255, 255, 0.1);
-            --footer-link: #4da6ff;
-            --footer-link-hover: #ff6b6b;
-            --footer-button-bg: rgba(255, 255, 255, 0.1);
+            --footer-link: #8b9cf6;
+            --footer-link-hover: #a77fc6;
+            --footer-category-bg: rgba(102, 126, 234, 0.15);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-brand {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer-brand-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .footer-brand-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--footer-text);
+            margin-bottom: 5px;
+        }
+
+        .footer-tagline {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            font-style: italic;
+        }
+
+        /* Quick Links Section */
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--footer-category-bg);
+            border-radius: 12px;
+        }
+
+        .footer-nav a {
+            color: var(--footer-link);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .footer-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--footer-link-hover);
+            transition: width 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: var(--footer-link-hover);
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .footer-nav a:hover::after {
+            width: 80%;
+        }
+
+        .footer-topics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .footer-topic-link {
+            text-decoration: none;
+            display: block;
+            height: 100%;
+        }
+
+        .footer-topic {
+            background: var(--footer-category-bg);
+            padding: 15px;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            height: 100%;
+            border: 2px solid transparent;
+        }
+
+        .footer-topic:hover {
+            transform: translateY(-4px) scale(1.02);
+            background: var(--footer-link);
+            border-color: var(--footer-link-hover);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .footer-topic:active {
+            transform: translateY(-2px) scale(1.01);
+        }
+
+        .footer-topic:hover .footer-topic-title,
+        .footer-topic:hover .footer-topic-count {
+            color: white;
+        }
+
+        .footer-topic-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+            color: var(--footer-link);
+            transition: color 0.3s ease;
+        }
+
+        .footer-topic-count {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            color: var(--footer-text);
+            transition: color 0.3s ease;
+        }
+
+        .footer-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--footer-category-bg);
+            border-radius: 12px;
+        }
+
+        .footer-stat {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-stat:hover {
+            transform: scale(1.1);
+        }
+
+        .footer-stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--footer-link);
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .footer-stat:hover .footer-stat-number {
+            color: var(--footer-link-hover);
+        }
+
+        .footer-stat-label {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--footer-border);
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .footer-home-link {
+            color: var(--footer-link);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .footer-home-link:hover {
+            color: var(--footer-link-hover);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--footer-link);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            border: none;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--footer-link-hover);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(118, 75, 162, 0.5);
+        }
+
+        .back-to-top:active {
+            transform: translateY(-2px);
+        }
+
+        .back-to-top svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+            stroke-width: 3;
+            fill: none;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .footer-nav {
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .footer-nav a {
+                font-size: 0.85rem;
+                padding: 6px 12px;
+            }
+
+            .footer-topics {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .footer-topic {
+                padding: 12px;
+            }
+
+            .footer-stats {
+                gap: 20px;
+                padding: 15px;
+            }
+
+            .footer-stat-number {
+                font-size: 1.5rem;
+            }
+
+            .footer-stat-label {
+                font-size: 0.7rem;
+            }
+
+            .back-to-top {
+                width: 45px;
+                height: 45px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .back-to-top svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-topics {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-stats {
+                gap: 15px;
+            }
+
+            .footer-nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .footer-nav a {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 
-    <div style="
-        max-width: 800px;
-        margin: 0 auto;
-    ">
-        <div style="
-            font-size: 2.5rem;
-            margin-bottom: 0px;
-        ">
-            🤖📚🔬
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+        <svg viewBox="0 0 24 24">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <div class="footer-content">
+        <!-- Brand Section -->
+        <div class="footer-brand">
+            <div class="footer-brand-emoji">🤖📚🔬</div>
+            <div class="footer-brand-text">
+                <a href="/" class="footer-home-link">Fermibot.org</a>
+            </div>
+            <div class="footer-tagline">To repair a Nanobot, you need a Fermibot</div>
         </div>
 
-        <!--        <p style="-->
-        <!--            font-size: 1.1rem;-->
-        <!--            line-height: 1.6;-->
-        <!--            margin-bottom: 20px;-->
-        <!--        ">-->
-        <!--            To repair a Nanobot, you need Fermibot.-->
-        <!--        </p>-->
+        <!-- Quick Links Navigation -->
+        <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="/">🏠 Home</a>
+            <a href="/#cards-container">📚 Explore Topics</a>
+            <a href="/pages/wellness/coherent_breathing/coherent_breathing.html">🧘 Wellness</a>
+            <a href="/pages/LifeSkills/LifeSkills_HowToTalkToAnyone/LifeSkills_HowToTalkToAnyone.html">💬 Life Skills</a>
+        </nav>
 
-        <!--        <div style="-->
-        <!--            display: flex;-->
-        <!--            justify-content: center;-->
-        <!--            gap: 25px;-->
-        <!--            margin-bottom: 25px;-->
-        <!--            flex-wrap: wrap;-->
-        <!--        ">-->
-        <!--            <a href="#" style="-->
-        <!--                color: var(&#45;&#45;footer-text);-->
-        <!--                text-decoration: none;-->
-        <!--                font-weight: 600;-->
-        <!--                transition: all 0.3s ease;-->
-        <!--                padding: 8px 15px;-->
-        <!--                border-radius: 20px;-->
-        <!--                background: var(&#45;&#45;footer-button-bg);-->
-        <!--                border: 1px solid var(&#45;&#45;footer-border);-->
-        <!--            ">-->
-        <!--                Home-->
-        <!--            </a>-->
-        <!--            <a href="#" style="-->
-        <!--                color: var(&#45;&#45;footer-text);-->
-        <!--                text-decoration: none;-->
-        <!--                font-weight: 600;-->
-        <!--                transition: all 0.3s ease;-->
-        <!--                padding: 8px 15px;-->
-        <!--                border-radius: 20px;-->
-        <!--                background: var(&#45;&#45;footer-button-bg);-->
-        <!--                border: 1px solid var(&#45;&#45;footer-border);-->
-        <!--            ">-->
-        <!--                Science-->
-        <!--            </a>-->
-        <!--            <a href="#" style="-->
-        <!--                color: var(&#45;&#45;footer-text);-->
-        <!--                text-decoration: none;-->
-        <!--                font-weight: 600;-->
-        <!--                transition: all 0.3s ease;-->
-        <!--                padding: 8px 15px;-->
-        <!--                border-radius: 20px;-->
-        <!--                background: var(&#45;&#45;footer-button-bg);-->
-        <!--                border: 1px solid var(&#45;&#45;footer-border);-->
-        <!--            ">-->
-        <!--                ML-->
-        <!--            </a>-->
-        <!--            <a href="#" style="-->
-        <!--                color: var(&#45;&#45;footer-text);-->
-        <!--                text-decoration: none;-->
-        <!--                font-weight: 600;-->
-        <!--                transition: all 0.3s ease;-->
-        <!--                padding: 8px 15px;-->
-        <!--                border-radius: 20px;-->
-        <!--                background: var(&#45;&#45;footer-button-bg);-->
-        <!--                border: 1px solid var(&#45;&#45;footer-border);-->
-        <!--            ">-->
-        <!--                Contact-->
-        <!--            </a>-->
-        <!--        </div>-->
+        <!-- Stats Section -->
+        <div class="footer-stats">
+            <div class="footer-stat">
+                <span class="footer-stat-number">21</span>
+                <span class="footer-stat-label">Categories</span>
+            </div>
+            <div class="footer-stat">
+                <span class="footer-stat-number">70+</span>
+                <span class="footer-stat-label">Topics</span>
+            </div>
+            <div class="footer-stat">
+                <span class="footer-stat-number">∞</span>
+                <span class="footer-stat-label">Learning</span>
+            </div>
+        </div>
 
-        <div style="
-            font-size: 0.9rem;
-            color: var(--footer-text);
-            opacity: 0.8;
-            padding-top: 15px;
-            border-top: 0px solid var(--footer-border);">
+        <!-- Topics Grid -->
+        <div class="footer-topics">
+            <a href="/" class="footer-topic-link" aria-label="Explore Probability topics">
+                <div class="footer-topic">
+                    <div class="footer-topic-title">📊 Probability</div>
+                    <div class="footer-topic-count">10 distributions & concepts</div>
+                </div>
+            </a>
+            <a href="/" class="footer-topic-link" aria-label="Explore Machine Learning topics">
+                <div class="footer-topic">
+                    <div class="footer-topic-title">🤖 Machine Learning</div>
+                    <div class="footer-topic-count">8 interactive tutorials</div>
+                </div>
+            </a>
+            <a href="/" class="footer-topic-link" aria-label="Explore Algorithms topics">
+                <div class="footer-topic">
+                    <div class="footer-topic-title">⚙️ Algorithms</div>
+                    <div class="footer-topic-count">Sorting, hashing & more</div>
+                </div>
+            </a>
+            <a href="/" class="footer-topic-link" aria-label="Explore Biology topics">
+                <div class="footer-topic">
+                    <div class="footer-topic-title">🧬 Biology</div>
+                    <div class="footer-topic-count">Biochemistry & physiology</div>
+                </div>
+            </a>
+            <a href="/" class="footer-topic-link" aria-label="Explore Mathematics topics">
+                <div class="footer-topic">
+                    <div class="footer-topic-title">📐 Mathematics</div>
+                    <div class="footer-topic-count">Geometry & calculus</div>
+                </div>
+            </a>
+            <a href="/" class="footer-topic-link" aria-label="Explore Mathematical Art topics">
+                <div class="footer-topic">
+                    <div class="footer-topic-title">🎨 Mathematical Art</div>
+                    <div class="footer-topic-count">Visual explorations</div>
+                </div>
+            </a>
+            <a href="/" class="footer-topic-link" aria-label="Explore Monte Carlo topics">
+                <div class="footer-topic">
+                    <div class="footer-topic-title">🎲 Monte Carlo</div>
+                    <div class="footer-topic-count">Simulation methods</div>
+                </div>
+            </a>
+            <a href="/pages/wellness/coherent_breathing/coherent_breathing.html" class="footer-topic-link" aria-label="Explore Wellness topics">
+                <div class="footer-topic">
+                    <div class="footer-topic-title">🧘 Wellness</div>
+                    <div class="footer-topic-count">Coherent breathing</div>
+                </div>
+            </a>
+            <a href="/pages/LifeSkills/LifeSkills_HowToTalkToAnyone/LifeSkills_HowToTalkToAnyone.html" class="footer-topic-link" aria-label="Explore Life Skills topics">
+                <div class="footer-topic">
+                    <div class="footer-topic-title">💬 Life Skills</div>
+                    <div class="footer-topic-count">Communication & more</div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="footer-bottom">
             Made with ❤️ for Science & ML | © 2025 Fermibot.org
         </div>
     </div>
+
+    <script>
+        // Back to Top Button Functionality
+        (function() {
+            const backToTop = document.getElementById('backToTop');
+
+            if (!backToTop) return;
+
+            // Show/hide button based on scroll position
+            function toggleBackToTop() {
+                if (window.pageYOffset > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            }
+
+            // Smooth scroll to top
+            function scrollToTop(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+
+            // Event listeners
+            window.addEventListener('scroll', toggleBackToTop, { passive: true });
+            backToTop.addEventListener('click', scrollToTop);
+
+            // Initial check
+            toggleBackToTop();
+
+            // Keyboard accessibility
+            backToTop.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    scrollToTop(e);
+                }
+            });
+        })();
+    </script>
 </footer>

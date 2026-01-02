@@ -8,7 +8,7 @@
     <title>Fermibot.org 😉</title>
 
     <link rel="canonical" href="https://fermibot.org/">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">-->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="index.css" rel="stylesheet">
 
@@ -17,14 +17,14 @@
     <script src="automation/loadObjects.js"></script>
     <script src="js/loadCards.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script id="MathJax-script" async src="js/mathjax/MathJax-4.1.0/tex-mml-chtml.js"></script>
 
     <script>
         loadHeaderFooter("../automation/header.html", "../automation/footer.html", "../automation/theme_toggle.html")
     </script>
 
     <link href="bootstrap/assets/headers.css" rel="stylesheet">
-    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="d3/d3.v4.min.js"></script>
 </head>
 
 <body class="container-xl" content="width=device-width">
@@ -52,12 +52,14 @@
                 <div class="bg-body-tertiary border rounded-3 p-3 welcome-box gif-container animate-on-scroll">
                     <a href="https://fermibot.org/pages/mathematical_art/random_art_02/random_art_02.html" target="">
                         <img class="img-fluid"
-                             src="pages/MathematicalArt/random_art_02/infinity_hair_2024_02_18.gif" alt="Animated mathematical art"></a>
+                             src="pages/MathematicalArt/random_art_02/infinity_hair_2024_02_18.gif"
+                             alt="Animated mathematical art"></a>
                 </div>
                 <div class="bg-body-tertiary border rounded-3 p-3 welcome-box animate-on-scroll">
                     <p class="paragraph">
                         <strong>Why the name?</strong><br><br>
-                        A Fermi is \(10^{-15} m\) and we know that Nanobots are of the order \(10^{-9} m\) and if you need
+                        A Fermi is \(10^{-15} m\) and we know that Nanobots are of the order \(10^{-9} m\) and if you
+                        need
                         to repair a Nanobot, you need a Fermibot.
                     </p>
                 </div>
