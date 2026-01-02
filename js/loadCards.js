@@ -4,8 +4,8 @@ async function loadCards() {
         const data = await response.json();
         const container = document.getElementById('cards-container');
 
-        data.cards.forEach(card => {
-            const cardElement = createCardElement(card);
+        data.cards.forEach((card, index) => {
+            const cardElement = createCardElement(card, index);
             container.appendChild(cardElement);
         });
 
@@ -18,9 +18,12 @@ async function loadCards() {
     }
 }
 
-function createCardElement(card) {
+function createCardElement(card, index) {
     const cardDiv = document.createElement('div');
-    cardDiv.className = 'bg-body-tertiary border rounded-3 p-3';
+    cardDiv.className = 'bg-body-tertiary border rounded-3 p-3 welcome-box animate-on-scroll';
+
+    // Set animation delay based on index for staggered effect
+    cardDiv.style.animationDelay = `${(index % 6) * 0.1 + 0.1}s`;
 
     let linksHTML = '';
     card.links.forEach(link => {
@@ -28,11 +31,11 @@ function createCardElement(card) {
     });
 
     cardDiv.innerHTML = `
-        <div>
-            <img src="${card.icon}" class="image-section-icon" alt="icon">
+        <div class="text-center mb-3">
+            <img src="${card.icon}" class="image-section-icon" alt="${card.title} icon">
         </div>
-        <h5>${card.title}</h5>
-        <ul>
+        <h5 class="text-center mb-3">${card.title}</h5>
+        <ul class="list-unstyled">
             ${linksHTML}
         </ul>
     `;

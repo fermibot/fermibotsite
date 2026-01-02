@@ -40,31 +40,33 @@
     <div id="header_placeholder"></div>
 
     <div class="container-fluid pb-3 p-5">
-        <div class="d-grid gap-3" style="grid-template-columns: 1fr 1fr 1fr;">
-            <div class="bg-body-tertiary border rounded-3 p-3">
-                <p>
-                    <strong>Welcome to Fermibot!</strong><br><br>
-                    I love all things Science and ML. Studying Platinum in the Physics lab (2009) got me
-                    into Machine Learning and I have been hooked ever since!
-                </p>
-            </div>
-            <div class="bg-body-tertiary border rounded-3 p-3">
-                <a href="https://fermibot.org/pages/mathematical_art/random_art_02/random_art_02.html" target="">
-                    <img class="img-fluid"
-                         src="pages/MathematicalArt/random_art_02/infinity_hair_2024_02_18.gif"></a>
-            </div>
-            <div class="bg-body-tertiary border rounded-3 p-3">
-                <p class="paragraph">
-                    <strong>Why the name?</strong><br><br>
-                    A Fermi is \(10^{-15} m\) and we know that Nanobots are of the order \(10^{-9} m\) and if you need
-                    to repair a Nanobot, you need a Fermibot.
-                </p>
+        <div class="hero-section">
+            <div class="d-grid gap-3" style="grid-template-columns: 1fr 1fr 1fr;">
+                <div class="bg-body-tertiary border rounded-3 p-3 welcome-box animate-on-scroll">
+                    <p>
+                        <strong>Welcome to Fermibot!</strong><br><br>
+                        I love all things Science and ML. Studying Platinum in the Physics lab (2009) got me
+                        into Machine Learning and I have been hooked ever since!
+                    </p>
+                </div>
+                <div class="bg-body-tertiary border rounded-3 p-3 welcome-box gif-container animate-on-scroll">
+                    <a href="https://fermibot.org/pages/mathematical_art/random_art_02/random_art_02.html" target="">
+                        <img class="img-fluid"
+                             src="pages/MathematicalArt/random_art_02/infinity_hair_2024_02_18.gif" alt="Animated mathematical art"></a>
+                </div>
+                <div class="bg-body-tertiary border rounded-3 p-3 welcome-box animate-on-scroll">
+                    <p class="paragraph">
+                        <strong>Why the name?</strong><br><br>
+                        A Fermi is \(10^{-15} m\) and we know that Nanobots are of the order \(10^{-9} m\) and if you need
+                        to repair a Nanobot, you need a Fermibot.
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="container-fluid pb-3 p-5">
-        <div><h3 class="d-grid gap-3 justify-content-center p-3">Categories and Topics</h3></div>
+        <div class="text-center mb-4"><h3 class="section-title">Categories and Topics</h3></div>
         <div class="d-grid gap-3" style="grid-template-columns: 1fr 1fr;" id="cards-container">
             <!-- Cards will be dynamically loaded here -->
         </div>
