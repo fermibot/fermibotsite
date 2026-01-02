@@ -166,6 +166,7 @@ function renderCardsView() {
                                title="Mark as reviewed">
                         <label>Reviewed</label>
                     </div>
+                    <div class="card-scroll-indicator" aria-hidden="true">↓</div>
                 </div>
             </div>
         `;
@@ -173,11 +174,39 @@ function renderCardsView() {
         card.addEventListener('click', function(e) {
             if (!e.target.classList.contains('card-checkbox')) {
                 this.classList.toggle('flipped');
+                // Check scroll after flip animation completes
+                setTimeout(() => {
+                    if (this.classList.contains('flipped')) {
+                        checkCardScroll(this);
+                    }
+                }, 600);
             }
         });
 
         cardsGrid.appendChild(card);
     });
+}
+
+// Check if card back needs scroll indicator
+function checkCardScroll(card) {
+    const cardBack = card.querySelector('.card-back');
+    const scrollIndicator = card.querySelector('.card-scroll-indicator');
+
+    if (!cardBack || !scrollIndicator) return;
+
+    const updateScrollIndicator = () => {
+        const hasScroll = cardBack.scrollHeight > cardBack.clientHeight;
+        const isScrolledToBottom = cardBack.scrollHeight - cardBack.scrollTop <= cardBack.clientHeight + 5;
+
+        if (hasScroll && !isScrolledToBottom) {
+            scrollIndicator.classList.add('visible');
+        } else {
+            scrollIndicator.classList.remove('visible');
+        }
+    };
+
+    updateScrollIndicator();
+    cardBack.addEventListener('scroll', updateScrollIndicator);
 }
 
 // ============================================
