@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="12 Sleep Tips from Why We Sleep by Matthew Walker">
+    <title>Wellness | Sleep | Why We Sleep</title>
+
+    <link rel="canonical" href="https://fermibot.org/pages/wellness/WhyWeSleep/Wellness_WhyWeSleep.html">
+    <link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="Wellness_WhyWeSleep.css" rel="stylesheet">
+
+    <script src="../../../bootstrap/assets/color-modes.js"></script>
+    <script src="../../../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../automation/loadObjects.js"></script>
+
+    <script>
+        loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html", "../../../automation/theme_toggle.html")
+    </script>
+
+    <link href="../../../bootstrap/assets/headers.css" rel="stylesheet">
+</head>
+
+<body class="container-xl">
+<div id="theme_icons_placeholder"></div>
+
+<main>
+    <h1 class="visually-hidden">Why We Sleep - 12 Essential Sleep Tips</h1>
+    <div id="header_placeholder"></div>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="header-content">
+            <div class="header-icon">🌙</div>
+            <h2 class="header-title">Wellness | Sleep | Why We Sleep</h2>
+            <p class="header-subtitle">12 Essential Sleep Tips by Matthew Walker</p>
+        </div>
+
+        <!-- Progress Summary -->
+        <div class="progress-summary">
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progressBar"></div>
+            </div>
+            <div class="progress-text">
+                <span id="progressCount">0/12</span> tips reviewed
+                <button class="reset-btn" id="resetProgress" title="Reset progress">↻</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Switcher -->
+    <div class="view-switcher">
+        <button class="view-btn active" data-view="clock" title="Clock view">
+            <span class="view-icon">⏰</span>
+            <span class="view-label">Clock</span>
+        </button>
+        <button class="view-btn" data-view="cards" title="Card grid view">
+            <span class="view-icon">🎴</span>
+            <span class="view-label">Cards</span>
+        </button>
+        <button class="view-btn" data-view="timeline" title="Timeline view">
+            <span class="view-icon">📋</span>
+            <span class="view-label">List</span>
+        </button>
+    </div>
+
+    <!-- Visualization Container -->
+    <div class="visualization-container">
+        <!-- Clock View -->
+        <div class="view-content active" id="clockView">
+            <div class="clock-container">
+                <div class="clock-face" id="clockFace">
+                    <div class="clock-center">
+                        <div class="clock-center-icon">💤</div>
+                        <div class="clock-center-text">Select a tip</div>
+                    </div>
+                </div>
+            </div>
+            <div class="tip-detail" id="clockTipDetail"></div>
+        </div>
+
+        <!-- Card Grid View -->
+        <div class="view-content" id="cardsView">
+            <div class="cards-grid" id="cardsGrid"></div>
+        </div>
+
+        <!-- Timeline View -->
+        <div class="view-content" id="timelineView">
+            <div class="timeline-container" id="timelineContainer"></div>
+        </div>
+    </div>
+
+    <div id="footer_placeholder"></div>
+</main>
+
+<script src="Wellness_WhyWeSleep.js"></script>
+<script>loadThemeIcons("../../../automation/theme_icons_svg.html")</script>
+</body>
+</html>
