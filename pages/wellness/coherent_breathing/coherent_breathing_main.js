@@ -256,25 +256,64 @@ class UnifiedAudioPlayer {
         this.pauseBtn.addEventListener('click', () => this.pause());
         this.stopBtn.addEventListener('click', () => this.stop());
 
-        // Resume audio context on first user interaction
-        const resumeAudioContext = () => {
+        // More aggressive audio context unlocking for mobile
+        const unlockAudio = async () => {
             if (this.audioContext && this.audioContext.state === 'suspended') {
-                this.audioContext.resume();
+                console.log('Attempting to unlock audio context...');
+                try {
+                    await this.audioContext.resume();
+                    console.log('Audio context unlocked:', this.audioContext.state);
+
+                    // Update UI to show audio is ready
+                    if (this.audioContext.state === 'running') {
+                        this.loadingStatus.textContent = 'Ready - Audio Unlocked!';
+                        setTimeout(() => {
+                            this.loadingStatus.style.display = 'none';
+                        }, 2000);
+                    }
+                } catch (err) {
+                    console.error('Failed to unlock audio:', err);
+                }
             }
-            document.removeEventListener('click', resumeAudioContext);
-            document.removeEventListener('touchstart', resumeAudioContext);
         };
 
-        document.addEventListener('click', resumeAudioContext);
-        document.addEventListener('touchstart', resumeAudioContext);
+        // Listen for multiple types of user interactions to unlock audio
+        const interactionEvents = ['click', 'touchstart', 'touchend', 'keydown'];
+        interactionEvents.forEach(eventType => {
+            document.addEventListener(eventType, unlockAudio, { once: true, passive: true });
+        });
+
+        // Also unlock on play button specifically
+        this.playBtn.addEventListener('touchstart', unlockAudio, { passive: true });
+        this.playBtn.addEventListener('click', unlockAudio);
     }
 
-    play() {
+    async play() {
         if (!this.isWebAudioSupported) return;
         if (this.isPlaying) return;
 
+        // Critical: Ensure audio context is running before playing (mobile fix)
         if (this.audioContext.state === 'suspended') {
-            this.audioContext.resume();
+            console.log('Resuming suspended audio context...');
+            try {
+                await this.audioContext.resume();
+                console.log('Audio context resumed:', this.audioContext.state);
+            } catch (err) {
+                console.error('Failed to resume audio context:', err);
+                this.loadingStatus.textContent = 'Tap screen to enable audio';
+                this.loadingStatus.style.display = 'block';
+                this.loadingStatus.style.color = '#ff9800';
+                return;
+            }
+        }
+
+        // Verify audio context is now running
+        if (this.audioContext.state !== 'running') {
+            console.warn('Audio context not running, state:', this.audioContext.state);
+            this.loadingStatus.textContent = 'Tap screen to enable audio';
+            this.loadingStatus.style.display = 'block';
+            this.loadingStatus.style.color = '#ff9800';
+            return;
         }
 
         // Start or resume session timer
@@ -306,6 +345,9 @@ class UnifiedAudioPlayer {
         this.playBtn.disabled = true;
         this.pauseBtn.disabled = false;
         this.playBtn.classList.add('active');
+
+        // Hide loading status if visible
+        this.loadingStatus.style.display = 'none';
 
         // Highlight selected card
         document.querySelectorAll('.pattern-selector-card').forEach(card => {
