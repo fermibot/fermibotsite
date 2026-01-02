@@ -1,0 +1,71 @@
+source,target,value
+Chicken,Chicken (1 kg),10
+Chicken (1 kg),Marinade,10
+Curd,Curd (½ cup),5
+Curd (½ cup),Marinade,5
+Ginger Garlic Paste,Ginger Garlic Paste (1 tbsp),1
+Ginger Garlic Paste (1 tbsp),Marinade,1
+Coriander Powder,Coriander Powder (1 tsp),1
+Coriander Powder (1 tsp),Marinade,1
+Degi Chilli Powder,Degi Chilli Powder (1 tbsp),1
+Degi Chilli Powder (1 tbsp),Marinade,1
+Green Chilli Paste,Green Chilli Paste (½ tsp),1
+Green Chilli Paste (½ tsp),Marinade,1
+Green Chillies,Green Chillies (3-4),1
+Green Chillies (3-4),Marinade,1
+Mint Leaves,Mint Leaves (2 sprigs),1
+Mint Leaves (2 sprigs),Marinade,1
+Onions,Onions (4 medium),4
+Onions (4 medium),Sliced Onions,4
+Sliced Onions,Fried Onions (2 tbsp),2
+Fried Onions (2 tbsp),Marinade,2
+Sliced Onions,Fresh Onions,2
+Saffron,Saffron Water (1 tbsp),1
+Saffron Water (1 tbsp),Marinade,1
+Salt,Salt (marinade),1
+Salt (marinade),Marinade,1
+Marinade,Marinated Chicken,24
+Marinated Chicken,Cooked Chicken,24
+Basmati Rice,Basmati Rice (1 kg),10
+Basmati Rice (1 kg),Washed Rice,10
+Washed Rice,Boiled Rice,10
+Cloves,Cloves (4),1
+Cloves (4),Boiled Rice,1
+Cinnamon,Cinnamon (½ inch),1
+Cinnamon (½ inch),Boiled Rice,1
+Green Cardamom,Green Cardamom (2 pods),1
+Green Cardamom (2 pods),Boiled Rice,1
+Ghee,Ghee (¼ cup),2
+Ghee (¼ cup),Boiled Rice,2
+Ghee,Ghee (1 tbsp - cooking),1
+Ghee (1 tbsp - cooking),Cooked Chicken,1
+Salt,Salt (rice),1
+Salt (rice),Boiled Rice,1
+Boiled Rice,First Layer,5
+Cooked Chicken,Middle Layer,24
+Boiled Rice,Top Layer,5
+First Layer,Layered Biryani,5
+Middle Layer,Layered Biryani,24
+Top Layer,Layered Biryani,5
+Water,Water (¼ cup),1
+Water (¼ cup),Dum Liquid,1
+Milk,Milk (½ cup),2
+Milk (½ cup),Dum Liquid,2
+Saffron,Saffron Water (2 tbsp),2
+Saffron Water (2 tbsp),Dum Liquid,2
+Mint Leaves,Mint Leaves (few),1
+Mint Leaves (few),Dum Liquid,1
+Fried Onions (2 tbsp),Barista (1 tbsp),1
+Barista (1 tbsp),Dum Liquid,1
+Fresh Onions,Garnish,2
+Salt,Salt (dum),1
+Salt (dum),Dum Liquid,1
+Saffron,Saffron Water (2 tsp),1
+Saffron Water (2 tsp),Dum Liquid,1
+Rose Water,Rose Water (½ tsp),1
+Rose Water (½ tsp),Dum Liquid,1
+Kewra Water,Kewra Water (drop),1
+Kewra Water (drop),Dum Liquid,1
+Dum Liquid,Layered Biryani,13
+Layered Biryani,Chicken Dum Biryani,47
+Garnish,Chicken Dum Biryani,2
