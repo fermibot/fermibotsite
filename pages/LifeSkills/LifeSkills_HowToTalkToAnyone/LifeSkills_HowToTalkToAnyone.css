@@ -323,13 +323,34 @@
 }
 
 .progress-bar-wrapper {
-    width: 80px;
-    height: 6px;
+    width: 120px;
+    height: 8px;
     background-color: var(--viz-border);
-    border-radius: 3px;
+    border-radius: 4px;
     overflow: hidden;
+    display: flex;
+    flex-direction: row;
 }
 
+.progress-bar-segment {
+    height: 100%;
+    transition: width var(--transition-normal);
+    flex-shrink: 0;
+}
+
+.progress-bar-segment:first-child {
+    border-radius: 4px 0 0 4px;
+}
+
+.progress-bar-segment:last-child {
+    border-radius: 0 4px 4px 0;
+}
+
+.progress-bar-segment:only-child {
+    border-radius: 4px;
+}
+
+/* Legacy class for backward compatibility - no longer used */
 .progress-bar-fill {
     height: 100%;
     background: linear-gradient(90deg, var(--section-04), var(--section-06));
@@ -692,6 +713,17 @@
     margin: 0;
     flex: 1;
 }
+
+/* Section-specific colors for section titles */
+.progress-section:nth-child(1) .progress-section-title { color: var(--section-01); }
+.progress-section:nth-child(2) .progress-section-title { color: var(--section-02); }
+.progress-section:nth-child(3) .progress-section-title { color: var(--section-03); }
+.progress-section:nth-child(4) .progress-section-title { color: var(--section-04); }
+.progress-section:nth-child(5) .progress-section-title { color: var(--section-05); }
+.progress-section:nth-child(6) .progress-section-title { color: var(--section-06); }
+.progress-section:nth-child(7) .progress-section-title { color: var(--section-07); }
+.progress-section:nth-child(8) .progress-section-title { color: var(--section-08); }
+.progress-section:nth-child(9) .progress-section-title { color: var(--section-09); }
 
 .progress-section-count {
     font-size: 0.875rem;

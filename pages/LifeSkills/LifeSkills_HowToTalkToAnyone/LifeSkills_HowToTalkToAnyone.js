@@ -375,12 +375,45 @@ function updateProgressUI() {
     const learned = state.learnedChapters.size;
     const percentage = Math.round((learned / total) * 100);
 
-    const progressFill = document.querySelector('.progress-bar-fill');
+    const progressWrapper = document.querySelector('.progress-bar-wrapper');
     const progressText = document.querySelector('.progress-text');
 
-    if (progressFill) {
-        progressFill.style.width = `${percentage}%`;
-    }
+    if (!progressWrapper || !state.root) return;
+
+    // Count learned chapters by section
+    const learnedBySection = {};
+    Object.keys(CONFIG.SECTION_COLORS).forEach(sec => {
+        learnedBySection[sec] = 0;
+    });
+
+    // Iterate through all chapter nodes and count learned ones by section
+    state.root.leaves().forEach(d => {
+        if (isChapter(d) && state.learnedChapters.has(d.data.key)) {
+            const sectionNum = getSectionNumber(d);
+            if (sectionNum && learnedBySection[sectionNum] !== undefined) {
+                learnedBySection[sectionNum]++;
+            }
+        }
+    });
+
+    // Clear existing segments
+    progressWrapper.innerHTML = '';
+
+    // Create colored segments for each section that has learned chapters
+    Object.keys(CONFIG.SECTION_COLORS).forEach(sectionNum => {
+        const count = learnedBySection[sectionNum];
+        if (count > 0) {
+            const segmentWidth = (count / total) * 100;
+            const segment = document.createElement('div');
+            segment.className = 'progress-bar-segment';
+            segment.style.width = `${segmentWidth}%`;
+            segment.style.backgroundColor = CONFIG.SECTION_COLORS[sectionNum];
+            segment.title = `Section ${sectionNum}: ${count} learned`;
+            progressWrapper.appendChild(segment);
+        }
+    });
+
+    // Update text
     if (progressText) {
         progressText.textContent = `${learned}/${total}`;
     }
@@ -468,7 +501,7 @@ function showProgressModal() {
         chapters.forEach(d => {
             const isLearned = state.learnedChapters.has(d.data.key);
             modalHTML += `
-                <div class="progress-item ${isLearned ? 'learned' : ''}">
+                <div class="progress-item section-${sectionNum} ${isLearned ? 'learned' : ''}" data-chapter-key="${d.data.key.replace(/"/g, '&quot;')}">
                     <input type="checkbox"
                            ${isLearned ? 'checked' : ''}
                            onchange="toggleLearned('${d.data.key.replace(/'/g, "\\'")}'); updateProgressModal()">
@@ -501,10 +534,54 @@ function hideProgressModal() {
 }
 
 function updateProgressModal() {
-    // Re-render the modal to reflect changes
-    if (progressModal && progressModal.classed('visible')) {
-        hideProgressModal();
-        setTimeout(() => showProgressModal(), 50);
+    // Update the modal in place without re-rendering
+    if (!progressModal || !progressModal.classed('visible') || !state.root) return;
+
+    // Save scroll position
+    const modalBody = progressModal.select('.progress-modal-body').node();
+    const scrollPosition = modalBody ? modalBody.scrollTop : 0;
+
+    // Update section counts
+    const chaptersBySection = {};
+    state.root.leaves().forEach(d => {
+        if (isChapter(d)) {
+            const sectionNum = getSectionNumber(d);
+            if (sectionNum) {
+                if (!chaptersBySection[sectionNum]) {
+                    chaptersBySection[sectionNum] = [];
+                }
+                chaptersBySection[sectionNum].push(d);
+            }
+        }
+    });
+
+    // Update each section's count
+    Object.keys(CONFIG.SECTION_NAMES).forEach(sectionNum => {
+        const chapters = chaptersBySection[sectionNum] || [];
+        const learnedCount = chapters.filter(d => state.learnedChapters.has(d.data.key)).length;
+        const countEl = progressModal.select(`.progress-section:nth-child(${parseInt(sectionNum)}) .progress-section-count`);
+        if (countEl.node()) {
+            countEl.text(`${learnedCount}/${chapters.length}`);
+        }
+    });
+
+    // Update checkbox states and styling for all items
+    progressModal.selectAll('.progress-item').each(function() {
+        const item = d3.select(this);
+        const checkbox = item.select('input[type="checkbox"]');
+        const chapterKey = this.getAttribute('data-chapter-key');
+
+        if (!chapterKey) return; // Skip if no chapter key found
+
+        const isLearned = state.learnedChapters.has(chapterKey);
+
+        checkbox.property('checked', isLearned);
+        item.classed('learned', isLearned);
+    });
+
+    // Restore scroll position
+    if (modalBody) {
+        modalBody.scrollTop = scrollPosition;
     }
 }
 
