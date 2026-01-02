@@ -52,6 +52,80 @@ const CONFIG = {
 };
 
 // ============================================
+// UTILITY FUNCTIONS FOR TEXT TRUNCATION
+// ============================================
+
+// Function to get short section name (main content, not truncated from front)
+function getShortSectionName(sectionNum, maxLength = 40) {
+    const fullName = CONFIG.SECTION_NAMES[sectionNum];
+
+    // Define patterns to remove from the beginning
+    const prefixPatterns = [
+        /^You only have /i,
+        /^How to /i,
+        /^The power of /i,
+        /^Direct dial /i,
+        /^Little /i
+    ];
+
+    // Apply patterns to get the core name
+    let shortName = fullName;
+    for (const pattern of prefixPatterns) {
+        shortName = shortName.replace(pattern, '');
+    }
+
+    // If still too long, truncate from the end (not the beginning)
+    if (shortName.length > maxLength) {
+        // Try to find a good truncation point (at a space)
+        let truncated = shortName.substring(0, maxLength - 3);
+        const lastSpace = truncated.lastIndexOf(' ');
+
+        if (lastSpace > maxLength * 0.7) { // If space is in reasonable position
+            truncated = truncated.substring(0, lastSpace);
+        }
+
+        return truncated + '...';
+    }
+
+    return shortName;
+}
+
+// Function to get display name for progress tooltip (even shorter)
+function getDisplaySectionName(sectionNum, maxLength = 30) {
+    const fullName = CONFIG.SECTION_NAMES[sectionNum];
+
+    // Special handling for each section to show the most important part
+    const sectionDisplayNames = {
+        '01': '10 seconds to show you\'re a somebody',
+        '02': 'Know what to say after "Hi"',
+        '03': 'Talk like the big players',
+        '04': 'Be an insider in any crowd',
+        '05': 'Why we\'re just alike!',
+        '06': 'Power of praise, folly of flattery',
+        '07': 'Direct dial their hearts',
+        '08': 'Work a party like a politician',
+        '09': 'Little tricks of big winners'
+    };
+
+    // Use the pre-defined display names
+    const displayName = sectionDisplayNames[sectionNum] || fullName;
+
+    // Truncate if still too long (from the end)
+    if (displayName.length > maxLength) {
+        let truncated = displayName.substring(0, maxLength - 3);
+        const lastSpace = truncated.lastIndexOf(' ');
+
+        if (lastSpace > maxLength * 0.6) { // If space is in reasonable position
+            truncated = truncated.substring(0, lastSpace);
+        }
+
+        return truncated + '...';
+    }
+
+    return displayName;
+}
+
+// ============================================
 // STATE MANAGEMENT
 // ============================================
 
@@ -60,7 +134,7 @@ const state = {
     selectedNode: null,
     lockedNode: null,
     searchQuery: '',
-    activeSections: new Set(), // Changed from activeSection to Set for multi-select
+    activeSections: new Set(),
     learnedChapters: new Set(),
     data: null,
     root: null
@@ -194,7 +268,7 @@ function packageImports(nodes) {
 }
 
 // ============================================
-// TOOLTIP (HOVER)
+// TOOLTIP (HOVER) - FIXED POSITIONING
 // ============================================
 
 let tooltip = null;
@@ -210,7 +284,6 @@ function createTooltip() {
 function showTooltip(d, event) {
     if (!tooltip) createTooltip();
 
-    // Show tooltip for all nodes (chapters and sections)
     const summary = d.data.summary || 'No summary available.';
     const truncatedSummary = summary.length > 150 ? summary.substring(0, 150) + '...' : summary;
 
@@ -219,8 +292,37 @@ function showTooltip(d, event) {
         <div class="tooltip-summary">${truncatedSummary}</div>
     `);
 
-    // Position tooltip
-    positionTooltip(event);
+    // Position tooltip near mouse cursor
+    const x = event.clientX;
+    const y = event.clientY;
+
+    // Get tooltip dimensions
+    const tooltipNode = tooltip.node();
+    tooltipNode.style.display = 'block';
+    const tooltipWidth = tooltipNode.offsetWidth || 300;
+    const tooltipHeight = tooltipNode.offsetHeight || 150;
+
+    // Get viewport dimensions
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    // Calculate position (prevent going off-screen)
+    let left = x + 15;
+    let top = y + 15;
+
+    // Adjust if tooltip would go off right edge
+    if (left + tooltipWidth > viewportWidth) {
+        left = x - tooltipWidth - 15;
+    }
+
+    // Adjust if tooltip would go off bottom edge
+    if (top + tooltipHeight > viewportHeight) {
+        top = y - tooltipHeight - 15;
+    }
+
+    tooltip
+        .style('left', Math.max(10, left) + 'px')
+        .style('top', Math.max(10, top) + 'px');
 
     tooltip.classed('visible', true);
 }
@@ -231,28 +333,6 @@ function hideTooltip() {
     }
 }
 
-function positionTooltip(event) {
-    if (!tooltip) return;
-
-    // Position tooltip in the center of the visualization diagram, slightly higher
-    const container = document.getElementById('visualization-container');
-    if (!container) return;
-
-    const rect = container.getBoundingClientRect();
-    const tooltipWidth = 300; // max-width from CSS
-    const tooltipHeight = 100; // approximate
-
-    // Center horizontally, position higher vertically (subtract 80px offset)
-    // const left = rect.left + (rect.width - tooltipWidth) / 2;
-    // const top = rect.top + (rect.height - tooltipHeight) / 2 - 800 + window.scrollY;
-    const left = 200;
-    const top = 200;
-
-    tooltip
-        .style('left', Math.max(10, left) + 'px')
-        .style('top', Math.max(10, top) + 'px');
-}
-
 // ============================================
 // INFO CARD (CLICK/LOCK)
 // ============================================
@@ -261,7 +341,6 @@ let infoCard = null;
 let infoCardBackdrop = null;
 
 function createInfoCard() {
-    // Create backdrop
     if (!infoCardBackdrop) {
         infoCardBackdrop = d3.select('body')
             .append('div')
@@ -269,7 +348,6 @@ function createInfoCard() {
             .on('click', handleBackgroundClick);
     }
 
-    // Create info card
     infoCard = d3.select('body')
         .append('div')
         .attr('class', 'info-card')
@@ -307,10 +385,8 @@ function showInfoCard(d, event) {
             </div>
         `);
 
-    // Position the card
     positionInfoCard(event);
 
-    // Show backdrop and card
     if (infoCardBackdrop) {
         infoCardBackdrop.classed('visible', true);
     }
@@ -329,21 +405,197 @@ function hideInfoCard() {
 function positionInfoCard(event) {
     if (!infoCard) return;
 
-    // Position card in the center of the viewport for maximum visibility
+    const cardWidth = 320;
+    const cardHeight = 250;
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
 
-    const cardWidth = 320;
-    const cardHeight = 250; // Approximate height
+    // Position near the click, but ensure it's visible
+    let left = event ? (event.clientX - cardWidth / 2) : (viewportWidth - cardWidth) / 2;
+    let top = event ? (event.clientY - cardHeight / 2) : (viewportHeight - cardHeight) / 2;
 
-    // const left = (viewportWidth - cardWidth) / 2;
-    // const top = (viewportHeight - cardHeight) / 2 + window.scrollY;
-    const left = 200;
-    const top = 200;
+    // Keep within viewport bounds
+    left = Math.max(10, Math.min(left, viewportWidth - cardWidth - 10));
+    top = Math.max(10, Math.min(top, viewportHeight - cardHeight - 10));
 
     infoCard
-        .style('left', Math.max(10, left) + 'px')
-        .style('top', Math.max(10, top) + 'px');
+        .style('left', left + 'px')
+        .style('top', top + 'px');
+}
+
+// ============================================
+// PROGRESS TOOLTIPS - FIXED POSITIONING
+// ============================================
+
+let progressTooltip = null;
+let segmentTooltip = null;
+
+function createProgressTooltip() {
+    // Create progress summary tooltip
+    progressTooltip = d3.select('body')
+        .append('div')
+        .attr('class', 'progress-tooltip')
+        .attr('id', 'progress-tooltip');
+
+    // Create segment tooltip
+    segmentTooltip = d3.select('body')
+        .append('div')
+        .attr('class', 'segment-tooltip')
+        .attr('id', 'segment-tooltip');
+
+    return progressTooltip;
+}
+
+function showProgressTooltip(event) {
+    if (!progressTooltip) createProgressTooltip();
+
+    const total = 92;
+    const learned = state.learnedChapters.size;
+    const percentage = Math.round((learned / total) * 100);
+
+    const learnedBySection = {};
+    const totalBySection = {};
+
+    Object.keys(CONFIG.SECTION_COLORS).forEach(sec => {
+        learnedBySection[sec] = 0;
+        totalBySection[sec] = 0;
+    });
+
+    if (state.root) {
+        state.root.leaves().forEach(d => {
+            if (isChapter(d)) {
+                const sectionNum = getSectionNumber(d);
+                if (sectionNum) {
+                    totalBySection[sectionNum]++;
+                    if (state.learnedChapters.has(d.data.key)) {
+                        learnedBySection[sectionNum]++;
+                    }
+                }
+            }
+        });
+    }
+
+    let tooltipHTML = `
+        <div class="progress-tooltip-title">📊 Progress Summary</div>
+        <div class="progress-tooltip-content">
+    `;
+
+    // Show all sections in a grid (no scrolling needed)
+    Object.keys(CONFIG.SECTION_NAMES).forEach(sectionNum => {
+        const learnedCount = learnedBySection[sectionNum] || 0;
+        const totalInSection = totalBySection[sectionNum] || 0;
+        const sectionPercentage = totalInSection > 0 ? Math.round((learnedCount / totalInSection) * 100) : 0;
+
+        // Use the new display name function that shows the most important part
+        const displayName = getDisplaySectionName(sectionNum, 30);
+
+        tooltipHTML += `
+            <div class="progress-tooltip-section">
+                <div class="progress-tooltip-section-name">
+                    <span class="progress-tooltip-section-icon">${CONFIG.SECTION_ICONS[sectionNum]}</span>
+                    <span title="${CONFIG.SECTION_NAMES[sectionNum]}">${displayName}</span>
+                </div>
+                <div class="progress-tooltip-section-count">
+                    ${learnedCount}/${totalInSection}
+                </div>
+            </div>
+        `;
+    });
+
+    tooltipHTML += `
+        </div>
+        <div class="progress-tooltip-total">
+            <span>Total: ${learned}/${total} chapters</span>
+            <span class="progress-tooltip-percentage">${percentage}%</span>
+        </div>
+    `;
+
+    progressTooltip.html(tooltipHTML);
+
+    // Position the tooltip at mouse or center of progress bar
+    const x = event ? event.clientX : window.innerWidth / 2;
+    const y = event ? event.clientY : window.innerHeight / 2;
+
+    const tooltipNode = progressTooltip.node();
+    tooltipNode.style.display = 'block';
+    const tooltipWidth = tooltipNode.offsetWidth || 400;
+    const tooltipHeight = tooltipNode.offsetHeight || 300;
+
+    let left = x - tooltipWidth / 2;
+    let top = y - tooltipHeight - 20;
+
+    // Adjust if out of bounds
+    if (left < 10) left = 10;
+    if (left + tooltipWidth > window.innerWidth) {
+        left = window.innerWidth - tooltipWidth - 10;
+    }
+    if (top < 10) top = y + 20;
+
+    progressTooltip
+        .style('left', left + 'px')
+        .style('top', top + 'px')
+        .classed('visible', true);
+
+    if (segmentTooltip) {
+        segmentTooltip.classed('visible', false);
+    }
+}
+
+function hideProgressTooltip() {
+    if (progressTooltip) {
+        progressTooltip.classed('visible', false);
+    }
+}
+
+function showSegmentTooltip(event, sectionNum, learned, total) {
+    if (!segmentTooltip) createProgressTooltip();
+
+    const percentage = Math.round((learned / total) * 100);
+    const sectionName = CONFIG.SECTION_NAMES[sectionNum];
+    const shortSectionName = getShortSectionName(sectionNum, 40);
+
+    segmentTooltip.html(`
+        <strong>Section ${sectionNum}: ${shortSectionName}</strong>
+        <div>${learned}/${total} chapters learned (${percentage}%)</div>
+        <div>${CONFIG.SECTION_ICONS[sectionNum]} Click section to filter techniques</div>
+    `);
+
+    // Position near the progress segment
+    const rect = event.target.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.bottom + 5;
+
+    const tooltipNode = segmentTooltip.node();
+    tooltipNode.style.display = 'block';
+    const tooltipWidth = tooltipNode.offsetWidth || 250;
+    const tooltipHeight = tooltipNode.offsetHeight || 100;
+
+    let left = x - tooltipWidth / 2;
+    let top = y;
+
+    // Adjust if out of bounds
+    if (left < 10) left = 10;
+    if (left + tooltipWidth > window.innerWidth) {
+        left = window.innerWidth - tooltipWidth - 10;
+    }
+    if (top + tooltipHeight > window.innerHeight) {
+        top = y - tooltipHeight - rect.height - 5;
+    }
+
+    segmentTooltip
+        .style('left', left + 'px')
+        .style('top', top + 'px')
+        .classed('visible', true);
+
+    if (progressTooltip) {
+        progressTooltip.classed('visible', false);
+    }
+}
+
+function hideSegmentTooltip() {
+    if (segmentTooltip) {
+        segmentTooltip.classed('visible', false);
+    }
 }
 
 // ============================================
@@ -361,13 +613,42 @@ function toggleLearned(chapterKey) {
     updateProgressUI();
     updateNodeStyles();
 
-    // Update the button in info card if visible
     const btn = document.querySelector('.mark-learned-btn');
     if (btn) {
         const isLearned = state.learnedChapters.has(chapterKey);
         btn.classList.toggle('learned', isLearned);
         btn.textContent = isLearned ? '✓ Learned' : 'Mark as Learned';
     }
+}
+
+function toggleSection(sectionNum) {
+    if (!state.root) return;
+
+    // Get all chapters in this section
+    const chaptersInSection = [];
+    state.root.leaves().forEach(d => {
+        if (isChapter(d)) {
+            const chapterSection = getSectionNumber(d);
+            if (chapterSection === sectionNum) {
+                chaptersInSection.push(d.data.key);
+            }
+        }
+    });
+
+    // Check if all chapters are learned
+    const allLearned = chaptersInSection.every(key => state.learnedChapters.has(key));
+
+    // Toggle: if all are learned, unlearn all; otherwise, learn all
+    if (allLearned) {
+        chaptersInSection.forEach(key => state.learnedChapters.delete(key));
+    } else {
+        chaptersInSection.forEach(key => state.learnedChapters.add(key));
+    }
+
+    saveProgress();
+    updateProgressUI();
+    updateNodeStyles();
+    updateProgressModal();
 }
 
 function updateProgressUI() {
@@ -426,7 +707,6 @@ function updateNodeStyles() {
         return isChapter(d) && state.learnedChapters.has(d.data.key);
     });
 
-    // Update text to show/hide checkmark
     node.text(d => {
         const isLearned = state.learnedChapters.has(d.data.key);
         return isLearned ? `✓ ${d.data.key}` : d.data.key;
@@ -441,7 +721,6 @@ let progressModal = null;
 let progressModalBackdrop = null;
 
 function createProgressModal() {
-    // Create backdrop
     if (!progressModalBackdrop) {
         progressModalBackdrop = d3.select('body')
             .append('div')
@@ -449,7 +728,6 @@ function createProgressModal() {
             .on('click', hideProgressModal);
     }
 
-    // Create modal
     progressModal = d3.select('body')
         .append('div')
         .attr('class', 'progress-modal');
@@ -461,7 +739,6 @@ function showProgressModal() {
     if (!progressModal) createProgressModal();
     if (!state.root) return;
 
-    // Group chapters by section
     const chaptersBySection = {};
     state.root.leaves().forEach(d => {
         if (isChapter(d)) {
@@ -475,7 +752,6 @@ function showProgressModal() {
         }
     });
 
-    // Build modal content
     let modalHTML = `
         <div class="progress-modal-header">
             <h3 class="progress-modal-title">Learning Progress</h3>
@@ -484,14 +760,19 @@ function showProgressModal() {
         <div class="progress-modal-body">
     `;
 
-    // Add sections
     Object.keys(CONFIG.SECTION_NAMES).forEach(sectionNum => {
         const chapters = chaptersBySection[sectionNum] || [];
         const learnedCount = chapters.filter(d => state.learnedChapters.has(d.data.key)).length;
+        const allLearned = learnedCount === chapters.length && chapters.length > 0;
 
         modalHTML += `
-            <div class="progress-section">
+            <div class="progress-section" data-section="${sectionNum}">
                 <div class="progress-section-header" style="border-color: ${CONFIG.SECTION_COLORS[sectionNum]}">
+                    <input type="checkbox"
+                           class="section-toggle-checkbox"
+                           ${allLearned ? 'checked' : ''}
+                           onchange="toggleSection('${sectionNum}')"
+                           title="Check/uncheck all chapters in this section">
                     <span class="progress-section-icon">${CONFIG.SECTION_ICONS[sectionNum]}</span>
                     <h4 class="progress-section-title">${CONFIG.SECTION_NAMES[sectionNum]}</h4>
                     <span class="progress-section-count">${learnedCount}/${chapters.length}</span>
@@ -517,7 +798,6 @@ function showProgressModal() {
 
     progressModal.html(modalHTML);
 
-    // Show modal and backdrop
     if (progressModalBackdrop) {
         progressModalBackdrop.classed('visible', true);
     }
@@ -534,14 +814,11 @@ function hideProgressModal() {
 }
 
 function updateProgressModal() {
-    // Update the modal in place without re-rendering
     if (!progressModal || !progressModal.classed('visible') || !state.root) return;
 
-    // Save scroll position
     const modalBody = progressModal.select('.progress-modal-body').node();
     const scrollPosition = modalBody ? modalBody.scrollTop : 0;
 
-    // Update section counts
     const chaptersBySection = {};
     state.root.leaves().forEach(d => {
         if (isChapter(d)) {
@@ -555,23 +832,32 @@ function updateProgressModal() {
         }
     });
 
-    // Update each section's count
+    // Update section counts and section checkboxes
     Object.keys(CONFIG.SECTION_NAMES).forEach(sectionNum => {
         const chapters = chaptersBySection[sectionNum] || [];
         const learnedCount = chapters.filter(d => state.learnedChapters.has(d.data.key)).length;
+        const allLearned = learnedCount === chapters.length && chapters.length > 0;
+
+        // Update count
         const countEl = progressModal.select(`.progress-section:nth-child(${parseInt(sectionNum)}) .progress-section-count`);
         if (countEl.node()) {
             countEl.text(`${learnedCount}/${chapters.length}`);
         }
+
+        // Update section checkbox
+        const sectionCheckbox = progressModal.select(`.progress-section[data-section="${sectionNum}"] .section-toggle-checkbox`);
+        if (sectionCheckbox.node()) {
+            sectionCheckbox.property('checked', allLearned);
+        }
     });
 
-    // Update checkbox states and styling for all items
+    // Update individual chapter checkboxes
     progressModal.selectAll('.progress-item').each(function() {
         const item = d3.select(this);
         const checkbox = item.select('input[type="checkbox"]');
         const chapterKey = this.getAttribute('data-chapter-key');
 
-        if (!chapterKey) return; // Skip if no chapter key found
+        if (!chapterKey) return;
 
         const isLearned = state.learnedChapters.has(chapterKey);
 
@@ -579,13 +865,11 @@ function updateProgressModal() {
         item.classed('learned', isLearned);
     });
 
-    // Restore scroll position
     if (modalBody) {
         modalBody.scrollTop = scrollPosition;
     }
 }
 
-// Make functions globally available
 window.showProgressModal = showProgressModal;
 window.hideProgressModal = hideProgressModal;
 window.updateProgressModal = updateProgressModal;
@@ -597,21 +881,16 @@ window.updateProgressModal = updateProgressModal;
 function handleSearch(query) {
     state.searchQuery = query.toLowerCase();
 
-    console.log('Search:', state.searchQuery, 'Node:', !!node, 'Link:', !!link);
-
     if (!node || !link) return;
 
-    // Get counter element
     const counter = document.getElementById('search-counter');
 
-    // Clear section highlighting when searching
     if (state.searchQuery) {
         state.activeSections.clear();
         updateSectionHighlighting();
     }
 
     if (!state.searchQuery) {
-        // Clear filter
         node.classed('node--hidden', false);
         node.classed('node--highlighted', false);
         node.classed('node--dimmed', false);
@@ -619,18 +898,15 @@ function handleSearch(query) {
         link.classed('link--highlighted', false);
         link.classed('link--dimmed', false);
 
-        // Hide counter
         if (counter) {
             counter.classList.remove('visible', 'has-results', 'no-results');
         }
         return;
     }
 
-    // Filter nodes
     let matches = 0;
     node.each(function(d) {
         if (isSection(d)) {
-            // Always show sections normally during search
             d3.select(this)
                 .classed('node--hidden', false)
                 .classed('node--highlighted', false)
@@ -644,13 +920,11 @@ function handleSearch(query) {
 
         if (found) {
             matches++;
-            // Highlight matching nodes
             d3.select(this)
                 .classed('node--hidden', false)
                 .classed('node--highlighted', true)
                 .classed('node--dimmed', false);
         } else {
-            // Dim non-matching nodes
             d3.select(this)
                 .classed('node--hidden', false)
                 .classed('node--highlighted', false)
@@ -658,9 +932,6 @@ function handleSearch(query) {
         }
     });
 
-    console.log('Found', matches, 'matches');
-
-    // Update counter display
     if (counter) {
         counter.textContent = `${matches} ${matches === 1 ? 'match' : 'matches'}`;
         counter.classList.add('visible');
@@ -668,7 +939,6 @@ function handleSearch(query) {
         counter.classList.toggle('no-results', matches === 0);
     }
 
-    // Highlight/dim links based on connected nodes
     link.each(function(d) {
         const sourceNode = d3.select(node.nodes().find(n => d3.select(n).datum() === d.source));
         const targetNode = d3.select(node.nodes().find(n => d3.select(n).datum() === d.target));
@@ -677,19 +947,16 @@ function handleSearch(query) {
         const targetHighlighted = targetNode.classed('node--highlighted');
 
         if (sourceHighlighted && targetHighlighted) {
-            // Both nodes match - highlight the link
             d3.select(this)
                 .classed('link--hidden', false)
                 .classed('link--highlighted', true)
                 .classed('link--dimmed', false);
         } else if (sourceHighlighted || targetHighlighted) {
-            // One node matches - show link normally
             d3.select(this)
                 .classed('link--hidden', false)
                 .classed('link--highlighted', false)
                 .classed('link--dimmed', false);
         } else {
-            // Neither node matches - dim the link
             d3.select(this)
                 .classed('link--hidden', false)
                 .classed('link--highlighted', false)
@@ -699,14 +966,12 @@ function handleSearch(query) {
 }
 
 function filterBySection(sectionNum) {
-    // Toggle section in the set
     if (state.activeSections.has(sectionNum)) {
         state.activeSections.delete(sectionNum);
     } else {
         state.activeSections.add(sectionNum);
     }
 
-    // Update highlighting based on selected sections
     updateSectionHighlighting();
 }
 
@@ -714,14 +979,12 @@ function updateSectionHighlighting() {
     const hasActiveSections = state.activeSections.size > 0;
 
     if (!hasActiveSections) {
-        // No sections selected - show everything normally
         node.classed('node--highlighted', false);
         node.classed('node--dimmed', false);
         link.classed('link--highlighted', false);
         link.classed('link--dimmed', false);
         d3.selectAll('.legend-item').classed('active', false);
     } else {
-        // Highlight selected sections, dim others
         node.classed('node--highlighted', d => {
             const nodeSectionNum = getSectionNumber(d);
             return state.activeSections.has(nodeSectionNum);
@@ -732,7 +995,6 @@ function updateSectionHighlighting() {
             return !state.activeSections.has(nodeSectionNum);
         });
 
-        // Highlight links within selected sections
         link.classed('link--highlighted', l => {
             const sourceSectionNum = getSectionNumber(l.source);
             const targetSectionNum = getSectionNumber(l.target);
@@ -745,7 +1007,6 @@ function updateSectionHighlighting() {
             return !state.activeSections.has(sourceSectionNum) || !state.activeSections.has(targetSectionNum);
         });
 
-        // Update legend items
         d3.selectAll('.legend-item').classed('active', function() {
             const sectionNum = this.dataset.section;
             return state.activeSections.has(sectionNum);
@@ -800,7 +1061,6 @@ function mouseouted(d) {
 function handleNodeClick(event, d) {
     event.stopPropagation();
 
-    // If clicking a section node, toggle section highlighting
     if (isSection(d)) {
         const sectionNum = getSectionNumber(d);
         if (sectionNum) {
@@ -809,30 +1069,28 @@ function handleNodeClick(event, d) {
         return;
     }
 
-    // For chapter nodes, show info card
     if (state.lockedNode === d) {
-        // Unlock
         state.lockedNode = null;
         node.classed('node--locked', false);
         mouseouted(d);
         hideInfoCard();
         hideTooltip();
     } else {
-        // Lock this node
-        state.lockedNode = d;
+        // Remove lock from previously locked node
         node.classed('node--locked', n => n === d);
+
+        // Set new locked node
+        state.lockedNode = d;
         mouseovered(d);
-        hideTooltip(); // Hide tooltip when showing info card
+        hideTooltip();
         showInfoCard(d, event);
     }
 }
 
 function handleBackgroundClick() {
     if (state.lockedNode) {
-        const lockedNode = state.lockedNode;
         state.lockedNode = null;
         node.classed('node--locked', false);
-        mouseouted(lockedNode);
         hideInfoCard();
         hideTooltip();
     }
@@ -844,7 +1102,6 @@ function handleBackgroundClick() {
 
 function setupKeyboardNavigation() {
     document.addEventListener('keydown', function(event) {
-        // Focus search on /
         if (event.key === '/' && document.activeElement.tagName !== 'INPUT') {
             event.preventDefault();
             const searchInput = document.getElementById('search-input');
@@ -852,7 +1109,6 @@ function setupKeyboardNavigation() {
             return;
         }
 
-        // Escape to clear
         if (event.key === 'Escape') {
             handleBackgroundClick();
             const searchInput = document.getElementById('search-input');
@@ -878,12 +1134,11 @@ function exportAsPNG() {
     const ctx = canvas.getContext('2d');
 
     const bbox = svgElement.getBoundingClientRect();
-    const scale = 2; // For retina
+    const scale = 2;
     canvas.width = bbox.width * scale;
     canvas.height = bbox.height * scale;
     ctx.scale(scale, scale);
 
-    // Fill background
     ctx.fillStyle = getComputedStyle(document.documentElement)
         .getPropertyValue('--viz-bg').trim() || '#ffffff';
     ctx.fillRect(0, 0, bbox.width, bbox.height);
@@ -923,9 +1178,9 @@ function createLegend(container) {
     const legendHtml = `
         <div class="legend-header">
             <h5 class="legend-title">Book Sections</h5>
-            <div class="progress-inline">
+            <div class="progress-inline" title="Hover for progress details">
                 <div class="progress-bar-wrapper">
-                    <div class="progress-bar-fill" style="width: 0%"></div>
+                    <!-- Progress segments will be added by JS -->
                 </div>
                 <span class="progress-text">0/92</span>
             </div>
@@ -944,14 +1199,12 @@ function createLegend(container) {
 
     container.innerHTML = legendHtml;
 
-    // Add click handlers for legend items
     container.querySelectorAll('.legend-item').forEach(item => {
         item.addEventListener('click', () => {
             filterBySection(item.dataset.section);
         });
     });
 
-    // Add click handler for progress tracker
     const progressInline = container.querySelector('.progress-inline');
     if (progressInline) {
         progressInline.style.cursor = 'pointer';
@@ -985,7 +1238,6 @@ function updateLegendCounts(nodes) {
 function createGradients(svg) {
     const defs = svg.append('defs');
 
-    // Create gradients for each section pair
     Object.entries(CONFIG.SECTION_COLORS).forEach(([srcNum, srcColor]) => {
         Object.entries(CONFIG.SECTION_COLORS).forEach(([tgtNum, tgtColor]) => {
             const gradient = defs.append('linearGradient')
@@ -1005,13 +1257,11 @@ function createGradients(svg) {
     return defs;
 }
 
-
 // ============================================
 // ENTRANCE ANIMATIONS
 // ============================================
 
 function animateEntrance() {
-    // Animate nodes
     node
         .style('opacity', 0)
         .transition()
@@ -1019,7 +1269,6 @@ function animateEntrance() {
         .delay((d, i) => i * 8)
         .style('opacity', 1);
 
-    // Animate links
     link.each(function() {
         const path = d3.select(this);
         const length = this.getTotalLength();
@@ -1048,14 +1297,12 @@ function createVisualization(data) {
 
     const diameter = CONFIG.DIAMETER;
     const radius = diameter / 2;
-    const innerRadius = radius - 220;  // Slightly smaller to give more room for arcs
-    const verticalPadding = 100;  // Extra space at top and bottom
+    const innerRadius = radius - 220;
+    const verticalPadding = 100;
     const totalHeight = diameter + verticalPadding * 2;
 
-    // Clear any existing visualization
     d3.select('#visualization-container').html('');
 
-    // Create SVG with extra vertical space
     svg = d3.select('#visualization-container')
         .append('svg')
         .attr('id', 'visualization-svg')
@@ -1064,32 +1311,25 @@ function createVisualization(data) {
         .attr('viewBox', `0 0 ${diameter} ${totalHeight}`)
         .on('click', handleBackgroundClick);
 
-    // Center the diagram with vertical offset
     const g = svg.append('g')
         .attr('transform', `translate(${radius}, ${radius + verticalPadding})`);
 
-    // Create gradients
     createGradients(svg);
 
-    // Build hierarchy
     const root = packageHierarchy(data).sum(d => d.size);
     state.root = root;
 
-    // Create cluster layout
     const cluster = d3.cluster().size([360, innerRadius]);
     cluster(root);
 
-    // Get links
     const links = packageImports(root.leaves());
     currentLinks = links;
 
-    // Create line generator
     const line = d3.radialLine()
         .curve(d3.curveBundle.beta(0.85))
         .radius(d => d.y)
         .angle(d => d.x * Math.PI / 180);
 
-    // Draw links
     const linkGroup = g.append('g').attr('class', 'links');
 
     link = linkGroup.selectAll('.link')
@@ -1112,7 +1352,6 @@ function createVisualization(data) {
             return `url(#gradient-${srcSection}-${tgtSection})`;
         });
 
-    // Draw nodes
     const nodeGroup = g.append('g').attr('class', 'nodes');
 
     node = nodeGroup.selectAll('.node')
@@ -1149,14 +1388,9 @@ function createVisualization(data) {
         })
         .on('click', handleNodeClick);
 
-    // Update legend counts
     updateLegendCounts(root.leaves());
-
-    // Update progress UI
     updateProgressUI();
     updateNodeStyles();
-
-    // Animate entrance
     animateEntrance();
 }
 
@@ -1165,37 +1399,36 @@ function createVisualization(data) {
 // ============================================
 
 function enhancedInit() {
-    // Load progress from localStorage
     loadProgress();
 
-    // Create legend
     const legendContainer = document.getElementById('legend-container');
     if (legendContainer) {
         createLegend(legendContainer);
     }
 
-    // Update progress UI to show initial state
     updateProgressUI();
-
-    // Create info card
+    createProgressTooltip();
     createInfoCard();
 
-    // Setup search
     const searchInput = document.getElementById('search-input');
     if (searchInput) {
         searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
     }
 
-    // Setup keyboard navigation
     setupKeyboardNavigation();
 
-    // Setup export buttons
     const exportPngBtn = document.getElementById('export-png');
     const exportSvgBtn = document.getElementById('export-svg');
     if (exportPngBtn) exportPngBtn.addEventListener('click', exportAsPNG);
     if (exportSvgBtn) exportSvgBtn.addEventListener('click', exportAsSVG);
 
-    // Load data and create visualization
+    // Add resize handler to hide tooltips
+    window.addEventListener('resize', () => {
+        hideTooltip();
+        hideProgressTooltip();
+        hideSegmentTooltip();
+    });
+
     d3.json('LifeSkills_HowToTalkToAnyone.json')
         .then(data => {
             state.data = data;
@@ -1214,14 +1447,13 @@ function enhancedInit() {
         });
 }
 
-// Initialize when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', enhancedInit);
 } else {
     enhancedInit();
 }
 
-// Make functions available globally for onclick handlers
 window.toggleLearned = toggleLearned;
+window.toggleSection = toggleSection;
 window.exportAsPNG = exportAsPNG;
 window.exportAsSVG = exportAsSVG;

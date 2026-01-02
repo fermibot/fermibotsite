@@ -26,11 +26,6 @@
     --viz-card-bg: #ffffff;
     --viz-card-shadow: rgba(0, 0, 0, 0.1);
     --viz-highlight-bg: rgba(0, 0, 0, 0.02);
-
-    /* Animation Timings */
-    --transition-fast: 0.15s;
-    --transition-normal: 0.3s;
-    --transition-slow: 0.5s;
 }
 
 /* Dark Mode Colors */
@@ -213,7 +208,7 @@
 }
 
 /* ============================================
-   LEGEND - TOP 2-ROW GRID
+   ENHANCED PROGRESS BAR
    ============================================ */
 
 .legend-top {
@@ -224,6 +219,7 @@
     border: 1px solid var(--viz-border);
     max-width: 100%;
     overflow: hidden;
+    position: relative; /* For tooltip positioning */
 }
 
 .legend-header {
@@ -231,6 +227,8 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0.75rem;
+    gap: 1rem;
+    position: relative; /* For tooltip positioning */
 }
 
 .legend-title {
@@ -238,12 +236,75 @@
     font-weight: 600;
     color: var(--viz-text);
     margin: 0;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
-.legend-progress {
+.progress-inline {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+    min-width: 0;
+    cursor: help;
+    position: relative;
+}
+
+.progress-bar-wrapper {
+    flex: 1;
+    height: 10px;
+    background-color: var(--viz-border);
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    min-width: 150px;
+}
+
+.progress-bar-segment {
+    height: 100%;
+    transition: width var(--transition-normal);
+    flex-shrink: 0;
+    position: relative;
+    cursor: help;
+}
+
+.progress-bar-segment:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+.progress-bar-segment:last-child {
+    border-radius: 0 5px 5px 0;
+}
+
+.progress-bar-segment:only-child {
+    border-radius: 5px;
+}
+
+.progress-text {
     font-size: 0.75rem;
     color: var(--viz-text-muted);
+    font-weight: 600;
+    min-width: 40px;
+    text-align: right;
+    flex-shrink: 0;
 }
+
+/* Inner fill for progress segments */
+.progress-inner-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    transition: width var(--transition-normal);
+    pointer-events: none;
+}
+
+/* ============================================
+   LEGEND ITEMS
+   ============================================ */
 
 .legend-items {
     display: grid;
@@ -315,69 +376,223 @@
     flex-shrink: 0;
 }
 
-/* Progress Bar - inline with header */
-.progress-inline {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+/* Animation Timings */
+:root {
+    --transition-fast: 0.15s;
+    --transition-normal: 0.3s;
+    --transition-slow: 0.5s;
 }
 
-.progress-bar-wrapper {
-    width: 120px;
-    height: 8px;
-    background-color: var(--viz-border);
-    border-radius: 4px;
+/* ============================================
+   TOOLTIP STYLES - FIXED POSITIONING
+   ============================================ */
+
+/* Chapter Tooltip (Node hover) - Fixed positioning */
+.tooltip {
+    position: fixed;
+    z-index: 10000;
+    background-color: var(--viz-card-bg);
+    border: 2px solid var(--viz-border);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-fast);
+    min-width: 300px;
+    max-width: 400px;
+    backdrop-filter: blur(10px);
+    background-color: rgba(var(--viz-card-bg-rgb, 255, 255, 255), 0.98);
+    margin: 0;
+}
+
+[data-bs-theme="dark"] .tooltip {
+    background-color: rgba(var(--viz-card-bg-rgb, 30, 41, 59), 0.98);
+}
+
+.tooltip.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.tooltip-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--viz-text);
+    margin: 0 0 0.5rem 0;
+    line-height: 1.3;
+    word-wrap: break-word;
+}
+
+.tooltip-summary {
+    font-size: 0.8rem;
+    color: var(--viz-text-muted);
+    margin: 0;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+/* Progress Summary Tooltip */
+.progress-tooltip {
+    position: fixed !important;
+    z-index: 10000;
+    background-color: var(--viz-card-bg);
+    border: 2px solid var(--viz-border);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    min-width: 400px;
+    max-width: 600px;
+    font-size: 0.8rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-fast);
+    backdrop-filter: blur(10px);
+    background-color: rgba(var(--viz-card-bg-rgb, 255, 255, 255), 0.98);
+}
+
+[data-bs-theme="dark"] .progress-tooltip {
+    background-color: rgba(var(--viz-card-bg-rgb, 30, 41, 59), 0.98);
+}
+
+.progress-tooltip.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.progress-tooltip-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--viz-text);
+    margin: 0 0 0.75rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--section-06);
+}
+
+.progress-tooltip-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    max-height: none;
+    overflow-y: visible;
+}
+
+.progress-tooltip-section {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border: 1px solid var(--viz-border);
+    border-radius: 6px;
+    background-color: var(--viz-bg-secondary);
+    text-align: center;
+    min-height: 60px;
 }
 
-.progress-bar-segment {
-    height: 100%;
-    transition: width var(--transition-normal);
-    flex-shrink: 0;
+.progress-tooltip-section-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    color: var(--viz-text);
+    width: 100%;
 }
 
-.progress-bar-segment:first-child {
-    border-radius: 4px 0 0 4px;
+.progress-tooltip-section-icon {
+    font-size: 1rem;
 }
 
-.progress-bar-segment:last-child {
-    border-radius: 0 4px 4px 0;
+.progress-tooltip-section-count {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--section-06);
+    margin-top: 0.25rem;
 }
 
-.progress-bar-segment:only-child {
-    border-radius: 4px;
+.progress-tooltip-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 3px solid var(--section-06);
+    font-weight: 700;
+    font-size: 0.9rem;
 }
 
-/* Legacy class for backward compatibility - no longer used */
-.progress-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--section-04), var(--section-06));
-    border-radius: 3px;
-    transition: width var(--transition-normal);
+.progress-tooltip-percentage {
+    font-size: 0.9rem;
+    color: var(--section-06);
+    font-weight: 800;
 }
 
-.progress-text {
+/* Section Segment Tooltip */
+.segment-tooltip {
+    position: fixed !important;
+    z-index: 10000;
+    background-color: var(--viz-card-bg);
+    border: 2px solid var(--viz-border);
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-fast);
+    backdrop-filter: blur(10px);
+    background-color: rgba(var(--viz-card-bg-rgb, 255, 255, 255), 0.98);
+    max-width: 350px;
+    min-width: 250px;
+    white-space: normal;
+}
+
+[data-bs-theme="dark"] .segment-tooltip {
+    background-color: rgba(var(--viz-card-bg-rgb, 30, 41, 59), 0.98);
+}
+
+.segment-tooltip.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.segment-tooltip strong {
+    color: var(--section-06);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.25rem;
+    word-wrap: break-word;
+    line-height: 1.3;
+}
+
+.segment-tooltip div {
+    color: var(--viz-text);
+    margin-bottom: 0.25rem;
+    word-wrap: break-word;
+    line-height: 1.4;
+}
+
+.segment-tooltip div:last-child {
     font-size: 0.7rem;
     color: var(--viz-text-muted);
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--viz-border);
 }
 
-/* Responsive: 2 columns on small screens, 1 column on mobile */
-@media (max-width: 768px) {
-    .legend-items {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 576px) {
-    .legend-items {
-        grid-template-columns: 1fr;
-    }
-
-    .legend-label {
-        font-size: 0.7rem;
-    }
+/* Text folding for long section names */
+.progress-tooltip-section-name span {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 2.4em;
+    line-height: 1.2;
 }
 
 /* ============================================
@@ -427,8 +642,8 @@
     font-weight: 600 !important;
     font-size: 1em;
     filter: drop-shadow(0px 0px 2px currentColor)
-            drop-shadow(0px 0px 4px currentColor)
-            drop-shadow(0px 0px 8px currentColor);
+    drop-shadow(0px 0px 4px currentColor)
+    drop-shadow(0px 0px 8px currentColor);
     opacity: 1 !important;
     paint-order: stroke fill;
 }
@@ -444,7 +659,6 @@
 
 .node--learned {
     opacity: 0.2 !important;
-    /*font-style: italic;*/
     text-decoration: line-through;
 }
 
@@ -531,53 +745,7 @@
 }
 
 /* ============================================
-   TOOLTIP / INFO CARD
-   ============================================ */
-/* ============================================
-   TOOLTIP (Hover)
-   ============================================ */
-
-.tooltip {
-    position: fixed;
-    max-width: 300px;
-    background-color: var(--viz-card-bg);
-    border: 1px solid var(--viz-border);
-    border-radius: 8px;
-    box-shadow: 0 4px 12px var(--viz-card-shadow);
-    padding: 0.75rem;
-    z-index: 999;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(5px);
-    transition: opacity 0.15s ease, transform 0.15s ease;
-}
-
-.tooltip.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.tooltip-title {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--viz-text);
-    margin: 0 0 0.4rem 0;
-    line-height: 1.3;
-}
-
-.tooltip-summary {
-    font-size: 0.75rem;
-    color: var(--viz-text-muted);
-    margin: 0;
-    line-height: 1.4;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-/* ============================================
-   INFO CARD (Click/Lock)
+   INFO CARD (CLICK/LOCK)
    ============================================ */
 
 .info-card {
@@ -618,147 +786,6 @@
 .info-card-backdrop.visible {
     opacity: 1;
     pointer-events: auto;
-}
-
-/* ============================================
-   PROGRESS MODAL
-   ============================================ */
-
-.progress-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 700px;
-    max-height: 80vh;
-    background-color: var(--viz-card-bg);
-    border: 1px solid var(--viz-border);
-    border-radius: 12px;
-    box-shadow: 0 10px 40px var(--viz-card-shadow);
-    z-index: 1001;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity var(--transition-fast);
-    display: flex;
-    flex-direction: column;
-}
-
-.progress-modal.visible {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.progress-modal-header {
-    padding: 1.5rem;
-    border-bottom: 1px solid var(--viz-border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.progress-modal-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--viz-text);
-    margin: 0;
-}
-
-.progress-modal-close {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--viz-text-muted);
-    cursor: pointer;
-    padding: 0;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-}
-
-.progress-modal-close:hover {
-    background-color: var(--viz-highlight-bg);
-}
-
-.progress-modal-body {
-    padding: 1.5rem;
-    overflow-y: auto;
-    flex: 1;
-}
-
-.progress-section {
-    margin-bottom: 1.5rem;
-}
-
-.progress-section-header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--viz-border);
-}
-
-.progress-section-icon {
-    font-size: 1.25rem;
-}
-
-.progress-section-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--viz-text);
-    margin: 0;
-    flex: 1;
-}
-
-/* Section-specific colors for section titles */
-.progress-section:nth-child(1) .progress-section-title { color: var(--section-01); }
-.progress-section:nth-child(2) .progress-section-title { color: var(--section-02); }
-.progress-section:nth-child(3) .progress-section-title { color: var(--section-03); }
-.progress-section:nth-child(4) .progress-section-title { color: var(--section-04); }
-.progress-section:nth-child(5) .progress-section-title { color: var(--section-05); }
-.progress-section:nth-child(6) .progress-section-title { color: var(--section-06); }
-.progress-section:nth-child(7) .progress-section-title { color: var(--section-07); }
-.progress-section:nth-child(8) .progress-section-title { color: var(--section-08); }
-.progress-section:nth-child(9) .progress-section-title { color: var(--section-09); }
-
-.progress-section-count {
-    font-size: 0.875rem;
-    color: var(--viz-text-muted);
-}
-
-.progress-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.5rem;
-    border-radius: 6px;
-    transition: background-color var(--transition-fast);
-}
-
-.progress-item:hover {
-    background-color: var(--viz-highlight-bg);
-}
-
-.progress-item input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-}
-
-.progress-item-label {
-    flex: 1;
-    font-size: 0.875rem;
-    color: var(--viz-text);
-    cursor: pointer;
-}
-
-.progress-item.learned .progress-item-label {
-    text-decoration: line-through;
-    opacity: 0.6;
 }
 
 .info-card-header {
@@ -842,6 +869,154 @@
 .info-card[data-section="09"] .info-card-header { border-left: 4px solid var(--section-09); }
 
 /* ============================================
+   PROGRESS MODAL
+   ============================================ */
+
+.progress-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 700px;
+    max-height: 80vh;
+    background-color: var(--viz-card-bg);
+    border: 1px solid var(--viz-border);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px var(--viz-card-shadow);
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-fast);
+    display: flex;
+    flex-direction: column;
+}
+
+.progress-modal.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.progress-modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--viz-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progress-modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--viz-text);
+    margin: 0;
+}
+
+.progress-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--viz-text-muted);
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.progress-modal-close:hover {
+    background-color: var(--viz-highlight-bg);
+}
+
+.progress-modal-body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.progress-section {
+    margin-bottom: 1.5rem;
+}
+
+.progress-section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--viz-border);
+}
+
+.section-toggle-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.progress-section-icon {
+    font-size: 1.25rem;
+}
+
+.progress-section-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--viz-text);
+    margin: 0;
+    flex: 1;
+}
+
+/* Section-specific colors for section titles */
+.progress-section:nth-child(1) .progress-section-title { color: var(--section-01); }
+.progress-section:nth-child(2) .progress-section-title { color: var(--section-02); }
+.progress-section:nth-child(3) .progress-section-title { color: var(--section-03); }
+.progress-section:nth-child(4) .progress-section-title { color: var(--section-04); }
+.progress-section:nth-child(5) .progress-section-title { color: var(--section-05); }
+.progress-section:nth-child(6) .progress-section-title { color: var(--section-06); }
+.progress-section:nth-child(7) .progress-section-title { color: var(--section-07); }
+.progress-section:nth-child(8) .progress-section-title { color: var(--section-08); }
+.progress-section:nth-child(9) .progress-section-title { color: var(--section-09); }
+
+.progress-section-count {
+    font-size: 0.875rem;
+    color: var(--viz-text-muted);
+}
+
+.progress-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: background-color var(--transition-fast);
+}
+
+.progress-item:hover {
+    background-color: var(--viz-highlight-bg);
+}
+
+.progress-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.progress-item-label {
+    flex: 1;
+    font-size: 0.875rem;
+    color: var(--viz-text);
+    cursor: pointer;
+}
+
+.progress-item.learned .progress-item-label {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+/* ============================================
    ENTRANCE ANIMATIONS
    ============================================ */
 
@@ -922,9 +1097,9 @@
     /* Search Input - Full Width & Touch-Friendly */
     .search-input {
         width: 100%;
-        min-height: 44px; /* iOS minimum touch target */
+        min-height: 44px;
         padding: 0.75rem 1rem 0.75rem 2.75rem;
-        font-size: 1rem; /* Prevents zoom on iOS */
+        font-size: 1rem;
     }
 
     .search-icon {
@@ -973,7 +1148,7 @@
 
     /* Nodes - Better Visibility on Mobile */
     .node {
-        font-size: 11px; /* Slightly larger for touch screens */
+        font-size: 11px;
     }
 
     /* Info Card - Full Mobile Optimization */
@@ -1009,12 +1184,6 @@
         font-size: 0.85rem !important;
     }
 
-    /* Tooltip - Better Mobile Positioning */
-    .tooltip {
-        max-width: 85vw;
-        font-size: 0.9rem;
-    }
-
     /* Progress Modal - Full Mobile Width */
     .progress-modal {
         width: 95vw;
@@ -1043,17 +1212,40 @@
         font-size: 0.9rem;
     }
 
-    /* Keyboard Shortcuts - Mobile Positioning */
-    .keyboard-help {
-        bottom: 0.5rem;
-        right: 0.5rem;
-        padding: 0.5rem 0.75rem;
-        font-size: 0.7rem;
+    /* Progress bar adjustments for mobile */
+    .legend-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
     }
 
-    .keyboard-help kbd {
-        padding: 0.15rem 0.4rem;
-        font-size: 0.7rem;
+    .progress-inline {
+        width: 100%;
+    }
+
+    .legend-title {
+        text-align: center;
+        margin-right: 0;
+    }
+
+    /* Legend items grid for mobile */
+    .legend-items {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Tooltips - Mobile Adjustments */
+    .tooltip,
+    .progress-tooltip,
+    .segment-tooltip {
+        min-width: 85vw !important;
+        max-width: 85vw !important;
+        left: 7.5vw !important;
+        right: 7.5vw !important;
+        position: fixed !important;
+    }
+
+    .progress-tooltip-content {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -1070,6 +1262,7 @@
     }
 
     .legend-items {
+        grid-template-columns: 1fr;
         gap: 0.4rem;
     }
 
@@ -1117,9 +1310,16 @@
         transform: none;
     }
 
-    /* Hide Keyboard Shortcuts on Very Small Screens */
-    .keyboard-help {
-        display: none !important;
+    /* Tooltips - Full Width on Mobile */
+    .progress-tooltip-content {
+        grid-template-columns: 1fr;
+    }
+
+    .progress-tooltip {
+        min-width: 95vw !important;
+        max-width: 95vw !important;
+        left: 2.5vw !important;
+        right: 2.5vw !important;
     }
 }
 
