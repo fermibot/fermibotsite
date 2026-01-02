@@ -4,7 +4,7 @@
 		"imports":[
 			"main.section_name.01 You only have 10 seconds to show you're a somebody"
 		],
-		"summary":"When you make a mistake, it's not enough to just correct it. You must find a way for your \"victim\" to benefit, so they will be delighted you made the flub."
+		"summary":"Don't smile immediately when greeting someone. Instead, pause for a second, look at their face, and then let a big, warm smile flood over your face and into your eyes. The delay makes your smile appear more genuine and personalized."
 	},
 	{
 		"name":"main.chapter_name.02 Sticky Eyes",
@@ -210,11 +210,11 @@
 		"summary":"Avoid using clichés when talking with successful people."
 	},
 	{
-		"name":"main.chapter_name.01 The Flooding Smile",
+		"name":"main.chapter_name.31 Use Jawsmith's Jive",
 		"imports":[
 			"main.section_name.03 How to talk like the big boys 'n' girls"
 		],
-		"summary":"When you make a mistake, it's not enough to just correct it. You must find a way for your \"victim\" to benefit, so they will be delighted you made the flub."
+		"summary":"Read books by public speakers to find memorable quotes, pearls of wisdom, and clever phrases that you can use in your own conversations."
 	},
 	{
 		"name":"main.chapter_name.32 Call a Spade a Spade",
@@ -609,7 +609,7 @@
 		"summary":"When dealing with an emotional situation, hear the facts but empathize intensely with the emotions. Calming the emotional storm is often the only way to get to the facts."
 	},
 	{
-		"name":"main.chapter_name.01 The Flooding Smile",
+		"name":"main.chapter_name.88 My Good Your Gain",
 		"imports":[
 			"main.section_name.09 Little tricks of big winners"
 		],
