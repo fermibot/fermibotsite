@@ -336,6 +336,10 @@
         {
           "text": "Life Skills | Communication | How to Talk to Anyone",
           "url": "pages/LifeSkills/LifeSkills_HowToTalkToAnyone/LifeSkills_HowToTalkToAnyone.html"
+        },
+        {
+          "text": "Life Skills | Philosophy | The Subtle Art of Not Giving a F*ck",
+          "url": "pages/LifeSkills/LifeSkills_SubtleArt/LifeSkills_SubtleArt.html"
         }
       ]
     }

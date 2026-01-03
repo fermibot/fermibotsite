@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <title>Life Skills | Philosophy | The Subtle Art of Not Giving a F*ck</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
+
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="../../../index.css">
+
+    <!-- Visualization CSS -->
+    <link href="LifeSkills_SubtleArt.css" rel="stylesheet">
+
+    <!-- Bootstrap JS -->
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+
+    <!-- MathJax for equations -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <!-- D3.js v7 -->
+    <script src="../../../d3/d3.v7.min.js"></script>
+
+    <!-- Site automation -->
+    <script src="../../../automation/loadObjects.js"></script>
+
+    <!-- Color modes (dark/light theme) -->
+    <script src="../../../bootstrap/assets/color-modes.js"></script>
+</head>
+<body class="container-lg container-fluid p-4">
+
+<!-- Header -->
+<div id="header_placeholder"></div>
+
+<!-- Page Title -->
+<header class="mb-4">
+    <h1 class="text-center mb-3">Life Skills | Philosophy | The Subtle Art of Not Giving a F*ck</h1>
+    <p class="text-center text-muted">
+        Interactive visualization of Mark Manson's counterintuitive approach to living a good life
+    </p>
+</header>
+
+<!-- Introduction -->
+<section class="mb-4">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <p class="mb-2">
+            This diagram visually summarizes <em>Mark Manson's</em> book
+            <strong>"The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life"</strong>.
+            The visualization shows key concepts, principles, and practices organized across 8 thematic sections.
+        </p>
+        <p class="mb-0 text-muted small">
+            <strong>Tips:</strong>
+            Hover over concepts to see connections and summaries.
+            Click to lock the selection.
+            Use the search box or click legend items to filter.
+            Press <kbd>/</kbd> to focus search, <kbd>Esc</kbd> to clear.
+        </p>
+    </div>
+</section>
+
+<!-- Main Visualization Wrapper -->
+<div class="visualization-wrapper">
+
+    <!-- Controls Bar -->
+    <div class="controls-bar">
+        <div class="controls-left">
+            <!-- Search -->
+            <div class="search-container">
+                <span class="search-icon">&#128269;</span>
+                <input type="text"
+                       id="search-input"
+                       class="search-input"
+                       placeholder="Search concepts... (press /)"
+                       autocomplete="off">
+                <span class="search-counter" id="search-counter"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Legend at Top -->
+    <div class="legend-top" id="legend-container">
+        <!-- Legend content will be injected by JS -->
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="visualization-main">
+        <!-- Visualization Container -->
+        <div class="visualization-container" id="visualization-container">
+            <svg id="visualization"></svg>
+        </div>
+    </div>
+</div>
+
+<!-- Keyboard shortcuts help -->
+<div class="keyboard-help d-none d-lg-block">
+    <kbd>/</kbd> Search &nbsp;
+    <kbd>Esc</kbd> Clear &nbsp;
+    <kbd>Click</kbd> Lock
+</div>
+
+<!-- Footer -->
+<div id="footer_placeholder"></div>
+
+<!-- Load automation scripts -->
+<script>
+    loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html", "../../../automation/theme_toggle.html")
+</script>
+
+<!-- Main visualization script -->
+<script src="LifeSkills_SubtleArt.js"></script>
+
+</body>
+</html>
+
