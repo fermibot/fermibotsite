@@ -19,12 +19,15 @@
     </script>
 
     <link href="../../../bootstrap/assets/headers.css" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 
 <body class="container-xl">
 <div id="theme_icons_placeholder"></div>
 
-<main>
+<main id="main-content">
     <h1 class="visually-hidden">Why We Sleep - 12 Essential Sleep Tips</h1>
     <div id="header_placeholder"></div>
 
@@ -38,27 +41,69 @@
 
         <!-- Progress Summary -->
         <div class="progress-summary">
-            <div class="progress-bar-container">
-                <div class="progress-bar-fill" id="progressBar"></div>
+            <div class="progress-bar-container" role="progressbar" aria-label="Progress">
+                <div class="progress-bar-fill" id="progressBar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             <div class="progress-text">
                 <span id="progressCount">0/12</span> tips reviewed
-                <button class="reset-btn" id="resetProgress" title="Reset progress">↻</button>
+                <button class="reset-btn" id="resetProgress" title="Reset progress" aria-label="Reset progress">↻</button>
             </div>
         </div>
     </div>
 
+    <!-- Search and Filter Bar -->
+    <div class="controls-bar">
+        <div class="search-container">
+            <input type="search"
+                   id="searchInput"
+                   class="search-input"
+                   placeholder="Search tips... (Press / to focus)"
+                   oninput="handleSearch(event)"
+                   aria-label="Search sleep tips">
+            <span class="search-icon">🔍</span>
+        </div>
+
+        <div class="filter-container">
+            <button class="filter-btn active" data-category="all" onclick="handleFilter('all')" aria-label="Show all tips">All</button>
+            <button class="filter-btn" data-category="morning" onclick="handleFilter('morning')" aria-label="Filter by morning">Morning</button>
+            <button class="filter-btn" data-category="daytime" onclick="handleFilter('daytime')" aria-label="Filter by daytime">Daytime</button>
+            <button class="filter-btn" data-category="evening" onclick="handleFilter('evening')" aria-label="Filter by evening">Evening</button>
+            <button class="filter-btn" data-category="behavioral" onclick="handleFilter('behavioral')" aria-label="Filter by behavioral">Behavioral</button>
+            <button class="filter-btn" data-category="dietary" onclick="handleFilter('dietary')" aria-label="Filter by dietary">Dietary</button>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-bar">
+        <button class="action-btn" onclick="markAllComplete(true)" title="Mark all tips as reviewed" aria-label="Mark all as complete">
+            <span class="action-icon">✓</span>
+            Mark All
+        </button>
+        <button class="action-btn" onclick="markAllComplete(false)" title="Unmark all tips" aria-label="Unmark all">
+            <span class="action-icon">○</span>
+            Clear All
+        </button>
+        <button class="action-btn" onclick="exportProgress()" title="Export your progress" aria-label="Export progress">
+            <span class="action-icon">📤</span>
+            Export
+        </button>
+        <button class="action-btn" id="statsBtn" onclick="showStats()" title="View statistics" aria-label="View statistics">
+            <span class="action-icon">📊</span>
+            Stats
+        </button>
+    </div>
+
     <!-- View Switcher -->
     <div class="view-switcher">
-        <button class="view-btn active" data-view="clock" title="Clock view">
+        <button class="view-btn active" data-view="clock" title="Clock view (Ctrl+1)" aria-pressed="true">
             <span class="view-icon">⏰</span>
             <span class="view-label">Clock</span>
         </button>
-        <button class="view-btn" data-view="cards" title="Card grid view">
+        <button class="view-btn" data-view="cards" title="Card grid view (Ctrl+2)" aria-pressed="false">
             <span class="view-icon">🎴</span>
             <span class="view-label">Cards</span>
         </button>
-        <button class="view-btn" data-view="timeline" title="Timeline view">
+        <button class="view-btn" data-view="timeline" title="Timeline view (Ctrl+3)" aria-pressed="false">
             <span class="view-icon">📋</span>
             <span class="view-label">List</span>
         </button>
@@ -95,5 +140,20 @@
 
 <script src="Wellness_WhyWeSleep.js"></script>
 <script>loadThemeIcons("../../../automation/theme_icons_svg.html")</script>
+
+<!-- Service Worker Registration -->
+<script>
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js')
+            .then(registration => {
+                console.log('ServiceWorker registered:', registration.scope);
+            })
+            .catch(error => {
+                console.log('ServiceWorker registration failed:', error);
+            });
+    });
+}
+</script>
 </body>
 </html>
