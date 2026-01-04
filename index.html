@@ -8,23 +8,23 @@
     <title>Fermibot.org 😉</title>
 
     <link rel="canonical" href="https://fermibot.org/">
-    <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">-->
+
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="index.css" rel="stylesheet">
 
     <script src="bootstrap/assets/color-modes.js"></script>
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="automation/loadObjects.js"></script>
-    <script src="js/loadCards.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="js/mathjax/MathJax-4.1.0/tex-mml-chtml.js"></script>
 
+    <!-- Keep these synchronous to ensure footer loads properly -->
+    <script src="automation/loadObjects.js"></script>
     <script>
         loadHeaderFooter("../automation/header.html", "../automation/footer.html", "../automation/theme_toggle.html")
     </script>
 
+    <!-- Defer non-critical scripts -->
+    <script src="js/loadCards.js" defer></script>
+
     <link href="bootstrap/assets/headers.css" rel="stylesheet">
-    <script src="d3/d3.v4.min.js"></script>
 </head>
 
 <body class="container-xl" content="width=device-width">
@@ -51,7 +51,7 @@
                 </div>
                 <div class="bg-body-tertiary border rounded-3 p-3 welcome-box gif-container animate-on-scroll">
                     <a href="https://fermibot.org/pages/mathematical_art/random_art_02/random_art_02.html" target="">
-                        <img class="img-fluid"
+                        <img class="img-fluid" loading="lazy"
                              src="pages/MathematicalArt/random_art_02/infinity_hair_2024_02_18.gif"
                              alt="Animated mathematical art"></a>
                 </div>

@@ -32,7 +32,7 @@ function createCardElement(card, index) {
 
     cardDiv.innerHTML = `
         <div class="text-center mb-3">
-            <img src="${card.icon}" class="image-section-icon" alt="${card.title} icon">
+            <img src="${card.icon}" class="image-section-icon" loading="lazy" alt="${card.title} icon">
         </div>
         <h5 class="text-center mb-3">${card.title}</h5>
         <ul class="list-unstyled">
