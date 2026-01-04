@@ -1,0 +1,123 @@
+book:
+  title: "The Subtle Art of Not Giving a F*ck"
+  author: "Mark Manson"
+  subtitle: "A Counterintuitive Approach to Living a Good Life"
+
+chapters:
+  - chapterNumber: 1
+    chapterName: "Don't Try"
+    section: "Core Philosophy"
+    topics:
+      - topicName: "The Feedback Loop From Hell"
+        topicDescription: "Feeling bad about feeling bad creates a downward spiral. Anxiety about anxiety, guilt about guilt—this meta-emotion compounds the original emotion. The key is accepting negative emotions instead of fighting them."
+      - topicName: "The Subtle Art Of Not Giving a F*ck"
+        topicDescription: "Not giving a f*ck doesn't mean being indifferent; it means being comfortable with being different. It's about choosing what you care about with intention. You have a limited number of f*cks to give—spend them wisely."
+      - topicName: "So Mark, What the F*ck Is the Point of This Book Anyway?"
+        topicDescription: "The point is to learn how to focus and prioritize your thoughts effectively—to care about fewer things, but to care about them more deeply. Stop trying to be positive all the time and accept life's struggles."
+
+  - chapterNumber: 2
+    chapterName: "Happiness Is a Problem"
+    section: "Core Philosophy"
+    topics:
+      - topicName: "The Misadventures of Disappointment Panda"
+        topicDescription: "Life is essentially an endless series of problems. The solution to one problem creates a new problem. Happiness comes not from avoiding problems but from solving them."
+      - topicName: "Happiness Comes from Solving Problems"
+        topicDescription: "Problems never stop; they just get upgraded. True happiness occurs when you find the problems you enjoy solving. Don't deny problems or blame others—take responsibility and solve them."
+      - topicName: "Emotions Are Overrated"
+        topicDescription: "Emotions are merely signposts, not destinations. Make values-based decisions, not emotion-based ones. Positive emotions are rewards for solving problems, not solutions themselves."
+      - topicName: "Choose Your Struggle"
+        topicDescription: "What determines success isn't 'What do you want to enjoy?' but 'What pain are you willing to sustain?' The quality of your life is determined by the quality of problems you're willing to solve."
+
+  - chapterNumber: 3
+    chapterName: "You Are Not Special"
+    section: "Core Philosophy"
+    topics:
+      - topicName: "The Tyranny of Exceptionalism"
+        topicDescription: "The belief that you're exceptional leads to entitlement and unhappiness. Most of us are pretty average at most things, and that's okay. The obsession with being extraordinary paradoxically makes people feel worse."
+      - topicName: "Things Fall Apart"
+        topicDescription: "When your metrics for success fail, you're forced to reevaluate your values. This painful process is often the catalyst for significant personal growth. Sometimes hitting rock bottom is necessary for change."
+      - topicName: "B-b-b-but, If I'm Not Going to Be Special or Extraordinary, What's the Point?"
+        topicDescription: "The point is to be exceptional at the things that matter most to you. Not being special doesn't mean being mediocre—it means choosing your battles wisely and excelling in areas aligned with your values."
+
+  - chapterNumber: 4
+    chapterName: "The Value of Suffering"
+    section: "Choosing Your Values"
+    topics:
+      - topicName: "The Self-Awareness Onion"
+        topicDescription: "Layer 1: Understanding your emotions. Layer 2: Understanding why you feel certain emotions. Layer 3: Understanding your personal values and why they matter. Most people never reach layer 3."
+      - topicName: "Rock Star Problems"
+        topicDescription: "Not all suffering is created equal. Choose your struggles wisely. What pain are you willing to sustain? The answer determines what you'll achieve more than talent or passion."
+      - topicName: "Shitty Values"
+        topicDescription: "Pleasure, material success, always being right, and staying positive are poor values because they're not controllable or measurable. They lead to shallow satisfaction and unhappiness."
+      - topicName: "Defining Good and Bad Values"
+        topicDescription: "Good values are reality-based, socially constructive, and controllable (honesty, innovation, vulnerability). Bad values are superstitious, socially destructive, and uncontrollable. Choose values based on what you control."
+
+  - chapterNumber: 5
+    chapterName: "You Are Always Choosing"
+    section: "Choosing Your Values"
+    topics:
+      - topicName: "The Choice"
+        topicDescription: "We always have a choice about how we interpret problems and react to them. The only thing we can truly control is how we interpret and respond to events. You are always choosing."
+      - topicName: "The Responsibility/Fault Fallacy"
+        topicDescription: "You're not always at fault for your problems, but you're always responsible for how you respond. Fault is past tense. Responsibility is present tense. Even if a problem isn't your fault, it's your responsibility to deal with it."
+      - topicName: "Responding to Tragedy"
+        topicDescription: "We are responsible for experiences that aren't our fault all the time. This is part of life. How you respond to tragedy defines you more than the tragedy itself."
+      - topicName: "Genetics and the Hand We're Dealt"
+        topicDescription: "You don't choose your genetics, family, or initial circumstances, but you choose how to respond to them. Your hand is dealt; how you play it is your responsibility."
+      - topicName: "Victimhood Chic"
+        topicDescription: "Many people feel entitled either because they believe they're exceptional or because they believe they're victims. Both lead to unhappiness. Real self-worth comes from solving problems."
+      - topicName: "There Is No 'How'"
+        topicDescription: "Stop waiting for the perfect method or the right moment. There is no 'how'—you just choose and do. Action comes first, then learning follows."
+
+  - chapterNumber: 6
+    chapterName: "You're Wrong About Everything (But So Am I)"
+    section: "Choosing Your Values"
+    topics:
+      - topicName: "(But So Am I)"
+        topicDescription: "Our beliefs are shaped by our experiences and biases, and they're often wrong. Being wrong opens the door to growth. Don't be afraid to be uncertain about your beliefs."
+      - topicName: "Architects of Our Own Beliefs"
+        topicDescription: "We construct our beliefs based on limited information and past experiences. These constructions are often flawed. Growth requires questioning your beliefs and values."
+      - topicName: "Be Careful What You Believe"
+        topicDescription: "Our identity is built on our beliefs and metrics. Changing these beliefs means changing ourselves, which is why it's so difficult and why we resist it."
+      - topicName: "The Dangers of Pure Certainty"
+        topicDescription: "The more certain we are about something, the less likely we are to learn. Uncertainty is the root of all progress and growth. Questions like 'What if I'm wrong?' are essential."
+      - topicName: "Manson's Law of Avoidance"
+        topicDescription: "The more something threatens your identity, the more you will avoid it. People avoid experiences that contradict how they see themselves. To grow, challenge your self-concept."
+      - topicName: "Kill Yourself"
+        topicDescription: "Kill your fantasies about who you should be or what you should achieve. Letting go of these harmful identities is necessary for growth and happiness."
+      - topicName: "How to Be a Little Less Certain About Yourself"
+        topicDescription: "Ask yourself regularly: What if I'm wrong? What would it mean if I were wrong? How would I know if I were wrong? These questions keep you open to growth."
+
+  - chapterNumber: 7
+    chapterName: "Failure Is the Way Forward"
+    section: "Taking Action"
+    topics:
+      - topicName: "The Failure/Success Paradox"
+        topicDescription: "Success comes from repeated failure and learning. Fear of failure often causes more failure. Improvement at anything is based on thousands of tiny failures."
+      - topicName: "Pain Is Part of the Process"
+        topicDescription: "Pain signals that you're improving. If you're not failing, you're not trying hard enough. Embrace the struggle as evidence of progress, not as a reason to quit."
+      - topicName: "The 'Do Something' Principle"
+        topicDescription: "Action → Inspiration → Motivation → More action. Don't wait for motivation—just do something. Even if it's the wrong action, it provides information. Motion creates emotion."
+
+  - chapterNumber: 8
+    chapterName: "The Importance of Saying No"
+    section: "Taking Action"
+    topics:
+      - topicName: "Rejection Makes Your Life Better"
+        topicDescription: "For any change to happen, something must be rejected. Freedom requires rejection. To truly value something, you must reject alternatives. Saying 'no' gives your 'yes' more meaning."
+      - topicName: "Boundaries"
+        topicDescription: "Healthy relationships require boundaries. Without boundaries, relationships become toxic. Setting boundaries means being willing to say no and accepting others saying no to you."
+      - topicName: "How to Build Trust"
+        topicDescription: "Trust is built through conflict resolution, not conflict avoidance. Healthy relationships embrace conflict as necessary for growth. The willingness to say and hear 'no' builds trust."
+      - topicName: "Freedom Through Commitment"
+        topicDescription: "True freedom comes from commitment and rejection of alternatives. The paradox of choice: more options lead to less satisfaction. Commitment gives depth and meaning by narrowing options."
+
+  - chapterNumber: 9
+    chapterName: "...And Then You Die"
+    section: "Taking Action"
+    topics:
+      - topicName: "Something Beyond Ourselves"
+        topicDescription: "Your life's meaning isn't determined by your lasting impact but by the values you live by while you're here. Most legacies are forgotten within generations—and that's okay."
+      - topicName: "The Sunny Side of Death"
+        topicDescription: "Death is the only certainty. Confronting mortality clarifies what matters. When we avoid thinking about death, we make poor decisions. Death is the light by which all of life's meaning is measured."
+

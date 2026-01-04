@@ -1,281 +1,333 @@
 [
 	{
-		"name":"main.chapter_name.01 Don't Try",
-		"imports":[
+		"name": "main.chapter.01.topic.01 The Feedback Loop From Hell",
+		"imports": [
+			"main.chapter.01 Don't Try"
+		],
+		"summary": "Feeling bad about feeling bad creates a downward spiral. Anxiety about anxiety, guilt about guilt—this meta-emotion compounds the original emotion. The key is accepting negative emotions instead of fighting them."
+	},
+	{
+		"name": "main.chapter.01.topic.02 The Subtle Art Of Not Giving a F*ck",
+		"imports": [
+			"main.chapter.01 Don't Try"
+		],
+		"summary": "Not giving a f*ck doesn't mean being indifferent; it means being comfortable with being different. It's about choosing what you care about with intention. You have a limited number of f*cks to give—spend them wisely."
+	},
+	{
+		"name": "main.chapter.01.topic.03 So Mark, What the F*ck Is the Point?",
+		"imports": [
+			"main.chapter.01 Don't Try"
+		],
+		"summary": "The point is to learn how to focus and prioritize your thoughts effectively—to care about fewer things, but to care about them more deeply. Stop trying to be positive all the time and accept life's struggles."
+	},
+	{
+		"name": "main.chapter.02.topic.01 The Misadventures of Disappointment Panda",
+		"imports": [
+			"main.chapter.02 Happiness Is a Problem"
+		],
+		"summary": "Life is essentially an endless series of problems. The solution to one problem creates a new problem. Happiness comes not from avoiding problems but from solving them."
+	},
+	{
+		"name": "main.chapter.02.topic.02 Happiness Comes from Solving Problems",
+		"imports": [
+			"main.chapter.02 Happiness Is a Problem"
+		],
+		"summary": "Problems never stop; they just get upgraded. True happiness occurs when you find the problems you enjoy solving. Don't deny problems or blame others—take responsibility and solve them."
+	},
+	{
+		"name": "main.chapter.02.topic.03 Emotions Are Overrated",
+		"imports": [
+			"main.chapter.02 Happiness Is a Problem"
+		],
+		"summary": "Emotions are merely signposts, not destinations. Make values-based decisions, not emotion-based ones. Positive emotions are rewards for solving problems, not solutions themselves."
+	},
+	{
+		"name": "main.chapter.02.topic.04 Choose Your Struggle",
+		"imports": [
+			"main.chapter.02 Happiness Is a Problem"
+		],
+		"summary": "What determines success isn't 'What do you want to enjoy?' but 'What pain are you willing to sustain?' The quality of your life is determined by the quality of problems you're willing to solve."
+	},
+	{
+		"name": "main.chapter.03.topic.01 The Tyranny of Exceptionalism",
+		"imports": [
+			"main.chapter.03 You Are Not Special"
+		],
+		"summary": "The belief that you're exceptional leads to entitlement and unhappiness. Most of us are pretty average at most things, and that's okay. The obsession with being extraordinary paradoxically makes people feel worse."
+	},
+	{
+		"name": "main.chapter.03.topic.02 Things Fall Apart",
+		"imports": [
+			"main.chapter.03 You Are Not Special"
+		],
+		"summary": "When your metrics for success fail, you're forced to reevaluate your values. This painful process is often the catalyst for significant personal growth. Sometimes hitting rock bottom is necessary for change."
+	},
+	{
+		"name": "main.chapter.03.topic.03 If I'm Not Special, What's the Point?",
+		"imports": [
+			"main.chapter.03 You Are Not Special"
+		],
+		"summary": "The point is to be exceptional at the things that matter most to you. Not being special doesn't mean being mediocre—it means choosing your battles wisely and excelling in areas aligned with your values."
+	},
+	{
+		"name": "main.chapter.04.topic.01 The Self-Awareness Onion",
+		"imports": [
+			"main.chapter.04 The Value of Suffering"
+		],
+		"summary": "Layer 1: Understanding your emotions. Layer 2: Understanding why you feel certain emotions. Layer 3: Understanding your personal values and why they matter. Most people never reach layer 3. True self-awareness requires peeling back layers."
+	},
+	{
+		"name": "main.chapter.04.topic.02 Rock Star Problems",
+		"imports": [
+			"main.chapter.04 The Value of Suffering"
+		],
+		"summary": "Not all suffering is created equal. Choose your struggles wisely. What pain are you willing to sustain? The answer determines what you'll achieve more than talent or passion."
+	},
+	{
+		"name": "main.chapter.04.topic.03 Shitty Values",
+		"imports": [
+			"main.chapter.04 The Value of Suffering"
+		],
+		"summary": "Pleasure, material success, always being right, and staying positive are poor values because they're not controllable or measurable. They lead to shallow satisfaction and unhappiness."
+	},
+	{
+		"name": "main.chapter.04.topic.04 Defining Good and Bad Values",
+		"imports": [
+			"main.chapter.04 The Value of Suffering"
+		],
+		"summary": "Good values are reality-based, socially constructive, and controllable (honesty, innovation, vulnerability). Bad values are superstitious, socially destructive, and uncontrollable. Choose values based on what you control."
+	},
+	{
+		"name": "main.chapter.05.topic.01 The Choice",
+		"imports": [
+			"main.chapter.05 You Are Always Choosing"
+		],
+		"summary": "We always have a choice about how we interpret problems and react to them. The only thing we can truly control is how we interpret and respond to events. You are always choosing."
+	},
+	{
+		"name": "main.chapter.05.topic.02 The Responsibility/Fault Fallacy",
+		"imports": [
+			"main.chapter.05 You Are Always Choosing"
+		],
+		"summary": "You're not always at fault for your problems, but you're always responsible for how you respond. Fault is past tense. Responsibility is present tense. Even if a problem isn't your fault, it's your responsibility to deal with it."
+	},
+	{
+		"name": "main.chapter.05.topic.03 Responding to Tragedy",
+		"imports": [
+			"main.chapter.05 You Are Always Choosing"
+		],
+		"summary": "We are responsible for experiences that aren't our fault all the time. This is part of life. How you respond to tragedy defines you more than the tragedy itself."
+	},
+	{
+		"name": "main.chapter.05.topic.04 Genetics and the Hand We're Dealt",
+		"imports": [
+			"main.chapter.05 You Are Always Choosing"
+		],
+		"summary": "You don't choose your genetics, family, or initial circumstances, but you choose how to respond to them. Your hand is dealt; how you play it is your responsibility."
+	},
+	{
+		"name": "main.chapter.05.topic.05 Victimhood Chic",
+		"imports": [
+			"main.chapter.05 You Are Always Choosing"
+		],
+		"summary": "Many people feel entitled either because they believe they're exceptional or because they believe they're victims. Both lead to unhappiness. Real self-worth comes from solving problems."
+	},
+	{
+		"name": "main.chapter.05.topic.06 There Is No 'How'",
+		"imports": [
+			"main.chapter.05 You Are Always Choosing"
+		],
+		"summary": "Stop waiting for the perfect method or the right moment. There is no 'how'—you just choose and do. Action comes first, then learning follows."
+	},
+	{
+		"name": "main.chapter.06.topic.01 But So Am I",
+		"imports": [
+			"main.chapter.06 You're Wrong About Everything"
+		],
+		"summary": "Our beliefs are shaped by our experiences and biases, and they're often wrong. Being wrong opens the door to growth. Don't be afraid to be uncertain about your beliefs."
+	},
+	{
+		"name": "main.chapter.06.topic.02 Architects of Our Own Beliefs",
+		"imports": [
+			"main.chapter.06 You're Wrong About Everything"
+		],
+		"summary": "We construct our beliefs based on limited information and past experiences. These constructions are often flawed. Growth requires questioning your beliefs and values."
+	},
+	{
+		"name": "main.chapter.06.topic.03 Be Careful What You Believe",
+		"imports": [
+			"main.chapter.06 You're Wrong About Everything"
+		],
+		"summary": "Our identity is built on our beliefs and metrics. Changing these beliefs means changing ourselves, which is why it's so difficult and why we resist it."
+	},
+	{
+		"name": "main.chapter.06.topic.04 The Dangers of Pure Certainty",
+		"imports": [
+			"main.chapter.06 You're Wrong About Everything"
+		],
+		"summary": "The more certain we are about something, the less likely we are to learn. Uncertainty is the root of all progress and growth. Questions like 'What if I'm wrong?' are essential."
+	},
+	{
+		"name": "main.chapter.06.topic.05 Manson's Law of Avoidance",
+		"imports": [
+			"main.chapter.06 You're Wrong About Everything"
+		],
+		"summary": "The more something threatens your identity, the more you will avoid it. People avoid experiences that contradict how they see themselves. To grow, challenge your self-concept."
+	},
+	{
+		"name": "main.chapter.06.topic.06 Kill Yourself",
+		"imports": [
+			"main.chapter.06 You're Wrong About Everything"
+		],
+		"summary": "Kill your fantasies about who you should be or what you should achieve. Letting go of these harmful identities is necessary for growth and happiness."
+	},
+	{
+		"name": "main.chapter.06.topic.07 How to Be Less Certain About Yourself",
+		"imports": [
+			"main.chapter.06 You're Wrong About Everything"
+		],
+		"summary": "Ask yourself regularly: What if I'm wrong? What would it mean if I were wrong? How would I know if I were wrong? These questions keep you open to growth."
+	},
+	{
+		"name": "main.chapter.07.topic.01 The Failure/Success Paradox",
+		"imports": [
+			"main.chapter.07 Failure Is the Way Forward"
+		],
+		"summary": "Success comes from repeated failure and learning. Fear of failure often causes more failure. Improvement at anything is based on thousands of tiny failures."
+	},
+	{
+		"name": "main.chapter.07.topic.02 Pain Is Part of the Process",
+		"imports": [
+			"main.chapter.07 Failure Is the Way Forward"
+		],
+		"summary": "Pain signals that you're improving. If you're not failing, you're not trying hard enough. Embrace the struggle as evidence of progress, not as a reason to quit."
+	},
+	{
+		"name": "main.chapter.07.topic.03 The 'Do Something' Principle",
+		"imports": [
+			"main.chapter.07 Failure Is the Way Forward"
+		],
+		"summary": "Action → Inspiration → Motivation → More action. Don't wait for motivation—just do something. Even if it's the wrong action, it provides information. Motion creates emotion."
+	},
+	{
+		"name": "main.chapter.08.topic.01 Rejection Makes Your Life Better",
+		"imports": [
+			"main.chapter.08 The Importance of Saying No"
+		],
+		"summary": "For any change to happen, something must be rejected. Freedom requires rejection. To truly value something, you must reject alternatives. Saying 'no' gives your 'yes' more meaning."
+	},
+	{
+		"name": "main.chapter.08.topic.02 Boundaries",
+		"imports": [
+			"main.chapter.08 The Importance of Saying No"
+		],
+		"summary": "Healthy relationships require boundaries. Without boundaries, relationships become toxic. Setting boundaries means being willing to say no and accepting others saying no to you."
+	},
+	{
+		"name": "main.chapter.08.topic.03 How to Build Trust",
+		"imports": [
+			"main.chapter.08 The Importance of Saying No"
+		],
+		"summary": "Trust is built through conflict resolution, not conflict avoidance. Healthy relationships embrace conflict as necessary for growth. The willingness to say and hear 'no' builds trust."
+	},
+	{
+		"name": "main.chapter.08.topic.04 Freedom Through Commitment",
+		"imports": [
+			"main.chapter.08 The Importance of Saying No"
+		],
+		"summary": "True freedom comes from commitment and rejection of alternatives. The paradox of choice: more options lead to less satisfaction. Commitment gives depth and meaning by narrowing options."
+	},
+	{
+		"name": "main.chapter.09.topic.01 Something Beyond Ourselves",
+		"imports": [
+			"main.chapter.09 ...And Then You Die"
+		],
+		"summary": "Your life's meaning isn't determined by your lasting impact but by the values you live by while you're here. Most legacies are forgotten within generations—and that's okay."
+	},
+	{
+		"name": "main.chapter.09.topic.02 The Sunny Side of Death",
+		"imports": [
+			"main.chapter.09 ...And Then You Die"
+		],
+		"summary": "Death is the only certainty. Confronting mortality clarifies what matters. When we avoid thinking about death, we make poor decisions. Death is the light by which all of life's meaning is measured."
+	},
+	{
+		"name": "main.chapter.01 Don't Try",
+		"imports": [
 			"main.section_name.01 Core Philosophy"
 		],
-		"summary":"The pursuit of positive experience is itself a negative experience, while accepting negative experience is a positive experience. The desire for a more positive experience is itself a negative experience, and paradoxically, the acceptance of one's negative experience is itself a positive experience. Stop trying so hard to be happy and accept the struggle."
+		"summary": "The pursuit of positive experience is itself a negative experience, while accepting negative experience is a positive experience. Stop trying so hard to be happy and accept the struggle. The desire for more positive experiences is paradoxically a negative experience."
 	},
 	{
-		"name":"main.chapter_name.02 Happiness is a Problem",
-		"imports":[
+		"name": "main.chapter.02 Happiness Is a Problem",
+		"imports": [
 			"main.section_name.01 Core Philosophy"
 		],
-		"summary":"Problems never stop; they just get upgraded. Happiness comes from solving problems, not avoiding them. Life is essentially an endless series of problems, and the solution to one problem creates a new problem. This is a feature, not a bug."
+		"summary": "Problems never stop; they just get upgraded. Happiness comes from solving problems, not avoiding them. Life is essentially an endless series of problems, and the solution to one problem creates a new problem. This is a feature, not a bug."
 	},
 	{
-		"name":"main.chapter_name.03 You Are Not Special",
-		"imports":[
+		"name": "main.chapter.03 You Are Not Special",
+		"imports": [
 			"main.section_name.01 Core Philosophy"
 		],
-		"summary":"The belief that you're exceptional leads to entitlement and unhappiness. Most of us are pretty average at most things, and that's okay. The obsession with being extraordinary paradoxically makes people feel worse about themselves."
+		"summary": "The belief that you're exceptional leads to entitlement and unhappiness. Most of us are pretty average at most things, and that's okay. The obsession with being extraordinary paradoxically makes people feel worse about themselves."
 	},
 	{
-		"name":"main.chapter_name.04 The Value of Suffering",
-		"imports":[
+		"name": "main.chapter.04 The Value of Suffering",
+		"imports": [
 			"main.section_name.02 Choosing Your Values"
 		],
-		"summary":"Not all suffering is created equal. What determines your success isn't 'What do you want to enjoy?' but 'What pain do you want to sustain?' Choose your struggle. The quality of your life is determined by the quality of the problems you're willing to solve."
+		"summary": "Not all suffering is created equal. What determines your success isn't 'What do you want to enjoy?' but 'What pain do you want to sustain?' Choose your struggle. The quality of your life is determined by the quality of the problems you're willing to solve."
 	},
 	{
-		"name":"main.chapter_name.05 You Are Always Choosing",
-		"imports":[
+		"name": "main.chapter.05 You Are Always Choosing",
+		"imports": [
 			"main.section_name.02 Choosing Your Values"
 		],
-		"summary":"We are responsible for experiences that aren't our fault all the time. This is part of life. We always have a choice about how we interpret problems and react to them. The only thing we can truly control is how we interpret and respond to events."
+		"summary": "We are responsible for experiences that aren't our fault all the time. This is part of life. We always have a choice about how we interpret problems and react to them. The only thing we can truly control is how we interpret and respond to events."
 	},
 	{
-		"name":"main.chapter_name.06 You're Wrong About Everything",
-		"imports":[
+		"name": "main.chapter.06 You're Wrong About Everything",
+		"imports": [
 			"main.section_name.02 Choosing Your Values"
 		],
-		"summary":"Growth requires questioning your beliefs and values. Our beliefs are shaped by our experiences and biases, and they're often wrong. Being wrong opens the door to growth. Don't be afraid to be uncertain about your beliefs."
+		"summary": "Growth requires questioning your beliefs and values. Our beliefs are shaped by our experiences and biases, and they're often wrong. Being wrong opens the door to growth. Don't be afraid to be uncertain about your beliefs."
 	},
 	{
-		"name":"main.chapter_name.07 Failure Is the Way Forward",
-		"imports":[
+		"name": "main.chapter.07 Failure Is the Way Forward",
+		"imports": [
 			"main.section_name.03 Taking Action"
 		],
-		"summary":"Success comes from repeated failure and learning. Fear of failure often causes more failure. Improvement at anything is based on thousands of tiny failures. Pain is part of the process and signals that you're improving."
+		"summary": "Success comes from repeated failure and learning. Fear of failure often causes more failure. Improvement at anything is based on thousands of tiny failures. Pain is part of the process and signals that you're improving."
 	},
 	{
-		"name":"main.chapter_name.08 The Importance of Saying No",
-		"imports":[
+		"name": "main.chapter.08 The Importance of Saying No",
+		"imports": [
 			"main.section_name.03 Taking Action"
 		],
-		"summary":"Freedom requires rejection. To truly value something, you must reject alternatives. Commitment gives you freedom by narrowing down your options. For any change to happen, something must be rejected."
+		"summary": "Freedom requires rejection. To truly value something, you must reject alternatives. Commitment gives you freedom by narrowing down your options. For any change to happen, something must be rejected."
 	},
 	{
-		"name":"main.chapter_name.09 And Then You Die",
-		"imports":[
+		"name": "main.chapter.09 ...And Then You Die",
+		"imports": [
 			"main.section_name.03 Taking Action"
 		],
-		"summary":"Death is the only certainty. Confronting mortality clarifies what matters. When we avoid thinking about death, we unconsciously make decisions based on avoiding it. Death is the light by which the shadow of all of life's meaning is measured."
+		"summary": "Death is the only certainty. Confronting mortality clarifies what matters. When we avoid thinking about death, we unconsciously make decisions based on avoiding it. Death is the light by which the shadow of all of life's meaning is measured."
 	},
 	{
-		"name":"main.principle.01 Choose What to Care About",
-		"imports":[
-			"main.section_name.04 Key Principles"
-		],
-		"summary":"You have a limited amount of f*cks to give. Choose wisely. Maturity is learning to only care about what's truly important. If you find yourself constantly giving a f*ck about everything, you'll be miserable. Reserve your f*cks for things that truly matter."
+		"name": "main.section_name.01 Core Philosophy",
+		"imports": [],
+		"summary": "The foundation: Not giving a f*ck doesn't mean being indifferent; it means being comfortable with being different and choosing what matters. Chapters 1-3 establish the philosophical groundwork."
 	},
 	{
-		"name":"main.principle.02 Self-Awareness",
-		"imports":[
-			"main.section_name.04 Key Principles"
-		],
-		"summary":"Understanding yourself means asking: What am I feeling? Why am I feeling this? What values are guiding my reaction? Self-awareness has layers, like an onion. True self-awareness is understanding the root causes of your emotions and reactions."
+		"name": "main.section_name.02 Choosing Your Values",
+		"imports": [],
+		"summary": "Values determine how we measure success. Choose values you can control that are reality-based and socially constructive. Chapters 4-6 teach how to choose better values."
 	},
 	{
-		"name":"main.principle.03 Good Values vs Bad Values",
-		"imports":[
-			"main.section_name.04 Key Principles"
-		],
-		"summary":"Good values are reality-based, socially constructive, and controllable (honesty, innovation, vulnerability). Bad values are superstitious, socially destructive, and uncontrollable (pleasure, material success, being right, staying positive). Choose values based on what you control."
-	},
-	{
-		"name":"main.principle.04 Responsibility vs Fault",
-		"imports":[
-			"main.section_name.04 Key Principles"
-		],
-		"summary":"You're not always at fault for your problems, but you're always responsible for how you respond. Fault is past tense. Responsibility is present tense. Even if a problem isn't your fault, it's always your responsibility to deal with it."
-	},
-	{
-		"name":"main.principle.05 Certainty is the Enemy",
-		"imports":[
-			"main.section_name.04 Key Principles"
-		],
-		"summary":"The more certain we are about something, the less likely we are to learn. Uncertainty is the root of all progress and growth. Questions like 'What if I'm wrong?' and 'What would it mean if I were wrong?' are essential for growth."
-	},
-	{
-		"name":"main.principle.06 Action Creates Motivation",
-		"imports":[
-			"main.section_name.05 Practical Applications"
-		],
-		"summary":"Don't wait for motivation—action creates it. The 'do something' principle: Action → Inspiration → Motivation → Action. If you lack motivation, do something—anything—and motivation will follow. Motion creates emotion."
-	},
-	{
-		"name":"main.principle.07 Reject Alternatives",
-		"imports":[
-			"main.section_name.05 Practical Applications"
-		],
-		"summary":"True freedom comes from commitment and rejection of alternatives. The paradox of choice: more options lead to less satisfaction. Commitment to one path requires rejecting others, and this rejection is what gives depth and meaning."
-	},
-	{
-		"name":"main.principle.08 Kill Your Fantasies",
-		"imports":[
-			"main.section_name.05 Practical Applications"
-		],
-		"summary":"We all have values and metrics that we've grown attached to but are harmful. Letting go of these fantasies—about who we should be or what we should achieve—is necessary for growth. Our identity is built on these metrics, and changing them means changing ourselves."
-	},
-	{
-		"name":"main.concept.01 The Feedback Loop from Hell",
-		"imports":[
-			"main.section_name.06 Mental Models"
-		],
-		"summary":"Feeling bad about feeling bad creates a downward spiral. Anxiety about anxiety, guilt about guilt, anger about anger—this meta-emotion compounds the original emotion. Accept negative emotions instead of fighting them."
-	},
-	{
-		"name":"main.concept.02 Manson's Law of Avoidance",
-		"imports":[
-			"main.section_name.06 Mental Models"
-		],
-		"summary":"The more something threatens your identity, the more you will avoid it. People avoid experiences that contradict how they see themselves. To grow, we must challenge our self-concept and be willing to change who we are."
-	},
-	{
-		"name":"main.concept.03 The Subtle Art",
-		"imports":[
-			"main.section_name.06 Mental Models"
-		],
-		"summary":"The 'subtle art' is about choosing what you give a f*ck about with intention. It's not about not giving a f*ck about anything—it's about only giving a f*ck about what aligns with your values. Strategic apathy is an art form."
-	},
-	{
-		"name":"main.concept.04 Shitty Values",
-		"imports":[
-			"main.section_name.06 Mental Models"
-		],
-		"summary":"Pleasure, material success, always being right, and staying positive are poor values because they're not controllable or measurable. They lead to shallow satisfaction. Better values: honesty, innovation, vulnerability, standing up for something important."
-	},
-	{
-		"name":"main.concept.05 The Self-Awareness Onion",
-		"imports":[
-			"main.section_name.06 Mental Models"
-		],
-		"summary":"Layer 1: Understanding your emotions. Layer 2: Understanding why you feel certain emotions. Layer 3: Understanding your personal values and why they matter to you. Most people never reach layer 3. True self-awareness requires peeling back layers."
-	},
-	{
-		"name":"main.lesson.01 Problems Are Constant",
-		"imports":[
-			"main.section_name.07 Life Lessons"
-		],
-		"summary":"Life is a series of problems waiting to be solved. The solution to one problem creates new problems. This is normal and expected. Happiness comes from solving problems you enjoy solving, not from having no problems."
-	},
-	{
-		"name":"main.lesson.02 Emotions Are Overrated",
-		"imports":[
-			"main.section_name.07 Life Lessons"
-		],
-		"summary":"Positive emotions are a reward for solving problems, not the solution themselves. Negative emotions are a call to action. Neither should dictate your decisions. Make values-based decisions, not emotion-based ones."
-	},
-	{
-		"name":"main.lesson.03 Entitlement Epidemic",
-		"imports":[
-			"main.section_name.07 Life Lessons"
-		],
-		"summary":"Many people feel entitled to a good life without earning it. They feel entitled either because they believe they're exceptional or because they believe they're victims. Both lead to unhappiness. Real self-worth comes from solving problems."
-	},
-	{
-		"name":"main.lesson.04 Rock Bottom and Growth",
-		"imports":[
-			"main.section_name.07 Life Lessons"
-		],
-		"summary":"Sometimes hitting rock bottom is necessary for change. When all your metrics fail, you're forced to reevaluate your values. This painful process is often the catalyst for the most significant personal growth."
-	},
-	{
-		"name":"main.lesson.05 Commitment and Depth",
-		"imports":[
-			"main.section_name.07 Life Lessons"
-		],
-		"summary":"Depth of experience comes from commitment. Breadth of experience is shallow. The paradox: you must give up options to have true freedom. Depth beats breadth. Commit to fewer things, but commit deeply."
-	},
-	{
-		"name":"main.lesson.06 Legacy and Mortality",
-		"imports":[
-			"main.section_name.07 Life Lessons"
-		],
-		"summary":"Most people's legacies will be forgotten within a few generations. This is freeing, not depressing. Your life's meaning isn't determined by your lasting impact but by the values you live by and the problems you choose to solve while you're here."
-	},
-	{
-		"name":"main.practice.01 Question Your Metrics",
-		"imports":[
-			"main.section_name.08 Daily Practices"
-		],
-		"summary":"Regularly ask: What values am I using to measure success? Are these healthy values? Am I measuring myself against things I can control? Audit your metrics quarterly. Bad metrics lead to bad decisions."
-	},
-	{
-		"name":"main.practice.02 Choose Your Struggle",
-		"imports":[
-			"main.section_name.08 Daily Practices"
-		],
-		"summary":"Ask yourself: What pain am I willing to sustain? What struggle do I want? This determines what you'll achieve more than talent or passion. If you don't like the struggle, you won't stick with it long enough to succeed."
-	},
-	{
-		"name":"main.practice.03 Embrace Uncertainty",
-		"imports":[
-			"main.section_name.08 Daily Practices"
-		],
-		"summary":"Practice saying 'I don't know.' Ask yourself regularly: What if I'm wrong? How would I know if I were wrong? This keeps you open to growth. Certainty is the enemy of improvement."
-	},
-	{
-		"name":"main.practice.04 Do Something Principle",
-		"imports":[
-			"main.section_name.08 Daily Practices"
-		],
-		"summary":"When stuck, don't wait for inspiration—just do something small. Action → Inspiration → Motivation → More action. The smallest action breaks inertia. Even if it's the wrong action, it provides information."
-	},
-	{
-		"name":"main.practice.05 Say No More Often",
-		"imports":[
-			"main.section_name.08 Daily Practices"
-		],
-		"summary":"For every 'yes,' identify what you're saying 'no' to. Practice rejecting things that don't align with your values. Saying 'no' gives your 'yes' more meaning. Rejection is the foundation of freedom."
-	},
-	{
-		"name":"main.practice.06 Memento Mori",
-		"imports":[
-			"main.section_name.08 Daily Practices"
-		],
-		"summary":"Regularly contemplate your mortality. Ask: If I died today, what would I regret? What would matter? Death clarifies values. Use it as a compass, not something to fear. Live like you're going to die—because you are."
-	},
-	{
-		"name":"main.section_name.01 Core Philosophy",
-		"imports":[],
-		"summary":"The foundation: Not giving a f*ck doesn't mean being indifferent; it means being comfortable with being different and choosing what matters."
-	},
-	{
-		"name":"main.section_name.02 Choosing Your Values",
-		"imports":[],
-		"summary":"Values determine how we measure success. Choose values you can control that are reality-based and socially constructive."
-	},
-	{
-		"name":"main.section_name.03 Taking Action",
-		"imports":[],
-		"summary":"Action precedes motivation. Failure is the path forward. Commitment requires rejection."
-	},
-	{
-		"name":"main.section_name.04 Key Principles",
-		"imports":[],
-		"summary":"Core principles for living: choose what to care about, develop self-awareness, distinguish good from bad values, separate responsibility from fault."
-	},
-	{
-		"name":"main.section_name.05 Practical Applications",
-		"imports":[],
-		"summary":"How to apply the philosophy: take action without motivation, reject alternatives, let go of harmful fantasies."
-	},
-	{
-		"name":"main.section_name.06 Mental Models",
-		"imports":[],
-		"summary":"Frameworks for understanding yourself: feedback loops, avoidance patterns, self-awareness layers."
-	},
-	{
-		"name":"main.section_name.07 Life Lessons",
-		"imports":[],
-		"summary":"Insights about life: problems are constant, emotions are overrated, entitlement is toxic, commitment brings depth."
-	},
-	{
-		"name":"main.section_name.08 Daily Practices",
-		"imports":[],
-		"summary":"Actionable habits: question your metrics, choose your struggle, embrace uncertainty, take action, say no, remember death."
+		"name": "main.section_name.03 Taking Action",
+		"imports": [],
+		"summary": "Action precedes motivation. Failure is the path forward. Commitment requires rejection. Chapters 7-9 show how to take action on your values and live with death in mind."
 	}
 ]
 

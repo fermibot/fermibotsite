@@ -7,40 +7,43 @@
 // ============================================
 
 const CONFIG = {
-    // Section colors - Philosophy-themed palette
-    SECTION_COLORS: {
-        '01': '#E53935',  // Red - Core Philosophy
-        '02': '#FB8C00',  // Orange - Choosing Values
-        '03': '#FFD600',  // Yellow - Taking Action
-        '04': '#43A047',  // Green - Key Principles
-        '05': '#00ACC1',  // Cyan - Practical Applications
-        '06': '#1E88E5',  // Blue - Mental Models
-        '07': '#5E35B1',  // Purple - Life Lessons
-        '08': '#D81B60'   // Pink - Daily Practices
+    // Chapter colors - One color per chapter (9 chapters)
+    CHAPTER_COLORS: {
+        '01': '#E53935',  // Red - Don't Try
+        '02': '#FB8C00',  // Orange - Happiness Is a Problem
+        '03': '#FFD600',  // Yellow - You Are Not Special
+        '04': '#43A047',  // Green - The Value of Suffering
+        '05': '#00ACC1',  // Cyan - You Are Always Choosing
+        '06': '#1E88E5',  // Blue - You're Wrong About Everything
+        '07': '#5E35B1',  // Purple - Failure Is the Way Forward
+        '08': '#D81B60',  // Pink - The Importance of Saying No
+        '09': '#6D4C41'   // Brown - ...And Then You Die
     },
 
-    // Section icons
-    SECTION_ICONS: {
-        '01': '💭',
-        '02': '🎯',
-        '03': '⚡',
-        '04': '🔑',
-        '05': '🛠️',
-        '06': '🧠',
-        '07': '📖',
-        '08': '🔄'
+    // Chapter icons
+    CHAPTER_ICONS: {
+        '01': '🚫',  // Don't Try
+        '02': '😊',  // Happiness Is a Problem
+        '03': '👤',  // You Are Not Special
+        '04': '💪',  // The Value of Suffering
+        '05': '🎯',  // You Are Always Choosing
+        '06': '🤔',  // You're Wrong About Everything
+        '07': '⚡',  // Failure Is the Way Forward
+        '08': '🛑',  // The Importance of Saying No
+        '09': '💀'   // ...And Then You Die
     },
 
-    // Section full names
-    SECTION_NAMES: {
-        '01': 'Core Philosophy',
-        '02': 'Choosing Your Values',
-        '03': 'Taking Action',
-        '04': 'Key Principles',
-        '05': 'Practical Applications',
-        '06': 'Mental Models',
-        '07': 'Life Lessons',
-        '08': 'Daily Practices'
+    // Chapter full names
+    CHAPTER_NAMES: {
+        '01': "Don't Try",
+        '02': 'Happiness Is a Problem',
+        '03': 'You Are Not Special',
+        '04': 'The Value of Suffering',
+        '05': 'You Are Always Choosing',
+        '06': "You're Wrong About Everything",
+        '07': 'Failure Is the Way Forward',
+        '08': 'The Importance of Saying No',
+        '09': '...And Then You Die'
     },
 
     // Layout dimensions
@@ -67,10 +70,10 @@ const STATE = {
 // ============================================
 
 function getShortName(name, maxLength = 40) {
-    // Remove prefixes
+    // Remove prefixes for different node types
     let shortName = name
-        .replace(/^main\.(chapter_name|principle|concept|lesson|practice)\.\d+\s+/, '')
-        .replace(/^main\.section_name\.\d+\s+/, '');
+        .replace(/^main\.chapter\.\d+\.topic\.\d+\s+/, '')      // Topic: main.chapter.01.topic.01 The Name
+        .replace(/^main\.chapter\.\d+\s+/, '');                    // Chapter: main.chapter.01 The Name
 
     if (shortName.length > maxLength) {
         const truncated = shortName.substring(0, maxLength - 3);
@@ -83,13 +86,18 @@ function getShortName(name, maxLength = 40) {
     return shortName;
 }
 
-function getSectionNumber(name) {
-    const match = name.match(/main\.section_name\.(\d+)/);
-    return match ? match[1] : null;
+function getChapterNumber(name) {
+    // Extract chapter number from chapter or topic node
+    const chapterMatch = name.match(/main\.chapter\.(\d+)/);
+    return chapterMatch ? chapterMatch[1] : null;
 }
 
-function isSectionNode(name) {
-    return name.startsWith('main.section_name.');
+function isChapterNode(name) {
+    return name.match(/^main\.chapter\.\d+\s+/) && !name.includes('.topic.');
+}
+
+function isTopicNode(name) {
+    return name.includes('.topic.');
 }
 
 function saveProgress() {
@@ -121,31 +129,35 @@ async function loadData() {
         const response = await fetch('LifeSkills_SubtleArt.json');
         STATE.data = await response.json();
 
+        // Filter out section nodes - we only want chapters and topics
+        STATE.data = STATE.data.filter(d => !d.name.startsWith('main.section_name.'));
+
         // Build nodes and links
         STATE.nodes = STATE.data.map(d => {
-            // Get section number from the node name or its first import
-            let section = getSectionNumber(d.name);
-            if (!section && d.imports && d.imports.length > 0) {
-                section = getSectionNumber(d.imports[0]);
-            }
+            // Get chapter number
+            const chapter = getChapterNumber(d.name);
 
             return {
                 id: d.name,
                 name: d.name,
                 displayName: getShortName(d.name),
-                section: section,
+                chapter: chapter,
                 summary: d.summary || 'No description available',
-                isSection: isSectionNode(d.name)
+                isChapter: isChapterNode(d.name),
+                isTopic: isTopicNode(d.name)
             };
         });
 
         STATE.links = [];
         STATE.data.forEach(d => {
             d.imports.forEach(imp => {
-                STATE.links.push({
-                    source: imp,
-                    target: d.name
-                });
+                // Only add links if the import is not a section node
+                if (!imp.startsWith('main.section_name.')) {
+                    STATE.links.push({
+                        source: imp,
+                        target: d.name
+                    });
+                }
             });
         });
 
@@ -195,7 +207,7 @@ function initializeVisualization() {
         .attr('class', 'link')
         .attr('stroke', d => {
             const targetNode = STATE.nodes.find(n => n.id === d.target.id || n.id === d.target);
-            return targetNode ? CONFIG.SECTION_COLORS[targetNode.section] : '#999';
+            return targetNode ? CONFIG.CHAPTER_COLORS[targetNode.chapter] : '#999';
         });
 
     // Create nodes
@@ -203,24 +215,24 @@ function initializeVisualization() {
         .selectAll('g')
         .data(STATE.nodes)
         .join('g')
-        .attr('class', d => `node ${d.isSection ? 'section-node' : ''}`)
+        .attr('class', d => `node ${d.isChapter ? 'chapter-node' : ''}`)
         .call(drag(simulation));
 
     // Add circles
     node.append('circle')
-        .attr('r', d => d.isSection ? 40 : 20)
-        .attr('fill', d => CONFIG.SECTION_COLORS[d.section] || '#999')
-        .attr('stroke', d => CONFIG.SECTION_COLORS[d.section] || '#999');
+        .attr('r', d => d.isChapter ? 30 : 15)
+        .attr('fill', d => CONFIG.CHAPTER_COLORS[d.chapter] || '#999')
+        .attr('stroke', d => CONFIG.CHAPTER_COLORS[d.chapter] || '#999');
 
     // Add text
     node.append('text')
-        .text(d => d.isSection ? CONFIG.SECTION_ICONS[d.section] : '')
-        .attr('dy', d => d.isSection ? 5 : 0)
-        .attr('font-size', d => d.isSection ? '24px' : '12px');
+        .text(d => d.isChapter ? CONFIG.CHAPTER_ICONS[d.chapter] : '')
+        .attr('dy', d => d.isChapter ? 5 : 0)
+        .attr('font-size', d => d.isChapter ? '20px' : '12px');
 
     node.append('text')
         .text(d => d.displayName)
-        .attr('dy', d => d.isSection ? 50 : 30)
+        .attr('dy', d => d.isChapter ? 40 : 25)
         .attr('class', 'node-label');
 
     // Add interactivity
@@ -356,15 +368,15 @@ function showTooltip(event, node) {
             .style('opacity', 0);
     }
 
-    const sectionName = node.section ? CONFIG.SECTION_NAMES[node.section] : 'Unknown Section';
+    const chapterName = node.chapter ? CONFIG.CHAPTER_NAMES[node.chapter] : 'Unknown Chapter';
     const summaryPreview = node.summary.length > 100
         ? node.summary.substring(0, 100) + '...'
         : node.summary;
 
     tooltip.html(`
         <strong>${node.displayName}</strong><br>
-        <small style="color: ${CONFIG.SECTION_COLORS[node.section] || '#999'};">
-            ${CONFIG.SECTION_ICONS[node.section] || ''} ${sectionName}
+        <small style="color: ${CONFIG.CHAPTER_COLORS[node.chapter] || '#999'};">
+            ${CONFIG.CHAPTER_ICONS[node.chapter] || ''} ${chapterName}
         </small><br>
         <div style="margin-top: 8px; font-size: 12px; line-height: 1.4;">
             ${summaryPreview}
@@ -426,20 +438,19 @@ function createLegend() {
 
     const legendHtml = `
         <div class="legend-header">
-            <h5 class="legend-title">Book Sections</h5>
-            <div class="progress-inline">
+            <h5 class="legend-title">Book Chapters</h5>
+            <div class="progress-inline" title="Click to view detailed progress">
                 <div class="progress-bar-wrapper" id="progressBarSegments">
                     <!-- Progress segments will be added by JS -->
                 </div>
                 <span class="progress-text" id="progressInlineText">0/0</span>
             </div>
-            <button class="btn btn-sm btn-outline-danger" id="resetProgress" style="flex-shrink: 0;">Reset</button>
         </div>
-        <div class="legend-items" id="legendItems">
-            ${Object.entries(CONFIG.SECTION_NAMES).map(([num, name]) => `
-                <div class="legend-item section-${num}" data-section="${num}" title="${name}">
-                    <span class="legend-color" style="background-color: ${CONFIG.SECTION_COLORS[num]}"></span>
-                    <span class="legend-icon">${CONFIG.SECTION_ICONS[num]}</span>
+        <div class="legend-items">
+            ${Object.entries(CONFIG.CHAPTER_NAMES).map(([num, name]) => `
+                <div class="legend-item chapter-${num}" data-chapter="${num}" tabindex="0" title="${name}">
+                    <span class="legend-color" style="background-color: ${CONFIG.CHAPTER_COLORS[num]}"></span>
+                    <span class="legend-icon">${CONFIG.CHAPTER_ICONS[num]}</span>
                     <span class="legend-label">${name}</span>
                     <span class="legend-count" id="count-${num}">0</span>
                 </div>
@@ -451,22 +462,19 @@ function createLegend() {
 
     container.querySelectorAll('.legend-item').forEach(item => {
         item.addEventListener('click', () => {
-            toggleFilter(item.dataset.section);
+            toggleFilter(item.dataset.chapter);
             item.classList.toggle('active');
         });
     });
 
-    // Setup reset button
-    document.getElementById('resetProgress').addEventListener('click', resetProgress);
-
     updateLegendProgress();
 }
 
-function toggleFilter(sectionNum) {
-    if (STATE.activeFilters.has(sectionNum)) {
-        STATE.activeFilters.delete(sectionNum);
+function toggleFilter(chapterNum) {
+    if (STATE.activeFilters.has(chapterNum)) {
+        STATE.activeFilters.delete(chapterNum);
     } else {
-        STATE.activeFilters.add(sectionNum);
+        STATE.activeFilters.add(chapterNum);
     }
     filterVisualization();
 }
@@ -480,13 +488,15 @@ function filterVisualization() {
             return true;
         }
 
-        // Section filter
-        if (STATE.activeFilters.size > 0 && !STATE.activeFilters.has(d.section)) {
+        // Chapter filter
+        if (STATE.activeFilters.size > 0 && !STATE.activeFilters.has(d.chapter)) {
             return true;
         }
 
         return false;
     });
+    // Preserve learned class after filtering
+    STATE.nodeElements.classed('learned', d => STATE.learnedConcepts.has(d.id));
 }
 
 function updateSearchCounter() {
@@ -533,29 +543,45 @@ function createInfoCard() {
 
 function showInfoCard(node, event) {
     if (!infoCard) createInfoCard();
-    if (node.isSection) return; // Don't show card for section nodes
 
     const isLearned = STATE.learnedConcepts.has(node.id);
-    const sectionNum = node.section;
+    const chapterNum = node.chapter;
+
+    // For chapter nodes, count topics
+    let summaryText = node.summary || 'No summary available.';
+    let buttonText = isLearned ? '✓ Learned' : 'Mark as Learned';
+
+    if (node.isChapter) {
+        const topicsInChapter = STATE.nodes.filter(n =>
+            n.isTopic && STATE.links.some(link =>
+                (typeof link.source === 'object' ? link.source.id : link.source) === node.id &&
+                (typeof link.target === 'object' ? link.target.id : link.target) === n.id
+            )
+        );
+        const learnedTopics = topicsInChapter.filter(t => STATE.learnedConcepts.has(t.id)).length;
+
+        summaryText += ` This chapter contains ${topicsInChapter.length} topics. ${learnedTopics} of ${topicsInChapter.length} learned.`;
+        buttonText = isLearned ? '✓ Chapter Learned (Unmark All)' : 'Mark Entire Chapter as Learned';
+    }
 
     infoCard
-        .attr('data-section', sectionNum)
+        .attr('data-chapter', chapterNum)
         .html(`
             <div class="info-card-header">
-                <span class="info-card-icon">${CONFIG.SECTION_ICONS[sectionNum] || '💡'}</span>
+                <span class="info-card-icon">${CONFIG.CHAPTER_ICONS[chapterNum] || '💡'}</span>
                 <div class="info-card-titles">
                     <h5 class="info-card-chapter">${node.displayName}</h5>
-                    <p class="info-card-section">${CONFIG.SECTION_NAMES[sectionNum] || 'Section'}</p>
+                    <p class="info-card-section">${CONFIG.CHAPTER_NAMES[chapterNum] || 'Chapter'}</p>
                 </div>
             </div>
             <div class="info-card-body">
-                <p class="info-card-summary">${node.summary || 'No summary available.'}</p>
+                <p class="info-card-summary">${summaryText}</p>
             </div>
             <div class="info-card-footer">
                 <span class="info-card-connections">&nbsp;</span>
                 <button class="btn btn-sm btn-outline-secondary mark-learned-btn ${isLearned ? 'learned' : ''}"
                         onclick="toggleLearnedFromCard('${node.id.replace(/'/g, "\\'")}')">
-                    ${isLearned ? '✓ Learned' : 'Mark as Learned'}
+                    ${buttonText}
                 </button>
             </div>
         `);
@@ -623,56 +649,64 @@ function toggleLearned() {
 
     const isCurrentlyLearned = STATE.learnedConcepts.has(STATE.selectedNode.id);
 
-    // Check if this is a section node
-    if (STATE.selectedNode.isSection) {
-        // Get the section number from the section node
-        const sectionNum = STATE.selectedNode.section;
-
-        // Find all concepts in this section (excluding the section node itself)
-        const conceptsInSection = STATE.nodes.filter(node =>
-            node.section === sectionNum && !node.isSection
+    // Check if this is a chapter node
+    if (STATE.selectedNode.isChapter) {
+        // Find all topics in this chapter
+        const topicsInChapter = STATE.nodes.filter(node =>
+            node.isTopic && STATE.links.some(link =>
+                (typeof link.source === 'object' ? link.source.id : link.source) === STATE.selectedNode.id &&
+                (typeof link.target === 'object' ? link.target.id : link.target) === node.id
+            )
         );
 
         if (isCurrentlyLearned) {
-            // Unmark the section and all its concepts
+            // Unmark the chapter and all its topics
             STATE.learnedConcepts.delete(STATE.selectedNode.id);
-            conceptsInSection.forEach(concept => {
-                STATE.learnedConcepts.delete(concept.id);
+            topicsInChapter.forEach(topic => {
+                STATE.learnedConcepts.delete(topic.id);
             });
         } else {
-            // Mark the section and all its concepts as learned
+            // Mark the chapter and all its topics as learned
             STATE.learnedConcepts.add(STATE.selectedNode.id);
-            conceptsInSection.forEach(concept => {
-                STATE.learnedConcepts.add(concept.id);
+            topicsInChapter.forEach(topic => {
+                STATE.learnedConcepts.add(topic.id);
             });
         }
-    } else {
-        // Regular concept node - just toggle it
+    }
+    else {
+        // Topic node - just toggle it
         if (isCurrentlyLearned) {
             STATE.learnedConcepts.delete(STATE.selectedNode.id);
         } else {
             STATE.learnedConcepts.add(STATE.selectedNode.id);
         }
 
-        // Check if all concepts in this section are now learned
-        // If so, also mark the section node as learned
-        const sectionNum = STATE.selectedNode.section;
-        const conceptsInSection = STATE.nodes.filter(node =>
-            node.section === sectionNum && !node.isSection
-        );
-        const allConceptsLearned = conceptsInSection.every(concept =>
-            STATE.learnedConcepts.has(concept.id)
-        );
-
-        const sectionNode = STATE.nodes.find(node =>
-            node.isSection && node.section === sectionNum
+        // Check if all topics in the chapter are now learned
+        // If so, also mark the chapter node as learned
+        const parentChapter = STATE.nodes.find(node =>
+            node.isChapter && STATE.links.some(link =>
+                (typeof link.source === 'object' ? link.source.id : link.source) === node.id &&
+                (typeof link.target === 'object' ? link.target.id : link.target) === STATE.selectedNode.id
+            )
         );
 
-        if (allConceptsLearned && sectionNode) {
-            STATE.learnedConcepts.add(sectionNode.id);
-        } else if (sectionNode && !isCurrentlyLearned) {
-            // If we're unmarking a concept, also unmark the section
-            STATE.learnedConcepts.delete(sectionNode.id);
+        if (parentChapter) {
+            const topicsInChapter = STATE.nodes.filter(node =>
+                node.isTopic && STATE.links.some(link =>
+                    (typeof link.source === 'object' ? link.source.id : link.source) === parentChapter.id &&
+                    (typeof link.target === 'object' ? link.target.id : link.target) === node.id
+                )
+            );
+            const allTopicsLearned = topicsInChapter.every(topic =>
+                STATE.learnedConcepts.has(topic.id)
+            );
+
+            if (allTopicsLearned) {
+                STATE.learnedConcepts.add(parentChapter.id);
+            } else if (!isCurrentlyLearned) {
+                // If we're unmarking a topic, also unmark the chapter
+                STATE.learnedConcepts.delete(parentChapter.id);
+            }
         }
     }
 
@@ -699,40 +733,42 @@ function updateLegendProgress() {
 
     if (!progressBarWrapper || !progressInlineText) return;
 
-    // Calculate learned counts per section
-    const learnedBySection = {};
-    let totalConcepts = 0;
+    // Calculate learned counts per chapter
+    const learnedByChapter = {};
+    let totalNodes = 0;
     let totalLearned = 0;
 
-    Object.keys(CONFIG.SECTION_NAMES).forEach(num => {
-        const sectionNodes = STATE.nodes.filter(n => n.section === num && !n.isSection);
-        const learned = sectionNodes.filter(n => STATE.learnedConcepts.has(n.id)).length;
+    Object.keys(CONFIG.CHAPTER_NAMES).forEach(num => {
+        const chapterNodes = STATE.nodes.filter(n => n.chapter === num);
+        const learned = chapterNodes.filter(n => STATE.learnedConcepts.has(n.id)).length;
 
-        learnedBySection[num] = learned;
-        totalConcepts += sectionNodes.length;
+        learnedByChapter[num] = learned;
+        totalNodes += chapterNodes.length;
         totalLearned += learned;
 
-        // Update legend count badges (total in section)
+        // Update legend count badges (total topics in chapter)
         const countElement = document.getElementById(`count-${num}`);
         if (countElement) {
-            countElement.textContent = sectionNodes.length;
+            // Show only topic count, not chapter itself
+            const topicsInChapter = chapterNodes.filter(n => n.isTopic).length;
+            countElement.textContent = topicsInChapter;
         }
     });
 
     // Update inline text
-    progressInlineText.textContent = `${totalLearned}/${totalConcepts}`;
+    progressInlineText.textContent = `${totalLearned}/${totalNodes}`;
 
-    // Create colored progress segments - ONLY for learned concepts
+    // Create colored progress segments - ONLY for learned nodes
     progressBarWrapper.innerHTML = '';
-    Object.keys(CONFIG.SECTION_NAMES).forEach(num => {
-        const learnedCount = learnedBySection[num];
+    Object.keys(CONFIG.CHAPTER_NAMES).forEach(num => {
+        const learnedCount = learnedByChapter[num];
         if (learnedCount > 0) {
-            const widthPercent = (learnedCount / totalConcepts) * 100;
+            const widthPercent = (learnedCount / totalNodes) * 100;
             const segment = document.createElement('div');
             segment.className = 'progress-segment';
             segment.style.width = `${widthPercent}%`;
-            segment.style.backgroundColor = CONFIG.SECTION_COLORS[num];
-            segment.title = `${CONFIG.SECTION_NAMES[num]}: ${learnedCount} learned`;
+            segment.style.backgroundColor = CONFIG.CHAPTER_COLORS[num];
+            segment.title = `${CONFIG.CHAPTER_NAMES[num]}: ${learnedCount} learned`;
             progressBarWrapper.appendChild(segment);
         }
     });
