@@ -1,1 +1,13 @@
-.idea/*
+# JetBrains / IDE
+.idea/
+
+# macOS
+.DS_Store
+
+# Node / tooling
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+

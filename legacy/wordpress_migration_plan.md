@@ -1,0 +1,128 @@
+# WordPress → Static Site Migration Plan
+
+Generated from wp_index.csv and current HTML files.
+
+## 1. Pages to Transfer (not found in static site by slug)
+
+- [x] **Water Molecules**    Type: `page`, slug: `water-molecules`, date: `2014-05-31 17:31:37`    \n  WordPress URL: https://fermibot.wordpress.com/water-molecules/
+- [ ] **Random Cubes**    Type: `page`, slug: `random-cubes`, date: `2014-06-02 03:10:24`    \n  WordPress URL: https://fermibot.wordpress.com/random-experiments/random-cubes/
+- [ ] **Experiments**    Type: `page`, slug: `random-experiments`, date: `2014-06-02 03:11:55`    \n  WordPress URL: https://fermibot.wordpress.com/random-experiments/
+- [ ] **Central Limit Theorem**    Type: `page`, slug: `central-limit-theorem-experiment`, date: `2015-12-29 23:59:11`    \n  WordPress URL: https://fermibot.wordpress.com/central-limit-theorem-experiment/
+- [ ] **Statistics Concepts**    Type: `page`, slug: `statistics-tutorials`, date: `2015-12-30 00:01:14`    \n  WordPress URL: https://fermibot.wordpress.com/statistics-tutorials/
+- [ ] **Statistical Distribution Functions**    Type: `page`, slug: `statistical-distribution-functions`, date: `2015-12-30 04:59:34`    \n  WordPress URL: https://fermibot.wordpress.com/statistics-tutorials/statistical-distribution-functions/
+- [ ] **Random Walks**    Type: `page`, slug: `random-walks`, date: `2016-01-01 03:21:10`    \n  WordPress URL: https://fermibot.wordpress.com/random-experiments/random-walks/
+- [ ] **Pearson Correalation**    Type: `page`, slug: `pearson-correalation`, date: `2016-09-24 19:49:05`    \n  WordPress URL: https://fermibot.wordpress.com/pearson-correalation/
+- [ ] **Analysis of Shakespeare's work using Python 3**    Type: `page`, slug: `analysis-of-shakespeares-work-using-python-3`, date: `2016-12-30 01:01:24`    \n  WordPress URL: https://fermibot.wordpress.com/analysis-of-shakespeares-work-using-python-3/
+- [ ] **Simulation Problems**    Type: `page`, slug: `simulation-problems`, date: `2016-12-30 01:11:51`    \n  WordPress URL: https://fermibot.wordpress.com/simulation-problems/
+- [ ] **One Way Analysis of Variances (ANOVA) - A visual guide**    Type: `page`, slug: `one-way-analysis-of-variances-anova-a-visual-guide`, date: `2017-02-05 04:38:10`    \n  WordPress URL: https://fermibot.wordpress.com/one-way-analysis-of-variances-anova-a-visual-guide/
+- [ ] **Sheldon Ross: 10 Example 3.13 (Mouse trapped in a maze)**    Type: `page`, slug: `mouse-trapped-in-a-tunnel`, date: `2017-02-05 15:53:43`    \n  WordPress URL: https://fermibot.wordpress.com/mouse-trapped-in-a-tunnel/
+- [ ] **Random Number Generators**    Type: `page`, slug: `code-libraries-for-random-numbers`, date: `2017-02-09 19:43:28`    \n  WordPress URL: https://fermibot.wordpress.com/code-libraries-for-random-numbers/
+- [ ] **MRG32k3a**    Type: `page`, slug: `mrg32k3a`, date: `2017-02-13 07:13:17`    \n  WordPress URL: https://fermibot.wordpress.com/mrg32k3a/
+- [ ] **ANOVA Package Python 3.5**    Type: `page`, slug: `anova-package-python-3-5`, date: `2017-02-17 02:38:38`    \n  WordPress URL: https://fermibot.wordpress.com/anova-package-python-3-5/
+- [ ] **Simulating rolls of Dice**    Type: `page`, slug: `simulating-rolls-of-dice`, date: `2017-03-01 15:50:00`    \n  WordPress URL: https://fermibot.wordpress.com/simulation-problems/simulating-rolls-of-dice/
+- [ ] **Data Visualization**    Type: `page`, slug: `data-visualization`, date: `2017-03-12 22:54:20`    \n  WordPress URL: https://fermibot.wordpress.com/data-visualization/
+- [ ] **U.S. Chronic Disease Indicators (CDI)**    Type: `page`, slug: `u-s-chronic-disease-indicators-cdi`, date: `2017-03-12 22:57:07`    \n  WordPress URL: https://fermibot.wordpress.com/u-s-chronic-disease-indicators-cdi/
+- [ ] **Image Segmentation**    Type: `page`, slug: `image-segmentation`, date: `2017-06-10 02:28:26`    \n  WordPress URL: https://fermibot.wordpress.com/image-segmentation/
+- [ ] **Josephus Problem**    Type: `page`, slug: `josephus-problem`, date: `2018-02-22 01:46:20`    \n  WordPress URL: https://fermibot.wordpress.com/josephus-problem/
+- [ ] **Sheldon Ross 10 : Example 2.8**    Type: `page`, slug: `sheldon-ross-11-example-2-8`, date: `2018-06-08 01:07:35`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-11-example-2-8/
+- [ ] **Probability Problems**    Type: `page`, slug: `probability-solved-problems`, date: `2018-06-09 15:26:08`    \n  WordPress URL: https://fermibot.wordpress.com/probability-solved-problems/
+- [ ] **Sheldon Ross 10 : Example 2.9**    Type: `page`, slug: `sheldon-ross-10-example-2-9`, date: `2018-06-10 20:46:01`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-2-9/
+- [ ] **Sheldon Ross 10 : Example 2.10**    Type: `page`, slug: `sheldon-ross-10-example-2-10`, date: `2018-06-13 01:09:45`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-2-10/
+- [ ] **Sheldon Ross 10 : Example 2.12 (α-particles )**    Type: `page`, slug: `sheldon-ross-10-example-2-12`, date: `2018-06-14 02:06:44`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-2-12/
+- [ ] **Sheldon Ross 10: Example 2.18 (Expectation of a Geometric Random Variable)**    Type: `page`, slug: `sheldon-ross-10-example-2-18-expectation-of-a-geometric-random-variable`, date: `2018-06-19 01:47:32`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-2-18-expectation-of-a-geometric-random-variable/
+- [ ] **Sheldon Ross 10: Example 2.31**    Type: `page`, slug: `sheldon-ross-10-example-2-31`, date: `2018-06-20 02:45:14`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-2-31/
+- [ ] **Sheldon Ross 10: Example 2.32**    Type: `page`, slug: `sheldon-ross-10-example-2-32`, date: `2018-06-21 04:42:12`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-2-32/
+- [ ] **Sheldon Ross 10: Example 2.37 (Sums of Independent Poisson Random Variables)**    Type: `page`, slug: `sheldon-ross-10-example-2-37-sums-of-independent-poisson-random-variables`, date: `2018-06-27 01:15:58`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-2-37-sums-of-independent-poisson-random-variables/
+- [ ] **Sheldon Ross 10: Example 2.38 (Order Statistics)**    Type: `page`, slug: `sheldon-ross-10-example-2-38-order-statistics`, date: `2018-06-29 23:56:21`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-2-38-order-statistics/
+- [ ] **Sheldon Ross 10: Example 2.49**    Type: `page`, slug: `sheldon-ross-10-example-2-49`, date: `2018-07-06 02:33:05`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-2-49/
+- [ ] **Sheldon Ross 10: Example 2.52**    Type: `page`, slug: `sheldon-ross-10-example-2-52`, date: `2018-07-07 01:26:48`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-2-52/
+- [ ] **Sheldon Ross 10: Example 2.53**    Type: `page`, slug: `sheldon-ross-10-example-2-53`, date: `2018-07-07 05:14:52`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-2-53/
+- [ ] **Sheldon Ross 10: Exercise 2.02**    Type: `page`, slug: `sheldon-ross-10-exercise-2-02`, date: `2018-07-07 17:14:08`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-2-02/
+- [ ] **Sheldon Ross 10: Exercise 2.28 - Making a biased system useful!**    Type: `page`, slug: `sheldon-ross-10-exercise-2-28-making-a-biased-system-useful`, date: `2018-07-10 02:30:07`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-2-28-making-a-biased-system-useful/
+- [ ] **Sheldon Ross 10: Example 3.16 (Analyzing the Quick-Sort Algorithm)**    Type: `page`, slug: `sheldon-ross-10-example-3-16-analyzing-the-quick-sort-algorithm`, date: `2018-07-16 02:48:13`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-3-16-analyzing-the-quick-sort-algorithm/
+- [ ] **Sheldon Ross 10: Example 3.17**    Type: `page`, slug: `sheldon-ross-10-example-3-17`, date: `2018-07-24 10:36:26`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-3-17/
+- [ ] **Sheldon Ross 10: Example 3.23**    Type: `page`, slug: `sheldon-ross-10-example-3-23`, date: `2018-07-29 12:43:34`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-3-23/
+- [ ] **Sheldon Ross 10: Example 3.25 (The best prize problem)**    Type: `page`, slug: `sheldon-ross-10-example-3-25-the-best-prize-problem`, date: `2018-08-02 02:16:04`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-3-25-the-best-prize-problem/
+- [ ] **City Bus Simulation**    Type: `page`, slug: `city-bus-simulation`, date: `2018-08-08 03:06:24`    \n  WordPress URL: https://fermibot.wordpress.com/city-bus-simulation/
+- [ ] **Sheldon Ross 10: Example 3.27 (The Ballot Problem)**    Type: `page`, slug: `sheldon-ross-10-example-3-27-the-ballot-problem`, date: `2018-08-12 00:23:28`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-3-27-the-ballot-problem/
+- [ ] **Sheldon Ross 10: Example 3.28**    Type: `page`, slug: `sheldon-ross-10-example-3-28`, date: `2018-08-15 01:17:47`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-3-28/
+- [ ] **Sheldon Ross 10: Example 3.30**    Type: `page`, slug: `sheldon-ross-10-example-3-30`, date: `2018-08-18 01:37:03`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-3-30/
+- [ ] **Introduction to Probability Modeling – Chapter 02**    Type: `page`, slug: `sheldon-ross-chapter-2`, date: `2018-08-21 10:48:44`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-chapter-2/
+- [ ] **Introduction to Probability Modeling - Chapter 03**    Type: `page`, slug: `sheldon-ross-chapter-3`, date: `2018-08-21 10:49:01`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-chapter-3/
+- [ ] **Sheldon Ross 10**    Type: `page`, slug: `sheldon-ross-10`, date: `2018-08-21 10:53:36`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10/
+- [ ] **Sheldon Ross 10: Example 3.11 (The Expectation of the Sum of a Random Number of Random Variables)**    Type: `page`, slug: `sheldon-ross-10-example-3-11-the-expectation-of-the-sum-of-a-random-number-of-random-variables`, date: `2018-08-22 00:30:06`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-3-11-the-expectation-of-the-sum-of-a-random-number-of-random-variables/
+- [ ] **Sheldon Ross 10: Example 3.32 (Automobile Insurance)**    Type: `page`, slug: `sheldon-ross-10-example-3-32-automobile-insurance`, date: `2018-08-26 12:38:21`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-3-32-automobile-insurance/
+- [ ] **Sheldon Ross 10: Section 3.6.1 A List Model**    Type: `page`, slug: `sheldon-ross-10-3-6-1-a-list-model`, date: `2018-08-30 22:39:19`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-3-6-1-a-list-model/
+- [ ] **I. M. Sobol - The Monte Carlo Method - Section 05 - Simulation of a Mass Servicing System**    Type: `page`, slug: `i-m-sobol-the-monte-carlo-method-simulation-of-a-mass-servicing-system`, date: `2018-09-01 00:06:27`    \n  WordPress URL: https://fermibot.wordpress.com/i-m-sobol-the-monte-carlo-method-simulation-of-a-mass-servicing-system/
+- [ ] **I. M. Sobol - The Monte Carlo Method - Section 06 - Reliability Simulation**    Type: `page`, slug: `i-m-sobol-the-monte-carlo-method-section-06-reliability-simulation`, date: `2018-09-01 02:05:21`    \n  WordPress URL: https://fermibot.wordpress.com/i-m-sobol-the-monte-carlo-method-section-06-reliability-simulation/
+- [ ] **I. M. Sobol - The Monte Carlo Method - Section 07 - Computation of Neutron Transmission Through a Plate**    Type: `page`, slug: `i-m-sobol-the-monte-carlo-method-section-07-computation-of-neutron-transmission-through-a-plate`, date: `2018-09-01 02:23:11`    \n  WordPress URL: https://fermibot.wordpress.com/i-m-sobol-the-monte-carlo-method-section-07-computation-of-neutron-transmission-through-a-plate/
+- [ ] **I. M. Sobol - The Monte Carlo Method**    Type: `page`, slug: `the-monte-carlo-mathod-i-m-sobol`, date: `2018-09-08 16:17:12`    \n  WordPress URL: https://fermibot.wordpress.com/the-monte-carlo-mathod-i-m-sobol/
+- [ ] **I. M. Sobol - The Monte Carlo Method - Section 08 - Calculation of the Definite Integral**    Type: `page`, slug: `i-m-sobol-the-monte-carlo-method-section-08-calculation-of-the-definite-integral`, date: `2018-09-08 16:53:53`    \n  WordPress URL: https://fermibot.wordpress.com/i-m-sobol-the-monte-carlo-method-section-08-calculation-of-the-definite-integral/
+- [ ] **Sheldon Ross 10: Section 3.6.3 - Uniform Priors**    Type: `page`, slug: `sheldon-ross-10-section-3-6-3-uniform-priors`, date: `2018-09-21 01:56:39`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-section-3-6-3-uniform-priors/
+- [ ] **Sheldon Ross 10: Exercise 3.08**    Type: `page`, slug: `sheldon-ross-10-exercise-3-08`, date: `2018-10-16 01:17:08`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-08/
+- [ ] **Sheldon Ross 10: Exercise 3.13**    Type: `page`, slug: `sheldon-ross-10-exercise-3-13`, date: `2018-10-16 01:45:29`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-13/
+- [ ] **Sheldon Ross 10: Exercise 3.20**    Type: `page`, slug: `sheldon-ross-10-exercise-3-20`, date: `2018-10-18 01:40:10`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-20/
+- [ ] **Sheldon Ross 10: Exercise 3.22**    Type: `page`, slug: `sheldon-ross-10-exercise-3-22`, date: `2018-10-23 22:40:12`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-22/
+- [ ] **Sheldon Ross 10: Exercise 3.23**    Type: `page`, slug: `sheldon-ross-10-exercise-3-23`, date: `2018-10-25 02:35:34`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-23/
+- [ ] **Sheldon Ross 10: Exercise 3.26**    Type: `page`, slug: `sheldon-ross-10-exercise-3-26`, date: `2018-10-28 03:41:27`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-26/
+- [ ] **Sheldon Ross 10: Exercise 3.27**    Type: `page`, slug: `sheldon-ross-10-exercise-3-27`, date: `2018-10-28 06:56:15`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-27/
+- [ ] **Sheldon Ross 10: Exercise 3.29**    Type: `page`, slug: `sheldon-ross-10-exercise-3-29`, date: `2018-10-28 20:29:35`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-29/
+- [ ] **Sheldon Ross 10: Exercise 3.31**    Type: `page`, slug: `sheldon-ross-10-exercise-3-31`, date: `2018-11-30 02:06:40`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-31/
+- [ ] **Sheldon Ross 10: Exercise 3.34**    Type: `page`, slug: `sheldon-ross-10-exercise-3-34`, date: `2018-12-04 00:50:49`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-34/
+- [ ] **Sheldon Ross 10: Exercise 3.35**    Type: `page`, slug: `sheldon-ross-10-exercise-3-35`, date: `2018-12-05 02:01:03`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-35/
+- [ ] **Sheldon Ross 10: Exercise 3.40**    Type: `page`, slug: `sheldon-ross-10-exercise-3-40`, date: `2018-12-08 16:06:05`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-40/
+- [ ] **Sheldon Ross 10: Exercise 3.44**    Type: `page`, slug: `sheldon-ross-10-exercise-3-44`, date: `2018-12-08 22:28:22`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-44/
+- [ ] **Sheldon Ross 10: Exercise 3.45**    Type: `page`, slug: `sheldon-ross-10-exercise-3-45`, date: `2018-12-09 01:55:49`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-45/
+- [ ] **Sheldon Ross 10: Exercise 3.02**    Type: `page`, slug: `sheldon-ross-10-exercise-3-02`, date: `2018-12-09 01:59:45`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-02/
+- [ ] **Sheldon Ross 10:  Exercise 3.49**    Type: `page`, slug: `sheldon-ross-10-exercise-3-49`, date: `2018-12-12 00:42:13`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-49/
+- [ ] **Sheldon Ross 10: Exercise 3.50**    Type: `page`, slug: `sheldon-ross-10-exercise-3-50`, date: `2018-12-12 02:18:47`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-50/
+- [ ] **Sheldon Ross 10: Exercise 3.51**    Type: `page`, slug: `sheldon-ross-10-exercise-3-51`, date: `2018-12-13 02:30:28`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-51/
+- [ ] **Sheldon Ross 10: Exercise 3.53**    Type: `page`, slug: `sheldon-ross-10-exercise-3-53`, date: `2018-12-14 00:51:22`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-53/
+- [ ] **Sheldon Ross 10: Exercise 3.54**    Type: `page`, slug: `sheldon-ross-10-exercise-3-54`, date: `2018-12-14 02:01:19`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-54/
+- [ ] **Sheldon Ross 10: Exercise 3.55**    Type: `page`, slug: `sheldon-ross-10-exercise-3-55`, date: `2018-12-15 01:37:04`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-55/
+- [ ] **Sheldon Ross 10: Exercise 3.56**    Type: `page`, slug: `sheldon-ross-10-exercise-3-56`, date: `2018-12-15 02:23:03`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-56/
+- [ ] **Sheldon Ross 10: Exercise 3.57**    Type: `page`, slug: `sheldon-ross-10-exercise-3-57`, date: `2018-12-15 03:00:47`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-57/
+- [ ] **Sheldon Ross 10: Exercise 3.60**    Type: `page`, slug: `sheldon-ross-10-exercise-3-60`, date: `2018-12-15 03:15:04`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-60/
+- [ ] **Sheldon Ross 10: Exercise 3.62**    Type: `page`, slug: `sheldon-ross-10-exercise-3-62`, date: `2018-12-27 00:19:05`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-62/
+- [ ] **Sheldon Ross 10: Exercise 3.64**    Type: `page`, slug: `sheldon-ross-10-exercise-3-64`, date: `2018-12-27 02:05:30`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-64/
+- [ ] **Sheldon Ross 10: Exercise 3.73**    Type: `page`, slug: `sheldon-ross-10-exercise-3-73`, date: `2018-12-27 02:57:10`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-73/
+- [ ] **Sheldon Ross 10: Exercise 3.63**    Type: `page`, slug: `sheldon-ross-10-exercise-3-63`, date: `2018-12-28 02:33:49`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-63/
+- [ ] **Sheldon Ross 10: Exercise 3.66**    Type: `page`, slug: `sheldon-ross-10-exercise-3-66`, date: `2018-12-28 03:39:14`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-66/
+- [ ] **Sheldon Ross 10: Exercise 3.74**    Type: `page`, slug: `sheldon-ross-10-exercise-3-74`, date: `2018-12-28 17:16:50`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-74/
+- [ ] **Sheldon Ross 10: Exercise 3.90**    Type: `page`, slug: `sheldon-ross-10-exercise-3-90`, date: `2018-12-29 00:35:09`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-90/
+- [ ] **Sheldon Ross 10: Exercise 3.67**    Type: `page`, slug: `sheldon-ross-10-exercise-3-67`, date: `2018-12-29 18:37:35`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-67/
+- [ ] **Sheldon Ross 10: Exercise 3.91**    Type: `page`, slug: `sheldon-ross-10-exercise-3-91`, date: `2018-12-30 17:46:00`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-91/
+- [ ] **Sheldon Ross 10: Exercise 3.92**    Type: `page`, slug: `sheldon-ross-10-exercise-3-92`, date: `2018-12-31 15:13:29`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-3-92/
+- [ ] **Sheldon Ross 10: Example 4.01 (Forecasting the Weather)**    Type: `page`, slug: `sheldon-ross-10-example-4-01`, date: `2019-01-03 02:00:44`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-4-01/
+- [ ] **Sheldon Ross 10: Example 4.02 (A Communications System)**    Type: `page`, slug: `sheldon-ross-10-example-4-02`, date: `2019-01-03 02:08:00`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-4-02/
+- [ ] **Sheldon Ross 10: Example 4.03**    Type: `page`, slug: `sheldon-ross-10-example-4-03`, date: `2019-01-04 00:43:42`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-4-03/
+- [ ] **Sheldon Ross 10: Example 4.04 (Transforming a Process into a Markov Chain)**    Type: `page`, slug: `sheldon-ross-10-example-4-04`, date: `2019-01-04 01:20:49`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-4-04/
+- [ ] **Sheldon Ross 10: Example 4.06 (A Gambling Model)**    Type: `page`, slug: `sheldon-ross-10-example-4-06`, date: `2019-01-05 03:35:45`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-4-06/
+- [ ] **Sheldon Ross 10: Example 4.05 (A Random Walk Model)**    Type: `page`, slug: `sheldon-ross-10-example-4-05`, date: `2019-01-05 04:19:33`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-4-05/
+- [ ] **Introduction to Probability Modeling – Chapter 04**    Type: `page`, slug: `introduction-to-probability-modeling-chapter-04`, date: `2019-01-12 15:15:04`    \n  WordPress URL: https://fermibot.wordpress.com/introduction-to-probability-modeling-chapter-04/
+- [ ] **Sheldon Ross 10: Exercise 4.08**    Type: `page`, slug: `sheldon-ross-10-exercise-4-08`, date: `2019-01-18 01:48:04`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-exercise-4-08/
+- [ ] **Sheldon Ross 10: Example 4.09**    Type: `page`, slug: `sheldon-ross-10-example-4-09`, date: `2019-01-18 02:43:03`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-4-09/
+- [ ] **Sheldon Ross 10: Example 4.10**    Type: `page`, slug: `sheldon-ross-10-example-4-10`, date: `2019-01-19 04:31:11`    \n  WordPress URL: https://fermibot.wordpress.com/sheldon-ross-10-example-4-10/
+- [ ] **Kreyszig: Example 1.2**    Type: `page`, slug: `kreyszig-example-1-2`, date: `2019-02-02 03:09:15`    \n  WordPress URL: https://fermibot.wordpress.com/kreyszig-example-1-2/
+- [ ] **Engineering Mathematics**    Type: `page`, slug: `engineering-mathematics`, date: `2019-02-08 14:32:24`    \n  WordPress URL: https://fermibot.wordpress.com/engineering-mathematics/
+- [ ] **Kreyszig Engineering Mathematics**    Type: `page`, slug: `kreyszig-mathematics`, date: `2019-02-08 14:33:30`    \n  WordPress URL: https://fermibot.wordpress.com/kreyszig-mathematics/
+- [ ] **Random Variate Correlations**    Type: `page`, slug: `random-variate-correlations`, date: `2019-04-13 02:22:57`    \n  WordPress URL: https://fermibot.wordpress.com/random-variate-correlations/
+- [ ] **Lattice Paths Visualization**    Type: `page`, slug: `lattice-paths-visualization`, date: `2019-07-21 02:24:40`    \n  WordPress URL: https://fermibot.wordpress.com/lattice-paths-visualization/
+- [ ] **Kreyszig: Example 1.3**    Type: `page`, slug: `kreyszig-example-1-3`, date: `2019-07-24 11:53:46`    \n  WordPress URL: https://fermibot.wordpress.com/kreyszig-example-1-3/
+- [ ] **A fair 8 from a fair 6**    Type: `page`, slug: `a-fair-8-from-a-fair-6`, date: `2019-07-25 03:48:04`    \n  WordPress URL: https://fermibot.wordpress.com/a-fair-8-from-a-fair-6/
+- [ ] **Algorithms**    Type: `page`, slug: `algorithms`, date: `2019-10-22 22:13:03`    \n  WordPress URL: https://fermibot.wordpress.com/algorithms/
+- [ ] **Sorting Algorithms**    Type: `page`, slug: `sorting-algorithms`, date: `2019-10-27 17:58:08`    \n  WordPress URL: https://fermibot.wordpress.com/sorting-algorithms/
+- [ ] **Linear Perceptron in 2D Space**    Type: `page`, slug: `linear-perceptron-in-2d-space`, date: `2019-10-31 02:12:12`    \n  WordPress URL: https://fermibot.wordpress.com/linear-perceptron-in-2d-space/
+- [ ] **Neural Networks**    Type: `page`, slug: `neural-networks`, date: `2019-10-31 02:19:48`    \n  WordPress URL: https://fermibot.wordpress.com/neural-networks/
+- [ ] **Off the Interstate 74**    Type: `page`, slug: `off-the-interstate-74`, date: `2019-12-23 17:21:26`    \n  WordPress URL: https://fermibot.wordpress.com/off-the-interstate-74/
+- [ ] **2020-03-01 Dream**    Type: `page`, slug: `2020-03-01-dream`, date: `2020-03-01 16:23:02`    \n  WordPress URL: https://fermibot.wordpress.com/2020-03-01-dream/
+- [ ] **2020-03-21 Dream**    Type: `page`, slug: `2020-03-21-dream`, date: `2020-03-21 16:47:26`    \n  WordPress URL: https://fermibot.wordpress.com/2020-03-21-dream/
+
+## 2. Already Matched (WordPress → HTML path)
+
+- [x] **About** → `pages/About/About.html`    (slug: `about`, date: `2012-10-26 14:09:34`)
+- [x] **Evolution** → `pages/evolution/evolution.html`    (slug: `evolution`, date: `2016-06-09 01:13:08`)
+- [x] **Kreyszig Chapter 01** → `pages/mathematics/kreyszig_chapter_01.html`    (slug: `kreyszig-chapter-01`, date: `2019-02-08 14:40:50`)
+
+## 3. Ambiguous Matches (same slug, multiple HTML candidates)
+

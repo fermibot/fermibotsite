@@ -1,0 +1,120 @@
+/* Minimal CSS for Pearson Correlation page.
+   The site uses bootstrap + ../../../index.css for most styling. */
+
+/* Keep plot wrapper tidy */
+.plot-wrapper {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+/* Ensure sliders span the available width */
+input[type="range"] {
+    width: 100%;
+}
+
+/* Code snippets: subtle gray background, no extra padding */
+.code-block {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.85rem;
+    background: transparent;
+    color: inherit;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    overflow-x: auto;
+}
+
+.code-block pre {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: 0;
+}
+
+.code-block code {
+    background: transparent;
+    padding: 0;
+}
+
+/* Highlight.js default adds background+padding to .hljs.
+   Keep the gray background but remove the padding so it stays compact. */
+.code-block .hljs {
+    background: #F0F0F0 !important;
+    padding: 0 !important;
+}
+
+/* Extra hard reset to avoid any remaining spacing/bar effects */
+.code-block .hljs,
+.code-block pre,
+.code-block code {
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+.code-block pre {
+    display: block;
+    line-height: 1.35;
+}
+
+/* Highlight.js default adds a gray background + padding to .hljs.
+   For this page we want plain code blocks, so neutralize it inside .code-block only. */
+
+.plot-wrapper svg {
+    display: block;
+    margin: 0 auto;
+}
+
+.plot-border {
+    stroke: #ccc;
+    stroke-width: 1px;
+    fill: none;
+}
+
+.grid line {
+    stroke: #e9ecef;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+}
+
+.axis path,
+.axis line {
+    stroke: #adb5bd;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-size: 12px;
+    fill: #495057;
+}
+
+.data-point {
+    stroke: rgba(0, 0, 0, 0.35);
+    stroke-width: 0.5px;
+}
+
+/* Minor gridlines (dotted, more transparent) */
+.grid .v-grid-minor,
+.grid .h-grid-minor {
+    stroke: rgba(233, 236, 239, 0.65);
+    stroke-width: 1px;
+    stroke-dasharray: 2,3;
+    shape-rendering: crispEdges;
+}
+
+/* Major gridlines (solid, slightly stronger) */
+.grid .v-grid,
+.grid .h-grid {
+    stroke: rgba(233, 236, 239, 0.95);
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+}
+
+/* Label background for stats box */
+.label-background {
+    fill: white;
+    fill-opacity: 0.85;
+    stroke: #ddd;
+    stroke-width: 1px;
+    /* rx/ry are SVG attributes, not CSS properties */
+    border-radius: 4px;
+}

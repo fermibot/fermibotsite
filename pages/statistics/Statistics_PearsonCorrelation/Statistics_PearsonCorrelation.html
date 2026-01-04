@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Statistics | Pearson Correlation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
+
+    <!-- Site-wide CSS -->
+    <link rel="stylesheet" href="../../../index.css">
+
+    <!-- Minimal page-specific CSS (only what isn't covered by Bootstrap/index.css) -->
+    <link rel="stylesheet" href="Statistics_PearsonCorrelation.css">
+
+    <!-- D3.js for visualization -->
+    <script src="../../../d3/d3.v7.min.js"></script>
+
+    <!-- MathJax for LaTeX -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="../../../js/mathjax/MathJax-4.1.0/tex-mml-chtml.js"></script>
+
+    <!-- Highlight.js for code syntax -->
+    <link rel="stylesheet" href="../../../js/highlight/styles/default.css">
+    <script src="../../../js/highlight/highlight.pack.js"></script>
+
+    <!-- Common scripts -->
+    <script src="../../../js/common.js"></script>
+    <script src="../../../automation/loadObjects.js"></script>
+    <script>
+        // Load header and footer
+        loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html");
+        // Initialize highlight.js
+        hljs.initHighlightingOnLoad();
+    </script>
+</head>
+<body class="container-lg card p-5">
+
+<div id="header_placeholder"></div>
+
+<div class="jumbotron-fluid text-center p-2">
+    <h1>Statistics | Pearson Correlation</h1>
+</div>
+
+<!-- Objective-style intro, similar to BinaryClassificationMetrics -->
+<div class="container-md">
+    <div class="">
+        <br><h5>Objective</h5>
+        <p class="small">
+            This page visualizes correlation and covariance using noisy points on a circle. Points are sampled around
+            a line with different noise levels <code>st</code> and rotation angles <code>r</code>, and for each
+            configuration we compute the <strong>correlation</strong> and <strong>covariance</strong> of the
+            x- and y-coordinates.
+        </p>
+        <p class="small mb-1">
+            The interactive D3.js visualization below lets you explore how the correlation changes as you vary the
+            noise and the angle:
+        </p>
+        <ul class="small mb-1">
+            <li>We sample points on a line at angle <code>r</code> with Gaussian noise whose scale is controlled by
+                <code>st</code> (via the "Noise" slider).</li>
+            <li>We compute the sample correlation and covariance directly in JavaScript.</li>
+            <li>We show the unit circle background to give a sense of scale.</li>
+        </ul>
+        <p class="small fw-semibold mb-1">Try:</p>
+        <ul class="small mb-0">
+            <li>Small noise → points hug a line → |correlation| close to 1.</li>
+            <li>Large noise → cloud becomes roundish → correlation moves toward 0.</li>
+            <li>Angles near 0 or \(\pi\) → strong positive/negative correlation.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Visualization section, styled like metrics-container -->
+<div class="container-md my-4">
+    <div class="viz-container pearson-plot">
+        <h2 class="h5 mb-3">Interactive Correlation Explorer</h2>
+        <p class="small text-muted mb-3">Use the sliders to adjust the noise level and line angle. Watch how the
+            scatter of points and the correlation value respond.</p>
+
+        <!-- Controls: one line (Noise + Angle) -->
+        <div class="row align-items-end gy-2 mb-2">
+            <div class="col-md-6">
+                <label for="noiseSlider" class="form-label mb-0">
+                    <strong>Noise (1/st)</strong> <span class="text-muted">(</span><span id="noise-value" class="text-muted">1.0</span><span class="text-muted">)</span>
+                </label>
+                <div class="small text-muted">Higher noise → more spread</div>
+                <input type="range" id="noiseSlider" class="form-range" min="0.1" max="5" step="0.1" value="1.0">
+            </div>
+            <div class="col-md-6">
+                <label for="angleSlider" class="form-label mb-0">
+                    <strong>Angle r (radians)</strong> <span class="text-muted">(</span><span id="angle-value" class="text-muted">0.79</span><span class="text-muted">)</span>
+                </label>
+                <div class="small text-muted">r = 0 → horiz, r = \(\pi/2\) → vert</div>
+                <input type="range" id="angleSlider" class="form-range" min="0" max="3.14159" step="0.01" value="0.7854">
+            </div>
+        </div>
+
+        <div id="pearsonPlotContainer" class="mb-1"></div>
+    </div>
+</div>
+
+<!-- Code and explanation sections -->
+<div class="container-md mb-5">
+    <section class="mb-5">
+        <h2 class="mb-3">Original Code Snippet</h2>
+        <p class="small text-muted mb-3">
+            The snippet below shows one way to generate noisy points on a circle and compute correlation and covariance
+            in a notebook environment. The browser version on this page follows the same basic idea.
+        </p>
+        <div class="code-block"><pre><code>(* Observation 01: varying noise st for fixed angle r = π/4 *)
+ob1 = Table[
+   im = 550;
+   s = .01;
+   r = π/4;
+   a = Table[n Sin[r] + RandomReal[{-1/st, 1/st}], {n, -14, 14, s}];
+   b = Table[n Cos[r] + RandomReal[{-1/st, 1/st}], {n, -14, 14, s}];
+   Show[{
+     ListPlot[Table[{a[[n]], b[[n]]}, {n, 1, Length[a]}],
+      AspectRatio -> 1,
+      PlotStyle -> {PointSize[0.001], Darker[Green]},
+      ImageSize -> 700,
+      PlotRange -> {{-15, 15}, {-15, 15}}],
+     Graphics[{Circle[{0, 0}, 14]}]
+   ], {st, 0.1, 5, 0.01}];
+Export["Observation_01.gif", ob1, ImageSize -> 700]
+</code></pre></div>
+    </section>
+
+    <section class="mb-5">
+        <h2 class="mb-3">How the D3.js Version Works</h2>
+        <ol class="small">
+            <li>We generate a grid of base points along a line: <code>x = n sin(r)</code>, <code>y = n cos(r)</code>.</li>
+            <li>We add zero-mean noise scaled by <code>1/st</code> to x and y.</li>
+            <li>We compute sample correlation and covariance in JavaScript:</li>
+        </ol>
+        <div class="code-block"><pre><code>function pearsonCorrelation(xs, ys) {
+  const n = xs.length;
+  const meanX = d3.mean(xs);
+  const meanY = d3.mean(ys);
+  let num = 0, denomX = 0, denomY = 0;
+  for (let i = 0; i &lt; n; i++) {
+    const dx = xs[i] - meanX;
+    const dy = ys[i] - meanY;
+    num += dx * dy;
+    denomX += dx * dx;
+    denomY += dy * dy;
+  }
+  return num / Math.sqrt(denomX * denomY);
+}
+
+function sampleCovariance(xs, ys) {
+  const n = xs.length;
+  const meanX = d3.mean(xs);
+  const meanY = d3.mean(ys);
+  let num = 0;
+  for (let i = 0; i &lt; n; i++) {
+    num += (xs[i] - meanX) * (ys[i] - meanY);
+  }
+  return num / (n - 1);
+}
+</code></pre></div>
+        <p class="small text-muted mt-2 mb-0">
+            The visualization updates the scatter plot, correlation, and covariance values in real time when you move
+            the sliders.
+        </p>
+    </section>
+</div>
+
+
+<div class="p-5"></div>
+
+<div id="footer_placeholder"></div>
+
+<!-- Pearson Correlation Visualization Script -->
+<script src="Statistics_PearsonCorrelation.js"></script>
+
+</body>
+</html>
+

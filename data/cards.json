@@ -346,6 +346,17 @@
           "url": "pages/LifeSkills/LifeSkills_SubtleArt/LifeSkills_SubtleArt.html"
         }
       ]
+    },
+    {
+      "category": "Statistics | Correlation",
+      "icon": "pages/Images/Statistics_Correlation_IconImage.png",
+      "title": "Statistics | Correlation",
+      "links": [
+        {
+          "text": "Statistics | Pearson Correlation | Noisy Circle Explorer",
+          "url": "pages/statistics/Statistics_PearsonCorrelation/Statistics_PearsonCorrelation.html"
+        }
+      ]
     }
   ]
 }
