@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Global Seal Distribution - Interactive World Map | Biology</title>
+    <meta name="description" content="Interactive world map showing the geographic distribution of all seal species including true seals, sea lions, fur seals, and walruses. Data from IUCN, NOAA, and marine mammal databases.">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
+
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="../../../index.css">
+
+    <!-- Custom styles -->
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #0083B0 0%, #00B4DB 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        [data-bs-theme="dark"] .hero-section {
+            background: linear-gradient(135deg, #005577 0%, #007799 100%);
+        }
+
+        .seal-map {
+            border: 2px solid var(--bs-border-color);
+            border-radius: 10px;
+            background: #f0f8ff;
+        }
+
+        [data-bs-theme="dark"] .seal-map {
+            background: #1a2332;
+        }
+
+        .country {
+            transition: fill 0.3s ease;
+        }
+
+        .country:hover {
+            fill: #c0c0c0;
+        }
+
+        /* BC Map specific styles */
+        .bc-land-layer path {
+            fill: #b8d4b8;
+            stroke: #7a9d7a;
+            stroke-width: 0.5;
+        }
+
+        [data-bs-theme="dark"] .bc-land-layer path {
+            fill: #3a5a3a;
+            stroke: #5a7a5a;
+        }
+
+        .ocean-bg {
+            fill: #b3d9ff;
+        }
+
+        [data-bs-theme="dark"] .ocean-bg {
+            fill: #1a2f4a;
+        }
+
+        .graticule {
+            stroke: #ccc;
+            stroke-opacity: 0.5;
+            stroke-width: 0.3;
+        }
+
+        [data-bs-theme="dark"] .graticule {
+            stroke: #555;
+            stroke-opacity: 0.3;
+        }
+
+        /* Zoom controls */
+        .zoom-controls .zoom-btn rect {
+            transition: all 0.2s ease;
+        }
+
+        .zoom-controls .zoom-btn:hover rect {
+            fill: #f0f0f0;
+            stroke: #333;
+        }
+
+        [data-bs-theme="dark"] .zoom-controls .zoom-btn rect {
+            fill: #2a2a2a;
+            stroke: #666;
+        }
+
+        [data-bs-theme="dark"] .zoom-controls .zoom-btn:hover rect {
+            fill: #3a3a3a;
+            stroke: #888;
+        }
+
+        [data-bs-theme="dark"] .zoom-controls .zoom-btn text {
+            fill: #ddd !important;
+        }
+
+        /* Leaflet map container */
+        #bcHarbourSealMap {
+            height: 600px;
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        /* Leaflet popup customization */
+        .leaflet-popup-content-wrapper {
+            border-radius: 8px;
+        }
+
+        .seal-popup h6 {
+            margin: 0 0 8px 0;
+            color: #0083B0;
+            font-weight: bold;
+        }
+
+        .seal-popup .popup-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+
+        .seal-popup .popup-label {
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .distribution {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .map-tooltip {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.95);
+            border: 2px solid #0083B0;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 0.9rem;
+            pointer-events: none;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            max-width: 300px;
+        }
+
+        [data-bs-theme="dark"] .map-tooltip {
+            background-color: rgba(30, 40, 50, 0.95);
+            color: white;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .stat-card {
+            border-left: 4px solid #0083B0;
+            transition: transform 0.2s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .family-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0.25rem;
+        }
+
+        .phocidae { background: #28a745; color: white; }
+        .otariidae { background: #ffc107; color: black; }
+        .odobenidae { background: #dc3545; color: white; }
+
+        .controls-panel {
+            background: var(--bs-body-bg);
+            border: 1px solid var(--bs-border-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .species-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .species-card {
+            border-left: 3px solid;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .species-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        #speciesInfo {
+            position: sticky;
+            top: 20px;
+        }
+    </style>
+
+    <!-- Bootstrap JS -->
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Site automation -->
+    <script src="../../../automation/loadObjects.js"></script>
+
+    <!-- Color modes (dark/light theme) -->
+    <script src="../../../bootstrap/assets/color-modes.js"></script>
+
+    <!-- D3.js for map visualization -->
+    <script src="../../../d3/d3.v7.min.js"></script>
+
+    <!-- Leaflet.js for interactive maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Seal data and map -->
+    <script src="seal_distribution_data.js"></script>
+    <script src="seal_map.js"></script>
+    <!-- BC harbour seal map (CSV-based) -->
+    <script src="bc_harbour_seal_map.js"></script>
+</head>
+<body class="container-lg container-fluid p-4">
+
+<!-- Header -->
+<div id="header_placeholder"></div>
+
+<!-- Hero Section -->
+<div class="hero-section text-center">
+    <h1 class="display-4 mb-3">🦭 Global Seal Distribution</h1>
+    <p class="lead mb-4">Interactive World Map of Pinnipeds: Seals, Sea Lions, Fur Seals & Walruses</p>
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <span class="badge bg-light text-dark fs-6">33 Species Mapped</span>
+        <span class="badge bg-light text-dark fs-6">3 Families</span>
+        <span class="badge bg-light text-dark fs-6">25M+ Population</span>
+        <span class="badge bg-light text-dark fs-6">Data: IUCN, NOAA</span>
+    </div>
+</div>
+
+<!-- Introduction -->
+<section class="mb-5">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <h2 class="mb-4">🌍 About This Map</h2>
+        <p class="lead">
+            Explore the global distribution of all seal species (Pinnipeds) across Earth's oceans.
+            This interactive map combines data from the <strong>IUCN Red List</strong>,
+            <strong>NOAA Marine Mammal Database</strong>, and research publications to show where
+            these magnificent marine mammals live, from the Arctic to Antarctic regions.
+        </p>
+
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="text-center">
+                    <h3 class="text-success">🦭 True Seals</h3>
+                    <p class="text-muted">Phocidae - 18 species</p>
+                    <p class="small">Earless seals that use their hind flippers for swimming. Includes harbor seals, elephant seals, and Antarctic species.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <h3 class="text-warning">🦭 Eared Seals</h3>
+                    <p class="text-muted">Otariidae - 14 species</p>
+                    <p class="small">Sea lions and fur seals with external ear flaps. Can rotate their hind flippers to walk on land.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <h3 class="text-danger">🦭 Walrus</h3>
+                    <p class="text-muted">Odobenidae - 2 subspecies</p>
+                    <p class="small">Distinctive tusked pinnipeds found in Arctic seas. Largest in their family.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Statistics Dashboard -->
+<section class="mb-5">
+    <h2 class="mb-4">📊 Global Statistics</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card stat-card h-100">
+                <div class="card-body text-center">
+                    <h2 class="text-primary" id="totalSpecies">33</h2>
+                    <p class="text-muted mb-0">Total Species Mapped</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card stat-card h-100">
+                <div class="card-body text-center">
+                    <h2 class="text-success" id="totalPopulation">25,000,000+</h2>
+                    <p class="text-muted mb-0">Estimated Global Population</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card stat-card h-100">
+                <div class="card-body text-center">
+                    <h2 class="text-danger" id="endangeredCount">7</h2>
+                    <p class="text-muted mb-0">Endangered/Vulnerable Species</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Controls -->
+<section class="mb-5">
+    <div class="controls-panel">
+        <h3 class="mb-3">🎮 Map Controls</h3>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label for="familyFilter" class="form-label"><strong>Filter by Family:</strong></label>
+                <select class="form-select" id="familyFilter">
+                    <option value="all">All Families</option>
+                    <option value="Phocidae">True Seals (Phocidae)</option>
+                    <option value="Otariidae">Eared Seals (Otariidae)</option>
+                    <option value="Odobenidae">Walrus (Odobenidae)</option>
+                </select>
+            </div>
+            <div class="col-md-5">
+                <label for="speciesSearch" class="form-label"><strong>Search Species:</strong></label>
+                <input type="text" class="form-control" id="speciesSearch" placeholder="Type species name...">
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">&nbsp;</label>
+                <button class="btn btn-primary w-100" id="resetMap">🔄 Reset Map</button>
+            </div>
+        </div>
+
+        <div class="alert alert-info mt-3 mb-0">
+            <strong>💡 How to use:</strong> Hover over colored circles to see species details.
+            Click to zoom to that species' range. Use mouse wheel to zoom, drag to pan the map.
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Map -->
+<section class="mb-5">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">🗺️ Interactive Global Distribution Map</h3>
+        </div>
+        <div class="card-body p-0">
+            <div id="loadingIndicator" class="p-3 text-center text-muted small">
+                Loading world map and seal data...
+            </div>
+            <div id="mapContainer"></div>
+        </div>
+    </div>
+</section>
+
+<!-- NEW: BC Harbour Seal Map Section -->
+<section class="mb-5">
+    <h2 class="mb-3">🏝️ Harbour Seal Haul-out Sites - British Columbia Coast</h2>
+    <p class="text-muted mb-3">
+        This map uses detailed survey data of harbour seal haul-out locations along the British Columbia coast
+        (Strait of Georgia region). Circle colour and size reflect the number of seals counted at each complex
+        for a selected year.
+    </p>
+    <div class="row g-3 align-items-end mb-3">
+        <div class="col-md-3">
+            <label for="bcYearSelect" class="form-label"><strong>Select Year:</strong></label>
+            <select id="bcYearSelect" class="form-select"></select>
+        </div>
+        <div class="col-md-3">
+            <label for="bcRegionSelect" class="form-label"><strong>Filter by Region:</strong></label>
+            <select id="bcRegionSelect" class="form-select">
+                <option value="all">All Regions</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="bcMapLayer" class="form-label"><strong>Map Layer:</strong></label>
+            <select id="bcMapLayer" class="form-select">
+                <option value="osm">OpenStreetMap</option>
+                <option value="satellite">Satellite</option>
+                <option value="topo">Topographic</option>
+            </select>
+        </div>
+        <div class="col-md-3 text-md-end">
+            <button id="bcReset" class="btn btn-outline-primary mb-2 mb-md-0">🔄 Reset View</button>
+        </div>
+    </div>
+    <div class="alert alert-info mb-3">
+        <strong>🗺️ Interactive Map:</strong>
+        <strong>Drag</strong> to pan •
+        <strong>Scroll</strong> to zoom •
+        <strong>Click circles</strong> to see seal counts •
+        <strong>Switch layers</strong> to see satellite/topo views •
+        Map shows real geography: coastlines, islands, cities, and waterways
+    </div>
+    <div class="card">
+        <div class="card-body p-0">
+            <div id="bcHarbourSealMap"></div>
+        </div>
+    </div>
+    <div class="small text-muted mt-2">
+        Data source: Harbour seal counts and haul-out locations along the BC coast (CSV file in this repository).
+    </div>
+</section>
+
+<!-- Legend and Species Info -->
+<section class="mb-5">
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0">🎨 Conservation Status Legend</h5>
+                </div>
+                <div class="card-body">
+                    <div id="legend"></div>
+                    <div class="mt-3">
+                        <p class="small text-muted mb-2"><strong>Circle Size:</strong> Represents population density in region</p>
+                        <p class="small text-muted mb-0"><strong>Data Sources:</strong> IUCN Red List, NOAA, Marine Mammal databases</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card h-100">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">📋 Species Information</h5>
+                </div>
+                <div class="card-body">
+                    <div id="speciesInfo" style="display: none;">
+                        <!-- Species details will be populated by JavaScript -->
+                    </div>
+                    <div id="defaultInfo">
+                        <p class="text-muted">Click on any distribution point on the map to view detailed species information, or use the search and filter controls above.</p>
+                        <h6 class="mt-3">Quick Facts:</h6>
+                        <ul>
+                            <li><strong>Crabeater Seal</strong> is the most numerous seal species (~15 million)</li>
+                            <li><strong>Mediterranean Monk Seal</strong> is critically endangered (only ~700 remaining)</li>
+                            <li><strong>Baikal Seal</strong> is the only exclusively freshwater seal species</li>
+                            <li><strong>Elephant Seals</strong> are the largest pinnipeds (up to 5m long)</li>
+                            <li><strong>Leopard Seals</strong> are apex predators that hunt penguins</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Species Directory -->
+<section class="mb-5">
+    <h2 class="mb-4">📚 Complete Species Directory</h2>
+
+    <!-- True Seals -->
+    <div class="card mb-4">
+        <div class="card-header" style="background: #28a745; color: white;">
+            <h4 class="mb-0">🦭 True Seals (Phocidae) - 18 Species</h4>
+        </div>
+        <div class="card-body">
+            <p class="lead">Earless seals that cannot rotate their hind flippers. They move on land by wriggling.
+            Excellent swimmers using their rear flippers for propulsion.</p>
+            <div class="species-grid">
+                <div class="species-card card" style="border-color: #28a745;">
+                    <div class="card-body">
+                        <h6>Harbor Seal</h6>
+                        <p class="small mb-1"><em>Phoca vitulina</em></p>
+                        <p class="small text-success mb-1">Population: 500,000</p>
+                        <p class="small mb-0">North Atlantic & Pacific coasts</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #28a745;">
+                    <div class="card-body">
+                        <h6>Grey Seal</h6>
+                        <p class="small mb-1"><em>Halichoerus grypus</em></p>
+                        <p class="small text-success mb-1">Population: 400,000</p>
+                        <p class="small mb-0">North Atlantic</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #28a745;">
+                    <div class="card-body">
+                        <h6>Harp Seal</h6>
+                        <p class="small mb-1"><em>Pagophilus groenlandicus</em></p>
+                        <p class="small text-success mb-1">Population: 7,500,000</p>
+                        <p class="small mb-0">Arctic & North Atlantic</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #28a745;">
+                    <div class="card-body">
+                        <h6>Ringed Seal</h6>
+                        <p class="small mb-1"><em>Pusa hispida</em></p>
+                        <p class="small text-success mb-1">Population: 2,000,000</p>
+                        <p class="small mb-0">Circumpolar Arctic</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #28a745;">
+                    <div class="card-body">
+                        <h6>Bearded Seal</h6>
+                        <p class="small mb-1"><em>Erignathus barbatus</em></p>
+                        <p class="small text-success mb-1">Population: 500,000</p>
+                        <p class="small mb-0">Arctic Ocean</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #ffc107;">
+                    <div class="card-body">
+                        <h6>Hooded Seal</h6>
+                        <p class="small mb-1"><em>Cystophora cristata</em></p>
+                        <p class="small text-warning mb-1">Population: 650,000</p>
+                        <p class="small mb-0">North Atlantic</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #28a745;">
+                    <div class="card-body">
+                        <h6>Weddell Seal</h6>
+                        <p class="small mb-1"><em>Leptonychotes weddellii</em></p>
+                        <p class="small text-success mb-1">Population: 800,000</p>
+                        <p class="small mb-0">Antarctic coast</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #28a745;">
+                    <div class="card-body">
+                        <h6>Leopard Seal</h6>
+                        <p class="small mb-1"><em>Hydrurga leptonyx</em></p>
+                        <p class="small text-success mb-1">Population: 35,000</p>
+                        <p class="small mb-0">Antarctic waters</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #28a745;">
+                    <div class="card-body">
+                        <h6>Crabeater Seal</h6>
+                        <p class="small mb-1"><em>Lobodon carcinophaga</em></p>
+                        <p class="small text-success mb-1">Population: 15,000,000</p>
+                        <p class="small mb-0">Antarctic pack ice</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #28a745;">
+                    <div class="card-body">
+                        <h6>Ross Seal</h6>
+                        <p class="small mb-1"><em>Ommatophoca rossii</em></p>
+                        <p class="small text-success mb-1">Population: 130,000</p>
+                        <p class="small mb-0">Deep Antarctic pack ice</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #28a745;">
+                    <div class="card-body">
+                        <h6>Southern Elephant Seal</h6>
+                        <p class="small mb-1"><em>Mirounga leonina</em></p>
+                        <p class="small text-success mb-1">Population: 650,000</p>
+                        <p class="small mb-0">Subantarctic islands</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #28a745;">
+                    <div class="card-body">
+                        <h6>Northern Elephant Seal</h6>
+                        <p class="small mb-1"><em>Mirounga angustirostris</em></p>
+                        <p class="small text-success mb-1">Population: 210,000</p>
+                        <p class="small mb-0">California & Mexico</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #dc3545;">
+                    <div class="card-body">
+                        <h6>Mediterranean Monk Seal</h6>
+                        <p class="small mb-1"><em>Monachus monachus</em></p>
+                        <p class="small text-danger mb-1">Population: 700</p>
+                        <p class="small mb-0">Mediterranean & NW Africa</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #dc3545;">
+                    <div class="card-body">
+                        <h6>Hawaiian Monk Seal</h6>
+                        <p class="small mb-1"><em>Neomonachus schauinslandi</em></p>
+                        <p class="small text-danger mb-1">Population: 1,400</p>
+                        <p class="small mb-0">Hawaiian Islands</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #dc3545;">
+                    <div class="card-body">
+                        <h6>Caspian Seal</h6>
+                        <p class="small mb-1"><em>Pusa caspica</em></p>
+                        <p class="small text-danger mb-1">Population: 68,000</p>
+                        <p class="small mb-0">Caspian Sea</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #28a745;">
+                    <div class="card-body">
+                        <h6>Baikal Seal (Nerpa)</h6>
+                        <p class="small mb-1"><em>Pusa sibirica</em></p>
+                        <p class="small text-success mb-1">Population: 80,000</p>
+                        <p class="small mb-0">Lake Baikal, Russia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Eared Seals -->
+    <div class="card mb-4">
+        <div class="card-header" style="background: #ffc107; color: black;">
+            <h4 class="mb-0">🦭 Eared Seals (Otariidae) - 14 Species</h4>
+        </div>
+        <div class="card-body">
+            <p class="lead">Sea lions and fur seals with external ear flaps. Can rotate hind flippers to walk on land.
+            More agile on land than true seals.</p>
+            <div class="species-grid">
+                <div class="species-card card" style="border-color: #ffc107;">
+                    <div class="card-body">
+                        <h6>California Sea Lion</h6>
+                        <p class="small mb-1"><em>Zalophus californianus</em></p>
+                        <p class="small text-success mb-1">Population: 300,000</p>
+                        <p class="small mb-0">Pacific coast of North America</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #ffc107;">
+                    <div class="card-body">
+                        <h6>Steller Sea Lion</h6>
+                        <p class="small mb-1"><em>Eumetopias jubatus</em></p>
+                        <p class="small text-warning mb-1">Population: 140,000</p>
+                        <p class="small mb-0">North Pacific</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #dc3545;">
+                    <div class="card-body">
+                        <h6>Australian Sea Lion</h6>
+                        <p class="small mb-1"><em>Neophoca cinerea</em></p>
+                        <p class="small text-danger mb-1">Population: 12,000</p>
+                        <p class="small mb-0">Southern Australia</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #ffc107;">
+                    <div class="card-body">
+                        <h6>South American Sea Lion</h6>
+                        <p class="small mb-1"><em>Otaria flavescens</em></p>
+                        <p class="small text-success mb-1">Population: 265,000</p>
+                        <p class="small mb-0">South America coast</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #dc3545;">
+                    <div class="card-body">
+                        <h6>New Zealand Sea Lion</h6>
+                        <p class="small mb-1"><em>Phocarctos hookeri</em></p>
+                        <p class="small text-danger mb-1">Population: 10,000</p>
+                        <p class="small mb-0">New Zealand subantarctic</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #ffc107;">
+                    <div class="card-body">
+                        <h6>Northern Fur Seal</h6>
+                        <p class="small mb-1"><em>Callorhinus ursinus</em></p>
+                        <p class="small text-warning mb-1">Population: 1,100,000</p>
+                        <p class="small mb-0">North Pacific</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #ffc107;">
+                    <div class="card-body">
+                        <h6>Antarctic Fur Seal</h6>
+                        <p class="small mb-1"><em>Arctocephalus gazella</em></p>
+                        <p class="small text-success mb-1">Population: 2,000,000</p>
+                        <p class="small mb-0">Subantarctic islands</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #dc3545;">
+                    <div class="card-body">
+                        <h6>Galápagos Fur Seal</h6>
+                        <p class="small mb-1"><em>Arctocephalus galapagoensis</em></p>
+                        <p class="small text-danger mb-1">Population: 10,000</p>
+                        <p class="small mb-0">Galápagos Islands</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #ffc107;">
+                    <div class="card-body">
+                        <h6>Guadalupe Fur Seal</h6>
+                        <p class="small mb-1"><em>Arctocephalus townsendi</em></p>
+                        <p class="small text-success mb-1">Population: 20,000</p>
+                        <p class="small mb-0">Guadalupe Island, Mexico</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #ffc107;">
+                    <div class="card-body">
+                        <h6>South African Fur Seal</h6>
+                        <p class="small mb-1"><em>Arctocephalus pusillus</em></p>
+                        <p class="small text-success mb-1">Population: 2,000,000</p>
+                        <p class="small mb-0">Southern Africa & Australia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Walrus -->
+    <div class="card mb-4">
+        <div class="card-header" style="background: #dc3545; color: white;">
+            <h4 class="mb-0">🦭 Walrus (Odobenidae) - 2 Subspecies</h4>
+        </div>
+        <div class="card-body">
+            <p class="lead">Large Arctic pinnipeds with distinctive tusks. Can weigh up to 1,700 kg.
+            Use tusks for hauling out on ice and as weapons.</p>
+            <div class="species-grid">
+                <div class="species-card card" style="border-color: #dc3545;">
+                    <div class="card-body">
+                        <h6>Atlantic Walrus</h6>
+                        <p class="small mb-1"><em>Odobenus rosmarus rosmarus</em></p>
+                        <p class="small text-warning mb-1">Population: 25,000</p>
+                        <p class="small mb-0">North Atlantic & Arctic</p>
+                    </div>
+                </div>
+                <div class="species-card card" style="border-color: #dc3545;">
+                    <div class="card-body">
+                        <h6>Pacific Walrus</h6>
+                        <p class="small mb-1"><em>Odobenus rosmarus divergens</em></p>
+                        <p class="small text-warning mb-1">Population: 200,000</p>
+                        <p class="small mb-0">Bering & Chukchi Seas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Conservation Section -->
+<section class="mb-5">
+    <div class="card border-danger">
+        <div class="card-header bg-danger text-white">
+            <h3 class="mb-0">⚠️ Conservation Concerns</h3>
+        </div>
+        <div class="card-body">
+            <h5>Endangered Species</h5>
+            <ul>
+                <li><strong>Mediterranean Monk Seal:</strong> Only ~700 individuals remain. Threatened by habitat loss, fishing nets, and disturbance.</li>
+                <li><strong>Hawaiian Monk Seal:</strong> ~1,400 individuals. Recovery efforts ongoing in Hawaiian archipelago.</li>
+                <li><strong>Caspian Seal:</strong> Population declined 90% since 1900 due to hunting and pollution.</li>
+                <li><strong>Australian Sea Lion:</strong> Declining due to fisheries bycatch and habitat disturbance.</li>
+                <li><strong>Galápagos Fur Seal:</strong> Vulnerable to El Niño events and climate change.</li>
+            </ul>
+
+            <h5 class="mt-4">Major Threats</h5>
+            <div class="row">
+                <div class="col-md-4">
+                    <h6>🌡️ Climate Change</h6>
+                    <p class="small">Loss of sea ice affects Arctic species. Temperature changes impact prey availability.</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>🎣 Fisheries Bycatch</h6>
+                    <p class="small">Seals accidentally caught in fishing nets. Competition for fish resources.</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>🏭 Pollution</h6>
+                    <p class="small">Marine pollution, oil spills, and toxic chemicals affect populations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Data Sources -->
+<section class="mb-5">
+    <div class="card">
+        <div class="card-header bg-info text-white">
+            <h4 class="mb-0">📚 Data Sources & References</h4>
+        </div>
+        <div class="card-body">
+            <h6>Primary Data Sources:</h6>
+            <ul>
+                <li><strong>IUCN Red List of Threatened Species</strong> - Conservation status and population estimates</li>
+                <li><strong>NOAA Marine Mammal Database</strong> - Distribution data for North American species</li>
+                <li><strong>Society for Marine Mammalogy</strong> - Taxonomic information and research publications</li>
+                <li><strong>Antarctic Marine Living Resources</strong> - Southern Ocean species data</li>
+                <li><strong>Arctic Council</strong> - Circumpolar Arctic seal populations</li>
+            </ul>
+
+            <h6 class="mt-3">Additional References:</h6>
+            <ul>
+                <li>Jefferson et al. (2015). <em>Marine Mammals of the World: A Comprehensive Guide</em></li>
+                <li>Kovacs, K.M. (2021). Pinnipeds in Encyclopedia of Marine Mammals</li>
+                <li>Regional fisheries and marine conservation databases</li>
+            </ul>
+
+            <p class="text-muted small mt-3">
+                <strong>Note:</strong> Population estimates are approximate and based on most recent available data (2020-2024).
+                Conservation statuses are from IUCN assessments. Distribution points represent known breeding colonies,
+                haul-out sites, and foraging areas.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<div id="footer_placeholder"></div>
+
+<!-- Theme Icons Placeholder -->
+<div id="theme_icons_placeholder"></div>
+
+<!-- Footer Scripts -->
+<script>styleImageIcons("image-section-icon")</script>
+<script>loadThemeIcons("../../../automation/theme_icons_svg.html")</script>
+
+</body>
+</html>
+
