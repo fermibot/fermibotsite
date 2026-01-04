@@ -292,41 +292,42 @@
 
 .info-card {
     position: fixed;
-    z-index: 9999;
-    background-color: var(--viz-card-bg);
-    border: 2px solid var(--viz-border);
-    border-radius: 12px;
-    box-shadow: 0 12px 36px var(--viz-card-shadow);
     width: 320px;
     max-width: 90vw;
+    background-color: var(--viz-card-bg);
+    border: 1px solid var(--viz-border);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px var(--viz-card-shadow);
+    z-index: 1000;
     opacity: 0;
     pointer-events: none;
-    transform: scale(0.95);
-    transition: opacity var(--transition-normal), transform var(--transition-normal);
+    transform: translateY(10px);
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
 }
 
 .info-card.visible {
     opacity: 1;
-    pointer-events: all;
-    transform: scale(1);
+    pointer-events: auto;
+    transform: translateY(0);
 }
 
+/* Backdrop overlay for info card */
 .info-card-backdrop {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: 9998;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
     opacity: 0;
     pointer-events: none;
-    transition: opacity var(--transition-normal);
+    transition: opacity var(--transition-fast);
 }
 
 .info-card-backdrop.visible {
     opacity: 1;
-    pointer-events: all;
+    pointer-events: auto;
 }
 
 .info-card-header {
@@ -338,7 +339,7 @@
 }
 
 .info-card-icon {
-    font-size: 2rem;
+    font-size: 1.5rem;
     flex-shrink: 0;
 }
 
@@ -348,8 +349,8 @@
 }
 
 .info-card-chapter {
-    font-size: 1rem;
-    font-weight: 700;
+    font-size: 0.95rem;
+    font-weight: 600;
     color: var(--viz-text);
     margin: 0 0 0.25rem 0;
     line-height: 1.3;
@@ -369,36 +370,47 @@
 
 .info-card-summary {
     font-size: 0.85rem;
-    line-height: 1.6;
     color: var(--viz-text);
+    line-height: 1.5;
     margin: 0;
 }
 
 .info-card-footer {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--viz-border);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem 1rem;
-    border-top: 1px solid var(--viz-border);
-    gap: 0.5rem;
+    background-color: var(--viz-bg-secondary);
+    border-radius: 0 0 12px 12px;
 }
 
 .info-card-connections {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     color: var(--viz-text-muted);
 }
 
 .mark-learned-btn {
-    flex-shrink: 0;
     font-size: 0.75rem;
-    padding: 0.25rem 0.75rem;
+    padding: 0.3rem 0.6rem;
 }
 
 .mark-learned-btn.learned {
-    background-color: #28a745;
-    border-color: #28a745;
+    background-color: #43A047;
+    border-color: #43A047;
     color: white;
 }
+
+/* Chapter color indicator on info card */
+.info-card[data-chapter="01"] .info-card-header { border-left: 4px solid #E53935; }
+.info-card[data-chapter="02"] .info-card-header { border-left: 4px solid #FB8C00; }
+.info-card[data-chapter="03"] .info-card-header { border-left: 4px solid #FFD600; }
+.info-card[data-chapter="04"] .info-card-header { border-left: 4px solid #43A047; }
+.info-card[data-chapter="05"] .info-card-header { border-left: 4px solid #00ACC1; }
+.info-card[data-chapter="06"] .info-card-header { border-left: 4px solid #1E88E5; }
+.info-card[data-chapter="07"] .info-card-header { border-left: 4px solid #5E35B1; }
+.info-card[data-chapter="08"] .info-card-header { border-left: 4px solid #D81B60; }
+.info-card[data-chapter="09"] .info-card-header { border-left: 4px solid #6D4C41; }
 
 /* ============================================
    KEYBOARD SHORTCUTS HELP
@@ -646,31 +658,51 @@
    TOOLTIPS
    ============================================ */
 
-.d3-tooltip {
-    position: absolute;
-    padding: 12px;
-    background: rgba(0, 0, 0, 0.9);
-    color: white;
+.tooltip {
+    position: fixed;
+    z-index: 10000;
+    background-color: var(--viz-card-bg);
+    border: 2px solid var(--viz-border);
     border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    opacity: 0;
     pointer-events: none;
-    font-size: 13px;
-    max-width: 300px;
-    z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    line-height: 1.5;
+    transition: opacity var(--transition-fast);
+    min-width: 300px;
+    max-width: 400px;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.98);
+    margin: 0;
 }
 
-.d3-tooltip::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid rgba(0, 0, 0, 0.9);
+[data-bs-theme="dark"] .tooltip {
+    background-color: rgba(30, 41, 59, 0.98);
+}
+
+.tooltip.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.tooltip-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--viz-text);
+    margin: 0 0 0.5rem 0;
+    line-height: 1.3;
+    word-wrap: break-word;
+}
+
+.tooltip-summary {
+    font-size: 0.8rem;
+    color: var(--viz-text-muted);
+    margin: 0;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 /* ============================================
@@ -786,6 +818,7 @@
 
 [data-bs-theme="dark"] .node text {
     stroke: var(--bs-body-bg);
+    fill: var(--bs-body-color);
 }
 
 [data-bs-theme="dark"] .d3-tooltip {
@@ -815,6 +848,150 @@
 }
 
 /* ============================================
+   VIEW SWITCHER
+   ============================================ */
+
+.view-switcher {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    padding: 0.75rem;
+    background-color: var(--viz-bg-secondary);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border: 1px solid var(--viz-border);
+}
+
+.view-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--viz-border);
+    border-radius: 8px;
+    background-color: var(--viz-bg);
+    color: var(--viz-text);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    min-width: 100px;
+}
+
+.view-btn:hover {
+    background-color: var(--viz-highlight-bg);
+    border-color: #1E88E5;
+    transform: translateY(-2px);
+}
+
+.view-btn.active {
+    background: linear-gradient(135deg, #1E88E5 0%, #00ACC1 100%);
+    border-color: #1E88E5;
+    color: white;
+}
+
+.view-icon {
+    font-size: 1.5rem;
+}
+
+.view-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.view-btn.active .view-label {
+    color: white;
+}
+
+/* ============================================
+   VIEW CONTENT CONTAINERS
+   ============================================ */
+
+.view-content {
+    display: none;
+    width: 100%;
+}
+
+.view-content.active {
+    display: block;
+}
+
+.view-content .visualization-container {
+    width: 100%;
+    min-height: 600px;
+}
+
+.view-content svg {
+    width: 100%;
+    height: auto;
+}
+
+/* Mind Map specific styles */
+#radial-svg {
+    min-height: 800px;
+}
+
+/* ============================================
+   RADIAL CLUSTER VISUALIZATION (like HowToTalkToAnyone)
+   ============================================ */
+
+/* Radial view specific - only apply to radial SVG */
+#radial-svg .node {
+    font: 500 10px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    fill: var(--viz-text);
+    cursor: pointer;
+    transition: fill 0.2s ease, font-weight 0.2s ease;
+}
+
+#radial-svg .node:hover {
+    font-weight: 700;
+}
+
+/* Node states for hover highlighting */
+#radial-svg .node--source {
+    font-weight: 700;
+    filter: drop-shadow(0 0 3px currentColor);
+}
+
+#radial-svg .node--target {
+    font-weight: 700;
+    filter: drop-shadow(0 0 3px currentColor);
+}
+
+#radial-svg .node--dimmed {
+    opacity: 0.1;
+}
+
+/* Links - only in radial view */
+#radial-svg .link {
+    stroke: var(--viz-text);
+    stroke-opacity: 0.3;
+    fill: none;
+    pointer-events: none;
+    transition: stroke-opacity 0.2s ease, stroke-width 0.2s ease;
+}
+
+#radial-svg .link--source,
+#radial-svg .link--target {
+    stroke-opacity: 0.8;
+    stroke-width: 2px;
+}
+
+#radial-svg .link--dimmed {
+    stroke-opacity: 0.05;
+}
+
+/* Gradient links get their stroke from SVG gradients */
+#radial-svg .link.gradient-link {
+    stroke-opacity: 0.4;
+}
+
+#radial-svg .link.gradient-link.link--source,
+#radial-svg .link.gradient-link.link--target {
+    stroke-opacity: 0.9;
+    stroke-width: 2.5px;
+}
+
+/* ============================================
    PRINT STYLES
    ============================================ */
 
@@ -830,6 +1007,45 @@
     #visualization {
         width: 100%;
         height: auto;
+    }
+
+    .view-switcher {
+        display: none;
+    }
+}
+
+/* ============================================
+   RESPONSIVE - VIEW SWITCHER
+   ============================================ */
+
+@media (max-width: 768px) {
+    .view-switcher {
+        gap: 0.25rem;
+        padding: 0.5rem;
+    }
+
+    .view-btn {
+        padding: 0.5rem 0.75rem;
+        min-width: 70px;
+    }
+
+    .view-icon {
+        font-size: 1.25rem;
+    }
+
+    .view-label {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .view-switcher {
+        flex-wrap: wrap;
+    }
+
+    .view-btn {
+        flex: 1 1 45%;
+        min-width: 0;
     }
 }
 

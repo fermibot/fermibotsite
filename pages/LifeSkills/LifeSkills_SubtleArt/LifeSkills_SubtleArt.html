@@ -87,11 +87,32 @@
         <!-- Legend content will be injected by JS -->
     </div>
 
+    <!-- View Switcher -->
+    <div class="view-switcher">
+        <button class="view-btn active" data-view="network" title="Network Graph (Ctrl+1)" aria-pressed="true">
+            <span class="view-icon">🕸️</span>
+            <span class="view-label">Network</span>
+        </button>
+        <button class="view-btn" data-view="radial" title="Radial Cluster (Ctrl+2)" aria-pressed="false">
+            <span class="view-icon">⭕</span>
+            <span class="view-label">Radial</span>
+        </button>
+    </div>
+
     <!-- Main Content Area -->
     <div class="visualization-main">
-        <!-- Visualization Container -->
-        <div class="visualization-container" id="visualization-container">
-            <svg id="visualization"></svg>
+        <!-- Network View (Current force-directed graph) -->
+        <div class="view-content active" id="networkView">
+            <div class="visualization-container">
+                <svg id="visualization"></svg>
+            </div>
+        </div>
+
+        <!-- Radial Cluster View -->
+        <div class="view-content" id="radialView">
+            <div class="visualization-container" id="radial-visualization-container">
+                <!-- Radial visualization will be injected by JS -->
+            </div>
         </div>
     </div>
 </div>

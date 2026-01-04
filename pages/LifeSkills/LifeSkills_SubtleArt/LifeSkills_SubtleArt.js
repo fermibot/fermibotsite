@@ -361,39 +361,63 @@ function clearHighlight() {
 
 let tooltip = null;
 
-function showTooltip(event, node) {
-    if (!tooltip) {
-        tooltip = d3.select('body').append('div')
-            .attr('class', 'd3-tooltip')
-            .style('opacity', 0);
-    }
+function createTooltip() {
+    tooltip = d3.select('body')
+        .append('div')
+        .attr('class', 'tooltip')
+        .attr('id', 'tooltip');
+    return tooltip;
+}
 
-    const chapterName = node.chapter ? CONFIG.CHAPTER_NAMES[node.chapter] : 'Unknown Chapter';
-    const summaryPreview = node.summary.length > 100
-        ? node.summary.substring(0, 100) + '...'
-        : node.summary;
+function showTooltip(event, node) {
+    if (!tooltip) createTooltip();
+
+    const summary = node.summary || 'No summary available.';
+    const truncatedSummary = summary.length > 150 ? summary.substring(0, 150) + '...' : summary;
 
     tooltip.html(`
-        <strong>${node.displayName}</strong><br>
-        <small style="color: ${CONFIG.CHAPTER_COLORS[node.chapter] || '#999'};">
-            ${CONFIG.CHAPTER_ICONS[node.chapter] || ''} ${chapterName}
-        </small><br>
-        <div style="margin-top: 8px; font-size: 12px; line-height: 1.4;">
-            ${summaryPreview}
-        </div>
-    `)
-        .style('left', (event.pageX + 10) + 'px')
-        .style('top', (event.pageY - 28) + 'px')
-        .transition()
-        .duration(200)
-        .style('opacity', 1);
+        <div class="tooltip-title">${node.displayName}</div>
+        <div class="tooltip-summary">${truncatedSummary}</div>
+    `);
+
+    // Position tooltip near mouse cursor
+    const x = event.clientX;
+    const y = event.clientY;
+
+    // Get tooltip dimensions
+    const tooltipNode = tooltip.node();
+    tooltipNode.style.display = 'block';
+    const tooltipWidth = tooltipNode.offsetWidth || 300;
+    const tooltipHeight = tooltipNode.offsetHeight || 150;
+
+    // Get viewport dimensions
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    // Calculate position (prevent going off-screen)
+    let left = x + 15;
+    let top = y + 15;
+
+    // Adjust if tooltip would go off right edge
+    if (left + tooltipWidth > viewportWidth) {
+        left = x - tooltipWidth - 15;
+    }
+
+    // Adjust if tooltip would go off bottom edge
+    if (top + tooltipHeight > viewportHeight) {
+        top = y - tooltipHeight - 15;
+    }
+
+    tooltip
+        .style('left', Math.max(10, left) + 'px')
+        .style('top', Math.max(10, top) + 'px');
+
+    tooltip.classed('visible', true);
 }
 
 function hideTooltip() {
     if (tooltip) {
-        tooltip.transition()
-            .duration(200)
-            .style('opacity', 0);
+        tooltip.classed('visible', false);
     }
 }
 
@@ -717,6 +741,9 @@ function toggleLearned() {
 
 function updateVisualization() {
     STATE.nodeElements.classed('learned', d => STATE.learnedConcepts.has(d.id));
+
+    // Update radial view if initialized
+    if (viewsInitialized.radial) updateRadialLearned();
 }
 
 // ============================================
@@ -775,10 +802,404 @@ function updateLegendProgress() {
 }
 
 // ============================================
+// VIEW SWITCHING
+// ============================================
+
+let currentView = 'network';
+let viewsInitialized = {
+    network: false,
+    radial: false
+};
+
+function setupViewSwitching() {
+    const viewButtons = document.querySelectorAll('.view-btn');
+
+    viewButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const view = btn.dataset.view;
+            switchView(view);
+        });
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey || e.metaKey) {
+            switch(e.key) {
+                case '1':
+                    e.preventDefault();
+                    switchView('network');
+                    break;
+                case '2':
+                    e.preventDefault();
+                    switchView('radial');
+                    break;
+            }
+        }
+    });
+}
+
+function switchView(viewName) {
+    if (currentView === viewName) return;
+
+    // Update UI
+    document.querySelectorAll('.view-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.view === viewName);
+        btn.setAttribute('aria-pressed', btn.dataset.view === viewName);
+    });
+
+    document.querySelectorAll('.view-content').forEach(content => {
+        content.classList.toggle('active', content.id === `${viewName}View`);
+    });
+
+    currentView = viewName;
+
+    // Initialize view if not already done
+    if (!viewsInitialized[viewName]) {
+        if (viewName === 'radial') {
+            initializeRadialVisualization();
+        }
+        viewsInitialized[viewName] = true;
+    }
+}
+
+// Radial visualization - module-level variables
+let radialSvg = null;
+let radialLink = null;
+let radialNode = null;
+let radialRoot = null;
+let radialLockedNode = null;
+
+// ============================================
+// RADIAL CLUSTER VISUALIZATION (Exact match to HowToTalkToAnyone)
+// ============================================
+
+function packageHierarchySubtleArt(nodes) {
+    const map = {};
+
+    function find(name, data) {
+        let node = map[name];
+        if (!node) {
+            node = map[name] = data || { name: name, children: [] };
+            if (name.length) {
+                const i = name.lastIndexOf(".");
+                node.parent = find(name.substring(0, i));
+                node.parent.children.push(node);
+                node.key = name.substring(i + 1);
+            }
+        }
+        return node;
+    }
+
+    nodes.forEach(function(d) {
+        find(d.name, d);
+    });
+
+    return d3.hierarchy(map[""]);
+}
+
+function packageImportsSubtleArt(nodes) {
+    const map = {};
+    const imports = [];
+
+    nodes.forEach(function(d) {
+        map[d.data.name] = d;
+    });
+
+    nodes.forEach(function(d) {
+        if (d.data.imports) {
+            d.data.imports.forEach(function(i) {
+                if (map[i]) {
+                    imports.push(map[d.data.name].path(map[i]));
+                }
+            });
+        }
+    });
+
+    return imports;
+}
+
+function getChapterNum(d) {
+    if (!d || !d.data) return null;
+    const name = d.data.name;
+    const match = name.match(/main\.chapter\.(\d+)/);
+    return match ? match[1] : null;
+}
+
+function isRadialChapterNode(d) {
+    return d.data.name && d.data.name.includes('main.chapter.') && !d.data.name.includes('.topic.');
+}
+
+function formatRadialNodeText(d) {
+    // Format the display text for radial nodes
+    // Topics should show as "9.1 Topic Name" instead of "01 Topic Name"
+    const name = d.data.name;
+    const key = d.data.key;
+
+    // Check if it's a topic (has .topic. in the name)
+    if (name && name.includes('.topic.')) {
+        // Extract chapter number and topic number
+        const chapterMatch = name.match(/main\.chapter\.(\d+)/);
+        const topicMatch = key.match(/^(\d+)\s+/);
+
+        if (chapterMatch && topicMatch) {
+            const chapterNum = parseInt(chapterMatch[1]);
+            const topicNum = parseInt(topicMatch[1]);
+            // Remove leading "01 " and replace with "9.1 "
+            const topicText = key.substring(topicMatch[0].length);
+            return `${chapterNum}.${topicNum} ${topicText}`;
+        }
+    }
+
+    // For chapter nodes or anything else, return key as-is
+    return key;
+}
+
+function createRadialGradients(svg) {
+    const defs = svg.append('defs');
+
+    Object.entries(CONFIG.CHAPTER_COLORS).forEach(([srcNum, srcColor]) => {
+        Object.entries(CONFIG.CHAPTER_COLORS).forEach(([tgtNum, tgtColor]) => {
+            const gradient = defs.append('linearGradient')
+                .attr('id', `gradient-${srcNum}-${tgtNum}`)
+                .attr('gradientUnits', 'userSpaceOnUse');
+
+            gradient.append('stop')
+                .attr('offset', '0%')
+                .attr('stop-color', srcColor);
+
+            gradient.append('stop')
+                .attr('offset', '100%')
+                .attr('stop-color', tgtColor);
+        });
+    });
+
+    return defs;
+}
+
+function radialMouseovered(d) {
+    if (radialLockedNode) return;
+
+    radialNode.each(function(n) {
+        n.target = n.source = false;
+    });
+
+    radialLink
+        .classed("link--target", function(l) {
+            if (l.target === d) return l.source.source = true;
+        })
+        .classed("link--source", function(l) {
+            if (l.source === d) return l.target.target = true;
+        })
+        .filter(function(l) {
+            return l.target === d || l.source === d;
+        })
+        .raise();
+
+    radialNode
+        .classed("node--target", function(n) {
+            return n.target;
+        })
+        .classed("node--source", function(n) {
+            return n.source;
+        });
+}
+
+function radialMouseouted(d) {
+    if (radialLockedNode) return;
+
+    radialLink
+        .classed("link--target", false)
+        .classed("link--source", false);
+
+    radialNode
+        .classed("node--target", false)
+        .classed("node--source", false);
+}
+
+function radialHandleNodeClick(event, d) {
+    event.stopPropagation();
+
+    // Toggle lock state
+    if (radialLockedNode === d) {
+        radialLockedNode = null;
+        radialNode.classed('node--locked', false);
+        radialMouseouted(d);
+        hideInfoCard();
+        hideTooltip();
+    } else {
+        // Remove lock from previously locked node
+        radialNode.classed('node--locked', n => n === d);
+
+        // Set new locked node
+        radialLockedNode = d;
+        radialMouseovered(d);
+        hideTooltip();
+
+        // Show info card with node data
+        const node = STATE.nodes.find(n => n.id === d.data.name);
+        if (node) {
+            showInfoCard(node, event);
+        }
+    }
+}
+
+function radialHandleBackgroundClick() {
+    if (radialLockedNode) {
+        radialLockedNode = null;
+        radialNode.classed('node--locked', false);
+        hideInfoCard();
+        hideTooltip();
+    }
+}
+
+function animateRadialEntrance() {
+    radialNode
+        .style('opacity', 0)
+        .transition()
+        .duration(800)
+        .delay((d, i) => i * 8)
+        .style('opacity', 1);
+
+    radialLink.each(function() {
+        const path = d3.select(this);
+        const length = this.getTotalLength();
+
+        path
+            .attr('stroke-dasharray', `${length} ${length}`)
+            .attr('stroke-dashoffset', length)
+            .transition()
+            .delay(400)
+            .duration(1500)
+            .attr('stroke-dashoffset', 0)
+            .on('end', function() {
+                path.attr('stroke-dasharray', null);
+            });
+    });
+}
+
+function initializeRadialVisualization() {
+    const diameter = CONFIG.DIAMETER;
+    const radius = diameter / 2;
+    const innerRadius = radius - 220;
+    const verticalPadding = 100;
+    const totalHeight = diameter + verticalPadding * 2;
+
+    d3.select('#radial-visualization-container').html('');
+
+    radialSvg = d3.select('#radial-visualization-container')
+        .append('svg')
+        .attr('id', 'radial-svg')
+        .attr('width', diameter)
+        .attr('height', totalHeight)
+        .attr('viewBox', `0 0 ${diameter} ${totalHeight}`)
+        .on('click', radialHandleBackgroundClick);
+
+    const g = radialSvg.append('g')
+        .attr('transform', `translate(${radius}, ${radius + verticalPadding})`);
+
+    createRadialGradients(radialSvg);
+
+    const root = packageHierarchySubtleArt(STATE.data).sum(d => d.size || 1);
+    radialRoot = root;
+
+    const cluster = d3.cluster().size([360, innerRadius]);
+    cluster(root);
+
+    const links = packageImportsSubtleArt(root.leaves());
+
+    const line = d3.radialLine()
+        .curve(d3.curveBundle.beta(0.85))
+        .radius(d => d.y)
+        .angle(d => d.x * Math.PI / 180);
+
+    const linkGroup = g.append('g').attr('class', 'links');
+
+    radialLink = linkGroup.selectAll('.link')
+        .data(links)
+        .enter()
+        .append('path')
+        .each(function(d) {
+            d.source = d[0];
+            d.target = d[d.length - 1];
+        })
+        .attr('class', d => {
+            const srcChapter = getChapterNum(d.source);
+            const tgtChapter = getChapterNum(d.target);
+            return `link gradient-link link-${srcChapter}-${tgtChapter}`;
+        })
+        .attr('d', line)
+        .attr('stroke', d => {
+            const srcChapter = getChapterNum(d.source);
+            const tgtChapter = getChapterNum(d.target);
+            return `url(#gradient-${srcChapter}-${tgtChapter})`;
+        });
+
+    const nodeGroup = g.append('g').attr('class', 'nodes');
+
+    radialNode = nodeGroup.selectAll('.node')
+        .data(root.leaves())
+        .enter()
+        .append('text')
+        .attr('class', d => {
+            const chapterNum = getChapterNum(d);
+            const classes = ['node'];
+            if (chapterNum) classes.push(`chapter-${chapterNum}`);
+            if (isRadialChapterNode(d)) classes.push('node-chapter');
+            return classes.join(' ');
+        })
+        .attr('dy', '0.31em')
+        .attr('transform', d => {
+            return `rotate(${d.x - 90})translate(${d.y + 8},0)${d.x < 180 ? '' : 'rotate(180)'}`;
+        })
+        .attr('text-anchor', d => d.x < 180 ? 'start' : 'end')
+        .text(d => {
+            const isLearned = STATE.learnedConcepts.has(d.data.name);
+            const displayText = formatRadialNodeText(d);
+            return isLearned ? `✓ ${displayText}` : displayText;
+        })
+        .style('fill', d => {
+            const chapterNum = getChapterNum(d);
+            return chapterNum ? CONFIG.CHAPTER_COLORS[chapterNum] : '#999';
+        })
+        .on('mouseover', function(event, d) {
+            radialMouseovered(d);
+            // Show tooltip with radial node data
+            if (d.data.name) {
+                const chapterNum = getChapterNum(d);
+                const tooltipData = {
+                    displayName: getShortName(d.data.name),
+                    summary: d.data.summary || 'No description available',
+                    chapter: chapterNum
+                };
+                showTooltip(event, tooltipData);
+            }
+        })
+        .on('mouseout', function(event, d) {
+            radialMouseouted(d);
+            hideTooltip();
+        })
+        .on('click', radialHandleNodeClick);
+
+    updateRadialLearned();
+    animateRadialEntrance();
+}
+
+function updateRadialLearned() {
+    if (!radialNode) return;
+
+    radialNode.text(d => {
+        const isLearned = STATE.learnedConcepts.has(d.data.name);
+        const displayText = formatRadialNodeText(d);
+        return isLearned ? `✓ ${displayText}` : displayText;
+    });
+}
+
+// ============================================
 // INITIALIZATION
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
     loadData();
+    setupViewSwitching();
 });
 
