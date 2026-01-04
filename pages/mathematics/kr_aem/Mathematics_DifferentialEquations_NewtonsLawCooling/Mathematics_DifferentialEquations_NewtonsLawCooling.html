@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../../../bootstrap/css/bootstrap.min.css">
+
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="../../../../index.css">
+
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="../../../../js/highlight/styles/default.css">
+    <script src="../../../../js/highlight/highlight.pack.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="../../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <!-- Site automation -->
+    <script src="../../../../automation/loadObjects.js"></script>
+    <script src="../../../../js/common.js"></script>
+    <script>loadHeaderFooter("../../../../automation/header.html", "../../../../automation/footer.html")</script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <title>Mathematics | Differential Equations | Newton's Law of Cooling</title>
+</head>
+<body>
+
+<div class="container-lg card p-5">
+
+    <div id="header_placeholder"></div>
+
+    <div class="jumbotron text-center p-2">
+        <h1>Mathematics | Differential Equations | Newton's Law of Cooling</h1>
+        <p class="lead">Home Temperature Dynamics</p>
+    </div>
+
+    <hr/>
+
+    <h5 class="">Problem Statement</h5>
+    <p>
+        You turn off the heat in your home two hours before going to bed. The temperature in your home follows
+        Newton's Law of Cooling, which states that the rate of temperature change is proportional to the difference
+        between the current temperature and the ambient (outside) temperature.
+    </p>
+    <p><strong>Given:</strong></p>
+    <ul>
+        <li>Temperature at \(t = 0\) (when heat is turned off): \(T(0) = 66°\text{F}\)</li>
+        <li>Temperature at \(t = 2\) hours (bedtime): \(T(2) = 63°\text{F}\)</li>
+        <li>Outside temperature (constant): \(T_A = 32°\text{F}\)</li>
+    </ul>
+    <p><strong>Find:</strong> The temperature at \(t = 10\) hours (8 hours after bedtime).</p>
+
+    <hr/>
+
+    <h5>Analytical Solution</h5>
+
+    <p><strong>Newton's Law of Cooling:</strong></p>
+    <p>The rate of temperature change is proportional to the difference between current temperature \(T\) and ambient temperature \(T_A\):</p>
+
+    <div class="alert alert-info">
+        \[\frac{dT}{dt} = k(T - T_A) = k(T - 32)\]
+    </div>
+
+    <p><strong>General Solution:</strong></p>
+    <ul>
+        <li>This is a first-order linear ODE with separable variables</li>
+        <li>\(\frac{dT}{T - 32} = k \, dt\)</li>
+        <li>\(\int \frac{dT}{T - 32} = \int k \, dt\)</li>
+        <li>\(\ln(T - 32) = kt + C_1\)</li>
+        <li>\(T - 32 = C e^{kt}\)</li>
+        <li>\(T(t) = 32 + C e^{kt}\)</li>
+    </ul>
+
+    <p><strong>Applying Boundary Conditions:</strong></p>
+    <ul>
+        <li>From \(T(0) = 66\):
+            <ul>
+                <li>\(66 = 32 + C e^{k \cdot 0}\)</li>
+                <li>\(C = 34\)</li>
+            </ul>
+        </li>
+        <li>From \(T(2) = 63\):
+            <ul>
+                <li>\(63 = 32 + 34 e^{2k}\)</li>
+                <li>\(31 = 34 e^{2k}\)</li>
+                <li>\(e^{2k} = \frac{31}{34}\)</li>
+                <li>\(2k = \ln\left(\frac{31}{34}\right)\)</li>
+                <li>\(k = \frac{1}{2}\ln\left(\frac{31}{34}\right) \approx -0.046187\)</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Specific Solution:</strong></p>
+    <div class="alert alert-success">
+        \[T(t) = 32 + 34 e^{-0.046187t}\]
+    </div>
+
+    <p><strong>Temperature at t = 10:</strong></p>
+    <ul>
+        <li>\(T(10) = 32 + 34 e^{-0.046187 \times 10}\)</li>
+        <li>\(T(10) = 32 + 34 e^{-0.46187}\)</li>
+        <li>\(T(10) = 32 + 34 \times 0.6303\)</li>
+        <li>\(T(10) \approx 32 + 21.43\)</li>
+        <li><strong>\(T(10) \approx 53.43°\text{F}\)</strong></li>
+    </ul>
+
+    <hr/>
+
+    <h5>Parametric Studies</h5>
+
+    <h6>Study 1: Varying Outside Temperature</h6>
+    <p>
+        This study examines how different outside temperatures affect the cooling curve, while maintaining
+        the initial conditions \(T(0) = 66°\text{F}\) and \(T(2) = 63°\text{F}\).
+    </p>
+    <p class="text-muted">
+        <em>Note: Visualization graphs from the original analysis can be added here.</em>
+    </p>
+
+    <h6>Study 2: Varying Temperature at Bedtime</h6>
+    <p>
+        This study explores how different temperatures at \(t = 2\) affect the temperature at \(t = 10\),
+        while keeping the outside temperature constant at \(32°\text{F}\).
+    </p>
+    <p class="text-muted">
+        <em>Note: Visualization graphs from the original analysis can be added here.</em>
+    </p>
+
+    <hr/>
+
+    <h5>Physical Interpretation</h5>
+    <ul>
+        <li><strong>Exponential Decay:</strong> The temperature decreases exponentially toward the ambient temperature</li>
+        <li><strong>Equilibrium:</strong> As \(t \to \infty\), \(T(t) \to T_A = 32°\text{F}\)</li>
+        <li><strong>Cooling Rate:</strong> The constant \(k \approx -0.046\) indicates the rate of heat loss</li>
+        <li><strong>Half-life Concept:</strong> The time for the temperature difference to halve can be calculated as \(t_{1/2} = \frac{\ln(2)}{|k|} \approx 15\) hours</li>
+    </ul>
+
+    <hr/>
+
+    <h5>Mathematica Code</h5>
+    <p>Below is the Mathematica code used to solve this differential equation and generate parametric studies:</p>
+
+    <pre><code class="language-Mathematica">
+(* Define the differential equation *)
+ode = D[T[t], t] == k (T[t] - TA);
+
+(* Solve with boundary conditions *)
+solution = DSolve[{ode, T[0] == 66, T[2] == 63}, T[t], t, {k, TA}];
+
+(* Specific solution with TA = 32 *)
+specificSolution = DSolve[{
+    D[T[t], t] == k (T[t] - 32),
+    T[0] == 66,
+    T[2] == 63
+}, T[t], t];
+
+(* Extract the solution *)
+T[t_] = T[t] /. specificSolution[[1]];
+
+(* Evaluate at t = 10 *)
+T[10]
+
+(* Plot the temperature curve *)
+Plot[T[t], {t, 0, 24},
+    PlotRange -> All,
+    Frame -> True,
+    FrameLabel -> {"Time (hours)", "Temperature (°F)"},
+    PlotLabel -> "Home Temperature vs Time",
+    GridLines -> Automatic,
+    ImageSize -> Large
+]
+
+(* Parametric Study 1: Varying Outside Temperature *)
+Module[{solutions, temps},
+    temps = Range[20, 40, 5];
+    solutions = Table[
+        DSolve[{
+            D[T[t], t] == k (T[t] - TA),
+            T[0] == 66,
+            T[2] == 63
+        }, T[t], t] /. {TA -> temp},
+        {temp, temps}
+    ];
+
+    Plot[Evaluate[T[t] /. solutions], {t, 0, 24},
+        PlotRange -> All,
+        Frame -> True,
+        PlotLegends -> ("TA = " <> ToString[#] <> "°F" & /@ temps),
+        PlotLabel -> "Effect of Outside Temperature",
+        ImageSize -> Large
+    ]
+]
+
+(* Parametric Study 2: Varying T(2) *)
+Module[{solutions, t2temps},
+    t2temps = Range[58, 66, 2];
+    solutions = Table[
+        DSolve[{
+            D[T[t], t] == k (T[t] - 32),
+            T[0] == 66,
+            T[2] == t2
+        }, T[t], t],
+        {t2, t2temps}
+    ];
+
+    Plot[Evaluate[T[t] /. solutions], {t, 0, 24},
+        PlotRange -> All,
+        Frame -> True,
+        PlotLegends -> ("T(2) = " <> ToString[#] <> "°F" & /@ t2temps),
+        PlotLabel -> "Effect of Bedtime Temperature",
+        ImageSize -> Large
+    ]
+]
+</code></pre>
+
+    <hr/>
+
+    <h5>Key Insights</h5>
+    <div class="alert alert-warning">
+        <ul class="mb-0">
+            <li>The temperature drops from 66°F to approximately 53.43°F over 10 hours</li>
+            <li>The rate of cooling slows down as the temperature approaches the outside temperature</li>
+            <li>Newton's Law of Cooling assumes constant outside temperature and no heat sources</li>
+            <li>The negative value of \(k\) indicates cooling; positive would indicate heating</li>
+            <li>This model is widely applicable: coffee cooling, crime scene temperature analysis, etc.</li>
+        </ul>
+    </div>
+
+    <div id="footer_placeholder"></div>
+
+</div>
+
+<script>
+    loadHeaderFooter("../../../../automation/header.html", "../../../../automation/footer.html")
+</script>
+
+<!-- Footer Dynamic Script -->
+<script src="../../../../automation/footer.js"></script>
+
+</body>
+</html>

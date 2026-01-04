@@ -239,8 +239,12 @@
       "title": "Mathematics | Differential Equations",
       "links": [
         {
-          "text": "Kresysig Example 1.2",
-          "url": "pages/mathematics/Kreyszig_AdvancedEngineeringMathematics/kr_aem_ch_01_eg_002.html"
+          "text": "Mathematics | Differential Equations | Tank Mixing Problem",
+          "url": "pages/mathematics/kr_aem/Mathematics_kr_aem_ch_01_eg_002_DifferentialEquations_TankMixing/kr_aem_ch_01_eg_002.html"
+        },
+        {
+          "text": "Mathematics | Differential Equations | Newton's Law of Cooling",
+          "url": "pages/mathematics/kr_aem/Mathematics_DifferentialEquations_NewtonsLawCooling/Mathematics_DifferentialEquations_NewtonsLawCooling.html"
         }
       ]
     },
