@@ -3,36 +3,14 @@
 // ============================================
 
 (function() {
-    // Category grouping and icons
-    const categoryGroups = {
-        'Mathematics & Probability': {
-            icon: '📊',
-            keywords: ['Bernoulli', 'Binomial', 'Poisson', 'Exponential', 'Geometric', 'Conditional', 'Expectation', 'Miscellaneous Concepts', 'Strategy', 'Graphs', 'Mathematics']
-        },
-        'Artificial Intelligence': {
-            icon: '🤖',
-            keywords: ['Machine Learning', 'Artificial Intelligence']
-        },
-        'Computer Science': {
-            icon: '💻',
-            keywords: ['Algorithms', 'Hashing', 'Sorting']
-        },
-        'Life Sciences': {
-            icon: '🧬',
-            keywords: ['Biology', 'Biochemistry', 'Physiology', 'Zoology']
-        },
-        'Simulation & Modeling': {
-            icon: '🎲',
-            keywords: ['Monte Carlo', 'Simulation']
-        },
-        'Art & Geometry': {
-            icon: '🎨',
-            keywords: ['Geometry', 'Mathematical Art']
-        },
-        'Personal Development': {
-            icon: '🌟',
-            keywords: ['Wellness', 'Life Skills']
-        }
+    // Icon mapping for categoryMain (fallback is a dot)
+    const mainIcons = {
+        'Probability Distributions': '📊',
+        'Probability Theory': '📈',
+        'Mathematics': '📐',
+        'Computer Science': '💻',
+        'Life Sciences': '🧬',
+        'General': '🌟'
     };
 
     async function loadFooterContent() {
@@ -50,7 +28,6 @@
             ];
 
             let data = null;
-            let successPath = null;
 
             // Try each path until one works
             for (const path of possiblePaths) {
@@ -59,7 +36,6 @@
                     const response = await fetch(path);
                     if (response.ok) {
                         data = await response.json();
-                        successPath = path;
                         console.log('✅ Successfully loaded cards.json from:', path);
                         break;
                     }
@@ -73,90 +49,65 @@
                 throw new Error('Could not find cards.json in any expected location');
             }
 
-            const cards = data.cards || [];
+            const cards = Array.isArray(data.cards) ? data.cards : [];
 
-            // Update stats
-            const categoriesCountEl = document.getElementById('categoriesCount');
-            const topicsCountEl = document.getElementById('topicsCount');
+            // Stats
+            const categoriesCountEl = document.getElementById('footerCategoriesCount');
+            const topicsCountEl = document.getElementById('footerTopicsCount');
 
-            if (categoriesCountEl) {
-                categoriesCountEl.textContent = cards.length;
+            if (categoriesCountEl) categoriesCountEl.textContent = String(cards.length);
+
+            const totalTopics = cards.reduce((sum, card) => sum + (Array.isArray(card.links) ? card.links.length : 0), 0);
+            if (topicsCountEl) topicsCountEl.textContent = `${totalTopics}+`;
+
+            // Group by categoryMain (preserve first-seen order)
+            const groups = new Map();
+            for (const card of cards) {
+                const key = card.categoryMain || 'Other';
+                if (!groups.has(key)) groups.set(key, []);
+                groups.get(key).push(card);
             }
 
-            if (topicsCountEl) {
-                const totalTopics = cards.reduce((sum, card) => sum + (card.links ? card.links.length : 0), 0);
-                topicsCountEl.textContent = totalTopics + '+';
-            }
+            // Render tiles (one tile per categoryMain)
+            const topicsGrid = document.getElementById('footerTopicsGrid');
+            if (!topicsGrid) return;
 
-            // Group categories
-            const groupedCategories = {};
+            topicsGrid.innerHTML = '';
 
-            cards.forEach(card => {
-                let assigned = false;
-                for (const [groupName, groupInfo] of Object.entries(categoryGroups)) {
-                    if (groupInfo.keywords.some(keyword =>
-                        card.category.includes(keyword) || card.title.includes(keyword)
-                    )) {
-                        if (!groupedCategories[groupName]) {
-                            groupedCategories[groupName] = {
-                                icon: groupInfo.icon,
-                                categories: []
-                            };
-                        }
-                        groupedCategories[groupName].categories.push(card);
-                        assigned = true;
-                        break;
-                    }
-                }
-            });
+            for (const [categoryMain, groupCards] of groups.entries()) {
+                const icon = mainIcons[categoryMain] || '•';
+                const categoriesInGroup = groupCards.length;
+                const topicsInGroup = groupCards.reduce((sum, c) => sum + (Array.isArray(c.links) ? c.links.length : 0), 0);
 
-            // Render sections
-            const sectionsContainer = document.getElementById('footerSections');
-            if (!sectionsContainer) {
-                console.error('❌ Footer sections container not found');
-                return;
-            }
+                const a = document.createElement('a');
+                a.href = '/#cards-container';
+                a.className = 'footer-topic-link';
+                a.setAttribute('aria-label', `Explore ${categoryMain} topics`);
 
-            sectionsContainer.innerHTML = '';
-
-            Object.entries(groupedCategories).forEach(([groupName, groupData]) => {
-                const section = document.createElement('div');
-                section.className = 'footer-section';
-
-                const totalInGroup = groupData.categories.reduce((sum, cat) =>
-                    sum + (cat.links ? cat.links.length : 0), 0
-                );
-
-                section.innerHTML = `
-                    <div class="footer-section-header">
-                        <span class="footer-section-icon">${groupData.icon}</span>
-                        <h3 class="footer-section-title">${groupName}</h3>
-                        <span class="footer-section-count">${totalInGroup}</span>
-                    </div>
-                    <div class="footer-category-list">
-                        ${groupData.categories.map(cat => `
-                            <a href="/#cards-container" class="footer-category-item"
-                               title="${cat.title} - ${cat.links ? cat.links.length : 0} topic(s)">
-                                <span class="footer-category-name">${cat.title}</span>
-                                <span class="footer-category-badge">${cat.links ? cat.links.length : 0}</span>
-                            </a>
-                        `).join('')}
+                // Short count label like "5 categories • 12 topics"
+                a.innerHTML = `
+                    <div class="footer-topic">
+                        <div class="footer-topic-title">${icon} ${categoryMain}</div>
+                        <div class="footer-topic-count">${categoriesInGroup} categories • ${topicsInGroup} topics</div>
                     </div>
                 `;
 
-                sectionsContainer.appendChild(section);
-            });
+                topicsGrid.appendChild(a);
+            }
 
             console.log('✅ Footer content loaded successfully');
 
         } catch (error) {
             console.error('❌ Error loading footer content:', error);
-            const sectionsContainer = document.getElementById('footerSections');
-            if (sectionsContainer) {
-                sectionsContainer.innerHTML = `
-                    <div class="footer-loading">
-                        Unable to load categories. <a href="/" style="color: var(--footer-link);">Visit homepage</a>
-                    </div>
+            const topicsGrid = document.getElementById('footerTopicsGrid');
+            if (topicsGrid) {
+                topicsGrid.innerHTML = `
+                    <a href="/" class="footer-topic-link" aria-label="Visit homepage">
+                        <div class="footer-topic">
+                            <div class="footer-topic-title">🏠 Home</div>
+                            <div class="footer-topic-count">Unable to load footer topics</div>
+                        </div>
+                    </a>
                 `;
             }
         }
@@ -167,50 +118,5 @@
         document.addEventListener('DOMContentLoaded', loadFooterContent);
     } else {
         loadFooterContent();
-    }
-
-    // Back to Top Button Functionality
-    function initBackToTop() {
-        const backToTop = document.getElementById('backToTop');
-        if (!backToTop) {
-            console.log('⚠️ Back to top button not found');
-            return;
-        }
-
-        function toggleBackToTop() {
-            if (window.pageYOffset > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        }
-
-        function scrollToTop(e) {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
-        window.addEventListener('scroll', toggleBackToTop, { passive: true });
-        backToTop.addEventListener('click', scrollToTop);
-        toggleBackToTop();
-
-        backToTop.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                scrollToTop(e);
-            }
-        });
-
-        console.log('✅ Back to top button initialized');
-    }
-
-    // Initialize back to top after footer is loaded
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initBackToTop);
-    } else {
-        initBackToTop();
     }
 })();

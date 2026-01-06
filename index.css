@@ -644,6 +644,35 @@ a {
     }
 }
 
+/* --- Index: grouped cards layout (categoryMain sections) --- */
+.cards-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.cards-section-title {
+    margin: 0 0 0.75rem 0;
+}
+
+.cards-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1200px) {
+    .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 /* ============================================
    CATEGORY CARDS ENHANCEMENTS
    ============================================ */

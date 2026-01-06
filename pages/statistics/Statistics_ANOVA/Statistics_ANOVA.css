@@ -1,0 +1,96 @@
+/* Match the lightweight look used in Statistics_PearsonCorrelation */
+
+input[type="range"] {
+    width: 100%;
+}
+
+/* Code snippets: subtle gray background, no extra padding */
+.code-block {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.85rem;
+    background: transparent;
+    color: inherit;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    overflow-x: auto;
+}
+
+.code-block pre {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: 0;
+}
+
+.code-block code {
+    background: transparent;
+    padding: 0;
+}
+
+.code-block .hljs {
+    background: #F0F0F0 !important;
+    padding: 0 !important;
+}
+
+.code-block .hljs,
+.code-block pre,
+.code-block code {
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+/* Plot styling */
+.plot-border {
+    stroke: #ccc;
+    stroke-width: 1px;
+    fill: none;
+}
+
+.grid line {
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+}
+
+.grid .major {
+    stroke: rgba(233, 236, 239, 0.95);
+}
+
+.grid .minor {
+    stroke: rgba(233, 236, 239, 0.65);
+    stroke-dasharray: 2,3;
+}
+
+.axis path,
+.axis line {
+    stroke: #adb5bd;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-size: 12px;
+    fill: #495057;
+}
+
+.label-background {
+    fill: white;
+    fill-opacity: 0.90;
+    stroke: #ddd;
+    stroke-width: 1px;
+}
+
+.point {
+    stroke: rgba(0, 0, 0, 0.25);
+    stroke-width: 0.5px;
+}
+
+.mean-line {
+    stroke-width: 3px;
+}
+
+.overall-mean-line {
+    stroke: #2563eb;
+    stroke-width: 2px;
+    stroke-dasharray: 6,4;
+}
+

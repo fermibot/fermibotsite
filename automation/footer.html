@@ -374,11 +374,11 @@
         <!-- Stats Section -->
         <div class="footer-stats">
             <div class="footer-stat">
-                <span class="footer-stat-number">21</span>
+                <span class="footer-stat-number" id="footerCategoriesCount">21</span>
                 <span class="footer-stat-label">Categories</span>
             </div>
             <div class="footer-stat">
-                <span class="footer-stat-number">70+</span>
+                <span class="footer-stat-number" id="footerTopicsCount">70+</span>
                 <span class="footer-stat-label">Topics</span>
             </div>
             <div class="footer-stat">
@@ -388,61 +388,8 @@
         </div>
 
         <!-- Topics Grid -->
-        <div class="footer-topics">
-            <a href="/" class="footer-topic-link" aria-label="Explore Probability topics">
-                <div class="footer-topic">
-                    <div class="footer-topic-title">📊 Probability</div>
-                    <div class="footer-topic-count">10 distributions & concepts</div>
-                </div>
-            </a>
-            <a href="/" class="footer-topic-link" aria-label="Explore Machine Learning topics">
-                <div class="footer-topic">
-                    <div class="footer-topic-title">🤖 Machine Learning</div>
-                    <div class="footer-topic-count">8 interactive tutorials</div>
-                </div>
-            </a>
-            <a href="/" class="footer-topic-link" aria-label="Explore Algorithms topics">
-                <div class="footer-topic">
-                    <div class="footer-topic-title">⚙️ Algorithms</div>
-                    <div class="footer-topic-count">Sorting, hashing & more</div>
-                </div>
-            </a>
-            <a href="/" class="footer-topic-link" aria-label="Explore Biology topics">
-                <div class="footer-topic">
-                    <div class="footer-topic-title">🧬 Biology</div>
-                    <div class="footer-topic-count">Biochemistry & physiology</div>
-                </div>
-            </a>
-            <a href="/" class="footer-topic-link" aria-label="Explore Mathematics topics">
-                <div class="footer-topic">
-                    <div class="footer-topic-title">📐 Mathematics</div>
-                    <div class="footer-topic-count">Geometry & calculus</div>
-                </div>
-            </a>
-            <a href="/" class="footer-topic-link" aria-label="Explore Mathematical Art topics">
-                <div class="footer-topic">
-                    <div class="footer-topic-title">🎨 Mathematical Art</div>
-                    <div class="footer-topic-count">Visual explorations</div>
-                </div>
-            </a>
-            <a href="/" class="footer-topic-link" aria-label="Explore Monte Carlo topics">
-                <div class="footer-topic">
-                    <div class="footer-topic-title">🎲 Monte Carlo</div>
-                    <div class="footer-topic-count">Simulation methods</div>
-                </div>
-            </a>
-            <a href="/pages/wellness/coherent_breathing/coherent_breathing.html" class="footer-topic-link" aria-label="Explore Wellness topics">
-                <div class="footer-topic">
-                    <div class="footer-topic-title">🧘 Wellness</div>
-                    <div class="footer-topic-count">Coherent breathing</div>
-                </div>
-            </a>
-            <a href="/pages/LifeSkills/LifeSkills_HowToTalkToAnyone/LifeSkills_HowToTalkToAnyone.html" class="footer-topic-link" aria-label="Explore Life Skills topics">
-                <div class="footer-topic">
-                    <div class="footer-topic-title">💬 Life Skills</div>
-                    <div class="footer-topic-count">Communication & more</div>
-                </div>
-            </a>
+        <div class="footer-topics" id="footerTopicsGrid">
+            <!-- Dynamically populated from cards.json (grouped by categoryMain) -->
         </div>
 
         <!-- Bottom Bar -->
@@ -492,4 +439,8 @@
             });
         })();
     </script>
+
+    <!-- Populate footer stats + topics grid from cards.json -->
+    <script src="/automation/footer.js"></script>
 </footer>
+

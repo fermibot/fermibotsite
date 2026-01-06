@@ -5,13 +5,13 @@ Generated from wp_index.csv and current HTML files.
 ## 1. Pages to Transfer (not found in static site by slug)
 
 - [x] **Water Molecules**    Type: `page`, slug: `water-molecules`, date: `2014-05-31 17:31:37`    \n  WordPress URL: https://fermibot.wordpress.com/water-molecules/
-- [ ] **Random Cubes**    Type: `page`, slug: `random-cubes`, date: `2014-06-02 03:10:24`    \n  WordPress URL: https://fermibot.wordpress.com/random-experiments/random-cubes/
+- [x] **Random Cubes**    Type: `page`, slug: `random-cubes`, date: `2014-06-02 03:10:24`    \n  WordPress URL: https://fermibot.wordpress.com/random-experiments/random-cubes/
 - [ ] **Experiments**    Type: `page`, slug: `random-experiments`, date: `2014-06-02 03:11:55`    \n  WordPress URL: https://fermibot.wordpress.com/random-experiments/
 - [ ] **Central Limit Theorem**    Type: `page`, slug: `central-limit-theorem-experiment`, date: `2015-12-29 23:59:11`    \n  WordPress URL: https://fermibot.wordpress.com/central-limit-theorem-experiment/
 - [ ] **Statistics Concepts**    Type: `page`, slug: `statistics-tutorials`, date: `2015-12-30 00:01:14`    \n  WordPress URL: https://fermibot.wordpress.com/statistics-tutorials/
 - [ ] **Statistical Distribution Functions**    Type: `page`, slug: `statistical-distribution-functions`, date: `2015-12-30 04:59:34`    \n  WordPress URL: https://fermibot.wordpress.com/statistics-tutorials/statistical-distribution-functions/
 - [ ] **Random Walks**    Type: `page`, slug: `random-walks`, date: `2016-01-01 03:21:10`    \n  WordPress URL: https://fermibot.wordpress.com/random-experiments/random-walks/
-- [ ] **Pearson Correalation**    Type: `page`, slug: `pearson-correalation`, date: `2016-09-24 19:49:05`    \n  WordPress URL: https://fermibot.wordpress.com/pearson-correalation/
+- [x] **Pearson Correalation**    Type: `page`, slug: `pearson-correalation`, date: `2016-09-24 19:49:05`    \n  WordPress URL: https://fermibot.wordpress.com/pearson-correalation/
 - [ ] **Analysis of Shakespeare's work using Python 3**    Type: `page`, slug: `analysis-of-shakespeares-work-using-python-3`, date: `2016-12-30 01:01:24`    \n  WordPress URL: https://fermibot.wordpress.com/analysis-of-shakespeares-work-using-python-3/
 - [ ] **Simulation Problems**    Type: `page`, slug: `simulation-problems`, date: `2016-12-30 01:11:51`    \n  WordPress URL: https://fermibot.wordpress.com/simulation-problems/
 - [ ] **One Way Analysis of Variances (ANOVA) - A visual guide**    Type: `page`, slug: `one-way-analysis-of-variances-anova-a-visual-guide`, date: `2017-02-05 04:38:10`    \n  WordPress URL: https://fermibot.wordpress.com/one-way-analysis-of-variances-anova-a-visual-guide/

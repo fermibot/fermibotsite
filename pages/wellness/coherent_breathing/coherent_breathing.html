@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Wellness | Breathing | Coherent Breathing - A Guide for All Levels</title>
 
+    <!-- Cache-bust index.css on each load (uses visitor's local time). -->
+    <script src="../../../js/cacheBustCss.js"></script>
+
     <link rel="stylesheet" href="../../../d3_templates/hierarchical_dendrogram.css">
     <link rel="stylesheet" href="../../../index.css">
     <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
@@ -529,11 +532,11 @@
                              data-in="4" data-pause1="0" data-out="8" data-pause2="0"
                              onclick="applyPatternIdea(this)">
                             <div class="card-body text-center">
-                                <h6 class="card-title expert-color">🌊 Calming 1:2 <sup><a href="#ref-calming"
-                                                                                          class="footnote-link">[1]</a></sup>
+                                <h6 class="card-title expert-color">🌊 Calming 1:2 / Deep Sleep <sup><a href="#ref-calming"
+                                                                                      class="footnote-link">[1]</a></sup>
                                 </h6>
-                                <p class="card-text pattern-description">Inhale: 4s<br>Exhale: 8s<br>Deep Relaxation</p>
-                                <div class="text-muted small">Extended Exhale Ratio</div>
+                                <p class="card-text pattern-description">Inhale: 4s<br>Exhale: 8s<br>2:1 Ratio</p>
+                                <div class="text-muted small">A long, gentle exhale biases the parasympathetic “rest‑and‑digest” response and often feels calming within a few cycles. Use it for winding down, reducing pre‑sleep mental chatter, or easing anxious arousal. Keep the inhale soft (no gulping) and let the exhale be smooth and unforced. If you feel air hunger, shorten the exhale slightly and build up over time.</div>
                             </div>
                         </div>
                     </div>
@@ -547,7 +550,7 @@
                                 </h6>
                                 <p class="card-text pattern-description">Inhale: 4s<br>Hold: 4s<br>Exhale: 4s<br>Hold:
                                     4s</p>
-                                <div class="text-muted small">Used by Navy SEALs</div>
+                                <div class="text-muted small">A structured “square” breath that pairs steady timing with brief breath holds. The predictability can reduce cognitive noise and support composure under pressure. Treat the holds as relaxed pauses (no straining). Helpful before presentations, during acute stress, or anytime you want a quick reset and improved attentional control. If you’re new to holds, start with shorter holds (e.g., 2s) and work up.</div>
                             </div>
                         </div>
                     </div>
@@ -561,7 +564,7 @@
                                 </h6>
                                 <p class="card-text pattern-description">Inhale: 4s<br>Hold: 4s<br>Exhale: 6s<br>Hold:
                                     2s</p>
-                                <div class="text-muted small">SIU Medicine</div>
+                                <div class="text-muted small">A “rectangle” breath that keeps the inhale steady, extends the exhale, and adds a short recovery pause. The longer exhale can feel more settling, while the brief post‑exhale pause helps you notice the transition into calm. Use for downshifting after work, easing mild anxiety, or re‑centering between tasks. Keep shoulders relaxed and breathe low into the belly.</div>
                             </div>
                         </div>
                     </div>
@@ -576,7 +579,7 @@
                                                                                             class="footnote-link">[4]</a></sup>
                                 </h6>
                                 <p class="card-text pattern-description">Inhale: 4s<br>Hold: 4s<br>Exhale: 8s</p>
-                                <div class="text-muted small">Research-backed relaxation</div>
+                                <div class="text-muted small">This pattern combines a short comfortable inhale, a brief hold, and an extended exhale. The hold encourages a moment of stillness and awareness; the long exhale is often experienced as “letting go.” Use it as a relaxation drill, a bridge into meditation, or a tool to reduce physiological arousal. If dizziness occurs, reduce the hold first, then shorten the exhale.</div>
                             </div>
                         </div>
                     </div>
@@ -589,7 +592,7 @@
                                                                                           class="footnote-link">[5]</a></sup>
                                 </h6>
                                 <p class="card-text pattern-description">Inhale: 4s<br>Hold: 7s<br>Exhale: 8s</p>
-                                <div class="text-muted small">Dr. Andrew Weil</div>
+                                <div class="text-muted small">A classic sleep‑leaning breath that emphasizes a longer hold and a long exhale. Many people use it to slow racing thoughts and encourage drowsiness. The hold should feel calm—not tense—so adjust it if it’s too demanding. Do a few rounds (e.g., 4 cycles), then return to natural breathing. Avoid forcing the exhale; aim for smooth, quiet airflow.</div>
                             </div>
                         </div>
                     </div>
@@ -602,7 +605,7 @@
                                                                                                class="footnote-link">[6]</a></sup>
                                 </h6>
                                 <p class="card-text pattern-description">Inhale: 5.5s<br>Exhale: 5.5s<br>Optimal HRV</p>
-                                <div class="text-muted small">Back to basics</div>
+                                <div class="text-muted small">A balanced slow rhythm near ~5–6 breaths/min, commonly used in HRV training. The goal is steady, comfortable nasal breathing that feels almost “metronomic.” Many people report improved calm focus and emotional steadiness with consistent daily practice. Keep the breath light and continuous (no pauses), and prioritize consistency over intensity. If 5.5s feels too long, start at 5/5 and gradually lengthen.</div>
                             </div>
                         </div>
                     </div>
@@ -617,157 +620,7 @@
                                                                                                   class="footnote-link">[7]</a></sup>
                                 </h6>
                                 <p class="card-text pattern-description">Inhale: 3s<br>Exhale: 8s<br>Immediate Reset</p>
-                                <div class="text-muted small">Stanford Neurobiology</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="card h-100 pattern-idea-card"
-                             data-in="4" data-pause1="4" data-out="4" data-pause2="0"
-                             onclick="applyPatternIdea(this)">
-                            <div class="card-body text-center">
-                                <h6 class="card-title expert-color">🔺 Triangle <sup><a href="#ref-triangle"
-                                                                                       class="footnote-link">[8]</a></sup>
-                                </h6>
-                                <p class="card-text pattern-description">Inhale: 4s<br>Hold: 4s<br>Exhale: 4s<br>Anti-Anxiety
-                                </p>
-                                <div class="text-muted small">Low-Stress Grounding</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="card h-100 pattern-idea-card"
-                             data-in="4" data-pause1="0" data-out="6" data-pause2="0"
-                             onclick="applyPatternIdea(this)">
-                            <div class="card-body text-center">
-                                <h6 class="card-title expert-color">🩺 Resonance 4:6 <sup><a href="#ref-resonance"
-                                                                                            class="footnote-link">[9]</a></sup>
-                                </h6>
-                                <p class="card-text pattern-description">Inhale: 4s<br>Exhale: 6s<br>Blood Pressure</p>
-                                <div class="text-muted small">Clinical Biofeedback</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Row 4 -->
-                    <div class="col-md-4 mb-3">
-                        <div class="card h-100 pattern-idea-card"
-                             data-in="3" data-pause1="0" data-out="6" data-pause2="0"
-                             onclick="applyPatternIdea(this)">
-                            <div class="card-body text-center">
-                                <h6 class="card-title expert-color">🧠 Vagal Loading <sup><a href="#ref-vagal"
-                                                                                            class="footnote-link">[10]</a></sup>
-                                </h6>
-                                <p class="card-text pattern-description">Inhale: 3s<br>Exhale: 6s<br>Deep Calm</p>
-                                <div class="text-muted small">Polyvagal Theory</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="card h-100 pattern-idea-card"
-                             data-in="4" data-pause1="2" data-out="6" data-pause2="2"
-                             onclick="applyPatternIdea(this)">
-                            <div class="card-body text-center">
-                                <h6 class="card-title expert-color">😌 Calm Breath <sup><a href="#ref-calm"
-                                                                                          class="footnote-link">[11]</a></sup>
-                                </h6>
-                                <p class="card-text pattern-description">Inhale: 4s<br>Hold: 2s<br>Exhale: 6s<br>Hold: 2s</p>
-                                <div class="text-muted small">60-Second Stress Relief</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="card h-100 pattern-idea-card"
-                             data-in="5" data-pause1="0" data-out="5" data-pause2="0"
-                             onclick="applyPatternIdea(this)">
-                            <div class="card-body text-center">
-                                <h6 class="card-title expert-color">📈 HRV Resonance <sup><a href="#ref-hrv"
-                                                                                            class="footnote-link">[12]</a></sup>
-                                </h6>
-                                <p class="card-text pattern-description">Inhale: 5s<br>Exhale: 5s<br>6 breaths/min</p>
-                                <div class="text-muted small">Biofeedback Standard</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Row 5 -->
-                    <div class="col-md-4 mb-3">
-                        <div class="card h-100 pattern-idea-card"
-                             data-in="4" data-pause1="0" data-out="6" data-pause2="2"
-                             onclick="applyPatternIdea(this)">
-                            <div class="card-body text-center">
-                                <h6 class="card-title expert-color">🔄 Stress Reset <sup><a href="#ref-reset"
-                                                                                           class="footnote-link">[13]</a></sup>
-                                </h6>
-                                <p class="card-text pattern-description">Inhale: 4s<br>Exhale: 6s<br>Hold: 2s</p>
-                                <div class="text-muted small">Langhana Principle</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="card h-100 pattern-idea-card"
-                             data-in="6" data-pause1="0" data-out="6" data-pause2="0"
-                             onclick="applyPatternIdea(this)">
-                            <div class="card-body text-center">
-                                <h6 class="card-title expert-color">🫁 Diaphragmatic <sup><a href="#ref-diaphragm"
-                                                                                            class="footnote-link">[14]</a></sup>
-                                </h6>
-                                <p class="card-text pattern-description">Inhale: 6s<br>Exhale: 6s<br>5 breaths/min</p>
-                                <div class="text-muted small">Clinical Research</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="card h-100 pattern-idea-card"
-                             data-in="4" data-pause1="2" data-out="6" data-pause2="0"
-                             onclick="applyPatternIdea(this)">
-                            <div class="card-body text-center">
-                                <h6 class="card-title expert-color">🛡️ Anti-Anxiety <sup><a href="#ref-anxiety"
-                                                                                            class="footnote-link">[15]</a></sup>
-                                </h6>
-                                <p class="card-text pattern-description">Inhale: 4s<br>Hold: 2s<br>Exhale: 6s</p>
-                                <div class="text-muted small">Extended Exhale Focus</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Row 6 -->
-                    <div class="col-md-4 mb-3">
-                        <div class="card h-100 pattern-idea-card"
-                             data-in="4" data-pause1="0" data-out="8" data-pause2="0"
-                             onclick="applyPatternIdea(this)">
-                            <div class="card-body text-center">
-                                <h6 class="card-title expert-color">😴 Deep Sleep <sup><a href="#ref-sleep"
-                                                                                         class="footnote-link">[16]</a></sup>
-                                </h6>
-                                <p class="card-text pattern-description">Inhale: 4s<br>Exhale: 8s<br>2:1 Ratio</p>
-                                <div class="text-muted small">Parasympathetic Activation</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="card h-100 pattern-idea-card"
-                             data-in="4" data-pause1="4" data-out="6" data-pause2="0"
-                             onclick="applyPatternIdea(this)">
-                            <div class="card-body text-center">
-                                <h6 class="card-title expert-color">🎯 Focus Breath <sup><a href="#ref-focus"
-                                                                                           class="footnote-link">[17]</a></sup>
-                                </h6>
-                                <p class="card-text pattern-description">Inhale: 4s<br>Hold: 4s<br>Exhale: 6s</p>
-                                <div class="text-muted small">Calm & Alert</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="card h-100 pattern-idea-card"
-                             data-in="3" data-pause1="3" data-out="6" data-pause2="0"
-                             onclick="applyPatternIdea(this)">
-                            <div class="card-body text-center">
-                                <h6 class="card-title expert-color">⚡ Quick Reset <sup><a href="#ref-quick"
-                                                                                          class="footnote-link">[18]</a></sup>
-                                </h6>
-                                <p class="card-text pattern-description">Inhale: 3s<br>Hold: 3s<br>Exhale: 6s</p>
-                                <div class="text-muted small">5 breaths/min</div>
+                                <div class="text-muted small">A rapid downshift pattern inspired by research on “cyclic sighing”: a relatively short inhale paired with a long exhale to quickly reduce stress. Use it when you feel keyed up, after a startling moment, or as a quick emotional reset. Keep the inhale gentle (not a sharp gasp) and make the exhale the focus. After a few cycles, transition to slower, even breathing.</div>
                             </div>
                         </div>
                     </div>
@@ -797,12 +650,15 @@
                 <p class="text-muted">Research citations and scientific sources for all breathing patterns featured on this page.</p>
                 <ol class="references-list">
                     <li id="ref-calming">
-                        <strong class="reference-pattern-name">Calming 1:2 Ratio (4-8):</strong>
+                        <strong class="reference-pattern-name">Calming 1:2 / Deep Sleep (4-8):</strong>
                         <ul class="reference-links">
                             <li><a href="https://pubmed.ncbi.nlm.nih.gov/25156003/" target="_blank" rel="noopener">Applied Psychophysiol Biofeedback - I/E Ratio Study (Van Diest 2014)</a></li>
                             <li><a href="https://pubmed.ncbi.nlm.nih.gov/24020097/" target="_blank" rel="noopener">PubMed - 2:1 Yogic Breathing & Hypertension</a></li>
+                            <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6037091/" target="_blank" rel="noopener">PMC - Relaxation Effect of Prolonged Expiratory Breathing</a></li>
                             <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10395759/" target="_blank" rel="noopener">PMC - Slow Breathing & Extended Exhale</a></li>
-                            <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9873947/" target="_blank" rel="noopener">Cell Reports Medicine - Exhale-Emphasized Breathing (Stanford 2023)</a></li>
+                            <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7724962/" target="_blank" rel="noopener">PMC - DBRT for Sleep Quality</a></li>
+                            <li><a href="https://www.nature.com/articles/s41598-021-98736-9" target="_blank" rel="noopener">Scientific Reports - Deep Slow Breathing & Vagal Tone</a></li>
+                            <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9873947/" target="_blank" rel="noopener">Cell Reports Medicine - Exhale-Emphasized Breathing (Balban et al. 2023)</a></li>
                         </ul>
                     </li>
                     <li id="ref-box">
@@ -817,6 +673,7 @@
                         <strong class="reference-pattern-name">Rectangular Breathing:</strong>
                         <ul class="reference-links">
                             <li><a href="https://www.siumed.edu/gme/breath-wellness" target="_blank" rel="noopener">SIU School of Medicine - Breath & Wellness</a></li>
+                            <li><a href="https://www.imasterhealth.com/blog/the-4-4-6-2-breathing-technique" target="_blank" rel="noopener">iMaster Health - 4-4-6-2 Breathing Technique</a></li>
                         </ul>
                     </li>
                     <li id="ref-448">
@@ -838,6 +695,9 @@
                         <ul class="reference-links">
                             <li><a href="https://pubmed.ncbi.nlm.nih.gov/24380741/" target="_blank" rel="noopener">PubMed - Heart Rate Variability Research</a></li>
                             <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5575449/" target="_blank" rel="noopener">Frontiers - Resonance Frequency Impact</a></li>
+                            <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6137615/" target="_blank" rel="noopener">PMC - Slow/Deep Breathing review (autonomic mechanisms)</a></li>
+                            <li><a href="https://link.springer.com/article/10.1023/A:1022312815649" target="_blank" rel="noopener">Springer - Applied Psychophysiology & Biofeedback article</a></li>
+                            <li><a href="https://publications.ersnet.org/content/breathe/13/4/298" target="_blank" rel="noopener">ERS Breathe - Breathing exercises review</a></li>
                         </ul>
                     </li>
                     <li id="ref-sigh">
@@ -850,82 +710,9 @@
                     <li id="ref-triangle">
                         <strong class="reference-pattern-name">Triangle Breathing:</strong>
                         <ul class="reference-links">
-                            <li><a href="https://doi.org/10.3390/brainsci13121612" target="_blank" rel="noopener">Brain Sciences Journal</a></li>
-                            <li><a href="https://digitalcommons.lesley.edu/educational_studies_dissertations/1001" target="_blank" rel="noopener">Lesley University Research</a></li>
-                        </ul>
-                    </li>
-                    <li id="ref-resonance">
-                        <strong class="reference-pattern-name">Resonance Breathing (4:6):</strong>
-                        <ul class="reference-links">
-                            <li><a href="https://doi.org/10.1152/ajpheart.01011.2013" target="_blank" rel="noopener">American Journal of Physiology - Heart</a></li>
-                            <li><a href="https://www.nature.com/articles/s41598-021-98736-9" target="_blank" rel="noopener">Scientific Reports - Vagal Tone Study</a></li>
-                        </ul>
-                    </li>
-                    <li id="ref-vagal">
-                        <strong class="reference-pattern-name">Vagal Loading:</strong>
-                        <ul class="reference-links">
-                            <li><a href="https://doi.org/10.3390/medicines7100065" target="_blank" rel="noopener">MDPI Medicines - Polyvagal Theory</a></li>
-                            <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6189422/" target="_blank" rel="noopener">Frontiers - Respiratory Vagal Stimulation Model</a></li>
-                        </ul>
-                    </li>
-                    <li id="ref-calm">
-                        <strong class="reference-pattern-name">Calm Breath (4-2-6-2):</strong>
-                        <ul class="reference-links">
-                            <li><a href="https://www.siumed.edu/gme/breath-wellness" target="_blank" rel="noopener">SIU Medicine - Breath for Wellness</a></li>
-                            <li><a href="https://www.joinreframeapp.com/articles/stop-hangxiety-60-seconds-reframe-4-2-6-2-breathing-protocol" target="_blank" rel="noopener">Reframe App - Neuroscience Research</a></li>
-                            <li><a href="https://www.imasterhealth.com/blog/the-4-4-6-2-breathing-technique" target="_blank" rel="noopener">iMaster Health - 4-4-6-2 Technique</a></li>
-                        </ul>
-                    </li>
-                    <li id="ref-hrv">
-                        <strong class="reference-pattern-name">HRV Resonance (5-5):</strong>
-                        <ul class="reference-links">
-                            <li><a href="https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2017.00222/full" target="_blank" rel="noopener">Frontiers Public Health - RF Breathing Impact</a></li>
-                            <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8924557/" target="_blank" rel="noopener">PMC - Resonance Breathing RCT</a></li>
-                            <li><a href="https://pubmed.ncbi.nlm.nih.gov/31978852/" target="_blank" rel="noopener">Clinical Neurophysiology - HRV & Resonance</a></li>
-                        </ul>
-                    </li>
-                    <li id="ref-reset">
-                        <strong class="reference-pattern-name">Stress Reset (4-0-6-2):</strong>
-                        <ul class="reference-links">
-                            <li><a href="https://yogatherapyassociates.com/4-7-8-breathing/" target="_blank" rel="noopener">Yoga Therapy Associates - Langhana Principle</a></li>
-                            <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6037091/" target="_blank" rel="noopener">PMC - Prolonged Expiratory Breathing</a></li>
-                        </ul>
-                    </li>
-                    <li id="ref-diaphragm">
-                        <strong class="reference-pattern-name">Diaphragmatic (6-6):</strong>
-                        <ul class="reference-links">
-                            <li><a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2017.00874/full" target="_blank" rel="noopener">Frontiers Psychology - Diaphragmatic Breathing</a></li>
-                            <li><a href="https://pubmed.ncbi.nlm.nih.gov/31436595/" target="_blank" rel="noopener">JBI Evidence Synthesis - Systematic Review</a></li>
-                            <li><a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2021.624254/full" target="_blank" rel="noopener">Frontiers - Breathing in Psychotherapy</a></li>
-                        </ul>
-                    </li>
-                    <li id="ref-anxiety">
-                        <strong class="reference-pattern-name">Anti-Anxiety (4-2-6):</strong>
-                        <ul class="reference-links">
-                            <li><a href="https://www.nature.com/articles/s41598-022-27247-y" target="_blank" rel="noopener">Scientific Reports - Breathwork Meta-Analysis</a></li>
-                            <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10741869/" target="_blank" rel="noopener">PMC - Breathing Practices Systematic Review</a></li>
-                        </ul>
-                    </li>
-                    <li id="ref-sleep">
-                        <strong class="reference-pattern-name">Deep Sleep (4-8):</strong>
-                        <ul class="reference-links">
-                            <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6037091/" target="_blank" rel="noopener">PMC - Relaxation Effect of Prolonged Exhalation</a></li>
-                            <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7724962/" target="_blank" rel="noopener">PMC - DBRT for Sleep Quality</a></li>
-                            <li><a href="https://www.nature.com/articles/s41598-021-98736-9" target="_blank" rel="noopener">Scientific Reports - Deep Slow Breathing & Vagal Tone</a></li>
-                        </ul>
-                    </li>
-                    <li id="ref-focus">
-                        <strong class="reference-pattern-name">Focus Breath (4-4-6):</strong>
-                        <ul class="reference-links">
-                            <li><a href="https://www.womenswellnesspsychotherapy.com/blog/the-4-4-6-deep-breathing-method-a-simple-tool-to-calm-anxiety" target="_blank" rel="noopener">Women's Wellness Psychotherapy - 4-4-6 Method</a></li>
-                            <li><a href="https://words.jamoe.org/46-breathing/" target="_blank" rel="noopener">Jamoe - 4:6 Breathing for Focus</a></li>
-                        </ul>
-                    </li>
-                    <li id="ref-quick">
-                        <strong class="reference-pattern-name">Quick Reset (3-3-6):</strong>
-                        <ul class="reference-links">
-                            <li><a href="https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2020.570400/full" target="_blank" rel="noopener">Frontiers Neuroscience - RF Assessment Guide</a></li>
-                            <li><a href="https://www.nature.com/articles/s41598-021-87867-8" target="_blank" rel="noopener">Scientific Reports - Resonance Frequency Stability</a></li>
+                            <li><a href="https://cabincreekhealth.com/guided-relaxation-triangle-5-5-5-breathing/" target="_blank" rel="noopener">Cabin Creek Health - Guided Relaxation Triangle (5-5-5)</a></li>
+                            <li><a href="https://yogajala.com/triangle-breathing/" target="_blank" rel="noopener">YogaJala - Triangle Breathing</a></li>
+                            <li><a href="https://www.clayfulhealth.com/blog/using-the-triangle-breathing-tool-to-teach-self-regulation" target="_blank" rel="noopener">Clayful - Triangle Breathing for Self-Regulation</a></li>
                         </ul>
                     </li>
                 </ol>
@@ -1123,3 +910,6 @@
 
 </body>
 </html>
+
+
+
