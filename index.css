@@ -551,14 +551,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .section-title::after {
     content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
-    background: var(--gradient-primary);
-    border-radius: 2px;
+    /* underline removed for cleaner headings */
+    display: none;
 }
 
 /* Card entrance animations */
@@ -628,8 +622,7 @@ a {
     }
 
     .section-title::after {
-        width: 40px;
-        height: 3px;
+        display: none;
     }
 }
 
