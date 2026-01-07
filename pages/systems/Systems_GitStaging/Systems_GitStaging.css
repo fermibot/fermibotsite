@@ -1,0 +1,1037 @@
+/* ============================================
+   GIT STAGING VISUALIZATION - STYLES
+   ============================================ */
+
+/* CSS Variables for Theming */
+:root {
+    /* Git-specific Colors */
+    --git-working: #FB8C00;      /* Orange - Working directory */
+    --git-staging: #43A047;      /* Green - Staging area */
+    --git-repository: #1E88E5;   /* Blue - Repository */
+    --git-remote: #9C27B0;       /* Purple - Remote */
+    --git-modified: #E53935;     /* Red - Modified indicator */
+    --git-untracked: #9E9E9E;    /* Gray - Untracked */
+
+    /* Light Mode Colors */
+    --viz-bg: #ffffff;
+    --viz-bg-secondary: #f8f9fa;
+    --viz-text: #333333;
+    --viz-text-muted: #6c757d;
+    --viz-border: #dee2e6;
+    --viz-card-bg: #ffffff;
+    --viz-card-shadow: rgba(0, 0, 0, 0.1);
+    --viz-highlight-bg: rgba(0, 0, 0, 0.02);
+    --viz-hover: rgba(0, 0, 0, 0.05);
+}
+
+/* Dark Mode Colors */
+[data-bs-theme="dark"] {
+    --viz-bg: #1a1a2e;
+    --viz-bg-secondary: #16213e;
+    --viz-text: #e0e0e0;
+    --viz-text-muted: #9ca3af;
+    --viz-border: #3a3a5a;
+    --viz-card-bg: #1e293b;
+    --viz-card-shadow: rgba(0, 0, 0, 0.3);
+    --viz-highlight-bg: rgba(255, 255, 255, 0.02);
+    --viz-hover: rgba(255, 255, 255, 0.05);
+}
+
+/* ============================================
+   MAIN CONTAINER LAYOUT
+   ============================================ */
+
+.visualization-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background-color: var(--viz-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--viz-border);
+    max-width: 100%;
+}
+
+/* ============================================
+   CONTROLS BAR
+   ============================================ */
+
+.controls-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: var(--viz-bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--viz-border);
+}
+
+.controls-left {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.controls-right {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.add-file-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ============================================
+   STATS BAR
+   ============================================ */
+
+.stats-bar {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem;
+    background-color: var(--viz-bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--viz-border);
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stat-label {
+    font-weight: 600;
+    color: var(--viz-text-muted);
+    font-size: 0.9rem;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--viz-text);
+    min-width: 2rem;
+    text-align: center;
+    padding: 0.25rem 0.5rem;
+    background-color: var(--viz-highlight-bg);
+    border-radius: 6px;
+}
+
+/* ============================================
+   UNIFIED CONTAINER - One Big Box (3 Columns)
+   ============================================ */
+
+.git-unified-container {
+    background-color: var(--viz-card-bg);
+    border: 3px solid var(--viz-border);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 16px var(--viz-card-shadow);
+    display: grid;
+    grid-template-columns: 180px 1fr 1fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    overflow: visible;
+}
+
+/* Column 1: Banners stacked vertically */
+.banners-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Column 2: Combined workflows (Section 1 + Section 2 without separator) */
+.combined-workflow-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Column 3: Track - STICKY */
+.track-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: sticky;
+    top: 1.5rem;
+    align-self: start;
+}
+
+/* Column 4: Branches - STICKY */
+.branches-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: sticky;
+    top: 1.5rem;
+    align-self: start;
+}
+
+/* Branch area styling */
+.branch-area {
+    border-top: 4px solid #4CAF50; /* Green for branches */
+}
+
+.branch-ops-area {
+    border-top: 4px solid #2196F3; /* Blue for operations */
+}
+
+.branches-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 0.5rem;
+}
+
+.branch-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background-color: var(--viz-bg-secondary);
+    border: 1px solid var(--viz-border);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.branch-item:hover {
+    background-color: var(--viz-hover);
+    transform: translateX(3px);
+}
+
+.branch-item.branch-current {
+    border-left: 3px solid #4CAF50;
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+.branch-icon {
+    font-size: 0.75rem;
+    color: #4CAF50;
+}
+
+.branch-name {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--viz-text);
+    flex: 1;
+}
+
+.branch-badge {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.branch-ops-container {
+    padding: 0.5rem;
+}
+
+.branch-op-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background-color: var(--viz-bg-secondary);
+    border-radius: 6px;
+}
+
+.op-label {
+    font-size: 0.85rem;
+    color: var(--viz-text-muted);
+}
+
+.op-value {
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    color: #4CAF50;
+}
+
+/* Remove old grid-based section layout */
+.git-workflow-section {
+    display: contents;
+}
+
+/* Vertical Banner */
+.vertical-banner {
+    width: 180px;
+    background: linear-gradient(180deg, var(--git-repository) 0%, var(--git-staging) 100%);
+    border-radius: 12px;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: white;
+    box-shadow: 0 4px 12px var(--viz-card-shadow);
+    justify-content: flex-start;
+}
+
+.banner-init {
+    background: linear-gradient(180deg, #1E88E5 0%, #43A047 100%);
+}
+
+.banner-workflow {
+    background: linear-gradient(180deg, #43A047 0%, #FB8C00 100%);
+}
+
+.banner-number {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    color: var(--git-repository);
+    font-weight: 800;
+    font-size: 1.8rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.banner-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: center;
+}
+
+.banner-description {
+    font-size: 0.85rem;
+    opacity: 0.95;
+    line-height: 1.4;
+    text-align: center;
+}
+
+/* Workflow Content */
+.workflow-content {
+    display: contents;
+}
+
+
+/* ============================================
+   SECTION 1: Init Workflow
+   ============================================ */
+
+.init-workflow-container {
+    display: contents;
+}
+
+.init-workflow-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Track is in Column 3 */
+.init-track-vertical {
+    display: none; /* Hidden - track is now in track-column */
+}
+
+.track-area {
+    min-height: 300px;
+}
+
+.git-directory-unified {
+    display: none;
+}
+
+/* ============================================
+   SECTION 2: Regular Workflow (No separator from Section 1)
+   ============================================ */
+
+.regular-workflow-container {
+    display: contents;
+}
+
+.regular-workflow-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.regular-track-spacer {
+    display: none; /* No longer needed - unified track */
+}
+
+/* Keep old styles for backwards compatibility but hide them */
+.regular-workflow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.regular-workflow-single {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.workflow-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.repository-column {
+    display: none;  /* Hide since we're using the shared track now */
+}
+
+/* ============================================
+   GIT AREAS (Common Styling)
+   ============================================ */
+
+.git-area {
+    background-color: var(--viz-card-bg);
+    border: 2px solid var(--viz-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px var(--viz-card-shadow);
+}
+
+.init-step-vertical {
+    border-top: 4px solid #607D8B;  /* Gray-blue for init steps */
+}
+
+.workflow-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    width: 60px;
+}
+
+.arrow-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--viz-text-muted);
+    text-align: center;
+    font-family: 'Courier New', monospace;
+}
+
+.arrow-icon {
+    font-size: 2rem;
+    color: var(--git-repository);
+    font-weight: 700;
+}
+
+.workflow-arrow-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+}
+
+.arrow-icon-vertical {
+    font-size: 2rem;
+    color: var(--git-repository);
+    font-weight: 700;
+}
+
+.workflow-arrow-vertical .arrow-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--viz-text-muted);
+    text-align: center;
+    font-family: 'Courier New', monospace;
+}
+
+.working-area {
+    border-top: 4px solid var(--git-working);
+}
+
+.staging-area {
+    border-top: 4px solid var(--git-staging);
+}
+
+.git-directory-area {
+    border-top: 4px solid var(--git-repository);
+}
+
+.remote-area {
+    border-top: 4px solid var(--git-remote);
+}
+
+.area-header h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--viz-text);
+    margin: 0 0 0.5rem 0;
+}
+
+.area-description {
+    font-size: 0.8rem;
+    color: var(--viz-text-muted);
+    margin: 0 0 1rem 0;
+}
+
+.area-actions {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--viz-border);
+}
+
+.area-actions button {
+    width: 100%;
+}
+
+/* Simple file list for init workflow */
+.file-list-simple {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.file-item-simple {
+    padding: 0.5rem;
+    background-color: var(--viz-bg-secondary);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: var(--viz-text);
+    border: 1px solid var(--viz-border);
+}
+
+/* ============================================
+   AREA HEADER
+   ============================================ */
+
+.files-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    overflow-y: auto;
+    max-height: 500px;
+    padding: 0.5rem;
+}
+
+.file-card {
+    background-color: var(--viz-bg-secondary);
+    border: 1px solid var(--viz-border);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.file-card:hover {
+    background-color: var(--viz-hover);
+    transform: translateX(3px);
+}
+
+.file-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+}
+
+.file-icon {
+    font-size: 1.5rem;
+}
+
+.file-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.file-name {
+    font-weight: 600;
+    color: var(--viz-text);
+    font-size: 0.95rem;
+}
+
+.file-status {
+    font-size: 0.75rem;
+    color: var(--viz-text-muted);
+    font-style: italic;
+}
+
+.file-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.file-btn {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 600;
+}
+
+.file-btn-stage {
+    background-color: var(--git-staging);
+    color: white;
+}
+
+.file-btn-stage:hover {
+    background-color: #388E3C;
+    transform: scale(1.05);
+}
+
+.file-btn-unstage {
+    background-color: var(--git-modified);
+    color: white;
+}
+
+.file-btn-unstage:hover {
+    background-color: #C62828;
+    transform: scale(1.05);
+}
+
+/* ============================================
+   COMMITS CONTAINER
+   ============================================ */
+
+.commits-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    overflow-y: auto;
+    max-height: 500px;
+    padding: 0.5rem;
+}
+
+/* ============================================
+   COMMIT GRAPH
+   ============================================ */
+
+.commit-graph-container {
+    flex: 1;
+    min-height: 300px;
+    max-height: 450px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0.5rem;
+    position: relative;
+}
+
+#commit-graph-svg {
+    width: 100%;
+    min-height: 100%;
+}
+
+.commit-graph-container .empty-state {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Commit node styling */
+.commit-node {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.commit-node:hover .commit-circle {
+    stroke-width: 3;
+    filter: brightness(1.1);
+}
+
+.commit-circle {
+    stroke-width: 2;
+    transition: all 0.2s ease;
+}
+
+.commit-circle-main {
+    fill: var(--git-repository);
+    stroke: #1565C0;
+}
+
+.commit-circle-branch {
+    fill: #4CAF50;
+    stroke: #2E7D32;
+}
+
+.commit-circle-merge {
+    fill: #9C27B0;
+    stroke: #6A1B9A;
+}
+
+.commit-circle-pushed {
+    stroke-dasharray: none;
+}
+
+.commit-circle-unpushed {
+    stroke-dasharray: 3,2;
+}
+
+.commit-label {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    fill: var(--viz-text);
+    pointer-events: none;
+}
+
+.commit-message-label {
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    fill: var(--viz-text-muted);
+    pointer-events: none;
+}
+
+.commit-edge {
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.commit-edge-main {
+    stroke: var(--git-repository);
+}
+
+.commit-edge-branch {
+    stroke: #4CAF50;
+}
+
+.commit-edge-merge {
+    stroke: #9C27B0;
+    stroke-dasharray: 4,2;
+}
+
+/* Branch labels in graph */
+.branch-label-graph {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    fill: white;
+}
+
+.branch-label-bg {
+    rx: 3;
+    ry: 3;
+}
+
+.commit-card {
+    background-color: var(--viz-bg-secondary);
+    border-left: 4px solid var(--git-repository);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: all 0.2s ease;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.commit-card:hover {
+    background-color: var(--viz-hover);
+}
+
+.commit-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.commit-hash {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--git-repository);
+    font-weight: 700;
+}
+
+.commit-date {
+    font-size: 0.75rem;
+    color: var(--viz-text-muted);
+}
+
+.commit-message {
+    font-size: 0.9rem;
+    color: var(--viz-text);
+    margin-bottom: 0.5rem;
+}
+
+.commit-files {
+    font-size: 0.8rem;
+    color: var(--viz-text-muted);
+}
+
+.commit-files-count {
+    font-weight: 600;
+    color: var(--git-staging);
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--viz-text-muted);
+    font-style: italic;
+    padding: 2rem;
+    font-size: 1rem;
+}
+
+/* ============================================
+   LEGEND
+   ============================================ */
+
+.legend-container {
+    padding: 1rem;
+    background-color: var(--viz-bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--viz-border);
+}
+
+.legend-container h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--viz-text);
+    margin: 0 0 0.75rem 0;
+}
+
+.legend-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.legend-symbol {
+    font-size: 1.2rem;
+    min-width: 1.5rem;
+    text-align: center;
+}
+
+.legend-item code {
+    background-color: var(--viz-highlight-bg);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: var(--viz-text);
+    font-family: 'Courier New', monospace;
+}
+
+.legend-desc {
+    color: var(--viz-text-muted);
+    font-size: 0.85rem;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 992px) {
+    .git-unified-container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .track-column,
+    .branches-column {
+        position: static;
+    }
+
+    .vertical-banner {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+
+    .banner-number {
+        margin: 0;
+    }
+
+    .banner-title,
+    .banner-description {
+        text-align: left;
+    }
+
+    .banner-title {
+        margin-bottom: 0.25rem;
+    }
+
+
+    .stats-bar {
+        justify-content: center;
+    }
+
+    .controls-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .controls-left,
+    .controls-right {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .git-unified-container {
+        padding: 1rem;
+    }
+
+    .vertical-banner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .banner-number {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        margin: 0 auto;
+    }
+
+    .banner-title {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .banner-description {
+        font-size: 0.8rem;
+        text-align: center;
+    }
+
+    .workflow-content {
+        padding: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .git-main-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .phase-row {
+        grid-template-columns: 1fr;
+    }
+
+    .add-file-container {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .add-file-container input {
+        width: 100% !important;
+    }
+
+    .file-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .file-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+.pulse-animation {
+    animation: pulse 0.5s ease;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.shake-animation {
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+/* Banner spacer used to align Banner 2 with the start of Section 2 workflow */
+#banner-spacer {
+    height: 0px;
+}
+
+#banner-init {
+    margin-bottom: 2rem;
+}
+
+#banner-workflow {
+    margin-top: 0;
+}
+
+.workflow-section-block {
+    /* Provides stable measurement and predictable spacing */
+    display: block;
+}
+
+.vertical-banner.banner-stretched {
+    /* When we stretch, keep content pinned to top but keep nice padding */
+    padding-bottom: 2rem;
+}
+
+/* Commits inside track should scroll if too long */
+.track-column .commits-container {
+    max-height: 220px;
+}

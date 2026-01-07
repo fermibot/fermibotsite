@@ -391,6 +391,18 @@
           "url": "pages/statistics/Statistics_ANOVA/Statistics_ANOVA.html"
         }
       ]
+    },
+    {
+      "categoryMain": "Computer Science",
+      "category": "Systems",
+      "icon": "pages/Images/ArtificialIntelligence_IconImage.png",
+      "title": "Version Control",
+      "links": [
+        {
+          "text": "Git",
+          "url": "pages/systems/Systems_GitStaging/Systems_GitStaging.html"
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <title>Systems | Version Control | GIT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
+
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="../../../index.css">
+
+    <!-- Visualization CSS -->
+    <link href="Systems_GitStaging.css" rel="stylesheet">
+
+    <!-- Bootstrap JS -->
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+
+    <!-- D3.js v7 -->
+    <script src="../../../d3/d3.v7.min.js"></script>
+
+    <!-- Site automation -->
+    <script src="../../../automation/loadObjects.js"></script>
+
+    <!-- Color modes (dark/light theme) -->
+    <script src="../../../bootstrap/assets/color-modes.js"></script>
+</head>
+<body class="container-fluid px-2 py-4">
+
+<!-- Header -->
+<div id="header_placeholder"></div>
+
+<!-- Page Title -->
+<header class="mb-4">
+    <h1 class="text-center mb-3">Systems | Version Control | GIT</h1>
+    <p class="text-center text-muted">
+        Interactive visualization of the complete Git version control workflow
+    </p>
+</header>
+
+<!-- Introduction -->
+<section class="mb-4">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <p class="mb-2">
+            This interactive diagram demonstrates <strong>Git version control from scratch</strong> in two distinct sections:
+        </p>
+        <p class="mb-2">
+            <strong>Section 1 - Repository Initialization:</strong> Learn how to create a Git repository from an empty directory and make your first commit.
+        </p>
+        <p class="mb-0">
+            <strong>Section 2 - Regular Workflow:</strong> Daily Git operations—modify files, stage changes, commit, and push to remote repositories.
+        </p>
+        <p class="mb-0 text-muted small mt-2">
+            <strong>💡 Start with Section 1</strong> to initialize your repository, then move to Section 2 for ongoing development.
+        </p>
+    </div>
+</section>
+
+<!-- Main Visualization Wrapper -->
+<div class="visualization-wrapper">
+
+    <!-- Controls Bar -->
+    <div class="controls-bar">
+        <div class="controls-left">
+            <div class="info-badge">
+                <span class="badge bg-primary">Interactive Demo</span>
+                <span class="text-muted ms-2">Follow the steps in each section</span>
+            </div>
+        </div>
+        <div class="controls-right">
+            <button class="btn btn-sm btn-outline-secondary" id="reset-btn">
+                ↻ Reset Demo
+            </button>
+        </div>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <span class="stat-label">⚙️ Untracked:</span>
+            <span class="stat-value" id="untracked-count">0</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">📂 Working:</span>
+            <span class="stat-value" id="working-count">0</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">📋 Staging:</span>
+            <span class="stat-value" id="staging-count">0</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">💾 .git Local:</span>
+            <span class="stat-value" id="committed-count">0</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">☁️ Remote:</span>
+            <span class="stat-value" id="remote-count">0</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">🌿 Branches:</span>
+            <span class="stat-value" id="branch-count">1</span>
+        </div>
+    </div>
+
+    <!-- Main Visualization - Single Unified Box with 2 Columns -->
+
+    <div class="git-unified-container">
+
+        <!-- Column 1: Banners (both sections stacked) -->
+        <div class="banners-column">
+            <!-- Banner 1 -->
+            <div class="vertical-banner banner-init" id="banner-init">
+                <div class="banner-number">1</div>
+                <div class="banner-title">Git Repository Initialization & First Commit</div>
+                <div class="banner-description">Learn how to create a Git repository and make your first commit</div>
+            </div>
+
+            <!-- Spacer (auto-sized so Banner 2 lines up with Working Directory) -->
+            <div id="banner-spacer" aria-hidden="true"></div>
+
+            <!-- Banner 2 -->
+            <div class="vertical-banner banner-workflow" id="banner-workflow">
+                <div class="banner-number">2</div>
+                <div class="banner-title">Regular Git Workflow - Staging, Committing & Pushing</div>
+                <div class="banner-description">Daily workflow: modify files, stage changes, commit, and push to remote</div>
+            </div>
+        </div>
+
+        <!-- Column 2: Combined Workflow (Section 1 + Section 2 without separator) -->
+        <div class="combined-workflow-column">
+            <!-- Section 1: Init Workflow -->
+            <div class="workflow-section-block" id="section1-block">
+                <div class="init-workflow-vertical" id="init-workflow-anchor">
+                    <!-- Step 1: Empty Directory -->
+                    <div class="git-area init-step-vertical">
+                        <div class="area-header">
+                            <h3>📁 Empty Directory</h3>
+                            <p class="area-description">Your project folder (no Git yet)</p>
+                        </div>
+                        <div class="files-container" id="init-untracked-files">
+                            <div class="empty-state">Add files to get started</div>
+                        </div>
+                        <div class="area-actions">
+                            <input type="text" id="init-file-name" class="form-control form-control-sm"
+                                   placeholder="e.g., README.md" style="margin-bottom: 0.5rem;">
+                            <button class="btn btn-sm btn-primary" id="add-init-file-btn">
+                                ➕ Create File
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Arrow Down -->
+                    <div class="workflow-arrow-vertical">
+                        <div class="arrow-icon-vertical">↓</div>
+                        <div class="arrow-label">git init</div>
+                    </div>
+
+                    <!-- Step 2: After git init -->
+                    <div class="git-area init-step-vertical">
+                        <div class="area-header">
+                            <h3>⚙️ After git init</h3>
+                            <p class="area-description">.git directory created, files untracked</p>
+                        </div>
+                        <div class="files-container" id="init-working-files">
+                            <div class="empty-state">Run git init first</div>
+                        </div>
+                        <div class="area-actions">
+                            <button class="btn btn-sm btn-success" id="git-init-btn" disabled>
+                                ⚙️ Run git init
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Arrow Down -->
+                    <div class="workflow-arrow-vertical">
+                        <div class="arrow-icon-vertical">↓</div>
+                        <div class="arrow-label">git add .</div>
+                    </div>
+
+                    <!-- Step 3: Staging for First Commit -->
+                    <div class="git-area init-step-vertical">
+                        <div class="area-header">
+                            <h3>📋 Stage for First Commit</h3>
+                            <p class="area-description">Files ready to commit</p>
+                        </div>
+                        <div class="files-container" id="init-staging-files">
+                            <div class="empty-state">No files staged yet</div>
+                        </div>
+                        <div class="area-actions">
+                            <button class="btn btn-sm btn-primary" id="git-add-init-btn" disabled>
+                                ➕ git add .
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Arrow Down -->
+                    <div class="workflow-arrow-vertical">
+                        <div class="arrow-icon-vertical">↓</div>
+                        <div class="arrow-label">git commit</div>
+                    </div>
+
+                    <!-- Step 4: First Commit -->
+                    <div class="git-area init-step-vertical">
+                        <div class="area-header">
+                            <h3>💾 First Commit</h3>
+                            <p class="area-description">.git directory with commit</p>
+                        </div>
+                        <div class="commits-container" id="init-commits-container">
+                            <div class="empty-state">Make first commit</div>
+                        </div>
+                        <div class="area-actions">
+                            <button class="btn btn-sm btn-success" id="first-commit-btn" disabled>
+                                ✓ Make First Commit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Regular Workflow (immediately after, NO separator) -->
+            <div class="workflow-section-block" id="section2-block">
+                <div class="regular-workflow-vertical" id="regular-workflow-anchor">
+                    <!-- Working Directory -->
+                    <div class="git-area working-area">
+                        <div class="area-header">
+                            <h3>📂 Working Directory</h3>
+                            <p class="area-description">Modified files</p>
+                        </div>
+                        <div class="files-container" id="working-files">
+                            <div class="empty-state">No modified files</div>
+                        </div>
+                        <div class="area-actions">
+                            <input type="text" id="new-file-name" class="form-control form-control-sm"
+                                   placeholder="e.g., style.css" style="margin-bottom: 0.5rem;">
+                            <button class="btn btn-sm btn-primary" id="add-file-btn">
+                                ➕ Add/Modify File
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Arrow Down -->
+                    <div class="workflow-arrow-vertical">
+                        <div class="arrow-icon-vertical">↓</div>
+                        <div class="arrow-label">git add</div>
+                    </div>
+
+                    <!-- Staging Area -->
+                    <div class="git-area staging-area">
+                        <div class="area-header">
+                            <h3>📋 Staging Area</h3>
+                            <p class="area-description">Changes ready to commit</p>
+                        </div>
+                        <div class="files-container" id="staging-files">
+                            <div class="empty-state">No files staged</div>
+                        </div>
+                        <div class="area-actions">
+                            <button class="btn btn-sm btn-success" id="commit-btn" disabled>
+                                ✓ Commit Staged Files
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 3: Track (.git + Remote) - STICKY -->
+        <div class="track-column">
+            <!-- .git Directory with Commit Graph -->
+            <div class="git-area git-directory-area track-area">
+                <div class="area-header">
+                    <h3>💾 .git Directory</h3>
+                    <p class="area-description">Commit graph (local repository)</p>
+                </div>
+                <div class="commit-graph-container" id="commit-graph-container">
+                    <svg id="commit-graph-svg"></svg>
+                    <div class="empty-state" id="empty-commits">
+                        Complete workflow to see commits
+                    </div>
+                </div>
+                <div class="area-actions">
+                    <button class="btn btn-sm btn-primary" id="push-btn" disabled>
+                        ☁️ Push to Remote
+                    </button>
+                </div>
+            </div>
+
+            <!-- Arrow Down -->
+            <div class="workflow-arrow-vertical">
+                <div class="arrow-icon-vertical">↓</div>
+                <div class="arrow-label">git push</div>
+            </div>
+
+            <!-- Remote Repository -->
+            <div class="git-area remote-area track-area">
+                <div class="area-header">
+                    <h3>☁️ Remote Repository</h3>
+                    <p class="area-description">origin/main (pushed commits)</p>
+                </div>
+                <div class="commit-graph-container" id="remote-graph-container">
+                    <svg id="remote-graph-svg"></svg>
+                    <div class="empty-state" id="empty-remote">
+                        No commits pushed yet
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 4: Branches - STICKY -->
+        <div class="branches-column">
+            <!-- Current Branch -->
+            <div class="git-area branch-area">
+                <div class="area-header">
+                    <h3>🌿 Branches</h3>
+                    <p class="area-description">Branch management</p>
+                </div>
+                <div class="branches-container" id="branches-container">
+                    <div class="branch-item branch-current">
+                        <span class="branch-icon">●</span>
+                        <span class="branch-name">main</span>
+                        <span class="branch-badge">current</span>
+                    </div>
+                </div>
+                <div class="area-actions">
+                    <input type="text" id="new-branch-name" class="form-control form-control-sm"
+                           placeholder="e.g., feature/login" style="margin-bottom: 0.5rem;">
+                    <button class="btn btn-sm btn-outline-success" id="create-branch-btn">
+                        🌿 Create Branch
+                    </button>
+                </div>
+            </div>
+
+            <!-- Branch Operations -->
+            <div class="git-area branch-ops-area">
+                <div class="area-header">
+                    <h3>🔀 Branch Operations</h3>
+                    <p class="area-description">Switch & merge</p>
+                </div>
+                <div class="branch-ops-container">
+                    <div class="branch-op-info">
+                        <span class="op-label">Current:</span>
+                        <span class="op-value" id="current-branch-display">main</span>
+                    </div>
+                </div>
+                <div class="area-actions">
+                    <button class="btn btn-sm btn-outline-primary" id="merge-branch-btn" disabled>
+                        🔀 Merge into main
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- End of git-unified-container -->
+
+    <!-- Legend -->
+    <div class="legend-container">
+        <h4>Git Version Control Workflow:</h4>
+
+        <div class="mb-3">
+            <strong>Section 1 - Repository Initialization:</strong>
+        </div>
+        <div class="legend-items mb-4">
+            <div class="legend-item">
+                <span class="legend-symbol">📁</span>
+                <span class="legend-desc">Create files in empty directory</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-symbol">⚙️</span>
+                <code>git init</code>
+                <span class="legend-desc">— Initialize Git repository (creates .git directory)</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-symbol">➕</span>
+                <code>git add .</code>
+                <span class="legend-desc">— Stage all files for first commit</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-symbol">✓</span>
+                <code>git commit -m "Initial commit"</code>
+                <span class="legend-desc">— Create first commit</span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <strong>Section 2 - Regular Workflow:</strong>
+        </div>
+        <div class="legend-items">
+            <div class="legend-item">
+                <span class="legend-symbol">📂</span>
+                <span class="legend-desc">Modify or create new files</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-symbol">➕</span>
+                <code>git add &lt;file&gt;</code>
+                <span class="legend-desc">— Stage individual files</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-symbol">✓</span>
+                <code>git commit -m "message"</code>
+                <span class="legend-desc">— Commit staged changes</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-symbol">☁️</span>
+                <code>git push origin main</code>
+                <span class="legend-desc">— Push commits to remote repository</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-symbol">➖</span>
+                <code>git reset HEAD &lt;file&gt;</code>
+                <span class="legend-desc">— Unstage a file</span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <strong>Branch Operations:</strong>
+        </div>
+        <div class="legend-items">
+            <div class="legend-item">
+                <span class="legend-symbol">🌿</span>
+                <code>git branch &lt;name&gt;</code>
+                <span class="legend-desc">— Create a new branch</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-symbol">🔀</span>
+                <code>git checkout &lt;branch&gt;</code>
+                <span class="legend-desc">— Switch to a branch</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-symbol">🔀</span>
+                <code>git merge &lt;branch&gt;</code>
+                <span class="legend-desc">— Merge branch into current branch</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div id="footer_placeholder"></div>
+
+<!-- JavaScript -->
+<script src="Systems_GitStaging.js"></script>
+
+<script>
+    loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html");
+</script>
+
+</body>
+</html>
+
+
+
