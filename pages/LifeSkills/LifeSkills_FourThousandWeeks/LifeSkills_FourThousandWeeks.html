@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <title>Life Skills | Time & Meaning | Four Thousand Weeks</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
+
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="../../../index.css">
+
+    <!-- Visualization CSS -->
+    <link href="LifeSkills_FourThousandWeeks.css" rel="stylesheet">
+
+    <!-- Bootstrap JS -->
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+
+    <!-- MathJax for equations -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <!-- D3.js v7 -->
+    <script src="../../../d3/d3.v7.min.js"></script>
+
+    <!-- Site automation -->
+    <script src="../../../automation/loadObjects.js"></script>
+
+    <!-- Color modes (dark/light theme) -->
+    <script src="../../../bootstrap/assets/color-modes.js"></script>
+</head>
+<body class="container-lg container-fluid p-4">
+
+<!-- Header -->
+<div id="header_placeholder"></div>
+
+<!-- Page Title -->
+<header class="mb-4">
+    <h1 class="text-center mb-3">Life Skills | Time & Meaning | Four Thousand Weeks</h1>
+    <p class="text-center text-muted">
+        Interactive visualization of Oliver Burkeman's guide to time management for mortals
+    </p>
+</header>
+
+<!-- Introduction -->
+<section class="mb-4">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <p class="mb-2">
+            This diagram visually summarizes <em>Oliver Burkeman's</em> book
+            <strong>"Four Thousand Weeks: Time Management for Mortals"</strong>.
+            The visualization explores profound insights about our limited time and how to live meaningfully within that constraint.
+        </p>
+        <p class="mb-0 text-muted small">
+            <strong>Tips:</strong>
+            Hover over concepts to see connections and summaries.
+            Click to lock the selection.
+            Use the search box to filter concepts.
+            Press <kbd>/</kbd> to focus search, <kbd>Esc</kbd> to clear.
+        </p>
+    </div>
+</section>
+
+<!-- Main Visualization Wrapper -->
+<div class="visualization-wrapper">
+
+    <!-- Controls Bar -->
+    <div class="controls-bar">
+        <div class="controls-left">
+            <!-- Search -->
+            <div class="search-container">
+                <span class="search-icon">&#128269;</span>
+                <input type="text"
+                       id="search-input"
+                       class="search-input"
+                       placeholder="Search concepts... (press /)"
+                       autocomplete="off">
+                <span class="search-counter" id="search-counter"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Legend at Top (2-row grid) -->
+    <div class="legend-top" id="legend-container">
+        <!-- Legend content will be injected by JS -->
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="visualization-main">
+        <!-- View Switcher -->
+        <div class="view-switcher">
+            <button class="view-btn active" data-view="radial" title="Radial Tree (Ctrl+1)" aria-pressed="true">
+                <span class="view-icon">⭕</span>
+                <span class="view-label">Radial</span>
+            </button>
+            <button class="view-btn" data-view="network" title="Network Graph (Ctrl+2)" aria-pressed="false">
+                <span class="view-icon">🕸️</span>
+                <span class="view-label">Network</span>
+            </button>
+            <button class="view-btn" data-view="cluster" title="Tree Cluster (Ctrl+3)" aria-pressed="false">
+                <span class="view-icon">🌲</span>
+                <span class="view-label">Cluster</span>
+            </button>
+        </div>
+
+        <!-- The D3 visualization will be rendered here -->
+        <svg id="main-svg"></svg>
+    </div>
+</div>
+
+<!-- Footer -->
+<div id="footer_placeholder"></div>
+
+<!-- JavaScript -->
+<script src="LifeSkills_FourThousandWeeks.js"></script>
+
+<script>
+    loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html");
+</script>
+
+</body>
+</html>
+

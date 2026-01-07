@@ -1,0 +1,1001 @@
+/* ============================================
+   FOUR THOUSAND WEEKS - VISUALIZATION STYLES
+   ============================================ */
+
+/* CSS Variables for Theming */
+:root {
+    /* Time-themed colors */
+    --time-past: #8B7355;        /* Bronze/sepia for past */
+    --time-present: #D4AF37;     /* Gold for present moment */
+    --time-future: #708090;      /* Slate gray for uncertain future */
+    --mortality: #2C3E50;        /* Deep blue-gray for finitude */
+    --practice: #27AE60;         /* Green for actionable practices */
+    --insight: #E74C3C;          /* Red for key insights */
+    --hourglass: #F39C12;        /* Amber for time constraint */
+
+    /* Light Mode Colors */
+    --viz-bg: #ffffff;
+    --viz-bg-secondary: #f8f9fa;
+    --viz-text: #333333;
+    --viz-text-muted: #6c757d;
+    --viz-border: #dee2e6;
+    --viz-card-bg: #ffffff;
+    --viz-card-shadow: rgba(0, 0, 0, 0.1);
+    --viz-highlight-bg: rgba(0, 0, 0, 0.02);
+    --transition-fast: 0.15s;
+    --transition-normal: 0.3s;
+}
+
+/* Dark Mode Colors */
+[data-bs-theme="dark"] {
+    --viz-bg: #1a1a2e;
+    --viz-bg-secondary: #16213e;
+    --viz-text: #e0e0e0;
+    --viz-text-muted: #9ca3af;
+    --viz-border: #3a3a5a;
+    --viz-card-bg: #1e293b;
+    --viz-card-shadow: rgba(0, 0, 0, 0.3);
+    --viz-highlight-bg: rgba(255, 255, 255, 0.02);
+}
+
+/* ============================================
+   MAIN WRAPPER LAYOUT
+   ============================================ */
+
+.visualization-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--viz-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--viz-border);
+    max-width: 100%;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.visualization-main {
+    position: relative;
+    min-height: 600px;
+    background-color: var(--viz-card-bg);
+    border-radius: 8px;
+    border: 1px solid var(--viz-border);
+    overflow: hidden;
+}
+
+/* ============================================
+   CONTROLS BAR
+   ============================================ */
+
+.controls-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: var(--viz-bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--viz-border);
+}
+
+.controls-left {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Search Box */
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.search-input {
+    padding: 0.5rem 1rem 0.5rem 2.5rem;
+    border: 1px solid var(--viz-border);
+    border-radius: 20px;
+    background-color: var(--viz-card-bg);
+    color: var(--viz-text);
+    width: 250px;
+    font-size: 0.9rem;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--time-present);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+
+.search-input::placeholder {
+    color: var(--viz-text-muted);
+}
+
+.search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--viz-text-muted);
+    pointer-events: none;
+}
+
+.search-counter {
+    font-size: 0.75rem;
+    color: var(--viz-text-muted);
+    background-color: var(--viz-bg-secondary);
+    border: 1px solid var(--viz-border);
+    border-radius: 12px;
+    padding: 0.25rem 0.6rem;
+    white-space: nowrap;
+    min-width: 45px;
+    text-align: center;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.search-counter.visible {
+    opacity: 1;
+}
+
+.search-counter.has-results {
+    color: var(--time-present);
+    border-color: var(--time-present);
+}
+
+/* ============================================
+   LEGEND BANNER
+   ============================================ */
+
+/* ============================================
+   LEGEND BANNER
+   ============================================ */
+
+.legend-top {
+    background-color: var(--viz-bg-secondary);
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid var(--viz-border);
+}
+
+.legend-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.legend-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--viz-text);
+    margin: 0;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Progress Bar Inline */
+.progress-inline {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.progress-bar-wrapper {
+    flex: 1;
+    height: 12px;
+    background-color: var(--viz-border);
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    min-width: 150px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.progress-bar-wrapper:hover {
+    height: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.progress-bar-segment {
+    height: 100%;
+    transition: width var(--transition-normal);
+    flex-shrink: 0;
+}
+
+.progress-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--viz-text);
+    white-space: nowrap;
+    min-width: 50px;
+    text-align: right;
+}
+
+.legend-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    background-color: var(--viz-card-bg);
+    border: 1px solid transparent;
+}
+
+.legend-item:hover {
+    background-color: var(--viz-highlight-bg);
+    border-color: var(--viz-border);
+    transform: translateY(-1px);
+}
+
+.legend-item.active {
+    border-color: var(--time-present);
+    background-color: rgba(212, 175, 55, 0.1);
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 2px solid var(--viz-border);
+}
+
+.legend-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.legend-label {
+    font-size: 0.85rem;
+    color: var(--viz-text);
+    font-weight: 500;
+    flex: 1;
+}
+
+.legend-count {
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: var(--viz-text-muted);
+    background-color: var(--viz-bg-secondary);
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+/* ============================================
+   PROGRESS TOOLTIP
+   ============================================ */
+
+.progress-tooltip {
+    position: fixed;
+    background-color: var(--viz-card-bg);
+    border: 2px solid var(--viz-border);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 16px var(--viz-card-shadow);
+    z-index: 10000;
+    min-width: 300px;
+    max-width: 400px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-fast), visibility var(--transition-fast);
+    pointer-events: none;
+}
+
+.progress-tooltip.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.progress-tooltip-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--viz-text);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--viz-border);
+}
+
+.progress-tooltip-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.progress-tooltip-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 0;
+}
+
+.progress-tooltip-section-name {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.progress-tooltip-section-icon {
+    font-size: 1rem;
+}
+
+.progress-tooltip-section-count {
+    font-weight: 600;
+    color: var(--viz-text);
+    font-size: 0.9rem;
+}
+
+.progress-tooltip-footer {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 2px solid var(--viz-border);
+    font-weight: 600;
+    text-align: center;
+    color: var(--time-present);
+}
+
+/* ============================================
+   TOOLTIP (HOVER)
+   ============================================ */
+
+.tooltip {
+    position: fixed;
+    background-color: var(--viz-card-bg);
+    border: 2px solid var(--viz-border);
+    border-radius: 8px;
+    padding: 0.75rem;
+    box-shadow: 0 4px 12px var(--viz-card-shadow);
+    z-index: 9999;
+    max-width: 350px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-fast), visibility var(--transition-fast);
+    pointer-events: none;
+}
+
+.tooltip.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.tooltip-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--viz-text);
+    margin-bottom: 0.5rem;
+}
+
+.tooltip-summary {
+    font-size: 0.85rem;
+    color: var(--viz-text-muted);
+    line-height: 1.4;
+}
+
+/* ============================================
+   INFO CARD (CLICK/LOCK)
+   ============================================ */
+
+.info-card-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-normal), visibility var(--transition-normal);
+}
+
+.info-card-backdrop.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.info-card {
+    position: fixed;
+    background-color: var(--viz-card-bg);
+    border: 2px solid var(--viz-border);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px var(--viz-card-shadow);
+    z-index: 9999;
+    width: 90%;
+    max-width: 450px;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.95);
+    transition: all var(--transition-normal);
+}
+
+.info-card.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+.info-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    border-bottom: 2px solid var(--viz-border);
+}
+
+.info-card-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.info-card-titles {
+    flex: 1;
+    min-width: 0;
+}
+
+.info-card-chapter {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--viz-text);
+    margin: 0 0 0.25rem 0;
+    line-height: 1.3;
+}
+
+.info-card-section {
+    font-size: 0.85rem;
+    color: var(--viz-text-muted);
+    margin: 0;
+    font-weight: 500;
+}
+
+.info-card-body {
+    padding: 1.25rem;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.info-card-summary {
+    font-size: 0.95rem;
+    color: var(--viz-text);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.info-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    border-top: 2px solid var(--viz-border);
+    gap: 1rem;
+}
+
+.info-card-connections {
+    font-size: 0.85rem;
+    color: var(--viz-text-muted);
+}
+
+.mark-learned-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all var(--transition-fast);
+}
+
+.mark-learned-btn:not(.learned) {
+    background-color: var(--practice);
+    border-color: var(--practice);
+    color: white;
+}
+
+.mark-learned-btn:not(.learned):hover {
+    background-color: #229954;
+    border-color: #229954;
+    transform: translateY(-1px);
+}
+
+.mark-learned-btn.learned {
+    background-color: var(--viz-bg-secondary);
+    border-color: var(--viz-border);
+    color: var(--practice);
+}
+
+.mark-learned-btn.learned:hover {
+    background-color: var(--viz-highlight-bg);
+}
+
+/* ============================================
+   VISUALIZATION CONTAINER
+   ============================================ */
+
+.visualization-main {
+    position: relative;
+    background-color: var(--viz-card-bg);
+    border-radius: 8px;
+    border: 1px solid var(--viz-border);
+    overflow: hidden;
+    min-height: 700px;
+}
+
+#main-svg {
+    width: 100%;
+    height: 700px;
+    display: block;
+}
+
+/* Node styles */
+.node circle {
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.node circle:hover {
+    filter: brightness(1.1);
+}
+
+.link {
+    transition: all var(--transition-fast);
+}
+
+/* ============================================
+   VIEW SWITCHER
+   ============================================ */
+
+.view-switcher {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    background-color: var(--viz-card-bg);
+    border: 1px solid transparent;
+}
+
+.legend-item:hover {
+    background-color: var(--viz-highlight-bg);
+    border-color: var(--viz-border);
+    transform: translateY(-1px);
+}
+
+.legend-item.active {
+    border-color: var(--time-present);
+    background-color: rgba(212, 175, 55, 0.1);
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 2px solid var(--viz-border);
+}
+
+.legend-label {
+    font-size: 0.85rem;
+    color: var(--viz-text);
+    font-weight: 500;
+}
+
+.legend-count {
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: var(--viz-text-muted);
+    background-color: var(--viz-bg-secondary);
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+/* ============================================
+   VIEW SWITCHER
+   ============================================ */
+
+.view-switcher {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background-color: var(--viz-bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--viz-border);
+    flex-wrap: wrap;
+}
+
+.view-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--viz-border);
+    border-radius: 6px;
+    background-color: var(--viz-card-bg);
+    color: var(--viz-text);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.view-btn:hover {
+    background-color: var(--viz-highlight-bg);
+    border-color: var(--time-present);
+}
+
+.view-btn.active {
+    background-color: var(--time-present);
+    color: #000;
+    border-color: var(--time-present);
+    font-weight: 600;
+}
+
+.view-icon {
+    font-size: 1.1rem;
+}
+
+.view-label {
+    font-size: 0.85rem;
+}
+
+/* ============================================
+   SVG VISUALIZATION
+   ============================================ */
+
+.main-svg {
+    width: 100%;
+    height: 100%;
+    min-height: 600px;
+}
+
+/* Node Styles */
+.node-circle {
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    stroke-width: 2;
+}
+
+.node-circle:hover {
+    stroke-width: 3;
+    filter: brightness(1.1);
+}
+
+.node-circle.highlighted {
+    stroke-width: 4;
+    filter: brightness(1.2) drop-shadow(0 0 8px currentColor);
+}
+
+.node-circle.dimmed {
+    opacity: 0.2;
+}
+
+.node-label {
+    font-size: 11px;
+    font-weight: 500;
+    pointer-events: none;
+    user-select: none;
+    fill: var(--viz-text);
+}
+
+.node-label.dimmed {
+    opacity: 0.3;
+}
+
+/* Link Styles */
+.link-line {
+    stroke: var(--viz-border);
+    stroke-width: 1.5;
+    fill: none;
+    transition: all var(--transition-fast);
+}
+
+.link-line.highlighted {
+    stroke: var(--time-present);
+    stroke-width: 3;
+    opacity: 1;
+}
+
+.link-line.dimmed {
+    opacity: 0.1;
+}
+
+/* Category-specific colors */
+.node-intro { fill: var(--mortality); }
+.node-part1 { fill: var(--time-past); }
+.node-part2 { fill: var(--time-future); }
+.node-practices { fill: var(--practice); }
+.node-insights { fill: var(--insight); }
+
+/* ============================================
+   INFO PANEL
+   ============================================ */
+
+.info-panel {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 320px;
+    max-width: calc(100% - 2rem);
+    background-color: var(--viz-card-bg);
+    border: 2px solid var(--viz-border);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px var(--viz-card-shadow);
+    padding: 1rem;
+    z-index: 1000;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--viz-border);
+}
+
+.info-header h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--viz-text);
+    margin: 0;
+    line-height: 1.3;
+}
+
+.info-close {
+    background: none;
+    border: none;
+    color: var(--viz-text-muted);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.info-close:hover {
+    background-color: var(--viz-highlight-bg);
+    color: var(--viz-text);
+}
+
+.info-body {
+    color: var(--viz-text);
+}
+
+.info-body p {
+    margin: 0 0 1rem 0;
+    line-height: 1.5;
+    font-size: 0.9rem;
+}
+
+#info-connections {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--viz-border);
+}
+
+.connections-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--viz-text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.connection-item {
+    padding: 0.4rem 0.6rem;
+    background-color: var(--viz-bg-secondary);
+    border-radius: 6px;
+    margin-bottom: 0.4rem;
+    font-size: 0.85rem;
+    color: var(--viz-text);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border: 1px solid transparent;
+}
+
+.connection-item:hover {
+    background-color: var(--viz-highlight-bg);
+    border-color: var(--viz-border);
+}
+
+/* ============================================
+   STATS SECTION
+   ============================================ */
+
+.stats-section {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1rem;
+    background-color: var(--viz-bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--viz-border);
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--viz-text-muted);
+    font-weight: 500;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--time-present);
+}
+
+/* ============================================
+   TIMELINE VIEW SPECIFIC
+   ============================================ */
+
+.timeline-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.timeline-axis {
+    stroke: var(--viz-border);
+    stroke-width: 2;
+}
+
+.timeline-tick {
+    stroke: var(--viz-border);
+    stroke-width: 1;
+}
+
+.timeline-label {
+    fill: var(--viz-text);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.timeline-marker {
+    stroke: var(--time-present);
+    stroke-width: 2;
+    stroke-dasharray: 5,5;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+    .visualization-wrapper {
+        padding: 1rem;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+
+    .controls-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .controls-left,
+    .controls-right {
+        width: 100%;
+        justify-content: stretch;
+    }
+
+    .info-panel {
+        width: calc(100% - 2rem);
+        top: 0.5rem;
+        right: 0.5rem;
+        left: 0.5rem;
+    }
+
+    .legend-items {
+        grid-template-columns: 1fr;
+    }
+
+    .view-switcher {
+        justify-content: center;
+    }
+
+    .stats-section {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-svg {
+        min-height: 400px;
+    }
+
+    .view-btn {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.8rem;
+    }
+
+    .stat-value {
+        font-size: 1.25rem;
+    }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Focus Styles */
+*:focus-visible {
+    outline: 2px solid var(--time-present);
+    outline-offset: 2px;
+}
+
+button:focus-visible,
+input:focus-visible,
+.view-btn:focus-visible,
+.legend-item:focus-visible {
+    outline: 2px solid var(--time-present);
+    outline-offset: 2px;
+}
+

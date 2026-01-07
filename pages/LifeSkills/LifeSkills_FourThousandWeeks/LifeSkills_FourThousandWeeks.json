@@ -1,0 +1,318 @@
+[
+	{
+		"name": "main.intro Introduction: In the Long Run, We're All Dead",
+		"imports": [],
+		"summary": "The average human lifespan translates to approximately four thousand weeks. This stark numerical reality demolishes abstract thinking about time and forces concrete recognition of our radical finitude. Most self-help and productivity advice implicitly assumes unlimited time—that with the right system, you'll eventually handle everything. But you won't. The math is brutal and non-negotiable. This book argues that accepting this limitation, rather than fighting it, is the path to meaningful time use and genuine peace."
+	},
+	{
+		"name": "main.intro.01 The Limit",
+		"imports": ["main.intro Introduction: In the Long Run, We're All Dead"],
+		"summary": "Four thousand weeks is all you get, if you're lucky. When you truly confront this number—not just intellectually acknowledge it but emotionally absorb it—everything changes. The time budget is non-negotiable and shockingly small. Most experiences, relationships, books, and possibilities will never materialize in your life. This realization strips away the comforting fantasy of 'someday' and forces you to recognize that your attention right now is all you actually have. The question transforms from 'How do I fit everything in?' to 'What deserves my irreplaceable, finite attention?'"
+	},
+	{
+		"name": "main.intro.02 The Productivity Trap",
+		"imports": ["main.intro.01 The Limit"],
+		"summary": "Productivity culture operates on a lie: that becoming more efficient will eventually create breathing room. The opposite occurs. Email proves this perfectly—respond faster and you train correspondents to expect speed, generating more messages. Clear your to-do list efficiently and more tasks materialize to fill the void. You cannot win this game because it's designed to be unwinnable. Work expands to fill available time (Parkinson's Law), and digital connectivity ensures infinite work availability. The trap ensnares you when you treat time as a resource to be managed rather than recognizing it as the medium of existence itself."
+	},
+	{
+		"name": "main.part1 PART ONE: Choosing to Choose",
+		"imports": ["main.intro.02 The Productivity Trap"],
+		"summary": "Part One examines how we got into this mess—why modern life feels so overwhelming despite unprecedented convenience. It explores the ways we deceive ourselves about time's nature, the impossible promises of efficiency culture, and why trying to 'get on top of everything' is not just difficult but logically impossible. The section argues that liberation begins with facing uncomfortable truths about limitation rather than continuing futile optimization projects."
+	},
+	{
+		"name": "main.part1.ch01 1. The Limit-Embracing Life",
+		"imports": ["main.part1 PART ONE: Choosing to Choose"],
+		"summary": "This chapter introduces the core concept: you must choose because you cannot have everything. The efficiency mindset promises that with enough optimization, you'll eventually achieve balance and control. This is fantasy. Digital tools and productivity systems paradoxically worsen overwhelm by making more things seem possible, when in fact your capacity remains stubbornly finite. The chapter argues for embracing limitation as liberation rather than viewing it as a problem to solve."
+	},
+	{
+		"name": "main.part1.ch01.01 The Efficiency Trap",
+		"imports": ["main.part1.ch01 1. The Limit-Embracing Life"],
+		"summary": "Every productivity tool you adopt creates new obligations. Inbox zero becomes its own tyranny—the better you get at email, the more email arrives. Project management systems make you aware of more projects, increasing anxiety rather than reducing it. The fundamental error is believing optimization will eventually create equilibrium where you're 'on top of things.' This state is impossible because work expands infinitely while your capacity remains fixed. Efficiency is an arms race against yourself that you cannot win. The solution isn't better systems but accepting that you'll never be caught up."
+	},
+	{
+		"name": "main.part1.ch01.02 The Real Problem",
+		"imports": ["main.part1.ch01.01 The Efficiency Trap"],
+		"summary": "The actual challenge isn't time management but accepting you must consciously choose what not to do. Every commitment forecloses alternatives—this isn't failure but mathematical necessity given your time budget. The painful truth: you'll miss almost everything. Most books remain unread, most places unvisited, most potential relationships unexplored. Productivity culture's promise—that you can eventually have it all if you're just efficient enough—prevents you from grappling with real choice. Authentic prioritization only becomes possible when you stop pretending you'll someday fit everything in."
+	},
+	{
+		"name": "main.part1.ch01.03 Becoming a Better Procrastinator",
+		"imports": ["main.part1.ch01.02 The Real Problem"],
+		"summary": "Since you'll inevitably neglect almost everything, the question becomes: what will you procrastinate on? The standard advice to stop procrastinating is nonsense—you must procrastinate on something because you can't do everything. The skill isn't eliminating procrastination but choosing what deserves procrastination. Strategic neglect means consciously deciding what won't get your attention rather than feeling vaguely guilty about everything you're not doing. This transforms procrastination from character flaw into necessary prioritization tool."
+	},
+	{
+		"name": "main.part1.ch02 2. The Efficiency Trap",
+		"imports": ["main.part1.ch01.03 Becoming a Better Procrastinator"],
+		"summary": "This chapter dives deeper into why optimization fails. It examines how our culture's obsession with productivity arose from peculiar historical circumstances—industrialization's emphasis on measurable output, Protestantism's equation of busyness with virtue, and capitalism's need to extract maximum value from time. These forces combined to make us see time as something to be filled, optimized, and monetized rather than simply lived."
+	},
+	{
+		"name": "main.part1.ch02.01 Cosmic Insignificance Therapy",
+		"imports": ["main.part1.ch02 2. The Efficiency Trap"],
+		"summary": "Confronting your microscopic place in cosmic history and space could induce terror, but it actually liberates. The universe's absolute indifference to your existence means your actions require no cosmic justification. Your plans don't need to matter for eternity—they only need to matter to you, now, in this absurdly brief conscious moment you inhabit. Nothing you do has ultimate significance against the void of geological time and astronomical space. Paradoxically, this makes everything you do profoundly significant in human terms, because meaning is something you create rather than something requiring external validation from an indifferent cosmos."
+	},
+	{
+		"name": "main.part1.ch02.02 The Present Isn't Preparation",
+		"imports": ["main.part1.ch02.01 Cosmic Insignificance Therapy"],
+		"summary": "We habitually treat now as mere scaffolding for later. You exercise today for future health, endure current drudgery for promised rewards, save for retirement while postponing satisfaction. But most of your life consists of these supposedly preparatory moments. If you're perpetually getting ready to live, you never actually live. This doesn't mean abandoning discipline or planning—it means recognizing that preparation itself is life's content, not separate from it. The present moment isn't inferior to imagined future states; it's the only place life occurs. Stop treating now as the price you pay for an improved later, because later is also now when it arrives."
+	},
+	{
+		"name": "main.part1.ch02.03 The Causal Catastrophe",
+		"imports": ["main.part1.ch02.02 The Present Isn't Preparation"],
+		"summary": "We imagine we'll feel satisfied once we complete current projects, reach goals, or achieve certain states. But completion just reveals new incompletions. This is the 'causal catastrophe'—mistaking effects for causes. You think accomplishing X will cause satisfaction, but satisfaction comes from engagement, not completion. The treadmill never stops because finishing one thing makes the next thing visible. The solution isn't working faster to get through more things; it's recognizing that sustainable satisfaction comes from process, not from reaching the (nonexistent) end of your obligations."
+	},
+	{
+		"name": "main.part1.ch03 3. Facing Finitude",
+		"imports": ["main.part1.ch02.03 The Causal Catastrophe"],
+		"summary": "This chapter confronts the ultimate source of time anxiety: mortality. We intellectually know we'll die but organize our lives as though death won't actually happen to us. This evasion creates suffering because we postpone what matters while pursuing things that don't. Genuinely facing death—not morbidly but honestly—clarifies priorities because trivialities evaporate when you remember your time will end."
+	},
+	{
+		"name": "main.part1.ch03.01 Missing Out Is Mandatory",
+		"imports": ["main.part1.ch03 3. Facing Finitude"],
+		"summary": "FOMO rests on false premises—that you could experience everything if you were clever or efficient enough. But missing out isn't failure; it's the default condition. Given four thousand weeks and infinite possibilities, you'll miss essentially everything. This isn't cause for anxiety; it's the precondition for meaning. If you could have every experience, no choice would be significant. The necessity of missing out makes your actual choices meaningful. Trying to minimize what you miss is an impossible project preventing full inhabitation of what you actually choose."
+	},
+	{
+		"name": "main.part1.ch03.02 JOMO: The Joy of Missing Out",
+		"imports": ["main.part1.ch03.01 Missing Out Is Mandatory"],
+		"summary": "JOMO is FOMO's liberating opposite. When you truly grasp that you'll miss almost everything regardless of choices, anxiety about missing specific things dissolves. You're not failing to live comprehensively—you're making the only choices available to finite beings. This enables wholehearted commitment to selected paths because you stop mentally hedging against alternatives. The joy comes from releasing the exhausting pretense that you could have it all and instead fully inhabiting the particular life you're actually constructing from your limited options."
+	},
+	{
+		"name": "main.part1.ch03.03 The Watermelon Problem",
+		"imports": ["main.part1.ch03.02 JOMO: The Joy of Missing Out"],
+		"summary": "Trying to eat an entire watermelon in one sitting is obviously absurd. Yet people apply identical logic to ambitions. You have big projects, dreams, reading lists—and feel perpetually inadequate because you can't consume it all immediately. The watermelon problem isn't the watermelon's size; it's the disconnect between capacity and expectations. You can only take small bites. Progress happens through incremental consumption, not heroic single efforts. Recognizing this doesn't mean abandoning ambition—it means correctly calibrating it to human scale and accepting that meaningful accomplishment requires sustained, modest daily engagement rather than fantasy breakthroughs."
+	},
+	{
+		"name": "main.part1.ch04 4. Becoming a Better Procrastinator",
+		"imports": ["main.part1.ch03.03 The Watermelon Problem"],
+		"summary": "Since you cannot do everything, you must procrastinate on something. The question isn't whether to procrastinate but what to procrastinate on. This chapter reframes procrastination from character flaw to necessary skill—the ability to strategically neglect low-priority items rather than feeling vaguely guilty about everything undone."
+	},
+	{
+		"name": "main.part1.ch04.01 Attention Economy Assault",
+		"imports": ["main.part1.ch04 4. Becoming a Better Procrastinator"],
+		"summary": "Your attention is the primary battlefield of modern capitalism. Every notification, scroll, and algorithmic suggestion represents weaponized psychology designed to capture awareness and convert it to profit. Tech companies employ the world's best minds to engineer addictiveness, exploiting evolutionary vulnerabilities. The stakes are existential: attention is the resource from which you construct experienced reality. Whatever captures attention literally becomes your life. The assault is sophisticated, relentless, and specifically designed to bypass conscious control, meaning willpower alone cannot protect you."
+	},
+	{
+		"name": "main.part1.ch04.02 Pay Yourself First in Time",
+		"imports": ["main.part1.ch04.01 Attention Economy Assault"],
+		"summary": "Financial advisors say pay yourself first—save before addressing expenses. The same applies to time but is rarely practiced: do your most important work first, before daily urgent demands colonize your attention. This requires pre-commitment because you'll never feel like deep work when easier options exist. Schedule valuable activities at fixed times and protect these appointments with seriousness you'd give meetings with important people—because you are someone important. The urgent always tries crowding out the important; paying yourself first in time means making importance non-negotiable."
+	},
+	{
+		"name": "main.part1.ch04.03 The Limit of Daily Decides",
+		"imports": ["main.part1.ch04.02 Pay Yourself First in Time"],
+		"summary": "Every day you make hundreds of micro-decisions about time use. Each decision depletes willpower. By evening, you're mentally exhausted and default to easy options regardless of importance. Pre-deciding protects against this depletion. When you've decided in advance that Monday/Wednesday/Friday 8-10am is writing time, you bypass the moment-by-moment willpower drain of choosing. The decision is already made. Your daily self doesn't choose whether to write; it just executes the pre-made decision. This simple technique dramatically increases important work completion."
+	},
+	{
+		"name": "main.part1.ch05 5. The Watermelon Problem",
+		"imports": ["main.part1.ch04.03 The Limit of Daily Decides"],
+		"summary": "This chapter examines the specific ways we overestimate capacity and underestimate task duration, leading to chronic overwhelm. It introduces practical strategies for correctly sizing ambitions to match human limitations."
+	},
+	{
+		"name": "main.part1.ch05.01 The Problem of Too Much To Do",
+		"imports": ["main.part1.ch05 5. The Watermelon Problem"],
+		"summary": "The to-do list will never be complete. Work exceeds time available—this is permanent, not temporary. Waiting for completion before relaxing means never relaxing. The solution isn't faster work or better systems; it's accepting incompletion as the normal state and deciding when you've done enough despite remaining tasks. Enoughness isn't a state reached through sufficient productivity; it's a decision made despite incomplete work. At day's end, you decide: this is enough for today. That decision isn't based on completing everything—completion is impossible—but on choosing satisfaction with finite accomplishment."
+	},
+	{
+		"name": "main.part1.ch05.02 Serialize, Don't Parallelize",
+		"imports": ["main.part1.ch05.01 The Problem of Too Much To Do"],
+		"summary": "Work on one big project at a time, not several simultaneously. This feels counterintuitively inefficient—surely parallel processing maximizes throughput? But humans aren't computers. Multiple significant projects in parallel means none progress substantially. You experience constant low-grade anxiety about neglected projects, creativity fragments across contexts, and switching costs destroy momentum. Serialization—finishing one thing before starting another—feels like neglecting opportunities but actually enables completion. Completed things yield value; in-progress things create stress. Accept that you'll do many projects sequentially across your lifetime, but attempting simultaneity creates perpetual half-finished chaos."
+	},
+	{
+		"name": "main.part1.ch05.03 Decide in Advance",
+		"imports": ["main.part1.ch05.02 Serialize, Don't Parallelize"],
+		"summary": "Schedule your most important work at fixed, recurring times rather than waiting for motivation or availability. Monday/Wednesday/Friday 8-10am is writing time, regardless of how you feel or what else happens. This pre-commitment removes daily decision-making about whether to do important work, which is crucial because you'll rarely feel like it. Urgencies always offer themselves as more pressing alternatives. By deciding in advance and treating it as non-negotiable, you bypass moment-by-moment willpower depletion of choosing important over urgent. The schedule protects importance from urgency's encroachment."
+	},
+	{
+		"name": "main.part2 PART TWO: Beyond Control",
+		"imports": ["main.part1.ch05.03 Decide in Advance"],
+		"summary": "Part Two shifts from diagnosis to response. Having established that you can't control time or 'manage' it in the conventional sense, this section explores what becomes possible when you stop trying. It examines patience, presence, community, and the surprising power that comes from accepting powerlessness over time's passage."
+	},
+	{
+		"name": "main.part2.ch06 6. The Intimate Interrupter",
+		"imports": ["main.part2 PART TWO: Beyond Control"],
+		"summary": "This chapter examines how we flee from the present moment—the only time we actually have—into past regrets and future fantasies. It explores why being fully present is so difficult and what becomes possible when you stop treating now as preparation for later."
+	},
+	{
+		"name": "main.part2.ch06.01 Facing Finitude Squarely",
+		"imports": ["main.part2.ch06 6. The Intimate Interrupter"],
+		"summary": "Most people intellectually acknowledge death but organize lives as though they'll live forever. Truly facing finitude—not just knowing about it but viscerally feeling it—changes everything. You cannot have most experiences, maintain most relationships, or read most books. These aren't failures; they're mathematical necessities given your time budget. Liberation comes from moving beyond abstract knowledge to concrete feeling. Once finitude becomes emotionally real rather than just intellectually understood, decision-making transforms: you stop pretending you can defer choices indefinitely and start making them with appropriate gravity."
+	},
+	{
+		"name": "main.part2.ch06.02 Existential Overwhelm",
+		"imports": ["main.part2.ch06.01 Facing Finitude Squarely"],
+		"summary": "The vastness of what you could potentially do induces paralysis. Every path chosen eliminates countless alternatives, making commitment feel like violence against possible selves. But this overwhelm comes from refusing to acknowledge what's already true: you were always going to miss everything except one life's worth of experience. The question isn't whether to limit yourself—that's predetermined by mortality—but whether to choose limitations consciously or let them choose you through drift and distraction. Existential anxiety about closing doors decreases when you recognize the doors were always going to close; you're just deciding which to walk through first."
+	},
+	{
+		"name": "main.part2.ch06.03 Staying on the Bus",
+		"imports": ["main.part2.ch06.02 Existential Overwhelm"],
+		"summary": "Commitment means staying on the bus even when you notice other buses going interesting places. Every choice forecloses options, and you'll feel the loss of unchosen paths. The key is recognizing that the pain of foreclosure is the price of depth. You cannot simultaneously sample all buses and take any journey deeply. The suffering comes not from commitment itself but from pretending you could avoid choosing. Acceptance doesn't eliminate discomfort but transforms it from existential crisis into normal human experience—the natural feeling of being finite."
+	},
+	{
+		"name": "main.part2.ch07 7. We Never Really Have Time",
+		"imports": ["main.part2.ch06.03 Staying on the Bus"],
+		"summary": "This chapter challenges the fundamental metaphor underlying all time management: that time is a resource you possess and can control. It argues instead that time is the medium of existence—you don't have time, you are time."
+	},
+	{
+		"name": "main.part2.ch07.01 Time Isn't a Resource",
+		"imports": ["main.part2.ch07 7. We Never Really Have Time"],
+		"summary": "The 'time is money' metaphor fundamentally misconstrues time's nature. Money is an external resource you acquire, spend, save, or invest. Time isn't something you have; it's something you are. You don't stand outside time, managing it; you exist within it, experiencing it. This distinction matters because it reveals why time management techniques ultimately fail: they treat existence itself as though it were an object to be optimized. You can't step outside time to organize it. Every moment spent 'managing time' is itself time you're living. Recognizing you are time rather than having it transforms your relationship to existence from control to participation."
+	},
+	{
+		"name": "main.part2.ch07.02 Surrendering to the River",
+		"imports": ["main.part2.ch07.01 Time Isn't a Resource"],
+		"summary": "Surrender doesn't mean passivity or fatalism—it means relinquishing illusory sense that you control time's passage. You cannot make time speed up, slow down, or bend to preferences. The river of temporal experience flows regardless of wishes, and your choice is whether to exhaust yourself fighting the current or swim with it. This doesn't eliminate planning or agency; it relocates them within time's flow rather than imagining you can stand outside and direct it. Paradox: accepting you can't control time often enables more effective action, because you stop wasting energy on impossible control fantasies and focus on what you actually can do."
+	},
+	{
+		"name": "main.part2.ch07.03 The Medieval Mindset",
+		"imports": ["main.part2.ch07.02 Surrendering to the River"],
+		"summary": "Medieval people didn't experience time as a commodity. They lived within temporal rhythms set by nature, seasons, and religious observance. Clock time—hours divided into equal units—is a relatively recent invention. Before clocks, time was task-oriented: you did something until it was done, not until a specific hour arrived. The shift to clock time enabled industrial capitalism but also created time anxiety. When time becomes measurable, it becomes something to be used efficiently. Medieval inefficiency wasn't ignorance—it reflected a different relationship to existence, one we've lost but might partially reclaim by recognizing clock time's limitations."
+	},
+	{
+		"name": "main.part2.ch08 8. You Are Here",
+		"imports": ["main.part2.ch07.03 The Medieval Mindset"],
+		"summary": "This chapter explores patience—not as passive waiting but as active engagement with the present despite discomfort. It argues that patience is less a skill to develop than a byproduct of doing difficult things requiring sustained effort."
+	},
+	{
+		"name": "main.part2.ch08.01 Patience as Active Presence",
+		"imports": ["main.part2.ch08 8. You Are Here"],
+		"summary": "Patience isn't passive waiting for the future—it's active engagement with the present despite discomfort. When being patient, you're not suspending life until something happens; you're living through a difficult stretch while remaining present to it. This distinction matters because most impatience stems from treating the present as obstacle to desired future rather than as part of life itself. True patience accepts that many valuable things only emerge through duration that cannot be rushed. Seeds germinate on their schedule, not yours. Skills develop through accumulated practice, not sudden breakthroughs. Relationships deepen through shared time, not efficient optimization."
+	},
+	{
+		"name": "main.part2.ch08.02 Three Principles of Patience",
+		"imports": ["main.part2.ch08.01 Patience as Active Presence"],
+		"summary": "First principle: Develop a taste for problems. Problems aren't obstacles interrupting life—they constitute life. There's no problem-free state you're trying to reach; solving one problem reveals the next. Learning to find satisfaction in problem-solving itself, rather than in hypothetical problem-free future states, makes patience possible. Second principle: Embrace radical incrementalism. Meaningful accomplishment comes from small, repeated actions over long periods, not dramatic breakthroughs. Third principle: Originality lies on the far side of unoriginality. Creative breakthroughs emerge only after extended periods of derivative, mediocre work. Patience means continuing through the unoriginal phase without abandoning the project."
+	},
+	{
+		"name": "main.part2.ch08.03 The Anti-Skill",
+		"imports": ["main.part2.ch08.02 Three Principles of Patience"],
+		"summary": "Patience isn't a skill developed through patience exercises—it's a byproduct of doing difficult things requiring sustained effort. You don't become patient and then tackle long-term projects; you become patient through tackling long-term projects. This matters because it means you can't prepare yourself with some patience-building regimen before attempting challenging work. You must jump in, experience impatience, and continue anyway. The continuing despite impatience is what gradually builds patience capacity. This anti-skill quality applies to many virtues: you don't develop courage before acting bravely; you develop courage by acting bravely while afraid."
+	},
+	{
+		"name": "main.part2.ch09 9. Rediscovering Rest",
+		"imports": ["main.part2.ch08.03 The Anti-Skill"],
+		"summary": "This chapter examines how we've lost the ability to rest, treating leisure as yet another domain for optimization and improvement. It argues for recovering rest as an end in itself rather than as preparation for productivity."
+	},
+	{
+		"name": "main.part2.ch09.01 Atelic vs Telic Activities",
+		"imports": ["main.part2.ch09 9. Rediscovering Rest"],
+		"summary": "Telic activities have endpoints: finishing work projects, completing errands, reaching fitness goals. They're valued for outcomes. Atelic activities have no destination: playing music, conversing with friends, taking walks for pleasure. They're valuable in themselves, not for where they lead. Modern life over-emphasizes telic activities, treating everything as means to some end. But atelic activities aren't less important—they're where life actually happens. A life of pure telic activity is perpetual deferral, constantly preparing for satisfaction that never arrives because completion reveals the next task. Atelic activities let you experience being, not just becoming."
+	},
+	{
+		"name": "main.part2.ch09.02 Hobbies in the Age of Capitalist Realism",
+		"imports": ["main.part2.ch09.01 Atelic vs Telic Activities"],
+		"summary": "Hobbies used to be pointless pursuits done for pleasure. Now they're monetized, optimized, and treated as 'side hustles.' You can't just enjoy photography—you must build a portfolio, gain followers, perhaps sell prints. This instrumental thinking colonizes even supposed leisure, preventing genuine rest. The recovery of true rest requires protecting some activities from improvement ideology. Do things badly, inefficiently, and for no reason beyond enjoyment. Let some activities remain gratuitously useless, refusing to justify them through productivity or future benefit."
+	},
+	{
+		"name": "main.part2.ch09.03 Digital Sabbath",
+		"imports": ["main.part2.ch09.02 Hobbies in the Age of Capitalist Realism"],
+		"summary": "Digital devices promise connection but primarily deliver distraction. Every app is engineered for addiction, weaponizing intermittent reinforcement, social comparison, and outrage. The cost isn't just wasted time—though that's substantial—but erosion of your capacity for sustained attention. Deep work, contemplation, and genuine connection require extended focus that frequent interruption prevents. You can't solve this through willpower because technology is specifically designed to bypass conscious control. The solution requires redesigning your environment: physical barriers, default settings that protect rather than expose you, and recognizing that convenience often masks harm."
+	},
+	{
+		"name": "main.part2.ch10 10. The Intimate Interrupter",
+		"imports": ["main.part2.ch09.03 Digital Sabbath"],
+		"summary": "This chapter examines relationships and how our relationship to time affects our relationships with others. It argues for recovering shared, unproductive time as the foundation of genuine connection."
+	},
+	{
+		"name": "main.part2.ch10.01 Communal Time",
+		"imports": ["main.part2.ch10 10. The Intimate Interrupter"],
+		"summary": "Individual time management misses something crucial: time is fundamentally social. Meaningful connection requires temporal synchronization—being present with others in the same moment. Rituals, whether religious, cultural, or personal, create shared temporal experiences that bond communities. When you participate in a ritual, you're not just managing individual time efficiently; you're submitting to collective rhythm larger than yourself. This temporal submission feels countercultural in an era of radical individual time sovereignty, but it enables forms of connection impossible when everyone optimizes their schedule independently."
+	},
+	{
+		"name": "main.part2.ch10.02 The Efficiency Trap in Relationships",
+		"imports": ["main.part2.ch10.01 Communal Time"],
+		"summary": "When time becomes a commodity to be optimized, community erodes. Communal bonds form through unproductive time spent together—hanging out with no agenda, lingering after dinner, attending events that don't deliver measurable ROI. These 'inefficient' uses of time build social fabric that isolated productivity destroys. The tragedy of extreme time optimization is it eliminates precisely what makes life meaningful: spontaneous conversations, leisurely meals, unstructured time with loved ones. You can't efficiency your way into deep relationships. They require duration, presence, and willingness to 'waste' time together."
+	},
+	{
+		"name": "main.part2.ch10.03 Ritual and Regularity",
+		"imports": ["main.part2.ch10.02 The Efficiency Trap in Relationships"],
+		"summary": "Schedule regular gatherings with consistent timing others can rely on: weekly dinners, monthly game nights, annual traditions. This synchronization enables community formation impossible when everyone individually optimizes schedules. The practice requires subordinating personal time sovereignty to collective rhythm, which feels inefficient but creates bonds isolated efficiency cannot. Show up even when you don't feel like it; reliability matters more than momentary enthusiasm. These temporal commitments form scaffolding on which relationships develop. They're not optimizing your time—they're using time to build something transcending individual productivity: shared life."
+	},
+	{
+		"name": "main.part2.ch11 11. Staying on the Bus",
+		"imports": ["main.part2.ch10.03 Ritual and Regularity"],
+		"summary": "This chapter returns to the theme of commitment, exploring how fully inhabiting one path requires releasing fantasies about other paths. It examines the paradox that limitation creates possibility."
+	},
+	{
+		"name": "main.part2.ch11.01 Commitment Creates Freedom",
+		"imports": ["main.part2.ch11 11. Staying on the Bus"],
+		"summary": "Keeping all options open feels like freedom but creates paralysis. True freedom emerges from commitment—choosing one path fully and foreclosing others. This seems paradoxical: how does limitation liberate? But unlimited options prevent deep engagement with any option. When you commit to one relationship, one location, one career, you unlock possibilities invisible to option-preservers. The commitment's constraints enable depth impossible while maintaining flexibility. You cannot simultaneously keep options open and fully inhabit a chosen path. The feeling that commitment traps you reveals anxiety about missing alternatives, but those alternatives were always incompatible with the path you're considering."
+	},
+	{
+		"name": "main.part2.ch11.02 The Universe's Schedule",
+		"imports": ["main.part2.ch11.01 Commitment Creates Freedom"],
+		"summary": "Many things happen on their own schedule, indifferent to your preferences. Seeds germinate when conditions align, not when you want vegetables. Relationships deepen through accumulated shared experience, not because you've decided to fast-track intimacy. Skills develop through hours of practice that cannot be compressed. Grief moves at its own pace. The universe operates on cosmic time, and your desires don't alter that schedule. This creates suffering when you insist things should happen on your timeline. The alternative isn't passivity but accepting that your role is participation, not control. You can plant seeds, but you cannot make them grow faster."
+	},
+	{
+		"name": "main.part2.ch12 12. The Loneliness of the Time Realist",
+		"imports": ["main.part2.ch11.02 The Universe's Schedule"],
+		"summary": "The final chapter examines what happens when you genuinely accept finitude while most of society continues denying it. It explores the loneliness of living according to temporal realism in a culture committed to impossible promises."
+	},
+	{
+		"name": "main.part2.ch12.01 Death as Meaning's Source",
+		"imports": ["main.part2.ch12 12. The Loneliness of the Time Realist"],
+		"summary": "Mortality isn't meaning's negation—it's meaning's precondition. If you had infinite time, nothing would matter because everything could be perpetually deferred. Deadlines create urgency; death is the ultimate deadline making your choices significant. When you genuinely contemplate that this life will end, trivial concerns evaporate and essential priorities clarify. The things that matter become obvious precisely because you recognize you won't have time for everything. Death isn't the sad ending to an otherwise meaningful story; it's the boundary that makes the story coherent and gives it shape. Without finitude, there'd be no narrative structure to existence at all."
+	},
+	{
+		"name": "main.part2.ch12.02 The Legacy Delusion",
+		"imports": ["main.part2.ch12.01 Death as Meaning's Source"],
+		"summary": "Obsessing over posthumous legacy represents yet another escape from finitude. You won't be around to enjoy your legacy, and even if your name persists, you'll have no experience of that persistence—you'll be dead. The desire for legacy often masks unwillingness to accept that your life has inherent value regardless of whether strangers remember you centuries later. Most people who ever lived are utterly forgotten, including almost everyone you consider important from previous eras. This isn't tragic; it's liberating. Your life matters now, to you and those present in your actual life. Live for the living, not for an imagined audience of future historians."
+	},
+	{
+		"name": "main.part2.ch12.03 Historical Uncertainty",
+		"imports": ["main.part2.ch12.02 The Legacy Delusion"],
+		"summary": "We read history as though past actors knew what would happen, but they lived in the same fog of uncertainty you inhabit now. People in 1939 didn't know World War II was starting; they faced confusing, ambiguous events. Washington didn't know he was founding an enduring nation; he navigated chaotic circumstances with limited information. This matters because you imagine previous eras had clarity you lack. But uncertainty is the permanent condition of the present. You're not uniquely confused—you're normally situated in your historical moment. This doesn't make decisions easier, but it removes false comparison to an imagined past where people supposedly had better information. Act despite uncertainty because that's all anyone has ever done."
+	},
+	{
+		"name": "main.appendix Appendix: Ten Tools for Embracing Your Finitude",
+		"imports": ["main.part2.ch12.03 Historical Uncertainty"],
+		"summary": "The appendix provides ten concrete practices for living according to the book's principles. These aren't productivity hacks but ways to operationalize acceptance of limitation and presence to finite existence."
+	},
+	{
+		"name": "main.appendix.01 Tool 1: Adopt a 'Fixed Volume' Approach to Productivity",
+		"imports": ["main.appendix Appendix: Ten Tools for Embracing Your Finitude"],
+		"summary": "Establish a fixed daily task limit—perhaps three to five substantive items. Once you complete them, stop adding more for that day. Everything else rolls to tomorrow. This practice counteracts endless expansion of work to fill available time. It creates closure, enabling you to end workdays with satisfaction rather than perpetual inadequacy. The fixed volume also forces daily prioritization: if you can only do five things, you must identify which five matter most. This constraint prevents the common pattern where you frontload your day with trivial tasks to feel productive while important work languishes. Fixed volume means choosing quality and importance over quantity."
+	},
+	{
+		"name": "main.appendix.02 Tool 2: Serialize, Serialize, Serialize",
+		"imports": ["main.appendix.01 Tool 1: Adopt a 'Fixed Volume' Approach to Productivity"],
+		"summary": "Implement a hard cap on simultaneous big projects: three maximum, ideally fewer. Not three per life area—three total. This includes career projects, personal creative work, learning endeavors, and major home improvements. Nothing new starts until something finishes. This constraint forces brutal prioritization and enables actual completion. When project ideas arise, add them to a list for later rather than immediately incorporating them into active work. The discomfort of this limitation is the point: you're feeling, viscerally, the reality of finite capacity. This practice transforms vague awareness of limitedness into operational constraint shaping behavior."
+	},
+	{
+		"name": "main.appendix.03 Tool 3: Decide in Advance What to Fail At",
+		"imports": ["main.appendix.02 Tool 2: Serialize, Serialize, Serialize"],
+		"summary": "Deliberately choose domains where you'll accept mediocrity. You cannot excel at everything, so consciously decide where you'll be average or below. This isn't lowering standards globally—it's recognizing that high standards everywhere is impossible given finite energy. Maybe you excel at work but let housekeeping slide. Maybe you're an attentive parent but neglect professional networking. The key is making these choices consciously rather than feeling vaguely guilty about everything you're not optimizing. Strategic underachievement in low-priority areas liberates resources for high-priority areas. The alternative—attempting excellence everywhere—guarantees mediocrity everywhere through resource diffusion."
+	},
+	{
+		"name": "main.appendix.04 Tool 4: Focus on What You've Already Completed",
+		"imports": ["main.appendix.03 Tool 3: Decide in Advance What to Fail At"],
+		"summary": "At day's end, review what you accomplished rather than dwelling on what remains undone. The undone list is infinite; the done list is real. This isn't positive thinking—it's accurate accounting. Productivity culture trains you to see only gaps and deficiencies, never sufficiency. Countering this requires deliberately noting completion. Keep a 'done list' or journal of accomplishments. This practice doesn't ignore remaining work; it corrects the distortion where infinite undone work makes finite completed work invisible. You did accomplish things today. Notice them."
+	},
+	{
+		"name": "main.appendix.05 Tool 5: Consolidate Your Caring",
+		"imports": ["main.appendix.04 Tool 4: Focus on What You've Already Completed"],
+		"summary": "You have limited emotional and attentional resources. The news, social media, and global connectivity make you aware of infinite problems. You cannot care about everything, and attempting to do so diffuses your capacity to help anything. Choose specific issues, communities, or causes to which you'll direct sustained attention and effort. This isn't callousness toward other concerns; it's recognition that shallow caring about everything achieves less than deep caring about something specific. Consolidating your caring enables actual impact rather than exhausting yourself with performative concern about every crisis. Choose where to direct compassion, then direct it fully."
+	},
+	{
+		"name": "main.appendix.06 Tool 6: Embrace Boring and Single-Purpose Technology",
+		"imports": ["main.appendix.05 Tool 5: Consolidate Your Caring"],
+		"summary": "Use devices that do one thing: e-readers that only display books, watches that only tell time, cameras that only take photos. Multipurpose devices like smartphones invite distraction by design. When everything is one tap away, attention fragments constantly. Single-purpose technology creates friction that protects focus. This isn't Luddism; it's strategic deployment of tools that align with your goals rather than undermining them. Convenience isn't always your friend. Sometimes inconvenience—having to consciously decide to check email rather than having notifications push to you—enables the attention your life requires."
+	},
+	{
+		"name": "main.appendix.07 Tool 7: Seek Out Novelty in the Mundane",
+		"imports": ["main.appendix.06 Tool 6: Embrace Boring and Single-Purpose Technology"],
+		"summary": "Deliberately stay with books, projects, and problems past the initial excitement phase when novelty wears off. Modern life conditions constant stimulation-seeking, but depth requires persistence through boring stretches. When a book loses its initial appeal around chapter three, that's precisely when you should keep reading—the good stuff often emerges past the point most people quit. When a skill feels tedious after you've learned the basics, continuing through the tedium is how you achieve mastery. Resisting novelty addiction doesn't mean torturing yourself with genuinely unsuitable projects; it means pushing past the predictable enthusiasm dip accompanying sustained engagement."
+	},
+	{
+		"name": "main.appendix.08 Tool 8: Be a Researcher in Relationships",
+		"imports": ["main.appendix.07 Tool 7: Seek Out Novelty in the Mundane"],
+		"summary": "Approach close relationships with curiosity rather than assumption. Your partner, children, and friends are not static, fixed entities you've figured out. They're changing, complex people you can perpetually discover anew. When you assume you know someone completely, you stop paying attention. Treating familiar people as endlessly interesting research subjects keeps relationships fresh and prevents the deadening that comes from taking people for granted. This doesn't mean treating loved ones as experimental subjects; it means maintaining curiosity about their inner lives rather than settling into rigid narratives about who they are."
+	},
+	{
+		"name": "main.appendix.09 Tool 9: Cultivate Instantaneous Generosity",
+		"imports": ["main.appendix.08 Tool 8: Be a Researcher in Relationships"],
+		"summary": "When you feel impulse to be generous—compliment someone, help a neighbor, send a thoughtful message—act immediately. Don't add it to a to-do list for later; do it now. These micro-moments of generosity cost little time but build connection that hours of scheduled networking cannot. The practice also trains spontaneity and presence. You're acting on your immediate experience rather than deferring everything to later optimization. Instantaneous generosity reminds you that the present moment contains opportunities that disappear if you postpone them. Some things can only happen now, and recognizing this enables a fuller life."
+	},
+	{
+		"name": "main.appendix.10 Tool 10: Practice Doing Nothing",
+		"imports": ["main.appendix.09 Tool 9: Cultivate Instantaneous Generosity"],
+		"summary": "Schedule time for literally nothing: sitting, looking out a window, lying on the floor. No meditation technique, no improvement agenda—just existing. This feels intolerable to productivity-trained minds, which is precisely why it's valuable. The discomfort reveals how thoroughly instrumental thinking has colonized your existence. You resist pointless time because you've been conditioned to see time as something requiring justification through productivity. Practicing nothing challenges this conditioning. It asserts that your existence has inherent value independent of accomplishment. You don't need to be doing anything to deserve being alive. This isn't wasted time—it's the recovery of time's non-instrumental dimension."
+	}
+]
+
