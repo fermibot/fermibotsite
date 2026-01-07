@@ -14,10 +14,8 @@
     <!-- Visualization CSS -->
     <link href="Systems_GitStaging.css" rel="stylesheet">
 
-    <!-- Bootstrap JS -->
-    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
-    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
-    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+    <!-- Bootstrap JS (v5) -->
+    <script src="../../../bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- D3.js v7 -->
     <script src="../../../d3/d3.v7.min.js"></script>
@@ -257,6 +255,8 @@
                             <div class="empty-state">No files staged</div>
                         </div>
                         <div class="area-actions">
+                            <input type="text" id="commit-message-input" class="form-control form-control-sm"
+                                   placeholder="Enter commit message..." style="margin-bottom: 0.5rem;">
                             <button class="btn btn-sm btn-success" id="commit-btn" disabled>
                                 ✓ Commit Staged Files
                             </button>
@@ -285,6 +285,12 @@
                         ☁️ Push to Remote
                     </button>
                 </div>
+                <div class="file-list-box mt-2" id="working-files-list">
+                    <div class="file-list-title">Working directory files (current branch)</div>
+                    <div class="file-list-body" id="working-files-list-body">
+                        <div class="empty-state">No files yet</div>
+                    </div>
+                </div>
             </div>
 
             <!-- Arrow Down -->
@@ -303,6 +309,12 @@
                     <svg id="remote-graph-svg"></svg>
                     <div class="empty-state" id="empty-remote">
                         No commits pushed yet
+                    </div>
+                </div>
+                <div class="file-list-box mt-2" id="remote-files-list">
+                    <div class="file-list-title">Remote files (current branch)</div>
+                    <div class="file-list-body" id="remote-files-list-body">
+                        <div class="empty-state">No remote files</div>
                     </div>
                 </div>
             </div>
@@ -345,8 +357,16 @@
                     </div>
                 </div>
                 <div class="area-actions">
-                    <button class="btn btn-sm btn-outline-primary" id="merge-branch-btn" disabled>
-                        🔀 Merge into main
+                    <div class="mb-2">
+                        <label class="form-label mb-1 small">Source branch</label>
+                        <select id="merge-source" class="form-select form-select-sm"></select>
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label mb-1 small">Target branch</label>
+                        <select id="merge-target" class="form-select form-select-sm"></select>
+                    </div>
+                    <button class="btn btn-sm btn-outline-primary w-100" id="merge-branch-btn" disabled>
+                        🔀 Merge branches
                     </button>
                 </div>
             </div>
@@ -431,6 +451,26 @@
                 <span class="legend-symbol">🔀</span>
                 <code>git merge &lt;branch&gt;</code>
                 <span class="legend-desc">— Merge branch into current branch</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Commit Details Modal -->
+<div class="modal fade" id="commitDetailsModal" tabindex="-1" aria-labelledby="commitDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="commitDetailsModalLabel">
+                    <span class="commit-modal-icon">💾</span> Commit Details
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="commitDetailsBody">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
