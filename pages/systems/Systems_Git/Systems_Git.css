@@ -535,8 +535,10 @@
     border-radius: 8px;
     padding: 0.75rem 1rem;
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Align items to start when wrapping */
     justify-content: space-between;
+    flex-wrap: wrap; /* Allow wrapping on narrow screens */
+    gap: 0.75rem; /* Add gap between wrapped items */
     transition: all 0.2s ease;
     animation: slideIn 0.3s ease;
 }
@@ -561,8 +563,19 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    flex: 1;
-    min-width: 0;
+    flex: 1 1 auto; /* Allow growth and shrinkage */
+    min-width: 0; /* Allow shrinking below content size */
+    margin-right: 1rem; /* Add gap between file info and actions */
+}
+
+.file-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap; /* Allow buttons to wrap to next line */
+    flex: 0 1 auto; /* Don't grow, but allow shrinking */
+    min-width: 0; /* Allow shrinking below content size */
+    max-width: 100%; /* Don't exceed container width */
 }
 
 .file-icon {
@@ -834,6 +847,55 @@
    RESPONSIVE DESIGN
    ============================================ */
 
+@media (max-width: 1200px) {
+    /* For medium-width screens, ensure file cards have enough space */
+    .file-info {
+        margin-right: 0.5rem;
+        min-width: 150px; /* Ensure file name doesn't get too cramped */
+        flex: 1 1 auto;
+    }
+
+    .file-actions {
+        gap: 0.4rem;
+        flex: 0 1 auto;
+        /* Allow actions to wrap to new line if needed */
+        max-width: 100%;
+    }
+
+    .file-btn {
+        padding: 0.35rem 0.6rem;
+        font-size: 0.75rem;
+        /* Ensure buttons don't shrink too small */
+        flex-shrink: 0;
+    }
+
+    /* Force wrap when space is tight */
+    .file-card {
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 900px) {
+    /* Force file-actions to wrap to new line before buttons get cut off */
+    .file-actions {
+        flex-basis: 100%; /* Take full width to force wrap to new line */
+        width: 100%;
+        padding-top: 0.5rem;
+        border-top: 1px solid var(--viz-border);
+    }
+
+    .file-info {
+        flex-basis: 100%;
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .file-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
 @media (max-width: 992px) {
     .git-unified-container {
         grid-template-columns: 1fr;
@@ -920,11 +982,16 @@
         gap: 0.75rem;
     }
 
+    .file-info {
+        margin-right: 0;
+        width: 100%;
+    }
+
     .file-actions {
         width: 100%;
         justify-content: flex-start;
-        padding: 0.5rem 0;
-        background: transparent;
+        padding-top: 0.5rem;
+        border-top: 1px solid var(--viz-border);
     }
 }
 

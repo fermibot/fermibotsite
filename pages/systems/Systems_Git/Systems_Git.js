@@ -23,6 +23,7 @@
         // Branches
         branches: ['main'],
         currentBranch: 'main',
+        branchForkPoints: {}, // Track where each branch was created from
 
         // Per-branch working/remote directories
         workingDirs: { main: [] },
@@ -398,11 +399,21 @@
         const deletedFiles = state.stagingFiles.filter(f => f.status === 'deleted');
         const addedModifiedFiles = state.stagingFiles.filter(f => f.status !== 'deleted');
 
-        // Find parent commit (last commit on current branch, or last commit if branch is new)
+        // Find parent commit (last commit on current branch, or use fork point for new branches)
         const branchCommits = state.commits.filter(c => c.branch === state.currentBranch);
-        const parentCommit = branchCommits.length > 0
-            ? branchCommits[branchCommits.length - 1]
-            : state.commits[state.commits.length - 1];
+        let parentCommit = null;
+
+        if (branchCommits.length > 0) {
+            // There are already commits on this branch, use the last one
+            parentCommit = branchCommits[branchCommits.length - 1];
+        } else if (state.branchForkPoints && state.branchForkPoints[state.currentBranch]) {
+            // This is the first commit on a new branch, use the fork point
+            const forkPointId = state.branchForkPoints[state.currentBranch];
+            parentCommit = state.commits.find(c => c.id === forkPointId);
+        } else {
+            // Fallback: use the last commit overall
+            parentCommit = state.commits.length > 0 ? state.commits[state.commits.length - 1] : null;
+        }
 
         // Get custom commit message from input, or generate default
         const messageInput = document.getElementById('commit-message-input');
@@ -515,6 +526,12 @@
             return;
         }
 
+        // Find the last commit on the CURRENT branch (where we're forking from)
+        const currentBranchCommits = state.commits.filter(c => c.branch === state.currentBranch);
+        const forkPoint = currentBranchCommits.length > 0
+            ? currentBranchCommits[currentBranchCommits.length - 1]
+            : state.commits[state.commits.length - 1]; // Fallback to last commit overall
+
         state.branches.push(branchName);
 
         // Clone working and remote files from current branch
@@ -523,6 +540,12 @@
         state.remoteDirs[branchName] = new Set(state.remoteDirs[state.currentBranch] || []);
         state.trackedDirs[branchName] = new Set(state.trackedDirs[state.currentBranch] || []);
         state.trackedFiles[branchName] = (state.trackedFiles[state.currentBranch] || []).map(f => ({ ...f, id: state.nextFileId++ }));
+
+        // Store the fork point so first commit on new branch knows its parent
+        if (!state.branchForkPoints) {
+            state.branchForkPoints = {};
+        }
+        state.branchForkPoints[branchName] = forkPoint ? forkPoint.id : null;
 
         state.currentBranch = branchName;
         input.value = '';
@@ -610,6 +633,7 @@
             remoteCommits: [],
             branches: ['main'],
             currentBranch: 'main',
+            branchForkPoints: {},
             workingDirs: { main: [] },
             remoteDirs: { main: new Set() },
             trackedDirs: { main: new Set() },
@@ -1700,6 +1724,10 @@
             // Re-establish references for sets/maps
             state.remoteDirs = Object.fromEntries(Object.entries(state.remoteDirs).map(([k, v]) => [k, new Set(v)]));
             state.trackedDirs = Object.fromEntries(Object.entries(state.trackedDirs).map(([k, v]) => [k, new Set(v)]));
+            // Initialize branchForkPoints if it doesn't exist (backward compatibility)
+            if (!state.branchForkPoints) {
+                state.branchForkPoints = {};
+            }
         }
     }
 
