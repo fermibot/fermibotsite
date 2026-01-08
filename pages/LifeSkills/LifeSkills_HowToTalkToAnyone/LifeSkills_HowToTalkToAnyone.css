@@ -1596,6 +1596,40 @@
     padding: 1rem;
 }
 
+.relationship-panel-footer {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--viz-border);
+    background-color: var(--viz-bg-secondary);
+    border-radius: 0 0 12px 12px;
+}
+
+.relationship-toggle-btn {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background-color: var(--viz-card-bg);
+    border: 1px solid var(--viz-border);
+    border-radius: 6px;
+    color: var(--viz-text);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.relationship-toggle-btn:hover {
+    background-color: var(--section-06);
+    color: white;
+    border-color: var(--section-06);
+}
+
+.relationship-toggle-btn span {
+    font-size: 0.65rem;
+}
+
 .relationship-group {
     margin-bottom: 1.25rem;
 }
@@ -1630,6 +1664,11 @@
     gap: 0.4rem;
 }
 
+.relationship-items-expanded {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
 .relationship-item {
     position: relative;
     background-color: var(--viz-bg-secondary);
@@ -1656,12 +1695,31 @@
     opacity: 0.25;
 }
 
+.relationship-item-rank {
+    position: absolute;
+    left: 0.35rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--viz-text-muted);
+    background-color: var(--viz-bg);
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+    z-index: 1;
+}
+
 .relationship-item-content {
     position: relative;
     display: flex;
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem;
+}
+
+/* When rank is present, add left padding */
+.relationship-item:has(.relationship-item-rank) .relationship-item-content {
+    padding-left: 2.5rem;
 }
 
 .relationship-item-name {

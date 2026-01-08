@@ -140,7 +140,8 @@ const state = {
     root: null,
     activeRelationshipNode: null,
     relationshipLinks: [],
-    relationshipCounts: new Map() // Store count of strong relationships per node
+    relationshipCounts: new Map(), // Store count of strong relationships per node
+    relationshipPanelExpanded: false // Track if showing all relationships
 };
 
 // Load learned chapters from localStorage
@@ -1250,8 +1251,14 @@ function createMiniLegend() {
 function showRelationshipPanel(d, related) {
     if (!relationshipPanel) createRelationshipPanel();
 
+    // Store related data for toggle functionality
+    state.currentRelatedData = related;
+    state.currentRelatedNode = d;
+
     const avgSimilarity = (related.all.reduce((sum, r) => sum + r.similarity, 0) / related.all.length * 100).toFixed(0);
     const maxSimilarity = (related.top[0].similarity * 100).toFixed(0);
+    const totalCount = related.all.length;
+    const shownCount = state.relationshipPanelExpanded ? totalCount : 9;
 
     let panelHTML = `
         <div class="relationship-panel-header">
@@ -1264,7 +1271,7 @@ function showRelationshipPanel(d, related) {
         </div>
         <div class="relationship-panel-stats">
             <div class="stat-item">
-                <span class="stat-value">9</span>
+                <span class="stat-value">${shownCount}</span>
                 <span class="stat-label">Shown</span>
             </div>
             <div class="stat-item">
@@ -1296,28 +1303,33 @@ function showRelationshipPanel(d, related) {
         <div class="relationship-panel-body">
     `;
 
-    const groups = [
-        { type: 'top', items: related.top, color: '#43A047', label: 'Most Related', icon: '🔥' },
-        { type: 'middle', items: related.middle, color: '#FB8C00', label: 'Moderately Related', icon: '➡️' },
-        { type: 'bottom', items: related.bottom, color: '#E53935', label: 'Least Related', icon: '⚪' }
-    ];
-
-    groups.forEach(group => {
+    if (state.relationshipPanelExpanded) {
+        // Show all relationships in rank order
         panelHTML += `
             <div class="relationship-group">
                 <div class="relationship-group-header">
-                    <span class="relationship-group-icon">${group.icon}</span>
-                    <span class="relationship-group-label" style="color: ${group.color}">${group.label}</span>
+                    <span class="relationship-group-icon">📊</span>
+                    <span class="relationship-group-label">All Techniques (Ranked by Similarity)</span>
                 </div>
-                <div class="relationship-items">
+                <div class="relationship-items relationship-items-expanded">
         `;
 
-        group.items.forEach(item => {
+        related.all.forEach((item, index) => {
             const simPercent = (item.similarity * 100).toFixed(0);
             const crossSectionBadge = item.crossSection ? '<span class="cross-section-badge">Cross-Section</span>' : '';
+
+            // Color code based on position
+            let barColor = '#43A047'; // Green for top third
+            if (index >= totalCount * 2 / 3) {
+                barColor = '#E53935'; // Red for bottom third
+            } else if (index >= totalCount / 3) {
+                barColor = '#FB8C00'; // Orange for middle third
+            }
+
             panelHTML += `
                 <div class="relationship-item" data-node-key="${item.node.data.key}">
-                    <div class="relationship-item-bar" style="width: ${simPercent}%; background: ${group.color};"></div>
+                    <div class="relationship-item-rank">#${index + 1}</div>
+                    <div class="relationship-item-bar" style="width: ${simPercent}%; background: ${barColor};"></div>
                     <div class="relationship-item-content">
                         <span class="relationship-item-name">${item.node.data.key}</span>
                         ${crossSectionBadge}
@@ -1331,9 +1343,56 @@ function showRelationshipPanel(d, related) {
                 </div>
             </div>
         `;
-    });
+    } else {
+        // Show default 9 (top 3, middle 3, bottom 3)
+        const groups = [
+            { type: 'top', items: related.top, color: '#43A047', label: 'Most Related', icon: '🔥' },
+            { type: 'middle', items: related.middle, color: '#FB8C00', label: 'Moderately Related', icon: '➡️' },
+            { type: 'bottom', items: related.bottom, color: '#E53935', label: 'Least Related', icon: '⚪' }
+        ];
 
-    panelHTML += `</div>`;
+        groups.forEach(group => {
+            panelHTML += `
+                <div class="relationship-group">
+                    <div class="relationship-group-header">
+                        <span class="relationship-group-icon">${group.icon}</span>
+                        <span class="relationship-group-label" style="color: ${group.color}">${group.label}</span>
+                    </div>
+                    <div class="relationship-items">
+            `;
+
+            group.items.forEach(item => {
+                const simPercent = (item.similarity * 100).toFixed(0);
+                const crossSectionBadge = item.crossSection ? '<span class="cross-section-badge">Cross-Section</span>' : '';
+                panelHTML += `
+                    <div class="relationship-item" data-node-key="${item.node.data.key}">
+                        <div class="relationship-item-bar" style="width: ${simPercent}%; background: ${group.color};"></div>
+                        <div class="relationship-item-content">
+                            <span class="relationship-item-name">${item.node.data.key}</span>
+                            ${crossSectionBadge}
+                            <span class="relationship-item-score">${simPercent}%</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            panelHTML += `
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    panelHTML += `
+        </div>
+        <div class="relationship-panel-footer">
+            <button class="relationship-toggle-btn" onclick="toggleRelationshipPanelExpansion()">
+                ${state.relationshipPanelExpanded ?
+                    `<span>▲</span> Show Top 9 Only` :
+                    `<span>▼</span> Show All ${totalCount} Rules`}
+            </button>
+        </div>
+    `;
 
     relationshipPanel.html(panelHTML);
     relationshipPanel.classed('visible', true);
@@ -1342,10 +1401,27 @@ function showRelationshipPanel(d, related) {
     hideMiniLegend();
 }
 
+function toggleRelationshipPanelExpansion() {
+    state.relationshipPanelExpanded = !state.relationshipPanelExpanded;
+
+    // Refresh the panel with the current node's data
+    if (state.currentRelatedNode && state.currentRelatedData) {
+        showRelationshipPanel(state.currentRelatedNode, state.currentRelatedData);
+    }
+}
+
+// Make toggle function available globally
+window.toggleRelationshipPanelExpansion = toggleRelationshipPanelExpansion;
+
 function hideRelationshipPanel() {
     if (relationshipPanel) {
         relationshipPanel.classed('visible', false);
     }
+
+    // Reset expanded state when closing
+    state.relationshipPanelExpanded = false;
+    state.currentRelatedData = null;
+    state.currentRelatedNode = null;
 }
 
 function showMiniLegend() {
