@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <title>Systems | Version Control | GIT Beta (Real Git Engine)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
+
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="../../../index.css">
+
+    <!-- Visualization CSS -->
+    <link href="Systems_GitBeta.css" rel="stylesheet">
+
+    <!-- Bootstrap JS (v5) -->
+    <script src="../../../bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- D3.js v7 -->
+    <script src="../../../d3/d3.v7.min.js"></script>
+
+    <!-- Site automation -->
+    <script src="../../../automation/loadObjects.js"></script>
+
+    <!-- Color modes (dark/light theme) -->
+    <script src="../../../bootstrap/assets/color-modes.js"></script>
+
+</head>
+<body class="container-fluid px-2 py-4">
+
+<!-- Header -->
+<div id="header_placeholder"></div>
+
+ll overations <!-- Page Title -->
+<div class="page-title-section mb-4">
+    <h1 class="page-title">Systems | Version Control | Git</h1>
+    <p class="page-subtitle text-muted">Interactive Git Simulation - Multi-user collaboration demo with Alice and Bob</p>
+</div>
+
+<div class="container-fluid git-beta-container">
+    <div class="row">
+        <!-- Users Column -->
+        <div class="col-lg-8" id="users-column">
+            <!-- User workspaces will be injected here by JS -->
+        </div>
+
+        <!-- Remote & Console Column -->
+        <div class="col-lg-4">
+            <!-- Remote Repository -->
+            <div class="remote-section">
+                <div class="section-header">
+                    <h4>☁️ Remote Repository</h4>
+                    <span id="remote-status">Initializing...</span>
+                </div>
+                <div id="remote-body" class="remote-body">
+                    <!-- Remote branches will be listed here -->
+                </div>
+                <div class="remote-network-graph">
+                    <svg id="remote-network-svg"></svg>
+                </div>
+            </div>
+
+            <!-- Console -->
+            <div class="console-section">
+                <div class="section-header">
+                    <h4>$> Console</h4>
+                    <div>
+                        <button id="clear-console-btn" class="console-btn">Clear</button>
+                        <button id="reset-all-btn" class="console-btn danger">Reset All</button>
+                    </div>
+                </div>
+                <div id="console-body" class="console-body"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Commit Modal -->
+<div id="commit-modal" class="modal-container">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 id="commit-modal-title">Commit Details</h5>
+            <button id="commit-modal-close" class="modal-close-btn">&times;</button>
+        </div>
+        <div id="commit-modal-body" class="modal-body">
+            <!-- Details injected by JS -->
+        </div>
+    </div>
+</div>
+
+
+<!-- Git Beta JavaScript -->
+<script src="Systems_GitBeta.js"></script>
+
+<script>
+    loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html");
+</script>
+
+</body>
+</html>
+
