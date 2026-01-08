@@ -79,6 +79,7 @@
             const parentOid = repo.branches[repo.head];
             const oid = this.generateOid();
 
+
             const commit = {
                 oid,
                 message,
@@ -104,6 +105,7 @@
         createBranch(repoName, branchName) {
             const repo = this.repos[repoName];
             if (!repo || repo.branches[branchName]) return false;
+
             repo.branches[branchName] = repo.branches[repo.head];
             return true;
         }
@@ -275,29 +277,25 @@
 
         pull(localRepo, branchName) {
             if (!this.initialized) return { ok: false, error: 'Remote not initialized' };
-            if (!this.branches[branchName]) return { ok: false, error: 'Remote branch not found' };
 
-            // Copy commits from remote to local
+            // Copy ALL commits from remote to local (that don't exist locally)
             const newCommits = this.commits.filter(c =>
                 !localRepo.commits.find(lc => lc.oid === c.oid)
             );
-
             localRepo.commits.push(...newCommits);
-            localRepo.branches[branchName] = this.branches[branchName];
 
-            // Sync ALL remote branches to local (so graphs match everywhere)
+            // Update the pulled branch pointer if it exists on remote
+            if (this.branches[branchName]) {
+                localRepo.branches[branchName] = this.branches[branchName];
+            }
+
+            // Sync ALL remote branches to local
             Object.keys(this.branches).forEach(remoteBranch => {
+                // Always update to ensure sync (remote is source of truth for pushed branches)
                 localRepo.branches[remoteBranch] = this.branches[remoteBranch];
             });
 
-            // Remove local branches that were deleted from remote (except current HEAD)
-            Object.keys(localRepo.branches).forEach(localBranch => {
-                if (!this.branches.hasOwnProperty(localBranch) && localBranch !== localRepo.head) {
-                    delete localRepo.branches[localBranch];
-                }
-            });
-
-            // Sync files from latest commits
+            // Sync files from new commits
             newCommits.forEach(c => {
                 Object.entries(c.files).forEach(([name, data]) => {
                     localRepo.files[name] = { ...data, status: 'clean' };
@@ -592,6 +590,7 @@
             return;
         }
 
+
         const nodeRadius = 8, nodeSpacingY = 40, branchSpacingX = 50, startX = 35, startY = 50;
 
         // Sort commits topologically (parents before children) with timestamp as secondary
@@ -690,6 +689,12 @@
                 .style('cursor', 'pointer')
                 .on('click', () => showCommitModal(c));
 
+            // Add tooltip with parent info
+            const parentInfo = c.parents && c.parents.length > 0
+                ? `Parent: ${c.parents.map(p => p.substring(0, 7)).join(', ')}`
+                : 'Root commit (no parent)';
+            g.append('title').text(`${c.oid.substring(0, 7)} - ${c.message}\n${parentInfo}`);
+
             g.append('circle')
                 .attr('r', nodeRadius)
                 .attr('fill', color)
@@ -703,10 +708,20 @@
                 .attr('fill', 'var(--bs-body-color)')
                 .text(c.oid.substring(0, 7));
 
-            const msg = c.message.length > 15 ? c.message.substring(0, 12) + '...' : c.message;
+            // Show parent info
+            const parentText = c.parents && c.parents.length > 0
+                ? `← ${c.parents[0].substring(0, 7)}`
+                : '(root)';
             g.append('text')
                 .attr('x', 15).attr('y', 9)
                 .attr('font-size', '7px')
+                .attr('fill', 'var(--bs-secondary-color, #6c757d)')
+                .text(parentText);
+
+            const msg = c.message.length > 12 ? c.message.substring(0, 10) + '...' : c.message;
+            g.append('text')
+                .attr('x', 15).attr('y', 19)
+                .attr('font-size', '6px')
                 .attr('fill', 'var(--bs-secondary-color, #6c757d)')
                 .text(msg);
         });
@@ -857,7 +872,7 @@
             const result = remoteRepo.push(repo, repo.head);
             if (result.ok) {
                 logConsole(`[${username}] Push successful (${result.pushed} commit(s))`, 'success');
-                renderRemote();
+                renderAll(); // Render all workspaces and remote so graphs sync
             } else {
                 logConsole(`[${username}] Push failed: ${result.error}`, 'error');
             }
@@ -867,8 +882,9 @@
             const user = STATE.users[username];
             const repo = gitEngine.getRepo(user.repoName);
 
-            logConsole(`[${username}] git pull origin ${repo.head}`, 'info', true);
+            logConsole(`[${username}] git fetch --all && git pull`, 'info', true);
 
+            // Pull using current branch, but this will fetch ALL commits
             const result = remoteRepo.pull(repo, repo.head);
             if (result.ok) {
                 logConsole(`[${username}] Pull successful (${result.pulled} commit(s))`, 'success');
