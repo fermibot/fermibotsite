@@ -83,7 +83,7 @@
                 oid,
                 message,
                 author,
-                timestamp: Math.floor(Date.now() / 1000),
+                timestamp: Date.now(),
                 parents: parentOid ? [parentOid] : [],
                 branch: repo.head,
                 files: { ...repo.stagedFiles }
@@ -174,7 +174,7 @@
                 oid,
                 message: `Merge branch '${sourceBranch}' into ${targetBranch}`,
                 author,
-                timestamp: Math.floor(Date.now() / 1000),
+                timestamp: Date.now(),
                 parents: [targetCommitOid, sourceCommitOid].filter(Boolean),
                 branch: targetBranch,
                 files: mergedFiles,
@@ -290,6 +290,13 @@
                 localRepo.branches[remoteBranch] = this.branches[remoteBranch];
             });
 
+            // Remove local branches that were deleted from remote (except current HEAD)
+            Object.keys(localRepo.branches).forEach(localBranch => {
+                if (!this.branches.hasOwnProperty(localBranch) && localBranch !== localRepo.head) {
+                    delete localRepo.branches[localBranch];
+                }
+            });
+
             // Sync files from latest commits
             newCommits.forEach(c => {
                 Object.entries(c.files).forEach(([name, data]) => {
@@ -302,6 +309,15 @@
 
         hasBranch(branchName) {
             return this.branches.hasOwnProperty(branchName);
+        }
+
+        deleteBranch(branchName) {
+            if (!this.initialized) return { ok: false, error: 'Remote not initialized' };
+            if (branchName === 'main') return { ok: false, error: 'Cannot delete main branch' };
+            if (!this.branches[branchName]) return { ok: false, error: 'Branch not found on remote' };
+
+            delete this.branches[branchName];
+            return { ok: true };
         }
 
         getHistory() {
@@ -430,12 +446,16 @@
             <div class="workspace-section branch-section">
                 <div class="section-title">🌿 Branches</div>
                 <div class="branch-list">
-                    ${branches.map(b => `
+                    ${branches.map(b => {
+                        const isOnRemote = remoteRepo.hasBranch(b);
+                        return `
                         <div class="branch-item ${b === repo.head ? 'active' : ''}">
                             <span class="branch-name" onclick="window.gitBeta.switchBranch('${username}', '${b}')">${b}</span>
-                            ${b !== 'main' && b !== repo.head ? `<button class="branch-delete-btn" onclick="window.gitBeta.deleteBranch('${username}', '${b}')">×</button>` : ''}
+                            ${isOnRemote ? '<span class="branch-remote-indicator" title="On remote">☁️</span>' : ''}
+                            ${b !== 'main' && b !== repo.head ? `<button class="branch-delete-btn" onclick="window.gitBeta.deleteBranch('${username}', '${b}')" title="Delete local">×</button>` : ''}
+                            ${b !== 'main' && b !== repo.head && isOnRemote ? `<button class="branch-push-delete-btn" onclick="window.gitBeta.pushDeleteBranch('${username}', '${b}')" title="Delete from remote">☁️×</button>` : ''}
                         </div>
-                    `).join('')}
+                    `}).join('')}
                     <button class="branch-add-btn" onclick="window.gitBeta.createBranch('${username}')">+ New</button>
                 </div>
             </div>
@@ -512,6 +532,51 @@
     }
 
     // ============================================
+    // TOPOLOGICAL SORT FOR COMMITS
+    // ============================================
+
+    function topologicalSort(commits) {
+        if (!commits || commits.length === 0) return [];
+
+        // Build a map for quick lookup
+        const commitMap = {};
+        commits.forEach(c => { commitMap[c.oid] = c; });
+
+        // Calculate depth (distance from root) for each commit
+        const depth = {};
+
+        function getDepth(oid) {
+            if (depth[oid] !== undefined) return depth[oid];
+            const commit = commitMap[oid];
+            if (!commit || !commit.parents || commit.parents.length === 0) {
+                depth[oid] = 0;
+                return 0;
+            }
+
+            let maxParentDepth = -1;
+            for (const parentOid of commit.parents) {
+                if (commitMap[parentOid]) {
+                    maxParentDepth = Math.max(maxParentDepth, getDepth(parentOid));
+                }
+            }
+            depth[oid] = maxParentDepth + 1;
+            return depth[oid];
+        }
+
+        // Calculate depth for all commits
+        commits.forEach(c => getDepth(c.oid));
+
+        // Sort by depth first, then by timestamp, then by oid for stability
+        return [...commits].sort((a, b) => {
+            const depthA = depth[a.oid] || 0;
+            const depthB = depth[b.oid] || 0;
+            if (depthA !== depthB) return depthA - depthB;
+            if (a.timestamp !== b.timestamp) return a.timestamp - b.timestamp;
+            return a.oid.localeCompare(b.oid);
+        });
+    }
+
+    // ============================================
     // GRAPH RENDERING (D3)
     // ============================================
 
@@ -529,8 +594,8 @@
 
         const nodeRadius = 8, nodeSpacingY = 40, branchSpacingX = 50, startX = 35, startY = 50;
 
-        // Sort commits by timestamp
-        const sortedCommits = [...commits].sort((a, b) => a.timestamp - b.timestamp);
+        // Sort commits topologically (parents before children) with timestamp as secondary
+        const sortedCommits = topologicalSort(commits);
 
         // Assign lanes to branches
         const branchLane = {};
@@ -667,7 +732,7 @@
             <div class="commit-detail-row"><strong>SHA:</strong> <span>${commit.oid}</span></div>
             <div class="commit-detail-row"><strong>Author:</strong> <span>${commit.author}</span></div>
             <div class="commit-detail-row"><strong>Branch:</strong> <span>${commit.branch}</span></div>
-            <div class="commit-detail-row"><strong>Date:</strong> <span>${new Date(commit.timestamp * 1000).toLocaleString()}</span></div>
+            <div class="commit-detail-row"><strong>Date:</strong> <span>${new Date(commit.timestamp).toLocaleString()}</span></div>
             ${commit.parents && commit.parents.length > 0 ? 
                 `<div class="commit-detail-row"><strong>Parents:</strong> <span>${commit.parents.map(p => p.substring(0, 7)).join(', ')}</span></div>` : ''
             }
@@ -848,9 +913,30 @@
             const user = STATE.users[username];
             if (gitEngine.deleteBranch(user.repoName, branch)) {
                 logConsole(`[${username}] git branch -d ${branch}`, 'success', true);
+                logConsole(`[${username}] Deleted local branch '${branch}'`, 'success');
+
+                if (remoteRepo.hasBranch(branch)) {
+                    logConsole(`[${username}] Note: Branch still exists on remote. Use "Push Delete" to remove it.`, 'info');
+                }
+
                 renderWorkspace(username);
             } else {
                 logConsole(`[${username}] Cannot delete branch`, 'error');
+            }
+        },
+
+        pushDeleteBranch: (username, branch) => {
+            if (!confirm(`Delete branch "${branch}" from remote?`)) return;
+
+            const user = STATE.users[username];
+            const result = remoteRepo.deleteBranch(branch);
+
+            if (result.ok) {
+                logConsole(`[${username}] git push origin --delete ${branch}`, 'success', true);
+                logConsole(`[${username}] Deleted branch '${branch}' from remote`, 'success');
+                renderAll();
+            } else {
+                logConsole(`[${username}] ${result.error}`, 'error');
             }
         },
 
