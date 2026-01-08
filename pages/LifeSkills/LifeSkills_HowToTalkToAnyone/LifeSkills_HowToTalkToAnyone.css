@@ -1448,7 +1448,9 @@
     top: 50%;
     transform: translateY(-50%) translateX(400px);
     width: 350px;
-    max-height: 80vh;
+    height: 85vh;
+    max-height: 850px;
+    min-height: 650px;
     background-color: var(--viz-card-bg);
     border: 2px solid var(--viz-border);
     border-radius: 12px;
@@ -1665,9 +1667,7 @@
 }
 
 .relationship-items-expanded {
-    max-height: 400px;
-    overflow-y: auto;
-    min-height: 100px;
+    /* No max-height - panel body handles scrolling */
 }
 
 .relationship-item {
@@ -1676,12 +1676,21 @@
     border-radius: 6px;
     overflow: hidden;
     cursor: pointer;
-    transition: transform var(--transition-fast);
+    transition: transform var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
     min-height: 32px;
+    border: 1px solid transparent;
 }
 
 .relationship-item:hover {
+    transform: translateX(4px);
+    background-color: var(--viz-bg);
+    border-color: var(--viz-border);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.relationship-item:active {
     transform: translateX(2px);
+    background-color: var(--viz-bg-secondary);
 }
 
 .relationship-item-bar {

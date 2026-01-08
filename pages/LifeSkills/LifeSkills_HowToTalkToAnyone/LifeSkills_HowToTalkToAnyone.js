@@ -1401,6 +1401,33 @@ function showRelationshipPanel(d, related) {
     relationshipPanel.html(panelHTML);
     relationshipPanel.classed('visible', true);
 
+    // Add click handlers to relationship items
+    relationshipPanel.selectAll('.relationship-item').on('click', function(event) {
+        event.stopPropagation();
+        const nodeKey = this.getAttribute('data-node-key');
+        if (nodeKey) {
+            // Find the corresponding node
+            const allNodes = state.root.leaves();
+            const targetNode = allNodes.find(n => n.data.key === nodeKey);
+            if (targetNode) {
+                // Preserve the current expanded state
+                const wasExpanded = state.relationshipPanelExpanded;
+
+                // Trigger the relationship visualization for this node
+                showRelationshipLinks(event, targetNode);
+
+                // Restore the expanded state after panel is rebuilt
+                if (wasExpanded) {
+                    state.relationshipPanelExpanded = true;
+                    // Refresh the panel with expanded view
+                    if (state.currentRelatedNode && state.currentRelatedData) {
+                        showRelationshipPanel(state.currentRelatedNode, state.currentRelatedData);
+                    }
+                }
+            }
+        }
+    });
+
     // Hide the mini legend when panel is shown
     hideMiniLegend();
 }
