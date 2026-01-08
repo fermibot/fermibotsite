@@ -141,7 +141,9 @@ const state = {
     activeRelationshipNode: null,
     relationshipLinks: [],
     relationshipCounts: new Map(), // Store count of strong relationships per node
-    relationshipPanelExpanded: false // Track if showing all relationships
+    relationshipPanelExpanded: false, // Track if showing all relationships
+    currentRelatedNode: null, // Store current node for relationship panel
+    currentRelatedData: null  // Store related data for toggle functionality
 };
 
 // Load learned chapters from localStorage
@@ -1255,6 +1257,7 @@ function showRelationshipPanel(d, related) {
     state.currentRelatedData = related;
     state.currentRelatedNode = d;
 
+
     const avgSimilarity = (related.all.reduce((sum, r) => sum + r.similarity, 0) / related.all.length * 100).toFixed(0);
     const maxSimilarity = (related.top[0].similarity * 100).toFixed(0);
     const totalCount = related.all.length;
@@ -1305,6 +1308,7 @@ function showRelationshipPanel(d, related) {
 
     if (state.relationshipPanelExpanded) {
         // Show all relationships in rank order
+
         panelHTML += `
             <div class="relationship-group">
                 <div class="relationship-group-header">

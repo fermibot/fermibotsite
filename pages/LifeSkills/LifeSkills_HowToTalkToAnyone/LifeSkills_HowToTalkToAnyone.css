@@ -1667,6 +1667,7 @@
 .relationship-items-expanded {
     max-height: 400px;
     overflow-y: auto;
+    min-height: 100px;
 }
 
 .relationship-item {
@@ -1676,6 +1677,7 @@
     overflow: hidden;
     cursor: pointer;
     transition: transform var(--transition-fast);
+    min-height: 32px;
 }
 
 .relationship-item:hover {
@@ -1877,7 +1879,7 @@
 }
 
 .force-node:hover circle {
-    r: 8;
+    r: 8px;
 }
 
 /* Sunburst specific */
