@@ -7,8 +7,8 @@ class SessionTimer {
         this.timerInterval = null;
         this.isRunning = false;
 
-        // Timer mode: 'infinite' (count up) or 'timed' (countdown)
-        this.mode = 'infinite';
+        // Timer mode: 'timed' (countdown) or 'infinite' (count up)
+        this.mode = 'timed';
         this.targetDuration = 300000; // Default 5 minutes in milliseconds
         this.onTimerComplete = null; // Callback when countdown reaches 0
         this.timerCompleted = false; // Track if countdown finished

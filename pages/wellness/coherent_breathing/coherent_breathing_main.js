@@ -439,6 +439,20 @@ document.addEventListener('DOMContentLoaded', () => {
         sessionTimer,
         playerManager
     };
+
+    // Initialize timed mode callbacks (since timed is now the default)
+    sessionTimer.setOnTimerComplete(() => {
+        if (unifiedPlayer && unifiedPlayer.isPlaying) {
+            unifiedPlayer.stop();
+        }
+    });
+
+    // Initialize expert timer callback
+    if (programmableSequencer.customTimer) {
+        programmableSequencer.customTimer.setOnTimerComplete(() => {
+            programmableSequencer.stop();
+        });
+    }
 });
 
 // Add to coherent_breathing_main.js, at the end of DOMContentLoaded event

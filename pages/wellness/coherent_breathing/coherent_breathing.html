@@ -173,20 +173,19 @@
                         <div class="timer-section">
                             <!-- Timer with integrated mode toggle -->
                             <div class="session-timer-inline">
-                                <div class="timer-mode-toggle" title="Switch between infinite (count up) and timed (countdown) modes">
-                                    <button class="timer-mode-btn active" id="infiniteModeBtn" onclick="setTimerMode('infinite')" title="Infinite mode: Timer counts up indefinitely">
-                                        ∞ Infinite
-                                    </button>
-                                    <button class="timer-mode-btn" id="timedModeBtn" onclick="setTimerMode('timed')" title="Timed mode: Set a duration and timer counts down">
+                                <div class="timer-mode-toggle" title="Switch between timed (countdown) and infinite (count up) modes">
+                                    <button class="timer-mode-btn active" id="timedModeBtn" onclick="setTimerMode('timed')" title="Timed mode: Set a duration and timer counts down">
                                         ⏱️ Timed
+                                    </button>
+                                    <button class="timer-mode-btn" id="infiniteModeBtn" onclick="setTimerMode('infinite')" title="Infinite mode: Timer counts up indefinitely">
+                                        ∞ Infinite
                                     </button>
                                 </div>
                                 <input type="text"
-                                       class="session-timer"
+                                       class="session-timer editable"
                                        id="sessionTimer"
-                                       value="00:00:00"
-                                       readonly
-                                       title="Session Timer - In timed mode, click to edit duration (HH:MM:SS)"
+                                       value="00:05:00"
+                                       title="Session Timer - Click to edit duration (HH:MM:SS)"
                                        pattern="[0-9]{2}:[0-9]{2}:[0-9]{2}"
                                        maxlength="8"
                                        onchange="onTimerInputChange(this.value)"
@@ -367,24 +366,43 @@
         <div class="programmable-section" id="programmableSection">
             <!-- Custom Timer Display - At Top Like Practitioner Section -->
 
-            <div class="row">
+            <div class="row align-items-stretch">
 
-                <div class="custom-timer-container-top mb-4 col-6">
-                    <div class="custom-timer-label">Custom Pattern Timer</div>
-                    <div class="custom-timer" id="customPatternTimer">00:00:00</div>
-                    <div class="mt-2" style="font-size: 0.9rem; color: #6c757d;">
-                        ⏱️ Timer resets when you stop. Tracks only this custom pattern session.
+                <div class="custom-timer-container-top mb-3 col-6">
+                    <!-- Timer with integrated mode toggle -->
+                    <div class="custom-timer-inline">
+                        <div class="timer-mode-toggle" title="Switch between timed (countdown) and infinite (count up) modes">
+                            <button class="timer-mode-btn active" id="expertTimedModeBtn" onclick="setExpertTimerMode('timed')" title="Timed mode: Set a duration and timer counts down">
+                                ⏱️ Timed
+                            </button>
+                            <button class="timer-mode-btn" id="expertInfiniteModeBtn" onclick="setExpertTimerMode('infinite')" title="Infinite mode: Timer counts up indefinitely">
+                                ∞ Infinite
+                            </button>
+                        </div>
+                        <input type="text"
+                               class="custom-timer editable"
+                               id="customPatternTimer"
+                               value="00:05:00"
+                               title="Custom Pattern Timer - Click to edit duration (HH:MM:SS)"
+                               pattern="[0-9]{2}:[0-9]{2}:[0-9]{2}"
+                               maxlength="8"
+                               onchange="onExpertTimerInputChange(this.value)"
+                               onkeydown="onExpertTimerKeyDown(event, this)">
+                    </div>
+                    <div class="mt-1" style="font-size: 0.8rem; color: #6c757d;">
+                        ⏱️ Timer resets when you stop.
                     </div>
                 </div>
 
-                <div class="custom-timer-container-top mb-4 col-6">
+                <div class="custom-timer-container-top mb-3 col-6">
                     <!-- Breath cycle visualizer -->
                     <div class="breath-visualizer" id="breathVisualizer">
-                        <!-- Phases will be dynamically inserted here --></div>
-
-
+                        <!-- Phases will be dynamically inserted here -->
+                    </div>
                     <!-- Current phase indicator -->
-                    <div class="current-phase-indicator" id="currentPhase">Ready to start</div>
+                    <div class="mt-1" style="font-size: 0.8rem; color: #6c757d;">
+                        <span class="current-phase-indicator" id="currentPhase">Ready to start</span>
+                    </div>
                 </div>
 
             </div>
@@ -454,14 +472,14 @@
                         </div>
 
                         <!-- Control buttons -->
-                        <div class="d-flex justify-content-center gap-2 mt-3">
-                            <button class="btn btn-outline-primary btn-play" id="programmablePlay" disabled>
-                                ▶️ Play Pattern
+                        <div class="unified-buttons">
+                            <button class="btn btn-primary btn-lg unified-play" id="programmablePlay" disabled>
+                                ▶️ Play
                             </button>
-                            <button class="btn btn-outline-secondary btn-pause" id="programmablePause" disabled>
+                            <button class="btn btn-secondary btn-lg unified-pause" id="programmablePause" disabled>
                                 ⏸️ Pause
                             </button>
-                            <button class="btn btn-outline-secondary btn-stop" id="programmableStop" disabled>
+                            <button class="btn btn-outline-secondary btn-lg unified-stop" id="programmableStop" disabled>
                                 ⏹️ Stop
                             </button>
                         </div>
@@ -903,6 +921,117 @@
         if (window.audioPlayers && window.audioPlayers.sessionTimer) {
             window.audioPlayers.sessionTimer.setTargetDuration(parseInt(seconds));
         }
+    }
+
+    // Expert Timer Mode Management
+    function setExpertTimerMode(mode) {
+        const infiniteBtn = document.getElementById('expertInfiniteModeBtn');
+        const timedBtn = document.getElementById('expertTimedModeBtn');
+        const timerInput = document.getElementById('customPatternTimer');
+
+        // Update button states
+        if (mode === 'infinite') {
+            infiniteBtn.classList.add('active');
+            timedBtn.classList.remove('active');
+            timerInput.readOnly = true;
+            timerInput.classList.remove('editable');
+            timerInput.value = '00:00:00';
+        } else {
+            infiniteBtn.classList.remove('active');
+            timedBtn.classList.add('active');
+            timerInput.readOnly = false;
+            timerInput.classList.add('editable');
+            timerInput.value = '00:05:00'; // Default 5 minutes
+
+            // Focus the input and place cursor at the end
+            timerInput.focus();
+            timerInput.setSelectionRange(8, 8);
+        }
+
+        // Update the programmable sequencer timer if it exists
+        if (window.audioPlayers && window.audioPlayers.programmableSequencer) {
+            const sequencer = window.audioPlayers.programmableSequencer;
+            if (sequencer.customTimer) {
+                sequencer.customTimer.setMode(mode);
+
+                if (mode === 'timed') {
+                    const seconds = parseTimerInput(timerInput.value);
+                    sequencer.customTimer.setTargetDuration(seconds);
+                    sequencer.customTimer.setOnTimerComplete(() => {
+                        sequencer.stop();
+                    });
+                } else {
+                    sequencer.customTimer.setOnTimerComplete(null);
+                }
+            }
+        }
+    }
+
+    function onExpertTimerInputChange(value) {
+        // Validate and format the input
+        let formatted = value.replace(/[^0-9:]/g, '');
+        const seconds = parseTimerInput(formatted);
+
+        // Update the programmable sequencer timer duration
+        if (window.audioPlayers && window.audioPlayers.programmableSequencer) {
+            const sequencer = window.audioPlayers.programmableSequencer;
+            if (sequencer.customTimer) {
+                sequencer.customTimer.setTargetDuration(seconds);
+            }
+        }
+    }
+
+    // Handle keydown for expert timer input - calculator-style entry (right to left)
+    function onExpertTimerKeyDown(event, input) {
+        const key = event.key;
+        const value = input.value;
+
+        // If readonly, don't handle
+        if (input.readOnly) return;
+
+        // Handle backspace - shift all digits right, insert 0 at left
+        if (key === 'Backspace') {
+            event.preventDefault();
+            let digits = value.replace(/:/g, '');
+            digits = '0' + digits.substring(0, digits.length - 1);
+            const newValue = digits.substring(0, 2) + ':' + digits.substring(2, 4) + ':' + digits.substring(4, 6);
+            input.value = newValue;
+            input.setSelectionRange(8, 8);
+            onExpertTimerInputChange(newValue);
+            return;
+        }
+
+        // Handle number input - shift all digits left, add new digit at right
+        if (/^[0-9]$/.test(key)) {
+            event.preventDefault();
+            let digits = value.replace(/:/g, '');
+            digits = digits.substring(1) + key;
+            const newValue = digits.substring(0, 2) + ':' + digits.substring(2, 4) + ':' + digits.substring(4, 6);
+            input.value = newValue;
+            input.setSelectionRange(8, 8);
+            onExpertTimerInputChange(newValue);
+            return;
+        }
+
+        // Handle Enter key - start the custom pattern
+        if (key === 'Enter') {
+            event.preventDefault();
+            input.blur();
+
+            // Start the programmable sequencer
+            if (window.audioPlayers && window.audioPlayers.programmableSequencer) {
+                window.audioPlayers.programmableSequencer.play();
+            }
+            return;
+        }
+
+        // Allow navigation keys
+        if (['ArrowLeft', 'ArrowRight', 'Tab', 'Home', 'End'].includes(key)) {
+            return;
+        }
+
+        // Block all other keys
+        event.preventDefault();
     }
 
     // Smooth scrolling function
