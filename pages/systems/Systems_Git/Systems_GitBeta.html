@@ -78,38 +78,57 @@
         </div>
 
         <div class="git-beta-container">
-            <div class="row">
-                <!-- Users Column -->
-                <div class="col-lg-8" id="users-column">
-                    <!-- User workspaces will be injected here by JS -->
+            <!-- Three-column layout: Alice, Bob, Remote -->
+            <div class="git-columns-wrapper">
+                <!-- Alice Column -->
+                <div class="git-column" id="alice-column">
+                    <!-- Will be injected by JS -->
                 </div>
 
-                <!-- Remote & Console Column -->
-                <div class="col-lg-4">
-                    <!-- Remote Repository -->
-                    <div class="remote-section">
+                <!-- Bob Column -->
+                <div class="git-column" id="bob-column">
+                    <!-- Will be injected by JS -->
+                </div>
+
+                <!-- Remote Repository Column -->
+                <div class="git-column remote-column">
+                    <div class="remote-section" id="remote-section">
                         <div class="section-header">
                             <h4>☁️ Remote Repository</h4>
                             <span id="remote-status">Initializing...</span>
                         </div>
-                        <div id="remote-body" class="remote-body">
-                            <!-- Remote branches will be listed here -->
-                        </div>
-                        <div class="remote-network-graph">
-                            <svg id="remote-network-svg"></svg>
-                        </div>
-                    </div>
 
-                    <!-- Console -->
-                    <div class="console-section">
-                        <div class="section-header">
-                            <h4>$> Console</h4>
-                            <div>
-                                <button id="clear-console-btn" class="console-btn">Clear</button>
-                                <button id="reset-all-btn" class="console-btn danger">Reset All</button>
+                        <!-- Remote Branches -->
+                        <div class="remote-branches-section">
+                            <div class="section-title">🌿 Branches</div>
+                            <div id="remote-body" class="remote-body">
+                                <!-- Remote branches will be listed here -->
                             </div>
                         </div>
-                        <div id="console-body" class="console-body"></div>
+
+                        <!-- Remote Working Directory (shows files from selected branch) -->
+                        <div class="remote-working-dir-section">
+                            <div class="section-title">📂 Files on <span id="remote-selected-branch">main</span></div>
+                            <div id="remote-files" class="remote-files">
+                                <!-- Files will be listed here -->
+                            </div>
+                        </div>
+
+                        <!-- Placeholder for actions row alignment -->
+                        <div class="remote-actions-placeholder">
+                            <!-- Empty for alignment -->
+                        </div>
+
+                        <!-- Remote Graph -->
+                        <div class="remote-network-graph">
+                            <div class="section-title">📊 Commit Graph</div>
+                            <svg id="remote-network-svg"></svg>
+                        </div>
+
+                        <!-- Reset Button (aligned with console row) -->
+                        <div class="remote-actions">
+                            <button id="reset-all-btn" class="console-btn danger">🔄 Reset All</button>
+                        </div>
                     </div>
                 </div>
             </div>

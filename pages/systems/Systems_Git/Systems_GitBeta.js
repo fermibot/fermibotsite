@@ -345,16 +345,34 @@
     // CONSOLE LOGGER
     // ============================================
 
-    function logConsole(message, type = 'info', isCommand = false) {
-        const body = document.getElementById('console-body');
+    function logConsole(message, type = 'info', isCommand = false, username = null) {
+        // Determine which console to log to
+        let body;
+        if (username) {
+            body = document.getElementById(`console-${username}`);
+        }
+
+        // If no specific console or it doesn't exist, try to detect from message
+        if (!body) {
+            if (message.includes('[alice]')) {
+                body = document.getElementById('console-alice');
+            } else if (message.includes('[bob]')) {
+                body = document.getElementById('console-bob');
+            }
+        }
+
         if (!body) return;
 
         const ts = new Date().toLocaleTimeString();
         const div = document.createElement('div');
         div.className = `console-message ${type}`;
+
+        // Remove the username prefix from message since console is user-specific
+        let cleanMessage = message.replace(/^\[(alice|bob)\]\s*/, '');
+
         div.innerHTML = isCommand
-            ? `<span class="timestamp">[${ts}]</span> <span class="command">$ ${message}</span>`
-            : `<span class="timestamp">[${ts}]</span> ${message}`;
+            ? `<span class="timestamp">[${ts}]</span> <span class="command">$ ${cleanMessage}</span>`
+            : `<span class="timestamp">[${ts}]</span> ${cleanMessage}`;
 
         body.appendChild(div);
         body.scrollTop = body.scrollHeight;
@@ -376,6 +394,13 @@
         gitEngine.stageFile('alice-repo', 'README.md');
         const initialCommit = gitEngine.commit('alice-repo', 'Initial commit', 'alice');
 
+        // Setup event listeners
+        setupEventListeners();
+
+        // Render everything first (so consoles exist)
+        renderAll();
+
+        // Now log initialization messages
         if (initialCommit) {
             logConsole('[alice] Created initial commit: ' + initialCommit.oid.substring(0, 7), 'success');
 
@@ -392,13 +417,8 @@
             logConsole('[bob] Pulled from remote: ' + pullResult.pulled + ' commit(s)', 'success');
         }
 
-        // Setup event listeners
-        setupEventListeners();
-
-        // Render everything
-        renderAll();
-
-        logConsole('System initialized. Ready.', 'success');
+        logConsole('[alice] Ready', 'info');
+        logConsole('[bob] Ready', 'info');
     }
 
     // ============================================
@@ -419,7 +439,12 @@
             workspaceEl = document.createElement('div');
             workspaceEl.className = 'user-workspace';
             workspaceEl.dataset.user = username;
-            document.getElementById('users-column').appendChild(workspaceEl);
+            // Append to user-specific column
+            const columnId = `${username}-column`;
+            const column = document.getElementById(columnId);
+            if (column) {
+                column.appendChild(workspaceEl);
+            }
         }
 
         const files = gitEngine.getFiles(user.repoName);
@@ -428,7 +453,7 @@
         const history = gitEngine.getHistory(user.repoName);
 
         workspaceEl.innerHTML = `
-            <div class="workspace-header">
+            <div class="workspace-row header-row workspace-header">
                 <div class="workspace-user-info">
                     <span class="workspace-user-icon">${user.icon}</span>
                     <div>
@@ -441,7 +466,7 @@
                 </div>
             </div>
 
-            <div class="workspace-section branch-section">
+            <div class="workspace-row branches-row workspace-section branch-section">
                 <div class="section-title">🌿 Branches</div>
                 <div class="branch-list">
                     ${branches.map(b => {
@@ -458,7 +483,7 @@
                 </div>
             </div>
 
-            <div class="workspace-section">
+            <div class="workspace-row working-dir-row workspace-section">
                 <div class="section-title">📂 Working Directory</div>
                 <div class="working-directory">
                     ${files.length === 0 ? '<div class="empty-state">No files</div>' : files.map(file => `
@@ -485,7 +510,7 @@
                 </div>
             </div>
 
-            <div class="workspace-section">
+            <div class="workspace-row actions-row workspace-section">
                 <div class="action-buttons">
                     ${stagedFiles.length > 0 ? `<button class="action-btn success" onclick="window.gitBeta.commit('${username}')">✅ Commit (${stagedFiles.length})</button>` : ''}
                     <button class="action-btn success" onclick="window.gitBeta.push('${username}')">⬆️ Push</button>
@@ -494,18 +519,31 @@
                 </div>
             </div>
 
-            <div class="local-network-section">
+            <div class="workspace-row graph-row local-network-section">
                 <div class="local-network-title">📊 Local Graph</div>
                 <svg class="local-network-svg" id="local-network-${username}"></svg>
+            </div>
+
+            <div class="workspace-row console-row user-console-section">
+                <div class="console-header">
+                    <span class="console-title">$> Console</span>
+                    <button class="console-clear-btn" onclick="window.gitBeta.clearConsole('${username}')">Clear</button>
+                </div>
+                <div class="console-body" id="console-${username}"></div>
             </div>
         `;
 
         renderGraph(d3.select(`#local-network-${username}`), history, branches, user.color);
     }
 
+    // Track selected branch for remote view
+    let remoteSelectedBranch = 'main';
+
     function renderRemote() {
         const remoteBody = document.getElementById('remote-body');
         const remoteStatus = document.getElementById('remote-status');
+        const remoteFiles = document.getElementById('remote-files');
+        const remoteBranchLabel = document.getElementById('remote-selected-branch');
         const svg = d3.select('#remote-network-svg');
         svg.selectAll('*').remove();
 
@@ -515,6 +553,8 @@
         if (!remoteRepo.initialized) {
             remoteStatus.textContent = 'Not initialized';
             remoteBody.innerHTML = '<div class="empty-state">Push to create</div>';
+            if (remoteFiles) remoteFiles.innerHTML = '<div class="empty-state">No files yet</div>';
+            if (remoteBranchLabel) remoteBranchLabel.textContent = 'main';
             svg.attr('height', 50).append('text')
                 .attr('x', '50%').attr('y', 25)
                 .attr('text-anchor', 'middle')
@@ -523,10 +563,76 @@
             return;
         }
 
+        // Ensure selected branch exists
+        if (!branches.includes(remoteSelectedBranch)) {
+            remoteSelectedBranch = 'main';
+        }
+
         remoteStatus.textContent = `${branches.length} branch(es)`;
-        remoteBody.innerHTML = branches.map(b => `<div class="remote-branch-item">🌿 ${b}</div>`).join('');
+
+        // Render clickable branches
+        remoteBody.innerHTML = branches.map(b => `
+            <div class="remote-branch-item ${b === remoteSelectedBranch ? 'active' : ''}" 
+                 onclick="window.gitBeta.selectRemoteBranch('${b}')">
+                🌿 ${b}
+            </div>
+        `).join('');
+
+        // Update branch label
+        if (remoteBranchLabel) {
+            remoteBranchLabel.textContent = remoteSelectedBranch;
+        }
+
+        // Render files from selected branch
+        if (remoteFiles) {
+            const branchTip = remoteRepo.branches[remoteSelectedBranch];
+            const filesOnBranch = getFilesFromBranch(remoteSelectedBranch);
+
+            if (filesOnBranch.length === 0) {
+                remoteFiles.innerHTML = '<div class="empty-state">No files on this branch</div>';
+            } else {
+                remoteFiles.innerHTML = filesOnBranch.map(filename => `
+                    <div class="remote-file-item">
+                        <span class="file-icon">📄</span>
+                        <span class="file-name">${filename}</span>
+                    </div>
+                `).join('');
+            }
+        }
 
         renderGraph(svg, history, branches, '#9C27B0');
+    }
+
+    // Get files from a specific branch on remote
+    function getFilesFromBranch(branchName) {
+        const branchTip = remoteRepo.branches[branchName];
+        if (!branchTip) return [];
+
+        // Collect all files from commits reachable from this branch
+        const files = new Set();
+        const visited = new Set();
+        const queue = [branchTip];
+
+        while (queue.length > 0) {
+            const oid = queue.shift();
+            if (visited.has(oid)) continue;
+            visited.add(oid);
+
+            const commit = remoteRepo.commits.find(c => c.oid === oid);
+            if (!commit) continue;
+
+            // Add files from this commit
+            if (commit.files) {
+                Object.keys(commit.files).forEach(f => files.add(f));
+            }
+
+            // Add parents to queue
+            if (commit.parents) {
+                commit.parents.forEach(p => queue.push(p));
+            }
+        }
+
+        return Array.from(files).sort();
     }
 
     // ============================================
@@ -763,11 +869,6 @@
     // ============================================
 
     function setupEventListeners() {
-        // Clear console
-        document.getElementById('clear-console-btn')?.addEventListener('click', () => {
-            document.getElementById('console-body').innerHTML = '';
-            logConsole('Console cleared', 'info');
-        });
 
         // Reset all
         document.getElementById('reset-all-btn')?.addEventListener('click', () => {
@@ -985,6 +1086,18 @@
             } else {
                 logConsole(`[${username}] Merge failed: ${result.error}`, 'error');
             }
+        },
+
+        clearConsole: (username) => {
+            const consoleEl = document.getElementById(`console-${username}`);
+            if (consoleEl) {
+                consoleEl.innerHTML = '';
+            }
+        },
+
+        selectRemoteBranch: (branchName) => {
+            remoteSelectedBranch = branchName;
+            renderRemote();
         }
     };
 
