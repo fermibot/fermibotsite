@@ -222,58 +222,57 @@ function countConnections(d, links) {
 }
 
 // ============================================
-// TEXT SIMILARITY & RELATIONSHIP FUNCTIONS
+// SEMANTIC SIMILARITY FUNCTIONS (EMBEDDING-BASED)
 // ============================================
 
-// Calculate word frequency for a text
-function getWordFrequency(text) {
-    if (!text) return {};
-
-    const words = text.toLowerCase()
-        .replace(/[^\w\s]/g, '')
-        .split(/\s+/)
-        .filter(w => w.length > 3); // Filter out small words
-
-    const freq = {};
-    words.forEach(word => {
-        freq[word] = (freq[word] || 0) + 1;
-    });
-    return freq;
-}
-
-// Calculate cosine similarity between two texts
-function calculateSimilarity(text1, text2) {
-    const freq1 = getWordFrequency(text1);
-    const freq2 = getWordFrequency(text2);
-
-    const allWords = new Set([...Object.keys(freq1), ...Object.keys(freq2)]);
+// Calculate cosine similarity between two embedding vectors
+function calculateEmbeddingSimilarity(embedding1, embedding2) {
+    if (!embedding1 || !embedding2) return 0;
+    if (embedding1.length !== embedding2.length) return 0;
 
     let dotProduct = 0;
     let mag1 = 0;
     let mag2 = 0;
 
-    allWords.forEach(word => {
-        const f1 = freq1[word] || 0;
-        const f2 = freq2[word] || 0;
-        dotProduct += f1 * f2;
-        mag1 += f1 * f1;
-        mag2 += f2 * f2;
-    });
+    for (let i = 0; i < embedding1.length; i++) {
+        dotProduct += embedding1[i] * embedding2[i];
+        mag1 += embedding1[i] * embedding1[i];
+        mag2 += embedding2[i] * embedding2[i];
+    }
 
     if (mag1 === 0 || mag2 === 0) return 0;
     return dotProduct / (Math.sqrt(mag1) * Math.sqrt(mag2));
 }
 
+// Calculate similarity between two nodes using embeddings
+function calculateSimilarity(node1, node2) {
+    // Use pre-calculated embeddings if available
+    if (node1.data && node1.data.embedding && node2.data && node2.data.embedding) {
+        return calculateEmbeddingSimilarity(node1.data.embedding, node2.data.embedding);
+    }
+
+    // Fallback to text-based similarity if embeddings not available
+    const text1 = node1.data.summary || node1.data.key || '';
+    const text2 = node2.data.summary || node2.data.key || '';
+
+    // Simple word overlap as fallback
+    const words1 = new Set(text1.toLowerCase().split(/\s+/).filter(w => w.length > 3));
+    const words2 = new Set(text2.toLowerCase().split(/\s+/).filter(w => w.length > 3));
+
+    const intersection = new Set([...words1].filter(x => words2.has(x)));
+    const union = new Set([...words1, ...words2]);
+
+    return union.size > 0 ? intersection.size / union.size : 0;
+}
+
 // Calculate relatedness between a node and all other nodes
 function calculateRelatedness(targetNode, allNodes) {
-    const targetText = targetNode.data.summary || targetNode.data.key;
     const targetSection = getSectionNumber(targetNode);
 
     const similarities = allNodes
         .filter(n => n !== targetNode && isChapter(n))
         .map(n => {
-            const nodeText = n.data.summary || n.data.key;
-            const similarity = calculateSimilarity(targetText, nodeText);
+            const similarity = calculateSimilarity(targetNode, n);
             const nodeSection = getSectionNumber(n);
 
             // Boost similarity if in same section
@@ -310,12 +309,10 @@ function calculateRelationshipCounts(allNodes) {
     const STRONG_THRESHOLD = 0.3; // Similarity threshold for "strong" relationship
 
     allNodes.filter(n => isChapter(n)).forEach(targetNode => {
-        const targetText = targetNode.data.summary || targetNode.data.key;
         let strongCount = 0;
 
         allNodes.filter(n => n !== targetNode && isChapter(n)).forEach(n => {
-            const nodeText = n.data.summary || n.data.key;
-            const similarity = calculateSimilarity(targetText, nodeText);
+            const similarity = calculateSimilarity(targetNode, n);
             if (similarity >= STRONG_THRESHOLD) {
                 strongCount++;
             }

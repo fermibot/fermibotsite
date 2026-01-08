@@ -465,11 +465,10 @@
     flex-direction: column;
 }
 
-/* When used as workspace-row, use fixed height */
+/* Graph section styling */
 .workspace-row.graph-row.local-network-section {
-    height: 250px;
     min-height: 250px;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .local-network-title {
@@ -483,9 +482,8 @@
 .local-network-svg {
     width: 100%;
     flex: 1;
-    min-height: 0;
+    min-height: 200px;
     display: block;
-    overflow: auto;
 }
 
 /* ============================================
@@ -635,6 +633,7 @@
 .remote-network-graph svg {
     flex: 1;
     width: 100%;
+    min-height: 200px;
 }
 
 /* Remote console row - aligns with user console row */
