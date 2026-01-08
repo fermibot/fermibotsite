@@ -442,11 +442,13 @@ body {
     border: 2px solid var(--btn-primary);
     border-right: none;
     flex-shrink: 0;
+    height: 3.5rem;
+    width: 5rem;
 }
 
 .timer-mode-btn {
-    padding: 6px 12px;
-    font-size: 0.85rem;
+    padding: 0 0.5rem;
+    font-size: 0.75rem;
     font-weight: var(--font-weight-semibold);
     border: none;
     background-color: transparent;
@@ -454,6 +456,10 @@ body {
     cursor: pointer;
     transition: all 0.2s ease;
     white-space: nowrap;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .timer-mode-btn:first-child {
@@ -474,10 +480,11 @@ body {
     display: flex;
     align-items: stretch;
     justify-content: center;
+    height: 3.5rem;
 }
 
 .session-timer-inline .session-timer {
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: var(--font-weight-bold);
     color: var(--btn-primary);
     font-family: 'Courier New', monospace !important;
@@ -485,9 +492,11 @@ body {
     background: transparent;
     border: 2px solid var(--btn-primary);
     border-radius: 0 8px 8px 0;
-    padding: 4px 12px;
+    padding: 0.25rem 0.75rem;
     text-align: center;
-    width: 20rem;
+    width: 25rem;
+    height: 3.5rem;
+    line-height: 3rem;
     transition: all 0.2s ease;
 }
 
