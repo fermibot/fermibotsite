@@ -288,12 +288,12 @@ class ProgrammableBreathingSequencer {
         const {inDuration, pause1Duration, outDuration, pause2Duration} = this.settings;
         const totalDuration = inDuration + pause1Duration + outDuration + pause2Duration;
 
-        // Update summary elements
-        this.summaryIn.textContent = `${inDuration}s`;
-        this.summaryPause1.textContent = pause1Duration > 0 ? `${pause1Duration}s` : 'None';
-        this.summaryOut.textContent = `${outDuration}s`;
-        this.summaryPause2.textContent = pause2Duration > 0 ? `${pause2Duration}s` : 'None';
-        this.totalDurationElement.textContent = `Total: ${totalDuration}s per cycle`;
+        // Update summary elements (if they exist)
+        if (this.summaryIn) this.summaryIn.textContent = `${inDuration}s`;
+        if (this.summaryPause1) this.summaryPause1.textContent = pause1Duration > 0 ? `${pause1Duration}s` : 'None';
+        if (this.summaryOut) this.summaryOut.textContent = `${outDuration}s`;
+        if (this.summaryPause2) this.summaryPause2.textContent = pause2Duration > 0 ? `${pause2Duration}s` : 'None';
+        if (this.totalDurationElement) this.totalDurationElement.textContent = `Total: ${totalDuration}s per cycle`;
     }
 
     // Ticker methods
