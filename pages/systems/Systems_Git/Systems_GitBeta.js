@@ -383,16 +383,9 @@
     // ============================================
 
     function init() {
-        logConsole('Initializing Git Beta...', 'info');
-
         // Create repos for Alice and Bob
         gitEngine.createRepo('alice-repo');
         gitEngine.createRepo('bob-repo');
-
-        // Alice creates initial commit
-        gitEngine.addFile('alice-repo', 'README.md', '# Git Beta Demo\n\nInitial commit.');
-        gitEngine.stageFile('alice-repo', 'README.md');
-        const initialCommit = gitEngine.commit('alice-repo', 'Initial commit', 'alice');
 
         // Setup event listeners
         setupEventListeners();
@@ -400,25 +393,30 @@
         // Render everything first (so consoles exist)
         renderAll();
 
-        // Now log initialization messages
-        if (initialCommit) {
-            logConsole('[alice] Created initial commit: ' + initialCommit.oid.substring(0, 7), 'success');
+        // Alice creates initial commit and pushes to remote
+        gitEngine.addFile('alice-repo', 'README.md', '# Git Beta Demo\n\nShared repository for Alice and Bob.');
+        gitEngine.stageFile('alice-repo', 'README.md');
+        const initialCommit = gitEngine.commit('alice-repo', 'Initial commit', 'alice');
 
-            // Push to remote
-            const pushResult = remoteRepo.push(gitEngine.getRepo('alice-repo'), 'main');
-            if (pushResult.ok) {
-                logConsole('[alice] Pushed to remote', 'success');
-            }
+        logConsole('[alice] Created initial commit: ' + initialCommit.oid.substring(0, 7), 'success');
+
+        // Alice pushes to remote
+        const pushResult = remoteRepo.push(gitEngine.getRepo('alice-repo'), 'main');
+        if (pushResult.ok) {
+            logConsole('[alice] Pushed to remote', 'success');
         }
 
-        // Bob pulls from remote
+        // Bob clones (pulls) from remote to get the shared starting point
         const pullResult = remoteRepo.pull(gitEngine.getRepo('bob-repo'), 'main');
         if (pullResult.ok) {
-            logConsole('[bob] Pulled from remote: ' + pullResult.pulled + ' commit(s)', 'success');
+            logConsole('[bob] Cloned from remote: ' + pullResult.pulled + ' commit(s)', 'success');
         }
 
         logConsole('[alice] Ready', 'info');
         logConsole('[bob] Ready', 'info');
+
+        // Final render to show synced state
+        renderAll();
     }
 
     // ============================================
@@ -435,6 +433,14 @@
         const repo = gitEngine.getRepo(user.repoName);
 
         let workspaceEl = document.querySelector(`.user-workspace[data-user="${username}"]`);
+
+        // Preserve console content before re-rendering
+        let consoleContent = '';
+        const existingConsole = document.getElementById(`console-${username}`);
+        if (existingConsole) {
+            consoleContent = existingConsole.innerHTML;
+        }
+
         if (!workspaceEl) {
             workspaceEl = document.createElement('div');
             workspaceEl.className = 'user-workspace';
@@ -529,7 +535,7 @@
                     <span class="console-title">$> Console</span>
                     <button class="console-clear-btn" onclick="window.gitBeta.clearConsole('${username}')">Clear</button>
                 </div>
-                <div class="console-body" id="console-${username}"></div>
+                <div class="console-body" id="console-${username}">${consoleContent}</div>
             </div>
         `;
 

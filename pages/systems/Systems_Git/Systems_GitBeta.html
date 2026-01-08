@@ -91,44 +91,41 @@
                 </div>
 
                 <!-- Remote Repository Column -->
-                <div class="git-column remote-column">
-                    <div class="remote-section" id="remote-section">
-                        <div class="section-header">
-                            <h4>☁️ Remote Repository</h4>
-                            <span id="remote-status">Initializing...</span>
-                        </div>
+                <div class="remote-column" id="remote-column">
+                    <!-- Row 1: Header -->
+                    <div class="remote-header-row">
+                        <h4>☁️ Remote Repository</h4>
+                        <span id="remote-status">Initializing...</span>
+                    </div>
 
-                        <!-- Remote Branches -->
-                        <div class="remote-branches-section">
-                            <div class="section-title">🌿 Branches</div>
-                            <div id="remote-body" class="remote-body">
-                                <!-- Remote branches will be listed here -->
-                            </div>
+                    <!-- Row 2: Branches -->
+                    <div class="remote-branches-section">
+                        <div class="section-title">🌿 Branches</div>
+                        <div id="remote-body" class="remote-body">
+                            <!-- Remote branches will be listed here -->
                         </div>
+                    </div>
 
-                        <!-- Remote Working Directory (shows files from selected branch) -->
-                        <div class="remote-working-dir-section">
-                            <div class="section-title">📂 Files on <span id="remote-selected-branch">main</span></div>
-                            <div id="remote-files" class="remote-files">
-                                <!-- Files will be listed here -->
-                            </div>
+                    <!-- Row 3: Working Directory -->
+                    <div class="remote-working-dir-section">
+                        <div class="section-title">📂 Files on <span id="remote-selected-branch">main</span></div>
+                        <div id="remote-files" class="remote-files">
+                            <!-- Files will be listed here -->
                         </div>
+                    </div>
 
-                        <!-- Placeholder for actions row alignment -->
-                        <div class="remote-actions-placeholder">
-                            <!-- Empty for alignment -->
-                        </div>
+                    <!-- Row 4: Actions placeholder -->
+                    <div class="remote-actions-placeholder"></div>
 
-                        <!-- Remote Graph -->
-                        <div class="remote-network-graph">
-                            <div class="section-title">📊 Commit Graph</div>
-                            <svg id="remote-network-svg"></svg>
-                        </div>
+                    <!-- Row 5: Graph -->
+                    <div class="remote-network-graph">
+                        <div class="local-network-title">📊 Commit Graph</div>
+                        <svg id="remote-network-svg"></svg>
+                    </div>
 
-                        <!-- Reset Button (aligned with console row) -->
-                        <div class="remote-actions">
-                            <button id="reset-all-btn" class="console-btn danger">🔄 Reset All</button>
-                        </div>
+                    <!-- Row 6: Console row placeholder + Reset Button -->
+                    <div class="remote-console-row">
+                        <button id="reset-all-btn" class="console-btn danger">🔄 Reset All</button>
                     </div>
                 </div>
             </div>
