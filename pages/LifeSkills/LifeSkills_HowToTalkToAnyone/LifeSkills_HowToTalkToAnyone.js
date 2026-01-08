@@ -1279,6 +1279,23 @@ function showRelationshipPanel(d, related) {
                 <span class="stat-label">Max</span>
             </div>
         </div>
+        <div class="relationship-panel-legend">
+            <div class="panel-legend-title">Color Key:</div>
+            <div class="panel-legend-items">
+                <div class="panel-legend-item">
+                    <span class="panel-legend-dot" style="background: #43A047;"></span>
+                    <span>Most Related</span>
+                </div>
+                <div class="panel-legend-item">
+                    <span class="panel-legend-dot" style="background: #FB8C00;"></span>
+                    <span>Moderate</span>
+                </div>
+                <div class="panel-legend-item">
+                    <span class="panel-legend-dot" style="background: #E53935;"></span>
+                    <span>Least Related</span>
+                </div>
+            </div>
+        </div>
         <div class="relationship-panel-body">
     `;
 
@@ -1323,6 +1340,9 @@ function showRelationshipPanel(d, related) {
 
     relationshipPanel.html(panelHTML);
     relationshipPanel.classed('visible', true);
+
+    // Hide the mini legend when panel is shown
+    hideMiniLegend();
 }
 
 function hideRelationshipPanel() {
@@ -1426,9 +1446,9 @@ function showRelationshipLinks(event, d) {
             isChapter(n);
     });
 
-    // Also highlight the relationship dots
+    // Also highlight the relationship badges
     if (relationshipDot) {
-        relationshipDot.classed('relationship-dot--active', n => n === d);
+        relationshipDot.classed('relationship-badge--active', n => n === d);
     }
 }
 
@@ -1449,9 +1469,9 @@ function hideRelationshipLinks() {
         node.classed('node--related-dimmed', false);
     }
 
-    // Clear dot highlighting
+    // Clear badge highlighting
     if (relationshipDot) {
-        relationshipDot.classed('relationship-dot--active', false);
+        relationshipDot.classed('relationship-badge--active', false);
     }
 
     // Hide the panel
@@ -1760,44 +1780,55 @@ function createVisualization(data) {
     // Calculate relationship counts for badges
     state.relationshipCounts = calculateRelationshipCounts(root.leaves());
 
-    // Add relationship dots (only for chapter nodes, not sections)
-    const dotGroup = nodeGroup.append('g').attr('class', 'relationship-dots');
+    // Add relationship rectangles (only for chapter nodes, not sections)
+    const badgeGroup = nodeGroup.append('g').attr('class', 'relationship-badges');
 
-    const dotData = root.leaves().filter(d => isChapter(d));
+    const badgeData = root.leaves().filter(d => isChapter(d));
 
-    // Create container for each dot+badge
-    const dotContainers = dotGroup.selectAll('.relationship-dot-container')
-        .data(dotData)
+    // Create container for each badge
+    const badgeContainers = badgeGroup.selectAll('.relationship-badge-container')
+        .data(badgeData)
         .enter()
         .append('g')
-        .attr('class', 'relationship-dot-container')
+        .attr('class', 'relationship-badge-container')
         .attr('transform', d => {
-            const textOffset = d.x < 180 ? -8 : 8;
-            return `rotate(${d.x - 90})translate(${d.y + 8},0)${d.x < 180 ? '' : 'rotate(180)'}translate(${textOffset}, 0)`;
+            // Position badge before the text with more spacing
+            const badgeOffset = d.x < 180 ? -18 : 18;
+            return `rotate(${d.x - 90})translate(${d.y + 8},0)${d.x < 180 ? '' : 'rotate(180)'}translate(${badgeOffset}, 0)`;
         });
 
-    // Add the dots
-    relationshipDot = dotContainers.append('circle')
+    // Add the rectangles
+    relationshipDot = badgeContainers.append('rect')
         .attr('class', d => {
             const sectionNum = getSectionNumber(d);
-            return `relationship-dot relationship-dot-section-${sectionNum}`;
+            return `relationship-badge relationship-badge-section-${sectionNum}`;
         })
-        .attr('r', 3.5)
+        .attr('x', -8)
+        .attr('y', -5.5)
+        .attr('width', 16)
+        .attr('height', 11)
+        .attr('rx', 2)
+        .attr('ry', 2)
         .attr('fill', d => getSectionColor(d))
         .attr('stroke', '#fff')
-        .attr('stroke-width', 1)
+        .attr('stroke-width', 0.5)
         .attr('cursor', 'pointer')
         .on('click', function(event, d) {
             showRelationshipLinks(event, d);
         })
         .on('mouseover', function(event, d) {
-            d3.select(this)
+            const badgeElement = d3.select(this);
+
+            // Highlight badge
+            badgeElement
                 .transition()
                 .duration(150)
-                .attr('r', 5);
+                .attr('stroke-width', 1.5);
 
-            // Show mini legend
-            showMiniLegend();
+            // Only show mini legend if panel is not active
+            if (!state.activeRelationshipNode) {
+                showMiniLegend();
+            }
 
             // Show a small tooltip
             if (!tooltip) createTooltip();
@@ -1816,31 +1847,35 @@ function createVisualization(data) {
                 .classed('visible', true);
         })
         .on('mouseout', function(event, d) {
+            const badgeElement = d3.select(this);
+
             if (state.activeRelationshipNode !== d) {
-                d3.select(this)
+                // Reset badge
+                badgeElement
                     .transition()
                     .duration(150)
-                    .attr('r', 3.5);
+                    .attr('stroke-width', 0.5);
             }
             hideTooltip();
-            hideMiniLegend();
+
+            // Only hide mini legend if panel is not active
+            if (!state.activeRelationshipNode) {
+                hideMiniLegend();
+            }
         });
 
-    // Add count badges (small numbers on dots)
-    dotContainers.append('text')
-        .attr('class', 'relationship-count-badge')
+    // Add count text inside rectangles (always visible)
+    badgeContainers.append('text')
+        .attr('class', 'relationship-count-text')
         .attr('x', 0)
         .attr('y', 0)
         .attr('dy', '0.35em')
         .attr('text-anchor', 'middle')
-        .attr('font-size', '6px')
-        .attr('font-weight', 'bold')
+        .attr('font-size', '8px')
+        .attr('font-weight', 'normal')
         .attr('fill', '#fff')
         .attr('pointer-events', 'none')
-        .text(d => {
-            const count = state.relationshipCounts.get(d.data.key) || 0;
-            return count > 0 ? count : '';
-        });
+        .text(d => state.relationshipCounts.get(d.data.key) || 0);
 
     updateLegendCounts(root.leaves());
     updateProgressUI();
