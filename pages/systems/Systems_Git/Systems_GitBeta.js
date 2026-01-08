@@ -122,6 +122,100 @@
             return true;
         }
 
+        merge(repoName, sourceBranch, author) {
+            const repo = this.repos[repoName];
+            if (!repo) return { ok: false, error: 'Repository not found' };
+
+            const targetBranch = repo.head;
+            if (sourceBranch === targetBranch) {
+                return { ok: false, error: 'Cannot merge branch into itself' };
+            }
+
+            if (!repo.branches.hasOwnProperty(sourceBranch)) {
+                return { ok: false, error: `Branch '${sourceBranch}' not found` };
+            }
+
+            const sourceCommitOid = repo.branches[sourceBranch];
+            const targetCommitOid = repo.branches[targetBranch];
+
+            if (!sourceCommitOid) {
+                return { ok: false, error: 'Source branch has no commits' };
+            }
+
+            // Check if already merged (source tip is an ancestor of target)
+            if (sourceCommitOid === targetCommitOid) {
+                return { ok: false, error: 'Already up to date' };
+            }
+
+            // Check for fast-forward: is target an ancestor of source?
+            const sourceCommit = repo.commits.find(c => c.oid === sourceCommitOid);
+            const targetCommit = repo.commits.find(c => c.oid === targetCommitOid);
+
+            // Collect all files from both branches
+            const mergedFiles = {};
+
+            // Get files from target branch commits
+            repo.commits.forEach(c => {
+                if (this._isAncestorOf(repo, c.oid, targetCommitOid) || c.oid === targetCommitOid) {
+                    Object.assign(mergedFiles, c.files);
+                }
+            });
+
+            // Get files from source branch commits (these take precedence on conflict for simplicity)
+            repo.commits.forEach(c => {
+                if (this._isAncestorOf(repo, c.oid, sourceCommitOid) || c.oid === sourceCommitOid) {
+                    Object.assign(mergedFiles, c.files);
+                }
+            });
+
+            // Create merge commit with two parents
+            const oid = this.generateOid();
+            const mergeCommit = {
+                oid,
+                message: `Merge branch '${sourceBranch}' into ${targetBranch}`,
+                author,
+                timestamp: Math.floor(Date.now() / 1000),
+                parents: [targetCommitOid, sourceCommitOid].filter(Boolean),
+                branch: targetBranch,
+                files: mergedFiles,
+                isMerge: true
+            };
+
+            repo.commits.push(mergeCommit);
+            repo.branches[targetBranch] = oid;
+
+            // Update working directory files
+            Object.entries(mergedFiles).forEach(([name, data]) => {
+                repo.files[name] = { ...data, status: 'clean' };
+            });
+
+            return { ok: true, commit: mergeCommit };
+        }
+
+        _isAncestorOf(repo, ancestorOid, descendantOid) {
+            if (!ancestorOid || !descendantOid) return false;
+            if (ancestorOid === descendantOid) return true;
+
+            const visited = new Set();
+            const queue = [descendantOid];
+
+            while (queue.length > 0) {
+                const currentOid = queue.shift();
+                if (visited.has(currentOid)) continue;
+                visited.add(currentOid);
+
+                const commit = repo.commits.find(c => c.oid === currentOid);
+                if (!commit) continue;
+
+                for (const parentOid of (commit.parents || [])) {
+                    if (parentOid === ancestorOid) return true;
+                    queue.push(parentOid);
+                }
+            }
+
+            return false;
+        }
+
         getHistory(repoName) {
             const repo = this.repos[repoName];
             if (!repo) return [];
@@ -191,6 +285,11 @@
             localRepo.commits.push(...newCommits);
             localRepo.branches[branchName] = this.branches[branchName];
 
+            // Sync ALL remote branches to local (so graphs match everywhere)
+            Object.keys(this.branches).forEach(remoteBranch => {
+                localRepo.branches[remoteBranch] = this.branches[remoteBranch];
+            });
+
             // Sync files from latest commits
             newCommits.forEach(c => {
                 Object.entries(c.files).forEach(([name, data]) => {
@@ -199,6 +298,10 @@
             });
 
             return { ok: true, pulled: newCommits.length };
+        }
+
+        hasBranch(branchName) {
+            return this.branches.hasOwnProperty(branchName);
         }
 
         getHistory() {
@@ -369,6 +472,7 @@
                     ${stagedFiles.length > 0 ? `<button class="action-btn success" onclick="window.gitBeta.commit('${username}')">✅ Commit (${stagedFiles.length})</button>` : ''}
                     <button class="action-btn success" onclick="window.gitBeta.push('${username}')">⬆️ Push</button>
                     <button class="action-btn" onclick="window.gitBeta.pull('${username}')">⬇️ Pull</button>
+                    ${branches.length > 1 ? `<button class="action-btn merge" onclick="window.gitBeta.merge('${username}')">🔀 Merge</button>` : ''}
                 </div>
             </div>
 
@@ -396,7 +500,7 @@
             svg.attr('height', 50).append('text')
                 .attr('x', '50%').attr('y', 25)
                 .attr('text-anchor', 'middle')
-                .attr('fill', 'var(--viz-text-muted)')
+                .attr('fill', 'var(--bs-secondary-color, #6c757d)')
                 .text('Push to see commits');
             return;
         }
@@ -418,7 +522,7 @@
             svg.attr('height', 50).append('text')
                 .attr('x', '50%').attr('y', 25)
                 .attr('text-anchor', 'middle')
-                .attr('fill', 'var(--viz-text-muted)')
+                .attr('fill', 'var(--bs-secondary-color, #6c757d)')
                 .text('No commits yet');
             return;
         }
@@ -531,14 +635,14 @@
                 .attr('x', 15).attr('y', -1)
                 .attr('font-size', '8px')
                 .attr('font-family', 'monospace')
-                .attr('fill', 'var(--viz-text)')
+                .attr('fill', 'var(--bs-body-color)')
                 .text(c.oid.substring(0, 7));
 
             const msg = c.message.length > 15 ? c.message.substring(0, 12) + '...' : c.message;
             g.append('text')
                 .attr('x', 15).attr('y', 9)
                 .attr('font-size', '7px')
-                .attr('fill', 'var(--viz-text-muted)')
+                .attr('fill', 'var(--bs-secondary-color, #6c757d)')
                 .text(msg);
         });
     }
@@ -703,7 +807,7 @@
             const result = remoteRepo.pull(repo, repo.head);
             if (result.ok) {
                 logConsole(`[${username}] Pull successful (${result.pulled} commit(s))`, 'success');
-                renderWorkspace(username);
+                renderAll(); // Render all workspaces and remote so graphs sync
             } else {
                 logConsole(`[${username}] Pull failed: ${result.error}`, 'error');
             }
@@ -713,6 +817,12 @@
             const name = prompt('New branch name:');
             if (!name) return;
 
+            // Check if branch already exists on remote
+            if (remoteRepo.hasBranch(name)) {
+                logConsole(`[${username}] Branch '${name}' already exists on remote`, 'error');
+                return;
+            }
+
             const user = STATE.users[username];
             if (gitEngine.createBranch(user.repoName, name)) {
                 logConsole(`[${username}] git branch ${name}`, 'success', true);
@@ -720,7 +830,7 @@
                 logConsole(`[${username}] git checkout ${name}`, 'success', true);
                 renderWorkspace(username);
             } else {
-                logConsole(`[${username}] Branch already exists`, 'error');
+                logConsole(`[${username}] Branch already exists locally`, 'error');
             }
         },
 
@@ -741,6 +851,37 @@
                 renderWorkspace(username);
             } else {
                 logConsole(`[${username}] Cannot delete branch`, 'error');
+            }
+        },
+
+        merge: (username) => {
+            const user = STATE.users[username];
+            const repo = gitEngine.getRepo(user.repoName);
+            const branches = gitEngine.getBranches(user.repoName);
+            const otherBranches = branches.filter(b => b !== repo.head);
+
+            if (otherBranches.length === 0) {
+                logConsole(`[${username}] No other branches to merge`, 'warning');
+                return;
+            }
+
+            const sourceBranch = prompt(`Merge which branch into '${repo.head}'?\nAvailable: ${otherBranches.join(', ')}`);
+            if (!sourceBranch) return;
+
+            if (!otherBranches.includes(sourceBranch)) {
+                logConsole(`[${username}] Branch '${sourceBranch}' not found`, 'error');
+                return;
+            }
+
+            logConsole(`[${username}] git merge ${sourceBranch}`, 'info', true);
+
+            const result = gitEngine.merge(user.repoName, sourceBranch, username);
+            if (result.ok) {
+                logConsole(`[${username}] Merge successful: ${result.commit.oid.substring(0, 7)}`, 'success');
+                logConsole(`[${username}] Merged '${sourceBranch}' into '${repo.head}'`, 'success');
+                renderAll();
+            } else {
+                logConsole(`[${username}] Merge failed: ${result.error}`, 'error');
             }
         }
     };

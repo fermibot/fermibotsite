@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Systems | Version Control | GIT Beta (Real Git Engine)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Interactive Git Simulation - Multi-user collaboration demo with Alice and Bob">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
@@ -14,6 +15,9 @@
     <!-- Visualization CSS -->
     <link href="Systems_GitBeta.css" rel="stylesheet">
 
+    <!-- Color modes (dark/light theme) -->
+    <script src="../../../bootstrap/assets/color-modes.js"></script>
+
     <!-- Bootstrap JS (v5) -->
     <script src="../../../bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -22,81 +26,115 @@
 
     <!-- Site automation -->
     <script src="../../../automation/loadObjects.js"></script>
+    <script>
+        loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html", "../../../automation/theme_toggle.html")
+    </script>
 
-    <!-- Color modes (dark/light theme) -->
-    <script src="../../../bootstrap/assets/color-modes.js"></script>
-
+    <link href="../../../bootstrap/assets/headers.css" rel="stylesheet">
 </head>
-<body class="container-fluid px-2 py-4">
+<body class="container-xl" content="width=device-width">
+<div id="theme_icons_placeholder"></div>
 
-<!-- Header -->
-<div id="header_placeholder"></div>
-
-ll overations <!-- Page Title -->
-<div class="page-title-section mb-4">
-    <h1 class="page-title">Systems | Version Control | Git</h1>
-    <p class="page-subtitle text-muted">Interactive Git Simulation - Multi-user collaboration demo with Alice and Bob</p>
+<!-- Theme toggle dropdown -->
+<div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+    <!-- Theme toggle code -->
 </div>
 
-<div class="container-fluid git-beta-container">
-    <div class="row">
-        <!-- Users Column -->
-        <div class="col-lg-8" id="users-column">
-            <!-- User workspaces will be injected here by JS -->
+<main>
+    <h1 class="visually-hidden">Systems | Version Control | Git</h1>
+    <div id="header_placeholder"></div>
+
+    <div class="container-fluid pb-3 p-5">
+        <div class="text-center mb-4">
+            <h1 class="section-title">Systems | Version Control | Git</h1>
+            <p class="text-muted">Interactive Git Simulation - Multi-user collaboration demo with Alice and Bob</p>
         </div>
 
-        <!-- Remote & Console Column -->
-        <div class="col-lg-4">
-            <!-- Remote Repository -->
-            <div class="remote-section">
-                <div class="section-header">
-                    <h4>☁️ Remote Repository</h4>
-                    <span id="remote-status">Initializing...</span>
-                </div>
-                <div id="remote-body" class="remote-body">
-                    <!-- Remote branches will be listed here -->
-                </div>
-                <div class="remote-network-graph">
-                    <svg id="remote-network-svg"></svg>
+        <!-- Description and Instructions -->
+        <div class="row mb-4">
+            <div class="col-lg-6">
+                <div class="bg-body-tertiary border rounded-3 p-3">
+                    <h5 class="center-flex">📖 About This Simulation</h5>
+                    <p class="mb-0">
+                        This is a fully interactive Git simulation running entirely in your browser.
+                        Two users (Alice and Bob) each have their own local repository that can push to
+                        and pull from a shared remote repository. Watch how commits, branches, and merges
+                        work in real-time with visual commit graphs.
+                    </p>
                 </div>
             </div>
+            <div class="col-lg-6">
+                <div class="bg-body-tertiary border rounded-3 p-3">
+                    <h5 class="center-flex">🎮 How to Use</h5>
+                    <ul class="mb-0 ps-3">
+                        <li><strong>Add files</strong> - Type a filename and click ➕ Add</li>
+                        <li><strong>Stage & Commit</strong> - Click +Stage, then ✅ Commit</li>
+                        <li><strong>Push/Pull</strong> - Sync with remote using ⬆️ Push and ⬇️ Pull</li>
+                        <li><strong>Branches</strong> - Create with "+ New", click to switch</li>
+                        <li><strong>Merge</strong> - Use 🔀 Merge to combine branches</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-            <!-- Console -->
-            <div class="console-section">
-                <div class="section-header">
-                    <h4>$> Console</h4>
-                    <div>
-                        <button id="clear-console-btn" class="console-btn">Clear</button>
-                        <button id="reset-all-btn" class="console-btn danger">Reset All</button>
+        <div class="git-beta-container">
+            <div class="row">
+                <!-- Users Column -->
+                <div class="col-lg-8" id="users-column">
+                    <!-- User workspaces will be injected here by JS -->
+                </div>
+
+                <!-- Remote & Console Column -->
+                <div class="col-lg-4">
+                    <!-- Remote Repository -->
+                    <div class="remote-section">
+                        <div class="section-header">
+                            <h4>☁️ Remote Repository</h4>
+                            <span id="remote-status">Initializing...</span>
+                        </div>
+                        <div id="remote-body" class="remote-body">
+                            <!-- Remote branches will be listed here -->
+                        </div>
+                        <div class="remote-network-graph">
+                            <svg id="remote-network-svg"></svg>
+                        </div>
+                    </div>
+
+                    <!-- Console -->
+                    <div class="console-section">
+                        <div class="section-header">
+                            <h4>$> Console</h4>
+                            <div>
+                                <button id="clear-console-btn" class="console-btn">Clear</button>
+                                <button id="reset-all-btn" class="console-btn danger">Reset All</button>
+                            </div>
+                        </div>
+                        <div id="console-body" class="console-body"></div>
                     </div>
                 </div>
-                <div id="console-body" class="console-body"></div>
             </div>
         </div>
     </div>
-</div>
 
-
-<!-- Commit Modal -->
-<div id="commit-modal" class="modal-container">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 id="commit-modal-title">Commit Details</h5>
-            <button id="commit-modal-close" class="modal-close-btn">&times;</button>
-        </div>
-        <div id="commit-modal-body" class="modal-body">
-            <!-- Details injected by JS -->
+    <!-- Commit Modal -->
+    <div id="commit-modal" class="modal-container">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="commit-modal-title">Commit Details</h5>
+                <button id="commit-modal-close" class="modal-close-btn">&times;</button>
+            </div>
+            <div id="commit-modal-body" class="modal-body">
+                <!-- Details injected by JS -->
+            </div>
         </div>
     </div>
-</div>
 
+    <div id="footer_placeholder"></div>
+</main>
 
 <!-- Git Beta JavaScript -->
 <script src="Systems_GitBeta.js"></script>
-
-<script>
-    loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html");
-</script>
+<script>loadThemeIcons("../../../automation/theme_icons_svg.html")</script>
 
 </body>
 </html>
