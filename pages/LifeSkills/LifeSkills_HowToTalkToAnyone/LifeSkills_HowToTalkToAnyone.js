@@ -1756,7 +1756,9 @@ function createVisualization(data) {
         })
         .attr('dy', '0.31em')
         .attr('transform', d => {
-            return `rotate(${d.x - 90})translate(${d.y + 8},0)${d.x < 180 ? '' : 'rotate(180)'}`;
+            // For chapters, add extra offset to position text after the badge
+            const extraOffset = isChapter(d) ? 20 : 0;
+            return `rotate(${d.x - 90})translate(${d.y + 8 + extraOffset},0)${d.x < 180 ? '' : 'rotate(180)'}`;
         })
         .attr('text-anchor', d => d.x < 180 ? 'start' : 'end')
         .text(d => {
@@ -1792,9 +1794,8 @@ function createVisualization(data) {
         .append('g')
         .attr('class', 'relationship-badge-container')
         .attr('transform', d => {
-            // Position badge before the text with more spacing
-            const badgeOffset = d.x < 180 ? -18 : 18;
-            return `rotate(${d.x - 90})translate(${d.y + 8},0)${d.x < 180 ? '' : 'rotate(180)'}translate(${badgeOffset}, 0)`;
+            // Position badge at the radial endpoint (center of where the spike ends)
+            return `rotate(${d.x - 90})translate(${d.y + 8},0)${d.x < 180 ? '' : 'rotate(180)'}`;
         });
 
     // Add the rectangles
