@@ -671,6 +671,55 @@
     animation: nodeGlow 2s ease-in-out infinite;
 }
 
+/* Relationship visualization node states */
+.node--related-source {
+    font-weight: 700 !important;
+    filter: drop-shadow(0 0 4px currentColor);
+}
+
+.node--related-top {
+    font-weight: 600 !important;
+    opacity: 1 !important;
+}
+
+.node--related-middle {
+    font-weight: 600 !important;
+    opacity: 1 !important;
+}
+
+.node--related-bottom {
+    font-weight: 600 !important;
+    opacity: 1 !important;
+}
+
+.node--related-dimmed {
+    opacity: 0.15 !important;
+}
+
+/* ============================================
+   RELATIONSHIP DOTS & BADGES
+   ============================================ */
+
+.relationship-dot {
+    transition: all var(--transition-fast);
+    cursor: pointer;
+}
+
+.relationship-dot:hover {
+    filter: drop-shadow(0 0 3px currentColor);
+}
+
+.relationship-dot--active {
+    r: 5;
+    filter: drop-shadow(0 0 4px currentColor);
+    stroke-width: 2;
+}
+
+.relationship-count-badge {
+    user-select: none;
+    pointer-events: none;
+}
+
 /* ============================================
    D3 VISUALIZATION LINKS
    ============================================ */
@@ -681,6 +730,27 @@
     fill: none;
     pointer-events: none;
     transition: stroke-opacity var(--transition-fast), stroke-width var(--transition-fast);
+}
+
+/* Relationship links */
+.relationship-link {
+    pointer-events: none;
+    transition: stroke-opacity var(--transition-fast);
+}
+
+.relationship-link--top {
+    stroke: #43A047 !important;
+    stroke-width: 2.5px;
+}
+
+.relationship-link--middle {
+    stroke: #FB8C00 !important;
+    stroke-width: 2.5px;
+}
+
+.relationship-link--bottom {
+    stroke: #E53935 !important;
+    stroke-width: 2.5px;
 }
 
 .link--source,
@@ -1246,6 +1316,29 @@
     .progress-tooltip-content {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    /* Relationship Panel - Mobile */
+    .relationship-panel {
+        width: 90vw;
+        right: 5vw;
+        max-height: 70vh;
+    }
+
+    .relationship-panel.visible {
+        transform: translateY(-50%) translateX(0);
+    }
+
+    /* Mini Legend - Mobile */
+    .mini-legend {
+        top: auto;
+        bottom: 1rem;
+        right: 1rem;
+        transform: translateY(100px);
+    }
+
+    .mini-legend.visible {
+        transform: translateY(0);
+    }
 }
 
 @media (max-width: 576px) {
@@ -1320,6 +1413,297 @@
         left: 2.5vw !important;
         right: 2.5vw !important;
     }
+
+    /* Relationship Panel - Full Width on Small Screens */
+    .relationship-panel {
+        width: 100vw;
+        right: 0;
+        left: 0;
+        top: auto;
+        bottom: 0;
+        max-height: 80vh;
+        border-radius: 12px 12px 0 0;
+        transform: translateY(100%);
+    }
+
+    .relationship-panel.visible {
+        transform: translateY(0);
+    }
+
+    /* Mini Legend - Smaller on Tiny Screens */
+    .mini-legend {
+        min-width: auto;
+        right: 0.5rem;
+        bottom: 0.5rem;
+    }
+}
+
+/* ============================================
+   RELATIONSHIP PANEL
+   ============================================ */
+
+.relationship-panel {
+    position: fixed;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%) translateX(400px);
+    width: 350px;
+    max-height: 80vh;
+    background-color: var(--viz-card-bg);
+    border: 2px solid var(--viz-border);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px var(--viz-card-shadow);
+    z-index: 1002;
+    opacity: 0;
+    pointer-events: none;
+    transition: all var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+}
+
+.relationship-panel.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(-50%) translateX(0);
+}
+
+.relationship-panel-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-bottom: 2px solid var(--viz-border);
+    background-color: var(--viz-bg-secondary);
+    border-radius: 12px 12px 0 0;
+}
+
+.relationship-panel-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.relationship-panel-title {
+    flex: 1;
+    min-width: 0;
+}
+
+.relationship-panel-title h5 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--viz-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.relationship-panel-title p {
+    margin: 0;
+    font-size: 0.75rem;
+    color: var(--viz-text-muted);
+}
+
+.relationship-panel-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--viz-text-muted);
+    cursor: pointer;
+    padding: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.relationship-panel-close:hover {
+    background-color: var(--viz-highlight-bg);
+}
+
+.relationship-panel-stats {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--viz-border);
+    background-color: var(--viz-bg-secondary);
+}
+
+.stat-item {
+    flex: 1;
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--section-06);
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.65rem;
+    color: var(--viz-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.relationship-panel-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+.relationship-group {
+    margin-bottom: 1.25rem;
+}
+
+.relationship-group:last-child {
+    margin-bottom: 0;
+}
+
+.relationship-group-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid var(--viz-border);
+}
+
+.relationship-group-icon {
+    font-size: 0.9rem;
+}
+
+.relationship-group-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.relationship-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.relationship-item {
+    position: relative;
+    background-color: var(--viz-bg-secondary);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+}
+
+.relationship-item:hover {
+    transform: translateX(2px);
+}
+
+.relationship-item-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    opacity: 0.15;
+    transition: opacity var(--transition-fast);
+}
+
+.relationship-item:hover .relationship-item-bar {
+    opacity: 0.25;
+}
+
+.relationship-item-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+}
+
+.relationship-item-name {
+    flex: 1;
+    font-size: 0.75rem;
+    color: var(--viz-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.relationship-item-score {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--viz-text-muted);
+    flex-shrink: 0;
+}
+
+.cross-section-badge {
+    font-size: 0.6rem;
+    background-color: var(--section-06);
+    color: white;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+/* ============================================
+   MINI LEGEND
+   ============================================ */
+
+.mini-legend {
+    position: fixed;
+    top: 50%;
+    right: 1.5rem;
+    transform: translateY(-50%) translateX(250px);
+    background-color: var(--viz-card-bg);
+    border: 2px solid var(--viz-border);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px var(--viz-card-shadow);
+    padding: 0.75rem;
+    z-index: 10001;
+    opacity: 0;
+    pointer-events: none;
+    transition: all var(--transition-normal);
+    min-width: 220px;
+}
+
+.mini-legend.visible {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+.mini-legend-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--viz-text);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.mini-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+    font-size: 0.7rem;
+    color: var(--viz-text-muted);
+}
+
+.mini-legend-item:last-child {
+    margin-bottom: 0;
+}
+
+.mini-legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
 }
 
 /* ============================================

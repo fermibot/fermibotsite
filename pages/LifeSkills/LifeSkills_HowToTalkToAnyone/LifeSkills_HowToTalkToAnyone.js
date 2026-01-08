@@ -137,7 +137,10 @@ const state = {
     activeSections: new Set(),
     learnedChapters: new Set(),
     data: null,
-    root: null
+    root: null,
+    activeRelationshipNode: null,
+    relationshipLinks: [],
+    relationshipCounts: new Map() // Store count of strong relationships per node
 };
 
 // Load learned chapters from localStorage
@@ -216,6 +219,112 @@ function isSection(d) {
 // Count connections for a node
 function countConnections(d, links) {
     return links.filter(l => l.source === d || l.target === d).length;
+}
+
+// ============================================
+// TEXT SIMILARITY & RELATIONSHIP FUNCTIONS
+// ============================================
+
+// Calculate word frequency for a text
+function getWordFrequency(text) {
+    if (!text) return {};
+
+    const words = text.toLowerCase()
+        .replace(/[^\w\s]/g, '')
+        .split(/\s+/)
+        .filter(w => w.length > 3); // Filter out small words
+
+    const freq = {};
+    words.forEach(word => {
+        freq[word] = (freq[word] || 0) + 1;
+    });
+    return freq;
+}
+
+// Calculate cosine similarity between two texts
+function calculateSimilarity(text1, text2) {
+    const freq1 = getWordFrequency(text1);
+    const freq2 = getWordFrequency(text2);
+
+    const allWords = new Set([...Object.keys(freq1), ...Object.keys(freq2)]);
+
+    let dotProduct = 0;
+    let mag1 = 0;
+    let mag2 = 0;
+
+    allWords.forEach(word => {
+        const f1 = freq1[word] || 0;
+        const f2 = freq2[word] || 0;
+        dotProduct += f1 * f2;
+        mag1 += f1 * f1;
+        mag2 += f2 * f2;
+    });
+
+    if (mag1 === 0 || mag2 === 0) return 0;
+    return dotProduct / (Math.sqrt(mag1) * Math.sqrt(mag2));
+}
+
+// Calculate relatedness between a node and all other nodes
+function calculateRelatedness(targetNode, allNodes) {
+    const targetText = targetNode.data.summary || targetNode.data.key;
+    const targetSection = getSectionNumber(targetNode);
+
+    const similarities = allNodes
+        .filter(n => n !== targetNode && isChapter(n))
+        .map(n => {
+            const nodeText = n.data.summary || n.data.key;
+            const similarity = calculateSimilarity(targetText, nodeText);
+            const nodeSection = getSectionNumber(n);
+
+            // Boost similarity if in same section
+            const sectionBoost = nodeSection === targetSection ? 0.1 : 0;
+
+            return {
+                node: n,
+                similarity: similarity + sectionBoost,
+                crossSection: nodeSection !== targetSection
+            };
+        })
+        .sort((a, b) => b.similarity - a.similarity);
+
+    // Get top 3, middle 3, and bottom 3
+    const top3 = similarities.slice(0, 3);
+    const bottom3 = similarities.slice(-3).reverse();
+
+    // Middle 3 - get from around 33% and 66% of the list
+    const midPoint = Math.floor(similarities.length / 2);
+    const midStart = Math.max(4, midPoint - 1);
+    const middle3 = similarities.slice(midStart, midStart + 3);
+
+    return {
+        top: top3,
+        middle: middle3,
+        bottom: bottom3,
+        all: similarities
+    };
+}
+
+// Calculate relationship counts for all nodes (for badges)
+function calculateRelationshipCounts(allNodes) {
+    const counts = new Map();
+    const STRONG_THRESHOLD = 0.3; // Similarity threshold for "strong" relationship
+
+    allNodes.filter(n => isChapter(n)).forEach(targetNode => {
+        const targetText = targetNode.data.summary || targetNode.data.key;
+        let strongCount = 0;
+
+        allNodes.filter(n => n !== targetNode && isChapter(n)).forEach(n => {
+            const nodeText = n.data.summary || n.data.key;
+            const similarity = calculateSimilarity(targetText, nodeText);
+            if (similarity >= STRONG_THRESHOLD) {
+                strongCount++;
+            }
+        });
+
+        counts.set(targetNode.data.key, strongCount);
+    });
+
+    return counts;
 }
 
 // ============================================
@@ -1094,7 +1203,265 @@ function handleBackgroundClick() {
         hideInfoCard();
         hideTooltip();
     }
+
+    // Also hide relationship links
+    hideRelationshipLinks();
 }
+
+// ============================================
+// RELATIONSHIP PANEL & LEGEND
+// ============================================
+
+let relationshipPanel = null;
+let miniLegend = null;
+
+function createRelationshipPanel() {
+    if (!relationshipPanel) {
+        relationshipPanel = d3.select('body')
+            .append('div')
+            .attr('class', 'relationship-panel')
+            .attr('id', 'relationship-panel');
+    }
+    return relationshipPanel;
+}
+
+function createMiniLegend() {
+    if (!miniLegend) {
+        miniLegend = d3.select('body')
+            .append('div')
+            .attr('class', 'mini-legend')
+            .attr('id', 'mini-legend')
+            .html(`
+                <div class="mini-legend-title">Relationship Strength</div>
+                <div class="mini-legend-item">
+                    <span class="mini-legend-dot" style="background: #43A047;"></span>
+                    <span>Most Related (Top 3)</span>
+                </div>
+                <div class="mini-legend-item">
+                    <span class="mini-legend-dot" style="background: #FB8C00;"></span>
+                    <span>Moderately Related</span>
+                </div>
+                <div class="mini-legend-item">
+                    <span class="mini-legend-dot" style="background: #E53935;"></span>
+                    <span>Least Related (Bottom 3)</span>
+                </div>
+            `);
+    }
+    return miniLegend;
+}
+
+function showRelationshipPanel(d, related) {
+    if (!relationshipPanel) createRelationshipPanel();
+
+    const avgSimilarity = (related.all.reduce((sum, r) => sum + r.similarity, 0) / related.all.length * 100).toFixed(0);
+    const maxSimilarity = (related.top[0].similarity * 100).toFixed(0);
+
+    let panelHTML = `
+        <div class="relationship-panel-header">
+            <div class="relationship-panel-icon">${getSectionIcon(d)}</div>
+            <div class="relationship-panel-title">
+                <h5>${d.data.key}</h5>
+                <p>Related Techniques</p>
+            </div>
+            <button class="relationship-panel-close" onclick="hideRelationshipLinks()">×</button>
+        </div>
+        <div class="relationship-panel-stats">
+            <div class="stat-item">
+                <span class="stat-value">9</span>
+                <span class="stat-label">Shown</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">${avgSimilarity}%</span>
+                <span class="stat-label">Avg</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">${maxSimilarity}%</span>
+                <span class="stat-label">Max</span>
+            </div>
+        </div>
+        <div class="relationship-panel-body">
+    `;
+
+    const groups = [
+        { type: 'top', items: related.top, color: '#43A047', label: 'Most Related', icon: '🔥' },
+        { type: 'middle', items: related.middle, color: '#FB8C00', label: 'Moderately Related', icon: '➡️' },
+        { type: 'bottom', items: related.bottom, color: '#E53935', label: 'Least Related', icon: '⚪' }
+    ];
+
+    groups.forEach(group => {
+        panelHTML += `
+            <div class="relationship-group">
+                <div class="relationship-group-header">
+                    <span class="relationship-group-icon">${group.icon}</span>
+                    <span class="relationship-group-label" style="color: ${group.color}">${group.label}</span>
+                </div>
+                <div class="relationship-items">
+        `;
+
+        group.items.forEach(item => {
+            const simPercent = (item.similarity * 100).toFixed(0);
+            const crossSectionBadge = item.crossSection ? '<span class="cross-section-badge">Cross-Section</span>' : '';
+            panelHTML += `
+                <div class="relationship-item" data-node-key="${item.node.data.key}">
+                    <div class="relationship-item-bar" style="width: ${simPercent}%; background: ${group.color};"></div>
+                    <div class="relationship-item-content">
+                        <span class="relationship-item-name">${item.node.data.key}</span>
+                        ${crossSectionBadge}
+                        <span class="relationship-item-score">${simPercent}%</span>
+                    </div>
+                </div>
+            `;
+        });
+
+        panelHTML += `
+                </div>
+            </div>
+        `;
+    });
+
+    panelHTML += `</div>`;
+
+    relationshipPanel.html(panelHTML);
+    relationshipPanel.classed('visible', true);
+}
+
+function hideRelationshipPanel() {
+    if (relationshipPanel) {
+        relationshipPanel.classed('visible', false);
+    }
+}
+
+function showMiniLegend() {
+    if (!miniLegend) createMiniLegend();
+    miniLegend.classed('visible', true);
+}
+
+function hideMiniLegend() {
+    if (miniLegend) {
+        miniLegend.classed('visible', false);
+    }
+}
+
+// ============================================
+// RELATIONSHIP LINK VISUALIZATION
+// ============================================
+
+function showRelationshipLinks(event, d) {
+    event.stopPropagation();
+
+    if (!state.root) return;
+
+    // If clicking the same node, toggle off
+    if (state.activeRelationshipNode === d) {
+        hideRelationshipLinks();
+        return;
+    }
+
+    // Clear previous relationship visualization
+    hideRelationshipLinks();
+
+    // Set active node
+    state.activeRelationshipNode = d;
+
+    // Calculate relatedness
+    const allNodes = state.root.leaves();
+    const related = calculateRelatedness(d, allNodes);
+
+    // Show the relationship panel
+    showRelationshipPanel(d, related);
+
+    // Create a curved line generator
+    const line = d3.radialLine()
+        .curve(d3.curveBundle.beta(0.85))
+        .radius(d => d.y)
+        .angle(d => d.x * Math.PI / 180);
+
+    // Get the link group
+    const linkGroup = d3.select('.links');
+
+    // Add relationship links with sequential animation
+    const relationships = [
+        { type: 'top', items: related.top, color: '#43A047', label: 'Most Related', delay: 0 },
+        { type: 'middle', items: related.middle, color: '#FB8C00', label: 'Moderately Related', delay: 100 },
+        { type: 'bottom', items: related.bottom, color: '#E53935', label: 'Least Related', delay: 200 }
+    ];
+
+    relationships.forEach(rel => {
+        rel.items.forEach((item, index) => {
+            const path = d.path(item.node);
+
+            // Calculate opacity and thickness based on similarity score
+            const minOpacity = 0.4;
+            const maxOpacity = 0.9;
+            const opacity = minOpacity + (item.similarity * (maxOpacity - minOpacity));
+
+            const minWidth = 1.5;
+            const maxWidth = 3.5;
+            const strokeWidth = minWidth + (item.similarity * (maxWidth - minWidth));
+
+            linkGroup.append('path')
+                .attr('class', `relationship-link relationship-link--${rel.type}`)
+                .attr('d', line(path))
+                .attr('stroke', rel.color)
+                .attr('stroke-width', strokeWidth)
+                .attr('stroke-opacity', 0)
+                .attr('fill', 'none')
+                .transition()
+                .delay(rel.delay + (index * 50)) // Sequential animation within each group
+                .duration(400)
+                .attr('stroke-opacity', opacity);
+        });
+    });
+
+    // Highlight the related nodes
+    node.classed('node--related-source', n => n === d);
+    node.classed('node--related-top', n => related.top.some(r => r.node === n));
+    node.classed('node--related-middle', n => related.middle.some(r => r.node === n));
+    node.classed('node--related-bottom', n => related.bottom.some(r => r.node === n));
+    node.classed('node--related-dimmed', n => {
+        return n !== d &&
+            !related.top.some(r => r.node === n) &&
+            !related.middle.some(r => r.node === n) &&
+            !related.bottom.some(r => r.node === n) &&
+            isChapter(n);
+    });
+
+    // Also highlight the relationship dots
+    if (relationshipDot) {
+        relationshipDot.classed('relationship-dot--active', n => n === d);
+    }
+}
+
+function hideRelationshipLinks() {
+    // Remove all relationship links
+    d3.selectAll('.relationship-link')
+        .transition()
+        .duration(200)
+        .attr('stroke-opacity', 0)
+        .remove();
+
+    // Clear node highlighting
+    if (node) {
+        node.classed('node--related-source', false);
+        node.classed('node--related-top', false);
+        node.classed('node--related-middle', false);
+        node.classed('node--related-bottom', false);
+        node.classed('node--related-dimmed', false);
+    }
+
+    // Clear dot highlighting
+    if (relationshipDot) {
+        relationshipDot.classed('relationship-dot--active', false);
+    }
+
+    // Hide the panel
+    hideRelationshipPanel();
+
+    state.activeRelationshipNode = null;
+}
+
+// Make hideRelationshipLinks available globally
+window.hideRelationshipLinks = hideRelationshipLinks;
 
 // ============================================
 // KEYBOARD NAVIGATION
@@ -1292,7 +1659,7 @@ function animateEntrance() {
 // MAIN VISUALIZATION
 // ============================================
 
-let svg, node, link, currentLinks;
+let svg, node, link, currentLinks, relationshipDot;
 
 function createVisualization(data) {
     state.data = data;
@@ -1389,6 +1756,91 @@ function createVisualization(data) {
             }
         })
         .on('click', handleNodeClick);
+
+    // Calculate relationship counts for badges
+    state.relationshipCounts = calculateRelationshipCounts(root.leaves());
+
+    // Add relationship dots (only for chapter nodes, not sections)
+    const dotGroup = nodeGroup.append('g').attr('class', 'relationship-dots');
+
+    const dotData = root.leaves().filter(d => isChapter(d));
+
+    // Create container for each dot+badge
+    const dotContainers = dotGroup.selectAll('.relationship-dot-container')
+        .data(dotData)
+        .enter()
+        .append('g')
+        .attr('class', 'relationship-dot-container')
+        .attr('transform', d => {
+            const textOffset = d.x < 180 ? -8 : 8;
+            return `rotate(${d.x - 90})translate(${d.y + 8},0)${d.x < 180 ? '' : 'rotate(180)'}translate(${textOffset}, 0)`;
+        });
+
+    // Add the dots
+    relationshipDot = dotContainers.append('circle')
+        .attr('class', d => {
+            const sectionNum = getSectionNumber(d);
+            return `relationship-dot relationship-dot-section-${sectionNum}`;
+        })
+        .attr('r', 3.5)
+        .attr('fill', d => getSectionColor(d))
+        .attr('stroke', '#fff')
+        .attr('stroke-width', 1)
+        .attr('cursor', 'pointer')
+        .on('click', function(event, d) {
+            showRelationshipLinks(event, d);
+        })
+        .on('mouseover', function(event, d) {
+            d3.select(this)
+                .transition()
+                .duration(150)
+                .attr('r', 5);
+
+            // Show mini legend
+            showMiniLegend();
+
+            // Show a small tooltip
+            if (!tooltip) createTooltip();
+            const strongCount = state.relationshipCounts.get(d.data.key) || 0;
+            tooltip.html(`
+                <div class="tooltip-title">Related Rules</div>
+                <div class="tooltip-summary">Click to see related techniques<br>
+                <strong>${strongCount}</strong> strong connections (>30% similarity)</div>
+            `);
+
+            const x = event.clientX;
+            const y = event.clientY;
+            tooltip
+                .style('left', (x + 15) + 'px')
+                .style('top', (y + 15) + 'px')
+                .classed('visible', true);
+        })
+        .on('mouseout', function(event, d) {
+            if (state.activeRelationshipNode !== d) {
+                d3.select(this)
+                    .transition()
+                    .duration(150)
+                    .attr('r', 3.5);
+            }
+            hideTooltip();
+            hideMiniLegend();
+        });
+
+    // Add count badges (small numbers on dots)
+    dotContainers.append('text')
+        .attr('class', 'relationship-count-badge')
+        .attr('x', 0)
+        .attr('y', 0)
+        .attr('dy', '0.35em')
+        .attr('text-anchor', 'middle')
+        .attr('font-size', '6px')
+        .attr('font-weight', 'bold')
+        .attr('fill', '#fff')
+        .attr('pointer-events', 'none')
+        .text(d => {
+            const count = state.relationshipCounts.get(d.data.key) || 0;
+            return count > 0 ? count : '';
+        });
 
     updateLegendCounts(root.leaves());
     updateProgressUI();
