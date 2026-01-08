@@ -6,17 +6,60 @@ class SessionTimer {
         this.elapsedTime = 0;
         this.timerInterval = null;
         this.isRunning = false;
+
+        // Timer mode: 'infinite' (count up) or 'timed' (countdown)
+        this.mode = 'infinite';
+        this.targetDuration = 300000; // Default 5 minutes in milliseconds
+        this.onTimerComplete = null; // Callback when countdown reaches 0
+        this.timerCompleted = false; // Track if countdown finished
+    }
+
+    setMode(mode) {
+        this.mode = mode;
+        // Reset timer when switching modes
+        this.stop();
+        this.timerCompleted = false;
+        this.updateDisplay();
+    }
+
+    setTargetDuration(seconds) {
+        this.targetDuration = seconds * 1000;
+        this.timerCompleted = false; // Reset completed flag when duration changes
+        if (!this.isRunning && this.mode === 'timed') {
+            this.updateDisplay();
+        }
+    }
+
+    setOnTimerComplete(callback) {
+        this.onTimerComplete = callback;
     }
 
     start() {
         if (this.isRunning) return;
+
+        // If timer was completed, reset it first
+        if (this.timerCompleted) {
+            this.timerCompleted = false;
+        }
 
         this.startTime = Date.now() - this.elapsedTime;
         this.isRunning = true;
 
         this.timerInterval = setInterval(() => {
             this.updateDisplay();
-        }, 1000);
+
+            // Check if countdown has completed
+            if (this.mode === 'timed') {
+                const elapsed = Date.now() - this.startTime;
+                if (elapsed >= this.targetDuration) {
+                    this.timerCompleted = true;
+                    this.stop();
+                    if (this.onTimerComplete) {
+                        this.onTimerComplete();
+                    }
+                }
+            }
+        }, 100); // Update more frequently for smoother display
 
         this.updateDisplay();
     }
@@ -47,25 +90,50 @@ class SessionTimer {
     }
 
     resetAndStart() {
+        this.timerCompleted = false;
         this.stop();
         this.start();
     }
 
     updateDisplay() {
-        let displayTime = this.elapsedTime;
+        let displayTime;
 
-        if (this.isRunning && this.startTime) {
-            displayTime = Date.now() - this.startTime;
+        if (this.mode === 'infinite') {
+            // Count up mode
+            displayTime = this.elapsedTime;
+            if (this.isRunning && this.startTime) {
+                displayTime = Date.now() - this.startTime;
+            }
+        } else {
+            // Countdown mode
+            if (this.timerCompleted) {
+                // Timer finished - show zero
+                displayTime = 0;
+            } else if (this.isRunning && this.startTime) {
+                const elapsed = Date.now() - this.startTime;
+                displayTime = Math.max(0, this.targetDuration - elapsed);
+            } else if (this.elapsedTime > 0) {
+                displayTime = Math.max(0, this.targetDuration - this.elapsedTime);
+            } else {
+                displayTime = this.targetDuration;
+            }
         }
 
         const hours = Math.floor(displayTime / 3600000);
         const minutes = Math.floor((displayTime % 3600000) / 60000);
         const seconds = Math.floor((displayTime % 60000) / 1000);
 
-        this.timerElement.textContent =
+        const formattedTime =
             `${hours.toString().padStart(2, '0')}:` +
             `${minutes.toString().padStart(2, '0')}:` +
             `${seconds.toString().padStart(2, '0')}`;
+
+        // Support both input elements and regular elements
+        if (this.timerElement.tagName === 'INPUT') {
+            this.timerElement.value = formattedTime;
+        } else {
+            this.timerElement.textContent = formattedTime;
+        }
     }
 }
 

@@ -169,10 +169,29 @@
             <div class="row">
                 <div class="unified-control-panel mb-4 col-12">
                     <div class="control-panel-inner">
-                        <!-- Session Timer Display -->
-                        <div class="session-timer-inline">
-                            <div class="timer-label">Session Timer</div>
-                            <div class="session-timer" id="sessionTimer">00:00:00</div>
+                        <!-- Timer Mode Toggle and Session Timer -->
+                        <div class="timer-section">
+                            <!-- Timer with integrated mode toggle -->
+                            <div class="session-timer-inline">
+                                <div class="timer-mode-toggle" title="Switch between infinite (count up) and timed (countdown) modes">
+                                    <button class="timer-mode-btn active" id="infiniteModeBtn" onclick="setTimerMode('infinite')" title="Infinite mode: Timer counts up indefinitely">
+                                        ∞ Infinite
+                                    </button>
+                                    <button class="timer-mode-btn" id="timedModeBtn" onclick="setTimerMode('timed')" title="Timed mode: Set a duration and timer counts down">
+                                        ⏱️ Timed
+                                    </button>
+                                </div>
+                                <input type="text"
+                                       class="session-timer"
+                                       id="sessionTimer"
+                                       value="00:00:00"
+                                       readonly
+                                       title="Session Timer - In timed mode, click to edit duration (HH:MM:SS)"
+                                       pattern="[0-9]{2}:[0-9]{2}:[0-9]{2}"
+                                       maxlength="8"
+                                       onchange="onTimerInputChange(this.value)"
+                                       onkeydown="onTimerKeyDown(event, this)">
+                            </div>
                         </div>
 
                         <!-- Play/Pause/Stop Buttons -->
@@ -740,6 +759,151 @@
 
 <script>
     loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html", "../../../automation/theme_toggle.html")
+
+    // Timer mode management
+    function setTimerMode(mode) {
+        const infiniteBtn = document.getElementById('infiniteModeBtn');
+        const timedBtn = document.getElementById('timedModeBtn');
+        const timerInput = document.getElementById('sessionTimer');
+
+        // Update button states
+        if (mode === 'infinite') {
+            infiniteBtn.classList.add('active');
+            timedBtn.classList.remove('active');
+            timerInput.readOnly = true;
+            timerInput.classList.remove('editable');
+            timerInput.value = '00:00:00';
+        } else {
+            infiniteBtn.classList.remove('active');
+            timedBtn.classList.add('active');
+            timerInput.readOnly = false;
+            timerInput.classList.add('editable');
+            timerInput.value = '00:05:00'; // Default 5 minutes
+
+            // Focus the input and place cursor at the end
+            timerInput.focus();
+            timerInput.setSelectionRange(8, 8);
+        }
+
+        // Update the session timer if it exists
+        if (window.audioPlayers && window.audioPlayers.sessionTimer) {
+            window.audioPlayers.sessionTimer.setMode(mode);
+
+            // If switching to timed mode, set the duration and callback
+            if (mode === 'timed') {
+                const seconds = parseTimerInput(timerInput.value);
+                window.audioPlayers.sessionTimer.setTargetDuration(seconds);
+                window.audioPlayers.sessionTimer.setOnTimerComplete(() => {
+                    if (window.audioPlayers.unifiedPlayer && window.audioPlayers.unifiedPlayer.isPlaying) {
+                        window.audioPlayers.unifiedPlayer.stop();
+                    }
+                });
+            } else {
+                window.audioPlayers.sessionTimer.setOnTimerComplete(null);
+            }
+        }
+    }
+
+    function parseTimerInput(value) {
+        // Parse HH:MM:SS format to seconds
+        const parts = value.split(':');
+        if (parts.length === 3) {
+            const hours = parseInt(parts[0]) || 0;
+            const minutes = parseInt(parts[1]) || 0;
+            const seconds = parseInt(parts[2]) || 0;
+            return hours * 3600 + minutes * 60 + seconds;
+        }
+        return 300; // Default 5 minutes
+    }
+
+    function onTimerInputChange(value) {
+        // Validate and format the input
+        let formatted = value.replace(/[^0-9:]/g, '');
+
+        // Try to parse and reformat
+        const seconds = parseTimerInput(formatted);
+
+        // Update the session timer duration
+        if (window.audioPlayers && window.audioPlayers.sessionTimer) {
+            window.audioPlayers.sessionTimer.setTargetDuration(seconds);
+        }
+    }
+
+    // Handle keydown for timer input - calculator-style entry (right to left)
+    function onTimerKeyDown(event, input) {
+        const key = event.key;
+        const value = input.value;
+
+        // If readonly, don't handle
+        if (input.readOnly) return;
+
+        // Handle backspace - shift all digits right, insert 0 at left
+        if (key === 'Backspace') {
+            event.preventDefault();
+
+            // Get only digits
+            let digits = value.replace(/:/g, '');
+
+            // Shift right (remove last digit, add 0 at start)
+            digits = '0' + digits.substring(0, digits.length - 1);
+
+            // Reformat as HH:MM:SS
+            const newValue = digits.substring(0, 2) + ':' + digits.substring(2, 4) + ':' + digits.substring(4, 6);
+            input.value = newValue;
+
+            // Keep cursor at end
+            input.setSelectionRange(8, 8);
+            onTimerInputChange(newValue);
+            return;
+        }
+
+        // Handle number input - shift all digits left, add new digit at right
+        if (/^[0-9]$/.test(key)) {
+            event.preventDefault();
+
+            // Get only digits
+            let digits = value.replace(/:/g, '');
+
+            // Shift left (remove first digit, add new digit at end)
+            digits = digits.substring(1) + key;
+
+            // Reformat as HH:MM:SS
+            const newValue = digits.substring(0, 2) + ':' + digits.substring(2, 4) + ':' + digits.substring(4, 6);
+            input.value = newValue;
+
+            // Keep cursor at end
+            input.setSelectionRange(8, 8);
+            onTimerInputChange(newValue);
+            return;
+        }
+
+        // Handle Enter key - start the timer
+        if (key === 'Enter') {
+            event.preventDefault();
+            input.blur(); // Remove focus from input
+
+            // Click the play button to start
+            const playBtn = document.getElementById('unifiedPlay');
+            if (playBtn && !playBtn.disabled) {
+                playBtn.click();
+            }
+            return;
+        }
+
+        // Allow navigation keys
+        if (['ArrowLeft', 'ArrowRight', 'Tab', 'Home', 'End'].includes(key)) {
+            return;
+        }
+
+        // Block all other keys (including Delete)
+        event.preventDefault();
+    }
+
+    function setSessionDuration(seconds) {
+        if (window.audioPlayers && window.audioPlayers.sessionTimer) {
+            window.audioPlayers.sessionTimer.setTargetDuration(parseInt(seconds));
+        }
+    }
 
     // Smooth scrolling function
     function scrollToSection(sectionId) {

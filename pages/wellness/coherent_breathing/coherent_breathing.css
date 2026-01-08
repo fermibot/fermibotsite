@@ -424,17 +424,56 @@ body {
     gap: 15px;
 }
 
-.session-timer-inline {
-    text-align: center;
+/* Timer Section - centered */
+.timer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
 }
 
-.session-timer-inline .timer-label {
-    font-size: var(--font-size-sm);
+/* Timer Mode Toggle Buttons - attached to left of timer */
+.timer-mode-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-radius: 8px 0 0 8px;
+    overflow: hidden;
+    border: 2px solid var(--btn-primary);
+    border-right: none;
+    flex-shrink: 0;
+}
+
+.timer-mode-btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    font-weight: var(--font-weight-semibold);
+    border: none;
+    background-color: transparent;
     color: var(--btn-primary);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 5px;
-    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.timer-mode-btn:first-child {
+    border-bottom: 1px solid var(--btn-primary);
+}
+
+.timer-mode-btn.active {
+    background-color: var(--btn-primary);
+    color: white;
+}
+
+.timer-mode-btn:hover:not(.active) {
+    background-color: var(--practitioner-light);
+}
+
+/* Session Timer Display - attached to toggle */
+.session-timer-inline {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
 }
 
 .session-timer-inline .session-timer {
@@ -443,19 +482,46 @@ body {
     color: var(--btn-primary);
     font-family: 'Courier New', monospace !important;
     letter-spacing: 2px;
+    background: transparent;
+    border: 2px solid var(--btn-primary);
+    border-radius: 0 8px 8px 0;
+    padding: 4px 12px;
+    text-align: center;
+    width: 20rem;
+    transition: all 0.2s ease;
+}
+
+/* Editable state (timed mode) */
+.session-timer-inline .session-timer.editable {
+    background: var(--bg-secondary);
+    cursor: text;
+}
+
+.session-timer-inline .session-timer.editable:hover {
+    background: var(--bg-tertiary);
+}
+
+.session-timer-inline .session-timer.editable:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.2);
+}
+
+/* Read-only state (infinite mode) */
+.session-timer-inline .session-timer[readonly] {
+    cursor: default;
 }
 
 .unified-buttons {
     display: flex;
     gap: 12px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
 }
 
 .unified-buttons .btn {
-    min-width: 120px;
+    min-width: 100px;
     font-size: 1.1rem !important;
-    padding: 12px 24px;
+    padding: 12px 20px;
     border-radius: 10px;
     transition: all 0.2s ease;
 }
@@ -638,11 +704,11 @@ body {
 }
 
 /* ============================================
-   LEGACY STYLES (for programmable section)
+   LEGACY STYLES (for programmable section only)
    ============================================ */
 
-/* Session timer styles */
-.session-timer-container {
+/* Session timer styles - scoped to programmable section */
+.programmable-section .session-timer-container {
     background: linear-gradient(135deg, #f8f9fa, #e9ecef);
     padding: 15px;
     border-radius: 10px;
@@ -653,7 +719,7 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
-.session-timer {
+.programmable-section .session-timer {
     font-size: 1.8rem;
     font-weight: var(--font-weight-bold);
     color: #8B4513;
@@ -661,7 +727,7 @@ body {
     letter-spacing: 2px;
 }
 
-.timer-label {
+.programmable-section .timer-label {
     font-size: var(--font-size-sm);
     color: var(--btn-primary);
     text-transform: uppercase;
