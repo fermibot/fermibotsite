@@ -55,6 +55,16 @@
             return true;
         }
 
+        deleteFile(repoName, filename) {
+            const repo = this.repos[repoName];
+            if (!repo || !repo.files[filename]) return false;
+
+            // Mark file as deleted and stage for deletion
+            repo.files[filename].status = 'deleted';
+            repo.stagedFiles[filename] = { ...repo.files[filename], deleted: true };
+            return true;
+        }
+
         stageFile(repoName, filename) {
             const repo = this.repos[repoName];
             if (!repo || !repo.files[filename]) return false;
@@ -66,8 +76,17 @@
         unstageFile(repoName, filename) {
             const repo = this.repos[repoName];
             if (!repo || !repo.stagedFiles[filename]) return false;
+
+            const wasDeleted = repo.stagedFiles[filename].deleted;
             delete repo.stagedFiles[filename];
-            repo.files[filename].status = 'modified';
+
+            if (wasDeleted) {
+                // Restore the file status to clean (undo delete)
+                repo.files[filename].status = 'clean';
+            } else {
+                // Regular unstage
+                repo.files[filename].status = 'modified';
+            }
             return true;
         }
 
@@ -79,6 +98,25 @@
             const parentOid = repo.branches[repo.head];
             const oid = this.generateOid();
 
+            // Build commit files - start with parent commit's files or empty
+            let commitFiles = {};
+            if (parentOid) {
+                const parentCommit = repo.commits.find(c => c.oid === parentOid);
+                if (parentCommit && parentCommit.files) {
+                    commitFiles = { ...parentCommit.files };
+                }
+            }
+
+            // Apply staged changes
+            Object.entries(repo.stagedFiles).forEach(([filename, fileData]) => {
+                if (fileData.deleted) {
+                    // Remove from commit files
+                    delete commitFiles[filename];
+                } else {
+                    // Add or update in commit files
+                    commitFiles[filename] = { ...fileData };
+                }
+            });
 
             const commit = {
                 oid,
@@ -87,15 +125,21 @@
                 timestamp: Date.now(),
                 parents: parentOid ? [parentOid] : [],
                 branch: repo.head,
-                files: { ...repo.stagedFiles }
+                files: commitFiles
             };
 
             repo.commits.push(commit);
             repo.branches[repo.head] = oid;
 
-            // Mark staged files as clean
+            // Process staged files
             Object.keys(repo.stagedFiles).forEach(f => {
-                repo.files[f].status = 'clean';
+                if (repo.stagedFiles[f].deleted) {
+                    // Remove deleted files from working directory
+                    delete repo.files[f];
+                } else {
+                    // Mark non-deleted files as clean
+                    repo.files[f].status = 'clean';
+                }
             });
             repo.stagedFiles = {};
 
@@ -113,7 +157,36 @@
         switchBranch(repoName, branchName) {
             const repo = this.repos[repoName];
             if (!repo || !repo.branches.hasOwnProperty(branchName)) return false;
+
+            // Switch HEAD to new branch
             repo.head = branchName;
+
+            // Update working directory to match the branch's tip commit
+            const branchTip = repo.branches[branchName];
+            if (branchTip) {
+                const tipCommit = repo.commits.find(c => c.oid === branchTip);
+                if (tipCommit && tipCommit.files) {
+                    // First, clear files that don't exist in the branch tip
+                    const branchFiles = new Set(Object.keys(tipCommit.files));
+                    Object.keys(repo.files).forEach(filename => {
+                        if (!branchFiles.has(filename)) {
+                            delete repo.files[filename];
+                        }
+                    });
+
+                    // Then add/update files from the branch tip
+                    Object.entries(tipCommit.files).forEach(([name, data]) => {
+                        repo.files[name] = { ...data, status: 'clean' };
+                    });
+                }
+            } else {
+                // Branch has no commits yet, clear working directory
+                repo.files = {};
+            }
+
+            // Clear staged files when switching branches
+            repo.stagedFiles = {};
+
             return true;
         }
 
@@ -149,26 +222,17 @@
                 return { ok: false, error: 'Already up to date' };
             }
 
-            // Check for fast-forward: is target an ancestor of source?
+            // Get the files from both branch tips
             const sourceCommit = repo.commits.find(c => c.oid === sourceCommitOid);
             const targetCommit = repo.commits.find(c => c.oid === targetCommitOid);
 
-            // Collect all files from both branches
-            const mergedFiles = {};
+            // Start with target branch files
+            const mergedFiles = targetCommit && targetCommit.files ? { ...targetCommit.files } : {};
 
-            // Get files from target branch commits
-            repo.commits.forEach(c => {
-                if (this._isAncestorOf(repo, c.oid, targetCommitOid) || c.oid === targetCommitOid) {
-                    Object.assign(mergedFiles, c.files);
-                }
-            });
-
-            // Get files from source branch commits (these take precedence on conflict for simplicity)
-            repo.commits.forEach(c => {
-                if (this._isAncestorOf(repo, c.oid, sourceCommitOid) || c.oid === sourceCommitOid) {
-                    Object.assign(mergedFiles, c.files);
-                }
-            });
+            // Merge in source branch files (these take precedence on conflict for simplicity)
+            if (sourceCommit && sourceCommit.files) {
+                Object.assign(mergedFiles, sourceCommit.files);
+            }
 
             // Create merge commit with two parents
             const oid = this.generateOid();
@@ -186,7 +250,16 @@
             repo.commits.push(mergeCommit);
             repo.branches[targetBranch] = oid;
 
-            // Update working directory files
+            // Update working directory to match merged state
+            // First, clear files that don't exist in merged result
+            const mergedFileNames = new Set(Object.keys(mergedFiles));
+            Object.keys(repo.files).forEach(filename => {
+                if (!mergedFileNames.has(filename)) {
+                    delete repo.files[filename];
+                }
+            });
+
+            // Then add/update files from merge
             Object.entries(mergedFiles).forEach(([name, data]) => {
                 repo.files[name] = { ...data, status: 'clean' };
             });
@@ -295,12 +368,26 @@
                 localRepo.branches[remoteBranch] = this.branches[remoteBranch];
             });
 
-            // Sync files from new commits
-            newCommits.forEach(c => {
-                Object.entries(c.files).forEach(([name, data]) => {
-                    localRepo.files[name] = { ...data, status: 'clean' };
-                });
-            });
+            // Sync files from the current branch's latest commit
+            if (this.branches[branchName]) {
+                const branchTip = this.branches[branchName];
+                const tipCommit = this.commits.find(c => c.oid === branchTip);
+                if (tipCommit && tipCommit.files) {
+                    // Update local working directory to match remote branch tip
+                    // First, clear files that don't exist in remote tip
+                    const remoteFiles = new Set(Object.keys(tipCommit.files));
+                    Object.keys(localRepo.files).forEach(filename => {
+                        if (!remoteFiles.has(filename)) {
+                            delete localRepo.files[filename];
+                        }
+                    });
+
+                    // Then add/update files from remote
+                    Object.entries(tipCommit.files).forEach(([name, data]) => {
+                        localRepo.files[name] = { ...data, status: 'clean' };
+                    });
+                }
+            }
 
             return { ok: true, pulled: newCommits.length };
         }
@@ -496,16 +583,18 @@
                         <div class="file-item">
                             <div class="file-info">
                                 <span class="file-icon">📄</span>
-                                <span class="file-name">${file.name}</span>
+                                <span class="file-name ${file.status === 'deleted' ? 'file-deleted' : ''}">${file.name}</span>
                                 <span class="file-status ${file.status}">${file.status}</span>
                             </div>
                             <div class="file-actions">
-                                ${file.status !== 'staged' && file.status !== 'clean' ? 
-                                    `<button class="file-btn primary" onclick="window.gitBeta.stage('${username}', '${file.name}')">+Stage</button>` : 
-                                    file.status === 'staged' ? 
-                                    `<button class="file-btn" onclick="window.gitBeta.unstage('${username}', '${file.name}')">-Unstage</button>` : ''
+                                ${file.status !== 'staged' && file.status !== 'clean' && file.status !== 'deleted' ?
+                                    `<button class="file-btn primary" onclick="window.gitBeta.stage('${username}', '${file.name}')">+Stage</button>` : ''
+                                }
+                                ${file.status === 'staged' || file.status === 'deleted' ?
+                                    `<button class="file-btn" onclick="window.gitBeta.unstage('${username}', '${file.name}')">↩️ Unstage</button>` : ''
                                 }
                                 ${file.status === 'clean' ? `<button class="file-btn" onclick="window.gitBeta.modify('${username}', '${file.name}')">✏️ Modify</button>` : ''}
+                                ${file.status === 'clean' || file.status === 'modified' ? `<button class="file-btn danger" onclick="window.gitBeta.deleteFile('${username}', '${file.name}')">🗑️ Delete</button>` : ''}
                             </div>
                         </div>
                     `).join('')}
@@ -614,31 +703,11 @@
         const branchTip = remoteRepo.branches[branchName];
         if (!branchTip) return [];
 
-        // Collect all files from commits reachable from this branch
-        const files = new Set();
-        const visited = new Set();
-        const queue = [branchTip];
+        // Get files from the tip commit only (current state of the branch)
+        const tipCommit = remoteRepo.commits.find(c => c.oid === branchTip);
+        if (!tipCommit || !tipCommit.files) return [];
 
-        while (queue.length > 0) {
-            const oid = queue.shift();
-            if (visited.has(oid)) continue;
-            visited.add(oid);
-
-            const commit = remoteRepo.commits.find(c => c.oid === oid);
-            if (!commit) continue;
-
-            // Add files from this commit
-            if (commit.files) {
-                Object.keys(commit.files).forEach(f => files.add(f));
-            }
-
-            // Add parents to queue
-            if (commit.parents) {
-                commit.parents.forEach(p => queue.push(p));
-            }
-        }
-
-        return Array.from(files).sort();
+        return Object.keys(tipCommit.files).sort();
     }
 
     // ============================================
@@ -1021,6 +1090,17 @@
             }
         },
 
+        deleteFile: (username, filename) => {
+            if (!confirm(`Delete "${filename}"? This will be staged for commit.`)) return;
+
+            const user = STATE.users[username];
+            if (gitEngine.deleteFile(user.repoName, filename)) {
+                logConsole(`[${username}] git rm ${filename}`, 'warning', true);
+                logConsole(`[${username}] Deleted and staged: ${filename}`, 'warning');
+                renderWorkspace(username);
+            }
+        },
+
         stage: (username, filename) => {
             const user = STATE.users[username];
             if (gitEngine.stageFile(user.repoName, filename)) {
@@ -1031,8 +1111,15 @@
 
         unstage: (username, filename) => {
             const user = STATE.users[username];
+            const repo = gitEngine.getRepo(user.repoName);
+            const wasDeleted = repo.stagedFiles[filename] && repo.stagedFiles[filename].deleted;
+
             if (gitEngine.unstageFile(user.repoName, filename)) {
-                logConsole(`[${username}] Unstaged: ${filename}`, 'info');
+                if (wasDeleted) {
+                    logConsole(`[${username}] Restored: ${filename}`, 'info');
+                } else {
+                    logConsole(`[${username}] Unstaged: ${filename}`, 'info');
+                }
                 renderWorkspace(username);
             }
         },

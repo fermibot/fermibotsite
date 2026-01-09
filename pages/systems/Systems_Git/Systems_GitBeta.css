@@ -358,6 +358,16 @@
     color: var(--bs-secondary-color, #6c757d);
 }
 
+.file-status.deleted {
+    background-color: rgba(229, 57, 53, 0.2);
+    color: var(--git-conflict);
+}
+
+.file-name.file-deleted {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
 .file-actions {
     display: flex;
     gap: 0.3rem;
@@ -385,6 +395,16 @@
     background-color: var(--git-staging);
     border-color: var(--git-staging);
     color: white;
+}
+
+.file-btn.danger {
+    background-color: var(--git-conflict);
+    border-color: var(--git-conflict);
+    color: white;
+}
+
+.file-btn.danger:hover {
+    background-color: #C62828;
 }
 
 /* Add File Form */
