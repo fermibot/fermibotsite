@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <title>Stories | Film Analysis | The Lighthouse</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
+
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="../../../index.css">
+
+    <!-- Visualization CSS -->
+    <link href="lighthouse_timeline.css" rel="stylesheet">
+
+    <!-- Bootstrap JS -->
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+
+    <!-- MathJax for equations -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <!-- D3.js v7 -->
+    <script src="../../../d3/d3.v7.min.js"></script>
+
+    <!-- Site automation -->
+    <script src="../../../automation/loadObjects.js"></script>
+
+    <!-- Color modes (dark/light theme) -->
+    <script src="../../../bootstrap/assets/color-modes.js"></script>
+</head>
+<body class="container-lg container-fluid p-4">
+
+<!-- Header -->
+<div id="header_placeholder"></div>
+
+<!-- Page Title -->
+<header class="mb-4">
+    <h1 class="text-center mb-3">Stories | Film Analysis | The Lighthouse</h1>
+    <p class="text-center text-muted">
+        Interactive visualization of Robert Eggers' screenplay - 41 scenes across 3 acts
+    </p>
+</header>
+
+<!-- Introduction -->
+<section class="mb-4">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <p class="mb-2">
+            This diagram visually maps <em>Robert Eggers & Max Eggers'</em> screenplay
+            <strong>"The Lighthouse" (2019)</strong>—a psychological horror film about two lighthouse keepers
+            descending into madness on a remote New England island around 1890.
+        </p>
+        <p class="mb-0 text-muted small">
+            <strong>Tips:</strong>
+            Hover over scenes to see connections and summaries.
+            Click to lock the selection and see detailed information.
+            Use the search box to find scenes by title, symbols, or type.
+            Press <kbd>/</kbd> to focus search, <kbd>Esc</kbd> to clear.
+            Connection types:
+            <span style="color: #5a8b5a; font-weight: bold;">—</span> Foreshadowing,
+            <span style="color: #8b5a8b; font-weight: bold;">- -</span> Callbacks,
+            <span style="color: #b8860b; font-weight: bold;">—</span> Thematic Links.
+        </p>
+    </div>
+</section>
+
+<!-- Summary Cards -->
+<section class="mb-4">
+    <div class="row g-3">
+        <div class="col-md-4">
+            <div class="summary-card act1">
+                <div class="summary-card-header">
+                    <span class="summary-icon">🚢</span>
+                    <h5>Act I: Arrival & Tension</h5>
+                </div>
+                <p class="summary-text">
+                    Young arrives on Pilot Rock. Old asserts dominance, forbidding access to the light.
+                    Young finds the mermaid carving and experiences his first visions.
+                    The one-eyed gull appears. "Bad luck to kill a seabird."
+                </p>
+                <span class="summary-meta">Scenes 1-12 | Week 1-2</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="summary-card act2">
+                <div class="summary-card-header">
+                    <span class="summary-icon">⛈️</span>
+                    <h5>Act II: The Storm</h5>
+                </div>
+                <p class="summary-text">
+                    Young kills the gull; the wind changes. The relief tender never comes.
+                    Reality fractures. The mermaid appears on the rocks.
+                    They drink, bond, and time becomes impossible to track.
+                </p>
+                <span class="summary-meta">Scenes 13-23 | Week 2-3</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="summary-card act3">
+                <div class="summary-card-header">
+                    <span class="summary-icon">🔥</span>
+                    <h5>Act III: Madness & Reckoning</h5>
+                </div>
+                <p class="summary-text">
+                    Young confesses his stolen identity. Violence erupts.
+                    Old transforms into tentacled horror. Young buries him alive.
+                    Young finally enters the light—and falls. Prometheus punished.
+                </p>
+                <span class="summary-meta">Scenes 24-41 | Week 4+</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Visualization Wrapper -->
+<div class="visualization-wrapper">
+
+    <!-- Controls Bar -->
+    <div class="controls-bar">
+        <div class="controls-left">
+            <!-- Search -->
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text"
+                       id="search-input"
+                       class="search-input"
+                       placeholder="Search scenes... (press /)"
+                       autocomplete="off">
+                <span class="search-counter" id="search-counter"></span>
+            </div>
+        </div>
+
+        <div class="controls-right">
+            <span class="controls-hint">Click scene to view details</span>
+        </div>
+    </div>
+
+    <!-- Legend at Top -->
+    <div class="legend-top" id="legend-container">
+        <!-- Legend content will be injected by JS -->
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="visualization-main">
+        <!-- Visualization Container -->
+        <div class="visualization-container" id="visualization-container">
+            <!-- Loading state -->
+            <div class="loading-overlay">
+                <div class="loading-spinner"></div>
+                <p>Loading visualization...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Key Motifs Section -->
+<section class="mt-4">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <h5 class="mb-3">🔗 Key Recurring Motifs</h5>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>💡 The Light</strong>
+                    <p class="small text-muted mb-0">Forbidden knowledge, divine truth, destructive obsession. Old guards it jealously; Young's pursuit of it leads to his doom.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>🧜‍♀️ The Mermaid</strong>
+                    <p class="small text-muted mb-0">Appears as carving, hallucination, and possibly real. Represents sexuality, death, and the sea's seductive danger.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>🦅 One-Eyed Gull</strong>
+                    <p class="small text-muted mb-0">Supernatural omen. Contains souls of dead sailors. Its death brings the storm; it returns to feast on Young's liver.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>🪪 Stolen Identity</strong>
+                    <p class="small text-muted mb-0">Young is actually Thomas Howard, who let Ephraim Winslow drown and stole his name for a fresh start.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>📔 The Logbook</strong>
+                    <p class="small text-muted mb-0">Old's instrument of power. Contains the "truth" that will destroy Young—damning entries recommending severance without pay.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>🐙 Tentacles</strong>
+                    <p class="small text-muted mb-0">Lovecraftian horror. Appear in visions, merge with Old in the climactic fight—cosmic terror from the deep.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Keyboard shortcuts help -->
+<div class="keyboard-help d-none d-lg-block">
+    <kbd>/</kbd> Search &nbsp;
+    <kbd>Esc</kbd> Clear &nbsp;
+    <kbd>Click</kbd> Lock
+</div>
+
+<!-- Visualization Script -->
+<script src="lighthouse_timeline.js"></script>
+
+<!-- Load Header/Footer -->
+<script>
+    loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html");
+</script>
+
+<!-- Footer -->
+<div id="footer_placeholder"></div>
+
+</body>
+</html>
+
