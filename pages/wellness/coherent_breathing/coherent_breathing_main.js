@@ -415,8 +415,8 @@ class UnifiedAudioPlayer {
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Create session timer instance
-    const sessionTimer = new SessionTimer('sessionTimer');
+    // Create session timer instance (uses prefix 'session' for sessionHours, sessionMinutes, sessionSeconds)
+    const sessionTimer = new SessionTimer('session');
 
     // Create player manager instance (still needed for programmable section)
     const playerManager = new AudioPlayerManager(sessionTimer);

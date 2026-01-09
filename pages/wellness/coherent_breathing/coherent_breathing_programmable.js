@@ -28,8 +28,8 @@ class ProgrammableBreathingSequencer {
         this.currentSource = null;
         this.nextPhaseTimeout = null;
 
-        // Custom Timer - using the same SessionTimer class
-        this.customTimer = new SessionTimer('customPatternTimer');
+        // Custom Timer - using the same SessionTimer class (uses prefix 'expert' for expertHours, expertMinutes, expertSeconds)
+        this.customTimer = new SessionTimer('expert');
 
         // Ticker properties
         this.tickerElement = null;

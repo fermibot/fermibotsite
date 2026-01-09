@@ -1,7 +1,22 @@
 // Session Timer Manager
 class SessionTimer {
-    constructor(timerElementId) {
-        this.timerElement = document.getElementById(timerElementId);
+    constructor(timerPrefix) {
+        // Support both old single element and new separate fields
+        this.timerPrefix = timerPrefix;
+
+        // Try to get separate fields first
+        this.hoursElement = document.getElementById(timerPrefix + 'Hours');
+        this.minutesElement = document.getElementById(timerPrefix + 'Minutes');
+        this.secondsElement = document.getElementById(timerPrefix + 'Seconds');
+
+        // Check if we're using separate fields or single element
+        this.useSeparateFields = !!(this.hoursElement && this.minutesElement && this.secondsElement);
+
+        // Fallback to single element for backwards compatibility
+        if (!this.useSeparateFields) {
+            this.timerElement = document.getElementById(timerPrefix);
+        }
+
         this.startTime = null;
         this.elapsedTime = 0;
         this.timerInterval = null;
@@ -123,16 +138,23 @@ class SessionTimer {
         const minutes = Math.floor((displayTime % 3600000) / 60000);
         const seconds = Math.floor((displayTime % 60000) / 1000);
 
-        const formattedTime =
-            `${hours.toString().padStart(2, '0')}:` +
-            `${minutes.toString().padStart(2, '0')}:` +
-            `${seconds.toString().padStart(2, '0')}`;
+        if (this.useSeparateFields) {
+            // Update separate fields - pad with zeros
+            this.hoursElement.value = hours.toString().padStart(2, '0');
+            this.minutesElement.value = minutes.toString().padStart(2, '0');
+            this.secondsElement.value = seconds.toString().padStart(2, '0');
+        } else if (this.timerElement) {
+            // Update single element (backwards compatibility)
+            const formattedTime =
+                `${hours.toString().padStart(2, '0')}:` +
+                `${minutes.toString().padStart(2, '0')}:` +
+                `${seconds.toString().padStart(2, '0')}`;
 
-        // Support both input elements and regular elements
-        if (this.timerElement.tagName === 'INPUT') {
-            this.timerElement.value = formattedTime;
-        } else {
-            this.timerElement.textContent = formattedTime;
+            if (this.timerElement.tagName === 'INPUT') {
+                this.timerElement.value = formattedTime;
+            } else {
+                this.timerElement.textContent = formattedTime;
+            }
         }
     }
 }
