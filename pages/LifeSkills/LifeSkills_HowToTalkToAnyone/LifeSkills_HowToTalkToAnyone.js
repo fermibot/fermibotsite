@@ -1,6 +1,9 @@
 /* ============================================
    HOW TO TALK TO ANYONE - ENHANCED VISUALIZATION
+   Version 2.0 - With Progress Management & Improved Exports
    ============================================ */
+
+console.log('How to Talk to Anyone - Visualization v2.0 loaded');
 
 // ============================================
 // CONFIGURATION
@@ -454,7 +457,10 @@ function createInfoCard() {
         infoCardBackdrop = d3.select('body')
             .append('div')
             .attr('class', 'info-card-backdrop')
-            .on('click', handleBackgroundClick);
+            .on('click', function(event) {
+                // Only hide the info card, not the relationship panel
+                hideInfoCard();
+            });
     }
 
     infoCard = d3.select('body')
@@ -481,6 +487,7 @@ function showInfoCard(d, event) {
                     <h5 class="info-card-chapter">${d.data.key}</h5>
                     <p class="info-card-section">${getSectionName(d)}</p>
                 </div>
+                <button class="info-card-close" onclick="hideInfoCard()" title="Close">×</button>
             </div>
             <div class="info-card-body">
                 <p class="info-card-summary">${d.data.summary || 'No summary available.'}</p>
@@ -510,6 +517,9 @@ function hideInfoCard() {
         infoCardBackdrop.classed('visible', false);
     }
 }
+
+// Expose globally for onclick handlers
+window.hideInfoCard = hideInfoCard;
 
 function positionInfoCard(event) {
     if (!infoCard) return;
@@ -864,6 +874,17 @@ function showProgressModal() {
     let modalHTML = `
         <div class="progress-modal-header">
             <h3 class="progress-modal-title">Learning Progress</h3>
+            <div class="progress-modal-actions">
+                <button class="btn btn-sm btn-outline-primary" onclick="downloadProgress()" title="Download progress as JSON">
+                    ⬇️ Download
+                </button>
+                <button class="btn btn-sm btn-outline-primary" onclick="uploadProgress()" title="Upload progress from JSON">
+                    ⬆️ Upload
+                </button>
+                <button class="btn btn-sm btn-outline-danger" onclick="resetProgress()" title="Reset all progress">
+                    🔄 Reset
+                </button>
+            </div>
             <button class="progress-modal-close" onclick="hideProgressModal()">×</button>
         </div>
         <div class="progress-modal-body">
@@ -892,6 +913,7 @@ function showProgressModal() {
             const isLearned = state.learnedChapters.has(d.data.key);
             modalHTML += `
                 <div class="progress-item section-${sectionNum} ${isLearned ? 'learned' : ''}" data-chapter-key="${d.data.key.replace(/"/g, '&quot;')}">
+                    <button class="progress-item-info-btn" onclick="showInfoFromProgress('${d.data.key.replace(/'/g, "\\'")}', event)" title="View details">ℹ️</button>
                     <input type="checkbox"
                            ${isLearned ? 'checked' : ''}
                            onchange="toggleLearned('${d.data.key.replace(/'/g, "\\'")}'); updateProgressModal()">
@@ -982,6 +1004,103 @@ function updateProgressModal() {
 window.showProgressModal = showProgressModal;
 window.hideProgressModal = hideProgressModal;
 window.updateProgressModal = updateProgressModal;
+
+// Progress management functions
+function downloadProgress() {
+    const progressData = {
+        version: '1.0',
+        exportDate: new Date().toISOString(),
+        learnedChapters: Array.from(state.learnedChapters),
+        totalChapters: 92
+    };
+
+    const dataStr = JSON.stringify(progressData, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `how-to-talk-progress-${new Date().toISOString().split('T')[0]}.json`;
+    link.click();
+
+    URL.revokeObjectURL(url);
+}
+
+function uploadProgress() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'application/json,.json';
+
+    input.onchange = function(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                const progressData = JSON.parse(e.target.result);
+
+                if (!progressData.learnedChapters || !Array.isArray(progressData.learnedChapters)) {
+                    alert('Invalid progress file format.');
+                    return;
+                }
+
+                // Load the progress
+                state.learnedChapters = new Set(progressData.learnedChapters);
+                saveProgress();
+
+                // Update all displays
+                updateProgressModal();
+                updateProgressUI();
+                updateNodeStyles();
+
+                alert(`Progress loaded successfully! ${state.learnedChapters.size} chapters marked as learned.`);
+            } catch (error) {
+                console.error('Error loading progress:', error);
+                alert('Error loading progress file. Please ensure it\'s a valid JSON file.');
+            }
+        };
+        reader.readAsText(file);
+    };
+
+    input.click();
+}
+
+function resetProgress() {
+    if (!confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
+        return;
+    }
+
+    state.learnedChapters.clear();
+    saveProgress();
+
+    // Update all displays
+    updateProgressModal();
+    updateProgressUI();
+    updateNodeStyles();
+
+    alert('All progress has been reset.');
+}
+
+window.downloadProgress = downloadProgress;
+window.uploadProgress = uploadProgress;
+window.resetProgress = resetProgress;
+
+// Function to show info card from progress modal
+function showInfoFromProgress(chapterKey, event) {
+    if (!state.root) return;
+
+    // Find the node with this key
+    const allNodes = state.root.leaves();
+    const targetNode = allNodes.find(n => n.data.key === chapterKey);
+
+    if (targetNode) {
+        // Show the info card
+        showInfoCard(targetNode, event);
+    }
+}
+
+window.showInfoFromProgress = showInfoFromProgress;
 
 // ============================================
 // SEARCH & FILTER
@@ -1197,14 +1316,18 @@ function handleNodeClick(event, d) {
 }
 
 function handleBackgroundClick() {
+    // Don't handle if info card is visible (it has its own backdrop)
+    if (infoCard && infoCard.classed('visible')) {
+        return;
+    }
+
     if (state.lockedNode) {
         state.lockedNode = null;
         node.classed('node--locked', false);
-        hideInfoCard();
         hideTooltip();
     }
 
-    // Also hide relationship links
+    // Hide relationship panel when clicking background
     hideRelationshipLinks();
 }
 
@@ -1332,12 +1455,15 @@ function showRelationshipPanel(d, related) {
 
             panelHTML += `
                 <div class="relationship-item" data-node-key="${item.node.data.key}">
-                    <div class="relationship-item-rank">#${index + 1}</div>
-                    <div class="relationship-item-bar" style="width: ${simPercent}%; background: ${barColor};"></div>
-                    <div class="relationship-item-content">
-                        <span class="relationship-item-name">${item.node.data.key}</span>
-                        ${crossSectionBadge}
-                        <span class="relationship-item-score">${simPercent}%</span>
+                    <button class="relationship-item-info-btn" title="View details">ℹ️</button>
+                    <div class="relationship-item-bar-wrapper">
+                        <div class="relationship-item-rank">#${index + 1}</div>
+                        <div class="relationship-item-bar" style="width: ${simPercent}%; background: ${barColor};"></div>
+                        <div class="relationship-item-content">
+                            <span class="relationship-item-name">${item.node.data.key}</span>
+                            ${crossSectionBadge}
+                            <span class="relationship-item-score">${simPercent}%</span>
+                        </div>
                     </div>
                 </div>
             `;
@@ -1370,11 +1496,14 @@ function showRelationshipPanel(d, related) {
                 const crossSectionBadge = item.crossSection ? '<span class="cross-section-badge">Cross-Section</span>' : '';
                 panelHTML += `
                     <div class="relationship-item" data-node-key="${item.node.data.key}">
-                        <div class="relationship-item-bar" style="width: ${simPercent}%; background: ${group.color};"></div>
-                        <div class="relationship-item-content">
-                            <span class="relationship-item-name">${item.node.data.key}</span>
-                            ${crossSectionBadge}
-                            <span class="relationship-item-score">${simPercent}%</span>
+                        <button class="relationship-item-info-btn" title="View details">ℹ️</button>
+                        <div class="relationship-item-bar-wrapper">
+                            <div class="relationship-item-bar" style="width: ${simPercent}%; background: ${group.color};"></div>
+                            <div class="relationship-item-content">
+                                <span class="relationship-item-name">${item.node.data.key}</span>
+                                ${crossSectionBadge}
+                                <span class="relationship-item-score">${simPercent}%</span>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -1403,6 +1532,11 @@ function showRelationshipPanel(d, related) {
 
     // Add click handlers to relationship items
     relationshipPanel.selectAll('.relationship-item').on('click', function(event) {
+        // Don't navigate if clicking the info button
+        if (event.target.classList.contains('relationship-item-info-btn')) {
+            return;
+        }
+
         event.stopPropagation();
         const nodeKey = this.getAttribute('data-node-key');
         if (nodeKey) {
@@ -1424,6 +1558,22 @@ function showRelationshipPanel(d, related) {
                         showRelationshipPanel(state.currentRelatedNode, state.currentRelatedData);
                     }
                 }
+            }
+        }
+    });
+
+    // Add click handlers to info buttons
+    relationshipPanel.selectAll('.relationship-item-info-btn').on('click', function(event) {
+        event.stopPropagation();
+        const parentItem = this.closest('.relationship-item');
+        const nodeKey = parentItem.getAttribute('data-node-key');
+        if (nodeKey) {
+            // Find the corresponding node
+            const allNodes = state.root.leaves();
+            const targetNode = allNodes.find(n => n.data.key === nodeKey);
+            if (targetNode) {
+                // Show the info card
+                showInfoCard(targetNode, event);
             }
         }
     });
@@ -1621,44 +1771,131 @@ function exportAsPNG() {
     const svgElement = document.querySelector('#visualization-svg');
     if (!svgElement) return;
 
+    // Clone the SVG to avoid modifying the original
+    const svgClone = svgElement.cloneNode(true);
+
+    // Get computed styles and inline them
+    inlineStyles(svgClone, svgElement);
+
+    // Get the viewBox or use the bounding box
+    const viewBox = svgElement.getAttribute('viewBox');
+    let width, height;
+
+    if (viewBox) {
+        const [, , vbWidth, vbHeight] = viewBox.split(' ').map(Number);
+        width = vbWidth;
+        height = vbHeight;
+    } else {
+        const bbox = svgElement.getBoundingClientRect();
+        width = bbox.width;
+        height = bbox.height;
+        svgClone.setAttribute('viewBox', `0 0 ${width} ${height}`);
+    }
+
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
-
-    const bbox = svgElement.getBoundingClientRect();
-    const scale = 2;
-    canvas.width = bbox.width * scale;
-    canvas.height = bbox.height * scale;
+    const scale = 3; // Higher quality
+    canvas.width = width * scale;
+    canvas.height = height * scale;
     ctx.scale(scale, scale);
 
-    ctx.fillStyle = getComputedStyle(document.documentElement)
+    // Fill background
+    const bgColor = getComputedStyle(document.documentElement)
         .getPropertyValue('--viz-bg').trim() || '#ffffff';
-    ctx.fillRect(0, 0, bbox.width, bbox.height);
+    ctx.fillStyle = bgColor;
+    ctx.fillRect(0, 0, width, height);
 
-    const svgString = new XMLSerializer().serializeToString(svgElement);
+    const svgString = new XMLSerializer().serializeToString(svgClone);
     const img = new Image();
 
     img.onload = function() {
-        ctx.drawImage(img, 0, 0);
+        ctx.drawImage(img, 0, 0, width, height);
         const link = document.createElement('a');
         link.download = 'how-to-talk-to-anyone-visualization.png';
-        link.href = canvas.toDataURL('image/png');
+        link.href = canvas.toDataURL('image/png', 1.0);
         link.click();
     };
 
-    img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgString)));
+    img.onerror = function(error) {
+        console.error('Error loading SVG for PNG export:', error);
+        alert('Error exporting PNG. Please try again.');
+    };
+
+    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString);
 }
 
 function exportAsSVG() {
     const svgElement = document.querySelector('#visualization-svg');
     if (!svgElement) return;
 
+    // Clone the SVG to avoid modifying the original
     const svgClone = svgElement.cloneNode(true);
+
+    // Get computed styles and inline them
+    inlineStyles(svgClone, svgElement);
+
+    // Add XML namespace declarations
+    svgClone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    svgClone.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
+
     const svgString = new XMLSerializer().serializeToString(svgClone);
-    const blob = new Blob([svgString], { type: 'image/svg+xml' });
+
+    // Add XML declaration
+    const fullSvgString = '<?xml version="1.0" encoding="UTF-8"?>\n' + svgString;
+
+    const blob = new Blob([fullSvgString], { type: 'image/svg+xml;charset=utf-8' });
     const link = document.createElement('a');
     link.download = 'how-to-talk-to-anyone-visualization.svg';
     link.href = URL.createObjectURL(blob);
     link.click();
+
+    setTimeout(() => URL.revokeObjectURL(link.href), 100);
+}
+
+// Helper function to inline CSS styles into SVG elements
+function inlineStyles(targetElement, sourceElement) {
+    if (!targetElement || !sourceElement) return;
+
+    const computedStyle = window.getComputedStyle(sourceElement);
+
+    // Copy all relevant computed styles
+    const styleStr = [];
+
+    // SVG-specific properties
+    const svgProps = ['fill', 'stroke', 'stroke-width', 'stroke-dasharray', 'stroke-linecap',
+                      'stroke-linejoin', 'stroke-opacity', 'fill-opacity', 'opacity', 'marker-start',
+                      'marker-end', 'marker-mid'];
+
+    // Text properties
+    const textProps = ['font-family', 'font-size', 'font-weight', 'font-style', 'font-variant',
+                       'text-anchor', 'dominant-baseline', 'alignment-baseline', 'letter-spacing'];
+
+    // Display properties
+    const displayProps = ['visibility', 'display', 'transform', 'transform-origin'];
+
+    const allProps = [...svgProps, ...textProps, ...displayProps];
+
+    allProps.forEach(prop => {
+        const value = computedStyle.getPropertyValue(prop);
+        if (value && value !== '' && value !== 'none' && value !== 'normal' && value !== 'auto') {
+            styleStr.push(`${prop}: ${value}`);
+        }
+    });
+
+    if (styleStr.length > 0) {
+        const currentStyle = targetElement.getAttribute('style') || '';
+        targetElement.setAttribute('style', currentStyle + '; ' + styleStr.join('; '));
+    }
+
+    // Recursively apply to all children
+    const sourceChildren = Array.from(sourceElement.children);
+    const targetChildren = Array.from(targetElement.children);
+
+    sourceChildren.forEach((sourceChild, i) => {
+        if (targetChildren[i]) {
+            inlineStyles(targetChildren[i], sourceChild);
+        }
+    });
 }
 
 // ============================================

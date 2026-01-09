@@ -825,7 +825,7 @@
     border: 1px solid var(--viz-border);
     border-radius: 12px;
     box-shadow: 0 10px 40px var(--viz-card-shadow);
-    z-index: 1000;
+    z-index: 1005;
     opacity: 0;
     pointer-events: none;
     transform: translateY(10px);
@@ -846,7 +846,7 @@
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    z-index: 1004;
     opacity: 0;
     pointer-events: none;
     transition: opacity var(--transition-fast);
@@ -887,6 +887,33 @@
     font-size: 0.75rem;
     color: var(--viz-text-muted);
     margin: 0;
+}
+
+.info-card-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--viz-text-muted);
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.info-card-close:hover {
+    background-color: var(--viz-bg-secondary);
+    color: var(--viz-text);
+}
+
+.info-card-close:active {
+    background-color: var(--viz-border);
 }
 
 .info-card-body {
@@ -972,6 +999,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
 }
 
 .progress-modal-title {
@@ -979,6 +1007,18 @@
     font-weight: 600;
     color: var(--viz-text);
     margin: 0;
+}
+
+.progress-modal-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.progress-modal-actions .btn {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.65rem;
+    white-space: nowrap;
 }
 
 .progress-modal-close {
@@ -1083,6 +1123,28 @@
 .progress-item.learned .progress-item-label {
     text-decoration: line-through;
     opacity: 0.6;
+}
+
+.progress-item-info-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0.25rem;
+    opacity: 0.5;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-item-info-btn:hover {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.progress-item-info-btn:active {
+    transform: scale(1.0);
 }
 
 /* ============================================
@@ -1261,6 +1323,29 @@
 
     .progress-modal-header {
         padding: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .progress-modal-actions {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 0.75rem;
+    }
+
+    .progress-modal-actions .btn {
+        flex: 1;
+        font-size: 0.7rem;
+        padding: 0.4rem 0.5rem;
+    }
+
+    .progress-modal-close {
+        order: 2;
+    }
+
+    .progress-modal-title {
+        order: 1;
+        flex: 1;
     }
 
     .progress-modal-body {
@@ -1446,8 +1531,8 @@
     position: fixed;
     right: 1.5rem;
     top: 50%;
-    transform: translateY(-50%) translateX(400px);
-    width: 350px;
+    transform: translateY(-50%) translateX(450px);
+    width: 400px;
     height: 85vh;
     max-height: 850px;
     min-height: 650px;
@@ -1672,13 +1757,16 @@
 
 .relationship-item {
     position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
     background-color: var(--viz-bg-secondary);
     border-radius: 6px;
-    overflow: hidden;
     cursor: pointer;
     transition: transform var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
     min-height: 32px;
     border: 1px solid transparent;
+    padding-left: 0.35rem;
 }
 
 .relationship-item:hover {
@@ -1726,10 +1814,11 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem;
+    flex: 1;
 }
 
 /* When rank is present, add left padding */
-.relationship-item:has(.relationship-item-rank) .relationship-item-content {
+.relationship-item-bar-wrapper:has(.relationship-item-rank) .relationship-item-content {
     padding-left: 2.5rem;
 }
 
@@ -1757,6 +1846,44 @@
     border-radius: 3px;
     font-weight: 600;
     flex-shrink: 0;
+}
+
+.relationship-item-info-btn {
+    background: var(--viz-bg);
+    border: 1px solid var(--viz-border);
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.7rem;
+    opacity: 0.6;
+    transition: opacity var(--transition-fast), transform var(--transition-fast), background-color var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.relationship-item-info-btn:hover {
+    opacity: 1;
+    transform: scale(1.15);
+    background-color: var(--viz-highlight-bg);
+}
+
+.relationship-item-info-btn:active {
+    transform: scale(1.0);
+}
+
+/* Wrapper for bar and content (everything except info button) */
+.relationship-item-bar-wrapper {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 4px;
+    min-height: 32px;
 }
 
 /* ============================================
