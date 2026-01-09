@@ -539,7 +539,7 @@
             </div>
         `;
 
-        renderGraph(d3.select(`#local-network-${username}`), history, branches, user.color);
+        renderGraph(d3.select(`#local-network-${username}`), history, branches, user.color, repo.branches);
     }
 
     // Track selected branch for remote view
@@ -606,7 +606,7 @@
             }
         }
 
-        renderGraph(svg, history, branches, '#9C27B0');
+        renderGraph(svg, history, branches, '#9C27B0', remoteRepo.branches);
     }
 
     // Get files from a specific branch on remote
@@ -690,7 +690,10 @@
     // GRAPH RENDERING (D3)
     // ============================================
 
-    function renderGraph(svg, commits, branches, defaultColor) {
+    // Track all branches that have ever existed (for lane preservation)
+    const allHistoricalBranches = new Map(); // Map<repoId, Set<branchName>>
+
+    function renderGraph(svg, commits, branches, defaultColor, branchPointers = {}) {
         svg.selectAll('*').remove();
 
         if (!commits || !commits.length) {
@@ -703,14 +706,35 @@
         }
 
 
-        const nodeRadius = 8, nodeSpacingY = 40, branchSpacingX = 50, startX = 35, startY = 50;
+        const nodeRadius = 8, nodeSpacingY = 40, branchSpacingX = 80, startX = 50, startY = 50;
 
         // Sort commits topologically (parents before children) with timestamp as secondary
         const sortedCommits = topologicalSort(commits);
 
-        // Assign lanes to branches
+        // Determine repository ID from svg element
+        const svgId = svg.attr('id') || 'default';
+
+        // Track all branches that have ever had commits
+        if (!allHistoricalBranches.has(svgId)) {
+            allHistoricalBranches.set(svgId, new Set());
+        }
+        const historicalBranches = allHistoricalBranches.get(svgId);
+
+        // Add all branches from commits to historical tracking
+        commits.forEach(c => {
+            if (c.branch) historicalBranches.add(c.branch);
+        });
+
+        // Add current active branches
+        branches.forEach(b => historicalBranches.add(b));
+
+        // Create combined list: active branches + deleted branches
+        const allBranches = Array.from(historicalBranches);
+        const deletedBranches = allBranches.filter(b => !branches.includes(b));
+
+        // Assign lanes to all branches (preserving deleted ones)
         const branchLane = {};
-        const sortedBranches = [...branches].sort((a, b) => a === 'main' ? -1 : b === 'main' ? 1 : a.localeCompare(b));
+        const sortedBranches = [...allBranches].sort((a, b) => a === 'main' ? -1 : b === 'main' ? 1 : a.localeCompare(b));
         sortedBranches.forEach((b, i) => { branchLane[b] = i; });
 
         // Calculate positions
@@ -720,9 +744,9 @@
             commitPos[c.oid] = { x: startX + lane * branchSpacingX, y: startY + i * nodeSpacingY };
         });
 
-        // Set SVG size
+        // Set SVG size - use allBranches instead of just active branches for width
         const h = Math.max(150, sortedCommits.length * nodeSpacingY + 70);
-        const w = Math.max(150, branches.length * branchSpacingX + 80);
+        const w = Math.max(200, allBranches.length * branchSpacingX + 150);
         svg.attr('width', w).attr('height', h);
 
         // Define arrow markers
@@ -738,23 +762,38 @@
                 .append('path').attr('d', 'M0,-4L8,0L0,4').attr('fill', color);
         });
 
-        // Draw branch labels
+        // Draw branch labels (including deleted branches)
         const labels = svg.append('g');
         sortedBranches.forEach((name, i) => {
             const x = startX + i * branchSpacingX;
+            const isDeleted = deletedBranches.includes(name);
             const lw = Math.max(name.length * 6 + 8, 35);
+
             labels.append('rect')
                 .attr('x', x - lw/2).attr('y', 6)
                 .attr('width', lw).attr('height', 14)
                 .attr('rx', 3)
-                .attr('fill', name === 'main' ? colors[0] : colors[1]);
-            labels.append('text')
+                .attr('fill', isDeleted ? '#999' : (name === 'main' ? colors[0] : colors[1]))
+                .attr('opacity', isDeleted ? 0.5 : 1);
+
+            const labelText = labels.append('text')
                 .attr('x', x).attr('y', 16)
                 .attr('text-anchor', 'middle')
                 .attr('font-size', '8px')
                 .attr('fill', 'white')
                 .attr('font-weight', 'bold')
+                .attr('opacity', isDeleted ? 0.7 : 1)
                 .text(name);
+
+            // Add strikethrough for deleted branches
+            if (isDeleted) {
+                labels.append('line')
+                    .attr('x1', x - lw/2 + 2).attr('y1', 13)
+                    .attr('x2', x + lw/2 - 2).attr('y2', 13)
+                    .attr('stroke', 'white')
+                    .attr('stroke-width', 1)
+                    .attr('opacity', 0.7);
+            }
         });
 
         // Draw edges
@@ -785,6 +824,16 @@
                         .attr('marker-end', `url(#${arrowId})`);
                 }
             });
+        });
+
+        // Build a map of which branches point to which commits
+        const commitToBranches = {};
+        Object.entries(branchPointers).forEach(([branchName, commitOid]) => {
+            if (!commitOid) return;
+            if (!commitToBranches[commitOid]) {
+                commitToBranches[commitOid] = [];
+            }
+            commitToBranches[commitOid].push(branchName);
         });
 
         // Draw nodes
@@ -836,6 +885,40 @@
                 .attr('font-size', '6px')
                 .attr('fill', 'var(--bs-secondary-color, #6c757d)')
                 .text(msg);
+
+            // Draw branch pointers for this commit
+            const branchesAtCommit = commitToBranches[c.oid];
+            if (branchesAtCommit && branchesAtCommit.length > 0) {
+                const branchGroup = g.append('g');
+                let yOffset = 30; // Start below the commit message
+
+                branchesAtCommit.forEach((branchName, idx) => {
+                    const lane = branchLane[branchName] || 0;
+                    const branchColor = colors[lane % colors.length];
+                    const textWidth = branchName.length * 5.5;
+
+                    // Draw rounded rectangle background
+                    branchGroup.append('rect')
+                        .attr('x', 15)
+                        .attr('y', yOffset - 7)
+                        .attr('width', textWidth + 6)
+                        .attr('height', 10)
+                        .attr('rx', 2)
+                        .attr('fill', branchColor)
+                        .attr('opacity', 0.9);
+
+                    // Draw branch name text
+                    branchGroup.append('text')
+                        .attr('x', 18)
+                        .attr('y', yOffset)
+                        .attr('font-size', '7px')
+                        .attr('font-weight', 'bold')
+                        .attr('fill', 'white')
+                        .text(branchName);
+
+                    yOffset += 12; // Move down for next branch
+                });
+            }
         });
     }
 

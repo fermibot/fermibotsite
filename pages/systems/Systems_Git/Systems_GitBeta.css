@@ -27,12 +27,13 @@
 
 .git-beta-container {
     padding: 1rem;
+    width: 100%;
 }
 
 /* Three-column wrapper using CSS Grid with subgrid for row alignment */
 .git-columns-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: minmax(450px, 1fr) minmax(450px, 1fr) minmax(450px, 1fr);
     grid-template-rows: auto auto auto auto auto auto; /* header, branches, working-dir, actions, graph, console */
     gap: 1rem 1rem;
     align-items: stretch;
@@ -100,7 +101,8 @@
 
 .workspace-row.graph-row {
     min-height: 250px;
-    overflow: visible;
+    max-height: 600px;
+    overflow-y: auto;
 }
 
 .workspace-row.console-row {
@@ -468,7 +470,8 @@
 /* Graph section styling */
 .workspace-row.graph-row.local-network-section {
     min-height: 250px;
-    overflow: visible;
+    max-height: 600px;
+    overflow-y: auto;
 }
 
 .local-network-title {
@@ -480,8 +483,8 @@
 }
 
 .local-network-svg {
-    width: 100%;
-    flex: 1;
+    width: auto;
+    min-width: 100%;
     min-height: 200px;
     display: block;
 }
@@ -624,15 +627,16 @@
     border-radius: 8px;
     padding: 0.75rem;
     min-height: 250px;
-    overflow: visible;
+    max-height: 600px;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
 }
 
 
 .remote-network-graph svg {
-    flex: 1;
-    width: 100%;
+    width: auto;
+    min-width: 100%;
     min-height: 200px;
 }
 
@@ -697,11 +701,10 @@
 }
 
 #remote-network-svg {
-    width: 100%;
-    flex: 1;
-    min-height: 0;
+    width: auto;
+    min-width: 100%;
+    min-height: 200px;
     display: block;
-    overflow: auto;
 }
 
 /* ============================================
@@ -919,7 +922,7 @@
    RESPONSIVE
    ============================================ */
 
-@media (max-width: 1200px) {
+@media (max-width: 1600px) {
     .git-columns-wrapper {
         grid-template-columns: 1fr 1fr;
     }
@@ -929,7 +932,7 @@
     }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1200px) {
     .git-columns-wrapper {
         grid-template-columns: 1fr;
     }

@@ -399,10 +399,6 @@
       "title": "Version Control",
       "links": [
         {
-          "text": "Git",
-          "url": "pages/systems/Systems_Git/Systems_Git.html"
-        },
-        {
           "text": "Git Beta (Real Engine)",
           "url": "pages/systems/Systems_Git/Systems_GitBeta.html"
         }
