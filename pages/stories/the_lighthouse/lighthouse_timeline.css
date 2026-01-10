@@ -1325,7 +1325,7 @@
 
 .book-club-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
 }
 
@@ -1353,6 +1353,21 @@
     border-color: var(--act-02);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Disable hover effects on touch devices to prevent "sticky" hover */
+@media (hover: none) {
+    .book-club-question:hover {
+        background: var(--viz-bg);
+        border-color: var(--viz-border);
+        transform: none;
+        box-shadow: none;
+    }
+
+    .book-club-question:active {
+        background: var(--viz-bg-secondary);
+        border-color: var(--act-02);
+    }
 }
 
 .book-club-question.active {
@@ -1393,6 +1408,115 @@
     margin-top: auto;
 }
 
+.question-header {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    cursor: pointer;
+}
+
+.answer-toggle {
+    display: block;
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--act-02);
+    background: transparent;
+    border: 1px solid var(--act-02);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.answer-toggle:hover {
+    background: var(--act-02);
+    color: white;
+}
+
+.answer-toggle.active {
+    background: var(--act-02);
+    color: white;
+}
+
+.answer-content {
+    display: none;
+    margin-top: 0.5rem;
+    padding: 0.75rem;
+    background: var(--viz-bg-secondary);
+    border-radius: 6px;
+    border-left: 3px solid var(--act-02);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--viz-text);
+}
+
+.answer-content.visible {
+    display: block;
+}
+
+.answer-content p {
+    margin: 0;
+}
+
+.question-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+}
+
+.question-tag {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+/* Tag colors */
+.tag-setting { background: #e3f2fd; color: #1565c0; }
+.tag-atmosphere { background: #e8eaf6; color: #3949ab; }
+.tag-foreshadowing { background: #fff3e0; color: #e65100; }
+.tag-symbolism { background: #f3e5f5; color: #7b1fa2; }
+.tag-mermaid { background: #e0f7fa; color: #00838f; }
+.tag-theme { background: #fce4ec; color: #c2185b; }
+.tag-psychology { background: #fff8e1; color: #ff8f00; }
+.tag-power { background: #ffebee; color: #c62828; }
+.tag-character { background: #e8f5e9; color: #2e7d32; }
+.tag-light { background: #fffde7; color: #f9a825; }
+.tag-obsession { background: #fbe9e7; color: #d84315; }
+.tag-guilt { background: #efebe9; color: #5d4037; }
+.tag-supernatural { background: #ede7f6; color: #512da8; }
+.tag-ambiguity { background: #eceff1; color: #546e7a; }
+.tag-mythology { background: #e1f5fe; color: #0277bd; }
+.tag-turning-point { background: #fff3e0; color: #ef6c00; }
+.tag-irony { background: #f9fbe7; color: #827717; }
+.tag-isolation { background: #e0e0e0; color: #424242; }
+.tag-cinematography { background: #fafafa; color: #616161; }
+.tag-horror { background: #4a0000; color: #ffcdd2; }
+.tag-identity { background: #e8eaf6; color: #283593; }
+.tag-revelation { background: #fff9c4; color: #f57f17; }
+.tag-forbidden { background: #ffccbc; color: #bf360c; }
+.tag-climax { background: #d50000; color: #ffffff; }
+
+/* Dark mode tag adjustments */
+[data-bs-theme="dark"] .question-tag {
+    filter: brightness(0.85) saturate(1.2);
+}
+
+[data-bs-theme="dark"] .tag-horror {
+    background: #8b0000;
+    color: #ffcdd2;
+}
+
+[data-bs-theme="dark"] .tag-climax {
+    background: #ff1744;
+    color: #ffffff;
+}
+
 /* Highlighted nodes for book club questions */
 .node.book-club-highlight circle {
     filter: url(#glow);
@@ -1410,6 +1534,12 @@
     }
     50% {
         filter: url(#glow) brightness(1.2);
+    }
+}
+
+@media (max-width: 1400px) {
+    .book-club-grid {
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 

@@ -2056,6 +2056,11 @@ function initSearch() {
 let activeBookClubQuestion = null;
 
 function highlightBookClubScenes(element) {
+    // Prevent any default behavior that might interfere on touch devices
+    if (event) {
+        event.stopPropagation();
+    }
+
     const scenesAttr = element.dataset.scenes;
     if (!scenesAttr) return;
 
@@ -2107,9 +2112,38 @@ function clearBookClubHighlights() {
     activeBookClubQuestion = null;
 }
 
+// Add click handler to document to clear highlights when clicking outside questions
+document.addEventListener('click', function(e) {
+    // Check if click is outside the book club section
+    const bookClubSection = document.getElementById('book-club-section');
+    if (bookClubSection && !bookClubSection.contains(e.target) && activeBookClubQuestion) {
+        clearBookClubHighlights();
+    }
+});
+
 // Expose function globally for onclick handlers
 window.highlightBookClubScenes = highlightBookClubScenes;
 window.clearBookClubHighlights = clearBookClubHighlights;
+
+// Toggle answer visibility
+function toggleAnswer(event, button) {
+    event.stopPropagation(); // Prevent triggering the question highlight
+
+    const answerContent = button.nextElementSibling;
+    const isVisible = answerContent.classList.contains('visible');
+
+    if (isVisible) {
+        answerContent.classList.remove('visible');
+        button.classList.remove('active');
+        button.textContent = 'Show Answer';
+    } else {
+        answerContent.classList.add('visible');
+        button.classList.add('active');
+        button.textContent = 'Hide Answer';
+    }
+}
+
+window.toggleAnswer = toggleAnswer;
 
 // ============================================
 // INITIALIZATION
