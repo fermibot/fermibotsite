@@ -2055,10 +2055,11 @@ function initSearch() {
 
 let activeBookClubQuestion = null;
 
-function highlightBookClubScenes(element) {
+function highlightBookClubScenes(element, event) {
     // Prevent any default behavior that might interfere on touch devices
     if (event) {
         event.stopPropagation();
+        event.preventDefault();
     }
 
     const scenesAttr = element.dataset.scenes;

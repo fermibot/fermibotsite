@@ -1441,7 +1441,7 @@
 }
 
 .answer-content {
-    display: none;
+    display: none !important;
     margin-top: 0.5rem;
     padding: 0.75rem;
     background: var(--viz-bg-secondary);
@@ -1453,7 +1453,7 @@
 }
 
 .answer-content.visible {
-    display: block;
+    display: block !important;
 }
 
 .answer-content p {
