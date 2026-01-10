@@ -790,6 +790,15 @@
     stroke-width: 3px;
 }
 
+.node.connection-highlighted circle {
+    filter: url(#glow);
+    stroke-width: 3px;
+}
+
+.node.connection-dimmed {
+    opacity: 0.2;
+}
+
 .node text {
     user-select: none;
     cursor: pointer;
@@ -802,6 +811,15 @@
 
 .node-label {
     pointer-events: auto;
+}
+
+.node-checkmark {
+    pointer-events: none;
+    transition: opacity var(--transition-fast);
+}
+
+.node-label.viewed-label {
+    font-weight: 600;
 }
 
 .node circle.viewed {
@@ -1050,6 +1068,124 @@
     color: var(--viz-text-muted);
 }
 
+/* Enhanced Info Card Elements */
+.info-card-quotes {
+    margin: 0.75rem 0;
+    padding: 0.75rem;
+    background: var(--viz-bg-secondary);
+    border-radius: 6px;
+    border-left: 3px solid var(--act-02);
+}
+
+.info-card-quotes strong {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--viz-text);
+    margin-bottom: 0.5rem;
+}
+
+.quotes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.quote-item {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--viz-text);
+    padding: 0.3rem 0.5rem;
+    background: var(--viz-bg);
+    border-radius: 4px;
+    line-height: 1.4;
+}
+
+.info-card-characters {
+    margin: 0.75rem 0;
+    font-size: 0.85rem;
+}
+
+.info-card-characters > strong {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: var(--viz-text);
+}
+
+.characters-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.character-state {
+    font-size: 0.8rem;
+    color: var(--viz-text-muted);
+    padding: 0.25rem 0.5rem;
+    background: var(--viz-bg-secondary);
+    border-radius: 4px;
+}
+
+.character-state strong {
+    color: var(--viz-text);
+}
+
+.info-card-imagery {
+    font-size: 0.85rem;
+    color: var(--viz-text-muted);
+    margin: 0.5rem 0;
+    line-height: 1.5;
+}
+
+.info-card-themes {
+    font-size: 0.85rem;
+    color: var(--viz-text-muted);
+    margin: 0.5rem 0;
+}
+
+.info-card-mythology {
+    font-size: 0.85rem;
+    color: var(--type-mythology);
+    margin: 0.5rem 0;
+    padding: 0.4rem 0.6rem;
+    background: var(--viz-bg-secondary);
+    border-radius: 4px;
+    border-left: 3px solid var(--type-mythology);
+}
+
+.info-card-tension {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.75rem 0;
+    font-size: 0.85rem;
+}
+
+.info-card-tension strong {
+    color: var(--viz-text);
+    white-space: nowrap;
+}
+
+.tension-bar {
+    flex: 1;
+    height: 8px;
+    background: var(--viz-border);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.tension-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width var(--transition-normal);
+}
+
+.tension-value {
+    font-weight: 600;
+    color: var(--viz-text-muted);
+    min-width: 35px;
+    text-align: right;
+}
+
 .info-card-footer {
     padding: 0.75rem 1rem;
     border-top: 1px solid var(--viz-border);
@@ -1183,6 +1319,112 @@
    RESPONSIVE
    ============================================ */
 
+/* ============================================
+   BOOK CLUB QUESTIONS
+   ============================================ */
+
+.book-club-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.book-club-questions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.book-club-question {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: var(--viz-bg);
+    border: 1px solid var(--viz-border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    min-height: 120px;
+}
+
+.book-club-question:hover {
+    background: var(--viz-bg-secondary);
+    border-color: var(--act-02);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.book-club-question.active {
+    background: var(--viz-bg-secondary);
+    border-color: var(--act-02);
+    box-shadow: 0 0 0 2px rgba(122, 90, 160, 0.2);
+}
+
+.question-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    background: var(--act-02);
+    color: white;
+    font-weight: 700;
+    font-size: 0.8rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.question-content {
+    flex: 1;
+}
+
+.question-text {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--viz-text);
+    flex: 1;
+}
+
+.question-meta {
+    font-size: 0.75rem;
+    color: var(--viz-text-muted);
+    margin-top: auto;
+}
+
+/* Highlighted nodes for book club questions */
+.node.book-club-highlight circle {
+    filter: url(#glow);
+    stroke-width: 3px;
+    animation: pulse-glow 1.5s ease-in-out infinite;
+}
+
+.node.book-club-dimmed {
+    opacity: 0.15;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        filter: url(#glow);
+    }
+    50% {
+        filter: url(#glow) brightness(1.2);
+    }
+}
+
+@media (max-width: 1200px) {
+    .book-club-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .book-club-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     .controls-bar {
         flex-direction: column;
@@ -1204,6 +1446,19 @@
 
     .keyboard-help {
         display: none;
+    }
+
+    .book-club-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .book-club-question {
+        padding: 0.75rem;
+        min-height: auto;
+    }
+
+    .question-text {
+        font-size: 0.9rem;
     }
 }
 
