@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../../index.css">
 
     <!-- Visualization CSS -->
-    <link href="LifeSkills_HowToTalkToAnyone.css" rel="stylesheet">
+    <link href="LifeSkills_HowToTalkToAnyone.css?v=2026.01.11.16.30.00" rel="stylesheet">
 
     <!-- Bootstrap JS -->
     <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
@@ -67,6 +67,102 @@
     </div>
 </section>
 
+<!-- How to? Section -->
+<section class="mb-4">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <h5 class="mb-3">
+            <span style="font-size: 1.2rem;">❓</span> How to?
+            <button id="start-tour" class="btn btn-sm btn-primary float-end">
+                🎯 Start Interactive Tour
+            </button>
+        </h5>
+        <div class="clearfix"></div>
+        <p class="mb-2 text-muted small">
+            New to this visualization? Click <strong>"Start Interactive Tour"</strong> above for a guided walkthrough of
+            all features!
+        </p>
+        <details class="mt-2" open>
+            <summary style="cursor: pointer; color: var(--bs-primary);" class="mb-2">
+                <strong>Quick Guide (click to expand/collapse)</strong>
+            </summary>
+
+            <ul class="quick-guide-list mb-0">
+                <li><strong>Search:</strong> Type in the search box or press <kbd>/</kbd> to find techniques instantly
+                </li>
+                <li><strong>Filter by Section:</strong> Click any section in the legend to focus on that category
+                    <ul class="mt-2 mb-2">
+                        <li><span style="color: #1565C0; font-size: 1.1rem;">●</span> 01 You only have 10 seconds to show you're a somebody</li>
+                        <li><span style="color: #2E7D32; font-size: 1.1rem;">●</span> 02 How to Know What to Say After You Say "Hi"</li>
+                        <li><span style="color: #EF6C00; font-size: 1.1rem;">●</span> 03 How to talk like the big boys 'n' girls</li>
+                        <li><span style="color: #C62828; font-size: 1.1rem;">●</span> 04 How to be an insider in any crowd</li>
+                        <li><span style="color: #AD1457; font-size: 1.1rem;">●</span> 05 Why, we're just alike!</li>
+                        <li><span style="color: #00838F; font-size: 1.1rem;">●</span> 06 The power of praise, the folly of flattery</li>
+                        <li><span style="color: #5E35B1; font-size: 1.1rem;">●</span> 07 Direct dial their hearts</li>
+                        <li><span style="color: #D81B60; font-size: 1.1rem;">●</span> 08 How to work a party like a politician works a room</li>
+                        <li><span style="color: #6D4C41; font-size: 1.1rem;">●</span> 09 Little tricks of big winners</li>
+                    </ul>
+                </li>
+                <li><strong>View Connections:</strong> Hover over any technique to see related techniques</li>
+                <li><strong>Lock Details:</strong> Click a technique to lock its details and explore connections</li>
+                <li><strong>Numbered Badges:</strong> Each technique appears as colored text (by section) with small
+                    numbered rectangles showing related techniques — click badges to see relationships by strength.
+                </li>
+                <li><strong>Track Progress:</strong> Click progress bar to mark techniques you've learned</li>
+                <li><strong>Save Progress:</strong> Download your progress as JSON, upload it later to continue</li>
+                <li><strong>Reset:</strong> Clear all progress with the reset button</li>
+            </ul>
+        </details>
+    </div>
+</section>
+
+<!-- Issues? Section -->
+<section class="mb-4">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <h5 class="mb-3">
+            <span style="font-size: 1.2rem;">🔧</span> Issues?
+        </h5>
+        <p class="mb-2 text-muted small">
+            If the visualization isn't loading or behaving correctly, try these solutions:
+        </p>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h6 class="card-title">💻 Force Reload</h6>
+                        <p class="card-text small mb-2">Clear cached files and reload:</p>
+                        <ul class="small mb-0">
+                            <li><strong>Mac:</strong> <kbd>⌘ Cmd</kbd> + <kbd>⇧ Shift</kbd> + <kbd>R</kbd></li>
+                            <li><strong>Windows/Linux:</strong> <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd></li>
+                            <li><strong>Alternative:</strong> <kbd>Ctrl</kbd> + <kbd>F5</kbd></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h6 class="card-title">🕵️ Incognito/Private Mode</h6>
+                        <p class="card-text small mb-2">Test without cache or extensions:</p>
+                        <ul class="small mb-0">
+                            <li><strong>Chrome:</strong> <kbd>⌘ Cmd</kbd> + <kbd>⇧ Shift</kbd> + <kbd>N</kbd> (Mac) or
+                                <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd> (Windows)
+                            </li>
+                            <li><strong>Firefox:</strong> <kbd>⌘ Cmd</kbd> + <kbd>⇧ Shift</kbd> + <kbd>P</kbd> (Mac) or
+                                <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> (Windows)
+                            </li>
+                            <li><strong>Safari:</strong> <kbd>⌘ Cmd</kbd> + <kbd>⇧ Shift</kbd> + <kbd>N</kbd></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="mt-3 mb-0 text-muted small">
+            <strong>Still having issues?</strong> Try clearing your browser cache entirely, or check the browser console
+            for errors (press <kbd>F12</kbd>).
+        </p>
+    </div>
+</section>
+
 <!-- Main Visualization Wrapper -->
 <div class="visualization-wrapper">
 
@@ -86,12 +182,15 @@
         </div>
 
         <div class="controls-right">
-            <!-- Export Buttons -->
-            <button id="export-png" class="btn btn-outline-secondary export-btn" title="Export as PNG">
-                <span>&#128190;</span> PNG
+            <!-- Progress Management Buttons -->
+            <button id="download-progress" class="btn btn-sm btn-outline-primary" title="Download progress as JSON">
+                ⬇️ Download Progress
             </button>
-            <button id="export-svg" class="btn btn-outline-secondary export-btn" title="Export as SVG">
-                <span>&#128196;</span> SVG
+            <button id="upload-progress" class="btn btn-sm btn-outline-primary" title="Upload progress from JSON">
+                ⬆️ Upload Progress
+            </button>
+            <button id="reset-progress" class="btn btn-sm btn-outline-danger" title="Reset all progress">
+                🔄 Reset
             </button>
         </div>
     </div>
@@ -122,7 +221,7 @@
 </div>
 
 <!-- Visualization Script -->
-<script src="LifeSkills_HowToTalkToAnyone.js?v=2.0"></script>
+<script src="LifeSkills_HowToTalkToAnyone.js?v=2026.01.11.16.30.00"></script>
 
 <!-- Load Header/Footer -->
 <script>

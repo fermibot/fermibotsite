@@ -843,7 +843,7 @@ function createProgressModal() {
     if (!progressModalBackdrop) {
         progressModalBackdrop = d3.select('body')
             .append('div')
-            .attr('class', 'info-card-backdrop')
+            .attr('class', 'progress-modal-backdrop')
             .on('click', hideProgressModal);
     }
 
@@ -874,17 +874,6 @@ function showProgressModal() {
     let modalHTML = `
         <div class="progress-modal-header">
             <h3 class="progress-modal-title">Learning Progress</h3>
-            <div class="progress-modal-actions">
-                <button class="btn btn-sm btn-outline-primary" onclick="downloadProgress()" title="Download progress as JSON">
-                    ⬇️ Download
-                </button>
-                <button class="btn btn-sm btn-outline-primary" onclick="uploadProgress()" title="Upload progress from JSON">
-                    ⬆️ Upload
-                </button>
-                <button class="btn btn-sm btn-outline-danger" onclick="resetProgress()" title="Reset all progress">
-                    🔄 Reset
-                </button>
-            </div>
             <button class="progress-modal-close" onclick="hideProgressModal()">×</button>
         </div>
         <div class="progress-modal-body">
@@ -1763,140 +1752,6 @@ function setupKeyboardNavigation() {
     });
 }
 
-// ============================================
-// EXPORT FUNCTIONS
-// ============================================
-
-function exportAsPNG() {
-    const svgElement = document.querySelector('#visualization-svg');
-    if (!svgElement) return;
-
-    // Clone the SVG to avoid modifying the original
-    const svgClone = svgElement.cloneNode(true);
-
-    // Get computed styles and inline them
-    inlineStyles(svgClone, svgElement);
-
-    // Get the viewBox or use the bounding box
-    const viewBox = svgElement.getAttribute('viewBox');
-    let width, height;
-
-    if (viewBox) {
-        const [, , vbWidth, vbHeight] = viewBox.split(' ').map(Number);
-        width = vbWidth;
-        height = vbHeight;
-    } else {
-        const bbox = svgElement.getBoundingClientRect();
-        width = bbox.width;
-        height = bbox.height;
-        svgClone.setAttribute('viewBox', `0 0 ${width} ${height}`);
-    }
-
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    const scale = 3; // Higher quality
-    canvas.width = width * scale;
-    canvas.height = height * scale;
-    ctx.scale(scale, scale);
-
-    // Fill background
-    const bgColor = getComputedStyle(document.documentElement)
-        .getPropertyValue('--viz-bg').trim() || '#ffffff';
-    ctx.fillStyle = bgColor;
-    ctx.fillRect(0, 0, width, height);
-
-    const svgString = new XMLSerializer().serializeToString(svgClone);
-    const img = new Image();
-
-    img.onload = function() {
-        ctx.drawImage(img, 0, 0, width, height);
-        const link = document.createElement('a');
-        link.download = 'how-to-talk-to-anyone-visualization.png';
-        link.href = canvas.toDataURL('image/png', 1.0);
-        link.click();
-    };
-
-    img.onerror = function(error) {
-        console.error('Error loading SVG for PNG export:', error);
-        alert('Error exporting PNG. Please try again.');
-    };
-
-    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString);
-}
-
-function exportAsSVG() {
-    const svgElement = document.querySelector('#visualization-svg');
-    if (!svgElement) return;
-
-    // Clone the SVG to avoid modifying the original
-    const svgClone = svgElement.cloneNode(true);
-
-    // Get computed styles and inline them
-    inlineStyles(svgClone, svgElement);
-
-    // Add XML namespace declarations
-    svgClone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-    svgClone.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
-
-    const svgString = new XMLSerializer().serializeToString(svgClone);
-
-    // Add XML declaration
-    const fullSvgString = '<?xml version="1.0" encoding="UTF-8"?>\n' + svgString;
-
-    const blob = new Blob([fullSvgString], { type: 'image/svg+xml;charset=utf-8' });
-    const link = document.createElement('a');
-    link.download = 'how-to-talk-to-anyone-visualization.svg';
-    link.href = URL.createObjectURL(blob);
-    link.click();
-
-    setTimeout(() => URL.revokeObjectURL(link.href), 100);
-}
-
-// Helper function to inline CSS styles into SVG elements
-function inlineStyles(targetElement, sourceElement) {
-    if (!targetElement || !sourceElement) return;
-
-    const computedStyle = window.getComputedStyle(sourceElement);
-
-    // Copy all relevant computed styles
-    const styleStr = [];
-
-    // SVG-specific properties
-    const svgProps = ['fill', 'stroke', 'stroke-width', 'stroke-dasharray', 'stroke-linecap',
-                      'stroke-linejoin', 'stroke-opacity', 'fill-opacity', 'opacity', 'marker-start',
-                      'marker-end', 'marker-mid'];
-
-    // Text properties
-    const textProps = ['font-family', 'font-size', 'font-weight', 'font-style', 'font-variant',
-                       'text-anchor', 'dominant-baseline', 'alignment-baseline', 'letter-spacing'];
-
-    // Display properties
-    const displayProps = ['visibility', 'display', 'transform', 'transform-origin'];
-
-    const allProps = [...svgProps, ...textProps, ...displayProps];
-
-    allProps.forEach(prop => {
-        const value = computedStyle.getPropertyValue(prop);
-        if (value && value !== '' && value !== 'none' && value !== 'normal' && value !== 'auto') {
-            styleStr.push(`${prop}: ${value}`);
-        }
-    });
-
-    if (styleStr.length > 0) {
-        const currentStyle = targetElement.getAttribute('style') || '';
-        targetElement.setAttribute('style', currentStyle + '; ' + styleStr.join('; '));
-    }
-
-    // Recursively apply to all children
-    const sourceChildren = Array.from(sourceElement.children);
-    const targetChildren = Array.from(targetElement.children);
-
-    sourceChildren.forEach((sourceChild, i) => {
-        if (targetChildren[i]) {
-            inlineStyles(targetChildren[i], sourceChild);
-        }
-    });
-}
 
 // ============================================
 // LEGEND
@@ -2248,10 +2103,14 @@ function enhancedInit() {
 
     setupKeyboardNavigation();
 
-    const exportPngBtn = document.getElementById('export-png');
-    const exportSvgBtn = document.getElementById('export-svg');
-    if (exportPngBtn) exportPngBtn.addEventListener('click', exportAsPNG);
-    if (exportSvgBtn) exportSvgBtn.addEventListener('click', exportAsSVG);
+
+    // Progress management buttons
+    const downloadProgressBtn = document.getElementById('download-progress');
+    const uploadProgressBtn = document.getElementById('upload-progress');
+    const resetProgressBtn = document.getElementById('reset-progress');
+    if (downloadProgressBtn) downloadProgressBtn.addEventListener('click', downloadProgress);
+    if (uploadProgressBtn) uploadProgressBtn.addEventListener('click', uploadProgress);
+    if (resetProgressBtn) resetProgressBtn.addEventListener('click', resetProgress);
 
     // Add resize handler to hide tooltips
     window.addEventListener('resize', () => {
@@ -2284,7 +2143,301 @@ if (document.readyState === 'loading') {
     enhancedInit();
 }
 
+// ============================================
+// INTERACTIVE TOUR
+// ============================================
+
+let tourStep = 0;
+let tourOverlay = null;
+let tourTooltip = null;
+
+const tourSteps = [
+    {
+        title: "Welcome! 👋",
+        content: "Let's take a quick interactive tour of this visualization showing 92 communication techniques from \"How to Talk to Anyone\" by Leil Lowndes. We'll guide you through all the key features!",
+        target: null,
+        position: "center",
+        action: null
+    },
+    {
+        title: "Search Box 🔍",
+        content: "Try typing here to search for techniques! Press <kbd>/</kbd> as a keyboard shortcut. For example, try searching for \"smile\" to see how quickly results appear.",
+        target: "#search-input",
+        position: "top",
+        action: function() {
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) searchInput.focus();
+        }
+    },
+    {
+        title: "Progress Management 📊",
+        content: "These buttons let you download your progress as JSON (to save it), upload it later, or reset everything. Your progress is automatically saved in your browser too!",
+        target: ".controls-right",
+        position: "bottom",
+        action: null
+    },
+    {
+        title: "Progress Bar 📈",
+        content: "Try hovering over this bar right now! You'll see a detailed breakdown by section. You can also <strong>click it</strong> to open a full checklist where you can mark techniques as learned.",
+        target: ".progress-inline",
+        position: "bottom",
+        action: function() {
+            // Simulate hover effect
+            const progressBar = document.querySelector('.progress-inline');
+            if (progressBar) {
+                progressBar.style.cursor = 'pointer';
+            }
+        }
+    },
+    {
+        title: "Section Filters 🎯",
+        content: "Click any of these 9 sections to filter the visualization by topic. Try clicking one now to see only techniques from that category!",
+        target: ".legend-items",
+        position: "bottom",
+        action: null
+    },
+    {
+        title: "The Visualization 🌐",
+        content: "Each colored text represents one of the 92 techniques, arranged in a radial layout. <strong>Explore any technique you're interested in - hover to see connections, click to lock details!</strong>",
+        target: null,  // No target = no highlight, just popup
+        position: "center",
+        action: null
+    },
+    {
+        title: "You're All Set! 🎉",
+        content: "Now you know all the key features! <strong>Hover</strong> over any technique to see connections, <strong>click</strong> to lock details, use the <strong>colored dots (●)</strong> next to techniques to explore relationships. Check the <strong>Quick Guide</strong> below for a visual explanation of the relationship dots. Happy learning!",
+        target: null,
+        position: "center",
+        action: function() {
+            // Cleanup any demo highlights
+            document.querySelectorAll('.tour-demo-highlight').forEach(el => {
+                el.classList.remove('tour-demo-highlight');
+            });
+        }
+    }
+];
+
+function createTourOverlay(skipOverlay = false) {
+    // Create backdrop only if not skipped
+    if (!skipOverlay) {
+        tourOverlay = d3.select('body').append('div')
+            .attr('class', 'tour-overlay')
+            .style('position', 'fixed')
+            .style('top', '0')
+            .style('left', '0')
+            .style('width', '100%')
+            .style('height', '100%')
+            .style('background', 'rgba(0, 0, 0, 0.5)')
+            .style('z-index', '99997')
+            .style('pointer-events', 'none')
+            .style('opacity', '0');
+
+        tourOverlay.transition().duration(300).style('opacity', '1');
+    }
+
+    // Create tooltip
+    tourTooltip = d3.select('body').append('div')
+        .attr('class', 'tour-tooltip')
+        .style('position', 'fixed')
+        .style('background', 'var(--viz-card-bg)')
+        .style('border', '2px solid var(--viz-primary, #1E88E5)')
+        .style('border-radius', '12px')
+        .style('padding', '1.5rem')
+        .style('max-width', '400px')
+        .style('z-index', '100000')
+        .style('box-shadow', '0 10px 40px rgba(0,0,0,0.3)')
+        .style('pointer-events', 'auto')
+        .style('opacity', '0');
+
+    tourTooltip.transition().duration(300).style('opacity', '1');
+}
+
+function showTourStep(step) {
+    if (step < 0 || step >= tourSteps.length) {
+        endTour();
+        return;
+    }
+
+    tourStep = step;
+    const stepData = tourSteps[step];
+
+    // Special handling for step 6 (index 5): Remove overlay for full visibility
+    if (step === 5 && tourOverlay) {
+        tourOverlay.transition().duration(300).style('opacity', '0').remove();
+        tourOverlay = null;
+    }
+
+    // If moving from step 6 to another step, recreate overlay
+    if (step !== 5 && !tourOverlay) {
+        tourOverlay = d3.select('body').append('div')
+            .attr('class', 'tour-overlay')
+            .style('position', 'fixed')
+            .style('top', '0')
+            .style('left', '0')
+            .style('width', '100%')
+            .style('height', '100%')
+            .style('background', 'rgba(0, 0, 0, 0.5)')
+            .style('z-index', '99997')
+            .style('pointer-events', 'none')
+            .style('opacity', '0');
+        tourOverlay.transition().duration(300).style('opacity', '1');
+    }
+
+    // Clear highlight
+    d3.selectAll('.tour-highlight').classed('tour-highlight', false);
+
+    // Clean up any demo highlights from previous steps
+    document.querySelectorAll('.tour-demo-highlight').forEach(el => {
+        el.classList.remove('tour-demo-highlight');
+    });
+
+    // Execute step action if it exists
+    if (stepData.action && typeof stepData.action === 'function') {
+        try {
+            stepData.action();
+        } catch (error) {
+            console.warn('Tour step action error:', error);
+        }
+    }
+
+    // Build tooltip content
+    const html = `
+        <div style="margin-bottom: 1rem;">
+            <h5 style="margin: 0 0 0.5rem 0; color: var(--viz-text);">${stepData.title}</h5>
+            <p style="margin: 0; font-size: 0.9rem; color: var(--viz-text); line-height: 1.5;">${stepData.content}</p>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 0.8rem; color: var(--viz-text-muted);">
+                Step ${step + 1} of ${tourSteps.length}
+            </span>
+            <div style="display: flex; gap: 0.5rem;">
+                ${step > 0 ? '<button class="btn btn-sm btn-outline-secondary" onclick="window.prevTourStep()">← Back</button>' : ''}
+                ${step < tourSteps.length - 1 ? 
+                    '<button class="btn btn-sm btn-primary" onclick="window.nextTourStep()">Next →</button>' :
+                    '<button class="btn btn-sm btn-success" onclick="window.endTour()">Finish 🎉</button>'
+                }
+                <button class="btn btn-sm btn-outline-danger" onclick="window.endTour()">×</button>
+            </div>
+        </div>
+    `;
+
+    tourTooltip.html(html);
+
+    // Position tooltip - check for targetElement first, then target selector
+    let targetEl = null;
+
+    if (stepData.targetElement) {
+        // Use dynamically selected element (for steps 6-9)
+        targetEl = stepData.targetElement;
+    } else if (stepData.target) {
+        // Use CSS selector
+        targetEl = document.querySelector(stepData.target);
+    }
+
+    if (targetEl) {
+        // Highlight target
+        d3.select(targetEl).classed('tour-highlight', true);
+
+        // Scroll target into view
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        // Position tooltip
+        setTimeout(() => {
+            const rect = targetEl.getBoundingClientRect();
+            const tooltipNode = tourTooltip.node();
+            const tooltipRect = tooltipNode.getBoundingClientRect();
+
+            let top, left;
+
+            if (stepData.position === 'bottom') {
+                top = rect.bottom + 20;
+                left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
+            } else if (stepData.position === 'top') {
+                top = rect.top - tooltipRect.height - 20;
+                left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
+            } else if (stepData.position === 'right') {
+                top = rect.top + (rect.height / 2) - (tooltipRect.height / 2);
+                left = rect.right + 20;
+            } else if (stepData.position === 'left') {
+                top = rect.top + (rect.height / 2) - (tooltipRect.height / 2);
+                left = rect.left - tooltipRect.width - 20;
+            } else { // center
+                top = window.innerHeight / 2 - tooltipRect.height / 2;
+                left = window.innerWidth / 2 - tooltipRect.width / 2;
+            }
+
+            // Keep within viewport
+            top = Math.max(20, Math.min(top, window.innerHeight - tooltipRect.height - 20));
+            left = Math.max(20, Math.min(left, window.innerWidth - tooltipRect.width - 20));
+
+            tourTooltip
+                .style('top', top + 'px')
+                .style('left', left + 'px');
+        }, 100);
+    } else {
+        // Center position
+        setTimeout(() => {
+            const tooltipNode = tourTooltip.node();
+            const tooltipRect = tooltipNode.getBoundingClientRect();
+            const top = window.innerHeight / 2 - tooltipRect.height / 2;
+            const left = window.innerWidth / 2 - tooltipRect.width / 2;
+
+            tourTooltip
+                .style('top', top + 'px')
+                .style('left', left + 'px');
+        }, 100);
+    }
+}
+
+function startTour() {
+    createTourOverlay();
+    showTourStep(0);
+}
+
+function nextTourStep() {
+    showTourStep(tourStep + 1);
+}
+
+function prevTourStep() {
+    showTourStep(tourStep - 1);
+}
+
+function endTour() {
+    if (tourOverlay) {
+        tourOverlay.transition().duration(300).style('opacity', '0').remove();
+        tourOverlay = null;
+    }
+    if (tourTooltip) {
+        tourTooltip.transition().duration(300).style('opacity', '0').remove();
+        tourTooltip = null;
+    }
+    d3.selectAll('.tour-highlight').classed('tour-highlight', false);
+
+    // Clean up demo highlights
+    document.querySelectorAll('.tour-demo-highlight').forEach(el => {
+        el.classList.remove('tour-demo-highlight');
+    });
+
+    tourStep = 0;
+}
+
+// Setup tour button
+document.addEventListener('DOMContentLoaded', function() {
+    const tourBtn = document.getElementById('start-tour');
+    if (tourBtn) {
+        tourBtn.addEventListener('click', startTour);
+    }
+});
+
+// Export tour functions
+window.startTour = startTour;
+window.nextTourStep = nextTourStep;
+window.prevTourStep = prevTourStep;
+window.endTour = endTour;
+
+// ============================================
+// WINDOW EXPORTS
+// ============================================
+
 window.toggleLearned = toggleLearned;
 window.toggleSection = toggleSection;
-window.exportAsPNG = exportAsPNG;
-window.exportAsSVG = exportAsSVG;

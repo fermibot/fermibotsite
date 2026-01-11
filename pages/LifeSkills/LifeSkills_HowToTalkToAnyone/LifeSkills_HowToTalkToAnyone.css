@@ -70,6 +70,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 1;
 }
 
 .visualization-container svg {
@@ -198,13 +200,14 @@
     color: white;
 }
 
-/* Export Buttons */
-.export-btn {
+
+/* Progress Management Buttons in Controls */
+#download-progress,
+#upload-progress,
+#reset-progress {
     padding: 0.4rem 0.75rem;
     font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
+    white-space: nowrap;
 }
 
 /* ============================================
@@ -967,6 +970,24 @@
 /* ============================================
    PROGRESS MODAL
    ============================================ */
+
+.progress-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-fast);
+}
+
+.progress-modal-backdrop.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
 
 .progress-modal {
     position: fixed;
@@ -2045,3 +2066,238 @@
     stroke: var(--viz-link-default);
     stroke-width: 1.5px;
 }
+
+/* ============================================
+   INTERACTIVE TOUR STYLES
+   ============================================ */
+
+.tour-overlay {
+    pointer-events: none !important;
+    z-index: 99997 !important;
+}
+
+.tour-tooltip {
+    pointer-events: auto;
+    z-index: 100000 !important;
+}
+
+/* Ensure SVG and its contents are above tour overlay */
+.tour-overlay ~ * svg,
+#visualization-svg {
+    position: relative;
+    z-index: 99998 !important;
+}
+
+.tour-highlight {
+    position: relative !important;
+    z-index: 99999 !important;
+    box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.8),
+                0 0 10px 2px rgba(30, 136, 229, 0.4) !important;
+    border-radius: 8px;
+    animation: tour-pulse 2s ease-in-out infinite;
+    background-color: var(--viz-card-bg) !important;
+    opacity: 1 !important;
+    filter: brightness(1.1) !important;
+}
+
+/* Make relationship badges and all SVG elements visible during tour */
+.tour-highlight .relationship-badge,
+.tour-highlight ~ .relationship-badge,
+svg .relationship-badge,
+svg .node,
+svg text,
+svg .relationship-count-text {
+    opacity: 1 !important;
+}
+
+/* Special handling for SVG elements in tour */
+.node.tour-highlight {
+    font-weight: 700 !important;
+    font-size: 11px !important;
+    filter: drop-shadow(0 0 4px rgba(30, 136, 229, 0.8)) !important;
+    opacity: 1 !important;
+}
+
+@keyframes tour-pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.8),
+                    0 0 10px 2px rgba(30, 136, 229, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 4px rgba(30, 136, 229, 0.9),
+                    0 0 15px 3px rgba(30, 136, 229, 0.5);
+    }
+}
+
+/* Tour button styling */
+#start-tour {
+    transition: all 0.3s ease;
+}
+
+#start-tour:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+}
+
+/* Demo highlight for interactive tour steps */
+.tour-demo-highlight {
+    animation: tour-demo-pulse 2s ease-in-out infinite !important;
+    z-index: 100001 !important;
+    position: relative !important;
+}
+
+.node.tour-demo-highlight {
+    font-weight: 900 !important;
+    font-size: 14px !important;
+    opacity: 1 !important;
+    paint-order: stroke fill !important;
+    z-index: 100001 !important;
+}
+
+@keyframes tour-demo-pulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 8px rgba(255, 215, 0, 1))
+                drop-shadow(0 0 4px rgba(255, 215, 0, 1))
+                drop-shadow(0 0 2px rgba(255, 255, 255, 0.8)) !important;
+    }
+    50% {
+        filter: drop-shadow(0 0 14px rgba(255, 215, 0, 1))
+                drop-shadow(0 0 8px rgba(255, 215, 0, 1))
+                drop-shadow(0 0 4px rgba(255, 255, 255, 1)) !important;
+    }
+}
+
+/* Animation for the highlight box */
+@keyframes tour-box-pulse {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.8),
+                    0 0 8px rgba(255, 215, 0, 0.6),
+                    inset 0 0 15px rgba(255, 215, 0, 0.3);
+        border-color: rgba(255, 215, 0, 1);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(255, 215, 0, 1),
+                    0 0 15px rgba(255, 215, 0, 0.8),
+                    inset 0 0 20px rgba(255, 215, 0, 0.4);
+        border-color: rgba(255, 215, 0, 1);
+    }
+}
+
+/* ============================================
+   HOW TO? AND ISSUES? SECTIONS
+   ============================================ */
+
+details summary {
+    transition: color 0.2s ease;
+}
+
+details summary:hover {
+    opacity: 0.8;
+}
+
+details[open] summary {
+    margin-bottom: 0.75rem;
+}
+
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--viz-card-shadow);
+}
+
+kbd {
+    background-color: var(--viz-bg-secondary);
+    border: 1px solid var(--viz-border);
+    border-radius: 3px;
+    padding: 0.1rem 0.4rem;
+    font-family: monospace;
+    font-size: 0.85em;
+    color: var(--viz-text);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2), 0 0 0 2px var(--viz-bg) inset;
+}
+
+/* ============================================
+   QUICK GUIDE - SIMPLE LIST
+   ============================================ */
+
+.quick-guide-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    font-size: 0.875rem;
+}
+
+.quick-guide-list li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.quick-guide-list ul {
+    list-style-type: none;
+    padding-left: 1.5rem;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+}
+
+.quick-guide-list ul li {
+    margin-bottom: 0.25rem;
+    line-height: 1.4;
+}
+
+.legend-color-sample {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    border: 1px solid var(--viz-border);
+}
+
+/* Badge example diagram */
+.badge-example {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background-color: var(--viz-bg-secondary);
+    border: 1px solid var(--viz-border);
+    border-radius: 6px;
+    font-size: 0.875rem;
+}
+
+.technique-name-demo {
+    font-weight: 500;
+    color: var(--viz-text);
+    background-color: #64B5F6;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: white;
+}
+
+.badge-demo {
+    display: inline-block;
+    min-width: 20px;
+    padding: 2px 5px;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: 3px;
+    color: white;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.badge-demo-green {
+    background-color: #43A047;
+}
+
+.badge-demo-orange {
+    background-color: #FB8C00;
+}
+
+.badge-demo-red {
+    background-color: #E53935;
+}
+
+
