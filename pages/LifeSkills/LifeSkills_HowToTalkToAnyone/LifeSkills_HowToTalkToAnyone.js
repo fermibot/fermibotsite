@@ -740,6 +740,39 @@ function toggleLearned(chapterKey) {
     }
 }
 
+function toggleLearnedFromPanel(chapterKey) {
+    // Toggle the learned state
+    if (state.learnedChapters.has(chapterKey)) {
+        state.learnedChapters.delete(chapterKey);
+    } else {
+        state.learnedChapters.add(chapterKey);
+    }
+
+    saveProgress();
+    updateProgressUI();
+    updateNodeStyles();
+
+    // Save scroll position
+    const panelBody = relationshipPanel.select('.relationship-panel-body').node();
+    const scrollTop = panelBody ? panelBody.scrollTop : 0;
+
+    // Refresh the panel with current data
+    if (state.currentRelatedNode && state.currentRelatedData) {
+        showRelationshipPanel(state.currentRelatedNode, state.currentRelatedData);
+
+        // Restore scroll position after refresh
+        setTimeout(() => {
+            const newPanelBody = relationshipPanel.select('.relationship-panel-body').node();
+            if (newPanelBody) {
+                newPanelBody.scrollTop = scrollTop;
+            }
+        }, 0);
+    }
+}
+
+// Make functions globally available
+window.toggleLearnedFromPanel = toggleLearnedFromPanel;
+
 function toggleSection(sectionNum) {
     if (!state.root) return;
 
@@ -1374,6 +1407,7 @@ function showRelationshipPanel(d, related) {
     const maxSimilarity = (related.top[0].similarity * 100).toFixed(0);
     const totalCount = related.all.length;
     const shownCount = state.relationshipPanelExpanded ? totalCount : 9;
+    const currentSummary = d.data.summary || '';
 
     let panelHTML = `
         <div class="relationship-panel-header">
@@ -1383,6 +1417,9 @@ function showRelationshipPanel(d, related) {
                 <p>Related Techniques</p>
             </div>
             <button class="relationship-panel-close" onclick="hideRelationshipLinks()">×</button>
+        </div>
+        <div class="relationship-panel-current-description">
+            ${currentSummary}
         </div>
         <div class="relationship-panel-stats">
             <div class="stat-item">
@@ -1433,6 +1470,7 @@ function showRelationshipPanel(d, related) {
         related.all.forEach((item, index) => {
             const simPercent = (item.similarity * 100).toFixed(0);
             const crossSectionBadge = item.crossSection ? '<span class="cross-section-badge">Cross-Section</span>' : '';
+            const isLearned = state.learnedChapters.has(item.node.data.key);
 
             // Color code based on position
             let barColor = '#43A047'; // Green for top third
@@ -1443,7 +1481,12 @@ function showRelationshipPanel(d, related) {
             }
 
             panelHTML += `
-                <div class="relationship-item" data-node-key="${item.node.data.key}">
+                <div class="relationship-item ${isLearned ? 'item-learned' : ''}" data-node-key="${item.node.data.key}">
+                    <input type="checkbox" 
+                           class="relationship-item-checkbox" 
+                           ${isLearned ? 'checked' : ''}
+                           onclick="event.stopPropagation(); toggleLearnedFromPanel('${item.node.data.key.replace(/'/g, "\\'")}');"
+                           title="Mark as learned">
                     <button class="relationship-item-info-btn" title="View details">ℹ️</button>
                     <div class="relationship-item-bar-wrapper">
                         <div class="relationship-item-rank">#${index + 1}</div>
@@ -1483,8 +1526,15 @@ function showRelationshipPanel(d, related) {
             group.items.forEach(item => {
                 const simPercent = (item.similarity * 100).toFixed(0);
                 const crossSectionBadge = item.crossSection ? '<span class="cross-section-badge">Cross-Section</span>' : '';
+                const isLearned = state.learnedChapters.has(item.node.data.key);
+
                 panelHTML += `
-                    <div class="relationship-item" data-node-key="${item.node.data.key}">
+                    <div class="relationship-item ${isLearned ? 'item-learned' : ''}" data-node-key="${item.node.data.key}">
+                        <input type="checkbox" 
+                               class="relationship-item-checkbox" 
+                               ${isLearned ? 'checked' : ''}
+                               onclick="event.stopPropagation(); toggleLearnedFromPanel('${item.node.data.key.replace(/'/g, "\\'")}');"
+                               title="Mark as learned">
                         <button class="relationship-item-info-btn" title="View details">ℹ️</button>
                         <div class="relationship-item-bar-wrapper">
                             <div class="relationship-item-bar" style="width: ${simPercent}%; background: ${group.color};"></div>
@@ -1519,10 +1569,11 @@ function showRelationshipPanel(d, related) {
     relationshipPanel.html(panelHTML);
     relationshipPanel.classed('visible', true);
 
-    // Add click handlers to relationship items
+    // Add click handlers to relationship items (not info button or checkbox)
     relationshipPanel.selectAll('.relationship-item').on('click', function(event) {
-        // Don't navigate if clicking the info button
-        if (event.target.classList.contains('relationship-item-info-btn')) {
+        // Don't navigate if clicking the info button or checkbox
+        if (event.target.classList.contains('relationship-item-info-btn') ||
+            event.target.classList.contains('relationship-item-checkbox')) {
             return;
         }
 
@@ -1551,21 +1602,48 @@ function showRelationshipPanel(d, related) {
         }
     });
 
-    // Add click handlers to info buttons
-    relationshipPanel.selectAll('.relationship-item-info-btn').on('click', function(event) {
-        event.stopPropagation();
-        const parentItem = this.closest('.relationship-item');
-        const nodeKey = parentItem.getAttribute('data-node-key');
-        if (nodeKey) {
-            // Find the corresponding node
-            const allNodes = state.root.leaves();
-            const targetNode = allNodes.find(n => n.data.key === nodeKey);
-            if (targetNode) {
-                // Show the info card
-                showInfoCard(targetNode, event);
+    // Add hover handlers to relationship item info buttons for tooltips
+    relationshipPanel.selectAll('.relationship-item-info-btn')
+        .on('mouseenter', function(event) {
+            event.stopPropagation();
+            const parentItem = this.closest('.relationship-item');
+            const nodeKey = parentItem.getAttribute('data-node-key');
+            if (nodeKey) {
+                const allNodes = state.root.leaves();
+                const targetNode = allNodes.find(n => n.data.key === nodeKey);
+                if (targetNode) {
+                    // Replicate diagram hover: show tooltip (correct parameter order: d, event)
+                    showTooltip(targetNode, event);
+                }
             }
-        }
-    });
+        })
+        .on('mouseleave', function(event) {
+            // Hide tooltip when mouse leaves
+            hideTooltip();
+        })
+        .on('click', function(event) {
+            event.stopPropagation();
+            const parentItem = this.closest('.relationship-item');
+            const nodeKey = parentItem.getAttribute('data-node-key');
+            if (nodeKey) {
+                const allNodes = state.root.leaves();
+                const targetNode = allNodes.find(n => n.data.key === nodeKey);
+                if (targetNode) {
+                    // Replicate diagram click behavior: lock node and show info card
+                    if (state.lockedNode) {
+                        state.lockedNode = null;
+                        node.classed('node--locked', false);
+                        hideTooltip();
+                    }
+
+                    // Set new locked node
+                    state.lockedNode = targetNode;
+                    node.classed('node--locked', n => n === targetNode);
+                    hideTooltip();
+                    showInfoCard(targetNode, event);
+                }
+            }
+        });
 
     // Hide the mini legend when panel is shown
     hideMiniLegend();
