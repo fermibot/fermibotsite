@@ -1,0 +1,2646 @@
+{
+  "metadata": {
+    "title": "Avatar",
+    "director": "James Cameron",
+    "year": 2009,
+    "runtime": "162 minutes",
+    "totalScenes": 40
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "act": "act1",
+      "title": "Opening Dream - Jake's Arrival",
+      "types": ["establishing", "discovery", "character"],
+      "location": {
+        "primary": "ISV Venture Star / Pandora Orbit",
+        "secondary": "Hell's Gate Compound",
+        "significance": "First glimpse of alien world from space; transition from cold technology to vibrant nature"
+      },
+      "time": "Day 1",
+      "duration": "~8 minutes",
+
+      "plotSummary": {
+        "brief": "Jake Sully awakens from cryo-sleep after a five-year journey. A paralyzed Marine replacing his deceased twin brother, he experiences Pandora's beauty from orbit before landing at the militarized Hell's Gate compound, where Colonel Quaritch delivers an intimidating briefing about the hostile environment.",
+        "detailed": "The film opens with Jake's voice-over describing dreams of flying through an alien forest—a premonition of his future as a Na'vi. We see him confined to a wheelchair with a 'big hole blown through the middle of his life.' Jake has been chosen to replace his identical twin brother Tommy in the Avatar Program because their genetic match allows him to use Tommy's expensive avatar. The ISV Venture Star arrives at Pandora after 5.9 years of cryo-sleep. Jake's first view of Pandora from space reveals floating mountains and bioluminescent forests. Landing at Hell's Gate, the heavily fortified human colony, Jake is immediately thrust into Quaritch's intimidating safety briefing about the dangers of Pandora's hostile ecosystem and the Na'vi people.",
+        "subtext": "This opening establishes Jake's dual nature: broken but hungry for purpose. His paralysis makes him desperate for a 'fresh start,' setting up his later choice to permanently abandon his human body. The contrast between his wheelchair confinement and the freedom of his dream flight foreshadows his transformation."
+      },
+
+      "characterDevelopment": {
+        "jake": {
+          "state": "Paralyzed, directionless, desperate for purpose",
+          "desires": "To walk again, to have meaning, to prove himself",
+          "fears": "Being useless, pity, never walking again",
+          "arc": "Begins as broken warrior with nothing to lose - perfect for both Quaritch and Grace to manipulate",
+          "key_moment": "When Jake sees his avatar for the first time, his eyes light up with hope for the first time in years"
+        },
+        "quaritch": {
+          "state": "Scarred veteran, ruthlessly pragmatic",
+          "agenda": "Sees Jake as potential intelligence asset against the Na'vi",
+          "methods": "Intimidation mixed with appeals to masculine warrior pride",
+          "key_moment": "His briefing establishes the colonial mindset: 'You're not in Kansas anymore'"
+        }
+      },
+
+      "worldBuilding": {
+        "pandora": {
+          "description": "Moon of gas giant Polyphemus; Earth-like but more vibrant",
+          "atmosphere": "Toxic to humans (high CO2); requires exo-packs",
+          "gravity": "Lower than Earth; humans/avatars can jump higher, move easier",
+          "ecosystem": "Hyper-dense rainforest; bioluminescence; neural networks"
+        },
+        "hellsGate": {
+          "description": "Human colony and mining operation; fortress mentality",
+          "defenses": "10-meter chain-link fence, sentry guns, AMP suits",
+          "purpose": "Extract unobtanium for Earth's energy crisis",
+          "atmosphere": "Military occupation; siege mentality; 'constant threat condition yellow'"
+        },
+        "technology": {
+          "ISV_Venture_Star": "Antimatter-driven interstellar vessel; half-mile long",
+          "cryo_sleep": "5.9 years suspended animation",
+          "exo_packs": "Breathing masks; 20 seconds without = unconscious, 4 minutes = dead",
+          "RDA": "Resources Development Administration - corporate entity owning mining rights"
+        }
+      },
+
+      "naviCulture": {
+        "introduced": [],
+        "references": ["Quaritch mentions Na'vi use 'arrows dipped in neurotoxin'", "Called 'indigenous humanoids' - dehumanizing language"],
+        "context": "Na'vi are presented as threats, not people - colonial framing"
+      },
+
+      "visualStorytelling": {
+        "openingImagery": "Flying through misty forest - subjective camera becomes Jake's POV",
+        "contrast": "Lush dream vs. harsh fluorescent hospital; freedom vs. confinement",
+        "color_palette": "Earth scenes: cold blues, grays, institutional; Pandora from space: vibrant cyan, green",
+        "cameraWork": "Wheelchair POV shots emphasize Jake's low position, others tower over him",
+        "symbolism": "Wheelchair = prison of body and circumstance; Pandora = liberation"
+      },
+
+      "soundDesign": {
+        "music": "Opens with tribal drums building tension; shifts to melancholy for Jake's Earth scenes",
+        "ambient": "Forest sounds in dream; sterile ship sounds in reality",
+        "dialogue": "Voice-over narration establishes Jake's inner voice and perspective"
+      },
+
+      "keyDialogue": [
+        {
+          "character": "Jake (V.O.)",
+          "line": "Sooner or later though, you always have to wake up.",
+          "significance": "Ironic: by film's end, he 'wakes up' in avatar permanently"
+        },
+        {
+          "character": "Quaritch",
+          "line": "Out beyond that fence every living thing that crawls, flies or squats in the mud wants to kill you and eat your eyes for jujubes.",
+          "significance": "Establishes threat level; dehumanizes Pandoran life; dark humor masks fear"
+        },
+        {
+          "character": "Quaritch",
+          "line": "You are not in Kansas anymore. You are on Pandora, ladies and gentlemen.",
+          "significance": "Wizard of Oz reference; acknowledges otherworldly nature of their mission"
+        }
+      ],
+
+      "thematicElements": {
+        "disability": "Jake's paralysis isn't just physical - represents spiritual/emotional paralysis",
+        "colonialism": "Military occupation of indigenous land for resource extraction",
+        "identity": "Jake replacing his twin - literally stepping into someone else's life",
+        "rebirth": "Emerging from cryo-sleep like being born; arrival on new world",
+        "military_industrial": "Corporate greed backed by military force"
+      },
+
+      "emotionalBeats": {
+        "jake_hope": "First glimpse of avatar - possibility of walking again",
+        "jake_overwhelm": "Sensory overload of new world",
+        "jake_intimidation": "Quaritch's briefing makes clear the stakes"
+      },
+
+      "moralQuestions": [
+        "Is it ethical to replace one twin with another in expensive program?",
+        "What justifies military occupation of another world?",
+        "Can corporate profit ever justify environmental destruction?"
+      ],
+
+      "cinematography": {
+        "aspect_ratio": "2.39:1 widescreen - epic scope",
+        "3D_design": "First major 3D film; depth used to immerse in Pandora",
+        "notable_shots": [
+          "Jake's POV through cryo-capsule glass - rebirth imagery",
+          "Wide shot of Pandora from space - establishing scale and beauty",
+          "Low angle of Quaritch - makes him imposing, threatening"
+        ]
+      },
+
+      "foreshadowing": [8, 15, 26, 40],
+      "callbacks": [],
+      "parallels": ["Jake's dream of flying = his future on Toruk"],
+
+      "symbols": {
+        "wheelchair": "Physical and spiritual imprisonment",
+        "avatar_tank": "Promise of liberation and rebirth",
+        "cryo_sleep": "Death and resurrection; transformation",
+        "fence": "Barrier between worlds (literal and metaphorical)",
+        "arrows_vs_guns": "Indigenous resistance vs. colonial power"
+      },
+
+      "tension": 4,
+      "significance": "Establishes Jake's desperation and the colonial conflict that will drive the entire narrative"
+    },
+
+    {
+      "id": 2,
+      "act": "act1",
+      "title": "Meeting Grace - First Look at Avatar",
+      "types": ["character", "discovery", "conflict"],
+      "location": {
+        "primary": "Bio-Lab Complex",
+        "secondary": "Avatar Amnio Tanks",
+        "significance": "Scientific heart of the program; where human consciousness merges with Na'vi biology"
+      },
+      "time": "Day 1 - Afternoon",
+      "duration": "~5 minutes",
+
+      "plotSummary": {
+        "brief": "Jake meets Dr. Grace Augustine, who is openly hostile about his lack of scientific training. Despite her skepticism, Jake is mesmerized when he sees his avatar—a ten-foot-tall blue Na'vi body with his features—floating in an amnio tank.",
+        "detailed": "In the bio-lab, Jake meets Norm Spellman, his brother's colleague who resents Jake taking Tommy's place. Dr. Grace Augustine enters—a chain-smoking, no-nonsense scientist who immediately expresses contempt for the military sending her an untrained 'jarhead' instead of her PhD-trained scientist. Grace challenges Jake's qualifications: he has no lab training, never ran a gas chromatograph, barely passed high school chemistry. While Grace argues with Max about the situation, Jake rolls toward his avatar's amnio tank. The massive blue body floats peacefully, connected by an artificial umbilical, its features unmistakably Jake's despite the feline ears and tail. Jake stares, transfixed by this impossible other self.",
+        "subtext": "Grace's hostility stems from losing students to violence (revealed later) and frustration with RDA's priorities. She wants scientists; they send soldiers. Jake represents everything she resents about the military-corporate takeover of her scientific mission."
+      },
+
+      "characterDevelopment": {
+        "grace": {
+          "state": "Bitter, protective of her work, chain-smoking stress",
+          "history": "Ran a school for Na'vi children; students killed by trigger-happy marines",
+          "motivation": "Genuinely cares about Na'vi and Pandoran ecosystem",
+          "conflict": "Scientist trapped in corporate-military operation",
+          "key_moment": "Her sarcastic 'Yeah, yeah, I know who you are, and I don't need you' establishes her as antagonistic mentor"
+        },
+        "jake": {
+          "state": "Out of his depth but fascinated",
+          "reaction": "Doesn't defend himself; used to being underestimated",
+          "key_moment": "Seeing his avatar - first real hope in years; mesmerized by possibility"
+        },
+        "norm": {
+          "state": "Jealous, resentful",
+          "background": "Trained three years for this mission alongside Tommy",
+          "arc_start": "Sees Jake as unqualified interloper"
+        }
+      },
+
+      "worldBuilding": {
+        "avatar_program": {
+          "science": "Human DNA + Na'vi DNA = hybrid body grown to maturity during journey",
+          "cost": "Billions per avatar; genetic match required for neural link",
+          "purpose": "Infiltrate Na'vi society; earn trust; facilitate mining operations",
+          "link_technology": "Psionic link transfers consciousness from human to avatar",
+          "limitation": "Each driver genetically matched to their specific avatar"
+        },
+        "avatar_biology": {
+          "height": "10 feet tall",
+          "skin": "Cyan blue with bioluminescent patterns",
+          "features": "Feline ears, tail, four fingers, queue (neural whip)",
+          "eyes": "Large, golden, optimized for low light",
+          "strength": "Naturally stronger than humans even without Pandora's lower gravity"
+        },
+        "bioLab": {
+          "purpose": "Avatar storage, maintenance, link operations",
+          "security": "RDA controlled; Grace fights for autonomy",
+          "politics": "Constant battle between scientific and corporate interests"
+        }
+      },
+
+      "naviCulture": {
+        "introduced": ["Reference to queue (neural braid) visible on avatar"],
+        "significance": "The queue is crucial to Na'vi connection with nature and Eywa"
+      },
+
+      "visualStorytelling": {
+        "avatar_reveal": "Camera follows Jake's wheelchair toward tank; slow push-in on avatar's face",
+        "color": "Blue amnio fluid; cool scientific lighting contrasts with warm Earth tones",
+        "reflection": "Jake's face reflected in tank glass next to avatar's - twin selves",
+        "composition": "Jake small in wheelchair, dwarfed by massive avatar tank",
+        "symbolism": "Avatar floating like fetus - about to be born into new life"
+      },
+
+      "soundDesign": {
+        "ambient": "Lab equipment humming; fluid circulation; sterile environment",
+        "music": "Ethereal tones when Jake sees avatar; sense of wonder and possibility",
+        "dialogue": "Grace's harsh smoker's voice; Jake's quiet awe"
+      },
+
+      "keyDialogue": [
+        {
+          "character": "Grace",
+          "line": "You see? You see? They're pissing on us without even the courtesy of calling it rain.",
+          "significance": "Expresses frustration with RDA/military contempt for scientific mission"
+        },
+        {
+          "character": "Norm",
+          "line": "So the proprioceptive sims worked pretty well. They've got great muscle tone.",
+          "significance": "Establishes avatars were exercised during journey via neural simulation"
+        },
+        {
+          "character": "Jake (Videolog)",
+          "line": "The idea is that every driver is matched to his own avatar, so their nervous systems are in tune, or something.",
+          "significance": "Jake doesn't fully understand the science - relying on 'or something'"
+        }
+      ],
+
+      "thematicElements": {
+        "identity": "Staring at a body that is/isn't you; self made other",
+        "science_vs_military": "Grace's research co-opted for corporate conquest",
+        "class": "PhDs vs. jarheads; education privilege vs. working-class soldiers",
+        "rebirth": "Avatar as second chance at life",
+        "corporate_exploitation": "Billions invested in avatars for profit, not science"
+      },
+
+      "emotionalBeats": {
+        "grace_disgust": "Visible contempt for Jake replacing her student Tommy",
+        "jake_wonder": "Child-like fascination seeing avatar; first hope",
+        "norm_resentment": "Trained for years; loses opportunity to untrained replacement"
+      },
+
+      "moralQuestions": [
+        "Should Jake use his brother's avatar when he has no training?",
+        "Is scientific knowledge being perverted for corporate ends?",
+        "What are the ethics of creating hybrid beings for infiltration?"
+      ],
+
+      "cinematography": {
+        "camera_movement": "Slow dolly toward avatar tank; emphasizes Jake's perspective",
+        "lighting": "Cool blue medical lighting; creates otherworldly feel",
+        "notable_shots": [
+          "Avatar's face turning toward camera in amnio fluid",
+          "Jake's awestruck expression reflected in tank glass",
+          "Grace's cigarette smoke curling - her frustration made visible"
+        ]
+      },
+
+      "characterRelationships": {
+        "jake_grace": "Antagonistic; she sees him as corporate pawn, he sees her as bitter academic",
+        "jake_norm": "Competitive; Norm trained for years, Jake lucked into it",
+        "grace_norm": "Mentorship; she values his scientific background"
+      },
+
+      "foreshadowing": [3, 19, 40],
+      "callbacks": [],
+      "parallels": [],
+
+      "symbols": {
+        "amnio_tank": "Womb; rebirth; second life waiting",
+        "cigarette": "Grace's stress and mortality; Earth vices on new world",
+        "scientific_equipment": "Human rationality attempting to understand the alien",
+        "twin_faces": "Duality; two selves; choice between worlds"
+      },
+
+      "tension": 3,
+      "significance": "Introduces central avatar technology and Grace's character; establishes Jake's wonder vs. Grace's cynicism - two reactions to Pandora"
+    },
+
+    {
+      "id": 3,
+      "act": "act1",
+      "title": "First Link - Running Free",
+      "types": ["transformation", "discovery", "character"],
+      "location": {
+        "primary": "Avatar Compound",
+        "secondary": "Grass fields outside bio-lab",
+        "significance": "First taste of freedom; physical transformation from paralyzed to superhuman"
+      },
+      "time": "Day 2 - Morning",
+      "duration": "~4 minutes",
+
+      "plotSummary": {
+        "brief": "Jake links with his avatar for the first time. Overwhelmed by sensation after five years of paralysis, he leaps from the gurney and runs outside—his first steps in half a decade. Grace and the medical team chase him. Jake experiences pure physical joy, running barefoot through wet grass, feeling rain on his skin. This is the freedom he thought he'd lost forever.",
+        "detailed": "In the link room, Jake's consciousness transfers into his avatar body for the first time. The medical team monitors his vitals as the neural connection establishes. Jake's avatar eyes flutter open. He sits up suddenly, overwhelmed by sensations—ten feet tall, impossibly strong, every nerve ending alive. Before anyone can stop him, he leaps from the medical gurney and bursts through the doors. Grace shouts after him but Jake is gone, running barefoot across the compound. He sprints through wet grass, laughing like a child, feeling the earth beneath his feet for the first time in five years. Rain begins to fall and Jake tilts his face up, experiencing every drop. The medical team finally catches up, exasperated but understanding. Grace watches Jake's joy with a mixture of annoyance and recognition—she remembers her own first link.",
+        "subtext": "This scene is Jake's rebirth. The five years of paralysis, of being broken and purposeless, evaporate in seconds. His reckless sprint isn't just physical joy—it's emotional liberation. For the first time since his injury, Jake is whole. The avatar represents more than mobility; it's proof that his life isn't over. This moment plants the seed for his eventual choice to abandon his human body permanently."
+      },
+
+      "characterDevelopment": {
+        "jake": {
+          "state": "Ecstatic, overwhelmed by sensation, childlike with joy",
+          "desires": "To never stop moving, to never go back to the wheelchair",
+          "fears": "That this is temporary, that he'll have to return to his paralyzed body",
+          "arc": "Experiences first taste of what being Na'vi feels like; begins to prefer avatar life",
+          "key_moment": "Running in the rain—pure, unfiltered joy of embodiment; laughing for first time in years"
+        },
+        "grace": {
+          "state": "Exasperated but sympathetic; remembers her own first link",
+          "motivation": "Professional concern mixed with understanding of what Jake is experiencing",
+          "key_moment": "Her expression softens as she watches Jake run—she remembers this feeling"
+        }
+      },
+
+      "worldBuilding": {
+        "link_technology": {
+          "process": "Neural connection transfers consciousness from human to avatar",
+          "sensation": "Overwhelming at first; sensory input far exceeds human baseline",
+          "safety": "Normally gradual; Jake's instant adaptation and escape is unusual",
+          "monitoring": "Medical team tracks vitals during link; can emergency disconnect"
+        },
+        "avatar_capabilities": {
+          "strength": "Far exceeds human; Jake leaps from high gurney effortlessly",
+          "speed": "Enhanced running speed and agility in Pandora's lower gravity",
+          "senses": "Heightened smell, hearing, vision optimized for low light",
+          "physical_differences": "Ten feet tall, tail for balance, bare feet with better grip"
+        }
+      },
+
+      "naviCulture": {
+        "introduced": [],
+        "references": ["Avatar body has Na'vi features but hasn't yet learned Na'vi ways"],
+        "context": "Jake is in Na'vi body but still thinking/acting purely human"
+      },
+
+      "visualStorytelling": {
+        "opening": "Close-up of Jake's avatar eyes opening for first time—golden, huge, alien",
+        "contrast": "Sterile link room vs. open natural space outside; confinement vs. freedom",
+        "color_palette": "Cool blues of medical bay transform to vibrant greens of grass and warm rain",
+        "cameraWork": "Follows Jake in continuous tracking shot as he bursts outside; no cuts—unbroken freedom",
+        "symbolism": "Barefoot running through grass = connection to earth; rain = baptism/rebirth"
+      },
+
+      "soundDesign": {
+        "music": "Soaring, triumphant score as Jake runs; tribal drums build underneath",
+        "ambient": "Rain pattering; Jake's breathing and laughter; grass rustling",
+        "dialogue": "Minimal—Jake's wordless joy; Grace shouting 'Jake!' repeatedly"
+      },
+
+      "keyDialogue": [
+        {
+          "character": "Jake (V.O.)",
+          "line": "I was a Marine, and I wanted my life back. Here I could walk, I could run. I was free.",
+          "significance": "Encapsulates his entire motivation; avatar = reclaiming lost life"
+        }
+      ],
+
+      "thematicElements": {
+        "freedom": "Physical freedom as metaphor for spiritual/emotional freedom from past trauma",
+        "embodiment": "Contrast between broken human body and perfect avatar body; what makes us ourselves?",
+        "rebirth": "Rain, grass, running = baptism into new life; leaving old identity behind",
+        "addiction": "First hint that avatar life may become addictive; Jake won't want to disconnect"
+      },
+
+      "emotionalBeats": {
+        "jake_ecstasy": "Pure, childlike joy; first happiness in years",
+        "jake_liberation": "Psychological weight lifting; proof life isn't over",
+        "grace_understanding": "Recognizes what Jake feels; softens toward him"
+      },
+
+      "moralQuestions": [
+        "If you could escape a disabled body, would you ever want to return?",
+        "When does therapeutic technology become escape from reality?",
+        "Is Jake's joy authentic or is he running from his human problems?"
+      ],
+
+      "cinematography": {
+        "notable_shots": [
+          "Extreme close-up: Avatar eyes opening—shift from human POV to Na'vi",
+          "Long continuous take: Jake bursting outside and running—emphasizes freedom",
+          "Slow-motion: Rain drops hitting Jake's upturned face, his laughter"
+        ],
+        "camera_movement": "Fluid, following Jake's movement; audience experiences his liberation",
+        "lighting": "Shift from fluorescent medical lighting to natural daylight"
+      },
+
+      "foreshadowing": [15, 19, 40],
+      "callbacks": [1],
+      "parallels": ["Opening dream of running through forest—now becoming real"],
+
+      "symbols": {
+        "running": "Freedom, escape, reclaimed manhood",
+        "rain": "Baptism, rebirth, washing away old life",
+        "barefoot": "Direct connection to Pandora; shedding human technology",
+        "laughter": "Joy Jake hasn't felt since before injury; innocence reclaimed"
+      },
+
+      "tension": 5,
+      "significance": "Pivotal moment establishing Jake's avatar addiction; plants seed for his eventual permanent transfer; shows his impulsive nature that will drive plot"
+    },
+
+    {
+      "id": 4,
+      "act": "act1",
+      "title": "First Sortie into Pandora",
+      "types": ["action", "discovery", "conflict"],
+      "location": {
+        "primary": "Pandoran Rainforest",
+        "secondary": "Dense jungle near Hell's Gate perimeter",
+        "significance": "First deep immersion in alien ecosystem; Jake's baptism into Pandora's wonders and dangers"
+      },
+      "time": "Day 3 - Morning",
+      "duration": "~7 minutes",
+
+      "plotSummary": {
+        "brief": "The avatar team ventures into the jungle to collect botanical samples. Jake experiences Pandora's overwhelming biodiversity: massive trees reaching hundreds of feet, exotic bioluminescent plants, bizarre six-legged creatures. Grace warns him repeatedly not to touch anything—every organism is potentially deadly.",
+        "detailed": "Grace leads Jake, Norm, and armed security escorts into the primordial rainforest beyond Hell's Gate's fortified perimeter. For Jake, it's sensory overload in his new avatar body—heightened senses detect scents, sounds, and colors humans cannot perceive. Grace, in full scientist mode, catalogs samples while lecturing about Pandora's unique biology. The forest is structured in vertical layers: massive tree trunks like cathedral columns support a canopy so thick it blocks direct sunlight. Everything glows faintly with bioluminescence even in daylight. Jake touches a spiral of helicoradians (fern-like plants) and they retract violently. Six-legged hexapedes (deer-like creatures) scatter at their approach. The ecosystem operates on principles alien to Earth biology, yet Grace explains everything is neurally interconnected. Every plant communicates through chemical and electrical signals. Jake is fascinated but reckless, constantly wandering from the group to explore. Grace grows increasingly frustrated with his lack of scientific discipline—he's a tourist where she needs a researcher.",
+        "subtext": "This scene contrasts Jake's wonder with Grace's frustration. To Jake, Pandora is adventure and beauty—an escape from his broken life. To Grace, it's a sacred living network being destroyed by corporate greed. Her impatience masks deeper fear: she's losing this world she loves, and the military keeps sending her soldiers instead of scientists who might help save it."
+      },
+
+      "characterDevelopment": {
+        "jake": {
+          "state": "Overwhelmed by sensory input; childlike wonder mixed with Marine hypervigilance",
+          "desires": "To explore everything, touch everything, understand this alien world",
+          "fears": "Looking foolish in front of Grace; being sent back to his wheelchair",
+          "arc": "First exposure to Pandora's interconnected ecosystem plants seeds of his conversion",
+          "key_moment": "Watching helicoradians retract—first lesson that everything here is alive and aware"
+        },
+        "grace": {
+          "state": "In her element but frustrated; teaching mode mixed with exasperation",
+          "motivation": "Trying to instill respect for Pandoran life in Jake before his ignorance gets someone killed",
+          "arc": "Slowly recognizing that Jake's wonder, while unscientific, might make him receptive to Na'vi worldview",
+          "key_moment": "Her lecture about neural networks—setting up revelation that Eywa is real, not myth"
+        },
+        "norm": {
+          "state": "Dutiful, by-the-book, still resentful of Jake",
+          "motivation": "Proving his scientific credentials; doing everything 'properly'",
+          "key_moment": "Collecting samples methodically while Jake wanders—contrasting approaches"
+        }
+      },
+
+      "worldBuilding": {
+        "pandoran_ecosystem": {
+          "vertical_structure": "Forest layers from floor to canopy; different ecosystems at different heights",
+          "bioluminescence": "Nearly all flora and fauna emit light; serves communication and navigation",
+          "hexapodal_design": "Most Pandoran animals have six limbs; evolutionary adaptation to lower gravity",
+          "neural_networks": "Plants chemically and electrically communicate; forest acts as distributed nervous system"
+        },
+        "flora": {
+          "helicoradians": "Spiral fern-like plants that retract when touched; defensive mechanism",
+          "massive_trees": "Hundreds of feet tall; trunks wide as buildings; some over 1000 years old",
+          "bioluminescent_moss": "Glows blue-green; covers most surfaces; photosynthesizes and emits light",
+          "sensing_plants": "Respond to touch, movement, chemical signals; forest is reactive and aware"
+        },
+        "fauna": {
+          "hexapede": "Six-legged herbivore; deer-like but with armored head and fan-like antennae",
+          "prolemuris": "Small blue primates; arboreal; highly social; neural whips for tree-connection",
+          "tetrapteron": "Four-winged bird analogue; produces haunting calls; navigates via magnetic sense"
+        }
+      },
+
+      "naviCulture": {
+        "introduced": [],
+        "references": ["Grace mentions Na'vi understand forest connections better than any human scientist", "Security guards nervously watch for Na'vi ambush"],
+        "context": "Na'vi presence felt but unseen; they're watching from the forest shadows"
+      },
+
+      "visualStorytelling": {
+        "opening": "Tracking shot following avatars through dense undergrowth; camera emphasizes scale",
+        "contrast": "Cramped, dangerous jungle vs. earlier open compound scenes; feeling of being watched",
+        "color_palette": "Deep greens, blues, purples; bioluminescent accents creating alien atmosphere",
+        "cameraWork": "Subjective camera from Jake's POV; audience experiences sensory overload with him",
+        "symbolism": "Helicoradians retracting = Pandora responding to presence; forest is alive and aware"
+      },
+
+      "soundDesign": {
+        "music": "Atmospheric, mysterious; tribal percussion building underneath; sense of hidden presence",
+        "ambient": "Dense soundscape: insect analogue chirping, distant animal calls, leaves rustling, wind through massive trees",
+        "dialogue": "Grace's scientific explanations; Jake's questions; security team's nervous chatter"
+      },
+
+      "keyDialogue": [
+        {
+          "character": "Grace",
+          "line": "That's a helicoradianm. And stop that! Don't touch anything.",
+          "significance": "Establishes Grace's protectiveness of ecosystem; Jake's recklessness"
+        },
+        {
+          "character": "Grace",
+          "line": "I'm trying to teach you to see the forest, not just the trees. Everything is connected.",
+          "significance": "Core theme of interconnection; foreshadows Eywa revelation"
+        },
+        {
+          "character": "Jake (V.O.)",
+          "line": "Grace was a legend—the best of the best. She wrote the book on Pandoran botany.",
+          "significance": "Establishes Grace's expertise and Jake's respect despite their friction"
+        }
+      ],
+
+      "thematicElements": {
+        "interconnection": "First introduction to concept that all life on Pandora is networked together",
+        "wonder_vs_exploitation": "Jake's wonder vs. security team's nervous aggression toward forest",
+        "scientific_humility": "Grace knows vast amount but acknowledges Na'vi understand more",
+        "seeing": "Recurring motif: learning to truly 'see' what's there, not just look"
+      },
+
+      "emotionalBeats": {
+        "jake_wonder": "Pure childlike amazement at alien forest; first time feeling truly alive since injury",
+        "grace_frustration": "Exasperation at Jake's recklessness but underlying hope he might learn",
+        "team_tension": "Security team's fear vs. scientists' fascination creates underlying anxiety"
+      },
+
+      "moralQuestions": [
+        "What right do humans have to extract resources from a living world?",
+        "Should scientific curiosity outweigh safety concerns?",
+        "Can someone without formal training still understand nature's truths?"
+      ],
+
+      "cinematography": {
+        "notable_shots": [
+          "Low angle looking up at massive tree trunks disappearing into canopy—overwhelming scale",
+          "Close-up of helicoradians retracting in spiral pattern—alien beauty and awareness",
+          "Wide shot of avatar team dwarfed by forest—humans insignificant in this ecosystem",
+          "Jake's hand reaching toward glowing plant—wonder and dangerous curiosity",
+          "Security guard nervously scanning forest—humans as invaders, not explorers"
+        ],
+        "camera_movement": "Fluid tracking shots through jungle; sense of being observed by unseen watchers",
+        "lighting": "Dappled light through canopy; bioluminescent glow even in daylight; perpetual twilight feeling"
+      },
+
+      "foreshadowing": [5, 6, 10, 23],
+      "callbacks": [2],
+      "parallels": ["Jake's reckless curiosity mirrors his later impulsive decisions that save/endanger mission"],
+
+      "symbols": {
+        "helicoradians": "Pandora's responsiveness; nothing here is passive or inert",
+        "six_legs": "Alien evolution; fundamental difference from Earth life",
+        "bioluminescence": "Life made visible; communication through light; nothing hidden",
+        "massive_trees": "Ancient wisdom; stability; connection between earth and sky",
+        "neural_connections": "Everything literally connected; individuality subsumed in network"
+      },
+
+      "tension": 4,
+      "significance": "Establishes Pandora's alien ecosystem and introduces interconnection theme; Jake's wonder begins his conversion from Marine to Na'vi"
+    },
+
+    {
+      "id": 5,
+      "act": "act1",
+      "title": "Thanator Attack - Separated",
+      "types": ["action", "danger", "isolation"],
+      "location": {
+        "primary": "Deep Rainforest",
+        "secondary": "Rocky canyon and waterfall",
+        "significance": "Jake's first true test of survival; separated from human support in hostile wilderness"
+      },
+      "time": "Day 3 - Late Afternoon approaching Dusk",
+      "duration": "~6 minutes",
+
+      "plotSummary": {
+        "brief": "A massive thanator—Pandora's apex predator—attacks the avatar team. In the panicked chaos, Jake is separated and runs deeper into the jungle. The armored predator pursues him relentlessly through the forest. Jake barely stays ahead, using every bit of his Marine training. Cornered at a cliff edge, he makes a desperate leap off a waterfall, plunging into the churning river far below. Night falls. He's alone in hostile territory with no weapons, no communication, no idea where he is.",
+        "detailed": "The team is deep in the forest when a low growl freezes them. From the shadows emerges a thanator—a massive black panther-like apex predator with armored plating, multiple eyes, and massive jaws. It's territorial and they've invaded its hunting ground. The creature is the size of an Earth T-Rex with the speed of a big cat. Security guards open fire but bullets barely scratch its armored hide. The thanator scatters the team. Jake runs, adrenaline overriding thought. The predator singles him out, pursuing with terrifying single-mindedness. Jake crashes through the jungle, leaping over roots, sliding under fallen logs, using his avatar body's strength and agility. The thanator demolishes everything in its path. Jake's military training kicks in—he's in survival mode, pure instinct. He reaches a rocky canyon, the predator closing. Ahead: a cliff and a waterfall plunging into mist far below. Behind: certain death. Jake makes the impossible choice and leaps. He falls through spray and mist, hitting the river with devastating force. The current sweeps him away. He surfaces, gasping, to see the thanator on the cliff above, roaring in frustration. Jake drags himself to shore as darkness descends. He's lost, injured, alone in the most hostile environment on Pandora as night approaches.",
+        "subtext": "This is Jake's crucible. Stripped of technology, support, and familiar environments, he's forced to rely entirely on his avatar body and military survival skills. It's the first test of whether he has what it takes to survive Pandora on its own terms, not human terms. His reckless bravery saves his life but also isolates him completely—a pattern that will define his character arc."
+      },
+
+      "characterDevelopment": {
+        "jake": {
+          "state": "Pure survival mode; adrenaline and training override thought; isolated and vulnerable",
+          "desires": "To survive the next ten seconds; to find the team; to stay alive until dawn",
+          "fears": "Dying alone in alien jungle; being eaten; never seeing humans or Grace again",
+          "arc": "Forced to rely on avatar body completely; first time truly alone without human support",
+          "key_moment": "Leaping from the waterfall—choosing unknown danger over certain death; trusting his new body"
+        },
+        "grace": {
+          "state": "Terrified for Jake; searching desperately; blaming herself for bringing untrained avatar",
+          "key_moment": "Screaming Jake's name into the dark forest; realizing he's gone"
+        }
+      },
+
+      "worldBuilding": {
+        "thanator": {
+          "description": "Apex predator; thanator means 'dry mouth bringer of fear'",
+          "biology": "Armored plating, six limbs, multiple eyes, bio-luminescent markings for communication",
+          "behavior": "Highly territorial; relentless hunter; won't abandon prey once locked on",
+          "threat_level": "Can kill Na'vi hunters; only other predators or Toruk can challenge it",
+          "significance": "Top of food chain; embodiment of Pandora's danger"
+        },
+        "jungle_dangers": {
+          "terrain": "Deadly at high speed—roots, vines, hidden drops, unstable ground",
+          "night_approach": "Pandora becomes exponentially more dangerous after dark",
+          "isolation": "Communications don't work deep in forest; too much interference",
+          "distance": "Easy to get lost; landmarks invisible under canopy"
+        }
+      },
+
+      "naviCulture": {
+        "introduced": [],
+        "references": ["Thanator is called 'palulukan' by Na'vi", "Even Na'vi hunters fear and respect thanators"],
+        "context": "This is the world Na'vi navigate daily; what terrifies Jake is their normal environment"
+      },
+
+      "visualStorytelling": {
+        "opening": "Quiet forest suddenly exploding into violence; thanator emerging from shadows",
+        "contrast": "Peaceful exploration transformed into desperate flight; beauty becomes horror",
+        "color_palette": "Shift from greens to darker tones; gathering darkness; bioluminescence beginning to glow",
+        "cameraWork": "Shaky cam and fast cuts during chase; smooth slow-motion for waterfall leap; POV creates visceral terror",
+        "symbolism": "Waterfall leap = leap of faith; leaving human safety for unknown Pandoran world"
+      },
+
+      "soundDesign": {
+        "music": "Percussion and strings building to crescendo; silence during waterfall fall; ominous drums as night approaches",
+        "ambient": "Thanator's roar—deep, resonant, terrifying; crashing through undergrowth; waterfall's roar; Jake's labored breathing",
+        "dialogue": "Minimal—Jake's gasps, Grace's distant screams; thanator's vocalizations"
+      },
+
+      "keyDialogue": [
+        {
+          "character": "Jake (V.O.)",
+          "line": "The last thing I needed was a lesson in humility. I'd already lost my legs. What else could Pandora take from me?",
+          "significance": "Ironic: Pandora will take his human identity entirely and give him everything"
+        }
+      ],
+
+      "thematicElements": {
+        "survival": "Stripped to pure survival instinct; testing Jake's Marine skills in alien context",
+        "isolation": "Forced separation from human support structure; sink or swim moment",
+        "nature_power": "Pandora's overwhelming danger; humans aren't apex predators here",
+        "leap_faith": "Choosing unknown danger over certain death; recurring motif in Jake's choices"
+      },
+
+      "emotionalBeats": {
+        "jake_terror": "Primal fear of being hunted; visceral awareness of mortality",
+        "grace_fear": "Maternal terror for Jake; guilt at bringing him on mission",
+        "jake_isolation": "Crushing loneliness as night falls; separated from everything familiar"
+      },
+
+      "moralQuestions": [
+        "Was Grace right to bring untrained Jake into hostile environment?",
+        "Is courage the same as recklessness?",
+        "What separates survival from suicide?"
+      ],
+
+      "cinematography": {
+        "notable_shots": [
+          "Thanator emerging from shadows—only eyes visible at first; building terror",
+          "Low angle tracking Jake's desperate run—emphasizes speed and panic",
+          "Slow-motion waterfall leap with Jake in freefall—moment suspended between life and death",
+          "Wide shot: tiny Jake in massive river; dwarfed by wilderness; utterly alone",
+          "Darkness descending as Jake lies exhausted on shore—vulnerability and isolation"
+        ],
+        "camera_movement": "Chaotic handheld during chase; smooth crane for waterfall; static wide as darkness falls",
+        "lighting": "Daylight fading to twilight; first appearance of night bioluminescence; shadows lengthening"
+      },
+
+      "foreshadowing": [6, 7, 39],
+      "callbacks": [4],
+      "parallels": ["Jake's waterfall leap parallels his later leap onto Toruk—choosing impossible over certain death"],
+
+      "symbols": {
+        "thanator": "Pandora's power and danger; nature as predator, not paradise",
+        "waterfall": "Point of no return; transition from human-supported to truly alone",
+        "night_falling": "Entering unknown darkness; losing safety of familiar",
+        "river": "Cleansing; baptism into Pandora; washing away old Jake",
+        "isolation": "Necessary step before transformation; must lose old life to gain new"
+      },
+
+      "tension": 8,
+      "significance": "Forces Jake into isolation necessary for meeting Neytiri; strips away human support; first real test of avatar body and survival skills; sets up night encounters that change everything"
+    },
+
+    {
+      "id": 6,
+      "act": "act1",
+      "title": "Viperwolf Pack - Neytiri Saves Jake",
+      "types": ["action", "character", "first_contact"],
+      "location": {
+        "primary": "Rainforest - Night",
+        "secondary": "Bioluminescent clearing",
+        "significance": "First meeting between Jake and Neytiri; clash of cultures; life-saving intervention"
+      },
+      "time": "Night - Hours after sunset",
+      "duration": "~5 minutes",
+
+      "plotSummary": {
+        "brief": "Lost and desperate at night, Jake is attacked by a pack of viperwolves—six-legged predators with glowing markings. He fights with a makeshift torch, his back against a tree. Suddenly arrows fly from darkness—a Na'vi warrior killing the wolves with perfect accuracy. It's Neytiri. She's furious at Jake for the unnecessary deaths, calling him ignorant and clumsy. He brought danger through his stupidity.",
+        "detailed": "Darkness has completely fallen and Pandora transforms into an alien nightscape of bioluminescent beauty and hidden terror. Jake fashions a crude torch from branches and sap, creating fire. The light attracts danger—a pack of viperwolves encircles him. Six-legged canine predators with obsidian skin and glowing blue patterns. They're pack hunters, intelligent and coordinated. Jake backs against a tree as they close in, snarling. He swings his torch desperately—pure instinct. Just as the pack leader lunges, an arrow pierces its skull. More arrows fly from shadows, each finding a target with lethal precision. In seconds, the pack lies dead. From the darkness emerges a Na'vi warrior—female, athletic, fierce. She's Neytiri, daughter of the Omaticaya clan leader. Her expression isn't gratitude—it's rage. She berates Jake in broken English: these deaths were unnecessary. The viperwolves wouldn't have attacked if he hadn't been crashing through forest like a baby. She calls him ignorant, stupid. Each animal death pains her—they're connected to Eywa, and his clumsiness forced her to kill them. Jake tries to thank her but she cuts him off. She turns to leave him to his fate. He's not her problem.",
+        "subtext": "This first meeting establishes the ideological gulf between Jake and Neytiri. To him, the wolves were predators trying to kill him—self-defense is justified. To her, they're sacred life, part of Eywa's network, and his ignorance caused their deaths. It's the fundamental disconnect between human and Na'vi worldviews: individual survival versus collective balance. Neytiri's anger also masks fascination—she's never been this close to a dreamwalker before."
+      },
+
+      "characterDevelopment": {
+        "jake": {
+          "state": "Exhausted, grateful, confused by her anger",
+          "desires": "Safety, guidance, not to die alone in jungle",
+          "fears": "Being abandoned; dying without anyone knowing what happened to him",
+          "arc": "First exposure to Na'vi perspective on life and death; doesn't understand yet",
+          "key_moment": "Confused when she's angry instead of receiving thanks—first cultural clash"
+        },
+        "neytiri": {
+          "state": "Angry, conflicted, following from distance before revealing herself",
+          "desires": "To leave this ignorant alien to his fate; to protect the forest from his stupidity",
+          "fears": "That more sacred life will die because of sky people",
+          "arc": "Torn between duty to protect forest and curiosity about this strange dreamwalker",
+          "key_moment": "Her expression when killing wolves—pained necessity, not triumph; every death matters"
+        }
+      },
+
+      "worldBuilding": {
+        "viperwolves": {
+          "description": "Pack hunters; six-legged canines with obsidian skin and bioluminescent markings",
+          "behavior": "Coordinated pack tactics; hunt at night; communicate through bioluminescent patterns",
+          "biology": "Neural connections allow pack coordination; part of Eywa's network",
+          "threat_level": "Deadly to lone targets; can take down much larger prey through numbers"
+        },
+        "pandora_night": {
+          "bioluminescence": "Everything glows—plants, animals, even ground moss; navigation through light",
+          "dangers_amplified": "Predators hunt primarily at night; Na'vi have adapted, humans haven't",
+          "beauty": "Alien nightscape of flowing colors and patterns; breathtaking and terrifying",
+          "sounds": "Different soundscape than day; night-hunting calls, rustling, distant roars"
+        },
+        "navi_capabilities": {
+          "night_vision": "Large eyes optimized for low light; see clearly in darkness",
+          "tracking": "Read forest signs humans miss; smell, hear, sense movement",
+          "archery": "Perfect accuracy even in darkness; instinctive rather than aimed",
+          "forest_movement": "Silent, efficient; move through jungle without disturbing environment"
+        }
+      },
+
+      "naviCulture": {
+        "introduced": ["Concept that all killing is painful to Na'vi", "Connection to Eywa means every death matters", "Ignorance of nature is grave failing"],
+        "references": ["Neytiri's language mixing Na'vi and broken English", "Her bow and traditional arrows versus Jake's crude torch"],
+        "context": "First glimpse of Na'vi spiritual relationship with nature—not sentimentality but literal connection"
+      },
+
+      "visualStorytelling": {
+        "opening": "Darkness punctuated by bioluminescent patterns; Jake's torch creates harsh contrasts",
+        "contrast": "Jake's clumsy fire versus Neytiri's mastery of darkness; human versus Na'vi adaptation",
+        "color_palette": "Deep blues, purples, blacks; bioluminescent blues and greens; orange torch flame alien in this world",
+        "cameraWork": "Circling shots of viperwolves closing in; Neytiri shot from low angle emphasizing her power",
+        "symbolism": "Viperwolves' bioluminescent patterns = they're sacred life, not monsters; Neytiri emerging from darkness = born of this world"
+      },
+
+      "soundDesign": {
+        "music": "Tense percussion during wolf attack; shifts to ethereal female vocals when Neytiri appears",
+        "ambient": "Viperwolves' snarls and pack vocalizations; arrows whistling; bodies falling; night forest sounds",
+        "dialogue": "Neytiri's accented English mixing with Na'vi phrases; Jake's exhausted attempts to communicate"
+      },
+
+      "keyDialogue": [
+        {
+          "character": "Neytiri",
+          "line": "Your fault! They did not need to die!",
+          "significance": "Establishes Na'vi value all life; Jake's ignorance has consequences"
+        },
+        {
+          "character": "Neytiri",
+          "line": "You are like a baby. Making noise, don't know what to do.",
+          "significance": "Despite being grown man and Marine, Jake is infant in this world"
+        },
+        {
+          "character": "Jake",
+          "line": "Thank you. I would have died if you—",
+          "significance": "Cultural misunderstanding—he thanks her for killing, which is exactly what angers her"
+        }
+      ],
+
+      "thematicElements": {
+        "cultural_clash": "Jake's gratitude versus Neytiri's anger—same event, opposite interpretations",
+        "ignorance_consequences": "Jake's lack of knowledge causes death; ignorance isn't innocent, it's dangerous",
+        "interconnection": "Neytiri mourns wolves because they're part of Eywa; all death diminishes network",
+        "competence_reversed": "Marine warrior helpless; native woman supremely capable; who's really civilized?"
+      },
+
+      "emotionalBeats": {
+        "jake_terror_relief": "Primal fear giving way to grateful relief; then confusion at her anger",
+        "neytiri_anger_pain": "Fury at unnecessary death; pain at being forced to kill",
+        "mutual_fascination": "Despite anger, both are curious about each other—first close encounter"
+      },
+
+      "moralQuestions": [
+        "Is self-defense killing different from other killing?",
+        "Who's more civilized—the armed warrior or the one who mourns necessity of violence?",
+        "Can ignorance excuse causing harm?"
+      ],
+
+      "cinematography": {
+        "notable_shots": [
+          "Viperwolves' glowing eyes surrounding Jake in circle—predators as living patterns of light",
+          "Arrow entering frame and striking wolf in mid-leap—Neytiri's lethal precision",
+          "Neytiri emerging from darkness with bow—backlit by bioluminescence; alien and beautiful",
+          "Close-up of Neytiri's angry face as she berates Jake—cultural gulf made visible",
+          "Dead wolves with glowing patterns fading—life leaving, connection to Eywa severing"
+        ],
+        "camera_movement": "Circling during wolf attack creates encirclement feeling; steady cam when Neytiri appears showing her control",
+        "lighting": "Harsh torch light versus soft bioluminescence; Jake's fire feels wrong in this world"
+      },
+
+      "foreshadowing": [7, 10, 16],
+      "callbacks": [5],
+      "parallels": ["Neytiri saves Jake like he'll later save Na'vi—intervention that changes everything"],
+
+      "symbols": {
+        "viperwolves": "Sacred life made predator; beauty and danger united",
+        "bow_arrows": "Na'vi mastery versus human clumsiness; precision versus desperation",
+        "torch": "Human reliance on technology; fire disrupting natural bioluminescence",
+        "bioluminescence": "Connection to Eywa made visible; everything literally glowing with life",
+        "darkness": "Unknown territory; Jake in Neytiri's world now, not his own"
+      },
+
+      "tension": 8,
+      "significance": "First contact between Jake and Neytiri; establishes cultural values clash; introduces Na'vi perspective on life and death; begins their antagonistic relationship that will transform into love"
+    },
+
+    {
+      "id": 7,
+      "act": "act1",
+      "title": "Woodsprites Choose Jake",
+      "types": ["spiritual", "discovery", "destiny"],
+      "location": {
+        "primary": "Rainforest - Night",
+        "secondary": "Bioluminescent clearing",
+        "significance": "Divine intervention moment; Eywa's first direct contact with Jake"
+      },
+      "time": "Night - Immediately following viperwolf attack",
+      "duration": "~3 minutes",
+
+      "plotSummary": {
+        "brief": "Neytiri is about to abandon Jake when sacred atokirina—pure white floating woodsprites—descend from the sky, landing on his arms, shoulders, and head. Dozens of them, like jellyfish made of light. This is a sign from Eywa, unmistakable and profound. Neytiri's anger transforms instantly to reverent wonder. The spirits have chosen this alien. She kneels, realizing this meeting isn't accident but destiny. She must bring him to Hometree.",
+        "detailed": "Neytiri turns her back on Jake, ready to let the forest claim this foolish alien. Jake follows, pleading for help, trying to explain he's lost. She ignores him, moving silently through the darkness. Jake reaches out, trying to stop her, and suddenly freezes. Floating down from the canopy are atokirina—sacred seeds of the Tree of Souls. They're pure white, translucent, bioluminescent, shaped like tiny jellyfish or dandelion seeds made of light. One lands on Jake's outstretched hand. He stares, mesmerized. Then another lands on his shoulder. And another. Within moments, dozens of atokirina cover him—arms, shoulders, head—like he's being blessed or chosen. Neytiri turns and gasps. She immediately drops to one knee, head bowed in reverence. These are sacred signs from Eywa, the Great Mother. They never appear without purpose. For so many to choose this alien dreamwalker... it's unprecedented. Neytiri's entire demeanor shifts. Her eyes wide with awe and confusion, she approaches Jake slowly. The atokirina lift from him as gently as they arrived, floating back into darkness. Neytiri studies Jake with new eyes—not a clumsy alien, but someone Eywa has touched. She makes a decision: she will bring him to the clan. Mo'at, her mother and the Tsahik, must see this.",
+        "subtext": "This is the moment Jake's fate shifts from probable death to chosen one. The atokirina appearing isn't coincidence—Eywa, the planetary consciousness, has taken notice of this alien. Whether this means Jake is blessed or will be catalyst for change, Neytiri doesn't know. But she knows sacred signs must be heeded. Her reluctance to help transforms into obligation. Jake doesn't understand what just happened, but he senses it's profound. This moment plants the seed that will grow into his full conversion: Eywa chose him before he even believed in her."
+      },
+
+      "characterDevelopment": {
+        "jake": {
+          "state": "Awed, confused, sensing something profound without understanding it",
+          "desires": "To understand what just happened; to not be abandoned in jungle",
+          "arc": "First spiritual experience on Pandora; Eywa touches him before he knows she exists",
+          "key_moment": "Standing perfectly still as atokirina cover him—instinctively knowing not to disturb them"
+        },
+        "neytiri": {
+          "state": "Reverent, awed, conflicted but certain of duty",
+          "transformation": "From anger and dismissal to recognition of sacred obligation",
+          "arc": "Eywa's will supersedes her personal judgment; must respect signs even when confused",
+          "key_moment": "Dropping to one knee—automatic reverence shows depth of spiritual belief"
+        }
+      },
+
+      "worldBuilding": {
+        "atokirina": {
+          "description": "Sacred seeds of Tree of Souls; pure white bioluminescent; jellyfish-like floating seeds",
+          "significance": "Direct messengers from Eywa; appear only as signs or blessings",
+          "behavior": "Move with seeming purpose; choose specific individuals or places",
+          "meaning": "Omen of great importance; prophecy; blessing; divine attention",
+          "rarity": "Rare appearance; many Na'vi never witness them in lifetime"
+        },
+        "eywa": {
+          "first_evidence": "This is first concrete suggestion Eywa is real, not cultural myth",
+          "nature": "Planetary consciousness; biological network of all Pandoran life",
+          "communication": "Speaks through signs, omens, natural phenomena; not verbal",
+          "will": "Maintains balance; her purposes mysterious even to Na'vi"
+        },
+        "navi_spirituality": {
+          "signs": "Na'vi culture built on reading natural signs and respecting them",
+          "reverence": "Automatic physical response—kneeling, bowing head, stillness",
+          "obligation": "Sacred signs create duty that overrides personal preference"
+        }
+      },
+
+      "naviCulture": {
+        "introduced": ["Atokirina as sacred seeds of Tree of Souls", "Physical reverence—kneeling before sacred signs", "Concept that nature sends purposeful messages"],
+        "references": ["Eywa mentioned by name for first time", "Tree of Souls referenced but not yet seen"],
+        "context": "This reveals Na'vi spirituality isn't primitive superstition but response to real phenomena"
+      },
+
+      "visualStorytelling": {
+        "opening": "Darkness and tension as Neytiri walks away; sudden appearance of floating white lights",
+        "contrast": "Dark forest versus pure white atokirina; Neytiri's anger versus instant reverence",
+        "color_palette": "Deep blues and blacks; pure white atokirina glowing; creating otherworldly beauty",
+        "cameraWork": "Slow motion as atokirina descend and land; close-ups of Jake's awed face; Neytiri kneeling in reverence",
+        "symbolism": "Light descending from above = divine blessing; white purity in dark forest = grace in wilderness"
+      },
+
+      "soundDesign": {
+        "music": "Ethereal female vocals; wordless singing suggesting Eywa's presence; sacred and otherworldly",
+        "ambient": "Silence falls as atokirina appear; even forest sounds quiet in reverence; soft tinkling like wind chimes",
+        "dialogue": "Minimal—Neytiri's whispered awe; Jake's confused wonder"
+      },
+
+      "keyDialogue": [
+        {
+          "character": "Neytiri",
+          "line": "Atokirina... seeds of the sacred tree.",
+          "significance": "Names the phenomenon; establishes this is known sacred occurrence"
+        },
+        {
+          "character": "Jake (V.O.)",
+          "line": "I was just about to be left to die in the jungle when these little jellyfish things attacked me.",
+          "significance": "Jake's incomprehension versus actual profound spiritual event—dramatic irony"
+        }
+      ],
+
+      "thematicElements": {
+        "destiny": "Jake chosen by forces beyond understanding; fate versus accident",
+        "divine_intervention": "Eywa actively intervening in events; not passive nature god",
+        "faith_evidence": "Neytiri's faith confirmed by physical evidence; spirituality grounded in observable phenomena",
+        "chosen_one": "Classic motif: unlikely hero marked by divine signs",
+        "seeing": "Jake sees atokirina but doesn't understand meaning; sight versus comprehension"
+      },
+
+      "emotionalBeats": {
+        "jake_wonder": "Pure awe at beauty; sensing sacredness without understanding it",
+        "neytiri_reverence": "Automatic spiritual response; personal feelings superseded by divine sign",
+        "mutual_recognition": "Moment when both realize their meeting has cosmic significance"
+      },
+
+      "moralQuestions": [
+        "Do divine signs exist or do we interpret randomness as meaning?",
+        "Should personal judgment yield to spiritual obligation?",
+        "What makes something sacred?"
+      ],
+
+      "cinematography": {
+        "notable_shots": [
+          "Wide shot: single atokirina descending through darkness—first appearance creates magical moment",
+          "Close-up: atokirina landing on Jake's extended hand—first contact with sacred",
+          "Medium shot: dozens of atokirina covering Jake—visual representation of being chosen",
+          "Low angle: Neytiri kneeling before Jake—power dynamic reversed by sacred sign",
+          "Close-up: Neytiri's face transforming from anger to awe—belief made visible"
+        ],
+        "camera_movement": "Slow, reverent movements; floating camera mimics atokirina descent; stillness during sacred moment",
+        "lighting": "Atokirina provide key light; Jake backlit by bioluminescence; creates halo effect"
+      },
+
+      "foreshadowing": [9, 18, 23, 33, 40],
+      "callbacks": [6],
+      "parallels": ["Atokirina choosing Jake parallels Eywa's later intervention in final battle—recurring divine favor"],
+
+      "symbols": {
+        "atokirina": "Divine grace; Eywa's attention and blessing; purity and sacred purpose",
+        "white_light": "Purity, divinity, clarity in darkness",
+        "descent_from_above": "Heaven reaching toward earth; transcendent touching mortal",
+        "covering_jake": "Blessing, choosing, claiming; Jake marked as Eywa's instrument",
+        "neytiri_kneeling": "Recognition of power beyond personal; spiritual authority over physical"
+      },
+
+      "tension": 6,
+      "significance": "Pivotal spiritual moment establishing Jake's destiny; first evidence Eywa is real; transforms Neytiri's attitude; sets up Jake's acceptance into clan; divine intervention that will recur at story's climax"
+    },
+
+    {
+      "id": 8,
+      "act": "act1",
+      "title": "Quaritch's Offer",
+      "types": ["betrayal", "conflict", "temptation"],
+      "location": {
+        "primary": "Hell's Gate - Operations Center",
+        "secondary": "Quaritch's office",
+        "significance": "Deal with devil moment; Jake recruited as double agent; Faustian bargain"
+      },
+      "time": "Day 4 - Morning (after Jake returns from forest)",
+      "duration": "~4 minutes",
+
+      "plotSummary": {
+        "brief": "Jake reports to Colonel Quaritch about his night in the forest and contact with the Na'vi. The Colonel immediately sees an opportunity: Jake has made first contact and might gain access to Hometree. Quaritch offers a deal—provide intelligence about the Na'vi, find their weaknesses, help convince or force them from Hometree, and in return he'll get Jake's legs back. Real legs. Spinal surgery using Company resources. Jake, desperate to walk again in his human body, accepts.",
+        "detailed": "Back at Hell's Gate, Jake debriefs with Quaritch in the operations center. The scarred colonel listens intently as Jake describes the thanator attack, being lost, Neytiri saving him, and the Na'vi taking him in. Quaritch's tactical mind immediately recognizes the opportunity: the Na'vi don't let outsiders in. If Jake can gain their trust, he becomes an intelligence asset. Quaritch pulls up holographic displays showing Hometree and the massive unobtanium deposit beneath it. That's the target. The Na'vi are sitting on hundreds of millions of dollars worth of resources. They need to be relocated—by persuasion or force. Quaritch makes his offer: keep me informed. Learn their strengths, weaknesses, how they think, what they fear. Find a way to convince them to leave peacefully. Do this, and when I get my new shipment of supplies and equipment, I'll personally authorize the spinal surgery that will give Jake his legs back. Not avatar legs—his own legs. Jake can walk again for real. The temptation is overwhelming. Jake's face shows his internal struggle, but ultimately he agrees. He'll report back. Quaritch smiles—he's hooked his spy. Grace, watching from across the ops center, suspects something is wrong but can't hear the conversation. Jake has just agreed to betray the very people he's about to live among.",
+        "subtext": "This is Jake's devil's bargain. Quaritch exploits Jake's disability ruthlessly—he knows exactly how to manipulate a paraplegic Marine with appeals to masculine wholeness and warrior identity. The offer isn't just about walking; it's about not being broken anymore, about reclaiming the life Jake lost. The tragedy is that Jake doesn't yet know the Na'vi will give him something far more valuable than working legs: purpose, belonging, and spiritual wholeness. He's trading his integrity for a false solution to his deeper emptiness."
+      },
+
+      "characterDevelopment": {
+        "jake": {
+          "state": "Conflicted, tempted, desperate; rationalizing the betrayal already beginning",
+          "desires": "To walk in his human body; to not be disabled; to have value and purpose",
+          "fears": "Being trapped in wheelchair forever; being useless; being pitied",
+          "arc": "Makes choice that will haunt him; becomes double agent; corruption begins",
+          "key_moment": "The pause before accepting—he knows it's wrong but his desperation wins"
+        },
+        "quaritch": {
+          "state": "Calculating, manipulative, predatory; reading Jake perfectly",
+          "agenda": "Using Jake as intelligence asset; finding Na'vi weaknesses; securing unobtanium extraction",
+          "methods": "Appeals to Jake's disability and masculine pride; offers false redemption",
+          "key_moment": "Knowing smile when Jake agrees—he's got his spy exactly where he wants him"
+        }
+      },
+
+      "worldBuilding": {
+        "unobtanium": {
+          "location": "Massive deposit directly beneath Hometree",
+          "value": "Worth hundreds of millions of dollars; critical for Earth's energy crisis",
+          "significance": "This specific deposit is why Hometree must be destroyed or abandoned",
+          "properties": "Superconductor at room temperature; essential for Earth's technology and survival"
+        },
+        "corporate_medical": {
+          "spinal_surgery": "Technology exists to repair Jake's spine; prohibitively expensive for individual",
+          "company_resources": "RDA controls access to medical technology; uses it as leverage",
+          "class_divide": "Rich can afford healing; poor Marines stay broken"
+        },
+        "intelligence_operations": {
+          "quaritch_tactics": "Recruits locals as spies; psychological manipulation; exploiting weaknesses",
+          "information_value": "Cultural intelligence about Na'vi more valuable than weapons",
+          "military_mindset": "Know your enemy; find weakness; exploit it"
+        }
+      },
+
+      "naviCulture": {
+        "introduced": [],
+        "references": ["Quaritch refers to Hometree as 'their sacred tree'; knows it's important but dismisses significance", "Mentions Na'vi tribal structure and leadership"],
+        "context": "Military views Na'vi culture purely tactically—information to exploit, not wisdom to respect"
+      },
+
+      "visualStorytelling": {
+        "opening": "Jake wheeling into sterile ops center; returning to human world after Na'vi contact",
+        "contrast": "Technological military environment versus natural forest; Jake caught between two worlds",
+        "color_palette": "Cold blues, grays, harsh fluorescent lighting; sterile and inhuman",
+        "cameraWork": "Low angle on Quaritch emphasizing his dominance; high angle on wheelchair-bound Jake showing vulnerability",
+        "symbolism": "Holographic Hometree display = target, not sacred site; technology versus nature"
+      },
+
+      "soundDesign": {
+        "music": "Ominous undertones; manipulative tension; Jake's internal conflict",
+        "ambient": "Computer sounds, radio chatter, military operations; mechanical and cold",
+        "dialogue": "Quaritch's gravelly voice; Jake's hesitant agreement; sound of devil's bargain"
+      },
+
+      "keyDialogue": [
+        {
+          "character": "Quaritch",
+          "line": "You get me what I need, I'll see to it you get your legs back. Your real legs.",
+          "significance": "The temptation; offering false solution to Jake's real problem"
+        },
+        {
+          "character": "Quaritch",
+          "line": "I need you to learn these savages from the inside. I need to know how to force their cooperation or hammer them hard if they won't.",
+          "significance": "Reveals colonial mindset—cooperation or destruction; no middle ground"
+        },
+        {
+          "character": "Jake",
+          "line": "Should I be taking notes here? What do you need to know?",
+          "significance": "Jake's capitulation; agreeing to spy; crossing moral line"
+        }
+      ],
+
+      "thematicElements": {
+        "betrayal": "Jake agrees to betray Na'vi before even knowing them; corruption from beginning",
+        "disability_exploitation": "Quaritch weaponizes Jake's paralysis; using desperation as leverage",
+        "colonialism": "Classic colonial tactic—divide from within; recruit locals as spies",
+        "false_solutions": "Legs won't solve Jake's real problem but he doesn't know that yet",
+        "dual_loyalty": "Jake now serving two masters; eventually must choose"
+      },
+
+      "emotionalBeats": {
+        "jake_temptation": "Overwhelming desire to walk again; rational thought overwhelmed",
+        "jake_guilt": "Knows it's wrong but buries feeling; beginning of moral compromise",
+        "quaritch_satisfaction": "Predatory pleasure at successful manipulation"
+      },
+
+      "moralQuestions": [
+        "Is it ethical to exploit someone's disability to recruit them as spy?",
+        "Can Jake's betrayal be justified by his desperation?",
+        "Is espionage ever honorable or is it always corruption?"
+      ],
+
+      "cinematography": {
+        "notable_shots": [
+          "Holographic display showing Hometree with unobtanium deposit beneath—target acquired",
+          "Close-up of Jake's face during temptation—internal struggle visible",
+          "Quaritch's scarred face in harsh lighting—devil making his offer",
+          "Jake's wheelchair contrasted with promise of walking—visual representation of temptation",
+          "Grace watching from distance, suspicious—conscience Jake is ignoring"
+        ],
+        "camera_movement": "Static frames emphasizing weight of conversation; slow push in during temptation",
+        "lighting": "Harsh overhead lighting creates shadows; moral darkness visualized"
+      },
+
+      "foreshadowing": [11, 20, 21, 24, 25, 26],
+      "callbacks": [1],
+      "parallels": ["Quaritch's manipulation mirrors how RDA uses money to manipulate everyone—system of corruption"],
+
+      "symbols": {
+        "holographic_hometree": "Sacred made tactical; spiritual reduced to military target",
+        "wheelchair": "Vulnerability being exploited; disability as leverage",
+        "spinal_surgery": "False redemption; technological fix that won't heal spiritual wounds",
+        "military_office": "Sterile authority; power without wisdom or compassion",
+        "deal": "Faustian bargain; selling integrity for false solution"
+      },
+
+      "tension": 6,
+      "significance": "Critical moral choice establishing Jake's initial corruption; creates dual loyalty that will tear him apart; plants seeds of his eventual betrayal of betrayal; shows how desperation makes good people compromise"
+    },
+
+    {
+      "id": 9,
+      "act": "act1",
+      "title": "Jake Arrives at Hometree",
+      "types": ["discovery", "character", "judgment"],
+      "location": {
+        "primary": "Hometree - Interior",
+        "secondary": "Spiral pathways and gathering spaces",
+        "significance": "First encounter with full Na'vi society; Jake faces judgment and potential death"
+      },
+      "time": "Day 4 - Dawn",
+      "duration": "~6 minutes",
+
+      "plotSummary": {
+        "brief": "Neytiri brings Jake to the massive Hometree, home of the Omaticaya clan. Hundreds of Na'vi stare at the alien intruder with hostility and fear. Mo'at the Tsahik (spiritual leader) and Eytukan the clan leader debate killing him immediately. The woodsprites were a sign, but Jake represents the Sky People destroying their world. Tsu'tey, a fierce warrior betrothed to Neytiri, demands Jake's death. Mo'at decides: Neytiri will teach him their ways. It is decided.",
+        "detailed": "As dawn breaks, Neytiri leads Jake through the bioluminescent forest to Hometree—a massive tree hundreds of feet tall and wide enough to house an entire civilization. The structure is ancient, sacred, and home to the Omaticaya clan. As they approach, Jake sees Na'vi warriors watching from branches above, arrows nocked. They enter through spiraling pathways carved into the tree's living wood. Inside, Jake is overwhelmed: hundreds of Na'vi families live within the tree's natural architecture, with fires glowing, children playing, and daily life happening on multiple levels connected by organic ramps and woven bridges. But as Neytiri leads him forward, all activity stops. Every Na'vi stares at the alien in their midst. The crowd parts as she brings him before Eytukan, the Olo'eyktan (clan leader) and her father, a commanding presence with scars of battles past. Beside him sits Mo'at, the Tsahik—spiritual leader, interpreter of Eywa's will, and Neytiri's mother. Mo'at's gaze is penetrating, seeing through Jake immediately. Tsu'tey, the clan's finest warrior and Neytiri's betrothed, steps forward demanding Jake be killed. He's a threat, a spy for the Sky People. Eytukan agrees—these dreamwalkers have brought only destruction. Neytiri speaks passionately about the atokirina, the sacred sign. Mo'at silences everyone and approaches Jake, circling him like prey, touching his neural queue, testing him. She declares he has a strong heart but is ignorant like a child. She makes her judgment: Neytiri will teach him their ways. Learn well, dreamwalker, or die. It is decided. Tsu'tey is furious but cannot contradict the Tsahik. Jake has been granted entry but he's on trial for his life.",
+        "subtext": "Jake's arrival represents everything the Na'vi fear: invasion, violation of sacred space, the return of destructive humans. His acceptance isn't mercy—it's a test. Mo'at senses Eywa's purpose in the atokirina sign but doesn't know if Jake is meant to help or destroy. By assigning Neytiri as teacher, Mo'at forces her daughter to bear responsibility for this alien. If Jake betrays them, it's on her. This creates massive tension in Neytiri's betrothal to Tsu'tey and sets up love triangle that will complicate everything."
+      },
+
+      "characterDevelopment": {
+        "jake": {
+          "state": "Overwhelmed, judged, aware he could die any second; humbled by the culture's depth",
+          "desires": "To survive, to be accepted, to understand this world",
+          "fears": "Immediate death; failure; being cast out",
+          "arc": "First exposure to full Na'vi society; realizes this is a complex civilization, not savages",
+          "key_moment": "When Mo'at circles him like prey—understanding he has no power here"
+        },
+        "neytiri": {
+          "state": "Defensive, protective, justifying her choice to bring him; under pressure",
+          "desires": "For clan to see what she saw in the atokirina; to honor Eywa's sign",
+          "fears": "That Jake will prove Tsu'tey right; that she's wrong about the sign",
+          "arc": "Takes responsibility for Jake's presence and behavior",
+          "key_moment": "Defending Jake to her parents and Tsu'tey despite not trusting him yet"
+        },
+        "moat": {
+          "state": "Wise, penetrating, reading Jake's spirit and finding him wanting but teachable",
+          "role": "Spiritual authority; interpreter of Eywa's signs; ultimate decision maker",
+          "key_moment": "Touching Jake's queue and declaring him ignorant but strong-hearted"
+        },
+        "tsuTey": {
+          "state": "Hostile, protective, seeing Jake as threat to Neytiri and clan",
+          "relationship": "Betrothed to Neytiri; next clan leader; rival to Jake from first moment",
+          "key_moment": "Demanding Jake's death; establishing antagonism that will persist"
+        }
+      },
+
+      "worldBuilding": {
+        "hometree": {
+          "description": "Massive tree housing entire clan; living architecture; sacred home",
+          "structure": "Spiral interior with multiple levels; fires burning safely in non-flammable sections",
+          "population": "Hundreds of Na'vi families; multi-generational community",
+          "significance": "Not just shelter but spiritual center; connection to ancestors through roots",
+          "age": "Ancient; some Hometrees thousands of years old"
+        },
+        "navi_social_structure": {
+          "olo_eyktan": "Clan leader; usually male; makes decisions for clan's welfare",
+          "tsahik": "Spiritual leader; interprets Eywa; usually female; often paired with Olo'eyktan",
+          "succession": "Leadership passes through great hunters and spiritual sensitivity",
+          "decision_making": "Leaders consult but Tsahik's spiritual authority highest on sacred matters"
+        },
+        "navi_culture": {
+          "strangers": "Rarely allow outsiders in; deeply protective of sacred spaces",
+          "signs": "Atokirina appearance creates obligation; can't ignore Eywa's will",
+          "teaching": "Knowledge passed through doing; student must prove worthy"
+        }
+      },
+
+      "naviCulture": {
+        "introduced": ["Clan leadership structure: Olo'eyktan and Tsahik", "Role of Tsahik as spiritual interpreter", "Concept of teaching vs. killing outsiders", "Betrothal traditions"],
+        "references": ["Jake called 'dreamwalker' - Na'vi term for avatar drivers", "Mo'at's authority supersedes Eytukan's in spiritual matters"],
+        "context": "Complex society with clear hierarchy, spiritual authority, and cultural protocols"
+      },
+
+      "visualStorytelling": {
+        "opening": "Hometree revealed at dawn—massive, ancient, beautiful; camera cranes up showing scale",
+        "contrast": "Jake's alienness emphasized by hundreds of identical blue faces staring; lone human among Na'vi",
+        "color_palette": "Warm firelight inside Hometree; amber and orange tones; home versus Jake's cold tech world",
+        "cameraWork": "Jake's POV looking up at towering leaders; feeling of being judged by powers beyond him",
+        "symbolism": "Hometree's living architecture versus Hell's Gate's dead metal—organic versus mechanical"
+      },
+
+      "soundDesign": {
+        "music": "Ethereal Na'vi vocals; traditional instruments; sense of ancient culture",
+        "ambient": "Whispered Na'vi conversations; crackling fires; children's voices; living community",
+        "dialogue": "Mix of English and Na'vi language; Mo'at's commanding voice; Tsu'tey's angry challenges"
+      },
+
+      "keyDialogue": [
+        {
+          "character": "Tsu'tey",
+          "line": "These demons are forbidden here!",
+          "significance": "Establishes Na'vi see dreamwalkers as demons, not people; Jake must overcome this prejudice"
+        },
+        {
+          "character": "Mo'at",
+          "line": "What are you? Are you a warrior? I could kill you easily!",
+          "significance": "Tests Jake's identity and courage; establishes she has complete power over his fate"
+        },
+        {
+          "character": "Mo'at",
+          "line": "It is hard to fill a cup which is already full. We will see if your insanity can be cured.",
+          "significance": "Recognizes Jake's human perspective makes him blind; must empty himself to learn"
+        },
+        {
+          "character": "Eytukan",
+          "line": "My daughter, you will teach him our way, to speak and to walk as we do.",
+          "significance": "Official sanctioning of Jake's presence; Neytiri given responsibility"
+        }
+      ],
+
+      "thematicElements": {
+        "judgment": "Jake judged by values foreign to him; must prove worth by Na'vi standards, not human",
+        "civilization_vs_savagery": "Jake expected primitives; finds complex society with deep spirituality",
+        "seeing": "Mo'at sees into Jake's spirit; he must learn to see beyond surface",
+        "betrothal_disruption": "Jake's presence threatens Neytiri-Tsu'tey union; destiny versus tradition",
+        "divine_will": "Mo'at respects atokirina even when confused; faith over preference"
+      },
+
+      "emotionalBeats": {
+        "jake_awe": "Overwhelmed by Hometree's beauty and Na'vi civilization's depth",
+        "jake_fear": "Genuine terror at being surrounded by potential killers",
+        "neytiri_pressure": "Defending choice to bring him; responsibility for his behavior",
+        "tsuTey_anger": "Fury at alien invading home and threatening his betrothed",
+        "moat_wisdom": "Penetrating perception balanced with openness to Eywa's will"
+      },
+
+      "moralQuestions": [
+        "Should the Na'vi trust someone from a group destroying their world?",
+        "Is Mo'at right to risk her people by letting Jake in?",
+        "Can outsiders ever truly understand a culture or are they always spies?"
+      ],
+
+      "cinematography": {
+        "notable_shots": [
+          "Wide shot: Hometree interior revealed—hundreds of Na'vi on multiple levels; staggering scale",
+          "Low angle: Jake tiny before Eytukan and Mo'at on their platform—power differential",
+          "Close-up: Mo'at's eyes boring into Jake as she circles him—spiritual penetration",
+          "Medium: Tsu'tey's hostile glare—rivalry and threat established",
+          "Overhead: Jake alone surrounded by circle of Na'vi—isolation and judgment"
+        ],
+        "camera_movement": "Sweeping crane shots showing Hometree's scale; circling with Mo'at as she examines Jake",
+        "lighting": "Warm firelight creates both welcoming and dangerous atmosphere; shadows dance on faces"
+      },
+
+      "foreshadowing": [10, 13, 17, 21, 25, 28],
+      "callbacks": [7],
+      "parallels": ["Jake judged by Na'vi mirrors Na'vi being judged by humans—both sides see other as threat"],
+
+      "symbols": {
+        "hometree": "Living culture; spiritual center; connection to ancestors and Eywa",
+        "spiral_pathways": "Journey inward; deepening understanding; no straight lines in nature",
+        "fires": "Life, warmth, civilization; but also fragility",
+        "moat_touching_queue": "Spiritual examination; seeing into soul; vulnerability exposed",
+        "circle_of_navi": "Judgment; community decision; Jake on trial"
+      },
+
+      "tension": 5,
+      "significance": "Introduces Hometree and Na'vi society; establishes Jake must learn or die; creates love triangle with Neytiri-Tsu'tey-Jake; shows Na'vi as complex civilization; sets up teaching relationship that will transform Jake"
+    },
+
+    {
+      "id": 10,
+      "act": "act1",
+      "title": "First Lessons with Neytiri",
+      "types": ["bonding", "training", "transformation"],
+      "location": {
+        "primary": "Forest surrounding Hometree",
+        "secondary": "Training grounds and canopy paths",
+        "significance": "Jake's education in Na'vi ways begins; learning to see rather than just look"
+      },
+      "time": "Days 5-10 (montage)",
+      "duration": "~7 minutes",
+
+      "plotSummary": {
+        "brief": "Neytiri teaches Jake the Na'vi way: their language, how to see the forest's connections, how to move silently, how to respect all life. Jake is clumsy and constantly makes mistakes. She corrects him with both patience and frustration. He begins to understand that everything is connected through Eywa—the trees, animals, and Na'vi are all part of one living network. Slowly, he's learning to see.",
+        "detailed": "What follows is Jake's immersion in Na'vi culture through Neytiri's demanding instruction. She teaches him their language—not just words but the concepts embedded in Na'vi thought patterns. The language reveals their worldview: no possessive words for nature because you can't own what owns you. She teaches him to read the forest's signs: broken leaves showing an animal's passage, color changes in plants indicating water nearby, the warning calls of birds revealing predators. Jake learns to move through the jungle silently, feeling with his feet before stepping, letting branches pass rather than forcing through. Neytiri demonstrates perfect harmony with environment while Jake crashes clumsily behind. She shows him how every plant, every creature connects to Eywa through neural pathways—the forest is one vast consciousness and the Na'vi are part of it, not separate. Jake struggles with the concept, his human individualism clashing with Na'vi interconnection. He learns their philosophy: all energy is borrowed from Eywa and must be returned. Death isn't an end but a transformation. The teacher-student dynamic gradually shifts. Initially, Neytiri is impatient, frustrated by his ignorance. But she begins to see his determination and open heart. Jake's wonder at each revelation touches her. His questions, though naive, show genuine desire to understand. Slowly, respect grows on both sides. Training becomes less adversarial and more collaborative. By the end of this period, Jake can understand much of the Na'vi language, move with basic competence through forest, and most importantly, he's beginning to see the forest as Na'vi do—as alive, aware, and sacred.",
+        "subtext": "This extended training montage shows Jake shedding his Marine identity and being rebuilt as Na'vi. Neytiri isn't just teaching skills—she's deconstructing his entire worldview and replacing it with theirs. The growing mutual respect between them plants seeds of romantic attraction, though both resist it. Jake is supposed to be gathering intelligence for Quaritch, but instead he's being converted. Each lesson pulls him further from his human mission and deeper into Na'vi life."
+      },
+
+      "characterDevelopment": {
+        "jake": {
+          "state": "Eager student, humble, unlearning human assumptions; rapidly absorbing Na'vi worldview",
+          "desires": "To prove himself worthy; to understand this profound culture; to belong here",
+          "fears": "Failing Neytiri; being expelled; not being good enough",
+          "arc": "Transformation from Marine to student; human individualism giving way to interconnected thinking",
+          "key_moment": "First time he successfully moves silently—Neytiri's smile of approval means everything"
+        },
+        "neytiri": {
+          "state": "Strict teacher gradually warming; fighting attraction while teaching intimacy of culture",
+          "desires": "For Jake to truly see, not just mimic; to honor her responsibility as teacher",
+          "fears": "That he's just tourist who will leave; that she's teaching an enemy",
+          "arc": "From hostile skepticism to reluctant respect to suppressed affection",
+          "key_moment": "When Jake asks profound question showing he's thinking like Na'vi—she realizes he's truly learning"
+        }
+      },
+
+      "worldBuilding": {
+        "navi_language": {
+          "structure": "Reveals worldview; no possessive words for nature; different concepts of time and self",
+          "learning": "Difficult for humans; requires shifting entire thought framework",
+          "significance": "Language shapes perception; learning it changes how Jake sees reality"
+        },
+        "forest_literacy": {
+          "signs": "Reading broken leaves, scat, calls, plant health, water presence",
+          "movement": "Efficiency over speed; feeling terrain; becoming part of environment",
+          "respect": "Never take without thanking; never waste; always maintain balance"
+        },
+        "eywa_network": {
+          "revelation": "Forest isn't collection of separate beings but single organism",
+          "connections": "Neural pathways in tree roots create biological internet",
+          "participation": "Na'vi connect through queue; become nodes in network; individuality and collectivity merged"
+        }
+      },
+
+      "naviCulture": {
+        "introduced": ["Basic Na'vi language and concepts", "Forest reading and tracking", "Philosophy of borrowed energy", "Concept of seeing versus looking"],
+        "references": ["Connection to Eywa through all actions", "Respect for life in hunting and movement", "Community learning—other Na'vi watch and comment"],
+        "context": "Na'vi education is experiential, not theoretical; wisdom gained through doing"
+      },
+
+      "visualStorytelling": {
+        "opening": "Montage structure showing passage of time; Jake's improving skills",
+        "contrast": "Jake's initial clumsiness versus gradual grace; human versus Na'vi movement styles",
+        "color_palette": "Rich forest greens and browns; Jake becoming part of color scheme rather than alien to it",
+        "cameraWork": "Following shots showing Jake's movement improving; split screens showing Neytiri's grace versus Jake's growth",
+        "symbolism": "Jake's posture changing—stands straighter, moves more fluidly; physical transformation showing internal change"
+      },
+
+      "soundDesign": {
+        "music": "Training montage music building from tentative to confident; Na'vi instrumentation increasing",
+        "ambient": "Forest sounds becoming clearer to Jake; learning to distinguish and interpret",
+        "dialogue": "Mix of English, broken Na'vi, and eventually fluent Na'vi phrases; linguistic progression"
+      },
+
+      "keyDialogue": [
+        {
+          "character": "Neytiri",
+          "line": "You must learn to see. All this is your first shadow.",
+          "significance": "Core teaching—seeing is understanding essence, not just surface"
+        },
+        {
+          "character": "Neytiri",
+          "line": "The forest is not chaos. Every part is connected to every other part.",
+          "significance": "Fundamental Na'vi worldview—interconnection, not separation"
+        },
+        {
+          "character": "Jake (V.O.)",
+          "line": "Everything they know, everything they are, Neytiri teaches me. I'm trying to understand this culture from the inside.",
+          "significance": "Jake's mission shifting from observation to participation"
+        },
+        {
+          "character": "Neytiri",
+          "line": "You are like a baby, always making noise!",
+          "significance": "Recurring criticism becoming affectionate teasing—relationship evolving"
+        }
+      ],
+
+      "thematicElements": {
+        "seeing": "Central theme—learning to perceive reality as it is, not through cultural filters",
+        "interconnection": "Everything connected through Eywa; no true separation; individuality is illusion",
+        "humility": "Jake must accept ignorance and learn from ground up; Marine confidence useless",
+        "transformation": "Not just learning skills but becoming different person; worldview revolution",
+        "teacher_student": "Intimate relationship of teaching creates bond; knowledge transfer is vulnerability"
+      },
+
+      "emotionalBeats": {
+        "jake_frustration_determination": "Repeated failure but refusing to quit; Marine stubbornness repurposed",
+        "neytiri_softening": "Gradual shift from contempt to respect to affection",
+        "mutual_discovery": "Both learning about each other while teaching/learning Na'vi ways",
+        "growing_connection": "Unspoken attraction building through constant contact and shared experience"
+      },
+
+      "moralQuestions": [
+        "Can outsider ever truly understand another culture or always remain tourist?",
+        "Is Jake's learning genuine or appropriation for military purposes?",
+        "When does student become member of culture they're learning?"
+      ],
+
+      "cinematography": {
+        "notable_shots": [
+          "Time-lapse: Jake's posture and movement improving across days—physical transformation",
+          "Split screen: Neytiri's fluid movement versus Jake's improving grace—narrowing gap",
+          "Close-up: Jake's face as understanding dawns—intellectual breakthrough made visible",
+          "Medium: Jake and Neytiri's hands nearly touching while examining plant—intimacy through teaching",
+          "Wide: Jake finally moving silently through forest—achievement and belonging"
+        ],
+        "camera_movement": "Increasingly fluid following Jake's movement; camera adapting as he does",
+        "lighting": "Dappled forest light; Jake increasingly bathed in same light as Neytiri—belonging visually"
+      },
+
+      "foreshadowing": [12, 16, 17, 23],
+      "callbacks": [4, 6, 9],
+      "parallels": ["Jake learning Na'vi ways parallels Grace's earlier research—but Jake internalizes rather than observes"],
+
+      "symbols": {
+        "silent_movement": "Becoming part of forest rather than intruder; acceptance and belonging",
+        "language_learning": "Changing how Jake thinks, not just how he speaks; cognitive transformation",
+        "forest_signs": "Reality communicating directly; learning to listen to what's always speaking",
+        "neytiri_corrections": "Care disguised as criticism; teaching as form of affection",
+        "jake_improving": "Hope that transformation is possible; change is real"
+      },
+
+      "tension": 3,
+      "significance": "Foundation of Jake's transformation; establishes deepening relationship with Neytiri; shows Na'vi culture's depth and coherence; Jake becoming Na'vi rather than just observing them; his reports to Quaritch becoming conflicted"
+    },
+
+    {
+      "id": 11,
+      "act": "act1",
+      "title": "Jake's Video Logs - Double Agent",
+      "types": ["revelation", "conflict", "internal"],
+      "location": {
+        "primary": "Link Room at Hell's Gate",
+        "secondary": "Jake's video log station",
+        "significance": "Window into Jake's changing loyalties; documentation of internal conflict"
+      },
+      "time": "Various - Interspersed through training period",
+      "duration": "~4 minutes total (scattered through Act 1)",
+
+      "plotSummary": {
+        "brief": "Jake records video logs documenting his experiences with the Na'vi. Initially, his reports are tactical—describing Hometree's structure, clan numbers, cultural weaknesses. But his tone gradually shifts over time. He's becoming fascinated by Na'vi culture, their philosophy, their way of life. Grace notices the change in his reports and his enthusiasm. He's starting to see through Na'vi eyes, not just reporting intelligence. His divided loyalty is becoming visible.",
+        "detailed": "Throughout his time among the Na'vi, Jake maintains video logs—ostensibly for scientific documentation but actually intelligence reports for Quaritch. The progression of these logs reveals his transformation. Early logs are clinical: 'The Hometree is their most vulnerable point. Destroy it and you destroy their center.' He catalogs tactical information: warrior numbers, defensive capabilities, leadership structure, supply logistics. But as weeks pass, the tone shifts. Jake begins describing Na'vi philosophy with genuine wonder. He talks about Eywa's network with fascination, not skepticism. He describes Neytiri's teachings with respect bordering on reverence. The logs become less about military intelligence and more about cultural immersion. Grace watches some of these logs, seeing the change. She recognizes what's happening: Jake is going native. His enthusiasm when describing Na'vi life, his frustration with human destructiveness, his growing contempt for the military mindset—it's all visible. In later logs, Jake admits confusion: 'I don't know which world is real anymore. Out there is where I'm alive. In here... I'm just waiting to go back.' The logs become confessional rather than tactical. He's documenting his own transformation, and anyone watching can see he's losing his allegiance to the human mission. Quaritch reviews these logs too, noting Jake's usefulness even as Jake thinks he's concealing his changing heart. The Colonel sees the intelligence value but misses the deeper betrayal already beginning.",
+        "subtext": "The video logs serve as Jake's conscience made visible. Speaking to camera forces him to articulate what he's experiencing, making his transformation concrete. Each log is a marker of his journey from spy to convert. The tragedy is that he's creating evidence of his own betrayal—documentation that will be used against him and the Na'vi. His honesty to camera, thinking he's only talking to himself, will become the proof of his espionage that destroys Na'vi trust in him later."
+      },
+
+      "characterDevelopment": {
+        "jake": {
+          "state": "Increasingly conflicted; divided loyalty becoming untenable; awareness of transformation growing",
+          "desires": "To belong to both worlds; to serve both sides; impossible reconciliation",
+          "fears": "Being discovered as spy by Na'vi; disappointing Quaritch; choosing between worlds",
+          "arc": "Documenting own transformation; making internal change external through confession to camera",
+          "key_moment": "Log where he admits 'I don't know which world is real'—recognition of identity crisis"
+        },
+        "grace": {
+          "state": "Watching Jake's logs with mixture of hope and concern; recognizing pattern",
+          "arc": "Seeing Jake repeat her own journey—falling in love with Na'vi culture despite mission",
+          "key_moment": "Her face watching Jake describe Eywa with wonder—she knows he's crossing over"
+        }
+      },
+
+      "worldBuilding": {
+        "video_logs": {
+          "purpose": "Scientific documentation; intelligence gathering; personal record",
+          "audience": "Officially for Science team; actually viewed by Quaritch; Jake thinks private",
+          "technology": "Recorded in link room between avatar sessions; stored on RDA servers",
+          "vulnerability": "Creating permanent evidence of Jake's espionage; will be discovered"
+        },
+        "intelligence_value": {
+          "tactical": "Early logs provide actionable military intelligence about Na'vi vulnerabilities",
+          "cultural": "Later logs reveal Na'vi worldview and values—useful for manipulation",
+          "personal": "Jake's changing loyalty visible to those watching carefully"
+        }
+      },
+
+      "naviCulture": {
+        "introduced": [],
+        "references": ["Jake describes Na'vi concepts through human lens but increasingly understands their perspective", "His language shifts from 'they' to 'we' over time"],
+        "context": "Logs show outsider perspective gradually becoming insider perspective"
+      },
+
+      "visualStorytelling": {
+        "opening": "Jake facing camera in small recording booth; intimate, confessional framing",
+        "contrast": "Sterile tech environment versus descriptions of vibrant Na'vi world; words versus reality",
+        "color_palette": "Cool blues of link room versus warm memories of forest described in logs",
+        "cameraWork": "Direct address to camera creates intimacy; audience as confidant",
+        "symbolism": "Camera as conscience; speaking truth makes it real and permanent"
+      },
+
+      "soundDesign": {
+        "music": "Minimal during logs; Jake's voice primary sound; internal focus",
+        "ambient": "Link room equipment humming; occasional voices outside; isolation emphasized",
+        "dialogue": "Jake's voice-over recorded as logs; progression from tactical to emotional"
+      },
+
+      "keyDialogue": [
+        {
+          "character": "Jake (Log - Early)",
+          "line": "The Hometree sits above a deposit worth twenty billion. I need to find a way to move them. Or Quaritch will do it with gas and bullets.",
+          "significance": "Early log shows tactical mindset; Jake still thinking as operative"
+        },
+        {
+          "character": "Jake (Log - Middle)",
+          "line": "They're not going to give up their home. There's no incentive that will work. Their connection to that place is spiritual. It's their ancestors.",
+          "significance": "Understanding deepening; recognizing impossibility of his mission"
+        },
+        {
+          "character": "Jake (Log - Late)",
+          "line": "Everything is backwards now. Like out there is the true world and in here is the dream.",
+          "significance": "Complete identity inversion; human life becoming false; avatar life real"
+        },
+        {
+          "character": "Grace",
+          "line": "Jake, you're talking about them like they're people you care about.",
+          "significance": "Grace recognizing his transformation; warning and hope combined"
+        }
+      ],
+
+      "thematicElements": {
+        "divided_loyalty": "Core conflict—Jake serving two masters; house divided cannot stand",
+        "transformation_documented": "Creating record of own corruption/conversion depending on perspective",
+        "truth_witness": "Camera as witness; speaking truth makes it undeniable",
+        "which_world_real": "Question of which life is dream and which reality; identity crisis",
+        "evidence_creation": "Jake unknowingly creating proof that will condemn him"
+      },
+
+      "emotionalBeats": {
+        "jake_confession": "Logs become therapy; speaking what he can't admit to others",
+        "jake_conflict": "Growing awareness he'll have to choose; can't serve both sides forever",
+        "grace_concern": "Maternal worry for Jake's path and what it will cost him"
+      },
+
+      "moralQuestions": [
+        "Is Jake's espionage betrayal or necessary information gathering?",
+        "Can someone serve two opposing sides ethically?",
+        "When does cultural immersion become conversion?"
+      ],
+
+      "cinematography": {
+        "notable_shots": [
+          "Close-up: Jake's face in harsh video light—confessional intimacy",
+          "Over-shoulder: Grace watching Jake's logs on monitor—surveillance and concern",
+          "Progression montage: Jake's expressions changing across logs—transformation visible",
+          "Split screen: Jake speaking in link room versus Jake among Na'vi—two lives contrasted",
+          "Extreme close-up: Jake's eyes as he admits truth—moment of recognition"
+        ],
+        "camera_movement": "Static during logs emphasizing intimacy; slow push-in during revelations",
+        "lighting": "Harsh video lighting creates honesty effect; no shadows to hide in"
+      },
+
+      "foreshadowing": [21, 24, 25],
+      "callbacks": [8],
+      "parallels": ["Jake's logs parallel war reporters who become sympathetic to people they're covering—observer becoming participant"],
+
+      "symbols": {
+        "camera": "Witness and judge; making internal external; creating permanent record",
+        "video_booth": "Confessional; small space for truth-telling; isolation and honesty",
+        "recorded_voice": "Words made permanent; can't be taken back; evidence of journey",
+        "changing_tone": "Audio record of transformation; voice revealing heart",
+        "logs_as_evidence": "Documentation becoming weapon; truth turned against speaker"
+      },
+
+      "tension": 4,
+      "significance": "Documents Jake's transformation from spy to convert; creates evidence that will expose him; shows his growing internal conflict; reveals to audience his changing loyalty before characters know; sets up later confrontation when logs are discovered"
+    },
+
+    {
+      "id": 12,
+      "act": "act1",
+      "title": "Taming the Pa'li (Direhorse)",
+      "types": ["training", "bonding", "action"],
+      "location": {
+        "primary": "Forest clearing - Pa'li bonding grounds",
+        "secondary": "Open grassland areas",
+        "significance": "First tsaheylu bond with animal; experiencing neural connection that defines Na'vi relationship with nature"
+      },
+      "time": "Week 2 of training",
+      "duration": "~5 minutes",
+
+      "plotSummary": {
+        "brief": "Jake must tame and bond with a pa'li (direhorse)—a six-legged creature twice the size of Earth horses. The animal throws him repeatedly while Tsu'tey mocks his weakness. Finally, Jake makes the neural connection through tsaheylu—linking his queue to the animal's antennae. They become one consciousness. Jake experiences the profound bond the Na'vi share with nature. This is his first step toward becoming a true hunter and understanding what connection to Eywa really means.",
+        "detailed": "Neytiri brings Jake to the bonding grounds where young Na'vi learn to connect with pa'li. The direhorses are magnificent—massive six-legged creatures with bioluminescent markings, armored heads, and neural antennae trailing from their necks. Tsu'tey is there, watching with barely concealed contempt for the alien attempting their sacred practices. Neytiri explains: Jake must choose a pa'li,  and the pa'li must choose him by accepting the bond. If the animal rejects him, he can never be a hunter. Jake approaches a particularly spirited pa'li. The creature rears and throws him immediately. Jake gets up, approaches again. Thrown again. Tsu'tey laughs openly—the alien can't even bond a simple pa'li. Other young Na'vi watch, some sympathetic, others doubtful. Jake's Marine stubbornness kicks in. He tries again and again, each time getting thrown harder. Neytiri finally intervenes, showing him the technique: calm mind, gentle approach, quick decisive movement. Jake tries once more. The pa'li rears but Jake holds on, whispering calming sounds he's heard Neytiri use. In a critical moment, he reaches his queue forward and makes tsaheylu with the pa'li's neural whip. The connection hits like lightning. Jake gasps as his consciousness merges with the creature's. He feels its heartbeat as his own, senses its muscles like extensions of his body, experiences its thoughts and emotions as integrated with his own. The pa'li immediately calms. They are one being now. Jake's eyes are wide with wonder. This is tsaheylu—the bond. This is how Na'vi experience all nature. Not as separate beings but as unified consciousness. He tries to speak but can't find words for what he's experiencing. Neytiri smiles—now he begins to understand. Even Tsu'tey nods slightly; the alien has passed this test at least.",
+        "subtext": "The pa'li bonding represents Jake's first true understanding of what makes Na'vi fundamentally different from humans. It's not technology or culture—it's biological neural networking that allows them to literally become one with other life forms. This is what humans can never truly replicate: the physical, neurological experience of not being separate from nature. Jake's success here despite repeated failure shows his determination, but more importantly, shows his growing capacity to think and feel as Na'vi do."
+      },
+
+      "characterDevelopment": {
+        "jake": {
+          "state": "Determined, frustrated, then transcendent when bond achieved; experiencing watershed moment",
+          "desires": "To succeed, to prove himself to Tsu'tey and clan, to understand Na'vi ways",
+          "arc": "First direct neural experience of what Na'vi life is; understands connection isn't metaphor but literal",
+          "key_moment": "Moment of tsaheylu—consciousness expanding to include another being; paradigm shift"
+        },
+        "neytiri": {
+          "state": "Patient teacher watching student struggle then succeed; proud when he achieves bond",
+          "desires": "For Jake to experience what she experiences; to truly understand, not mimic",
+          "key_moment": "Her smile when Jake makes tsaheylu—seeing him cross threshold into Na'vi understanding"
+        },
+        "tsuTey": {
+          "state": "Hostile, mocking, but grudgingly respectful when Jake succeeds",
+          "motivation": "Wants Jake to fail and leave Neytiri alone; protecting his betrothed",
+          "key_moment": "Slight nod of acknowledgment—Jake passed this test despite Tsu'tey's desire to see him fail"
+        }
+      },
+
+      "worldBuilding": {
+        "pali_direhorse": {
+          "description": "Six-legged equine creature; larger than Earth horses; armored head plates",
+          "biology": "Neural antennae for bonding; bioluminescent markings; powerful and fast",
+          "bonding": "Na'vi bond with pa'li for life or release bond ceremonially",
+          "cultural_role": "Essential for hunting, travel, warfare; first major bonding for young Na'vi"
+        },
+        "tsaheylu": {
+          "mechanics": "Neural queues connect; consciousness merges; boundaries dissolve",
+          "experience": "Rider feels animal's body as own; unified will and perception",
+          "significance": "Fundamental to Na'vi relationship with all life; biological not metaphorical unity",
+          "limitations": "Requires neural compatibility; not all creatures can be bonded"
+        },
+        "bonding_culture": {
+          "practice": "Young Na'vi bond pa'li as rite of passage toward adulthood",
+          "rejection": "If animal rejects bonding, individual cannot become hunter; serious limitation",
+          "honor": "Successfully bonding fierce animal shows courage and worthiness"
+        }
+      },
+
+      "naviCulture": {
+        "introduced": ["Tsaheylu as neural bonding through queue", "Pa'li as bonding animals", "Bonding as rite of passage", "Concept of unified consciousness with animals"],
+        "references": ["Tsu'tey's role as accomplished hunter and warrior", "Community witnessing of bonding attempts"],
+        "context": "This is fundamental Na'vi practice; failure here would end Jake's acceptance process"
+      },
+
+      "visualStorytelling": {
+        "opening": "Wide shot of bonding grounds with multiple pa'li; establishing sacred training space",
+        "contrast": "Jake's clumsy attempts versus Neytiri and Tsu'tey's effortless grace with animals",
+        "color_palette": "Earth tones and greens of grassland; pa'li's bioluminescent patterns",
+        "cameraWork": "Dynamic action during Jake's attempts; slow-motion for tsaheylu moment; close-up of eyes during connection",
+        "symbolism": "Being thrown = rejection of old self; bonding = acceptance into new identity"
+      },
+
+      "soundDesign": {
+        "music": "Building tension during attempts; triumphant swell when bond achieved",
+        "ambient": "Pa'li vocalizations—whinnies, snorts; hoofbeats; wind in grass",
+        "dialogue": "Neytiri's instructions; Tsu'tey's mocking comments; Jake's grunts of effort"
+      },
+
+      "keyDialogue": [
+        {
+          "character": "Neytiri",
+          "line": "You must feel her, inside. Feel her heartbeat, her breath. Breathe with her, become one with her.",
+          "significance": "Instruction revealing nature of tsaheylu—not control but unity"
+        },
+        {
+          "character": "Jake",
+          "line": "We're bonded for life? That's a lifetime of commitment!",
+          "significance": "Jake not yet understanding depth of what bonding means; treating it lightly"
+        },
+        {
+          "character": "Jake (V.O.)",
+          "line": "That first bond, the making of tsaheylu... you cannot understand it until you've felt it. You don't just ride the animal. You are the animal.",
+          "significance": "Retrospective understanding of profound experience; explaining inexplicable"
+        }
+      ],
+
+      "thematicElements": {
+        "unity_consciousness": "First experience of non-dual awareness; self expanding to include other",
+        "perseverance": "Jake's repeated failure and persistence; Marine determination adapted to Na'vi challenge",
+        "biological_difference": "What makes Na'vi fundamentally alien—neural bonding capacity humans lack",
+        "commitment": "Bonding is permanent; choice with eternal consequences; responsibility of connection",
+        "seeing_becoming": "To truly see is to become; observation transforms into participation"
+      },
+
+      "emotionalBeats": {
+        "jake_frustration": "Repeated failure building anger and determination",
+        "jake_transcendence": "Overwhelming wonder at tsaheylu experience; paradigm shift",
+        "neytiri_pride": "Student succeeding brings teacher genuine joy",
+        "tsuTey_grudging_respect": "Can't deny Jake's success even while resenting him"
+      },
+
+      "moralQuestions": [
+        "Is permanently bonding with another consciousness ethical control or sacred partnership?",
+        "What's lost when individual consciousness merges with another?",
+        "Can humans ever understand Na'vi experience without biological capacity for tsaheylu?"
+      ],
+
+      "cinematography": {
+        "notable_shots": [
+          "Wide: Multiple pa'li in clearing; Jake tiny among massive creatures—scale and challenge",
+          "Action: Jake being thrown repeatedly—failure and persistence visualized",
+          "Slow-motion: Jake's queue reaching toward pa'li antennae—critical moment extended",
+          "Extreme close-up: Jake's eyes widening as consciousness merges—internal experience made visible",
+          "Medium: Jake and pa'li moving as one—unity achieved; previously separate now unified"
+        ],
+        "camera_movement": "Shaky during throwing attempts; smooth tracking during bonded riding; camera adapting to Jake's state",
+        "lighting": "Natural daylight emphasizing realness of experience; bioluminescent pa'li markings providing visual connection points"
+      },
+
+      "foreshadowing": [14, 15, 16, 17],
+      "callbacks": [10],
+      "parallels": ["Jake's persistence with pa'li mirrors his later persistence taming Toruk—pattern of refusing to quit"],
+
+      "symbols": {
+        "pali": "Nature accepting Jake; first real integration into Na'vi life",
+        "being_thrown": "Rejection of old identity; shedding human approach",
+        "tsaheylu": "Neural connection as spiritual and physical unity; ultimate seeing",
+        "queue_to_antennae": "Bridge between beings; sacred touch creating oneness",
+        "riding_bonded": "Harmony achieved; moving as one consciousness through world"
+      },
+
+      "tension": 5,
+      "significance": "First tsaheylu bond teaches Jake what Na'vi connection to nature truly means; biological foundation for their spirituality; proves his capability and commitment; overcomes Tsu'tey's contempt slightly; prepares Jake for more profound bondings to come"
+    },
+
+    {
+      "id": 13,
+      "act": "act1",
+      "title": "Journey to the Floating Mountains",
+      "types": ["discovery", "wonder", "revelation"],
+      "location": {
+        "primary": "Hallelujah Mountains - Floating mountain range",
+        "secondary": "Flight path through magnetic flux vortex",
+        "significance": "Sacred site housing ikran rookery; unobtanium's gravitational effect made visible; place where sky people's greed and Na'vi spirituality intersect"
+      },
+      "time": "Week 3 of training",
+      "duration": "~4 minutes",
+
+      "plotSummary": {
+        "brief": "Neytiri takes Jake to the legendary Hallelujah Mountains—massive islands of rock floating thousands of feet above the jungle, held aloft by powerful magnetic fields from unobtanium deposits. Jake experiences wonder at the impossible beauty of waterfalls cascading into clouds, mountains suspended in air. This sacred place houses the ikran rookery where Jake will attempt Iknimaya—the rite of passage to become a hunter.",
+        "detailed": "Jake and Neytiri ride their pa'li through dense jungle, then begin climbing steep cliffs. As they ascend, Jake notices strange electromagnetic interference—his Na'vi hair standing on end, rocks seeming to defy gravity. Then they emerge into an impossible vista: mountains floating in the sky. Massive rock formations, some as large as Hell's Gate itself, hover thousands of feet above the ground, held aloft by flux vortexes created by massive unobtanium deposits. Waterfalls pour from the mountains, their water becoming mist before reaching the ground miles below. The visual is beyond anything Jake has ever imagined. Neytiri watches his face, pleased by his awe. She explains this is why the Na'vi call them the 'Thundering Rocks'—ayram alusìng. The magnetic forces create constant low rumbling. The floating mountains are sacred to all Na'vi clans, a place where Eywa's power is visible. Ironically, these same unobtanium deposits are what the RDA wants most. Jake realizes he's looking at billions in resources floating impossibly in the air—both sacred site and corporate target. Neytiri leads him across vine bridges between floating rocks, the jungle far below. Jake has to trust completely; one misstep means death. They approach the highest mountain cluster where ikran make their nests. Neytiri explains tomorrow Jake will attempt Iknimaya here—a test few aliens could survive. Tonight they rest at a small cave shelter Na'vi hunters have used for generations.",
+        "subtext": "The floating mountains represent the fundamental conflict of the story made literal: what Na'vi see as proof of Eywa's majesty, humans see as exploitable resources. The same unobtanium creating this wonder is what the RDA will destroy everything to mine. Jake is caught between seeing through Na'vi eyes (wonder, sacredness) and human eyes (value, strategy). His awe at the mountains shows his transformation continuing."
+      },
+
+      "characterDevelopment": {
+        "jake": {
+          "state": "Awestruck, overwhelmed by beauty and impossibility; child-like wonder breaking through Marine cynicism",
+          "desires": "To understand and protect this beauty; to be worthy of seeing such places",
+          "fears": "That humans will destroy this; that he's not capable of Iknimaya tomorrow",
+          "arc": "Experiencing Pandora's deepest magic; impossible beauty reshaping worldview; no human has seen this",
+          "key_moment": "First sight of floating mountains—his face registering impossible wonder; paradigm of reality shifting"
+        },
+        "neytiri": {
+          "state": "Proud of her world; pleased by Jake's genuine awe; preparing him mentally for tomorrow's trial",
+          "desires": "For Jake to understand why Na'vi fight for Pandora; for him to succeed in Iknimaya",
+          "key_moment": "Watching Jake's face as he sees the mountains—measuring whether he truly sees or just looks"
+        }
+      },
+
+      "worldBuilding": {
+        "hallelujah_mountains": {
+          "description": "Mountain-sized rock formations floating up to 10,000 feet high; flux vortexes from unobtanium",
+          "physics": "Unobtanium in superconducting state creates powerful magnetic fields; rocks with high unobtanium content levitate",
+          "ecosystem": "Unique flora and fauna; ikran nesting grounds; sacred Na'vi sites; waterfalls feeding jungle below",
+          "cultural_significance": "Sacred to all clans; place of vision quests and trials; where brave hunters prove themselves"
+        },
+        "unobtanium": {
+          "properties": "Room-temperature superconductor; most valuable substance in galaxy; worth $20 million per kilo",
+          "magnetic_effects": "Creates powerful electromagnetic fields; disrupts compasses and electronics",
+          "location": "Massive deposits beneath Hometree and in floating mountains",
+          "irony": "What creates Pandora's greatest wonders is what will cause its destruction"
+        },
+        "electromagnetic_phenomena": {
+          "visual_effects": "Waterfalls flowing upward briefly; rocks hovering; electromagnetic auroras",
+          "biological_impact": "Na'vi neural networks may have evolved in response to these fields",
+          "navigation": "Traditional human navigation impossible; Na'vi use landmarks and instinct"
+        }
+      },
+
+      "naviCulture": {
+        "introduced": ["Ayram alusìng (Thundering Rocks)", "Sacred status of floating mountains", "Iknimaya preparation rituals", "Hunter shelters in mountains"],
+        "references": ["All clans consider mountains sacred", "Legendary hunters bonded ikran here for thousands of years"],
+        "context": "These mountains are to Na'vi what cathedrals are to humans—places where the spiritual becomes physical"
+      },
+
+      "visualStorytelling": {
+        "opening": "Ascending through mist, Jake's POV emerging into impossible vista",
+        "contrast": "Solid jungle below versus floating impossibility above; physical laws suspended",
+        "color_palette": "Deep blues of sky, gray stone, white waterfalls, rainbow electromagnetic shimmer",
+        "cameraWork": "Wide establishing shots emphasizing scale and impossibility; Jake's face in closeup registering wonder; vertiginous shots down to jungle floor miles below",
+        "symbolism": "Floating mountains = transcendence, impossibility made real, sacred made visible"
+      },
+
+      "soundDesign": {
+        "music": "Ethereal, wonder-filled theme; choral elements suggesting spirituality; percussion mimicking electromagnetic humming",
+        "ambient": "Low electromagnetic rumble; wind whistling through rocks; distant waterfall thunder; rope bridges creaking",
+        "dialogue": "Neytiri's explanations; Jake's breathless exclamations; voice-over reflecting on wonder"
+      },
+
+      "keyDialogue": [
+        {
+          "character": "Jake (V.O.)",
+          "line": "You should see your faces. We're not in Kansas anymore...",
+          "significance": "Jake now using Quaritch's line but with opposite meaning—not threat but wonder"
+        },
+        {
+          "character": "Neytiri",
+          "line": "These mountains are sacred. The Na'vi believe Eywa's power flows strongest here.",
+          "significance": "Establishing spiritual significance that makes destruction especially profane"
+        },
+        {
+          "character": "Jake",
+          "line": "The biggest unobtanium deposit for two hundred klicks in any direction.",
+          "significance": "Jake still thinking in RDA terms—revealing dual vision between cultures"
+        }
+      ],
+
+      "thematicElements": {
+        "sacred_vs_profitable": "Same location viewed as holy site or resource deposit—colonial mindset clash",
+        "wonder": "Experiencing the genuinely impossible; reality exceeding imagination",
+        "faith_made_visible": "Eywa's power not metaphor but observable physical phenomenon",
+        "transformation_of_vision": "Learning to see beauty not value; sacred not commodity",
+        "nature_transcendent": "Pandora defying Earth physics and expectations; alien world truly alien"
+      },
+
+      "emotionalBeats": {
+        "jake_wonder": "Child-like awe; all cynicism momentarily stripped away",
+        "jake_conflict": "Beauty warring with tactical assessment; two minds in one head",
+        "neytiri_pride": "Pride in showing her world; hope that Jake understands",
+        "anticipation": "Tomorrow's trial looming; sacred test approaching"
+      },
+
+      "moralQuestions": [
+        "Can a place be both sacred and profitable, or does profit profane sacredness?",
+        "What's lost when wonder is reduced to resource value?",
+        "Is Jake's dual vision—seeing beauty and value simultaneously—betrayal or synthesis?"
+      ],
+
+      "cinematography": {
+        "notable_shots": [
+          "Wide aerial: Floating mountains revealed; camera pulling back to show impossible scale",
+          "POV: Jake's perspective emerging from mist into wonder",
+          "Vertiginous: Looking down past floating rocks to jungle miles below",
+          "Close-up: Jake's face registering awe; eyes reflecting floating mountains",
+          "Long: Tiny figures of Jake and Neytiri crossing vine bridge between floating stones"
+        ],
+        "camera_movement": "Sweeping movements emphasizing verticality and scale; slow reveals building wonder; floating camera motion suggesting weightlessness",
+        "lighting": "Diffuse light through mist; electromagnetic shimmer creating rainbow effects; waterfalls catching sunlight"
+      },
+
+      "foreshadowing": [14, 30],
+      "callbacks": [1],
+      "parallels": ["Jake's wonder here mirrors his opening dream—both involve flying through impossible landscapes; dream becoming reality"],
+
+      "symbols": {
+        "floating_mountains": "Impossible made real; sacred power visible; transcendence of normal reality",
+        "waterfalls_to_nowhere": "Beauty without purpose; nature transcending utility",
+        "unobtanium": "Source of wonder and destruction; blessing and curse; sacred and profane united",
+        "vine_bridges": "Trust required; connection between separate worlds; faith made physical",
+        "height": "Proximity to sky/Eywa; elevation as spiritual ascension; distance from human world below"
+      },
+
+      "tension": 4,
+      "significance": "Reveals the central irony—unobtanium creates both Pandora's greatest beauty and the greed that will destroy it; Jake experiencing Pandora's impossibility firsthand; prepares audience and Jake for Iknimaya; establishes why Na'vi will never abandon sacred sites; shows Jake's vision transforming from tactical to spiritual"
+    },
+
+    {
+      "id": 14,
+      "act": "act2",
+      "title": "Iknimaya - Choosing the Ikran",
+      "types": ["action", "transformation", "spiritual"],
+      "location": {
+        "primary": "Ikran rookery - floating mountain cliff face",
+        "secondary": "Narrow rock ledges thousands of feet above ground",
+        "significance": "Sacred site of passage where Na'vi hunters bond with ikran; death and transcendence equally possible"
+      },
+      "time": "Week 3 - Day of trial",
+      "duration": "~6 minutes",
+
+      "plotSummary": {
+        "brief": "Jake climbs to the ikran rookery where dozens of massive flying predators nest. Neytiri explains the test: the ikran chooses the hunter by trying to kill them. Jake must identify which ikran will be his, overcome it in violent combat on a cliff edge, and bond with it through tsaheylu—or die trying. A fierce orange and blue ikran attacks Jake. After desperate struggle, he makes the neural connection. They are bonded for life.",
+        "detailed": "Jake, Neytiri, and several young Na'vi hunters climb to the ikran rookery—a cliff face where dozens of ikran (banshees) nest. The creatures are magnificent and terrifying: dragon-like flying reptiles with 30-foot wingspans, carbon-fiber bones, razor teeth, brilliant colors. They shriek and dive aggressively at the intruders. Neytiri explains Iknimaya to Jake: 'You do not choose your ikran. It chooses you... by trying to kill you.' The Na'vi way is to seek the one creature that will bond with you by identifying which ikran reacts most aggressively—your destined mount will attack you on sight. Jake must fight it into submission, make the bond, then fly—all without getting thrown off the cliff to his death. Tsu'tey watches skeptically—surely the alien will fail this ultimate test. Jake walks along the narrow ledge. Multiple ikran shriek but don't attack. Then a particularly fierce specimen—orange and blue with yellow eyes—lunges at him with killing intent. 'That's him!' Jake shouts. The ikran attacks viciously. Jake dodges, barely avoiding its snapping jaws. The creature's tail lashes, nearly knocking Jake off the cliff. Jake tackles it, trying to get control, but the ikran is stronger. They wrestle on the precipice, Jake moments from being thrown to his death. Neytiri shouts instructions but doesn't intervene—this is Jake's trial alone. Jake gets the creature's jaws muzzled but can't reach his queue. The ikran thrashes wildly. In a desperate move, Jake grabs the creature and leaps onto its back. Now he can reach the queue. He makes tsaheylu—neural connection—just as the ikran tries to throw him off. The bond hits them both. The ikran stops thrashing, though it's still angry. Jake feels the creature's rage, fear, and wild spirit as his own. They are bonded now—Toruk for life. Neytiri smiles with genuine pride. Even Tsu'tey looks impressed. But the hardest part is still to come: the first flight.",
+        "subtext": "Iknimaya is about consent through combat—Jake must prove himself worthy by surviving the ikran's violent rejection and transforming it to acceptance. The bond isn't peaceful merging but violent wrestling into unity. This mirrors Jake's entire transformation: he must fight against his old identity, overcome the resistance, and emerge changed. The fact that the ikran tries to kill him first means the bond, once achieved, is earned, not given."
+      },
+
+      "characterDevelopment": {
+        "jake": {
+          "state": "Terrified but determined; fighting for his life and his place among Na'vi; adrenaline-fueled clarity",
+          "desires": "To survive, to bond, to prove himself worthy, to become a true hunter",
+          "fears": "Death, failure, falling, being rejected by the ikran and the People",
+          "arc": "Passing ultimate test of Na'vi manhood; earning place through violence and courage; no longer outsider",
+          "key_moment": "Making tsaheylu while wrestling ikran on cliff edge—transcendence through terror"
+        },
+        "neytiri": {
+          "state": "Torn between helping and letting him prove himself; proud when he succeeds; fearful when he nearly falls",
+          "desires": "For Jake to succeed and survive; for him to be worthy of her teaching and her heart",
+          "key_moment": "Her smile when he makes the bond—seeing him transform from alien to hunter before her eyes"
+        },
+        "tsuTey": {
+          "state": "Expecting failure; surprised by success; grudgingly impressed by Jake's courage",
+          "motivation": "Wants Jake to fail so Neytiri will abandon her attachment to him",
+          "key_moment": "Expression shifting from smirk to respect when Jake bonds the fierce ikran"
+        }
+      },
+
+      "worldBuilding": {
+        "ikran_banshee": {
+          "description": "Dragon-like flying predator; 30-foot wingspan; membranous wings; four eyes; brilliant coloration",
+          "biology": "Carbon-fiber bones for strength and lightness; neural whip for bonding; highly intelligent and aggressive",
+          "bonding": "Lifetime bond; ikran and rider share consciousness during flight; bond only broken by death",
+          "behavior": "Territorial, aggressive; bonds with only one Na'vi for entire life; fiercely loyal once bonded"
+        },
+        "iknimaya": {
+          "meaning": "Rite of passage; literally 'Stairway to Heaven'",
+          "requirements": "Climb to rookery, identify ikran that chooses you, overcome it, bond, fly successfully",
+          "significance": "Transforms child to adult; hunter to warrior; outsider to clan member",
+          "failure_consequences": "Death from fall, or ikran attack, or failed first flight; failure is permanent"
+        },
+        "bonding_mechanics": {
+          "violence_first": "Ikran must try to kill potential rider—tests worthiness through survival",
+          "submission": "Rider must dominate ikran physically before neural bond possible",
+          "tsaheylu_with_predator": "Bonding with aggressive creature requires taming its killing instinct while preserving its spirit"
+        }
+      },
+
+      "naviCulture": {
+        "introduced": ["Iknimaya ritual and significance", "Ikran bonding traditions", "Hunter initiation practices", "Concept of earning bond through combat"],
+        "references": ["Young Na'vi waiting their turn for Iknimaya", "Tsu'tey's status as accomplished ikran rider", "Clan expectation that failure is shameful"],
+        "context": "This is the most important rite of passage for Omaticaya Na'vi—determines who becomes hunter and warrior"
+      },
+
+      "visualStorytelling": {
+        "opening": "Vertiginous establishing shot of cliff face with ikran swarming; Jake tiny against scale",
+        "contrast": "Jake's human fear versus Na'vi confidence; violent struggle versus peaceful bond aftermath",
+        "color_palette": "Orange and blue ikran against gray rock and blue sky; Jake's skin tone contrasting with creature",
+        "cameraWork": "Handheld chaos during fight; slow-motion for tsaheylu moment; vertiginous angles showing deadly drop",
+        "symbolism": "Cliff edge = threshold between death and transformation; ikran = wild self that must be integrated"
+      },
+
+      "soundDesign": {
+        "music": "Intense percussion building tension; triumphant swell when bond achieved; Na'vi vocals suggesting sacredness",
+        "ambient": "Ikran shrieks echoing off rocks; wind howling; wingbeats; rocks crumbling under feet",
+        "dialogue": "Neytiri's shouted instructions; Jake's grunts of effort; Tsu'tey's skeptical comments"
+      },
+
+      "keyDialogue": [
+        {
+          "character": "Neytiri",
+          "line": "Now you choose your ikran. This you must feel inside. If he also chooses you, move quick, like I showed. You will have one chance, Jake.",
+          "significance": "Mutual choice required; relationship not domination; instinct over thought"
+        },
+        {
+          "character": "Neytiri",
+          "line": "He will try to kill you. You must choose him, and he must choose you.",
+          "significance": "Violence as proof of compatibility; only worthy opponents can become partners"
+        },
+        {
+          "character": "Jake",
+          "line": "Let's dance!",
+          "significance": "Jake's Marine bravado masking terror; treating deadly combat as challenge"
+        },
+        {
+          "character": "Tsu'tey (Na'vi)",
+          "line": "He will die—this alien is not meant for Iknimaya.",
+          "significance": "Tsu'tey's certainty of Jake's unworthiness and impending failure"
+        }
+      ],
+
+      "thematicElements": {
+        "violence_into_intimacy": "Bond born from combat; would-be killer becoming soul-mate; transformation through struggle",
+        "earning_vs_receiving": "Nothing given freely; everything must be proven; respect through survival",
+        "consent_through_combat": "Strange ethic where mutual attempted murder becomes mutual acceptance",
+        "worthiness": "Only those who survive violence deserve partnership; elimination of unworthy",
+        "death_rebirth": "Symbolic death of old self; falling into new identity; threshold experience"
+      },
+
+      "emotionalBeats": {
+        "jake_terror": "Genuine fear of death; adrenaline-fueled survival instinct",
+        "jake_determination": "Marine training kicking in; refuse to quit; death before dishonor",
+        "jake_transcendence": "Moment of bond—fear transmuting to exhilaration",
+        "neytiri_fear": "Watching Jake nearly die; unable to help; holding breath",
+        "neytiri_pride": "When he succeeds—genuine admiration and growing love",
+        "tsuTey_grudging_respect": "Can't deny Jake's courage even while hating his presence"
+      },
+
+      "moralQuestions": [
+        "Is bonding earned through violence ethical or barbaric?",
+        "What's the difference between domination and partnership when combat is required?",
+        "Does the ikran have true choice if the alternative is being dominated?"
+      ],
+
+      "cinematography": {
+        "notable_shots": [
+          "Wide: Cliff face with dozens of ikran—scale and danger visible",
+          "POV: Jake's perspective looking down thousands of feet to certain death",
+          "Close combat: Rapid cuts during fight—chaos and violence",
+          "Slow-motion: Jake's queue reaching for ikran's neural whip—critical moment extended",
+          "Extreme close-up: Both sets of eyes (Jake's and ikran's) as consciousness merges"
+        ],
+        "camera_movement": "Shaky handheld during combat suggesting documentary realism; smooth float when bond achieved suggesting transcendence; vertiginous tilts showing drop",
+        "lighting": "Harsh sunlight on exposed cliff; shadows suggesting danger; bright sky contrasting dark rock"
+      },
+
+      "foreshadowing": [15, 30, 36],
+      "callbacks": [12, 13],
+      "parallels": ["Jake wrestling ikran mirrors later wrestling with Toruk—same pattern at greater scale; both require violence becoming unity"],
+
+      "symbols": {
+        "ikran": "Wild self that must be integrated; untamed spirit matching Jake's; freedom and danger united",
+        "cliff_edge": "Threshold between life and death; edge of transformation; literal and metaphorical precipice",
+        "orange_blue_coloring": "Fire and water; passion and calm; Jake's dual nature reflected",
+        "falling": "Ever-present threat; death as possibility making choice meaningful",
+        "tsaheylu_in_combat": "Unity forged in conflict; intimacy through violence; bond earned not given"
+      },
+
+      "tension": 9,
+      "significance": "Jake's ultimate passage from outsider to clan member; proves his courage and worthiness; experiences second profound neural bond (after pa'li); earns Neytiri's deepening love and even Tsu'tey's grudging respect; becomes a hunter—no longer studying Na'vi ways but living them; prepares him for later bonding with Toruk"
+    },
+
+    {
+      "id": 15,
+      "act": "act2",
+      "title": "First Flight - Freedom in the Sky",
+      "types": ["action", "discovery", "bonding"],
+      "location": {
+        "primary": "Sky above Hallelujah Mountains",
+        "secondary": "Through floating mountains and waterfalls",
+        "significance": "Jake's first experience of true three-dimensional freedom; world transformed by flight"
+      },
+      "time": "Immediately after Iknimaya",
+      "duration": "~5 minutes",
+
+      "plotSummary": {
+        "brief": "Jake's first flight on his bonded ikran begins as terrifying chaos—they plummet through clouds as Jake struggles to synchronize with the creature's wild movements. Once he learns to think with the ikran rather than command it, they soar together. Jake experiences the pure ecstasy of flight, racing Neytiri through floating mountains, diving through waterfalls, screaming with joy. He has never felt more alive or more free.",
+        "detailed": "The moment of truth: Jake must take his first flight. The ikran is bonded but still wild-spirited. Jake climbs onto its back on the cliff edge, makes tsaheylu again to confirm the connection. Neytiri shouts final instructions: 'Think fly. She will!' But before Jake is ready, the ikran leaps off the cliff. They plummet through the air, Jake screaming as they drop like a stone toward the jungle thousands of feet below. He's trying to command the ikran with words and yanking, but the creature isn't responding—they're in freefall. Neytiri dives after them on her ikran, shouting 'Feel her! Don't fight her!' Jake suddenly understands: he's not supposed to control the ikran like reins on a horse. Through tsaheylu, they share one consciousness. He stops fighting and feels the ikran's instincts as his own. Instantly they pull out of the dive, wings catching air. Jake gasps as they soar upward. Now he gets it—they think together, move together. He feels the wind through her wings as if they were his own limbs. The sensation is beyond anything he imagined. They climb higher, Jake laughing with pure exhilaration. Neytiri joins him, and they race through the floating mountains. Jake learns to bank, dive, soar. They swoop through waterfalls, getting drenched and whooping with joy. They thread between floating rocks, play tag in the clouds. This is what Na'vi live for—this unity with nature, this freedom in three dimensions. Jake is no longer paralyzed, not even limited to ground. He can fly. He can truly fly. He screams in primal joy, and his ikran screams with him. Neytiri watches him with bright eyes—he understands now. He sees what she sees, feels what she feels. He's becoming Na'vi not just in body but in spirit.",
+        "subtext": "First flight represents Jake's complete liberation—from paralysis, from human limitations, from gravity itself. His initial attempt to control the ikran like a machine fails because Na'vi relationship with nature isn't about domination but unity. When he stops trying to command and starts feeling as one consciousness, flight becomes effortless. This mirrors his broader transformation: only by surrendering his human need for control and accepting Na'vi unity-consciousness can he truly live on Pandora."
+      },
+
+      "characterDevelopment": {
+        "jake": {
+          "state": "Terror transforming to ecstasy; experiencing transcendence through embodiment; childlike joy unleashed",
+          "desires": "To master flight, to keep this feeling forever, to never go back to wheelchair or human limitations",
+          "fears": "Falling, losing control, failing at the final test",
+          "arc": "Experiencing ultimate freedom—surpassing even his avatar's ability to run; this is beyond human capability",
+          "key_moment": "Realizing he must feel not command—paradigm shift from control to unity consciousness"
+        },
+        "neytiri": {
+          "state": "Delighted by Jake's joy; falling in love with his enthusiasm and transformation; sharing her world's greatest pleasure",
+          "desires": "For Jake to feel what she feels; to share the joy of flight; to see him fully alive",
+          "key_moment": "Racing alongside Jake, seeing his pure happiness—recognizing her feelings deepening beyond duty"
+        }
+      },
+
+      "worldBuilding": {
+        "ikran_flight_mechanics": {
+          "neural_control": "Rider thinks direction; ikran responds as extension of rider's will",
+          "shared_consciousness": "Rider feels wind, air pressure, wing strain through ikran's senses",
+          "learning_curve": "New riders initially try to control; experienced riders merge consciousness seamlessly",
+          "limits": "Ikran tires; cannot fly indefinitely; rider must respect creature's needs"
+        },
+        "flight_culture": {
+          "spiritual_dimension": "Flight as communion with Eywa; sky as sacred space; freedom as worship",
+          "social_bonding": "Na'vi bond through shared flight; racing and playing in air; aerial courtship",
+          "practical_use": "Hunting from above; travel across Pandora; warfare; scouting",
+          "emotional_impact": "Flight as peak experience; source of Na'vi joy; what makes life worth living"
+        },
+        "aerial_environment": {
+          "floating_mountains": "Obstacles and playgrounds; threading between them tests skill",
+          "waterfalls": "Fly through them for joy; mist creates rainbows; sensory delight",
+          "cloud_layers": "Different altitudes have different flight characteristics; air density varies"
+        }
+      },
+
+      "naviCulture": {
+        "introduced": ["Flight as spiritual practice", "Aerial play between bonded pairs", "Joy and freedom as core Na'vi values", "Ikran riders' special status"],
+        "references": ["Neytiri's expertise showing years of bonding", "Aerial courtship behaviors"],
+        "context": "Flight is not just transportation but the pinnacle of Na'vi life—embodiment of their philosophy of unity with nature"
+      },
+
+      "visualStorytelling": {
+        "opening": "Cliff edge with infinite sky beyond—invitation and threat",
+        "contrast": "Terrifying fall versus soaring freedom; Jake's fear versus Neytiri's confidence",
+        "color_palette": "Blue sky, white clouds, rainbow mist from waterfalls, vibrant ikran colors",
+        "cameraWork": "First-person POV during dive (audience in freefall); sweeping third-person during soaring; close-ups of Jake's ecstatic face",
+        "symbolism": "Flight = ultimate liberation; sky = limitless possibility; falling = letting go of control"
+      },
+
+      "soundDesign": {
+        "music": "Initially tense percussion, building to soaring triumphant theme; Na'vi vocals expressing transcendence",
+        "ambient": "Wind rushing, ikran wingbeats, waterfalls roaring, Jake and Neytiri's joyful shouts",
+        "dialogue": "Instructions shouted over wind; Jake's screams transforming from terror to joy; laughter"
+      },
+
+      "keyDialogue": [
+        {
+          "character": "Neytiri",
+          "line": "Think fly! She will!",
+          "significance": "Instructions revealing non-verbal neural control; thinking becomes doing"
+        },
+        {
+          "character": "Jake",
+          "line": "Yeah! Come on! That's right! That's right!",
+          "significance": "Jake's exclamations as he learns control—verbal expression of non-verbal communion"
+        },
+        {
+          "character": "Jake (V.O.)",
+          "line": "That first flight seals the deal. It was the moment I knew I could never go back.",
+          "significance": "Retrospective recognition of point of no return; transformation complete"
+        },
+        {
+          "character": "Neytiri",
+          "line": "You fly like a baby!",
+          "significance": "Playful teasing showing warmth and growing affection; intimacy building"
+        }
+      ],
+
+      "thematicElements": {
+        "liberation": "From paralysis to running to flying—Jake's arc of increasing freedom",
+        "unity_consciousness": "Learning to merge with ikran's mind; control through surrender",
+        "joy": "Pure delight as valid spiritual experience; happiness as enlightenment",
+        "point_of_no_return": "Experience so profound Jake can never be satisfied with human existence",
+        "transcendence_through_embodiment": "Heaven reached through body not despite it; physical as spiritual"
+      },
+
+      "emotionalBeats": {
+        "terror": "Freefall and panic; certainty of death; total loss of control",
+        "revelation": "Understanding how to feel not command; paradigm shift",
+        "exhilaration": "Pure joy of flight; freedom beyond anything previously imagined",
+        "bonding_with_neytiri": "Shared joy creating intimacy; playing together in sky",
+        "transformation_recognized": "Jake knowing he can never go back to human limitations"
+      },
+
+      "moralQuestions": [
+        "Is Jake's choice to prefer avatar existence over human life a valid choice or escape?",
+        "What's lost in the pursuit of ever-greater freedom?",
+        "Can humans ethically use avatars to experience what Na'vi experience naturally?"
+      ],
+
+      "cinematography": {
+        "notable_shots": [
+          "POV: Freefall from cliff—audience plummeting with Jake",
+          "Wide aerial: Two tiny figures on ikran against vast sky and floating mountains",
+          "Close-up: Jake's face transforming from terror to ecstasy",
+          "Tracking: Camera racing alongside Jake and Neytiri through waterfalls",
+          "Slow-motion: Diving through rainbow mist—beauty extended"
+        ],
+        "camera_movement": "Chaotic tumbling during fall; smooth soaring once Jake learns control; aerial ballet during play",
+        "lighting": "Bright sunlight; rainbow effects through waterfall mist; golden hour warm glow"
+      },
+
+      "foreshadowing": [19, 30, 36],
+      "callbacks": [3, 14],
+      "parallels": ["Jake's first run in avatar parallels first flight—each expands his freedom; both involve initial chaos then mastery; both mark transformative moments"],
+
+      "symbols": {
+        "flight": "Ultimate freedom; transcendence; liberation from all limitations including gravity",
+        "falling": "Surrender required before control achieved; letting go as prerequisite to mastery",
+        "sky": "Infinite possibility; Na'vi's natural domain; realm of spirits",
+        "racing_neytiri": "Courtship through shared joy; bonding through play; intimacy without words",
+        "waterfall_dive": "Baptism in flight; purification through water and air; rebirth"
+      },
+
+      "tension": 6,
+      "significance": "Completes Jake's initiation as Na'vi hunter; provides experience so profound he can never return to human existence; deepens bond with Neytiri through shared joy; gives Jake taste of ultimate freedom that makes wheelchair existence unthinkable; establishes flight as film's visual metaphor for liberation; prepares audience for later aerial battles where this beauty becomes battlefield"
+    },
+
+    {
+      "id": 16,
+      "act": "act2",
+      "title": "Jake's First Hunt - Understanding Death",
+      "types": ["bonding", "spiritual", "character"],
+      "location": {
+        "primary": "Forest hunting grounds",
+        "secondary": "Open glades where hexapede graze",
+        "significance": "First time Jake takes life as Na'vi; understanding sacred relationship between hunter and hunted"
+      },
+      "time": "Week 4 of training",
+      "duration": "~4 minutes",
+
+      "plotSummary": {
+        "brief": "Jake successfully hunts and kills a hexapede (six-legged deer-like creature). As the animal dies, Neytiri teaches him the sacred prayer—thanking the creature and asking Eywa to receive its spirit. Jake begins to understand the Na'vi worldview: death is not ending but returning energy to Eywa. All life is borrowed, and killing carries sacred responsibility. He's becoming one of the People not just in ability but in understanding.",
+        "detailed": "Jake has learned to track, move silently, and shoot accurately with a Na'vi bow. Now Neytiri judges him ready for his first true hunt—not practice but necessity. They track a herd of hexapede, graceful six-legged creatures grazing in a forest glade. Neytiri whispers instructions: Jake must choose carefully, aim for the heart, kill cleanly. A messy kill dishonors the animal and angers Eywa. Jake stalks closer, his avatar body moving with grace he never possessed as a human. He selects a mature hexapede, draws the bow, breathes out slowly. The arrow flies true, striking the heart. The hexapede staggers and falls. Jake rushes forward, excited by his success, but Neytiri's face is grave. She kneels by the dying creature and speaks in Na'vi, a prayer of thanks and release. She takes Jake's hand and places it on the hexapede's side, making him feel its heartbeat slowing, its breath failing, its spirit leaving. Jake must say the words: 'I See you, Brother. Your spirit goes with Eywa. Your body stays to become part of the People.' The hexapede's eyes close. Its energy returns to the neural network of Pandora. Death is not loss but transformation—the creature's energy will flow through roots and trees, be absorbed by other life, continue in the great circle. Jake is moved by the solemnity, the sacredness. This isn't sport or conquest—it's sacred exchange. He has taken life to sustain life, and the weight of that responsibility settles on him. Neytiri nods, seeing his understanding. Now he hunts like Na'vi, not like a human.",
+        "subtext": "The hunt ritual reveals the fundamental difference in how Na'vi and humans relate to death and nature. Humans see death as ending, hunting as conquest, animals as resources. Na'vi see death as transformation within Eywa's network, hunting as sacred exchange, animals as brothers who give themselves. Jake's solemn participation shows his worldview shifting from human materialism to Na'vi spirituality—the forest isn't full of resources but of relatives."
+      },
+
+      "characterDevelopment": {
+        "jake": {
+          "state": "Initially proud, then solemn and reverent; experiencing weight of taking life consciously",
+          "desires": "To be a successful hunter, but also to understand and honor what he's doing",
+          "fears": "Dishonoring the kill; failing to understand the sacredness; remaining spiritually human while physically Na'vi",
+          "arc": "Learning that strength includes reverence; that killing requires consciousness not callousness; deepening spiritual understanding",
+          "key_moment": "Hand on dying hexapede's side, feeling life leave—death made intimate and sacred"
+        },
+        "neytiri": {
+          "state": "Serious teacher imparting most important lesson—relationship between life and death",
+          "desires": "For Jake to understand sacredness of hunting; to see animals as persons not things",
+          "key_moment": "Taking Jake's hand and placing it on dying animal—teaching through touch and presence"
+        }
+      },
+
+      "worldBuilding": {
+        "hexapede": {
+          "description": "Six-legged ungulate; antelope/deer-like; bioluminescent markings; primary prey animal",
+          "behavior": "Herd animals; alert but not aggressive; part of Pandoran food web",
+          "cultural_role": "Main food source for Na'vi; hunting them is both necessity and spiritual practice"
+        },
+        "hunting_ethics": {
+          "clean_kill": "Requirement to minimize suffering; skill as moral obligation",
+          "prayer_ritual": "Thanking creature and committing spirit to Eywa; honoring the dead",
+          "sacred_exchange": "Taking life creates debt; using all parts of animal; waste as disrespect",
+          "necessary_only": "Killing for need not sport; each death must serve the People"
+        },
+        "eywa_cycle": {
+          "energy_transfer": "Death returns energy to planetary network; nothing is lost, only transformed",
+          "neural_network": "Deceased creatures' energy reabsorbed into Pandoran biosphere",
+          "continuity": "Death not ending but continuation in different form; immortality through network"
+        }
+      },
+
+      "naviCulture": {
+        "introduced": ["Hunting prayer and ritual", "Sacred relationship with prey", "Clean kill requirement", "Eywa's cycle of energy"],
+        "references": ["All hunters must perform this ritual", "Children are taught from youth to respect prey"],
+        "context": "This ritual is core Na'vi spirituality—showing their understanding of interconnection and sacred responsibility"
+      },
+
+      "visualStorytelling": {
+        "opening": "Jake stalking through forest—silent, graceful, transformed from clumsy student",
+        "contrast": "Jake's initial excitement versus somber ritual; action versus contemplation",
+        "color_palette": "Forest greens and browns; hexapede's bioluminescent blue markings; blood red",
+        "cameraWork": "Tight focus during stalk; slow motion of arrow flight; intimate close-up during death ritual",
+        "symbolism": "Blood = life and death intertwined; prayer = consciousness transforming act; dying eyes = seeing death as sacred"
+      },
+
+      "soundDesign": {
+        "music": "Tense during hunt; solemn and spiritual during prayer; Na'vi vocals suggesting transcendence",
+        "ambient": "Forest sounds; hexapede's breathing slowing; wind through trees; sacred silence",
+        "dialogue": "Whispered instructions; prayer in Na'vi; Jake's stumbling repetition of sacred words"
+      },
+
+      "keyDialogue": [
+        {
+          "character": "Neytiri",
+          "line": "A clean kill. You must thank Eywa for the life you take.",
+          "significance": "Establishing hunting as sacred exchange not mere killing"
+        },
+        {
+          "character": "Neytiri (in Na'vi, translated)",
+          "line": "I See you, Brother. Your spirit goes with Eywa. Your body stays to become part of the People.",
+          "significance": "Prayer revealing Na'vi understanding of death as transformation within network"
+        },
+        {
+          "character": "Jake (V.O.)",
+          "line": "With this bow, I killed my first prey. The first of many. But each one I remembered. Each one I honored.",
+          "significance": "Jake understanding weight of taking life; each death matters; consciousness required"
+        }
+      ],
+
+      "thematicElements": {
+        "sacred_responsibility": "Taking life creates obligation; power requires reverence; strength includes gentleness",
+        "interconnection": "Killing not separating hunter from hunted but joining them; predator and prey as relatives",
+        "death_as_transformation": "Energy never lost, only changing form; death as continuation not ending",
+        "conscious_killing": "Awareness required; each death seen and honored; no anonymous violence",
+        "spiritual_materialism": "Physical act (hunting) inseparable from spiritual understanding (prayer)"
+      },
+
+      "emotionalBeats": {
+        "jake_pride": "Successful shot bringing satisfaction and accomplishment",
+        "jake_solemnity": "Neytiri's gravity changing his mood; recognizing this is serious",
+        "jake_revelation": "Feeling life leave creating profound moment; death made real and sacred",
+        "neytiri_teaching": "Patient instruction in most important lesson; spiritual transmission",
+        "shared_reverence": "Both kneeling in prayer; moment of spiritual communion"
+      },
+
+      "moralQuestions": [
+        "Can hunting be both necessary and sacred?",
+        "Does prayer over prey absolve the hunter or deepen responsibility?",
+        "What's lost when killing becomes unconscious commodity production versus conscious sacred exchange?"
+      ],
+
+      "cinematography": {
+        "notable_shots": [
+          "Wide: Jake stalking through dappled forest light—hunter in his element",
+          "Slow-motion: Arrow in flight—beautiful and deadly",
+          "Close-up: Hexapede's eyes as life fades—death made intimate",
+          "Two-shot: Jake and Neytiri kneeling in prayer—shared spirituality",
+          "Extreme close-up: Jake's hand on dying creature's side—touch connecting life and death"
+        ],
+        "camera_movement": "Smooth tracking during stalk; static during death ritual emphasizing solemnity; slow push-in during prayer",
+        "lighting": "Dappled forest light suggesting sacredness; soft glow on dying creature; shadows suggesting death's mystery"
+      },
+
+      "foreshadowing": [28, 34],
+      "callbacks": [10, 12],
+      "parallels": ["Jake's prayer over hexapede prefigures prayer over dying warriors in battle; same ritual, different scale; pattern of honoring death"],
+
+      "symbols": {
+        "bow": "Traditional weapon requiring skill and proximity; intimate violence versus industrial distance",
+        "clean_kill": "Skill as morality; competence as compassion; precision as respect",
+        "prayer": "Words transforming action; consciousness making killing sacred; intention mattering",
+        "dying_eyes": "Seeing death; witness required; anonymity impossible",
+        "blood": "Life leaving and feeding; death and continuity; sacred exchange visualized"
+      },
+
+      "tension": 4,
+      "significance": "Jake learning Na'vi spiritual core—death as sacred transformation; establishes his deepening understanding beyond mere physical skills; shows hunting as spiritual practice not sport; creates moral framework for later battle deaths; demonstrates that becoming Na'vi requires consciousness transformation not just body change; prepares Jake to understand Hometree destruction as spiritual murder not merely physical damage"
+    },
+
+    {
+      "id": 17,
+      "act": "act2",
+      "title": "Becoming Omaticaya - Acceptance Ritual",
+      "types": ["transformation", "bonding", "spiritual"],
+      "location": {
+        "primary": "Hometree - Central Spiral",
+        "secondary": "Ceremonial gathering space",
+        "significance": "Heart of Omaticaya community; where clan decisions and rituals occur; Jake's final integration"
+      },
+      "time": "Week 5 - Evening",
+      "duration": "~6 minutes",
+
+      "plotSummary": {
+        "brief": "After completing his trials—taming the ikran, making his first kill, learning the language—Jake undergoes the ritual to become one of the People. His symbolic human past is burned away, he receives clan markings, and is welcomed by Eytukan and the entire Omaticaya clan in celebration.",
+        "detailed": "Jake stands before the gathered clan having proven himself through the Iknimaya and his hunts. Mo'at conducts the ritual while Eytukan watches approvingly. Jake's human possessions—a photo, dog tags—are symbolically burned, representing the death of his old identity. Mo'at paints traditional clan markings on his face and body in luminous pigments. Eytukan speaks words of acceptance: Jake is no longer 'Dreamwalker,' but Omaticaya. Even Tsu'tey, though still wary, gives a respectful nod acknowledging Jake's accomplishment. The clan erupts in celebration with drums, singing, and dancing. Na'vi children who once feared him now touch him with curiosity. Neytiri watches with pride and something deeper—Jake has become one of her People. He's no longer an outsider. For the first time in his life, Jake truly belongs somewhere.",
+        "subtext": "This acceptance is what Jake has craved his entire life—not just walking, but belonging. The ritual represents death and rebirth: his Marine identity dies, his Na'vi self is born. The irony is devastating: at the exact moment he achieves total belonging with the Na'vi, his betrayal is about to destroy them."
+      },
+
+      "characterDevelopment": {
+        "jake": {
+          "state": "Fulfilled, proud, finally belonging",
+          "transformation": "No longer acting as Na'vi—has become Na'vi in heart and mind",
+          "internal_conflict": "Deep joy shadowed by guilt about his spy role; living a lie at moment of greatest truth",
+          "key_moment": "When Eytukan declares him Omaticaya—Jake's face shows joy mixed with shame; he knows he doesn't deserve this",
+          "arc_position": "Reaches peak of dual identity before the fall; point of no return approaching"
+        },
+        "neytiri": {
+          "state": "Proud teacher seeing student succeed; love blossoming",
+          "evolution": "From reluctant teacher to proud mentor to something more intimate",
+          "key_moment": "Her smile watching Jake receive markings—pride in what he's become through her teaching",
+          "foreshadowing": "Her trust and love will make betrayal even more devastating"
+        },
+        "eytukan": {
+          "state": "Accepting leader; seeing Jake's genuine transformation",
+          "wisdom": "Recognizes Jake's spirit has changed; trusts the signs Eywa sent",
+          "key_moment": "Placing hand on Jake's shoulder—blessing and acceptance from father figure",
+          "tragic_irony": "His acceptance and trust make him vulnerable to coming betrayal"
+        },
+        "tsuTey": {
+          "state": "Grudging respect; warrior acknowledging warrior",
+          "evolution": "From open hostility to respectful rivalry",
+          "key_moment": "Nod of acknowledgment—Tsu'tey respects Jake earned this, even if he doesn't like him",
+          "complexity": "Honor demands he accept Jake; jealousy makes it painful"
+        },
+        "moat": {
+          "state": "Spiritual authority confirming Eywa's choice",
+          "role": "Conductor of transformation; voice of Eywa",
+          "key_moment": "Applying sacred markings—making Jake's transformation official and spiritual"
+        }
+      },
+
+      "worldBuilding": {
+        "omaticaya_rituals": {
+          "acceptance_ceremony": "Formal integration of outsider into clan; requires completion of trials",
+          "symbolic_burning": "Death of old identity; past must be released to embrace new self",
+          "clan_markings": "Bioluminescent pigments showing clan affiliation; each clan has unique patterns",
+          "public_declaration": "Olo'eyktan (clan leader) must formally accept new member before People"
+        },
+        "hierarchy": {
+          "olo_eyktan": "Eytukan—clan leader; political and practical authority",
+          "tsahik": "Mo'at—spiritual leader; interprets Eywa's will; conducts rituals",
+          "warriors": "Tsu'tey and other hunters; defend and provide for clan",
+          "acceptance_requirements": "Must prove skill, dedication, understanding of Na'vi way"
+        },
+        "community_structure": {
+          "collective_decision": "While leaders conduct ritual, clan's acceptance matters; communal society",
+          "celebration_culture": "Major events marked by song, dance, feast; community bonds through joy",
+          "children_integration": "Young ones learn to accept through elders' modeling; social learning"
+        }
+      },
+
+      "naviCulture": {
+        "introduced": [
+          "Formal acceptance ritual and its stages",
+          "Symbolic death of past identity—can't be both human and Na'vi",
+          "Clan markings as visual identity and belonging",
+          "Community celebration as bonding mechanism",
+          "Title change: 'Dreamwalker' to personal name as clan member"
+        ],
+        "references": [
+          "This ritual is rare—outsiders almost never join clan",
+          "Last outsider accepted was Grace's student decades ago",
+          "Acceptance creates permanent obligations and protections"
+        ],
+        "context": "Becoming Omaticaya isn't just joining group—it's spiritual and social transformation; Jake's entire identity changes; he has new family, new obligations, new worldview; this is total integration"
+      },
+
+      "visualStorytelling": {
+        "ritual_space": "Firelight illuminating spiral interior of Hometree; hundreds of Na'vi gathered in tiers watching",
+        "color_palette": "Warm oranges and yellows from fire; bioluminescent markings glowing blue; deep shadows creating intimacy",
+        "symbolic_burning": "Jake's dog tags and photo curling in flames—Earth identity literally turning to ash",
+        "marking_application": "Mo'at's hands painting geometric patterns; close-ups of luminous paint on blue skin",
+        "celebration": "Wide shots of dancing Na'vi; drums and movement; Jake swept into circle of dancers",
+        "cameraWork": "Intimate close-ups during ritual; wide shots showing community; handheld following Jake into celebration",
+        "contrast": "Solemn ritual versus joyous celebration; death and rebirth; ending and beginning"
+      },
+
+      "soundDesign": {
+        "music": "Begins with quiet, reverent tones; builds to triumphant Na'vi chorus during acceptance; explodes into rhythmic celebration",
+        "drums": "Deep ceremonial drums during ritual; faster celebratory rhythm during dancing",
+        "singing": "Na'vi voices in harmonic chanting; wordless celebration of new member",
+        "ambient": "Fire crackling; hundreds of Na'vi breathing; footsteps dancing; joyful calls",
+        "dialogue": "Mo'at and Eytukan speaking in Na'vi; Jake responding in increasingly fluent Na'vi; shows his language mastery"
+      },
+
+      "keyDialogue": [
+        {
+          "character": "Mo'at (in Na'vi)",
+          "line": "You are born of the People. Your old life is ended. Your new life begins.",
+          "significance": "Ritual declaration of transformation; Jake's identity officially changed; death and rebirth formalized"
+        },
+        {
+          "character": "Eytukan",
+          "line": "You are Omaticaya now. You may make your bow from the wood of Hometree. And you may choose a woman.",
+          "significance": "Full integration—can use sacred tree's wood; approved to mate; complete acceptance and adult status"
+        },
+        {
+          "character": "Jake (V.O.)",
+          "line": "Everything is backwards now, like out there is the true world and in here is the dream.",
+          "significance": "Jake's reality completely inverted; avatar life feels real, human life feels false; identity shift complete"
+        },
+        {
+          "character": "Neytiri (to another Na'vi)",
+          "line": "He will be a good hunter. Strong. Brave.",
+          "significance": "Neytiri's pride in Jake; seeing him as fully Na'vi; hints at deeper feelings"
+        }
+      ],
+
+      "thematicElements": {
+        "belonging": "Jake finding family and purpose for first time; contrast with Marine Corps which used and discarded him",
+        "identity": "Becoming someone new versus betraying who you were; transformation versus deception",
+        "acceptance": "Conditional (earned through trials) versus unconditional; Jake must prove worth repeatedly",
+        "community": "Individual subsumed into collective; Western individualism versus Na'vi communalism",
+        "tragic_irony": "Moment of greatest acceptance is built on foundation of greatest lie; belonging based on deception"
+      },
+
+      "emotionalBeats": {
+        "jake_joy": "Pure happiness at belonging; childhood dream of being accepted and valued finally realized",
+        "jake_guilt": "Shadow under joy—knows his spy role makes this acceptance fraudulent; undeserved honor",
+        "neytiri_pride": "Teacher's satisfaction seeing student succeed; deeper affection emerging",
+        "eytukan_approval": "Father figure's acceptance Jake never had; warmth and genuine welcome",
+        "tsuTey_resignation": "Accepting Jake while resenting him; honor versus jealousy",
+        "clan_celebration": "Collective joy at new member; community strengthened by inclusion"
+      },
+
+      "moralQuestions": [
+        "Can Jake accept this honor while lying about his true mission?",
+        "Does his genuine transformation excuse his initial deception?",
+        "Is belonging based on partial truth still real belonging?",
+        "What does Jake owe the People who've accepted him—his human employers or his Na'vi family?"
+      ],
+
+      "cinematography": {
+        "notable_shots": [
+          "High wide: Spiral interior of Hometree with hundreds gathered—showing scale and community",
+          "Close-up: Jake's possessions burning—Earth identity dying",
+          "Extreme close-up: Mo'at's fingers applying glowing markings—transformation made visible",
+          "Medium: Eytukan's hand on Jake's shoulder—acceptance and blessing",
+          "Wide tracking: Jake swept into circle of dancers—integration into community",
+          "Close-up: Jake's face—joy mixed with guilt; complex emotions"
+        ],
+        "camera_movement": "Static during solemn ritual; dynamic during celebration; mirrors emotional tone",
+        "lighting": "Firelight from below creating dramatic shadows; bioluminescence adding magic; darkness suggesting secrets",
+        "3D_use": "Depth of Hometree spiral emphasized; Jake surrounded by community; immersion in alien culture"
+      },
+
+      "foreshadowing": [18, 24, 25],
+      "callbacks": [9, 14, 16],
+      "parallels": [
+        "Ritual burning of past echoes Jake's later permanent transfer—same symbolism, greater permanence",
+        "Eytukan's blessing makes his later death more tragic—father figure lost",
+        "Community acceptance makes betrayal more devastating—greater trust, greater violation"
+      ],
+
+      "symbols": {
+        "burning_dog_tags": "Death of soldier identity; severing from military past; transformation requires sacrifice",
+        "bioluminescent_markings": "Visible identity as Omaticaya; permanence of choice; beauty of belonging",
+        "fire": "Purification and transformation; old self consumed to create new; death and rebirth",
+        "circle_of_dancers": "Community inclusion; Jake no longer outside but within; belonging visualized",
+        "hometree_wood": "Permission to use sacred resource shows deep trust and integration"
+      },
+
+      "tension": 3,
+      "significance": "Jake's complete integration into Na'vi society—no longer pretending but genuinely transformed; creates devastating irony when betrayal revealed; establishes his belonging makes his double-agent role untenable; shows identity transformation is complete, setting up impossible choice between two worlds; moment of greatest joy before catastrophic fall; demonstrates that Jake has found what he sought—belonging and purpose—in the very people he was sent to betray"
+    },
+
+    {
+      "id": 18,
+      "act": "act2",
+      "title": "Mating at Tree of Voices - Sacred Union",
+      "types": ["bonding", "spiritual", "romantic"],
+      "location": {
+        "primary": "Tree of Voices",
+        "secondary": "Sacred willow grove",
+        "significance": "Site where Na'vi connect with ancestors; most sacred place for Omaticaya; bonding here makes union witnessed by all who came before"
+      },
+      "time": "Night after acceptance ceremony",
+      "duration": "~5 minutes",
+
+      "plotSummary": {
+        "brief": "Following his acceptance into the clan, Neytiri leads Jake to the sacred Tree of Voices, where she reveals she was betrothed to Tsu'tey but believes Eywa has chosen differently. They make tsaheylu—neural bond—and mate for life under the willow's glowing tendrils, witnessed by their ancestors.",
+        "detailed": "After the celebration, Neytiri takes Jake's hand and leads him through the bioluminescent forest. They arrive at the Tree of Voices—a massive willow whose tendrils glow with pink and purple light. Neytiri explains this is where the People connect with ancestors through tsaheylu; voices of those who lived before flow through the tree's neural network. She confesses she was promised to Tsu'tey to strengthen clan unity, but she believes Eywa has sent signs pointing to Jake. She defies tradition by choosing him. Neytiri teaches Jake to connect his queue to the tree—he hears thousands of voices, feels memories of hunters long dead. Then she looks into his eyes and connects her queue to his. The neural bond—tsaheylu—floods them with each other's sensations, emotions, memories. They become one consciousness in two bodies. They make love under the sacred tree, their bonding witnessed by Eywa and ancestors. This is marriage in Na'vi culture—permanent, spiritual, unbreakable. Jake has never felt such intimacy or belonging. He is completely, irrevocably Na'vi now.",
+        "subtext": "Neytiri choosing Jake over Tsu'tey is radical—she's defying her mother's arrangement based on spiritual signs. This decision will have consequences when betrayal is revealed. Jake's guilt intensifies; every moment of genuine connection deepens his betrayal. The Tree of Voices location adds weight—their union is witnessed by all Omaticaya ancestors, making it sacred and irreversible."
+      },
+
+      "characterDevelopment": {
+        "neytiri": {
+          "state": "In love, making radical choice, trusting Eywa's signs",
+          "courage": "Defying mother's arrangement and clan expectations; choosing heart and faith over duty",
+          "vulnerability": "Opening completely to Jake; total trust and intimacy; lowering all defenses",
+          "key_moment": "Confession about Tsu'tey—reveals she's choosing Jake despite consequences; sacrificing security for love",
+          "growth": "From reluctant teacher to proud mentor to life partner; complete arc of acceptance"
+        },
+        "jake": {
+          "state": "Deeply in love, overwhelmed by intimacy, drowning in guilt",
+          "experience": "First real intimacy in his life; tsaheylu creates connection impossible for humans",
+          "conflict": "Peak happiness simultaneous with peak guilt; knows he's living a lie at moment of ultimate truth",
+          "key_moment": "Making tsaheylu—feeling Neytiri's complete trust while hiding his betrayal; ecstasy and agony combined",
+          "transformation": "Point of no return; cannot betray Neytiri after this; his loyalty has shifted completely"
+        }
+      },
+
+      "worldBuilding": {
+        "tree_of_voices": {
+          "nature": "Willow-like tree with thousands of bioluminescent tendrils containing neural connections",
+          "function": "Living archive of Omaticaya memories; ancestors' consciousness stored in network",
+          "sacred_status": "Holiest site for Omaticaya; connecting here means communion with all who came before",
+          "biology": "Part of Eywa's planetary neural network; concentrated node of consciousness and memory",
+          "appearance": "Massive trunk; cascading pink-purple glowing tendrils; roots spreading wide; quiet power"
+        },
+        "tsaheylu_mating": {
+          "process": "Queue-to-queue connection creating neural bond between two Na'vi",
+          "experience": "Complete sharing of sensations, emotions, thoughts; two nervous systems unified",
+          "permanence": "Life-mating bond; separation only through death; deepest commitment possible",
+          "cultural_meaning": "Marriage, spiritual union, and biological bonding combined; most intimate act",
+          "sacred_nature": "Done beneath Tree of Voices for ancestors' blessing; witnessed by Eywa"
+        },
+        "betrothal_customs": {
+          "arranged_unions": "Tsahik often arranges matches to strengthen clan; Neytiri-Tsu'tey was political",
+          "personal_choice": "Individuals can defy arrangements if Eywa sends signs; faith over politics",
+          "consequences": "Defying betrothal creates tension; Tsu'tey loses promised mate; personal cost of following heart"
+        }
+      },
+
+      "naviCulture": {
+        "introduced": [
+          "Tree of Voices as ancestral connection site",
+          "Tsaheylu between Na'vi as life-mating bond",
+          "Ancestor worship and connection through neural network",
+          "Betrothal customs and when they can be defied",
+          "Mating as spiritual/biological union witnessed by Eywa"
+        ],
+        "references": [
+          "Omaticaya come here to hear ancestors' wisdom",
+          "Every important decision is made after consulting ancestors",
+          "Mating bonds cannot be broken except by death",
+          "Tsu'tey and Neytiri were promised since childhood"
+        ],
+        "context": "This scene reveals Na'vi relationships are fundamentally different from human—tsaheylu creates literal neural union; two people genuinely become one; intimacy humans cannot achieve; ancestors are not metaphorically present but literally connected through Eywa's network"
+      },
+
+      "visualStorytelling": {
+        "forest_journey": "Bioluminescent plants lighting path; Jake and Neytiri's feet glowing with each step",
+        "tree_reveal": "Camera rises to show massive willow with thousands of glowing tendrils; breathtaking beauty",
+        "color_palette": "Deep purples and pinks from tendrils; blue bioluminescence from plants; darkness creating intimacy",
+        "tsaheylu_visual": "Neural tendrils from queues intertwining; pupils dilating; glowing connection forming",
+        "ancestral_connection": "Jake's face in wonder hearing voices; lights pulsing through tree; neural network visible",
+        "mating": "Tastefully shot; focus on faces, hands, neural connection; intimacy without exploitation",
+        "cameraWork": "Wide shots establishing sacred space; close-ups during intimate moments; handheld for immediacy"
+      },
+
+      "soundDesign": {
+        "music": "Ethereal, romantic, building to climax during bonding; Na'vi vocals suggesting transcendence",
+        "tree_voices": "Whispered chorus; ancestral voices overlapping; male and female; young and old; memory made audible",
+        "ambient": "Forest creatures; breeze through tendrils creating musical tones; sacred silence",
+        "breathing": "Jake and Neytiri's synchronized breath after tsaheylu; two becoming one made audible",
+        "dialogue": "Whispered intimacy; English and Na'vi blending; language of love transcending words"
+      },
+
+      "keyDialogue": [
+        {
+          "character": "Neytiri",
+          "line": "This is the place for my people to hear the voices of their ancestors. The voices live here. They come here to listen.",
+          "significance": "Explaining sacred nature of site; ancestors literally present through Eywa's network"
+        },
+        {
+          "character": "Neytiri",
+          "line": "I was going to be the next Tsahik... But now I am with you. And this is my path.",
+          "significance": "Revealing sacrifice she's making; choosing Jake means defying mother and tradition; radical trust"
+        },
+        {
+          "character": "Jake",
+          "line": "I can't believe it. I can hear them.",
+          "significance": "Jake experiencing ancestral connection; spiritual world becoming real to him; transformation deepening"
+        },
+        {
+          "character": "Neytiri",
+          "line": "We are mated for life. It is done.",
+          "significance": "Permanence of bond; irrevocable commitment; Jake now tied to Neytiri and People forever"
+        },
+        {
+          "character": "Jake (V.O.)",
+          "line": "I was inside her, feeling what she felt, seeing through her eyes. They can link all the way. We bonded.",
+          "significance": "Jake understanding tsaheylu's completeness; intimacy beyond human experience; total union"
+        }
+      ],
+
+      "thematicElements": {
+        "intimacy": "Connection beyond human capacity; neural bonding creating actual unity; two consciousnesses merging",
+        "commitment": "Irreversible choice; permanent bond; Jake fully integrated into Na'vi life and heart",
+        "sacred_sexuality": "Mating as spiritual act; witnessed by ancestors; biology and spirituality unified",
+        "betrayal_deepened": "Every moment of genuine love makes deception worse; happiness built on lies",
+        "faith_vs_duty": "Neytiri choosing Eywa's signs over mother's arrangement; individual conscience versus tradition",
+        "belonging": "Jake finding home not just in clan but in another person; complete acceptance; total love"
+      },
+
+      "emotionalBeats": {
+        "neytiri_vulnerability": "Confessing about Tsu'tey; admitting she's breaking promises; trusting Jake with sacrifice she's making",
+        "jake_wonder": "Hearing ancestors; experiencing impossible connection; spiritual world becoming tangible",
+        "mutual_desire": "Physical and emotional attraction; choosing each other fully and freely",
+        "tsaheylu_ecstasy": "Overwhelming sensation of unified consciousness; pleasure beyond physical; two becoming one",
+        "jake_guilt": "Shadow of betrayal even in moment of greatest intimacy; loving her makes lying to her unbearable",
+        "sacred_peace": "After bonding; lying together under sacred tree; complete contentment before storm"
+      },
+
+      "moralQuestions": [
+        "Can Jake make permanent commitment while hiding his betrayal?",
+        "Does Neytiri's sacrifice of duty for love make betrayal more unforgivable?",
+        "Is tsaheylu bond valid if one partner is lying?",
+        "What does Jake owe Neytiri—truth that destroys their bond or silence that preserves it?"
+      ],
+
+      "cinematography": {
+        "notable_shots": [
+          "Wide high: Tree of Voices in clearing; massive willow with glowing tendrils; establishing sacred space",
+          "Medium: Neytiri leading Jake by hand through forest; trust and guidance",
+          "Close-up: Jake's queue connecting to tree; tendrils intertwining; neural link visualized",
+          "Extreme close-up: Eyes widening during ancestral connection; wonder and awe",
+          "Two-shot: Jake and Neytiri's queues connecting; neural tendrils braiding; bonding visualized",
+          "Overhead: Lying together beneath tree's canopy; protected and blessed; intimacy and peace"
+        ],
+        "camera_movement": "Slow graceful moves during approach; intimate close-ups during bonding; gentle rises during spiritual moments",
+        "lighting": "Bioluminescent tree providing all light; natural magical glow; darkness creating privacy and sacredness",
+        "3D_use": "Depth of forest emphasized; tendrils in multiple planes; immersion in alien beauty and intimacy"
+      },
+
+      "foreshadowing": [24, 25],
+      "callbacks": [7, 17],
+      "parallels": [
+        "Tsaheylu with tree echoes later prayer to Eywa—same connection, different purpose",
+        "Bonding location makes tree's destruction more devastating—sacred site of love destroyed",
+        "Ancestral witnesses make betrayal worse—Jake violates bond witnessed by all who came before"
+      ],
+
+      "symbols": {
+        "tree_of_voices": "Living connection to past; permanence; witness to sacred vows; memory and continuity",
+        "glowing_tendrils": "Neural connections made visible; beauty of consciousness; Eywa's network tangible",
+        "tsaheylu_bond": "Ultimate intimacy; two becoming one; permanence; trust visualized",
+        "ancestral_voices": "Community extending beyond death; immortality through memory; accountability to past",
+        "night_setting": "Intimacy; privacy; sacred darkness; hidden from human world"
+      },
+
+      "tension": 4,
+      "significance": "Jake and Neytiri's permanent bonding—point of no return for Jake's loyalty shift; creates devastating personal stakes for coming betrayal; demonstrates tsaheylu's intimacy making human relationships seem shallow; Neytiri's sacrifice heightens tragedy; sacred location makes later destruction of Tree of Voices personally devastating to Jake; shows Jake choosing Na'vi life and love fully; establishes marriage that will endure through catastrophe and redemption; proves Jake's transformation is complete—he's fully Na'vi in body, heart, mind, and soul"
+    }
+  ]
+}

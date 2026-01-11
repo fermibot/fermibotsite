@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <title>Stories | Film Analysis | Avatar (2009)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
+
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="../../../index.css">
+
+    <!-- Visualization CSS -->
+    <link href="avatar_timeline.css" rel="stylesheet">
+
+    <!-- Bootstrap JS -->
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+
+    <!-- MathJax for equations -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <!-- D3.js v7 -->
+    <script src="../../../d3/d3.v7.min.js"></script>
+
+    <!-- Site automation -->
+    <script src="../../../automation/loadObjects.js"></script>
+
+    <!-- Color modes (dark/light theme) -->
+    <script src="../../../bootstrap/assets/color-modes.js"></script>
+</head>
+<body class="container-lg container-fluid p-4">
+
+<!-- Header -->
+<div id="header_placeholder"></div>
+
+<!-- Page Title -->
+<header class="mb-4">
+    <h1 class="text-center mb-3">Stories | Film Analysis | Avatar (2009)</h1>
+    <p class="text-center text-muted">
+        Interactive visualization of James Cameron's epic screenplay - 40 scenes across 3 acts
+    </p>
+</header>
+
+<!-- Introduction -->
+<section class="mb-4">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <p class="mb-2">
+            This diagram visually maps <em>James Cameron's</em> screenplay
+            <strong>"Avatar" (2009)</strong>—an epic science fiction film about a paralyzed Marine who becomes
+            part of the Na'vi people on the alien moon Pandora and must choose between his human origins and
+            his new world.
+        </p>
+        <p class="mb-0 text-muted small">
+            <strong>Tips:</strong>
+            <strong>Hover</strong> over scenes to see connections and summaries.
+            <strong>Click</strong> any scene to see detailed information.
+            Nodes display: <strong>circle</strong> → <span style="font-weight:bold;color:#2d7a4d;">+</span> (if expandable) → <strong>number</strong> → title.
+            Scenes with <span style="font-weight:bold;color:#2d7a4d;">+</span> indicators have sub-scenes—click the expand button in the info card to drill into micro-beats.
+            Dotted lines connect parent scenes to their sub-scenes.
+            Use the search box to find scenes by title, themes, or type across all levels.
+            Press <kbd>/</kbd> to focus search, <kbd>Esc</kbd> to clear.
+            <br>
+            <strong>Connections:</strong>
+            <span style="color: #2d7a4d; font-weight: bold;">—</span> Foreshadowing,
+            <span style="color: #7a5aa0; font-weight: bold;">- -</span> Callbacks,
+            <span style="color: #c44536; font-weight: bold;">—</span> Thematic Links.
+        </p>
+    </div>
+</section>
+
+<!-- Summary Cards -->
+<section class="mb-4">
+    <div class="row g-3">
+        <div class="col-md-4">
+            <div class="summary-card act1">
+                <div class="summary-card-header">
+                    <span class="summary-icon">🚀</span>
+                    <h5>Act I: Arrival & Awakening</h5>
+                </div>
+                <p class="summary-text">
+                    Jake arrives on Pandora as a paralyzed Marine. First avatar link gives him freedom.
+                    Saved by Neytiri from viperwolves, chosen by woodsprites. Accepted into the Omaticaya
+                    clan to learn their ways while secretly reporting to Quaritch.
+                </p>
+                <span class="summary-meta">Scenes 1-13 | Pages 1-60</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="summary-card act2">
+                <div class="summary-card-header">
+                    <span class="summary-icon">🌳</span>
+                    <h5>Act II: Transformation & Betrayal</h5>
+                </div>
+                <p class="summary-text">
+                    Jake trains with Neytiri, learning to ride direhorses and tame his banshee.
+                    He becomes one of the People and mates with Neytiri. Tree of Voices destroyed,
+                    betrayal revealed. Hometree attacked and falls. Grace wounded, Jake expelled.
+                </p>
+                <span class="summary-meta">Scenes 14-29 | Pages 60-110</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="summary-card act3">
+                <div class="summary-card-header">
+                    <span class="summary-icon">⚔️</span>
+                    <h5>Act III: War & Transcendence</h5>
+                </div>
+                <p class="summary-text">
+                    Jake becomes Toruk Macto to regain trust. Grace dies at the Mother Tree.
+                    The clans unite for war. Epic battle at Well of Souls as Eywa intervenes.
+                    Quaritch defeated. Jake permanently transfers to his avatar body.
+                </p>
+                <span class="summary-meta">Scenes 30-40 | Pages 110-152</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Visualization Wrapper -->
+<div class="visualization-wrapper">
+
+    <!-- Controls Bar -->
+    <div class="controls-bar">
+        <div class="controls-left">
+            <!-- Search -->
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text"
+                       id="search-input"
+                       class="search-input"
+                       placeholder="Search scenes... (press /)"
+                       autocomplete="off">
+                <span class="search-counter" id="search-counter"></span>
+            </div>
+        </div>
+
+        <div class="controls-right">
+            <span class="controls-hint">Click any scene for details • Expand button in card shows sub-scenes</span>
+        </div>
+    </div>
+
+    <!-- Legend at Top -->
+    <div class="legend-top" id="legend-container">
+        <!-- Legend content will be injected by JS -->
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="visualization-main">
+        <!-- Visualization Container -->
+        <div class="visualization-container" id="visualization-container">
+            <!-- Loading state -->
+            <div class="loading-overlay">
+                <div class="loading-spinner"></div>
+                <p>Loading visualization...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Key Motifs Section -->
+<section class="mt-4">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <h5 class="mb-3">🔗 Key Recurring Motifs</h5>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>🌲 Eywa (The Great Mother)</strong>
+                    <p class="small text-muted mb-0">The interconnected consciousness of Pandora. All life linked through neural networks. Not a deity but a biological network that maintains balance.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>👁️ "I See You"</strong>
+                    <p class="small text-muted mb-0">Core Na'vi greeting meaning true understanding beyond surface appearance. Jake learns to truly "see" Pandora and its people.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>🔗 The Neural Bond (Tsaheylu)</strong>
+                    <p class="small text-muted mb-0">Connection through queue (neural braid). Bonding with banshees, direhorses, and Eywa. Severing it is ultimate violation.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>🦅 Toruk (Last Shadow)</strong>
+                    <p class="small text-muted mb-0">Great leonopteryx, apex predator. Only ridden by legendary Toruk Macto in times of great sorrow. Symbol of Jake's redemption.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>🏃 Running & Freedom</strong>
+                    <p class="small text-muted mb-0">Jake's first avatar run after 5 years paralyzed. Freedom versus confinement. Human body as prison, avatar as liberation.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>⚖️ Two Worlds, One Identity</strong>
+                    <p class="small text-muted mb-0">"Which is the dream?" Jake torn between human and Na'vi existence. Final transfer resolves the duality forever.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Character Legend Section with Photo Placeholders -->
+<section class="mt-4" id="character-legend-section">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <h5 class="mb-3">👥 Main Characters</h5>
+        <p class="text-muted small mb-3">Empty photo placeholders - add character images later</p>
+
+        <div class="character-grid">
+            <!-- Jake Sully -->
+            <div class="character-card">
+                <div class="character-photo-placeholder">
+                    <span class="character-initial">JS</span>
+                </div>
+                <h6 class="character-name">Jake Sully</h6>
+                <p class="character-role">Protagonist / Marine turned Na'vi</p>
+                <p class="character-arc">Broken warrior → Infiltrator → Toruk Macto</p>
+            </div>
+
+            <!-- Neytiri -->
+            <div class="character-card">
+                <div class="character-photo-placeholder">
+                    <span class="character-initial">N</span>
+                </div>
+                <h6 class="character-name">Neytiri</h6>
+                <p class="character-role">Na'vi Princess / Jake's Teacher & Mate</p>
+                <p class="character-arc">Reluctant teacher → Lover → Betrayed → Forgiveness</p>
+            </div>
+
+            <!-- Colonel Quaritch -->
+            <div class="character-card">
+                <div class="character-photo-placeholder">
+                    <span class="character-initial">Q</span>
+                </div>
+                <h6 class="character-name">Colonel Miles Quaritch</h6>
+                <p class="character-role">Primary Antagonist / Head of Security</p>
+                <p class="character-arc">Ruthless commander → Genocidal warrior</p>
+            </div>
+
+            <!-- Dr. Grace Augustine -->
+            <div class="character-card">
+                <div class="character-photo-placeholder">
+                    <span class="character-initial">GA</span>
+                </div>
+                <h6 class="character-name">Dr. Grace Augustine</h6>
+                <p class="character-role">Avatar Program Director / Mentor</p>
+                <p class="character-arc">Cynical scientist → Activist → Martyr</p>
+            </div>
+
+            <!-- Parker Selfridge -->
+            <div class="character-card">
+                <div class="character-photo-placeholder">
+                    <span class="character-initial">PS</span>
+                </div>
+                <h6 class="character-name">Parker Selfridge</h6>
+                <p class="character-role">Corporate Administrator</p>
+                <p class="character-arc">Profit-driven → Loses control to Quaritch</p>
+            </div>
+
+            <!-- Tsu'tey -->
+            <div class="character-card">
+                <div class="character-photo-placeholder">
+                    <span class="character-initial">T</span>
+                </div>
+                <h6 class="character-name">Tsu'tey</h6>
+                <p class="character-role">Na'vi Warrior / Neytiri's Intended</p>
+                <p class="character-arc">Hostile rival → Respected ally</p>
+            </div>
+
+            <!-- Mo'at -->
+            <div class="character-card">
+                <div class="character-photo-placeholder">
+                    <span class="character-initial">M</span>
+                </div>
+                <h6 class="character-name">Mo'at</h6>
+                <p class="character-role">Tsahik / Spiritual Leader</p>
+                <p class="character-arc">Skeptical matriarch → Accepts Jake</p>
+            </div>
+
+            <!-- Norm Spellman -->
+            <div class="character-card">
+                <div class="character-photo-placeholder">
+                    <span class="character-initial">NS</span>
+                </div>
+                <h6 class="character-name">Norm Spellman</h6>
+                <p class="character-role">Avatar Driver / Scientist</p>
+                <p class="character-arc">Jealous → Supportive ally</p>
+            </div>
+
+            <!-- Trudy Chacon -->
+            <div class="character-card">
+                <div class="character-photo-placeholder">
+                    <span class="character-initial">TC</span>
+                </div>
+                <h6 class="character-name">Trudy Chacon</h6>
+                <p class="character-role">Pilot / Ally</p>
+                <p class="character-arc">Marine pilot → Conscience-driven hero</p>
+            </div>
+
+            <!-- Eytukan -->
+            <div class="character-card">
+                <div class="character-photo-placeholder">
+                    <span class="character-initial">E</span>
+                </div>
+                <h6 class="character-name">Eytukan</h6>
+                <p class="character-role">Olo'eyktan / Clan Leader</p>
+                <p class="character-arc">Authoritative leader → Dies defending Hometree</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Keyboard shortcuts help -->
+<div class="keyboard-help d-none d-lg-block">
+    <kbd>/</kbd> Search &nbsp;
+    <kbd>Esc</kbd> Clear &nbsp;
+    <kbd>Click</kbd> Lock
+</div>
+
+<!-- Visualization Script -->
+<script src="avatar_timeline.js"></script>
+
+<!-- Load Header/Footer -->
+<script>
+    loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html");
+</script>
+
+<!-- Footer -->
+<div id="footer_placeholder"></div>
+
+</body>
+</html>

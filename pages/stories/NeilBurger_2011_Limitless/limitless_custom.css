@@ -1,0 +1,458 @@
+/* ============================================
+   LIMITLESS - CUSTOM OVERRIDES
+   Cognitive Enhancement Theme
+   ============================================ */
+
+/* Fix for popup - support both .active and .visible classes, and .info-card-modal class */
+.info-card-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.info-card.active,
+.info-card-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Make .info-card-modal use same styles as .info-card */
+.info-card-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--viz-card-bg);
+    border: 1px solid var(--viz-border);
+    border-radius: 12px;
+    padding: 0;
+    width: 400px;
+    max-width: 90vw;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 32px var(--viz-card-shadow);
+    z-index: 1003;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-normal);
+}
+
+:root {
+    /* Cognitive state colors - Limitless specific */
+    --baseline-color: #7f8c8d;
+    --enhanced-color: #3498db;
+    --withdrawal-color: #e74c3c;
+
+    /* Override Act colors for Limitless theme */
+    --act-01: #27ae60;  /* Green - Act 1 */
+    --act-02: #3498db;  /* Blue - Act 2 */
+    --act-03: #9b59b6;  /* Purple - Act 3 */
+
+    /* Limitless uses these as act1-color, act2-color, act3-color */
+    --act1-color: var(--act-01);
+    --act2-color: var(--act-02);
+    --act3-color: var(--act-03);
+}
+
+/* ============================================
+   COGNITIVE STATE COLORS (Small Badge Style)
+   ============================================ */
+
+.info-card-type.cognitive-baseline {
+    background: var(--baseline-color) !important;
+    color: white !important;
+}
+
+.info-card-type.cognitive-enhanced {
+    background: var(--enhanced-color) !important;
+    color: white !important;
+}
+
+.info-card-type.cognitive-withdrawal {
+    background: var(--withdrawal-color) !important;
+    color: white !important;
+}
+
+.info-card-type.cognitive-enhanced_unstable {
+    background: linear-gradient(90deg, var(--enhanced-color), var(--withdrawal-color)) !important;
+    color: white !important;
+}
+
+.info-card-type.cognitive-unclear {
+    background: #95a5a6 !important;
+    color: white !important;
+}
+
+/* Override quote-item styling for inline display */
+.info-card-quotes .quote-item {
+    font-style: normal !important;
+    display: block !important;
+    line-height: 1.6 !important;
+    white-space: normal !important;
+}
+
+.info-card-quotes .quote-item * {
+    display: inline !important;
+}
+
+.info-card-quotes .quote-item strong {
+    font-style: normal !important;
+}
+
+.info-card-quotes .quote-item em {
+    font-style: italic !important;
+}
+
+/* ============================================
+   LIMITLESS-SPECIFIC SECTIONS
+   ============================================ */
+
+/* Location & Time Section */
+.location-primary {
+    font-size: 0.95rem;
+    color: var(--viz-text);
+    margin-bottom: 0.5rem;
+}
+
+.location-significance {
+    font-size: 0.85rem;
+    color: var(--viz-text-muted);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--viz-border);
+}
+
+.scene-time {
+    font-size: 0.9rem;
+    color: var(--viz-text);
+    margin-bottom: 0.25rem;
+}
+
+.scene-duration {
+    font-size: 0.85rem;
+    color: var(--viz-text-muted);
+}
+
+/* Character Development Section */
+.character-block {
+    background: var(--viz-bg-secondary);
+    border-left: 3px solid var(--viz-primary);
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+}
+
+.character-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--viz-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+}
+
+.character-state {
+    font-size: 0.9rem;
+    color: var(--viz-text);
+    margin-bottom: 0.25rem;
+}
+
+.character-cognitive {
+    font-size: 0.85rem;
+    color: var(--enhanced-color);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.character-arc {
+    font-size: 0.85rem;
+    color: var(--viz-text-muted);
+    font-style: italic;
+}
+
+/* Dialogue Section */
+.dialogue-block {
+    background: var(--viz-bg-secondary);
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+    border-left: 3px solid var(--act2-color);
+}
+
+.dialogue-character {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--act2-color);
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.dialogue-line {
+    font-size: 0.95rem;
+    color: var(--viz-text);
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.dialogue-significance {
+    font-size: 0.8rem;
+    color: var(--viz-text-muted);
+    font-style: italic;
+    padding-left: 0.5rem;
+    border-left: 2px solid var(--viz-border);
+}
+
+/* Visual Storytelling Section */
+.visual-item {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.visual-item strong {
+    color: var(--viz-primary);
+    min-width: 80px;
+}
+
+.visual-item span {
+    color: var(--viz-text);
+    flex: 1;
+}
+
+/* Themes Section */
+.theme-item {
+    background: var(--viz-bg-secondary);
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    border-left: 3px solid var(--act3-color);
+}
+
+.theme-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--act3-color);
+    margin-bottom: 0.25rem;
+}
+
+.theme-desc {
+    font-size: 0.85rem;
+    color: var(--viz-text);
+    line-height: 1.5;
+}
+
+/* Sci-Fi Analysis Section */
+.scifi-item {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.scifi-item strong {
+    color: var(--enhanced-color);
+    min-width: 100px;
+    font-weight: 600;
+}
+
+.scifi-item span {
+    color: var(--viz-text);
+    flex: 1;
+}
+
+/* Symbols Section */
+.symbol-item {
+    background: var(--viz-bg-secondary);
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    gap: 0.75rem;
+}
+
+.symbol-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--viz-primary);
+    min-width: 120px;
+}
+
+.symbol-item span {
+    font-size: 0.85rem;
+    color: var(--viz-text);
+    flex: 1;
+}
+
+/* Tension Bar */
+.tension-bar-container {
+    width: 100%;
+    height: 24px;
+    background: var(--viz-border);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tension-bar {
+    height: 100%;
+    background: linear-gradient(90deg,
+        var(--act1-color) 0%,
+        var(--enhanced-color) 50%,
+        var(--withdrawal-color) 100%);
+    border-radius: 12px;
+    transition: width 0.5s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.tension-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.3),
+        transparent);
+    border-radius: 12px 12px 0 0;
+}
+
+/* MDT Tracking Section */
+.mdt-section {
+    background: linear-gradient(135deg,
+        rgba(52, 152, 219, 0.1) 0%,
+        rgba(155, 89, 182, 0.1) 100%);
+    border: 2px solid var(--enhanced-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.mdt-item {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.mdt-item:last-child {
+    margin-bottom: 0;
+}
+
+.mdt-item strong {
+    color: var(--enhanced-color);
+    min-width: 100px;
+    font-weight: 700;
+}
+
+.mdt-item span {
+    color: var(--viz-text);
+    flex: 1;
+}
+
+/* Info Card Section Styling */
+.info-card-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--viz-border);
+}
+
+.info-card-section:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.info-card-section-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--viz-primary);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.info-card-section-content {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--viz-text);
+}
+
+.info-card-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.info-card-list li {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--viz-text);
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.info-card-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--viz-primary);
+}
+
+/* Animation for neural network effect */
+@keyframes pulse-glow {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.node.enhanced circle {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Progress Bar with Act Colors */
+.progress-bar {
+    background: linear-gradient(90deg, var(--act1-color), var(--act2-color), var(--act3-color));
+    transition: width 0.3s ease;
+}
+
+/* Cognitive Marker Buttons */
+.cognitive-marker-btn {
+    border-width: 2px;
+    transition: all 0.2s ease;
+}
+
+.cognitive-marker-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.cognitive-marker-btn.active {
+    background-color: currentColor !important;
+    color: white !important;
+    font-weight: bold;
+}
+
+.marker-icon {
+    font-size: 1rem;
+    margin-right: 0.25rem;
+}
+
+/* Book Club Questions - Tag Colors */
+.tag-ethics { background: rgba(231, 76, 60, 0.1); color: #e74c3c; border-color: #e74c3c; }
+.tag-identity { background: rgba(52, 152, 219, 0.1); color: #3498db; border-color: #3498db; }
+.tag-power { background: rgba(155, 89, 182, 0.1); color: #9b59b6; border-color: #9b59b6; }
+.tag-enhanced { background: rgba(52, 152, 219, 0.1); color: #3498db; border-color: #3498db; }
+.tag-baseline { background: rgba(127, 140, 141, 0.1); color: #7f8c8d; border-color: #7f8c8d; }
+.tag-blackout { background: rgba(230, 126, 34, 0.1); color: #e67e22; border-color: #e67e22; }
+.tag-philosophy { background: rgba(39, 174, 96, 0.1); color: #27ae60; border-color: #27ae60; }
+.tag-cost { background: rgba(192, 57, 43, 0.1); color: #c0392b; border-color: #c0392b; }

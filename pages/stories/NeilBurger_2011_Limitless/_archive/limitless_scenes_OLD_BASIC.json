@@ -1,0 +1,279 @@
+{
+  "metadata": {
+    "title": "Limitless",
+    "director": "Neil Burger",
+    "year": 2011,
+    "runtime": "105 minutes",
+    "genre": "Sci-Fi Thriller",
+    "theme": "Cognitive Enhancement & Its Consequences",
+    "totalScenes": 20,
+    "cognitiveStates": {
+      "baseline": "Normal human cognition - 20% brain capacity",
+      "enhanced": "MDT-48 active - 100% brain capacity",
+      "withdrawal": "Post-MDT crash - below baseline function"
+    }
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "act": "act1",
+      "title": "Opening - The Ledge",
+      "cognitiveState": "enhanced",
+      "summary": "Eddie stands on his penthouse ledge, 80 stories up, about to jump. Armed men are breaking through his door. He reflects on how he went from nothing to everything and now faces death.",
+      "foreshadowing": [
+        2,
+        3,
+        20
+      ],
+      "callbacks": []
+    },
+    {
+      "id": 2,
+      "act": "act1",
+      "title": "Schlumpy Eddie - Rock Bottom",
+      "cognitiveState": "baseline",
+      "summary": "Flashback to Eddie's life before MDT. He's a failed writer, out of shape, can't write his book, playing computer games instead of working.",
+      "foreshadowing": [
+        4
+      ],
+      "callbacks": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "act": "act1",
+      "title": "Lindy Breaks Up With Him",
+      "cognitiveState": "baseline",
+      "summary": "Eddie's girlfriend Lindy returns his key, ending their relationship. She can't watch him destroy himself anymore. She got promoted; he's going nowhere.",
+      "foreshadowing": [
+        16
+      ],
+      "callbacks": []
+    },
+    {
+      "id": 4,
+      "act": "act1",
+      "title": "Vernon Gant - The Dealer",
+      "cognitiveState": "baseline",
+      "summary": "Eddie encounters his ex-brother-in-law Vernon, now mysteriously wealthy. Vernon was a drug dealer but claims he's moved on. They have a drink.",
+      "foreshadowing": [
+        5,
+        6
+      ],
+      "callbacks": []
+    },
+    {
+      "id": 5,
+      "act": "act1",
+      "title": "First Dose - MDT-48",
+      "cognitiveState": "enhanced",
+      "summary": "Vernon gives Eddie a clear pill: MDT-48. It unlocks 100% brain capacity. Within minutes, Eddie cleans his apartment, finishes pages of his book, and experiences total clarity.",
+      "foreshadowing": [
+        8,
+        12
+      ],
+      "callbacks": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "act": "act1",
+      "title": "The Hook - Trying to Get More",
+      "cognitiveState": "baseline",
+      "summary": "The pill wears off. Eddie crashes back to baseline. He desperately seeks Vernon to get more pills, becoming instantly addicted to the feeling of enhancement.",
+      "foreshadowing": [
+        7
+      ],
+      "callbacks": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "act": "act1",
+      "title": "Vernon's Murder - The Stash",
+      "cognitiveState": "baseline",
+      "summary": "Eddie finds Vernon murdered in his apartment. Criminals are searching for something. Eddie discovers Vernon's hidden stash of MDT pills and takes them.",
+      "foreshadowing": [
+        11,
+        17
+      ],
+      "callbacks": [
+        4
+      ]
+    },
+    {
+      "id": 8,
+      "act": "act2",
+      "title": "Book Completion & Stock Market",
+      "cognitiveState": "enhanced",
+      "summary": "On MDT, Eddie completes his book in days. He learns languages, plays piano, and enters the stock market, turning $800 into thousands.",
+      "foreshadowing": [
+        9,
+        10
+      ],
+      "callbacks": [
+        5
+      ]
+    },
+    {
+      "id": 9,
+      "act": "act2",
+      "title": "Financial Success Montage",
+      "cognitiveState": "enhanced",
+      "summary": "Eddie multiplies his money rapidly, moves to a luxury apartment, hires financial advisors, and becomes wealthy. He sees patterns no one else can see.",
+      "foreshadowing": [
+        13
+      ],
+      "callbacks": [
+        8
+      ]
+    },
+    {
+      "id": 10,
+      "act": "act2",
+      "title": "Winning Lindy Back",
+      "cognitiveState": "enhanced",
+      "summary": "Enhanced Eddie meets Lindy again. He's transformed: fit, confident, successful. She's impressed but wary. They reconnect romantically.",
+      "foreshadowing": [
+        16
+      ],
+      "callbacks": [
+        3
+      ]
+    },
+    {
+      "id": 11,
+      "act": "act2",
+      "title": "First Blackout",
+      "cognitiveState": "withdrawal",
+      "summary": "Eddie experiences his first time skip - hours he can't remember. He wakes in his apartment with no memory of the previous night. A woman was murdered.",
+      "foreshadowing": [
+        12,
+        17
+      ],
+      "callbacks": [
+        7
+      ]
+    },
+    {
+      "id": 12,
+      "act": "act2",
+      "title": "Withdrawal Symptoms",
+      "cognitiveState": "withdrawal",
+      "summary": "Without MDT, Eddie experiences severe withdrawal: headaches, paranoia, inability to think. He realizes he's physically dependent on the drug.",
+      "foreshadowing": [
+        19
+      ],
+      "callbacks": [
+        6,
+        11
+      ]
+    },
+    {
+      "id": 13,
+      "act": "act2",
+      "title": "Carl Van Loon's Interest",
+      "cognitiveState": "enhanced",
+      "summary": "Billionaire Carl Van Loon notices Eddie's success and recruits him to advise on a massive corporate merger. Eddie enters the highest levels of finance.",
+      "foreshadowing": [
+        15,
+        20
+      ],
+      "callbacks": [
+        9
+      ]
+    },
+    {
+      "id": 14,
+      "act": "act2",
+      "title": "The Merger Deal",
+      "cognitiveState": "enhanced",
+      "summary": "Eddie analyzes complex merger documents instantly, impressing Van Loon. But Van Loon suspects Eddie's edge comes from something pharmaceutical.",
+      "foreshadowing": [
+        20
+      ],
+      "callbacks": [
+        13
+      ]
+    },
+    {
+      "id": 15,
+      "act": "act2",
+      "title": "Running Out of Pills",
+      "cognitiveState": "enhanced",
+      "summary": "Eddie realizes his MDT supply is dwindling. Vernon is dead. He has no source. Panic sets in about what happens when the pills run out.",
+      "foreshadowing": [
+        12,
+        19
+      ],
+      "callbacks": [
+        7
+      ]
+    },
+    {
+      "id": 16,
+      "act": "act2",
+      "title": "Lindy's Warning",
+      "cognitiveState": "enhanced",
+      "summary": "Lindy tells Eddie he's changed - he's not himself anymore. She sees the pills. She's frightened of what he's becoming and what might happen.",
+      "foreshadowing": [
+        19
+      ],
+      "callbacks": [
+        10
+      ]
+    },
+    {
+      "id": 17,
+      "act": "act3",
+      "title": "Murder Investigation",
+      "cognitiveState": "enhanced",
+      "summary": "Police investigate the murdered woman. Eddie can't remember if he killed her during a blackout. Evidence points to him. He's a suspect.",
+      "foreshadowing": [],
+      "callbacks": [
+        11
+      ]
+    },
+    {
+      "id": 18,
+      "act": "act3",
+      "title": "Gennady's Pursuit",
+      "cognitiveState": "enhanced",
+      "summary": "Russian loan shark Gennady, who Eddie borrowed from, wants his money back plus interest. His goons pursue Eddie violently through the city.",
+      "foreshadowing": [
+        1
+      ],
+      "callbacks": [
+        9
+      ]
+    },
+    {
+      "id": 19,
+      "act": "act3",
+      "title": "Melissa's Death",
+      "cognitiveState": "withdrawal",
+      "summary": "Melissa takes MDT to help save Eddie. The drug kills her - she has a fatal reaction. Eddie survives but is wracked with guilt. MDT's deadly side revealed.",
+      "foreshadowing": [],
+      "callbacks": [
+        16
+      ]
+    },
+    {
+      "id": 20,
+      "act": "act3",
+      "title": "Final Confrontation with Van Loon",
+      "cognitiveState": "enhanced",
+      "summary": "Van Loon wants to control Eddie and his MDT supply. Eddie refuses, claiming he's weaned himself off the drug. The ending is ambiguous: is he free, or still addicted?",
+      "foreshadowing": [],
+      "callbacks": [
+        1,
+        13,
+        14
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,2334 @@
+{
+  "metadata": {
+    "title": "Limitless",
+    "director": "Neil Burger",
+    "writer": "Leslie Dixon (based on novel by Alan Glynn)",
+    "year": 2011,
+    "runtime": "105 minutes",
+    "genre": "Sci-Fi Thriller",
+    "themes": [
+      "Cognitive Enhancement",
+      "Faustian Bargain",
+      "Addiction & Dependency",
+      "Hubris & Consequences",
+      "Human Potential vs. Cost",
+      "Power & Control"
+    ],
+    "totalScenes": 20,
+    "analysisDate": "2026-01-11"
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "act": "act1",
+      "title": "The Ledge - Opening Flash-Forward",
+      "location": {
+        "primary": "The Celestial Penthouse - 80th Floor Terrace",
+        "description": "Ultra-luxury high-rise apartment building with state-of-the-art security, multimillion-dollar terrace overlooking New York City",
+        "significance": "Represents the heights Eddie has reached and the precariousness of his position - literally on the edge"
+      },
+      "time": {
+        "narrative": "End of story (flash-forward)",
+        "runtime": "0:00-0:05",
+        "approximate": "Minutes 1-5"
+      },
+      "duration": "5 minutes",
+      "cognitiveState": "enhanced",
+      "mdtTracking": {
+        "pillsTaken": "Unknown (in crisis)",
+        "pillsRemaining": "Zero - all stolen",
+        "effects": "Enhanced cognition but facing death"
+      },
+      "plotSummary": {
+        "brief": "Eddie stands on his penthouse ledge, about to jump, as armed men break through his door",
+        "detailed": "Eddie Morgan, transformed into a lean and stylish figure, stands on the exterior ledge of his 80-story penthouse as professional killers use power tools to breach his state-of-the-art security door. Security guards lie dead in the lobby. Eddie reflects on how close he came to greatness before facing this fatal moment.",
+        "subtext": "The cold open establishes the central question: how did someone go from nothing to a multimillion-dollar penthouse, and what price did they pay? The waste Eddie laments is not just potential death but the squandering of unlimited possibility."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Fatalistic, calm, reflective",
+          "transformation": "Peak physical condition, stylish, wealthy - the 'perfect version' of himself",
+          "psychologicalState": "Resigned acceptance mixed with bitter regret about wasted potential"
+        },
+        "otherCharacters": []
+      },
+      "keyDialogue": [
+        {
+          "quote": "How many of us ever know what it is to become the perfect version of ourselves?",
+          "speaker": "Eddie (V.O.)",
+          "significance": "Central thematic question about human potential and the cost of perfection",
+          "context": "Reflecting on the journey that brought him here"
+        },
+        {
+          "quote": "The only thing I'd have an impact on was the sidewalk.",
+          "speaker": "Eddie (V.O.)",
+          "significance": "Dark humor masking genuine despair; ironic given his earlier dreams of impacting the world",
+          "context": "Looking over the railing at 80 stories down"
+        }
+      ],
+      "visualStorytelling": {
+        "cameraWork": "Breathless rising shot up 80 floors, slow zoom on Eddie's face, vertiginous angles emphasizing height and danger",
+        "colorPalette": "Night blues and blacks, sterile whites of luxury, cold steel grays",
+        "lighting": "Harsh exterior city lights, clinical interior lighting",
+        "symbolism": [
+          "The ledge - liminal space between life/death, success/failure",
+          "The view - all of New York at his feet yet unreachable",
+          "Dead security guards - the price of his rise",
+          "State-of-the-art door being breached - even the best protection fails"
+        ]
+      },
+      "thematicElements": {
+        "primaryThemes": [
+          "Hubris",
+          "Consequence",
+          "The Faustian Bargain"
+        ],
+        "exploration": "Opens with the ultimate consequence of Eddie's choices, forcing the audience to wonder what bargain was made and whether any achievement was worth this ending",
+        "moralQuestions": [
+          "Is becoming your perfect self worth any price?",
+          "Can unlimited potential justify unlimited risk?",
+          "What is the 'waste' Eddie laments - his death or his choices?"
+        ]
+      },
+      "sciFiAnalysis": {
+        "concept": "Cognitive enhancement drug MDT-48",
+        "realismLevel": "Grounded speculation - based on real nootropic research",
+        "consequencesShown": "Dependency, mortal danger, loss of humanity",
+        "ethicalImplications": "The temptation of enhancement when facing personal failure"
+      },
+      "symbols": [
+        {
+          "symbol": "The Ledge",
+          "meaning": "Final escape, ultimate consequence, choice vs. no choice"
+        },
+        {
+          "symbol": "The Celestial Building",
+          "meaning": "Heaven reached, god-like heights, hubris of modern ambition"
+        },
+        {
+          "symbol": "The City Below",
+          "meaning": "Everything conquered yet everything lost"
+        }
+      ],
+      "tensionLevel": 10,
+      "significance": "Establishes the stakes and central mystery, creating a narrative hook that demands the audience discover how Eddie reached this point. The perfect opening for a cautionary tale about enhancement and ambition.",
+      "foreshadowing": [
+        2,
+        3,
+        20
+      ],
+      "callbacks": []
+    },
+    {
+      "id": 2,
+      "act": "act1",
+      "title": "Schlumpy Eddie - Rock Bottom",
+      "location": {
+        "primary": "Eddie's Ratty Rent-Controlled Apartment on Avenue A",
+        "description": "Fourth-floor walk-up tenement, disheveled, cluttered with unpaid bills, sink full of dishes, the nest of a slob",
+        "significance": "Physical manifestation of Eddie's mental state - chaotic, unproductive, stuck"
+      },
+      "time": {
+        "narrative": "Two years after losing copywriting job, months behind on book contract",
+        "runtime": "0:05-0:10",
+        "approximate": "Minutes 5-10"
+      },
+      "duration": "5 minutes",
+      "cognitiveState": "baseline",
+      "mdtTracking": {
+        "pillsTaken": 0,
+        "pillsRemaining": 0,
+        "effects": "Normal human cognition, functioning at 20% capacity"
+      },
+      "plotSummary": {
+        "brief": "Flashback reveals Eddie as a failed writer, overweight, unmotivated, playing games instead of writing his book",
+        "detailed": "Eddie Morgan in his 'before' state: longer hair, out of shape with a belly, wearing a worn corduroy jacket. He wastes days playing computer Scrabble, watching TV, shooting toy basketball, sleeping until noon. He has a book contract but hasn't written a single word. His phone never rings. Bills pile up. Friends have abandoned him.",
+        "subtext": "This is the trap of unrealized potential - having enough talent to get a contract but not enough discipline or clarity to execute. Eddie is drowning in paralysis, depression masked as procrastination."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Depressed, procrastinating, self-loathing masked by false confidence",
+          "physicalCondition": "Overweight, unhealthy, smoker's cough, 'weird aches and possible lumps'",
+          "psychologicalState": "Aware he's failing but unable to break the cycle, defensive about his situation"
+        },
+        "otherCharacters": []
+      },
+      "keyDialogue": [
+        {
+          "quote": "I was a writer. Now, at last, I was ready to write. Gearing up, that's all. Getting psyched.",
+          "speaker": "Eddie (V.O.)",
+          "significance": "Ironic self-awareness of his own procrastination and self-deception",
+          "context": "Voice-over while showing him doing everything except writing"
+        },
+        {
+          "quote": "Friends fled. And banks became attentive.",
+          "speaker": "Eddie (V.O.)",
+          "significance": "Economic and social consequences of his failure mounting",
+          "context": "Looking at stack of unpaid bills"
+        }
+      ],
+      "visualStorytelling": {
+        "cameraWork": "Static wide shots emphasizing the mess, quick cuts showing wasted time, clock ticking to 11:59 AM",
+        "colorPalette": "Dull grays, dingy whites, depressing earth tones",
+        "lighting": "Dim natural light, unwashed windows, shadows of failure",
+        "symbolism": [
+          "Computer Scrabble - rearranging letters but creating nothing",
+          "Toy basketball - childish diversions",
+          "Unpaid bills - reality piling up",
+          "Green answering machine light - no one calls"
+        ]
+      },
+      "thematicElements": {
+        "primaryThemes": [
+          "Unrealized Potential",
+          "Paralysis",
+          "Modern Failure"
+        ],
+        "exploration": "The baseline state that makes the drug so tempting - Eddie has just enough talent to fail visibly, not enough to succeed. He's trapped in the modern curse of potential without execution.",
+        "moralQuestions": [
+          "Is wasted talent a moral failing or a medical condition?",
+          "Does awareness of one's own failure make it worse?",
+          "What separates those who execute from those who procrastinate?"
+        ]
+      },
+      "sciFiAnalysis": {
+        "concept": "The 20% brain capacity myth",
+        "realismLevel": "Setup for the central premise",
+        "consequencesShown": "Normal human limitations feel like prison",
+        "ethicalImplications": "Is enhancement wrong if it simply unlocks what was always there?"
+      },
+      "symbols": [
+        {
+          "symbol": "The Corduroy Jacket",
+          "meaning": "Worn-out 'writer' costume, clinging to identity without substance"
+        },
+        {
+          "symbol": "The Empty Page",
+          "meaning": "Unrealized potential, writer's block as life block"
+        },
+        {
+          "symbol": "The Clock at 11:59",
+          "meaning": "Time wasted, always on the edge of noon (a new day that never comes)"
+        }
+      ],
+      "tensionLevel": 2,
+      "significance": "Establishes the 'before' state that makes transformation so dramatic and the drug so tempting. This is the Eddie who would do anything to escape mediocrity - making his later choices understandable even when catastrophic.",
+      "foreshadowing": [
+        4
+      ],
+      "callbacks": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "act": "act1",
+      "title": "Lindy Breaks Up With Him",
+      "location": {
+        "primary": "Midtown Coffee Shop",
+        "description": "Generic Manhattan coffee shop, neutral territory for a breakup",
+        "significance": "Public space for private devastation - Eddie can't even fail in private"
+      },
+      "time": {
+        "narrative": "Present day, immediately after Scene 2",
+        "runtime": "0:10-0:15",
+        "approximate": "Minutes 10-15"
+      },
+      "duration": "5 minutes",
+      "cognitiveState": "baseline",
+      "mdtTracking": {
+        "pillsTaken": 0,
+        "pillsRemaining": 0,
+        "effects": "None"
+      },
+      "plotSummary": {
+        "brief": "Eddie's girlfriend Lindy returns his apartment key, ending their relationship because she can't watch him self-destruct",
+        "detailed": "Lindy, dressed professionally and just promoted to a position with her own assistant, slides Eddie's key across the table. She's sad but resolute - she knows exactly where Eddie's trajectory leads (the lower bunk in his childhood bedroom in Newark). She also reveals her awareness that Eddie still pines for his ex-wife Melissa. Lindy pays for the coffee Eddie can't afford.",
+        "subtext": "Lindy represents the last person who believed in Eddie. Her leaving isn't cruelty but self-preservation. The mention of Melissa reveals Eddie's pattern of living in the past, unable to commit to the present."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Defensive, hurt, manipulative, then honest",
+          "revelation": "Admits 'I don't think it is. There. Anything. At all.'",
+          "psychologicalState": "Facing the void of his own emptiness"
+        },
+        "lindy": {
+          "introduction": "Attractive, professional, late 20s, competent",
+          "state": "Compassionate but firm, protecting herself",
+          "insight": "Sees through Eddie's manipulation, knows him too well"
+        }
+      },
+      "keyDialogue": [
+        {
+          "quote": "If I didn't care, maybe I'd be able to stand to watch you do this.",
+          "speaker": "Lindy",
+          "significance": "Love makes witnessing self-destruction unbearable",
+          "context": "Explaining why she has to leave"
+        },
+        {
+          "quote": "I really thought I had it in me to do something. And now, I don't think it is. There. Anything. At all.",
+          "speaker": "Eddie",
+          "significance": "Rare moment of complete honesty - the void at his core",
+          "context": "Finally dropping the glib defenses"
+        },
+        {
+          "quote": "If it was me you wanted. And not Melissa.",
+          "speaker": "Lindy",
+          "significance": "Eddie's inability to be present, always looking backward",
+          "context": "Admitting the real reason she can't stay"
+        }
+      ],
+      "visualStorytelling": {
+        "cameraWork": "Close-ups on the key sliding, medium shots for emotional beats, focus on unspoken communication",
+        "colorPalette": "Coffee shop browns, her professional blues vs. his drab colors",
+        "lighting": "Harsh fluorescent truth, nowhere to hide",
+        "symbolism": [
+          "The returned key - literally being locked out of a future",
+          "The paid check - role reversal, his dependency",
+          "Her promotion vs. his stagnation - diverging paths"
+        ]
+      },
+      "thematicElements": {
+        "primaryThemes": [
+          "Love vs. Self-Preservation",
+          "Facing Truth",
+          "Consequences of Stagnation"
+        ],
+        "exploration": "Sometimes caring means leaving. Lindy's departure is the inciting incident that will make Eddie vulnerable to Vernon's offer. She represents what Eddie could have had if he'd been capable of being present.",
+        "moralQuestions": [
+          "Is it selfish to leave someone who's drowning?",
+          "Can you love someone while refusing to enable them?",
+          "Does rock bottom require complete abandonment?"
+        ]
+      },
+      "sciFiAnalysis": {
+        "concept": "None yet",
+        "realismLevel": "Pure human drama",
+        "consequencesShown": "Social consequences of personal failure",
+        "ethicalImplications": "Setup for why Eddie will take the drug - nothing left to lose"
+      },
+      "symbols": [
+        {
+          "symbol": "The Key",
+          "meaning": "Access, intimacy, home, future - all being revoked"
+        },
+        {
+          "symbol": "The Coffee Check",
+          "meaning": "Eddie's economic impotence, role reversals"
+        },
+        {
+          "symbol": "Lindy's Promotion",
+          "meaning": "What forward movement looks like - what Eddie lacks"
+        }
+      ],
+      "tensionLevel": 5,
+      "significance": "This loss creates the desperation that makes Eddie vulnerable to Vernon's offer. Without Lindy's departure, Eddie might resist temptation. Her leaving proves Eddie has nothing to lose - the perfect setup for taking a dangerous drug.",
+      "foreshadowing": [
+        16
+      ],
+      "callbacks": []
+    },
+    {
+      "id": 4,
+      "act": "act1",
+      "title": "Vernon Gant - The Dealer",
+      "location": {
+        "primary": "Midtown Street / Bar",
+        "description": "Manhattan bar, anonymous meeting place",
+        "significance": "Where deals are made, where the devil appears"
+      },
+      "time": {
+        "narrative": "Same day, after breakup",
+        "runtime": "0:15-0:22",
+        "approximate": "Minutes 15-22"
+      },
+      "duration": "7 minutes",
+      "cognitiveState": "baseline",
+      "mdtTracking": {
+        "pillsTaken": 0,
+        "pillsRemaining": "Vernon has one pill to offer",
+        "effects": "None yet"
+      },
+      "plotSummary": {
+        "brief": "Eddie encounters his ex-brother-in-law Vernon, now mysteriously wealthy, who offers him a drink",
+        "detailed": "Vernon Gant, Eddie's ex-wife Melissa's brother and former drug dealer, appears looking prosperous in an expensive suit. The two men have a drink where Vernon probes about Eddie's book and mentions Melissa now lives upstate with kids from an abandoned marriage. Eddie denies writing a single word of his contracted book. Vernon receives an agitated phone call and must leave suddenly, but not before placing his business card and a mysterious white pill on the bar.",
+        "subtext": "Vernon's transformation from dealer to wealthy businessman mirrors what Eddie could become. The timing is too perfect - Vernon appears exactly when Eddie is most vulnerable, post-breakup, facing homelessness and failure."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Self-conscious about weight, defensive, bitter",
+          "vulnerability": "At rock bottom after Lindy, susceptible to any lifeline",
+          "honesty": "Admits to Vernon he's written nothing"
+        },
+        "vernon": {
+          "introduction": "30, expensive suit, mysteriously wealthy, condescending bemusement",
+          "transformation": "From dealer to businessman - unexplained",
+          "behavior": "Genial but manipulative, knows Eddie's weaknesses"
+        },
+        "melissa": {
+          "ghostPresence": "Haunts the conversation through flashbacks",
+          "revelation": "Now upstate, internet sales job, kids, abandoned by husband",
+          "significance": "Eddie's lost 'first real love' who represented brilliance squandered"
+        }
+      },
+      "keyDialogue": [
+        {
+          "quote": "Still dealing, Vernon?",
+          "speaker": "Eddie",
+          "significance": "Eddie's suspicion about Vernon's wealth source",
+          "context": "Noting Vernon's expensive appearance"
+        },
+        {
+          "quote": "Do I look like I'm still dealing?",
+          "speaker": "Vernon",
+          "significance": "Implies he's moved beyond dealing - or into dealing something more sophisticated",
+          "context": "Smug response about his transformation"
+        },
+        {
+          "quote": "Not one fucking word, Vern.",
+          "speaker": "Eddie",
+          "significance": "Brutal honesty about his complete failure as a writer",
+          "context": "Asked how much he's written of his book"
+        }
+      ],
+      "visualStorytelling": {
+        "cameraWork": "Contrast between Vernon's confident movements and Eddie's slumped posture, close-ups on the mysterious pill",
+        "colorPalette": "Bar's amber lights, Vernon's expensive grays, Eddie's shabby browns",
+        "lighting": "Dim bar lighting hiding secrets",
+        "symbolism": [
+          "Vernon's expensive suit - unexplained transformation",
+          "The cigarette pack plucked from Eddie - power dynamics",
+          "The white pill on the bar - temptation, devil's bargain",
+          "Vernon's agitated phone call - foreshadowing of danger"
+        ]
+      },
+      "thematicElements": {
+        "primaryThemes": [
+          "Temptation",
+          "Desperation",
+          "The Faustian Deal Begins"
+        ],
+        "exploration": "The devil appears exactly when needed, offering exactly what the desperate need. Vernon's transformation from dealer to success story is the visual proof that this 'something' works.",
+        "moralQuestions": [
+          "Is it coincidence or predation that Vernon appears now?",
+          "Would Eddie be tempted if he weren't at rock bottom?",
+          "Does desperation justify dangerous choices?"
+        ]
+      },
+      "sciFiAnalysis": {
+        "concept": "Introduction of MDT-48 through Vernon's transformation",
+        "realismLevel": "Setup - the before/after of enhancement",
+        "consequencesShown": "None visible yet, only Vernon's suspicious wealth",
+        "ethicalImplications": "Targeting the desperate with untested drugs"
+      },
+      "symbols": [
+        {
+          "symbol": "The White Pill",
+          "meaning": "Temptation, forbidden knowledge, shortcut to success"
+        },
+        {
+          "symbol": "Vernon's Suit",
+          "meaning": "Transformation, success, proof the drug works"
+        },
+        {
+          "symbol": "Melissa's Ghostly Presence",
+          "meaning": "Eddie's pattern of living in the past, lost brilliance"
+        }
+      ],
+      "tensionLevel": 6,
+      "significance": "Introduction of the drug and the tempter. Vernon is both proof of concept (it works) and warning (former dealer with agitated mysterious calls). Eddie's desperation makes him vulnerable at precisely the moment Vernon appears - coincidence or targeting?",
+      "foreshadowing": [
+        5,
+        6
+      ],
+      "callbacks": []
+    },
+    {
+      "id": 5,
+      "act": "act1",
+      "title": "First Dose - MDT-48",
+      "location": {
+        "primary": "Eddie's Building Stairwell and Apartment Landing",
+        "description": "Victorian molding disfigured by paint, worn tile stairs, landlady's apartment",
+        "significance": "Threshold location - where transformation begins"
+      },
+      "time": {
+        "narrative": "Same evening, after bar meeting",
+        "runtime": "0:22-0:35",
+        "approximate": "Minutes 22-35"
+      },
+      "duration": "13 minutes",
+      "cognitiveState": "baseline \u2192 enhanced",
+      "mdtTracking": {
+        "pillsTaken": 1,
+        "pillsRemaining": 0,
+        "effects": "Total clarity, enhanced perception, perfect memory recall, unlimited energy"
+      },
+      "plotSummary": {
+        "brief": "Eddie swallows Vernon's pill and experiences total transformation - cleaning his apartment, finishing his book, helping his landlady write her paper",
+        "detailed": "Walking home, Eddie examines the pill Vernon gave him, dismissing it but pocketing it. After a racking smoker's cough, he impulsively swallows it. Within minutes, reality transforms. His pupils contract, perception sharpens - 'levels more, layers more, 3-D more.' He helps his nasty landlady Valerie with her photography paper using perfectly recalled obscure knowledge. They have sex for hours (he stays hard). He then cleans his entire apartment and writes 90 pages of his book overnight.",
+        "subtext": "This is the drug's seduction - it doesn't make Eddie someone else, it makes him the best version of himself. Everything he always wanted to do becomes effortless. The sex, cleaning, writing aren't druggy behaviors but the person Eddie always wanted to be."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "transformation": "Immediate and total - articulate, confident, perceptive",
+          "abilities": "Perfect recall, pattern recognition, social intelligence, physical stamina",
+          "selfPerception": "First moment of actually being who he thought he could be"
+        },
+        "valerie": {
+          "before": "Nasty landlady demanding rent",
+          "after": "Vulnerable student helped, then seduced",
+          "significance": "Shows Eddie's new social power"
+        }
+      },
+      "keyDialogue": [
+        {
+          "quote": "You see a schlumpy energy-sucking defeated sack of shit sponging off your husband. You're hoping I'll blow my brains out. But my existence shouldn't make you this upset. What is it?",
+          "speaker": "Eddie (on MDT)",
+          "significance": "Brutal honesty and perception that normal Eddie couldn't access",
+          "context": "Reading Valerie's true emotional state"
+        },
+        {
+          "quote": "Levels more, layers more, 3-D more... galactically more. But the same. Just the depth and beauty of clarity.",
+          "speaker": "Eddie (V.O.)",
+          "significance": "The drug doesn't distort reality but reveals it",
+          "context": "First moments of MDT activation"
+        },
+        {
+          "quote": "Vern was right. This was no recreational drug.",
+          "speaker": "Eddie (V.O.)",
+          "significance": "Realization this is something entirely different from street drugs",
+          "context": "After helping Valerie with perfect memory recall"
+        }
+      ],
+      "visualStorytelling": {
+        "cameraWork": "Pupils contracting in close-up, world snapping into sharper focus, time-lapse cleaning montage, pages printing",
+        "colorPalette": "Shift from dull grays to vibrant clarity, enhanced light and definition",
+        "lighting": "World becoming brighter, more defined, visually representing cognitive enhancement",
+        "symbolism": [
+          "Swallowing the pill - consuming forbidden knowledge",
+          "Pupil contraction - literally seeing more clearly",
+          "The Dorothea Lange book - accessing forgotten memories",
+          "Clean apartment - external order matching mental clarity",
+          "Printed pages - finally producing what he promised"
+        ]
+      },
+      "thematicElements": {
+        "primaryThemes": [
+          "Transformation",
+          "Unrealized Potential Realized",
+          "The Seduction of Enhancement"
+        ],
+        "exploration": "The drug's brilliance as a plot device is that it's not a distortion but a clarification. Eddie becomes exactly who he always wanted to be, making the addiction understandable and tragic.",
+        "moralQuestions": [
+          "If you could be your best self, would you?",
+          "Is enhanced cognition cheating or optimization?",
+          "Does the end (finished book, helped Valerie) justify the means?"
+        ]
+      },
+      "sciFiAnalysis": {
+        "concept": "MDT-48 unlocks 100% brain capacity (based on the 10% myth)",
+        "realismLevel": "Speculative but grounded in nootropic fantasy",
+        "consequencesShown": "None yet - only benefits visible",
+        "ethicalImplications": "If a drug removes all barriers to achievement, who wouldn't take it?"
+      },
+      "symbols": [
+        {
+          "symbol": "The White Pill",
+          "meaning": "Transformation, forbidden knowledge, Pandora's box opened"
+        },
+        {
+          "symbol": "Contracting Pupils",
+          "meaning": "Physical change, enhanced perception, seeing truth"
+        },
+        {
+          "symbol": "The Clean Apartment",
+          "meaning": "Internal order manifesting externally"
+        },
+        {
+          "symbol": "90 Printed Pages",
+          "meaning": "Potential finally realized"
+        }
+      ],
+      "tensionLevel": 8,
+      "significance": "The transformation scene - the moment Eddie tastes godhood. This scene must be seductive to the audience too; we must understand why Eddie would risk anything to keep this feeling. The tragedy only works if we see why the bargain seemed worth it.",
+      "foreshadowing": [
+        8,
+        12
+      ],
+      "callbacks": [
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "act": "act1",
+      "title": "The Hook - Trying to Get More",
+      "location": {
+        "primary": "Eddie's Apartment Morning / Street / Editor's Office",
+        "description": "Back to mundane reality",
+        "significance": "The crash back to baseline reveals the drug's addictive power"
+      },
+      "time": {
+        "narrative": "Next morning",
+        "runtime": "0:35-0:40",
+        "approximate": "Minutes 35-40"
+      },
+      "duration": "5 minutes",
+      "cognitiveState": "enhanced \u2192 baseline",
+      "mdtTracking": {
+        "pillsTaken": 0,
+        "pillsRemaining": 0,
+        "effects": "Crash - back to normal cognition feels like stupidity"
+      },
+      "plotSummary": {
+        "brief": "The pill wears off and Eddie crashes back to baseline, becoming instantly addicted to the feeling of enhancement",
+        "detailed": "Eddie wakes as normal Eddie - foggy, stupid, a shuffling zombie. He misses the hamper with his underwear. But the work remains - 90 pages he doesn't remember writing. His editor Mark is suspicious but impressed, calling Eddie multiple times. Eddie desperately needs Vernon to get more pills, seeking him out immediately.",
+        "subtext": "The hook isn't just biochemical addiction but psychological. Having felt what it's like to be his best self, normal Eddie is now unbearable. He's addicted to being the person he always wanted to be."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Desperate, crashing, instantly addicted",
+          "realization": "Normal Eddie is now intolerable",
+          "action": "Immediately seeks more drugs"
+        },
+        "mark": {
+          "introduction": "Eddie's editor, skeptical about the sudden work",
+          "reaction": "Astonished by the quality, calling repeatedly"
+        }
+      },
+      "keyDialogue": [
+        {
+          "quote": "I sent a little probe down into my brain. No surge of brilliance came up to greet me. I felt thick and stupid - a shuffling zombie without my coffee and cigarette. In short... I was back.",
+          "speaker": "Eddie (V.O.)",
+          "significance": "Normal cognition now feels like disability",
+          "context": "Waking up off MDT"
+        },
+        {
+          "quote": "How would I finish? It was 'enhanced' Eddie who displayed all that brilliance. Not me.",
+          "speaker": "Eddie (V.O.)",
+          "significance": "Identity crisis - who is the real Eddie?",
+          "context": "Realizing he can't complete the book without drugs"
+        }
+      ],
+      "visualStorytelling": {
+        "cameraWork": "Dulled colors returning, sluggish movements, contrast with previous night",
+        "colorPalette": "Back to grays and dull tones",
+        "lighting": "Flat morning light, harsh reality",
+        "symbolism": [
+          "Underwear missing the hamper - loss of enhanced coordination",
+          "The 90 pages - proof it wasn't a dream",
+          "Editor's multiple calls - external validation of the transformation"
+        ]
+      },
+      "thematicElements": {
+        "primaryThemes": [
+          "Addiction",
+          "Identity Crisis",
+          "The Cost of Enhancement"
+        ],
+        "exploration": "This is addiction's true horror - not that the drug makes you feel good, but that normal life becomes unbearable by comparison. Eddie isn't addicted to a high but to being himself.",
+        "moralQuestions": [
+          "Is it addiction if you're becoming your best self?",
+          "Which Eddie is the 'real' one?",
+          "Once you've felt perfect clarity, can you accept normal cognition?"
+        ]
+      },
+      "sciFiAnalysis": {
+        "concept": "Cognitive dependency - needing enhancement to function",
+        "realismLevel": "Psychological realism about comparative states",
+        "consequencesShown": "Immediate addiction, inability to function at baseline",
+        "ethicalImplications": "Enhancement creates dependency on enhanced state"
+      },
+      "symbols": [
+        {
+          "symbol": "Missing the Hamper",
+          "meaning": "Loss of enhanced capabilities, back to mediocrity"
+        },
+        {
+          "symbol": "The 90 Pages",
+          "meaning": "Proof of potential, evidence of what's possible"
+        }
+      ],
+      "tensionLevel": 7,
+      "significance": "The addiction hook - showing why Eddie will risk everything for more. This isn't about getting high; it's about being unable to tolerate being ordinary after experiencing extraordinary.",
+      "foreshadowing": [
+        7
+      ],
+      "callbacks": [
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "act": "act1",
+      "title": "Vernon's Murder - The Stash",
+      "location": {
+        "primary": "Vernon's Apartment",
+        "description": "Mismatched antique furniture, ransacked and destroyed, Vernon dead on couch with bullet hole in forehead",
+        "significance": "Crime scene - where the drug's danger becomes undeniable"
+      },
+      "time": {
+        "narrative": "Next day",
+        "runtime": "0:40-0:52",
+        "approximate": "Minutes 40-52"
+      },
+      "duration": "12 minutes",
+      "cognitiveState": "baseline",
+      "mdtTracking": {
+        "pillsTaken": 0,
+        "pillsRemaining": "Discovers 500 pills, $20,000, address book",
+        "effects": "None"
+      },
+      "plotSummary": {
+        "brief": "Eddie finds Vernon murdered, his apartment ransacked. Before the police arrive, Eddie discovers Vernon's hidden stash: 500 pills, $20,000 cash, and a black address book",
+        "detailed": "Eddie arrives at Vernon's beaten apartment to find Vernon dead with a bullet hole in his forehead. The place is ransacked - clearly searched for something. While waiting for police, Eddie deduces the killers were looking for drugs and finds Vernon's stash hidden in the pristine stove: an envelope with 500 MDT pills, twenty thousand dollars, and a black address book of other users. He takes it all before police arrive. At the station, he receives a call from Melissa, Vernon's sister and Eddie's ex-wife.",
+        "subtext": "The drug's danger is now undeniable - people will kill for it. Yet Eddie steals the stash anyway, showing how addiction overrides survival instinct. The pristine stove reveals Vernon never cooked - the hiding place of someone who knew people would come looking."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Terrified but calculating",
+          "choices": "Steals the drugs despite knowing they're worth killing for",
+          "addiction": "Overpowers fear of consequences"
+        },
+        "vernon": {
+          "death": "Execution-style, betrayed (opened door to killer)",
+          "preparation": "Had hidden stash as contingency"
+        },
+        "melissa": {
+          "voiceReturn": "First contact in 10 years via phone",
+          "state": "Broken by brother's death, unsurprised he was involved in 'stuff'"
+        }
+      },
+      "keyDialogue": [
+        {
+          "quote": "Vern had known whoever had done this. He'd opened the door.",
+          "speaker": "Eddie (V.O.)",
+          "significance": "Betrayed by someone he trusted - foreshadowing Eddie's future",
+          "context": "Realizing Vernon let his killer in"
+        },
+        {
+          "quote": "He was... involved in some stuff... I wish I was more surprised.",
+          "speaker": "Melissa (phone)",
+          "significance": "Vernon's dangerous connections were known to family",
+          "context": "Hearing about her brother's murder"
+        },
+        {
+          "quote": "One guess what they'd been looking for.",
+          "speaker": "Eddie (V.O.)",
+          "significance": "Understanding the pills are worth killing for",
+          "context": "Viewing the ransacked apartment"
+        }
+      ],
+      "visualStorytelling": {
+        "cameraWork": "Close-up of bullet hole, wide shots of destruction, Eddie's shaking hands finding the stash",
+        "colorPalette": "Blood reds, death grays, the clinical white of the pristine stove",
+        "lighting": "Crime scene harshness, shadows hiding secrets",
+        "symbolism": [
+          "Bullet hole in forehead - execution, clinical killing",
+          "Ransacked apartment - desperation for the drug",
+          "Pristine stove - Vernon never cooked, always hid things",
+          "The envelope - Pandora's box of 500 doses",
+          "Black address book - other victims waiting to happen"
+        ]
+      },
+      "thematicElements": {
+        "primaryThemes": [
+          "Consequence",
+          "Addiction vs. Survival",
+          "The Drug's True Cost"
+        ],
+        "exploration": "The drug's danger is now explicit - people murder for it. Yet Eddie takes the stash anyway. Addiction has already overridden his survival instinct. He knows what he's stealing could get him killed.",
+        "moralQuestions": [
+          "Does knowing the danger make taking the drugs worse?",
+          "Would Eddie take them if Vernon was alive to warn him?",
+          "Is stealing from a murder scene justified by addiction?"
+        ]
+      },
+      "sciFiAnalysis": {
+        "concept": "MDT-48 as valuable enough to kill for",
+        "realismLevel": "Realistic organized crime response to valuable drug",
+        "consequencesShown": "Murder, organized crime involvement, no FDA approval",
+        "ethicalImplications": "Underground drug markets, human cost of enhancement"
+      },
+      "symbols": [
+        {
+          "symbol": "The Bullet Hole",
+          "meaning": "Clinical execution, the drug's lethal stakes"
+        },
+        {
+          "symbol": "The Pristine Stove",
+          "meaning": "Appearances vs. reality, hiding dangerous secrets"
+        },
+        {
+          "symbol": "500 Pills",
+          "meaning": "Enough to transform completely - or die trying"
+        },
+        {
+          "symbol": "The Black Address Book",
+          "meaning": "Other victims, web of addiction and danger"
+        }
+      ],
+      "tensionLevel": 9,
+      "significance": "The point of no return - Eddie now has enough drugs to transform his life and enough danger to end it. He's stolen from a crime scene, taken drugs people kill for, and crossed into criminal territory. The murder should be a warning; instead it's an opportunity.",
+      "foreshadowing": [
+        11,
+        17
+      ],
+      "callbacks": [
+        4
+      ]
+    },
+    {
+      "id": 8,
+      "act": "act2",
+      "title": "Book Completion & Stock Market",
+      "location": {
+        "primary": "Eddie's Apartment / Madison Avenue / Salon / Gym",
+        "description": "Transformation montage locations",
+        "significance": "Sites of Eddie's rapid evolution"
+      },
+      "time": {
+        "narrative": "Next several weeks",
+        "runtime": "0:52-1:02",
+        "approximate": "Minutes 52-62"
+      },
+      "duration": "10 minutes",
+      "cognitiveState": "enhanced",
+      "mdtTracking": {
+        "pillsTaken": "One per day for weeks",
+        "pillsRemaining": "Approximately 470 (30 used)",
+        "effects": "Sustained enhancement, learning languages, physical transformation, financial genius"
+      },
+      "plotSummary": {
+        "brief": "On MDT, Eddie completes his book in four days, learns languages, plays piano, gets fit, and enters the stock market, turning $800 into thousands",
+        "detailed": "Using Vernon's cash and sustained MDT dosing, Eddie transforms completely. He finishes his book in four days. Gets fitted for sharp suits. Gets a stylish haircut. Gets in shape at the gym. Learns to read music in a week. Becomes fluent in languages by half-listening to audio lessons while jogging. Notices he might be followed. Studies the stock market and turns $800 into $4,000 in a day, then $7,500 the next - but it's too slow. He meets Russian loan shark Gennady to borrow $100,000 for trading capital.",
+        "subtext": "This is the montage of impossible achievement - everything Eddie ever wanted to do becomes effortless. But notice the paranoia creeping in (being followed), the escalation (needing more capital), and the dangerous alliances (Gennady the loan shark). Success breeds new problems."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "transformation": "Physical (lean, stylish), intellectual (languages, music), financial (stock trading)",
+          "paranoia": "Feeling followed, hiding stash carefully",
+          "escalation": "Success isn't enough - needs more capital, faster growth"
+        },
+        "gennady": {
+          "introduction": "Sinister young Russian in his 30s, loan shark",
+          "threat": "Describes horrific torture for non-payment",
+          "importance": "Represents Eddie's dangerous escalation"
+        }
+      },
+      "keyDialogue": [
+        {
+          "quote": "A tablet a day kept the torpor away. And what I could do with my day was limitless.",
+          "speaker": "Eddie (V.O.)",
+          "significance": "Title drop - the promise of unlimited potential",
+          "context": "Explaining his daily MDT regimen"
+        },
+        {
+          "quote": "You're lucky. / It's not luck. / Okay, you tricked their computer, you got some fix on the game.",
+          "speaker": "Gennady / Eddie",
+          "significance": "Gennady assumes Eddie's cheating - can't conceive of genuine enhancement",
+          "context": "Eddie requesting $100,000 loan"
+        },
+        {
+          "quote": "You take this, you mine. You don't pay, you know what we do? We cut you around the waist, peel your skin, pull it up over your head and tie knot in it. And you don't die from that. You suffocate.",
+          "speaker": "Gennady",
+          "significance": "The stakes of Eddie's escalation - horrific death if he fails",
+          "context": "Lending Eddie the money"
+        }
+      ],
+      "visualStorytelling": {
+        "cameraWork": "Montage sequences, mirror transitions between locations, time-lapse productivity",
+        "colorPalette": "Shift to vibrant colors, expensive grays and blacks, success tones",
+        "lighting": "Bright, energetic, optimistic lighting",
+        "symbolism": [
+          "Haircut - shedding old identity",
+          "Fitted suits - costume of success",
+          "Gym crunches - physical discipline matching mental",
+          "Languages on headphones - learning even while exercising",
+          "Stock charts - pattern recognition as superpower",
+          "Sugar bowl hiding pills - domestic camouflage of danger"
+        ]
+      },
+      "thematicElements": {
+        "primaryThemes": [
+          "Unlimited Potential",
+          "Escalation",
+          "Success Breeding Danger"
+        ],
+        "exploration": "The fantasy fulfillment - Eddie becomes everything he dreamed. But each success requires more risk. The $800 isn't enough, so he needs $100,000 from a loan shark who will skin him alive if he fails.",
+        "moralQuestions": [
+          "Is there a natural limit to human ambition?",
+          "Does success justify increasingly dangerous risks?",
+          "Can you ever have 'enough' when unlimited potential beckons?"
+        ]
+      },
+      "sciFiAnalysis": {
+        "concept": "Sustained cognitive enhancement effects",
+        "realismLevel": "Fantasy of nootropic perfection",
+        "consequencesShown": "Paranoia, dangerous escalation, inability to be satisfied",
+        "ethicalImplications": "Enhancement accelerates ambition beyond safety"
+      },
+      "symbols": [
+        {
+          "symbol": "The Haircut",
+          "meaning": "Shedding old identity, transformation made visible"
+        },
+        {
+          "symbol": "The Sugar Bowl",
+          "meaning": "Hiding danger in domestic normalcy"
+        },
+        {
+          "symbol": "Stock Market Patterns",
+          "meaning": "Seeing what others can't, godlike perception"
+        },
+        {
+          "symbol": "Gennady's Loan",
+          "meaning": "Deal with the devil, escalating stakes"
+        }
+      ],
+      "tensionLevel": 7,
+      "significance": "The seduction complete - Eddie's transformation into his ideal self. But the seeds of destruction are planted: paranoia, dangerous debts, and the inability to ever be satisfied with 'enough.' Success becomes its own addiction.",
+      "foreshadowing": [
+        9,
+        10
+      ],
+      "callbacks": [
+        5
+      ]
+    },
+    {
+      "id": 9,
+      "act": "act2",
+      "title": "Financial Success Montage",
+      "location": {
+        "primary": "Lafayette Trading Firm / Bars / Eddie's Improved Apartment",
+        "description": "Trading floor, upscale social venues, renovated living space",
+        "significance": "Sites of Eddie's accelerating success and social dominance"
+      },
+      "time": {
+        "narrative": "Following weeks",
+        "runtime": "1:02-1:12",
+        "approximate": "Minutes 62-72"
+      },
+      "duration": "10 minutes",
+      "cognitiveState": "enhanced",
+      "mdtTracking": {
+        "pillsTaken": "Two pills at once (upping dosage)",
+        "pillsRemaining": "Approximately 450-460",
+        "effects": "Increased effects from higher dosage, crowd gathering to watch him trade"
+      },
+      "plotSummary": {
+        "brief": "Eddie multiplies his money rapidly, turning thousands into millions at Lafayette Trading, becomes socially dominant, and transforms his apartment",
+        "detailed": "Eddie doubles his MDT dose to cut the learning curve. At Lafayette Trading, he turns Gennady's $100,000 into over a million in a week, then $2.6 million by week two. Traders gather to watch him work in awe. He dominates social situations, holding court in bars, speaking flawlessly in French, seducing women effortlessly. His apartment transforms into stylish prosperity. But the mysterious black car watches his building, and he gets job offers, bank credit increases, a reporter wanting a story, and threatening calls from Gennady demanding his money.",
+        "subtext": "The exponential growth phase - success breeds success, money makes money, confidence attracts opportunity. But notice Eddie's escalation (doubling the dose) and the vultures circling (reporters, job offers, watchers). His success is becoming too visible."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Peak confidence, socially dominant, financially brilliant",
+          "escalation": "Doubling MDT dose to accelerate learning",
+          "hubris": "Feeling invincible, dismissing warnings",
+          "visibility": "Success making him a target"
+        },
+        "kevinDoyle": {
+          "introduction": "Broker who befriends Eddie, introduces him to Van Loon",
+          "reaction": "Flabbergasted by Eddie's trading genius"
+        }
+      },
+      "keyDialogue": [
+        {
+          "quote": "My brain was just pouring this stuff out. Everything I'd ever read, heard, seen, was now organized and available - here it is, here you go.",
+          "speaker": "Eddie (V.O.)",
+          "significance": "Perfect access to all accumulated knowledge",
+          "context": "Dominating conversations with intellectual brilliance"
+        },
+        {
+          "quote": "I was jacked in, booted up - my mind was living tissue inside the greater, functioning whole.",
+          "speaker": "Eddie (V.O.)",
+          "significance": "Merging with the collective intelligence of markets",
+          "context": "Trading at superhuman levels"
+        },
+        {
+          "quote": "Why not? / Because I don't see you before. And I don't fucking like you already.",
+          "speaker": "Eddie / Gennady",
+          "significance": "Gennady's instinctive distrust despite Eddie's confidence",
+          "context": "Eddie requesting the $100,000 loan"
+        }
+      ],
+      "visualStorytelling": {
+        "cameraWork": "God-shot overhead of trading floor, crowds gathering around Eddie, rapid montage of success",
+        "colorPalette": "Rich golds, deep blues, colors of wealth and confidence",
+        "lighting": "Bright, energetic, the glow of success",
+        "symbolism": [
+          "Traders gathering around Eddie - disciples to a prophet",
+          "Three computer monitors - expanded perception",
+          "The mysterious black car - watchers in the shadows",
+          "Blinking answering machine - opportunity and threat",
+          "Renovated apartment - external success matching internal transformation"
+        ]
+      },
+      "thematicElements": {
+        "primaryThemes": [
+          "Exponential Growth",
+          "Hubris",
+          "Success as Target"
+        ],
+        "exploration": "The second act's rising action - Eddie achieves everything he wanted, but his visibility makes him vulnerable. The black car watching, the reporter calling, Gennady threatening all signal that success creates new dangers.",
+        "moralQuestions": [
+          "Does visibility inevitably accompany success?",
+          "Is it possible to win without making enemies?",
+          "When does confidence become dangerous hubris?"
+        ]
+      },
+      "sciFiAnalysis": {
+        "concept": "Dose escalation for enhanced effects",
+        "realismLevel": "Realistic addiction pattern - tolerance requiring higher doses",
+        "consequencesShown": "Increased dependency, paranoia, becoming a target",
+        "ethicalImplications": "Enhancement creates competitive advantages others want to steal or destroy"
+      },
+      "symbols": [
+        {
+          "symbol": "Three Computer Monitors",
+          "meaning": "Expanded consciousness, seeing more than normal humans"
+        },
+        {
+          "symbol": "The Mysterious Black Car",
+          "meaning": "Watchers, danger, paranoia's foundation"
+        },
+        {
+          "symbol": "The Crowd of Traders",
+          "meaning": "Prophet status, being visibly exceptional"
+        },
+        {
+          "symbol": "Gennady's Threats",
+          "meaning": "Old obligations haunting new success"
+        }
+      ],
+      "tensionLevel": 8,
+      "significance": "The peak of Eddie's success arc - everything he dreamed of achieved. But the cracks appear: dose escalation, paranoia about being followed, Gennady's threats, reporter's attention. Success has made Eddie both powerful and vulnerable.",
+      "foreshadowing": [
+        13
+      ],
+      "callbacks": [
+        8
+      ]
+    },
+    {
+      "id": 10,
+      "act": "act2",
+      "title": "Winning Lindy Back",
+      "location": {
+        "primary": "Fancy Italian Restaurant / Lindy's Apartment / Eddie's Apartment / Taxi",
+        "description": "Romantic locations of reconciliation",
+        "significance": "Sites of seduction and rekindled relationship"
+      },
+      "time": {
+        "narrative": "Weeks after financial success",
+        "runtime": "1:12-1:18",
+        "approximate": "Minutes 72-78"
+      },
+      "duration": "6 minutes",
+      "cognitiveState": "enhanced",
+      "mdtTracking": {
+        "pillsTaken": "Daily maintenance dose",
+        "pillsRemaining": "Approximately 440",
+        "effects": "Sustained enhancement, speaking Italian, charm, sexual stamina"
+      },
+      "plotSummary": {
+        "brief": "Enhanced Eddie reconnects with Lindy. She's impressed but wary of his transformation. They resume their romantic relationship",
+        "detailed": "Kevin Doyle tells Eddie that Carl Van Loon wants to meet him. Eddie takes Lindy to an expensive Italian restaurant where he speaks fluent Italian with the hostess. Lindy is mystified by his total transformation - language skills, wealth, confidence. He claims 'self-improvement month' prompted by her wake-up call. Despite wariness, she's drawn back in. They reconcile romantically across multiple locations. But Eddie stands naked at the window, looking for watchers, paranoid despite Lindy's presence.",
+        "subtext": "This is the fantasy - winning back the girl who dumped you by becoming your best self. But Lindy's wariness is justified. The Eddie she knew is gone, replaced by someone almost too perfect. His paranoia (looking out windows) reveals the cost even in moments of intimacy."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Charming, confident, sexually enhanced",
+          "paranoia": "Even in intimate moments, watching for threats",
+          "success": "Has everything he wanted including Lindy back"
+        },
+        "lindy": {
+          "reaction": "Impressed, intimidated, wary but drawn back",
+          "perception": "Knows something is different, senses danger",
+          "vulnerability": "Still loves him despite reservations"
+        }
+      },
+      "keyDialogue": [
+        {
+          "quote": "What happened to you? / Self-improvement month. Someone gave me a wake-up call.",
+          "speaker": "Lindy / Eddie",
+          "significance": "Eddie crediting Lindy for his transformation - half true",
+          "context": "Dinner conversation about his changes"
+        },
+        {
+          "quote": "I'm proud of you. / Gosh. This is so unexpected.",
+          "speaker": "Lindy / Eddie",
+          "significance": "What Eddie always wanted to hear - validation",
+          "context": "Lindy acknowledging his transformation"
+        },
+        {
+          "quote": "Is there anything you want to tell me, Eddie? Now's the time. / With success comes enemies.",
+          "speaker": "Lindy / Eddie",
+          "significance": "Lindy sensing danger, Eddie deflecting with platitudes",
+          "context": "Eddie watching out the window paranoid"
+        }
+      ],
+      "visualStorytelling": {
+        "cameraWork": "Romantic lighting, intimate close-ups, paranoid POV shots out windows",
+        "colorPalette": "Warm romantic tones contrasting with cold paranoid blues",
+        "lighting": "Candlelit dinners vs. harsh city lights through windows",
+        "symbolism": [
+          "Italian conversation - effortless sophistication",
+          "Multiple locations of intimacy - reclaiming lost romance",
+          "Eddie at window naked - vulnerability despite power",
+          "City below - world Eddie dominates but also fears"
+        ]
+      },
+      "thematicElements": {
+        "primaryThemes": [
+          "Seduction",
+          "Lost Love Regained",
+          "Success Breeding Paranoia"
+        ],
+        "exploration": "Eddie wins back what he lost by becoming someone new. But Lindy's wariness is the voice of truth - this isn't sustainable. Even in moments of triumph, Eddie's paranoia intrudes.",
+        "moralQuestions": [
+          "Is winning someone back through transformation authentic?",
+          "Does Lindy love Eddie or enhanced-Eddie?",
+          "Can intimacy coexist with paranoia?"
+        ]
+      },
+      "sciFiAnalysis": {
+        "concept": "Social enhancement effects - charm, languages, sexual stamina",
+        "realismLevel": "Fantasy of becoming irresistible",
+        "consequencesShown": "Paranoia even in intimate moments",
+        "ethicalImplications": "Is seduction through enhancement ethical?"
+      },
+      "symbols": [
+        {
+          "symbol": "Speaking Italian",
+          "meaning": "Effortless sophistication, becoming someone new"
+        },
+        {
+          "symbol": "Eddie at the Window",
+          "meaning": "Paranoia invading intimacy, always watching for threats"
+        },
+        {
+          "symbol": "Multiple Intimate Locations",
+          "meaning": "Reclaiming lost romance, rewriting past failures"
+        }
+      ],
+      "tensionLevel": 6,
+      "significance": "Eddie achieves another dream - winning back Lindy. But the cracks show: his paranoia, her wariness, the sense that this success rests on an unsustainable foundation. Foreshadows their eventual tragic separation.",
+      "foreshadowing": [
+        16
+      ],
+      "callbacks": [
+        3
+      ]
+    },
+    {
+      "id": 11,
+      "act": "act2",
+      "title": "First Blackout",
+      "location": {
+        "primary": "Eddie's Bedroom / Streets of Manhattan / Brooklyn Bridge / Harlem",
+        "description": "Fragmented locations during time-skip blackout",
+        "significance": "Disconnected spaces representing lost consciousness"
+      },
+      "time": {
+        "narrative": "Night before Van Loon meeting",
+        "runtime": "1:18-1:28",
+        "approximate": "Minutes 78-88"
+      },
+      "duration": "10 minutes",
+      "cognitiveState": "enhanced \u2192 blackout \u2192 withdrawal",
+      "mdtTracking": {
+        "pillsTaken": "Unknown during blackout",
+        "pillsRemaining": "Approximately 430",
+        "effects": "Time skips, blackouts, memory loss, dangerous unconscious actions"
+      },
+      "plotSummary": {
+        "brief": "Eddie experiences his first time skip - losing eight hours with no memory. He wakes having walked to Brooklyn, with a limp, and a woman was murdered during his blackout",
+        "detailed": "The night before his crucial Van Loon meeting, Eddie experiences a jarring skip in time - suddenly across the room with no memory of moving. Lindy notices him sweating, pale. He realizes he hasn't eaten in three days. The time skips accelerate: walking uptown, suddenly at a club, dancing with a woman, having sex in a bathroom, fighting someone, in an artist's loft, a hotel with a Latin woman. Eight hours vanish in fragments. He wakes limping across the Brooklyn Bridge at dawn. Later, at a restaurant, he sees news: the Latin woman from his blackout was murdered. A witness saw a limping man leaving the scene.",
+        "subtext": "The first major consequence - losing conscious control while enhanced. Eddie's autopilot is capable of violence, sex, social interaction, all without his awareness. The question of whether he's a murderer becomes existential - if he doesn't remember, is he responsible?"
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "crisis": "First major adverse effect - memory blackouts",
+          "horror": "Capable of actions without awareness",
+          "guilt": "Possible murderer without memory",
+          "physicalDamage": "Unexplained limp, bloody knuckles"
+        },
+        "lindy": {
+          "concern": "Notices something wrong - sweating, pale",
+          "care": "Asks when he last ate"
+        }
+      },
+      "keyDialogue": [
+        {
+          "quote": "I found myself at the door. With no consciousness that I had moved.",
+          "speaker": "Eddie (V.O.)",
+          "significance": "First time-skip, loss of conscious control",
+          "context": "Suddenly across the room"
+        },
+        {
+          "quote": "When it finally stopped, I couldn't account for the last eight hours of my life.",
+          "speaker": "Eddie (V.O.)",
+          "significance": "Total memory blackout despite being active",
+          "context": "Waking on Brooklyn Bridge at dawn"
+        },
+        {
+          "quote": "An unidentified eyewitness has reported seeing a man with a limp leaving the scene.",
+          "speaker": "Anchorwoman (TV)",
+          "significance": "Eddie matching description of murder suspect",
+          "context": "News report about murdered woman"
+        }
+      ],
+      "visualStorytelling": {
+        "cameraWork": "Jarring jump cuts, disorienting fragmentation, POV blurring and skipping",
+        "colorPalette": "Neon nightclub colors, streaked motion blur, dawn grays",
+        "lighting": "Strobe-like discontinuity, harsh morning revelation",
+        "symbolism": [
+          "Time skips - loss of self-control",
+          "The limp - physical evidence of unknown actions",
+          "Bloody knuckles - violence without memory",
+          "Brooklyn Bridge at dawn - return to consciousness far from home",
+          "The murdered woman's photo - potential victim of his blackout"
+        ]
+      },
+      "thematicElements": {
+        "primaryThemes": [
+          "Loss of Control",
+          "Moral Responsibility",
+          "The Shadow Self"
+        ],
+        "exploration": "Enhanced Eddie has a shadow self that acts without conscious awareness. The philosophical horror: if you don't remember your actions, are you responsible? The drug creates a Jekyll/Hyde split.",
+        "moralQuestions": [
+          "Is Eddie guilty of murder if he doesn't remember?",
+          "Can you be held responsible for actions taken while blacked out?",
+          "Is the blackout Eddie the 'real' Eddie's suppressed darkness?"
+        ]
+      },
+      "sciFiAnalysis": {
+        "concept": "MDT side effect: consciousness skipping during enhancement",
+        "realismLevel": "Horror of amnesia-inducing substances",
+        "consequencesShown": "Memory loss, dangerous unconscious actions, potential murder",
+        "ethicalImplications": "Enhancement without control is horrifying"
+      },
+      "symbols": [
+        {
+          "symbol": "The Time Skips",
+          "meaning": "Loss of continuous self, fragmented identity"
+        },
+        {
+          "symbol": "The Limp",
+          "meaning": "Physical evidence of unknown trauma"
+        },
+        {
+          "symbol": "Brooklyn Bridge",
+          "meaning": "Waking far from home, lost journey"
+        },
+        {
+          "symbol": "The Murdered Woman",
+          "meaning": "Potential victim of his shadow self"
+        }
+      ],
+      "tensionLevel": 10,
+      "significance": "The first major cost revealed - Eddie can't control the drug anymore. The possibility he murdered someone without knowing is existential horror. This is the turning point where enhancement becomes nightmare.",
+      "foreshadowing": [
+        12,
+        17
+      ],
+      "callbacks": [
+        7
+      ]
+    },
+    {
+      "id": 12,
+      "act": "act2",
+      "title": "Withdrawal Symptoms & Meeting Melissa",
+      "location": {
+        "primary": "Eddie's Apartment / Regency Hotel Restaurant / Washington Square Park / Charlie's Coffee Shop",
+        "description": "Sites of Eddie's deterioration off MDT",
+        "significance": "Spaces revealing dependency and consequences"
+      },
+      "time": {
+        "narrative": "Day of Van Loon meeting",
+        "runtime": "1:28-1:42",
+        "approximate": "Minutes 88-102"
+      },
+      "duration": "14 minutes",
+      "cognitiveState": "withdrawal \u2192 baseline",
+      "mdtTracking": {
+        "pillsTaken": 0,
+        "pillsRemaining": "Approximately 430",
+        "effects": "Severe withdrawal: headaches, thick tongue, leaden synapses, fear of time-skips"
+      },
+      "plotSummary": {
+        "brief": "Eddie tries to function off MDT due to fear of blackouts. He bombs the Van Loon meeting, sees news of the murder, and calls Vernon's other MDT users - discovering three dead, rest sick. He meets transformed Melissa",
+        "detailed": "Scared of blackouts, Eddie attempts his Van Loon meeting without MDT. Off the drug, the complex files are 'fucking hieroglyphs.' He struggles, sweats, massages his temples. At the hotel bar meeting Van Loon, he sees TV news about the murdered Italian woman - Eddie recognizes her from his blackout. A witness saw a limping man. Eddie vomits and flees. Using Vernon's address book, he calls other MDT users: three are dead, others hospitalized with mysterious illnesses. One number connects him to a mysterious follower. He meets Melissa at a coffee shop - she's transformed from beautiful to thick-waisted, puffy, wearing a leg brace, only able to read the Post. She reveals she took MDT too, only 9-10 times, and it destroyed her.",
+        "subtext": "The full horror revealed: the drug kills or cripples users. Melissa is Eddie's future - brilliant potential destroyed, left worse than baseline. The follower suggests organized surveillance. Eddie's withdrawal is unbearable, but taking MDT risks blackouts and murder."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Withdrawing, terrified, thick-tongued, incompetent",
+          "realization": "The drug has deadly side effects",
+          "dilemma": "Take it and risk blackouts, or don't and die from withdrawal"
+        },
+        "melissa": {
+          "transformation": "From beautiful brilliant woman to thick, puffy, leg-braced ruin",
+          "tragedy": "Took only 9-10 pills, destroyed for life",
+          "warning": "Living proof of Eddie's potential future"
+        },
+        "vanLoon": {
+          "introduction": "Carl Van Loon, young 50, vital, intense billionaire",
+          "reaction": "Contemptuous of Eddie's poor performance"
+        }
+      },
+      "keyDialogue": [
+        {
+          "quote": "Already I recognized it... the thick tongue, the leaden synapses. It was regular Eddie - the Eddie that, now, was unbearable to be.",
+          "speaker": "Eddie (V.O.)",
+          "significance": "Normal cognition is now torture",
+          "context": "Trying to function off MDT"
+        },
+        {
+          "quote": "I mean, I did it too. And I only took nine or ten hits. / [Eddie sees she's destroyed] / How much have you been taking, Eddie? / A lot.",
+          "speaker": "Melissa / Eddie",
+          "significance": "Eddie's dosage far exceeds what destroyed Melissa",
+          "context": "Coffee shop revelation"
+        },
+        {
+          "quote": "That was two years ago, and I haven't been the same since. I can't read any more - I mean, the fucking New York Post?",
+          "speaker": "Melissa",
+          "significance": "Permanent cognitive damage from brief use",
+          "context": "Describing her post-MDT life"
+        }
+      ],
+      "visualStorytelling": {
+        "cameraWork": "Sweaty close-ups, difficult focus, Eddie's deteriorating POV",
+        "colorPalette": "Sickly greens, washed-out colors, visual representation of withdrawal",
+        "lighting": "Harsh and unforgiving, revealing every flaw",
+        "symbolism": [
+          "Van Loon's files as hieroglyphs - incomprehensible without drugs",
+          "Eddie vomiting - physical rejection of reality",
+          "Melissa's leg brace - physical manifestation of cognitive damage",
+          "The Post newspaper - reduced from Elegant Universe to tabloids",
+          "Coffee shop - where Lindy dumped Eddie, now where Melissa warns him"
+        ]
+      },
+      "thematicElements": {
+        "primaryThemes": [
+          "Consequences",
+          "Addiction's True Cost",
+          "Point of No Return"
+        ],
+        "exploration": "Melissa is the Ghost of Christmas Future - brilliant potential destroyed by the drug. Eddie has taken far more than she did. The trap is complete: withdrawal will kill him, but continuing risks blackouts, murder charges, and eventual death or disability.",
+        "moralQuestions": [
+          "Is Melissa's fate inevitable for Eddie?",
+          "Can cognitive damage be worth temporary brilliance?",
+          "Is Eddie responsible for Melissa's tragedy (if he influenced her use)?"
+        ]
+      },
+      "sciFiAnalysis": {
+        "concept": "Long-term MDT consequences: death, cognitive damage, physical disabilities",
+        "realismLevel": "Realistic portrayal of neurotoxic effects",
+        "consequencesShown": "Death, permanent disability, cognitive decline below baseline",
+        "ethicalImplications": "Human cost of untested cognitive enhancement"
+      },
+      "symbols": [
+        {
+          "symbol": "Melissa's Leg Brace",
+          "meaning": "Physical manifestation of cognitive drug damage"
+        },
+        {
+          "symbol": "The New York Post",
+          "meaning": "Intellectual decline from brilliant to basic"
+        },
+        {
+          "symbol": "Van Loon's Files as Hieroglyphs",
+          "meaning": "Eddie's dependency - can't function without enhancement"
+        },
+        {
+          "symbol": "Three Dead Users",
+          "meaning": "The drug's mortality rate"
+        }
+      ],
+      "tensionLevel": 9,
+      "significance": "The revelation scene - showing the drug's true cost through Melissa's tragedy. Eddie's dilemma becomes impossible: stop and die from withdrawal, continue and face Melissa's fate. The point where there are no good choices left.",
+      "foreshadowing": [
+        19
+      ],
+      "callbacks": [
+        6,
+        11
+      ]
+    },
+    {
+      "id": 13,
+      "act": "act2",
+      "title": "Carl Van Loon's Merger Proposal",
+      "location": {
+        "primary": "The Orpheus Room / Van Loon's Limo",
+        "description": "Elite restaurant, luxury vehicle - spaces of power",
+        "significance": "Where Eddie enters the highest levels of finance and power"
+      },
+      "time": {
+        "narrative": "Evening after Melissa meeting",
+        "runtime": "1:42-1:50",
+        "approximate": "Minutes 102-110"
+      },
+      "duration": "8 minutes",
+      "cognitiveState": "enhanced",
+      "mdtTracking": {
+        "pillsTaken": "1 (forced to take after Gennady stole it)",
+        "pillsRemaining": "Approximately 429",
+        "effects": "Back to enhanced state, impressing Van Loon with insights"
+      },
+      "plotSummary": {
+        "brief": "Despite withdrawal warnings, Eddie must take MDT to meet billionaire Carl Van Loon. He deduces Van Loon's secret merger plans and earns a position advising on the biggest corporate merger in history",
+        "detailed": "Sweating and sick, Eddie meets Van Loon and his assistant Pierce at the Orpheus Room. When asked his secret, Eddie jokes 'medication' - Van Loon laughs. Eddie brilliantly analyzes pattern recognition and mass psychology in markets. Pierce is contemptuous, but Van Loon is intrigued. In the limo ride home, Eddie deduces from Van Loon's files that he's planning a merger with energy magnate Hank Atwood. Van Loon is shocked by Eddie's insight. He offers Eddie a position advising on the merger, giving him files to review. Eddie's transformation from failure to Van Loon's advisor is complete.",
+        "subtext": "Despite knowing the drug's dangers, Eddie must take it to function. His choice of Van Loon over safety shows addiction's power. The 'medication' joke is truth hidden in humor - he is medicated, just not legally."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Enhanced, brilliant, reading Van Loon perfectly",
+          "choice": "Takes MDT despite Melissa's warning",
+          "achievement": "Enters highest levels of power",
+          "addiction": "Can't refuse the drug even knowing consequences"
+        },
+        "vanLoon": {
+          "character": "Mercurial billionaire, intense, tests people",
+          "reaction": "Moves from skepticism to offering Eddie a position",
+          "secret": "Planning merger with Hank Atwood to control global energy"
+        },
+        "pierce": {
+          "role": "Van Loon's skeptical assistant",
+          "attitude": "Contemptuous of Eddie, dismisses pattern recognition"
+        }
+      },
+      "keyDialogue": [
+        {
+          "quote": "What's your secret? / Medication. I'm on special medication.",
+          "speaker": "Van Loon / Eddie",
+          "significance": "Truth disguised as joke - Eddie is literally medicated",
+          "context": "First meeting with Van Loon"
+        },
+        {
+          "quote": "I don't have delusions of grandeur. I have an actual recipe for grandeur.",
+          "speaker": "Eddie",
+          "significance": "Ultimate hubris line - claiming he's not delusional while being exactly that",
+          "context": "Pierce accusing him of delusions"
+        },
+        {
+          "quote": "You are either an amazing con artist or a very smart young man.",
+          "speaker": "Van Loon",
+          "significance": "Van Loon seeing Eddie's potential, recognizing something extraordinary",
+          "context": "After Eddie deduces the Atwood merger"
+        }
+      ],
+      "visualStorytelling": {
+        "cameraWork": "Power dynamics in seating, Eddie's confident analysis, limo intimacy",
+        "colorPalette": "Rich restaurant golds, luxury car blacks, colors of power",
+        "lighting": "Prestigious ambient lighting, power meeting aesthetics",
+        "symbolism": [
+          "The Orpheus Room - descending to the underworld for power",
+          "The limo ride - Eddie entering Van Loon's world",
+          "Eddie's shabby building - Van Loon's contempt for the contrast",
+          "Merger files - Eddie's entry ticket to ultimate power"
+        ]
+      },
+      "thematicElements": {
+        "primaryThemes": [
+          "Ambition vs. Survival",
+          "Addiction's Power",
+          "Faustian Bargain Completed"
+        ],
+        "exploration": "Eddie consciously chooses the drug despite Melissa's warning. The Van Loon opportunity is too big to refuse. This is addiction's logic: one more time, for the big opportunity, then I'll deal with consequences.",
+        "moralQuestions": [
+          "Is one night of risk worth access to ultimate power?",
+          "Can Eddie still claim he's in control?",
+          "Does the end (Van Loon position) justify the means (taking deadly drug)?"
+        ]
+      },
+      "sciFiAnalysis": {
+        "concept": "Cognitive enhancement enabling superhuman business insights",
+        "realismLevel": "Fantasy of seeing patterns others miss",
+        "consequencesShown": "Addiction overriding survival instinct",
+        "ethicalImplications": "Unfair competitive advantage in business"
+      },
+      "symbols": [
+        {
+          "symbol": "The Merger Files",
+          "meaning": "Access to ultimate power and wealth"
+        },
+        {
+          "symbol": "The Limo",
+          "meaning": "Eddie entering elite world, leaving poverty behind"
+        },
+        {
+          "symbol": "'Medication' Joke",
+          "meaning": "Truth hidden in humor, addiction normalized"
+        }
+      ],
+      "tensionLevel": 7,
+      "significance": "The moment Eddie consciously chooses power over survival. Despite Melissa's warning, the opportunity is too great. This is the Faustian bargain formalized - selling his future for present power.",
+      "foreshadowing": [
+        15,
+        20
+      ],
+      "callbacks": [
+        9
+      ]
+    },
+    {
+      "id": 14,
+      "act": "act2",
+      "title": "Dangerous Escalations",
+      "location": {
+        "primary": "Eddie's Apartment / Lafayette Trading / Van Loon's Office / Coffee Shop / Washington Square Park",
+        "description": "Multiple locations showing Eddie's expanding empire and mounting threats",
+        "significance": "Sites of success meeting danger"
+      },
+      "time": {
+        "narrative": "Following weeks",
+        "runtime": "1:50-2:02",
+        "approximate": "Minutes 110-122"
+      },
+      "duration": "12 minutes",
+      "cognitiveState": "enhanced",
+      "mdtTracking": {
+        "pillsTaken": "Daily controlled dosing, eating regularly, no alcohol",
+        "pillsRemaining": "Approximately 400-410",
+        "effects": "Sustained enhancement without blackouts (with precautions)"
+      },
+      "plotSummary": {
+        "brief": "Eddie learns to control MDT use by maintaining even dosing, eating, avoiding alcohol. He hires security, creates hidden pockets for pills, attempts to reverse-engineer MDT, and pays off Gennady - but faces police investigation and Gennady's escalating demands",
+        "detailed": "Eddie discovers blackouts can be avoided with consistent dosing, food, and no alcohol. He returns to peak performance for Van Loon. He hires security (two beefy men), has a tailor create secret pockets in his suits to carry pills always. He contracts a lab technician to reverse-engineer MDT - possible but requires 12-18 months of trials; Eddie offers 2 million to do it in 6. The police detective from Vernon's case approaches him at a restaurant - Eddie's photo was in a trading magazine, and a witness identified him as the suspect in the Italian woman's murder. Eddie's lawyer Morris Brandt gets him released from the lineup. Gennady, now sophisticated on MDT himself, demands more pills. Eddie gives him 10 more, but Gennady wants 20 weekly.",
+        "subtext": "Eddie is trying to stabilize his situation - security, hidden stash, replicating the drug, managing Gennady. But each solution creates new problems: the magazine article led to murder investigation, his security makes him visible, Gennady is enhanced and more dangerous."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "adaptation": "Learning to manage MDT's effects",
+          "preparation": "Security, hidden pockets, attempting to reproduce drug",
+          "threats": "Murder investigation, Gennady's escalating demands",
+          "resourcefulness": "Using wealth to solve problems"
+        },
+        "gennady": {
+          "transformation": "Now sophisticated and enhanced on MDT",
+          "escalation": "Demanding more pills, has security of his own",
+          "danger": "Enhanced loan shark is more dangerous"
+        },
+        "morrisBrandt": {
+          "introduction": "Best lawyer in New York, shark in expensive suit",
+          "competence": "Gets Eddie through lineup successfully",
+          "corruption": "Later revealed to be working for Atwood"
+        }
+      },
+      "keyDialogue": [
+        {
+          "quote": "I found that if I maintained an even dose, remembered to eat, drank no alcohol, the blackouts didn't recur.",
+          "speaker": "Eddie (V.O.)",
+          "significance": "Eddie learning to control the drug's worst effects",
+          "context": "Managing MDT use"
+        },
+        {
+          "quote": "Can you make more? / Can I combine these ingredients in the same exact quantities? Yes. But the exact method of delivery to the brain? Darts at a dartboard. / Two million dollars if you do it in six months.",
+          "speaker": "Eddie / Technician",
+          "significance": "Eddie trying to free himself from limited supply",
+          "context": "Lab meeting about reverse-engineering MDT"
+        },
+        {
+          "quote": "Next week? I require twenty pills. / Next week? You can fuck yourself.",
+          "speaker": "Gennady / Eddie",
+          "significance": "Gennady's escalating demands, Eddie's resistance",
+          "context": "Washington Square Park exchange"
+        }
+      ],
+      "visualStorytelling": {
+        "cameraWork": "Security following at ten paces, police lineup tension, Gennady's sophisticated transformation",
+        "colorPalette": "Corporate grays, security blacks, threatening shadows",
+        "lighting": "Professional spaces, interrogation harshness, park menace",
+        "symbolism": [
+          "Hidden suit pockets - carrying danger always",
+          "Security guards at distance - protection and visibility",
+          "Police lineup - Eddie as criminal suspect",
+          "Gennady's transformation - the drug's corrupting influence spreading",
+          "Lab equipment - hope of freedom from dependency"
+        ]
+      },
+      "thematicElements": {
+        "primaryThemes": [
+          "Control vs. Chaos",
+          "Solutions Creating Problems",
+          "Corruption Spreading"
+        ],
+        "exploration": "Eddie attempts to stabilize and control his situation, but every solution creates new problems. The drug is like a virus - Gennady is now enhanced and even more dangerous. Eddie's visibility led to the murder investigation.",
+        "moralQuestions": [
+          "Can Eddie ever truly control the drug?",
+          "Is giving Gennady more pills ethical?",
+          "Does wealth protect Eddie or make him a target?"
+        ]
+      },
+      "sciFiAnalysis": {
+        "concept": "Attempting to reverse-engineer and control cognitive enhancement",
+        "realismLevel": "Realistic corporate espionage and drug replication attempts",
+        "consequencesShown": "The drug spreading to others (Gennady), creating enhanced threats",
+        "ethicalImplications": "Responsibility for giving dangerous drugs to criminals"
+      },
+      "symbols": [
+        {
+          "symbol": "Hidden Suit Pockets",
+          "meaning": "Always carrying the burden, danger hidden in plain sight"
+        },
+        {
+          "symbol": "Gennady's Transformation",
+          "meaning": "The drug's corruption spreading, enhanced enemies"
+        },
+        {
+          "symbol": "The Police Lineup",
+          "meaning": "Eddie as criminal, consequences closing in"
+        },
+        {
+          "symbol": "Lab Equipment",
+          "meaning": "Hope of freedom through reproduction"
+        }
+      ],
+      "tensionLevel": 8,
+      "significance": "Eddie's attempts at control and stability all backfire. Gennady enhanced is more dangerous. The magazine article led to murder investigation. Security makes him visible. Each solution breeds new problems - showing the impossibility of truly controlling this situation.",
+      "foreshadowing": [
+        20
+      ],
+      "callbacks": [
+        13
+      ]
+    },
+    {
+      "id": 15,
+      "act": "act2",
+      "title": "Atwood's Illness & Supply Running Low",
+      "location": {
+        "primary": "Van Loon's Office / Hospital / Midtown Street",
+        "description": "Corporate and medical spaces revealing crisis",
+        "significance": "Where Eddie discovers both the merger's risk and his own limited supply"
+      },
+      "time": {
+        "narrative": "Day of Atwood merger signing",
+        "runtime": "2:02-2:12",
+        "approximate": "Minutes 122-132"
+      },
+      "duration": "10 minutes",
+      "cognitiveState": "enhanced",
+      "mdtTracking": {
+        "pillsTaken": "Regular dosing",
+        "pillsRemaining": "Approximately 380-390 (supply anxiety rising)",
+        "effects": "Enhanced but beginning to worry about running out"
+      },
+      "plotSummary": {
+        "brief": "Hank Atwood fails to show for the merger signing. His wife reveals he's hospitalized with pain and dizziness. Eddie sees Tan Coat (who tried to steal MDT from Lindy) as Atwood's driver and realizes Atwood is out of MDT and dying from withdrawal",
+        "detailed": "Eddie and Van Loon wait for Hank Atwood to sign the merger papers at 9 AM. He doesn't appear. No call, no explanation. Mrs. Atwood arrives to explain her husband is at Lenox Hill hospital with pain and dizziness, undergoing tests. She assures them the merger will proceed once he's able. Walking her to her car, Eddie sees the driver is Tan Coat - the man with the slashed face scar from when Lindy used the ice skater's blade on him. Eddie realizes Atwood's meteoric rise was fueled by MDT, he's now out of supply and dying from withdrawal. Eddie realizes his own supply is finite and dwindling.",
+        "subtext": "Atwood is Eddie's future - another MDT user whose supply ran out. The merger's collapse threatens Eddie's payout. Tan Coat working for Atwood reveals an organized network of MDT users and those trying to control them. Eddie's recognition that his supply is finite creates existential dread."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "realization": "Atwood is another MDT user now dying",
+          "anxiety": "His own supply is running low",
+          "future": "Seeing his own fate in Atwood's collapse"
+        },
+        "hankAtwood": {
+          "revelation": "His success was MDT-fueled",
+          "crisis": "Dying from withdrawal",
+          "parallel": "Eddie's future if supply runs out"
+        },
+        "tanCoat": {
+          "reveal": "Works for Atwood, part of MDT network",
+          "recognition": "Locks eyes with Eddie, mutual knowledge"
+        },
+        "mrsAtwood": {
+          "introduction": "Well-dressed, dignified, protective of husband",
+          "state": "Distraught but controlled, lying about 'tests'"
+        }
+      },
+      "keyDialogue": [
+        {
+          "quote": "The decision could have changed - that makes sense - but the discourtesy doesn't. It's still on. / I saw his eyes: it's on.",
+          "speaker": "Eddie",
+          "significance": "Eddie's confidence based on reading Atwood",
+          "context": "Defending his assessment to skeptical Pierce"
+        },
+        {
+          "quote": "Atwood wouldn't get better. Because Atwood was out of MDT.",
+          "speaker": "Eddie (V.O.)",
+          "significance": "Deduction revealing the truth",
+          "context": "Seeing Tan Coat, realizing the connection"
+        },
+        {
+          "quote": "At least I had some; my life wasn't in jeopardy. Only my money and my liberty.",
+          "speaker": "Eddie (V.O.)",
+          "significance": "Dark irony - everything is in jeopardy",
+          "context": "Reflecting on his finite supply"
+        }
+      ],
+      "visualStorytelling": {
+        "cameraWork": "Tense conference room waiting, Eddie's eyes recognizing Tan Coat, the scar revealing their violent history",
+        "colorPalette": "Corporate sterility, medical whites, threatening recognition",
+        "lighting": "Harsh business lighting, ominous car scene",
+        "symbolism": [
+          "Empty chair - Atwood's absence, the merger collapsing",
+          "Hospital mention - medical crisis, withdrawal's physical toll",
+          "Tan Coat's scar - visible evidence of previous violence",
+          "The locked stare - mutual dangerous knowledge",
+          "Mrs. Atwood's dignity - maintaining appearances while crisis unfolds"
+        ]
+      },
+      "thematicElements": {
+        "primaryThemes": [
+          "Finite Resources",
+          "Shared Fate",
+          "The Network Revealed"
+        ],
+        "exploration": "Eddie realizes he's not alone - there's a network of MDT users, some dying, some being controlled. Atwood's fate is Eddie's future. The drug creates a community of the enhanced and the desperate.",
+        "moralQuestions": [
+          "Is Eddie responsible for trying to save Atwood?",
+          "Does the MDT network have organization?",
+          "Can Eddie avoid Atwood's fate?"
+        ]
+      },
+      "sciFiAnalysis": {
+        "concept": "Network of cognitive enhancement users, shared dependency",
+        "realismLevel": "Realistic portrayal of supply anxiety and withdrawal consequences",
+        "consequencesShown": "Powerful men dying from withdrawal when supply ends",
+        "ethicalImplications": "What happens when enhancement becomes dependency?"
+      },
+      "symbols": [
+        {
+          "symbol": "Empty Chair",
+          "meaning": "Absence, the collapse of the enhanced, Eddie's future"
+        },
+        {
+          "symbol": "Tan Coat's Scar",
+          "meaning": "Permanent evidence of violence, the past returning"
+        },
+        {
+          "symbol": "The Hospital",
+          "meaning": "Medical crisis, withdrawal's physical toll"
+        },
+        {
+          "symbol": "Mutual Recognition",
+          "meaning": "Shared dangerous knowledge, inevitable confrontation"
+        }
+      ],
+      "tensionLevel": 9,
+      "significance": "Eddie sees his future in Atwood's collapse. The merger's failure threatens everything. The revelation that there's an organized network controlling MDT raises the stakes. Eddie's supply anxiety becomes existential - he's running toward the same cliff Atwood is falling from.",
+      "foreshadowing": [
+        12,
+        19
+      ],
+      "callbacks": [
+        7
+      ]
+    },
+    {
+      "id": 16,
+      "act": "act2",
+      "title": "Lindy's Escape & Breaking Point",
+      "location": {
+        "primary": "Lindy's Office / Lindy's Apartment / Central Park / W Hotel",
+        "description": "Sites of crisis, chase, and separation",
+        "significance": "Where love confronts the drug's reality"
+      },
+      "time": {
+        "narrative": "Crisis day",
+        "runtime": "2:12-2:28",
+        "approximate": "Minutes 132-148"
+      },
+      "duration": "16 minutes",
+      "cognitiveState": "withdrawal \u2192 enhanced (Lindy too)",
+      "mdtTracking": {
+        "pillsTaken": "Eddie: 0 then 1, Lindy: 1",
+        "pillsRemaining": "Approximately 378 (after giving Lindy one)",
+        "effects": "Eddie near death from withdrawal, Lindy enhanced and brilliant, then horrified"
+      },
+      "plotSummary": {
+        "brief": "Eddie collapses from withdrawal in Lindy's office. His apartment is being ransacked for pills. Lindy retrieves his stash but is chased by Tan Coat. Eddie tells her to take a pill. Enhanced Lindy escapes brilliantly, then breaks up with Eddie for good",
+        "detailed": "Eddie, desperately ill from withdrawal, collapses in Lindy's office. He reveals his pills are hidden at her apartment. His landlady calls - his apartment is being torn apart. Lindy retrieves the MDT stash but Tan Coat follows her from her building. During the chase through Central Park, he kills a mounted police officer. Lindy hides behind rocks near the ice skating rink. Eddie, on the phone, tells her to take a pill to save herself. Enhanced Lindy lures Tan Coat onto the ice, grabs a six-year-old girl, and swings her ice skate blades into his face. She escapes, brings Eddie his pills. At a hotel, enhanced Lindy tells Eddie she sees the drug's truth - it makes you not want to be human. She breaks up with him permanently and leaves New York.",
+        "subtext": "This is the love story's tragic end. Lindy experiences the drug once and sees its truth immediately - it removes humanity. Eddie, addicted, can't see this. Her escape using the drug proves its power; her rejection of it proves her wisdom."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "crisis": "Near death from withdrawal, helpless",
+          "manipulation": "Tells Lindy to take the drug to save herself",
+          "loss": "Loses Lindy permanently"
+        },
+        "lindy": {
+          "courage": "Retrieves drugs despite danger",
+          "enhancement": "Experiences MDT brilliance firsthand",
+          "wisdom": "Sees the drug's dehumanizing truth immediately",
+          "strength": "Leaves Eddie despite loving him",
+          "violence": "Capable of brutal action when enhanced (using child as weapon)"
+        },
+        "tanCoat": {
+          "escalation": "Murders police officer in daylight",
+          "injury": "Face slashed by ice skate blades via Lindy"
+        }
+      },
+      "keyDialogue": [
+        {
+          "quote": "You will know what to do, Lindy. Take one, and you'll know.",
+          "speaker": "Eddie",
+          "significance": "Getting Lindy addicted to save her - manipulation and desperation",
+          "context": "Lindy hiding from Tan Coat with knife"
+        },
+        {
+          "quote": "Once you can see everything that way, mapped out like that, on a grid, and always be right? Who'd want to wing it? Who'd want to fuck up? Who'd want to be human?",
+          "speaker": "Lindy",
+          "significance": "The drug's fundamental horror - it removes humanity",
+          "context": "Enhanced Lindy explaining why she's leaving"
+        },
+        {
+          "quote": "I know I'm going to think about taking it again every day for the rest of my life. But once you can see everything... Who'd want to be human?",
+          "speaker": "Lindy",
+          "significance": "Understanding the addiction while resisting it",
+          "context": "Breaking up with Eddie"
+        }
+      ],
+      "visualStorytelling": {
+        "cameraWork": "Eddie collapsed helpless, Lindy's panicked chase, her eyes changing to enhanced clarity, brutal ice skate violence",
+        "colorPalette": "Withdrawal grays, chase panic, ice rink whites, hotel room intimacy",
+        "lighting": "Office fluorescents, park chase chaos, rink brilliance, hotel sadness",
+        "symbolism": [
+          "Eddie collapsed - complete helplessness without drugs",
+          "The chase - consequences pursuing everyone",
+          "Ice skates as weapon - innocence turned violent",
+          "The six-year-old girl - using innocence as a weapon, loss of humanity",
+          "Hotel room - temporary refuge before permanent separation"
+        ]
+      },
+      "thematicElements": {
+        "primaryThemes": [
+          "Love vs. Addiction",
+          "Humanity vs. Perfection",
+          "The Cost of Enhancement"
+        ],
+        "exploration": "Lindy's one dose gives her complete understanding of both the drug's power and its cost. Her wisdom is choosing humanity over perfection. Eddie's tragedy is being unable to make that choice.",
+        "moralQuestions": [
+          "Did Eddie doom Lindy by telling her to take the pill?",
+          "Is Lindy's using a child as a weapon justified?",
+          "Can Eddie love anyone while addicted to the drug?"
+        ]
+      },
+      "sciFiAnalysis": {
+        "concept": "Single-dose enhancement allowing perfect escape",
+        "realismLevel": "Fantasy of instant tactical brilliance",
+        "consequencesShown": "Dehumanization, loss of boundaries, permanent temptation",
+        "ethicalImplications": "Using enhancement to survive creates lifetime of longing"
+      },
+      "symbols": [
+        {
+          "symbol": "The Ice Skate Blade",
+          "meaning": "Innocence weaponized, brutality of enhanced mind"
+        },
+        {
+          "symbol": "The Six-Year-Old Girl",
+          "meaning": "Loss of humanity, willingness to sacrifice innocence"
+        },
+        {
+          "symbol": "Central Park Chase",
+          "meaning": "Civilization's veneer stripped away"
+        },
+        {
+          "symbol": "Hotel Room Separation",
+          "meaning": "Love unable to survive enhancement"
+        }
+      ],
+      "tensionLevel": 10,
+      "significance": "The emotional climax - Eddie loses Lindy by saving her. Her one experience with the drug gives her complete understanding of its cost. Her leaving is wisdom; Eddie staying with it is addiction. The love story ends with Lindy choosing humanity over Eddie.",
+      "foreshadowing": [
+        19
+      ],
+      "callbacks": [
+        10
+      ]
+    },
+    {
+      "id": 17,
+      "act": "act3",
+      "title": "Multiple Crises Converge",
+      "location": {
+        "primary": "W Hotel / Van Loon's Office / Police Station / Washington Square Park / The Celestial (new apartment)",
+        "description": "Sites of mounting catastrophes",
+        "significance": "Spaces where all threats converge simultaneously"
+      },
+      "time": {
+        "narrative": "Following days/weeks",
+        "runtime": "2:28-2:42",
+        "approximate": "Minutes 148-162"
+      },
+      "duration": "14 minutes",
+      "cognitiveState": "enhanced",
+      "mdtTracking": {
+        "pillsTaken": "Regular dosing",
+        "pillsRemaining": "Approximately 360-370",
+        "effects": "Enhanced but managing multiple crises"
+      },
+      "plotSummary": {
+        "brief": "Eddie faces simultaneous crises: Gennady (enhanced and dangerous) demands more pills, the merger leaks to press, Atwood falls into a coma, police want Eddie for lineup, and Eddie discovers his entire MDT supply was stolen by his lawyer Morris Brandt",
+        "detailed": "Eddie gives Gennady 10 more pills despite threats. He patches things with Van Loon, who hires him officially. Atwood falls into a coma from MDT withdrawal. News of the merger leaks, threatening the deal. Eddie goes through a police lineup for the Italian woman's murder but isn't identified. His lawyer Morris Brandt takes Eddie's jacket during the lineup. Later, Eddie sees Brandt on TV with Mrs. Atwood - he's their attorney. Eddie realizes Brandt stole his entire MDT supply from the secret jacket pocket during the lineup. Eddie moves into the twelve-million-dollar Celestial penthouse. He gives Gennady more pills but misses their meeting because of the police lineup. At his new apartment, Eddie discovers his hidden jacket compartment is empty - all his pills are gone.",
+        "subtext": "Every threat converges at once: criminal (Gennady), legal (murder lineup), corporate (merger leak), medical (Atwood's coma), and existential (stolen supply). Brandt's theft reveals sophisticated MDT theft operation tied to Atwood."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "stress": "Managing simultaneous catastrophic threats",
+          "success": "Hired by Van Loon, buying $12.5M apartment",
+          "betrayal": "His own lawyer stole his entire supply",
+          "crisis": "All pills gone, facing death"
+        },
+        "gennady": {
+          "escalation": "Enhanced, sophisticated, violent when Eddie misses meeting",
+          "threat": "Sends Eddie severed hands of his security guards"
+        },
+        "morrisBrandt": {
+          "reveal": "Working for Atwood family, orchestrated the theft",
+          "sophistication": "Used lineup as cover to steal pills"
+        },
+        "hankAtwood": {
+          "fate": "Falls into coma, near death from withdrawal"
+        }
+      },
+      "keyDialogue": [
+        {
+          "quote": "I won't deny you pissed me off, Eddie. / I was sick. I shouldn't have gone to the meeting.",
+          "speaker": "Van Loon / Eddie",
+          "significance": "Eddie repairing relationship after withdrawal failure",
+          "context": "Returning to Van Loon after recovery"
+        },
+        {
+          "quote": "As a matter of fact, there were firings over your projections. Some things my team missed. So, oddly enough, I find myself needing to fill a position.",
+          "speaker": "Van Loon",
+          "significance": "Eddie hired at highest level despite earlier disaster",
+          "context": "Offering Eddie a job"
+        },
+        {
+          "quote": "In an hour I'd be useless. In two I'd be sick. In 24, dead.",
+          "speaker": "Eddie (V.O.)",
+          "significance": "The stakes of having zero pills left",
+          "context": "Discovering his supply was stolen"
+        }
+      ],
+      "visualStorytelling": {
+        "cameraWork": "Multiple crisis locations cutting rapidly, the shocking reveal of severed hands, empty jacket pocket",
+        "colorPalette": "Luxury apartment whites, police station grays, news broadcast blues, blood reds",
+        "lighting": "Harsh lineup lights, clinical TV screens, penthouse luxury, horrifying discovery",
+        "symbolism": [
+          "Severed hands - Gennady's escalation to extreme violence",
+          "The Celestial apartment - success at moment of greatest danger",
+          "Empty jacket pocket - total loss despite perfect hiding",
+          "Brandt on TV with Mrs. Atwood - the conspiracy revealed",
+          "Police lineup - Eddie nearly identified as murderer"
+        ]
+      },
+      "thematicElements": {
+        "primaryThemes": [
+          "Convergence of Consequences",
+          "Betrayal",
+          "Success at Peak Vulnerability"
+        ],
+        "exploration": "All of Eddie's choices create simultaneous crises. His success (apartment, Van Loon job) occurs at the moment of greatest vulnerability (pills stolen, murder investigation, Gennady's violence). The drug creates a web of danger.",
+        "moralQuestions": [
+          "Did Eddie's lawyer betray him or serve a higher-paying client?",
+          "Is Eddie responsible for his security guards' deaths?",
+          "Can success exist alongside this much danger?"
+        ]
+      },
+      "sciFiAnalysis": {
+        "concept": "Organized theft of cognitive enhancement drugs",
+        "realismLevel": "Realistic corporate espionage and theft",
+        "consequencesShown": "Multiple parties killing for MDT access",
+        "ethicalImplications": "Enhancement creating criminal networks"
+      },
+      "symbols": [
+        {
+          "symbol": "Severed Hands",
+          "meaning": "Gennady's brutality, failure to protect, death closing in"
+        },
+        {
+          "symbol": "The Celestial Penthouse",
+          "meaning": "Success at moment of doom, heaven before hell"
+        },
+        {
+          "symbol": "Empty Jacket Pocket",
+          "meaning": "Perfect security defeated, total vulnerability"
+        },
+        {
+          "symbol": "Brandt on TV",
+          "meaning": "Conspiracy revealed, organized MDT theft network"
+        }
+      ],
+      "tensionLevel": 10,
+      "significance": "All crises converge simultaneously. Eddie achieves maximum success (Van Loon job, luxury apartment) at the moment of maximum vulnerability (zero pills, murder suspect, Gennady's violence). The betrayal by his lawyer reveals an organized network stealing MDT.",
+      "foreshadowing": [],
+      "callbacks": [
+        11
+      ]
+    },
+    {
+      "id": 18,
+      "act": "act3",
+      "title": "Return to the Ledge - Desperate Search",
+      "location": {
+        "primary": "The Celestial Penthouse",
+        "description": "Luxury apartment becoming a trap, memory search, sugar bowl discovery",
+        "significance": "Return to opening scene - the ledge moment"
+      },
+      "time": {
+        "narrative": "Same night as pill theft discovery",
+        "runtime": "2:42-2:52",
+        "approximate": "Minutes 162-172"
+      },
+      "duration": "10 minutes",
+      "cognitiveState": "withdrawal \u2192 enhanced (drinking Gennady's blood)",
+      "mdtTracking": {
+        "pillsTaken": "1 (from sugar bowl) then MDT-laced blood",
+        "pillsRemaining": "0 (sugar bowl was last pill)",
+        "effects": "Dying from withdrawal, then enhanced from blood with dissolved MDT"
+      },
+      "plotSummary": {
+        "brief": "We return to the opening scene. Eddie, with zero pills and dying from withdrawal, searches his memory for any forgotten stash. Gennady and thugs break in. Eddie finds one pill in the sugar bowl but drops it down a heating grate. Gennady reveals he injects dissolved MDT. Eddie stabs Gennady, then drinks his blood to get the MDT from his bloodstream",
+        "detailed": "Back at the ledge opening, Eddie reflects on his situation. With zero pills, dying, he rewinds through every hiding place in his memory - all empty. Gennady and two thugs break through his state-of-the-art door (having killed building security and his neighbor). Eddie tears through unpacked boxes, finding his old sugar bowl. One MDT pill is inside! But he trips on a soup can, the pill flies into a heating grate and disappears. Gennady reveals he dissolves pills in solution and injects them for better effect - he's on his last dose too. When Eddie claims he's out of pills, Gennady's men search for his safe while Gennady prepares to torture Eddie. Eddie stabs Gennady with a kitchen knife. As Eddie lies dying from withdrawal, he realizes the MDT is in Gennady's bloodstream. He drinks Gennady's blood, absorbing the drug.",
+        "subtext": "The ultimate degradation - drinking blood like a vampire to get the drug. Eddie has become a monster in every sense. The sugar bowl pill was hope; losing it to the grate is cruel fate. Gennady's injection method shows escalation Eddie didn't attempt."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "desperation": "Willing to drink blood for MDT",
+          "degradation": "Crosses final moral line",
+          "violence": "Kills Gennady in close combat",
+          "transformation": "From human to monster"
+        },
+        "gennady": {
+          "sophistication": "Injecting dissolved MDT for better effect",
+          "death": "Stabbed by Eddie, blood consumed",
+          "parallel": "Enhanced criminal reflecting what Eddie has become"
+        }
+      },
+      "keyDialogue": [
+        {
+          "quote": "One thought. Was there anywhere... anywhere at all... I could have left one pill?",
+          "speaker": "Eddie (V.O.)",
+          "significance": "Desperate memory search for survival",
+          "context": "Dying, searching through mental images"
+        },
+        {
+          "quote": "See, I dissolve pill in solution. You shoot it - goes straight into blood and to brain. Works much better.",
+          "speaker": "Gennady",
+          "significance": "Reveals injection method, foreshadowing Eddie's blood-drinking",
+          "context": "Showing Eddie his syringe"
+        },
+        {
+          "quote": "Only MDT could help me, and the last of it was in this fuck's bloodstream.",
+          "speaker": "Eddie (V.O.)",
+          "significance": "Realization leading to blood-drinking",
+          "context": "Lying in Gennady's spreading blood"
+        }
+      ],
+      "visualStorytelling": {
+        "cameraWork": "Memory rewinding through previous stash locations, pill flying in slow motion, blood spreading, Eddie's face lowering to drink",
+        "colorPalette": "Penthouse whites, blood reds, heating grate darkness, convulsion movements",
+        "lighting": "Harsh break-in lighting, intimate torture setup, horror of blood-drinking",
+        "symbolism": [
+          "The ledge - literal and metaphorical edge",
+          "Sugar bowl - domestic hiding, last hope",
+          "Heating grate - cruel fate, hope disappearing",
+          "Gennady's syringe - escalation Eddie avoided",
+          "Blood spreading toward Eddie - temptation, degradation",
+          "Drinking blood - vampirism, complete moral collapse"
+        ]
+      },
+      "thematicElements": {
+        "primaryThemes": [
+          "Desperation",
+          "Degradation",
+          "Addiction's Ultimate Cost"
+        ],
+        "exploration": "This is addiction's endpoint - willing to drink blood for the drug. Eddie has become a monster, both in violence (killing Gennady) and in degradation (drinking blood). The sugar bowl pill's loss to the grate is fate's cruelty.",
+        "moralQuestions": [
+          "Has Eddie completely lost his humanity?",
+          "Is drinking blood for survival different from murder?",
+          "At what point does addiction make someone a monster?"
+        ]
+      },
+      "sciFiAnalysis": {
+        "concept": "Ingesting MDT through blood of another user",
+        "realismLevel": "Horror movie logic - drugs in bloodstream",
+        "consequencesShown": "Complete degradation, vampiric consumption",
+        "ethicalImplications": "The ultimate boundary crossed"
+      },
+      "symbols": [
+        {
+          "symbol": "The Ledge",
+          "meaning": "Ultimate escape, final choice, death vs. degradation"
+        },
+        {
+          "symbol": "The Sugar Bowl",
+          "meaning": "Domestic normalcy hiding danger, last hope"
+        },
+        {
+          "symbol": "The Heating Grate",
+          "meaning": "Cruel fate, hope disappearing into darkness"
+        },
+        {
+          "symbol": "Drinking Blood",
+          "meaning": "Vampirism, complete moral collapse, addiction's endpoint"
+        }
+      ],
+      "tensionLevel": 10,
+      "significance": "The moral nadir - Eddie drinks blood for the drug, crossing the final boundary of humanity. This is where the Faustian bargain's true cost is revealed: not just death but complete degradation. The transformation from failed writer to blood-drinking killer is complete.",
+      "foreshadowing": [
+        1
+      ],
+      "callbacks": [
+        9
+      ]
+    },
+    {
+      "id": 19,
+      "act": "act3",
+      "title": "Enhanced Violence & Atwood's Death",
+      "location": {
+        "primary": "Neighbor's Apartment / Hospital / Morris Brandt's Connecticut Home",
+        "description": "Sites of enhanced violence and revelation",
+        "significance": "Where Eddie uses MDT for survival combat and discovers the conspiracy"
+      },
+      "time": {
+        "narrative": "Same night, continuing from blood-drinking",
+        "runtime": "2:52-3:05",
+        "approximate": "Minutes 172-185"
+      },
+      "duration": "13 minutes",
+      "cognitiveState": "enhanced (from blood)",
+      "mdtTracking": {
+        "pillsTaken": "0 (MDT from Gennady's blood)",
+        "pillsRemaining": "0 (all stolen by Brandt)",
+        "effects": "Enhanced from blood-ingested MDT"
+      },
+      "plotSummary": {
+        "brief": "Enhanced from Gennady's blood, Eddie brutally kills the two remaining thugs using his neighbor's body as a shield and setting one on fire. He confronts Tan Coat at the hospital where Atwood has died, deducing Morris Brandt betrayed Atwood. Eddie breaks into Brandt's home and recovers his stolen MDT supply",
+        "detailed": "The MDT from Gennady's blood kicks in. Eddie bolts from his apartment into his neighbor's, uses the dead neighbor's body as a shield while the thug shoots him, kills the first thug with a fireplace poker, slashes the second thug's hand with broken glass, cuts the awning rope to trap him under fabric, pours BBQ fluid around him, lights him on fire, and throws him off the terrace 80 stories. At the hospital, Hank Atwood dies from MDT withdrawal. Eddie sits next to Tan Coat and explains that Morris Brandt was supposed to save Atwood with MDT but instead let him die - suggesting Brandt wanted control for himself. Eddie breaks into Brandt's Connecticut home, ties him up, and steals back his entire MDT supply from Brandt's wall safe.",
+        "subtext": "Enhanced Eddie is capable of shocking brutality - using a corpse as shield, setting a man on fire, throwing him off a building. The efficiency is terrifying. His deduction about Brandt reveals a power struggle even among those controlling MDT. Atwood's death is Eddie's future prevented."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "violence": "Capable of shocking brutality when enhanced",
+          "efficiency": "Uses environment as weapon with perfect tactical awareness",
+          "deduction": "Figures out Brandt's betrayal of Atwood",
+          "recovery": "Gets his supply back through home invasion"
+        },
+        "hankAtwood": {
+          "death": "Dies from MDT withdrawal, sheet over face",
+          "tragedy": "Powerful man killed by dependency"
+        },
+        "tanCoat": {
+          "grief": "Red-eyed over Atwood's death",
+          "complicity": "Part of the conspiracy but betrayed too"
+        },
+        "morrisBrandt": {
+          "betrayal": "Took Atwood's MDT, let him die",
+          "ambition": "Wanted to run his own operation",
+          "defeat": "Tied up while Eddie steals back pills"
+        }
+      },
+      "keyDialogue": [
+        {
+          "quote": "I'm sure you're curious about what's happened to your boss. If my attorney was really working for Mr. Atwood, to save his life, then why is he dead? Or, did the Pony decide that he should be running his own Pony show?",
+          "speaker": "Eddie",
+          "significance": "Deducing Brandt's betrayal and power play",
+          "context": "Confronting Tan Coat at hospital"
+        },
+        {
+          "quote": "I would not go back. I would not be stopped.",
+          "speaker": "Eddie (V.O.)",
+          "significance": "Eddie's complete commitment despite moral degradation",
+          "context": "After recovering his supply"
+        }
+      ],
+      "visualStorytelling": {
+        "cameraWork": "Brutal fight choreography, man on fire falling 80 stories, hospital death scene, home invasion",
+        "colorPalette": "Fire oranges, blood reds, hospital whites, death grays",
+        "lighting": "Flames illuminating violence, clinical death, nighttime burglary",
+        "symbolism": [
+          "Neighbor's corpse as shield - using death to survive",
+          "Fire - purification through violence",
+          "80-story fall - ultimate consequence for Gennady's men",
+          "Sheet over Atwood's face - death of the enhanced",
+          "Brandt tied up - the manipulator manipulated",
+          "Recovered pills - temporary reprieve from death"
+        ]
+      },
+      "thematicElements": {
+        "primaryThemes": [
+          "Violence of the Enhanced",
+          "Betrayal Cascade",
+          "Survival at Any Cost"
+        ],
+        "exploration": "Enhanced Eddie is terrifyingly capable of brutal violence. The conspiracy around MDT involves layers of betrayal - Brandt betraying Atwood, everyone stealing from everyone. Atwood's death is the fate Eddie escaped by drinking blood.",
+        "moralQuestions": [
+          "Is Eddie still human after this violence?",
+          "Was Brandt justified in trying to control the MDT network?",
+          "Does survival justify any action?"
+        ]
+      },
+      "sciFiAnalysis": {
+        "concept": "Enhanced cognition enabling perfect tactical violence",
+        "realismLevel": "Action movie enhanced awareness",
+        "consequencesShown": "MDT users capable of shocking brutality, network of betrayal",
+        "ethicalImplications": "Cognitive enhancement as weapon"
+      },
+      "symbols": [
+        {
+          "symbol": "Fire",
+          "meaning": "Purification through violence, hell imagery"
+        },
+        {
+          "symbol": "80-Story Fall",
+          "meaning": "Fall from heaven, ultimate consequence"
+        },
+        {
+          "symbol": "Sheet Over Atwood",
+          "meaning": "Death of the enhanced, Eddie's future prevented"
+        },
+        {
+          "symbol": "Recovered Pills",
+          "meaning": "Temporary reprieve, survival for now"
+        }
+      ],
+      "tensionLevel": 9,
+      "significance": "The violence scene showing what enhanced Eddie is capable of - brutal, efficient killing. Atwood's death reveals the conspiracy's depth. Eddie's recovery of his pills is only temporary reprieve; the fundamental problem (finite supply, dependency) remains unsolved.",
+      "foreshadowing": [],
+      "callbacks": [
+        16
+      ]
+    },
+    {
+      "id": 20,
+      "act": "act3",
+      "title": "Eight Months Later - Senator Eddie Morgan",
+      "location": {
+        "primary": "Political Campaign Headquarters / Steadman's Meeting / Street",
+        "description": "Sites of ultimate power and final confrontation",
+        "significance": "Where Eddie's transformation reaches its apex and its ambiguous resolution"
+      },
+      "time": {
+        "narrative": "Eight months after Atwood's death",
+        "runtime": "3:05-3:17",
+        "approximate": "Minutes 185-197"
+      },
+      "duration": "12 minutes",
+      "cognitiveState": "enhanced",
+      "mdtTracking": {
+        "pillsTaken": "Unclear - claims to have weaned himself off",
+        "pillsRemaining": "Unknown",
+        "effects": "Still appears enhanced or permanently changed"
+      },
+      "plotSummary": {
+        "brief": "Eight months later, Eddie is running for Senate and about to win. John Steadman from Eiben-Chemcorps reveals he invented MDT and offers Eddie unlimited supply in exchange for political favors. Eddie claims he's weaned himself off and has created defensive structures that make him untouchable. He walks away, but appears scared",
+        "detailed": "Title card: 'Eight months later.' Eddie Morgan is running for Senate with massive momentum - overflow fundraisers, wave of donations, opponent won't debate. John Steadman from pharmaceutical company Eiben-Chemcorps arrives. He reveals his company invented MDT, it escaped through a 'security breach' (Vernon), they shut down Eddie's replication labs. He offers Eddie a 'limitless supply' with fewer side effects in exchange for political compliance - 'grandiose but achievable' goals involving foreign policy, courts, even the Constitution. Eddie refuses, claiming he's weaned himself off the drug and created 'defense structures that would scare the Israelis.' He bluffs about people with guns on Steadman right now, claims he might even figure out how to get off MDT completely. Steadman leaves ominously. Eddie exhales, and we see he's actually scared - but we don't know if he's bluffing or genuinely free.",
+        "subtext": "The ending is deliberately ambiguous. Is Eddie still on MDT and bluffing? Has he truly weaned himself off and retained the benefits? Did his enhanced mind solve the unsolvable problem of dependency? His fear suggests vulnerability; his confidence suggests truth. The real question: can you ever truly be free of enhancement once you've tasted it?"
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "transformation": "Failed writer to Senator-elect, ultimate power achieved",
+          "claim": "Has weaned himself off MDT",
+          "ambiguity": "Appears confident but shows fear",
+          "evolution": "From desperate addict to potential master of the drug"
+        },
+        "johnSteadman": {
+          "introduction": "Pharmaceutical executive, MDT creator, sophisticated manipulator",
+          "revelation": "The ultimate puppet master behind MDT",
+          "threat": "Offers 'help' that's actually control",
+          "confidence": "Assumes Eddie will comply or die"
+        }
+      },
+      "keyDialogue": [
+        {
+          "quote": "Eventually you'll run out. I just want you to know we're here to help you. / We've gotten most of the bugs out. It's longer lasting - you'll only have to take one a week.",
+          "speaker": "Steadman",
+          "significance": "The final devil's bargain offered",
+          "context": "Offering Eddie unlimited supply"
+        },
+        {
+          "quote": "You think I didn't spend my days on MDT devising a personal defense structure that would scare the shit out of the Israelis? You think this conversation is private?",
+          "speaker": "Eddie",
+          "significance": "Either brilliant bluff or actual paranoid preparation",
+          "context": "Refusing Steadman's offer"
+        },
+        {
+          "quote": "You'll run out. You'll die. / Or I'll think of something. Isn't that what MDT does? Makes you think of something? Might even tell me how to get off it.",
+          "speaker": "Steadman / Eddie",
+          "significance": "Eddie's ultimate gamble - that the drug can solve its own problem",
+          "context": "Final exchange"
+        },
+        {
+          "quote": "What if I just ask the drug how to tell the drug how to fuck itself? I mean, isn't it like the 8-ball? It always answers.",
+          "speaker": "Eddie",
+          "significance": "The philosophical paradox - using enhancement to end enhancement",
+          "context": "Last words to Steadman's departing limo"
+        }
+      ],
+      "visualStorytelling": {
+        "cameraWork": "Campaign office bustle, Steadman's relaxed confidence, Eddie's bravado hiding fear, exhale of relief revealing vulnerability",
+        "colorPalette": "Political office blues and reds, power suit blacks, ambiguous conclusion grays",
+        "lighting": "Bright political success, shadowy manipulation, uncertain ending",
+        "symbolism": [
+          "Campaign headquarters - ultimate transformation complete",
+          "Steadman's relaxed posture - confidence of true power",
+          "The limo - Eddie closing the door on Steadman",
+          "Eddie's exhale and fear - vulnerability beneath confidence",
+          "Ambiguous ending - freedom or continued enslavement unclear"
+        ]
+      },
+      "thematicElements": {
+        "primaryThemes": [
+          "Ambiguous Resolution",
+          "Power vs. Control",
+          "Can Enhancement Be Mastered?"
+        ],
+        "exploration": "The ending refuses easy answers. Eddie claims victory but shows fear. He may have solved the unsolvable or may be in deeper denial. The film asks: can you ever be free of something that made you your best self?",
+        "moralQuestions": [
+          "Has Eddie truly freed himself from MDT?",
+          "Is his bluff real or desperate lies?",
+          "Can cognitive enhancement ever be controlled?",
+          "Is Eddie a success story or a cautionary tale?"
+        ]
+      },
+      "sciFiAnalysis": {
+        "concept": "Using cognitive enhancement to solve the problem of dependency",
+        "realismLevel": "Philosophical speculation about breaking addiction through enhanced reasoning",
+        "consequencesShown": "Ambiguous - either Eddie solved it or will die trying",
+        "ethicalImplications": "If enhancement can be mastered, should it be pursued?"
+      },
+      "symbols": [
+        {
+          "symbol": "Senator Morgan",
+          "meaning": "Ultimate power, transformation complete, or tragic endpoint?"
+        },
+        {
+          "symbol": "Steadman's Limo",
+          "meaning": "True power departing, Eddie either victorious or doomed"
+        },
+        {
+          "symbol": "Eddie's Exhale and Fear",
+          "meaning": "Vulnerability beneath bravado, uncertainty of victory"
+        },
+        {
+          "symbol": "The Ambiguous Ending",
+          "meaning": "Life's uncertainties, no easy answers to enhancement"
+        }
+      ],
+      "tensionLevel": 8,
+      "significance": "The deliberately ambiguous ending that completes the Faustian bargain exploration. Eddie either mastered the drug through the drug itself (ultimate irony) or is bluffing and will die soon. The film refuses to answer, leaving the audience to decide if cognitive enhancement can ever truly be controlled or if it always controls you. A perfect ending for a cautionary tale that also seduces us with the fantasy of unlimited potential.",
+      "foreshadowing": [],
+      "callbacks": [
+        1,
+        13,
+        14
+      ]
+    }
+  ]
+}

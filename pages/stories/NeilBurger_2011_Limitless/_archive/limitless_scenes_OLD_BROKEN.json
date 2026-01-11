@@ -1,0 +1,1264 @@
+{
+  "metadata": {
+    "title": "Limitless",
+    "director": "Neil Burger",
+    "year": 2011,
+    "runtime": "105 minutes",
+    "genre": "Sci-Fi Thriller",
+    "theme": "Cognitive Enhancement & Its Consequences",
+    "totalScenes": 20,
+    "cognitiveStates": {
+      "baseline": "Normal human cognition - 20% brain capacity",
+      "enhanced": "MDT-48 active - 100% brain capacity",
+      "withdrawal": "Post-MDT crash - below baseline function",
+      "blackout": "Memory gaps during enhanced state"
+    }
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "act": "act1",
+      "title": "Opening - The Ledge",
+      "types": [
+        "frame_narrative",
+        "suspense",
+        "revelation"
+      ],
+      "location": {
+        "primary": "The Celestial - 80th Floor Terrace",
+        "significance": "Pinnacle of success turned into death trap"
+      },
+      "time": "Present Day - Final Confrontation",
+      "cognitiveState": "enhanced",
+      "duration": "~3 minutes",
+      "plotSummary": {
+        "brief": "Eddie Morgan stands on his penthouse terrace ledge, preparing to jump. Armed men pound through his door. He reflects on how he got here - from nothing to everything, and now facing death. The opening establishes the central question: how did cognitive enhancement lead to this moment?",
+        "detailed": "The film opens with Eddie on the exterior ledge of his $12.5 million apartment at The Celestial, 80 stories up. Professional killers are breaking through his state-of-the-art security door with power tools. Eddie calmly narrates that he'll never let them touch him. Through the window of the adjoining apartment, he sees his neighbor being shot after opening his door to investigate the noise. Eddie reflects bitterly on 'the waste' - how close he came to having an impact on the world, to becoming the perfect version of himself. Now his only impact will be on the sidewalk below.",
+        "subtext": "The framing device immediately poses the central dramatic question while establishing Eddie's voice-over narration style - intelligent, self-aware, but also prone to self-pity. The 'perfect version of ourselves' line introduces the theme of human potential vs. human limitations."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Calm, fatalistic, regretful",
+          "cognition": "Enhanced but trapped",
+          "transformation": "Peak success to imminent death",
+          "key_moment": "Deciding to jump rather than be captured"
+        }
+      },
+      "cognitiveAnalysis": {
+        "brainCapacity": "100% - MDT fully active",
+        "mentalState": "Hyper-aware but resigned to death",
+        "abilities": [
+          "Perfect recall",
+          "Strategic thinking",
+          "Emotional detachment"
+        ],
+        "limitations": "Cannot think his way out of physical danger"
+      },
+      "visualStorytelling": {
+        "cinematography": "Camera rises breathlessly up 80 floors to Eddie on ledge",
+        "color_palette": "Cool blues and grays - sterile modern luxury",
+        "symbolism": "Height = pinnacle of achievement; ledge = precarious nature of success",
+        "composition": "Eddie tiny against massive cityscape - individual vs. system"
+      },
+      "thematicElements": {
+        "hubris": "Belief that intelligence alone could solve everything",
+        "consequence": "Enhancement led to enemies sophisticated enough to threaten him",
+        "irony": "Smartest version of himself still facing death",
+        "waste": "Potential cut short at its peak"
+      },
+      "keyDialogue": [
+        {
+          "character": "Eddie (V.O.)",
+          "line": "How many of us ever know what it is to become... the perfect version of ourselves.",
+          "significance": "Central theme - the seductive promise of enhancement"
+        },
+        {
+          "character": "Eddie (V.O.)",
+          "line": "They've become sophisticated. Before they couldn't have done this. But now...?",
+          "significance": "MDT has spread - his enemies are also enhanced"
+        }
+      ],
+      "scienceFiction": {
+        "technology": "MDT-48 cognitive enhancement drug",
+        "concept": "100% brain capacity utilization",
+        "implications": "When everyone is enhanced, violence escalates",
+        "realWorld_parallel": "Nootropics, cognitive enhancers, pharmaceutical enhancement"
+      },
+      "tension": 10,
+      "significance": "Establishes narrative structure and central question; hooks audience immediately",
+      "foreshadowing": [],
+      "callbacks": [],
+      "parallels": []
+    },
+    {
+      "id": 2,
+      "act": "act1",
+      "title": "Schlumpy Eddie - Rock Bottom",
+      "types": [
+        "establishing",
+        "character",
+        "contrast"
+      ],
+      "location": {
+        "primary": "Avenue A - Ratty Rent-Controlled Apartment",
+        "significance": "Eddie's low point - physical manifestation of failure"
+      },
+      "time": "Months Earlier",
+      "cognitiveState": "baseline",
+      "duration": "~5 minutes",
+      "plotSummary": {
+        "brief": "Flash back to Eddie's life before MDT: out of shape, procrastinating writer with a book contract but no pages written. He plays computer Scrabble, watches TV, sleeps late. His girlfriend Lindy returns his apartment key, breaking up with him. He's lost, directionless, and running out of money.",
+        "detailed": "Eddie walks down the street eating a falafel, hair messy, clothes schlumpy, belly bulging. He has a book contract but spends his days playing computer Scrabble, shooting toy basketball, and sleeping past noon. Friends have fled, banks are calling. At a coffee shop, Lindy breaks up with him, seeing that he's heading toward losing his apartment and moving into his childhood bedroom in Newark. Eddie finally admits: 'I really thought I had it in me to do something... and now, I don't think it is. There. Anything. At all.'",
+        "subtext": "Establishes baseline Eddie - not stupid, but paralyzed by fear and self-doubt. His potential exists but he can't access it. The contrast with opening Eddie is stark - this sets up the transformation MDT will enable."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Depressed, procrastinating, self-pitying",
+          "cognition": "Normal but underutilized - trapped in own head",
+          "desires": "To write, to succeed, to prove himself",
+          "fears": "That he has no real talent, that Lindy's right about his future",
+          "key_moment": "Admitting to Lindy that he doesn't think he has anything inside him"
+        },
+        "lindy": {
+          "state": "Sad but resolved, professionally successful",
+          "motivation": "Loves Eddie but can't watch him self-destruct",
+          "revelation": "If it was me you wanted. And not Melissa.",
+          "key_moment": "Returning his key - choosing self-preservation over love"
+        }
+      },
+      "cognitiveAnalysis": {
+        "brainCapacity": "20% (implied normal human usage)",
+        "mentalState": "Foggy, unfocused, avoidant",
+        "abilities": [
+          "Verbal intelligence",
+          "Self-awareness"
+        ],
+        "limitations": [
+          "Procrastination",
+          "Executive dysfunction",
+          "Depression"
+        ]
+      },
+      "visualStorytelling": {
+        "cinematography": "Handheld, slightly chaotic framing",
+        "color_palette": "Muted, drab colors - grays and browns",
+        "symbolism": "Unpaid bills, messy apartment = internal chaos",
+        "montage": "Quick cuts of wasted time - playing games, sleeping, avoiding work"
+      },
+      "thematicElements": {
+        "potential_vs_reality": "The gap between who Eddie could be and who he is",
+        "masculine_failure": "Unable to provide, achieve, or maintain relationship",
+        "american_dream_failure": "Book contract should be breakthrough but he's blowing it",
+        "self_sabotage": "Eddie is his own worst enemy"
+      },
+      "keyDialogue": [
+        {
+          "character": "Eddie (V.O.)",
+          "line": "I was ready to write. Gearing up, that's all. Getting psyched.",
+          "significance": "Self-deception and rationalization of procrastination"
+        },
+        {
+          "character": "Eddie",
+          "line": "I really thought I had it in me to do something. And now, I don't think it is. There. Anything. At all.",
+          "significance": "Rock bottom admission - complete loss of self-belief"
+        },
+        {
+          "character": "Lindy",
+          "line": "I see where it's going. You'll lose your apartment... have you run the film?",
+          "significance": "Lindy sees his future clearly - he's in denial"
+        }
+      ],
+      "scienceFiction": {
+        "technology": "None yet",
+        "concept": "Normal human cognitive limitations",
+        "question": "What is 'normal' human potential?",
+        "setup": "Establishes baseline before enhancement"
+      },
+      "emotionalBeats": {
+        "eddie_shame": "Knows he's failing but can't stop",
+        "eddie_grief": "Losing Lindy hurts but he expects it",
+        "lindy_compassion": "Still loves him but must let go"
+      },
+      "tension": 2,
+      "significance": "Establishes Eddie's desperate need for change - makes MDT irresistible",
+      "foreshadowing": [
+        3,
+        5,
+        15
+      ],
+      "callbacks": [],
+      "parallels": [
+        "Opening Eddie vs. Schlumpy Eddie = transformation journey"
+      ]
+    },
+    {
+      "id": 3,
+      "act": "act1",
+      "title": "Vernon Gant - The Dealer",
+      "types": [
+        "catalyst",
+        "mystery",
+        "temptation"
+      ],
+      "location": {
+        "primary": "Midtown Street / Bar",
+        "significance": "Chance encounter that changes everything"
+      },
+      "time": "Same Day",
+      "cognitiveState": "baseline",
+      "duration": "~7 minutes",
+      "plotSummary": {
+        "brief": "Eddie bumps into Vernon Gant, his ex-brother-in-law and former drug dealer. Vernon looks inexplicably successful - expensive suit, haircut, confident. At a bar, Vernon offers Eddie a new drug: MDT-48, claiming it lets you access 100% of your brain. Eddie is skeptical but takes one pill. Vernon promises more if Eddie wants them.",
+        "detailed": "Walking home from the breakup, Eddie encounters Vernon, Melissa's brother and a former drug dealer. But Vernon looks transformed - expensive suit, confident bearing. Over beers Vernon explains he's no longer dealing, but offers Eddie something special: a clear pill that lets you access 100% of your brain capacity. Vernon demonstrates comprehensive knowledge of Eddie's book contract details. Eddie is skeptical but takes the pill. Vernon gives him his card and a sample, suggesting Eddie could write his whole book in days. Eddie pockets the pill, intrigued despite himself.",
+        "subtext": "Vernon's transformation mirrors what Eddie desperately wants. The 'ex-brother-in-law' connection to Melissa adds emotional weight - she's Eddie's ideal, lost love. Vernon's offer comes at Eddie's lowest moment, making it irresistible. The 'dealer' dynamic is reestablished despite Vernon's new appearance."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Vulnerable, curious, desperate",
+          "reaction": "Skeptical but can't resist the possibility",
+          "key_moment": "Taking the pill despite knowing Vernon's history"
+        },
+        "vernon": {
+          "state": "Confident, successful, manipulative",
+          "motivation": "Wants to share/spread MDT, reasons unclear",
+          "transformation": "From dealer to sophisticated businessman",
+          "key_moment": "Offering MDT with perfect pitch to Eddie's desperation"
+        }
+      },
+      "cognitiveAnalysis": {
+        "brainCapacity": "20% (baseline Eddie)",
+        "mentalState": "Depressed but increasingly curious",
+        "cognitive_bias": "Availability bias - Vernon's success makes MDT seem legitimate",
+        "rationalization": "Eddie knows Vernon's past but wants to believe"
+      },
+      "visualStorytelling": {
+        "cinematography": "Vernon shot in confident, composed frames vs. Eddie's uncertain framing",
+        "color_palette": "Vernon in sharp colors, Eddie still muted",
+        "symbolism": "The clear pill = transparency/clarity of thought",
+        "contrast": "Vernon's expensive watch vs. Eddie's shabby jacket"
+      },
+      "thematicElements": {
+        "temptation": "Perfect offer at perfect moment of vulnerability",
+        "faustian_bargain": "Deal that seems too good to be true",
+        "dealer_client": "Old power dynamic reasserts despite new appearances",
+        "transformation_promise": "You too can be like me"
+      },
+      "keyDialogue": [
+        {
+          "character": "Vernon",
+          "line": "A tablet a day, and you'll finish your book in four days. On the other hand, it's against regulations.",
+          "significance": "Vernon knows Eddie just lost Lindy over 'regulations' - exploits the wound"
+        },
+        {
+          "character": "Vernon",
+          "line": "It's called MDT-48. It doesn't have a street name yet because it doesn't have a street profile.",
+          "significance": "Establishes the drug's underground nature and elite status"
+        },
+        {
+          "character": "Eddie",
+          "line": "So you're going to make me smarter?",
+          "significance": "Eddie's skepticism is real but he's already half-convinced"
+        }
+      ],
+      "scienceFiction": {
+        "technology": "MDT-48 introduced",
+        "concept": "Pharmaceutical cognitive enhancement",
+        "premise": "100% brain capacity utilization vs. normal 20%",
+        "questions": [
+          "Is it safe?",
+          "What are the side effects?",
+          "Who made it?"
+        ]
+      },
+      "symbolism": {
+        "clear_pill": "Transparency, clarity, purity",
+        "vernon_suit": "Transformation, success, deception",
+        "bar": "Scene of deals and decisions that change lives"
+      },
+      "tension": 5,
+      "significance": "Catalyst moment - introduces MDT and sets transformation in motion",
+      "foreshadowing": [
+        4,
+        5,
+        27
+      ],
+      "callbacks": [
+        2
+      ],
+      "parallels": [
+        "Vernon's transformation = Eddie's future transformation"
+      ]
+    },
+    {
+      "id": 4,
+      "act": "act1",
+      "title": "First Dose - Awakening",
+      "types": [
+        "transformation",
+        "revelation",
+        "montage"
+      ],
+      "location": {
+        "primary": "Eddie's Apartment",
+        "significance": "Ground zero of transformation"
+      },
+      "time": "Next Day",
+      "cognitiveState": "enhanced",
+      "duration": "~8 minutes",
+      "plotSummary": {
+        "brief": "Eddie takes the MDT pill. Within minutes, his perception sharpens dramatically. He can access every memory, see patterns in everything, think with perfect clarity. He cleans his apartment at superhuman speed, writes 90 pages in one night, has incredible sex with his downstairs neighbor after helping her with her paper, stays hard for hours. When he wakes, he's back to normal - but he's proven what's possible.",
+        "detailed": "Alone in his apartment, Eddie swallows the MDT. At first nothing, then suddenly - clarity. Colors sharpen, sounds become distinct, his mind races with connections. He encounters his downstairs neighbor Valerie on the landing. She's hostile until Eddie demonstrates encyclopedic knowledge of photographer Dorothea Lange, pulling details from a half-remembered dorm room 12 years ago. He helps her with her paper in 45 minutes, producing polished work. They have wild, mutually satisfying sex for hours. Afterward, Eddie cleans his entire apartment at high speed, then writes 90 flawless pages of his book. The next morning, he wakes normal again - but the proof of MDT's power is undeniable.",
+        "subtext": "The transformation is total - cognitive, physical, and sexual. MDT doesn't just make Eddie smart, it makes him confident, charismatic, virile. The 12-year-old memory of the Dorothea Lange book demonstrates that the information was always there - MDT provides access, not knowledge. This is crucial: it's not magic, it's unlocking existing potential."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Euphoric, confident, sexually potent",
+          "cognition": "Enhanced - perfect recall, pattern recognition, multitasking",
+          "transformation": "From paralyzed to unstoppable",
+          "realization": "His potential was always there, just locked away",
+          "key_moment": "Remembering the Dorothea Lange book from 12 years ago"
+        },
+        "valerie": {
+          "role": "First conquest under MDT",
+          "reaction": "Hostile to charmed to seduced",
+          "significance": "Proof of Eddie's enhanced charisma"
+        }
+      },
+      "cognitiveAnalysis": {
+        "brainCapacity": "100% - first experience of full capacity",
+        "mentalState": "Clear, focused, energized",
+        "abilities": [
+          "Perfect recall of every experience",
+          "Pattern recognition across disparate information",
+          "Enhanced physical coordination",
+          "Sexual endurance",
+          "No need for food or cigarettes",
+          "Superhuman productivity"
+        ],
+        "limitations": "None apparent yet",
+        "neurochemistry": "Unknown - effects on dopamine, serotonin, acetylcholine implied"
+      },
+      "visualStorytelling": {
+        "cinematography": "Camera becomes fluid, colors saturate, focus sharpens",
+        "editing": "Speed ramps, rapid cuts during productivity montage",
+        "color_palette": "Shift from drab to vibrant - blues, golds, sharp whites",
+        "symbolism": "Cleaning apartment = clearing mental fog",
+        "visual_effects": "Slight fish-eye during peak enhancement suggests altered perception"
+      },
+      "thematicElements": {
+        "unlocking_potential": "Information was always there, just inaccessible",
+        "total_enhancement": "Cognitive, physical, and sexual improvement",
+        "addiction_setup": "Perfect experience creates immediate dependency",
+        "abstemious": "No cigarettes, no food needed - transcending base urges",
+        "productivity_fantasy": "Everyone's dream of perfect focus and output"
+      },
+      "keyDialogue": [
+        {
+          "character": "Eddie (V.O.)",
+          "line": "Information from the odd museum show, a half-read article, some PBS documentary, was all bubbling up to my frontal lobes.",
+          "significance": "MDT accesses existing memories, doesn't create new knowledge"
+        },
+        {
+          "character": "Eddie (V.O.)",
+          "line": "I wasn't high, wasn't wired - just clear. What I needed to do. And how to do it.",
+          "significance": "Distinguishes MDT from recreational drugs - it's pure enhancement"
+        },
+        {
+          "character": "Eddie (V.O.)",
+          "line": "One nice little side effect? I stayed hard for hours.",
+          "significance": "Physical enhancement accompanies mental enhancement"
+        }
+      ],
+      "scienceFiction": {
+        "technology": "MDT-48 in action",
+        "concept": "Total cognitive enhancement",
+        "abilities_unlocked": [
+          "Eidetic memory access",
+          "Accelerated learning",
+          "Enhanced pattern recognition",
+          "Improved motor skills",
+          "Reduced need for sleep/food"
+        ],
+        "cost": "None apparent yet - seems purely positive",
+        "questions": [
+          "How does it work?",
+          "How long does it last?",
+          "What are the real risks?"
+        ]
+      },
+      "montageElements": {
+        "cleaning": "Apartment transformed from chaos to order",
+        "research": "Books flying open, pages printing, internet searches",
+        "writing": "90 pages produced in one night",
+        "sex": "Hours of satisfying performance"
+      },
+      "tension": 3,
+      "significance": "Demonstrates MDT's full power - makes it irresistible to Eddie and audience",
+      "foreshadowing": [
+        5,
+        14,
+        22
+      ],
+      "callbacks": [
+        2,
+        3
+      ],
+      "parallels": [
+        "Cleaned apartment = cleared mind",
+        "Sexual prowess = power over life"
+      ]
+    },
+    {
+      "id": 5,
+      "act": "act1",
+      "title": "The Hook - Editor's Reaction",
+      "types": [
+        "validation",
+        "success",
+        "addiction"
+      ],
+      "location": {
+        "primary": "Editor's Office / Street",
+        "significance": "External validation of Eddie's enhancement"
+      },
+      "time": "Next Day",
+      "cognitiveState": "baseline",
+      "duration": "~4 minutes",
+      "plotSummary": {
+        "brief": "Eddie delivers 90 pages to his editor Mark Sutton, who is skeptical but agrees to read three pages. Eddie waits anxiously on the street. Mark leaves three enthusiastic voicemails - the pages are brilliant, grandiose but compelling. Eddie realizes he needs more MDT to finish the book. Back to baseline Eddie can't do it alone.",
+        "detailed": "Eddie brings his pages to skeptical editor Mark Sutton, who sarcastically notes 'words have appeared on paper.' Eddie offers to return his advance if Mark doesn't want to keep reading after page three. Eddie kills time on the street, anxious and impatient, checking his phone obsessively. Three voicemails wait: Mark is 40 pages in, the work is grandiose but he's still reading. Eddie's elated but then realizes: enhanced Eddie wrote this, not baseline Eddie. He needs more MDT to finish.",
+        "subtext": "External validation proves MDT's power isn't just in Eddie's head. But it also reveals the dependency trap: baseline Eddie can't maintain what enhanced Eddie creates. The drug isn't just enhancing potential - it's creating a version of Eddie that normal Eddie can't be."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Anxious while baseline, elated at validation, then worried about dependency",
+          "realization": "He needs MDT to complete what he started",
+          "key_moment": "Euphoria fading into recognition of need for more pills"
+        },
+        "mark_sutton": {
+          "state": "Skeptical to enthusiastic",
+          "validation": "Genuine excitement about the writing",
+          "significance": "Objective proof of enhanced Eddie's abilities"
+        }
+      },
+      "cognitiveAnalysis": {
+        "brainCapacity": "20% - back to baseline",
+        "mentalState": "Anxious, scattered, normal",
+        "contrast": "Stark difference between enhanced and baseline perception",
+        "dependency_pattern": "Need for external substance to access peak performance"
+      },
+      "thematicElements": {
+        "validation": "Success proves MDT works objectively",
+        "dependency": "Need for more pills to continue",
+        "authenticity_question": "Is enhanced Eddie the 'real' Eddie?",
+        "identity_split": "Two Eddie's emerging - enhanced vs. baseline"
+      },
+      "keyDialogue": [
+        {
+          "character": "Mark Sutton (voicemail)",
+          "line": "Okay, how did you do this? I'd really like to - shit, just call me the minute you get in.",
+          "significance": "Professional editor's genuine amazement at quality"
+        },
+        {
+          "character": "Eddie (V.O.)",
+          "line": "But how would I finish? It was 'enhanced' Eddie who displayed all that brilliance. Not me.",
+          "significance": "Recognition of split identity and dependency"
+        }
+      ],
+      "scienceFiction": {
+        "concept": "Enhanced vs. baseline performance gap",
+        "question": "Which version is the 'real' person?",
+        "dependency": "Enhancement creates need for continued use",
+        "ethical_question": "Is this cheating or just optimization?"
+      },
+      "tension": 6,
+      "significance": "Establishes dependency pattern and raises identity questions",
+      "foreshadowing": [
+        8,
+        15,
+        27
+      ],
+      "callbacks": [
+        4
+      ],
+      "parallels": []
+    },
+    {
+      "id": 6,
+      "act": "act1",
+      "title": "Vernon's Beating - Getting More",
+      "types": ["danger", "revelation", "transaction"],
+      "location": {
+        "primary": "Vernon's Apartment",
+        "significance": "First glimpse of MDT's dangerous underworld"
+      },
+      "time": "Days Later",
+      "cognitiveState": "baseline",
+      "duration": "~5 minutes",
+      "plotSummary": {
+        "brief": "Eddie returns to Vernon seeking more MDT. Vernon has been severely beaten - split lip, bruised face, bandaged hand. He's evasive about what happened but agrees to sell Eddie more pills at $800 each. Vernon explains it's called MDT-48, made in an unidentified lab, not FDA approved. Eddie doesn't care - he wants it. Vernon sends Eddie on errands (dry cleaning, breakfast) while he waits.",
+        "detailed": "Eddie buzzes Vernon's apartment repeatedly until Vernon groggily answers. When Vernon opens the door, he's been worked over badly - beaten, bruised, bandaged right hand. Vernon is evasive about what happened but clearly in danger. Eddie wants more MDT. Vernon reveals it's called MDT-48, made by 'boys in the kitchen' with no FDA approval or street profile yet. Eddie knows this is dangerous but his need is greater than his caution. Vernon agrees to sell more but sends Eddie out for his dry cleaning and breakfast first, re-establishing the dealer-client power dynamic."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Desperate for more MDT, willing to overlook danger",
+          "dependency": "Already hooked after one dose",
+          "key_moment": "Choosing to proceed despite Vernon's beaten face"
+        },
+        "vernon": {
+          "state": "Injured, scared but still dealing",
+          "revelation": "In danger from MDT suppliers/competitors",
+          "key_moment": "Admitting 'You don't want to know' about his injuries"
+        }
+      },
+      "thematicElements": {
+        "addiction_pattern": "Classic dealer-client relationship reasserts",
+        "danger_ignored": "Warning signs dismissed for the drug"
+      },
+      "tension": 7,
+      "significance": "First warning about MDT's dangerous underworld",
+      "foreshadowing": [7, 15, 27]
+    },
+    {
+      "id": 7,
+      "act": "act1",
+      "title": "Vernon's Murder - The Stash",
+      "types": ["violence", "turning_point", "mystery"],
+      "location": {
+        "primary": "Vernon's Apartment",
+        "significance": "Murder scene that gives Eddie his supply"
+      },
+      "time": "Same Day",
+      "cognitiveState": "baseline",
+      "duration": "~6 minutes",
+      "plotSummary": {
+        "brief": "Eddie returns with Vernon's errands to find the door ajar. Inside, the apartment has been ransacked. Vernon sits on the couch with a bullet hole in his forehead. Eddie, terrified, considers fleeing but then searches the apartment. In the kitchen oven he finds Vernon's huge stash of MDT pills, cash, and a black address book. Eddie grabs everything and flees before police arrive.",
+        "detailed": "Eddie arrives at Vernon's building with dry cleaning and breakfast. The door is slightly ajar. Inside, everything is destroyed - furniture overturned, drawers emptied. Vernon sits normally on the couch until Eddie sees the neat bullet hole in his forehead. Panic. Eddie should call police but instead searches the apartment. In the pristine oven's broiler, taped inside, he finds a brown envelope containing twenty thousand in cash, Vernon's little black address book, and a plastic container with 500 MDT pills. Eddie hears approaching police footsteps, tucks the envelope in his jacket just as a cop pushes through and points a gun at him."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Terrified but calculating",
+          "moral_choice": "Chooses drugs over calling police for Vernon",
+          "transformation": "Crosses line from user to criminal",
+          "key_moment": "Searching apartment for stash instead of calling 911"
+        }
+      },
+      "thematicElements": {
+        "moral_corruption": "Addiction overrides ethics and humanity",
+        "opportunity_evil": "Finding stash transforms grief into calculation"
+      },
+      "tension": 9,
+      "significance": "Major turning point - Eddie gains supply but enters dangerous game",
+      "foreshadowing": [8, 15, 22, 27, 35],
+      "callbacks": [6]
+    },
+    {
+      "id": 15,
+      "act": "act2",
+      "title": "Van Loon - The Test",
+      "types": ["power", "success", "business"],
+      "location": {
+        "primary": "The Orpheus Room / Van Loon's Limo",
+        "significance": "Eddie enters world of extreme wealth and power"
+      },
+      "time": "Evening",
+      "cognitiveState": "enhanced",
+      "duration": "~12 minutes",
+      "plotSummary": {
+        "brief": "Kevin Doyle arranges for Eddie to meet billionaire financier Carl Van Loon at exclusive restaurant. Van Loon tests Eddie by asking about potential acquisitions. Eddie jokes about being on 'special medication.' In Van Loon's limo, Eddie speed-reads files and deduces Van Loon is planning massive merger with Hank Atwood - the only deal big enough to justify these moves. Van Loon is stunned Eddie figured it out through pure rationalization. He offers Eddie consulting position to help structure the deal.",
+        "detailed": "At The Orpheus Room, Eddie meets Carl Van Loon and his associate Pierce. Van Loon is initially dismissive but intrigued when Eddie jokes 'Medication. I'm on special medication.' Van Loon tests Eddie by handing him files on companies. Eddie gives direct answers about pattern recognition. Pierce scoffs but Van Loon is interested. Van Loon offers Eddie a ride. In the limo, Eddie analyzes the files: these small solar/wind companies wouldn't get Van Loon to emerging markets unless he's planning something huge. Eddie deduces: merger with Hank Atwood, the only company with enough scale. Van Loon can't hide his shock - Eddie's right. Van Loon offers Eddie a shot to restructure the deal."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Confident, sharp, intimidating to others",
+          "cognition": "Peak performance - instant analysis of complex financial data",
+          "key_moment": "Deducing the Atwood merger from indirect evidence"
+        },
+        "van_loon": {
+          "introduction": "Billionaire financier, young 50, vital and intense",
+          "test": "Gives Eddie files to see if he's real or con artist",
+          "key_moment": "Offering Eddie the consulting opportunity"
+        },
+        "pierce": {
+          "role": "Van Loon's contemptuous associate",
+          "skepticism": "Dismisses Eddie as charlatan"
+        }
+      },
+      "keyDialogue": [
+        {
+          "character": "Eddie",
+          "line": "Medication. I'm on special medication.",
+          "significance": "Truth disguised as joke - Van Loon has no idea"
+        },
+        {
+          "character": "Eddie",
+          "line": "I don't have delusions of grandeur. I have an actual recipe for grandeur.",
+          "significance": "Crystallizes Eddie's transformation and confidence"
+        }
+      ],
+      "thematicElements": {
+        "meritocracy_myth": "Intelligence alone gets Eddie to the top",
+        "power_recognition": "The powerful recognize their own"
+      },
+      "tension": 7,
+      "significance": "Eddie enters highest levels of power - point of no return",
+      "foreshadowing": [22, 35, 40],
+      "callbacks": [5, 7, 12]
+    },
+
+    {
+      "id": 16,
+      "act": "act2",
+      "title": "First Withdrawal - Skipping Time",
+      "types": ["horror", "revelation", "danger"],
+      "location": {
+        "primary": "Eddie's Bedroom / Various NYC",
+        "significance": "First experience of withdrawal symptoms"
+      },
+      "time": "Next Morning",
+      "cognitiveState": "baseline",
+      "duration": "~4 minutes",
+      "plotSummary": {
+        "brief": "Eddie wakes after euphoria from Van Loon meeting. Tries to analyze Van Loon's files but they're 'fucking hieroglyphs' without MDT. Thick tongue, leaden synapses - regular Eddie is unbearable to be. Kevin Doyle calls panicking about Van Loon test tomorrow. Eddie can't pass test without MDT. He looks at pill, weighs options, decides to take it despite time-skip fears.",
+        "detailed": "Morning after Van Loon. Eddie wakes groggy, sends mental probe into brain - no surge of brilliance. Feels thick and stupid. Tries reading Van Loon's files - incomprehensible hieroglyphs without MDT. Kevin calls: 'You can't have the fucking flu right now!' Eddie realizes this is his test. He looks at MDT pill. Headache curling around his head 'like big fat greasy python.' First morning off MDT in a month. The time-skips scared him. But without MDT he can't pass Van Loon's test."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Withdrawing, struggling, desperate",
+          "realization": "Regular Eddie is now 'unbearable to be'",
+          "key_moment": "Recognizing he needs MDT to function at high level"
+        }
+      },
+      "cognitiveAnalysis": {
+        "brainCapacity": "20% - painful return to baseline",
+        "symptoms": [
+          "Thick tongue",
+          "Leaden synapses",
+          "Headache beginning",
+          "Files incomprehensible"
+        ],
+        "comparison": "Baseline Eddie now feels disabled"
+      },
+      "thematicElements": {
+        "dependency": "Can't function professionally without drug",
+        "baseline_intolerable": "Normal self now unacceptable",
+        "withdrawal_horror": "Coming down is torture"
+      },
+      "tension": 6,
+      "significance": "First withdrawal shows dependency is complete",
+      "foreshadowing": [22, 27],
+      "callbacks": [15]
+    },
+
+    {
+      "id": 17,
+      "act": "act2",
+      "title": "Van Loon Test Failed - Struggling Off MDT",
+      "types": ["failure", "exposure", "panic"],
+      "location": {
+        "primary": "The Regency Hotel Restaurant",
+        "significance": "Eddie's limitations exposed without MDT"
+      },
+      "time": "Day",
+      "cognitiveState": "baseline",
+      "duration": "~3 minutes",
+      "plotSummary": {
+        "brief": "Eddie arrives at Van Loon meeting without taking MDT, trying to 'tap dance' until he learns more about the drug. Van Loon asks basic questions about Hank Atwood. Eddie struggles, sweating, panic flashing. He fakes answers but he's barely staying afloat. Then sees TV: Italian woman from his blackout found dead, witness saw man with limp. Eddie turns pale, bolts from restaurant, vomits in gutter. Did he kill someone during blackout?",
+        "detailed": "At Regency with Van Loon and Pierce. Eddie more tentative, fear in eyes. Thought was to 'tap dance with Van Loon' until finding more about MDT. Van Loon asks about Atwood - where was he two years ago? Flash of panic. Eddie guesses: 'Nowhere.' Van Loon agrees. Eddie staying afloat but barely. Then TV behind bar shows woman's picture - the Italian woman from his blackout! Anchorwoman: 'found dead, victim of foul play... eyewitness saw man with limp leaving scene.' Eddie's heart pounds. Van Loon's voice distorts. Eddie pale, sweaty, faint. Bolts from table. Outside, vomits into gutter."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Struggling, panicked, horrified",
+          "realization": "May have killed someone during blackout",
+          "key_moment": "Seeing murder victim on TV"
+        }
+      },
+      "thematicElements": {
+        "blackout_consequences": "Actions without memory or control",
+        "moral_horror": "Possible murderer without knowing it",
+        "withdrawal_danger": "Off MDT and falling apart"
+      },
+      "tension": 9,
+      "significance": "Eddie's worst fear - he may be killer",
+      "foreshadowing": [27, 35],
+      "callbacks": [22]
+    },
+
+    {
+      "id": 18,
+      "act": "act2",
+      "title": "Melissa's Call - Vernon's Clients Dying",
+      "types": ["revelation", "horror", "research"],
+      "location": {
+        "primary": "Eddie's Apartment / Washington Square Park",
+        "significance": "Eddie investigates MDT's other users"
+      },
+      "time": "Day",
+      "cognitiveState": "baseline",
+      "duration": "~6 minutes",
+      "plotSummary": {
+        "brief": "Home panicked, Eddie gets call from Melissa. She won't meet but he needs to talk. Eddie finds Vernon's little black book and calls other MDT users. Three are dead, rest are sick with headaches and collapse. Eddie realizes: MDT is killing people. Then man in tan coat appears - Eddie recognizes him from Vernon's book. Tan Coat is following him. Eddie runs, nearly hit by truck, escapes into subway.",
+        "detailed": "Eddie's phone rings - Melissa. He begs to meet at Charlie's coffee shop at 2pm. She hangs up. Eddie realizes: Vernon's other clients might know about MDT. Finds Vernon's little black book. Sits in Washington Square making calls. Woman: 'My husband died three days ago.' Male voice: 'Jerry's in hospital... really sick... started getting headaches couple weeks ago, collapsed at work.' Of everyone Eddie calls, three dead, rest sick. Eddie dials last number. Man in Tan Coat sitting nearby - his phone rings! Man looks up, locks eyes with Eddie. Eddie runs. Tan Coat chases through downtown. Eddie not looking, runs toward truck. Truck swerves, hits streetlight, two cabs pile up. Eddie disappears into subway."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Terrified, investigating, hunted",
+          "research": "Discovers pattern of death among users",
+          "key_moment": "Realizing Tan Coat is Vernon's client - also after MDT"
+        },
+        "tan_coat": {
+          "revelation": "Another MDT user hunting for supply",
+          "threat": "Violent and desperate"
+        }
+      },
+      "thematicElements": {
+        "death_pattern": "MDT kills systematically",
+        "competition_violence": "Other users become enemies",
+        "paranoia_justified": "Real threats everywhere"
+      },
+      "tension": 9,
+      "significance": "Pattern of death revealed, Eddie hunted by other user",
+      "foreshadowing": [27],
+      "callbacks": [7, 13]
+    },
+
+    {
+      "id": 19,
+      "act": "act2",
+      "title": "Gennady Takes MDT - New Threat",
+      "types": ["danger", "irony", "escalation"],
+      "location": {
+        "primary": "Eddie's Apartment / Bank",
+        "significance": "MDT spreads to violent criminal"
+      },
+      "time": "Day",
+      "cognitiveState": "baseline",
+      "duration": "~5 minutes",
+      "plotSummary": {
+        "brief": "Eddie sick from withdrawal, Gennady ambushes him outside apartment demanding repayment. Eddie offers check - wrong answer. Gennady punches him in stomach. Eddie clutches last pill. Gennady grabs it, thinks it's drugs, swallows it despite Eddie's protests. At bank, Eddie pays Gennady who's starting to feel MDT effects: 'I feel good. What in that shit?' Eddie claims aspirin. Gennady knows he's lying. Eddie staggers away desperately sick.",
+        "detailed": "Eddie approaching apartment, weak and sick. Gennady slams him against wall: 'You fucking forget about me?' Eddie still clutching MDT pill in fist. Inside apartment, Eddie offers check. Gennady ice cold: 'A check?! You out of your fucking mind?!' Punches Eddie in stomach. Notices Eddie protecting his fist. Grabs wrist, wrenches hand open. Eddie: 'It's aspirin.' Gennady suspicious, pops pill in mouth and swallows! Eddie mute with shock. At bank, Eddie pays with thick envelope. Gennady coming on to MDT: 'I feel good.' Eddie claims vitamins. Gennady: 'You fucking full of shit, Morgan.' Eddie barely standing, desperately ill."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Sick, desperate, losing control",
+          "disaster": "Gennady now has MDT - new enhanced threat",
+          "key_moment": "Watching helplessly as Gennady swallows his last pill"
+        },
+        "gennady": {
+          "transformation": "About to become enhanced and more dangerous",
+          "threat_escalation": "Violent criminal gaining superhuman intelligence",
+          "key_moment": "Swallowing Eddie's pill, starting enhancement"
+        }
+      },
+      "thematicElements": {
+        "ironic_reversal": "Eddie's enemy gains his advantage",
+        "escalation": "Threats multiplying and enhancing",
+        "loss_of_control": "MDT spreading beyond Eddie's control"
+      },
+      "scienceFiction": {
+        "implication": "What happens when violent criminals are enhanced?",
+        "arms_race": "Enhanced Eddie vs enhanced Gennady"
+      },
+      "tension": 8,
+      "significance": "Gennady enhanced - Eddie's enemies becoming superhuman",
+      "foreshadowing": [30, 40],
+      "callbacks": [12]
+    },
+
+    {
+      "id": 20,
+      "act": "act2",
+      "title": "Lindy Retrieves Stash - Chase Through Park",
+      "types": ["action", "danger", "relationship"],
+      "location": {
+        "primary": "Lindy's Office / Central Park",
+        "significance": "Eddie's secrets endanger Lindy"
+      },
+      "time": "Day",
+      "cognitiveState": "baseline_deteriorating",
+      "duration": "~8 minutes",
+      "plotSummary": {
+        "brief": "Eddie collapses in Lindy's office, desperately sick. Confesses he needs his pills - he's on a drug. Lindy realizes all his success was pharmaceutical. Eddie admits he hid his stash at her place. Furious, she goes to retrieve it. Tan Coat follows her cab. She runs into Central Park. He chases, kills cop on horseback with knife. Lindy hides behind boulders near ice skating. Eddie guides her by phone through narrow escape - she plays dead in ice skating rink. Brings pills to Eddie who takes one immediately.",
+        "detailed": "Lindy's office - knock on door, Eddie appears deathly ill, collapses on floor. Lindy: 'What is it?' Eddie: 'I need my pills.' Lindy realizes: 'Are you on some drug? So all this energy has been some drug?' Phone rings - Valerie reports someone tearing up Eddie's apartment. Eddie reveals he moved stash. Lindy: 'Where?' Eddie looks guilty. Lindy: 'Oh, you prick.' At her apartment, lifts end table lid, finds MDT packet: 'You asshole... in my fucking HOUSE?!' Man across street watches, clicks cell phone. In cab, Lindy terrified: 'Eddie, there's someone following me.' Bolts into Central Park. Tan Coat chases. She screams for help. Cop on horseback - Tan Coat stabs him, cop topples dead. Lindy hides behind rocks near skating rink. Eddie on phone guides her. She plays dead on ice among skaters. Tan Coat gives up. She brings pills to Eddie."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Collapsed, helpless, guilt-ridden",
+          "confession": "Reveals drug use to Lindy",
+          "key_moment": "Putting Lindy in mortal danger for MDT"
+        },
+        "lindy": {
+          "state": "Betrayed, terrified, but loyal",
+          "revelation": "All of Eddie's success was drug-based",
+          "key_moment": "Nearly dying to retrieve pills for Eddie"
+        },
+        "tan_coat": {
+          "escalation": "Kills cop - no limits to violence",
+          "desperation": "Also withdrawing, needs MDT"
+        }
+      },
+      "thematicElements": {
+        "collateral_damage": "Eddie's addiction endangers loved ones",
+        "betrayal": "Hiding drugs in girlfriend's home",
+        "love_and_addiction": "Lindy risks life for addict boyfriend"
+      },
+      "tension": 10,
+      "significance": "Peak action, Lindy learns truth, nearly dies",
+      "foreshadowing": [27, 30],
+      "callbacks": [14, 18, 19]
+    },
+
+    {
+      "id": 21,
+      "act": "act2",
+      "title": "Supply Crisis - Labs and Rationing",
+      "types": ["problem_solving", "science", "desperation"],
+      "location": {
+        "primary": "Eddie's Apartment / Secret Labs",
+        "significance": "Eddie's attempt to solve MDT scarcity"
+      },
+      "time": "Following Days",
+      "cognitiveState": "enhanced",
+      "duration": "~4 minutes",
+      "plotSummary": {
+        "brief": "Back on MDT, Eddie realizes he needs to solve the supply problem. Sets up secret labs to reverse-engineer and manufacture MDT. Hires technicians to analyze the compound. They tell him it's sophisticated, needs 12-18 months of clinical trials or 'you'll kill people.' Eddie offers $2 million to do it in six months. Meanwhile carefully rations his remaining pills, tracking supply obsessively.",
+        "detailed": "Eddie back on MDT after Lindy's rescue. Realizes he must solve supply crisis. Montage: Eddie setting up multiple secret laboratories, hiring chemists and technicians. In lab, technician analyzes MDT: 'Real pro act... whoever made it.' Eddie: 'Can you make more?' Technician: 'Same ingredients, yes. But exact method of delivery to brain? Darts at dartboard. You need clinical trials, guinea pig people.' Eddie: 'That's too long.' Technician: 'Twelve, eighteen months or you'll kill people.' Eddie tosses envelope back, gets up: 'Two million dollars if you do it in six.' Meanwhile Eddie counts pills obsessively, calculates remaining time."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Strategic, desperate, willing to risk others",
+          "solution": "Multiple labs for redundancy and secrecy",
+          "key_moment": "Offering $2M to rush process knowing it might kill test subjects"
+        }
+      },
+      "scienceFiction": {
+        "concept": "Reverse-engineering cognitive enhancer",
+        "challenge": "Delivery mechanism to brain unknown",
+        "ethics": "Rushing trials risks lives"
+      },
+      "thematicElements": {
+        "self_preservation": "Willing to harm others to maintain supply",
+        "moral_decline": "From writer to would-be killer",
+        "dependency_drives_evil": "Addiction justifies any means"
+      },
+      "tension": 6,
+      "significance": "Eddie's solution to supply but at ethical cost",
+      "foreshadowing": [40],
+      "callbacks": [7, 19, 20]
+    },
+
+    {
+      "id": 22,
+      "act": "act2",
+      "title": "Time Skips - Blackouts Begin",
+      "types": ["horror", "loss_of_control", "revelation"],
+      "location": {
+        "primary": "Various NYC Locations",
+        "significance": "Eddie loses chunks of time across the city"
+      },
+      "time": "After Van Loon Meeting",
+      "cognitiveState": "enhanced_unstable",
+      "duration": "~8 minutes",
+      "plotSummary": {
+        "brief": "Walking home from Van Loon meeting, Eddie experiences first 'time skip' - suddenly he's blocks away with no memory. More skips follow: at club, dancing with woman, having sex in bathroom, fighting someone, at artist's loft. Eight hours pass with only fragmentary memory. Wakes on Brooklyn Bridge at dawn with limp, no idea what he did during blackouts.",
+        "detailed": "Eddie walks home euphoric from Van Loon. Suddenly - sharp jarring cut - he's stepping off curb 20 blocks away. How? Skip. He's at bar in Harlem. Skip. Dancing with beautiful black woman. Skip. Having aggressive sex with her in bathroom stall. Skip. Large black man crumples before him, blood from nose, Eddie's fist bloody. Skip. At artist's loft with international guests. Skips accelerate: wine cork, mussels, rumpled sheets, blur of motion, cab stopping, gargoyle, dog leash in puddle. Finally comes to on Brooklyn Bridge at dawn, limping. Eight hours missing. No memory. Something happened to his foot."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Terrified, confused, losing control",
+          "cognition": "Enhanced but consciousness fragmented",
+          "body_evidence": "Bloody knuckles, limp, exhaustion",
+          "key_moment": "Realizing he's lost hours with no memory"
+        }
+      },
+      "cognitiveAnalysis": {
+        "brainCapacity": "100% but consciousness optional",
+        "horror": "Body acts intelligently without awareness",
+        "theory": "Brain so efficient consciousness becomes unnecessary overhead",
+        "fragments": ["Wine cork", "Mussels", "Sheets", "Dog leash", "Gargoyle"]
+      },
+      "visualStorytelling": {
+        "cinematography": "Jump cuts, jarring transitions, disorientation",
+        "editing": "Fragments accelerating into blur",
+        "symbolism": "Bridge at dawn = between two states"
+      },
+      "thematicElements": {
+        "loss_of_self": "Enhancement erases identity",
+        "unconscious_action": "Body without mind",
+        "dark_side": "MDT's horror revealed"
+      },
+      "keyDialogue": [
+        {
+          "character": "Eddie (V.O.)",
+          "line": "When it finally stopped, I couldn't account for the last eight hours of my life.",
+          "significance": "Massive memory gap with unknown consequences"
+        }
+      ],
+      "tension": 9,
+      "significance": "Major turning point - MDT's dark side revealed catastrophically",
+      "foreshadowing": [27, 28, 35],
+      "callbacks": [4, 15]
+    },
+    {
+      "id": 27,
+      "act": "act3",
+      "title": "Melissa - The Warning",
+      "types": [
+        "revelation",
+        "horror",
+        "tragedy"
+      ],
+      "cognitiveState": "baseline",
+      "plotSummary": "Eddie meets his ex Melissa who also took MDT. She's drastically deteriorated - cognitive decline, leg brace, chronic migraines. She warns that Vernon's other clients are dead or vegetables. Stopping MDT causes permanent damage.",
+      "significance": "Reveals MDT's true cost - point of maximum horror",
+      "foreshadowing": [
+        35,
+        40,
+        45
+      ],
+      "callbacks": [
+        6,
+        7,
+        22
+      ]
+    },
+    {
+      "id": 35,
+      "act": "act3",
+      "title": "Murder Investigation",
+      "types": [
+        "crime",
+        "revelation",
+        "threat"
+      ],
+      "cognitiveState": "enhanced",
+      "plotSummary": "Detective questions Eddie about murdering an Italian woman during his blackout. Eddie has no memory and doesn't know if he's guilty. His expensive lawyer gets him released.",
+      "significance": "Blackout consequences - Eddie may be a murderer",
+      "foreshadowing": [
+        40,
+        45
+      ],
+      "callbacks": [6]
+    },
+
+    {
+      "id": 8,
+      "act": "act1",
+      "title": "Police Interrogation - Melissa's Call",
+      "types": ["suspense", "character", "revelation"],
+      "location": {
+        "primary": "Police Precinct",
+        "significance": "First brush with law, reconnection with lost love"
+      },
+      "time": "Same Day",
+      "cognitiveState": "baseline",
+      "duration": "~5 minutes",
+      "plotSummary": {
+        "brief": "Eddie gives statement to detective about finding Vernon's body. The detective is suspicious. Eddie receives shocking phone call from Melissa, Vernon's sister and Eddie's ex-wife. She's broken about Vernon's death but won't meet Eddie. The detective lets Eddie go after getting distracted by arrested hookers.",
+        "detailed": "At the precinct, Eddie gives statement to an overweight detective, claiming Vernon was an 'antiques dealer.' The envelope of MDT burns in his jacket. When asked if he was buying drugs, Eddie nervously deflects. The detective's phone rings - it's Melissa, Vernon's sister. Eddie hasn't heard her voice in 10 years. She knows Vernon was 'involved in some stuff' but warns Eddie not to talk on this line. Eddie asks to meet but she refuses - she has the funeral to handle. The detective eyes Eddie suspiciously but gets distracted by three arrested high-class hookers. Eddie escapes."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Scared, guilty, but successfully lying",
+          "emotions": "Shocked to hear Melissa's voice after 10 years",
+          "key_moment": "Maintaining composure while carrying stolen MDT"
+        },
+        "melissa": {
+          "introduction": "Eddie's ex-wife, Vernon's sister",
+          "state": "Grieving but suspicious of Vernon's activities",
+          "significance": "Lost love who will later reveal MDT's consequences"
+        }
+      },
+      "thematicElements": {
+        "deception": "Eddie's lies begin - will compound throughout film",
+        "lost_love": "Melissa represents Eddie's past and future warning"
+      },
+      "tension": 7,
+      "significance": "Establishes Eddie as criminal, reintroduces Melissa",
+      "foreshadowing": [27],
+      "callbacks": [2, 7]
+    },
+
+    {
+      "id": 9,
+      "act": "act1",
+      "title": "Transformation Montage - New Eddie",
+      "types": ["transformation", "montage", "success"],
+      "location": {
+        "primary": "Various NYC Locations",
+        "significance": "Physical and cultural transformation"
+      },
+      "time": "Following Weeks",
+      "cognitiveState": "enhanced",
+      "duration": "~4 minutes",
+      "plotSummary": {
+        "brief": "With Vernon's cash and MDT supply, Eddie transforms himself. New clothes, haircut, gym workouts. He finishes his book in 4 days. Learns to read music in a week. Becomes fluent in languages by half-listening. Develops cultural appetites - art, piano concerts. He's paranoid someone is following him. Hides his MDT stash in the oven broiler as 'homage' to Vernon.",
+        "detailed": "Back on MDT with confidence returned. Eddie gets fitted for sharp jackets, gets trendy haircut, does crunches at gym. Sits at computer as printer spits out manuscript pages - he finishes the book in four days. Studies paintings at the Met. Reads musical scores at piano concerts. Runs with French lessons in earphones, becoming fluent. But he's increasingly paranoid - notices mysterious runner following him, speeds up to lose him. Obsessively protects his stash, duct-taping pills inside his broiler top. His new aura is commanding."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Confident, cultured, paranoid",
+          "transformation": "From schlumpy writer to sophisticated presence",
+          "obsession": "Protecting MDT stash becomes focal point",
+          "key_moment": "Hiding pills in oven like Vernon did"
+        }
+      },
+      "cognitiveAnalysis": {
+        "brainCapacity": "100%",
+        "abilities": [
+          "Rapid learning - music in a week",
+          "Language acquisition from passive listening",
+          "Cultural sophistication",
+          "Physical discipline"
+        ],
+        "side_effects": "Paranoia - real threat or MDT-induced?"
+      },
+      "thematicElements": {
+        "self_improvement": "Enhancement enables total life optimization",
+        "paranoia": "Success breeds fear of loss",
+        "cultural_capital": "Intelligence manifests as sophistication"
+      },
+      "tension": 4,
+      "significance": "Shows MDT's full lifestyle transformation potential",
+      "foreshadowing": [10, 22],
+      "callbacks": [4, 7]
+    },
+
+    {
+      "id": 10,
+      "act": "act1",
+      "title": "Social Mastery - Fish in a Barrel",
+      "types": ["success", "seduction", "power"],
+      "location": {
+        "primary": "Upscale Bars",
+        "significance": "Eddie's new social dominance"
+      },
+      "time": "Weeks Later",
+      "cognitiveState": "enhanced",
+      "duration": "~4 minutes",
+      "plotSummary": {
+        "brief": "Eddie holds court at bars with his new commanding aura. He flirts brilliantly with beautiful women, discussing Shakespeare and philosophy. Has sex in bathroom with upscale woman. Charms European crowd speaking fluent French. His parents can't understand his financial jargon. He impresses finance types with insights about market psychology and historical patterns of imperial overreach.",
+        "detailed": "At upscale bar, Eddie banters with beautiful woman about prosaic authors, Shakespeare's catchiness, what could 'launch a thousand ships.' She's charmed. Bathroom sex with orchids shattering to floor. At another bar, European crowd clusters around Eddie as he finishes long story in French. His working-class parents sit bewildered as he explains CDS, CDOs, CBOs. Back at bar, Kevin Doyle and finance types listen as Eddie riffs on aggressive over-expansion, Portuguese and British empires, human nature's tendency to overreach. Kevin Doyle gives Eddie his card - wants to work with his portfolio."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Charismatic, intellectually dominant, sexually confident",
+          "abilities": "Verbal brilliance, seduction, crowd command",
+          "key_moment": "Kevin Doyle offering to work with him - finance door opens"
+        },
+        "kevin_doyle": {
+          "introduction": "Well-dressed broker impressed by Eddie",
+          "significance": "Gateway to finance world",
+          "key_moment": "Giving Eddie his business card"
+        }
+      },
+      "thematicElements": {
+        "social_dominance": "Intelligence manifests as charisma",
+        "class_transcendence": "Eddie leaves parents' working-class world behind",
+        "seduction_power": "Mental enhancement enables sexual prowess"
+      },
+      "tension": 3,
+      "significance": "Eddie's social transformation complete - ready for finance",
+      "foreshadowing": [11, 15],
+      "callbacks": [4, 9]
+    },
+
+    {
+      "id": 11,
+      "act": "act2",
+      "title": "Rejecting the Book Deal - Pivot to Finance",
+      "types": ["choice", "transformation", "ambition"],
+      "location": {
+        "primary": "Mark Sutton's Office",
+        "significance": "Eddie abandons writing for money"
+      },
+      "time": "Days Later",
+      "cognitiveState": "enhanced",
+      "duration": "~5 minutes",
+      "plotSummary": {
+        "brief": "Eddie meets with his editor Mark Sutton and boss Dunham. They offer $10,000 more upfront and $40,000 later for his finished book. Eddie shocks them by rejecting the offer, declaring writing is 'for marginalized whiners.' He delivers scathing critique of author's life - incarceration, loneliness, self-cannibalization. Says no goal is achievable until he's 'sitting on a large pile of cash.' Walks away from book deal completely.",
+        "detailed": "In publisher's office, Mark apologizes for doubting Eddie. Dunham offers $50,000 total advance. Eddie sits expressionless. Dunham says they take him seriously, Eddie could be start of series. Eddie interrupts: 'This isn't going to work.' Explains writing is for those 'not fit for anything else' - the life is lonely incarceration, self-cannibalizing, rattling in cage of your brain. Even best-selling authors end up reading to ten bored people in Phoenix bookstores. Mark protests about having a 'voice.' Eddie: 'I don't think any goal will be really achievable, Mark, until I'm sitting on a large pile of cash.' Publishers stunned."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Coldly pragmatic, completely transformed values",
+          "pivot": "From artistic ambition to pure capitalism",
+          "key_moment": "Rejecting book deal for money - identity shift complete"
+        }
+      },
+      "thematicElements": {
+        "artistic_death": "Enhanced Eddie abandons creative for financial",
+        "value_shift": "Intelligence without soul - pure optimization",
+        "american_capitalism": "Money over meaning"
+      },
+      "tension": 4,
+      "significance": "Eddie fully commits to finance over writing - point of no return",
+      "foreshadowing": [12, 15],
+      "callbacks": [2, 5, 9]
+    },
+
+    {
+      "id": 12,
+      "act": "act2",
+      "title": "First Trading - Quintupling Money",
+      "types": ["success", "power", "montage"],
+      "location": {
+        "primary": "Eddie's Apartment / Lafayette Trading",
+        "significance": "First major financial success"
+      },
+      "time": "Following Days",
+      "cognitiveState": "enhanced",
+      "duration": "~6 minutes",
+      "plotSummary": {
+        "brief": "Eddie needs capital. Takes Vernon's last $800, makes $4,000 in a day through trading. Still too slow. Makes $7,500 next day. Needs more capital so meets with sinister Russian loan shark Gennady. Eddie implies he's 'tricked the computer' to seem like crook. Gennady, amused, loans him $100,000 with horrific threat: fail to pay and they'll peel your skin over your head. Eddie takes two MDT tablets, ups his dose. Traders watch in awe as he makes perfect trades based on instinct and research. Week one: over $1 million. Week two: $2.6 million.",
+        "detailed": "Eddie surrounded by financial research, three monitors, keying furiously with Vernon's last $800. Makes $4,000 day one, $7,500 day two - too slow. Meets Gennady at coffee shop, shows trading records. Gennady suspicious: 'You're lucky.' Eddie lets him think he tricked computers. Gennady loans $100K with threat to 'cut you around waist, peel your skin, pull it up over head.' At Lafayette Trading, Eddie takes two MDT pills - been upping dose for week. Traders cluster around watching him work. One asks why he's buying stock of indicted CEO - Eddie knows about unreported defense contract. Week one: $1M. Week two: $2.6M. Kevin Doyle flabbergasted."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Obsessed with capital accumulation, taking risks",
+          "escalation": "Doubling MDT dose to cut learning curve",
+          "key_moment": "Taking loan from dangerous Russian - desperation meets ambition"
+        },
+        "gennady": {
+          "introduction": "Sinister Russian loan shark",
+          "threat": "Violent enforcer who will become ongoing danger",
+          "significance": "Eddie's Faustian bargain for capital"
+        }
+      },
+      "cognitiveAnalysis": {
+        "brainCapacity": "100%+ (doubled dose)",
+        "abilities": [
+          "Pattern recognition in market data",
+          "Informed instinct",
+          "Speed of analysis",
+          "Information synthesis"
+        ],
+        "escalation": "Increasing dose suggests tolerance building"
+      },
+      "thematicElements": {
+        "faustian_bargain": "Loan from violent criminals for capital",
+        "escalation": "Drug dose increases, risks increase",
+        "market_mastery": "Financial system as cognitive puzzle"
+      },
+      "tension": 6,
+      "significance": "Eddie's exponential wealth growth begins, danger escalates",
+      "foreshadowing": [15, 20, 30],
+      "callbacks": [7, 11]
+    },
+
+    {
+      "id": 13,
+      "act": "act2",
+      "title": "Media Attention - Celebrity Trader",
+      "types": ["success", "exposure", "danger"],
+      "location": {
+        "primary": "Eddie's Apartment / Various",
+        "significance": "Success brings unwanted visibility"
+      },
+      "time": "Weeks Later",
+      "cognitiveState": "enhanced",
+      "duration": "~3 minutes",
+      "plotSummary": {
+        "brief": "Eddie's trading success draws attention. He gets multiple voicemails: job offers, bank raising his credit line, reporter wanting story. Gennady threatens him over phone demanding money by Thursday. Eddie sees mysterious black car outside his building - is he being followed? Word spreads about his unprecedented success.",
+        "detailed": "Eddie returns to apartment, message machine shows 19 messages. Job offers flood in. Bank raising his line of credit. Female reporter: 'This article about you's gonna get written with or without your cooperation.' Gennady's voice threatening: 'I be there Thursday for the money, ten o'clock!' Eddie looks out window at mysterious black car just sitting at curb. No one gets in or out. Kevin Doyle calling, trying to sound casual. Eddie's trading attracts attention from all directions. At Lafayette Trading, overhead 'god shot' shows crowd drifting toward Eddie's desk as he works."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Successful but increasingly paranoid",
+          "exposure": "Unwanted media and criminal attention",
+          "key_moment": "Seeing black car outside - threats are real"
+        }
+      },
+      "thematicElements": {
+        "visibility_danger": "Success attracts predators",
+        "multiple_threats": "Media, criminals, unknown watchers",
+        "paranoia_justified": "Earlier fears now confirmed"
+      },
+      "tension": 7,
+      "significance": "Success brings danger - Eddie now visible target",
+      "foreshadowing": [14, 15, 22],
+      "callbacks": [9, 12]
+    },
+
+    {
+      "id": 14,
+      "act": "act2",
+      "title": "Lindy Returns - Romance Rekindled",
+      "types": ["romance", "success", "irony"],
+      "location": {
+        "primary": "Fancy Italian Restaurant / Lindy's Place",
+        "significance": "Eddie wins back his ex through transformation"
+      },
+      "time": "Evening",
+      "cognitiveState": "enhanced",
+      "duration": "~4 minutes",
+      "plotSummary": {
+        "brief": "Eddie takes Lindy to fancy Italian restaurant. She's amazed by his transformation - he speaks Italian with hostess, looks dapper, has mysterious meeting with Carl Van Loon. Lindy asks 'what happened to you?' Eddie claims 'self-improvement month.' She's intimidated but proud. They start dating again - her place, his place, everywhere. Eddie watches from window paranoid someone's watching. Lindy asks if there's anything to tell. Eddie cryptically: 'With success comes enemies.'",
+        "detailed": "At fancy Italian restaurant, Lindy peers confused at dapper Eddie. He explains Carl Van Loon wants to meet him. She's flabbergasted. Beautiful hostess appears - Eddie speaks fluent Italian with her. Lindy: 'Since when do you speak...' Eddie: 'Self-improvement month. Someone gave me a wake-up call.' Lindy apologizes for breaking up. Eddie: 'It stuck, didn't it?' She blushes, proud but intimidated. Montage: making out at her place, his newly renovated apartment, passionately in taxi. Eddie stands naked at window, paranoid. Lindy: 'Is there anything you want to tell me?' Eddie: 'With success comes enemies.' Lindy tells him to sleep - Van Loon meeting tomorrow."
+      },
+      "characterDevelopment": {
+        "eddie": {
+          "state": "Successful but paranoid, secretive with Lindy",
+          "relationship": "Wins her back through transformation",
+          "key_moment": "Refusing to tell Lindy about MDT"
+        },
+        "lindy": {
+          "state": "Proud but intimidated, sensing something's off",
+          "return": "Attracted to new Eddie but suspicious",
+          "key_moment": "Asking if there's anything to tell"
+        }
+      },
+      "thematicElements": {
+        "romance_through_enhancement": "Success repairs broken relationship",
+        "secrets_and_lies": "Eddie hiding MDT from person he loves",
+        "paranoia_intrudes": "Even intimate moments shadowed by threat"
+      },
+      "tension": 5,
+      "significance": "Romantic success but based on deception and drug",
+      "foreshadowing": [15, 22, 30],
+      "callbacks": [2, 13]
+    },
+
+    {
+      "id": 15,
+      "act": "act3",
+      "title": "Final Confrontation - Refusing Control",
+      "types": [
+        "climax",
+        "power",
+        "choice"
+      ],
+      "cognitiveState": "enhanced",
+      "plotSummary": "Steadman reveals his group created MDT and wants to control Eddie. They offer improved pills but Eddie refuses, claiming he's prepared defenses and will find his own solution.",
+      "significance": "Climactic choice - Eddie asserts autonomy despite dependency",
+      "foreshadowing": [
+        45
+      ],
+      "callbacks": [
+        1,
+        7,
+        27
+      ]
+    },
+    {
+      "id": 45,
+      "act": "act3",
+      "title": "Epilogue - Ambiguous Victory",
+      "types": [
+        "resolution",
+        "ambiguity",
+        "transformation"
+      ],
+      "cognitiveState": "unclear",
+      "plotSummary": "Eddie is now Senator-elect, back with Lindy. He claims to have quit MDT and maintains abilities naturally. The ending is deliberately ambiguous about whether this is true.",
+      "significance": "Ambiguous resolution leaves central questions unanswered",
+      "callbacks": [
+        2,
+        5,
+        15,
+        40
+      ]
+    }
+  ]
+}
+
