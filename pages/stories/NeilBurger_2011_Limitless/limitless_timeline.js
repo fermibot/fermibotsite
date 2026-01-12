@@ -1121,6 +1121,7 @@ function initVisualization() {
 
     // Click outside to deselect
     svg.on('click', function() {
+        state.lockedNode = null; // Clear locked node selection
         hideInfoCard();
         hideTooltip();
         unhighlightAll();

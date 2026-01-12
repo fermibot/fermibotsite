@@ -693,6 +693,17 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Make question tags unclickable but not legend tags */
+.question-tags .tag-badge {
+    cursor: default;
+    pointer-events: none;
+}
+
+.question-tags .tag-badge:hover {
+    transform: none;
+    box-shadow: none;
+}
+
 /* Inactive/dimmed tags - shown but not active for this question */
 .tag-badge.inactive {
     opacity: 0.25;
@@ -1090,6 +1101,15 @@
 /* ============================================
    BOOK CLUB QUESTIONS - 2 COLUMN LAYOUT
    ============================================ */
+
+/* Make entire question card clickable */
+.book-club-question {
+    cursor: pointer;
+}
+
+.book-club-question .answer-toggle {
+    cursor: pointer;
+}
 
 /* Override base grid to use 2 columns */
 .book-club-grid {
