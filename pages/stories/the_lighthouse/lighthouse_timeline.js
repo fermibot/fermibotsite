@@ -1095,12 +1095,13 @@ function initVisualization() {
     const radius = diameter / 2;
     const innerRadius = radius - 150;
     const verticalOffset = 50; // Shift diagram down by 50px
+    const padding = 150; // Add padding on all sides to prevent cutoff
 
     svg = container.append('svg')
-        .attr('viewBox', `${-radius} ${-radius - verticalOffset} ${diameter} ${diameter + verticalOffset}`)
+        .attr('viewBox', `${-radius - padding} ${-radius - verticalOffset - padding} ${diameter + padding * 2} ${diameter + verticalOffset + padding * 2}`)
         .attr('width', '100%')
-        .attr('height', diameter + verticalOffset)
-        .style('max-width', `${diameter}px`)
+        .attr('height', diameter + verticalOffset + padding * 2)
+        .style('max-width', `${diameter + padding * 2}px`)
         .style('font', '12px sans-serif');
 
     // Add gradient definitions
@@ -1207,11 +1208,11 @@ function initVisualization() {
         .attr('stroke-width', 2)
         .attr('stroke-dasharray', d => d.data.isHallucination ? '3,2' : null);
 
-    // Checkmark indicator - positioned away from the node circle, colored by act
+    // Checkmark indicator - positioned between node and text
     nodes.append('text')
         .attr('class', 'node-checkmark')
-        .attr('dy', '0.35em')
-        .attr('x', d => d.x < 180 ? 28 : -28)
+        .attr('dy', '0.31em')
+        .attr('x', d => d.x < 180 ? 20 : -20)
         .attr('text-anchor', 'middle')
         .attr('transform', d => d.x >= 180 ? 'rotate(180)' : null)
         .attr('fill', d => getActColor(d.data.act))
@@ -1220,12 +1221,12 @@ function initVisualization() {
         .style('opacity', d => state.viewedScenes.has(d.data.id) ? 1 : 0)
         .text('✓');
 
-    // Node labels - pushed further to make room for checkmark
+    // Node labels
     nodes.append('text')
         .attr('class', 'node-label')
         .attr('data-act', d => d.data.act)
         .attr('dy', '0.31em')
-        .attr('x', d => d.x < 180 ? 42 : -42)
+        .attr('x', d => d.x < 180 ? 32 : -32)
         .attr('text-anchor', d => d.x < 180 ? 'start' : 'end')
         .attr('transform', d => d.x >= 180 ? 'rotate(180)' : null)
         .attr('fill', 'var(--viz-text)')

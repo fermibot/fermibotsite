@@ -43,7 +43,7 @@ const CONFIG = {
     // Layout
     DIAMETER: 900,
     STORAGE_KEY: 'limitless-viewed-scenes',
-    DATA_FILE: 'limitless_scenes.json'
+    DATA_FILE: 'limitless_scenes_50.json'
 };
 
 // ============================================
@@ -57,7 +57,8 @@ const state = {
     currentFilter: 'all',
     cognitiveFilter: null,
     hoveredNode: null,
-    lockedNode: null
+    lockedNode: null,
+    searchQuery: ''
 };
 
 // ============================================
@@ -91,6 +92,7 @@ async function initialize() {
     loadProgress();
     initVisualization();
     setupEventListeners();
+    initSearch();
     updateProgressUI();
 
     console.log('Limitless visualization initialized');
@@ -336,6 +338,35 @@ function formatCharacterName(name) {
         .join(' ');
 }
 
+// Tag icon mapping
+const TAG_ICONS = {
+    'ethics': '⚖️',
+    'power': '👑',
+    'identity': '🎭',
+    'enhancement': '🧠',
+    'addiction': '💊',
+    'consequence': '⚠️',
+    'violence': '⚔️',
+    'relationships': '👥',
+    'transformation': '🦋',
+    'ambition': '🎯',
+    'hubris': '🔥',
+    'withdrawal': '💢',
+    'control': '🎮',
+    'memory': '🧩',
+    'sacrifice': '🕯️'
+};
+
+function buildTagBadges(tags) {
+    if (!tags || tags.length === 0) return '';
+
+    return tags.map(tag => {
+        const icon = TAG_ICONS[tag] || '🏷️';
+        const label = tag.charAt(0).toUpperCase() + tag.slice(1);
+        return `<span class="tag-badge tag-${tag}" title="${label}">${icon} ${label}</span>`;
+    }).join(' ');
+}
+
 // ============================================
 // VISUALIZATION
 // ============================================
@@ -389,9 +420,9 @@ function createLegendWithProgress() {
 
     // Act colors with scene counts
     const actDetails = {
-        'act1': { count: 7 },
-        'act2': { count: 9 },
-        'act3': { count: 4 }
+        'act1': { count: 15 },
+        'act2': { count: 25 },
+        'act3': { count: 10 }
     };
 
     Object.entries(CONFIG.ACT_NAMES).forEach(([actId, name]) => {
@@ -445,6 +476,46 @@ function createLegendWithProgress() {
             .attr('class', 'legend-text')
             .text(state.label);
     });
+
+    // Separator
+    grid.append('div').attr('class', 'legend-separator');
+
+    // Section label for Question Tags
+    grid.append('span')
+        .attr('class', 'legend-section-label')
+        .text('Discussion Topics:');
+
+    // Discussion tags
+    const discussionTags = [
+        { key: 'ethics', label: 'Ethics', icon: '⚖️' },
+        { key: 'power', label: 'Power', icon: '👑' },
+        { key: 'identity', label: 'Identity', icon: '🎭' },
+        { key: 'enhancement', label: 'Enhancement', icon: '🧠' },
+        { key: 'addiction', label: 'Addiction', icon: '💊' },
+        { key: 'consequence', label: 'Consequence', icon: '⚠️' },
+        { key: 'violence', label: 'Violence', icon: '⚔️' },
+        { key: 'relationships', label: 'Relationships', icon: '👥' },
+        { key: 'transformation', label: 'Transformation', icon: '🦋' },
+        { key: 'ambition', label: 'Ambition', icon: '🎯' },
+        { key: 'hubris', label: 'Hubris', icon: '🔥' },
+        { key: 'withdrawal', label: 'Withdrawal', icon: '💢' }
+    ];
+
+    discussionTags.forEach(tag => {
+        const item = grid.append('div')
+            .attr('class', `legend-item legend-question-item tag-${tag.key}`)
+            .attr('data-question', tag.key)
+            .attr('title', `Filter scenes with ${tag.label} discussion`)
+            .on('click', () => toggleQuestionFilter(tag.key));
+
+        item.append('span')
+            .attr('class', 'legend-icon')
+            .text(tag.icon);
+
+        item.append('span')
+            .attr('class', 'legend-text')
+            .text(tag.label);
+    });
 }
 
 // ============================================
@@ -453,7 +524,8 @@ function createLegendWithProgress() {
 
 const legendState = {
     activeActs: new Set(),
-    activeCognitive: new Set()
+    activeCognitive: new Set(),
+    activeQuestions: new Set()
 };
 
 function toggleActFilter(actId) {
@@ -490,11 +562,29 @@ function toggleCognitiveFilter(cogKey) {
     applyLegendFilters();
 }
 
+function toggleQuestionFilter(questionKey) {
+    if (legendState.activeQuestions.has(questionKey)) {
+        legendState.activeQuestions.delete(questionKey);
+    } else {
+        legendState.activeQuestions.add(questionKey);
+    }
+
+    // Update legend item appearance
+    d3.selectAll('.legend-question-item')
+        .classed('active', function() {
+            return legendState.activeQuestions.has(this.dataset.question);
+        });
+
+    // Update visualization
+    applyLegendFilters();
+}
+
 function applyLegendFilters() {
     if (!allNodes || !nodeGroup) return;
 
     const hasActFilter = legendState.activeActs.size > 0;
     const hasCognitiveFilter = legendState.activeCognitive.size > 0;
+    const hasQuestionFilter = legendState.activeQuestions.size > 0;
 
     allNodes.forEach(node => {
         if (!node.data.id) return;
@@ -511,6 +601,13 @@ function applyLegendFilters() {
             visible = visible && legendState.activeCognitive.has(node.data.cognitiveState);
         }
 
+        // Question tag filter
+        if (hasQuestionFilter) {
+            const hasMatchingTag = node.data.tags &&
+                Array.from(legendState.activeQuestions).some(q => node.data.tags.includes(q));
+            visible = visible && hasMatchingTag;
+        }
+
         // Apply visibility
         const nodeElement = nodeGroup.selectAll('.node').filter(d => d === node);
         nodeElement.style('opacity', visible ? 1 : 0.15);
@@ -520,13 +617,20 @@ function applyLegendFilters() {
     // Update links
     if (linkGroup) {
         linkGroup.selectAll('.link').style('opacity', d => {
+            const sourceHasMatchingTag = !hasQuestionFilter || (d.source.data.tags &&
+                Array.from(legendState.activeQuestions).some(q => d.source.data.tags.includes(q)));
+            const targetHasMatchingTag = !hasQuestionFilter || (d.target.data.tags &&
+                Array.from(legendState.activeQuestions).some(q => d.target.data.tags.includes(q)));
+
             const sourceVisible = d.source.data.id &&
                 (!hasActFilter || legendState.activeActs.has(d.source.data.act)) &&
-                (!hasCognitiveFilter || legendState.activeCognitive.has(d.source.data.cognitiveState));
+                (!hasCognitiveFilter || legendState.activeCognitive.has(d.source.data.cognitiveState)) &&
+                sourceHasMatchingTag;
 
             const targetVisible = d.target.data.id &&
                 (!hasActFilter || legendState.activeActs.has(d.target.data.act)) &&
-                (!hasCognitiveFilter || legendState.activeCognitive.has(d.target.data.cognitiveState));
+                (!hasCognitiveFilter || legendState.activeCognitive.has(d.target.data.cognitiveState)) &&
+                targetHasMatchingTag;
 
             return (sourceVisible && targetVisible) ? 0.3 : 0.05;
         });
@@ -796,12 +900,14 @@ function initVisualization() {
     const diameter = CONFIG.DIAMETER;
     const radius = diameter / 2;
     const innerRadius = radius - 150;
+    const verticalOffset = 50; // Shift diagram down by 50px to match lighthouse
+    const padding = 150; // Add padding on all sides to prevent cutoff
 
     svg = container.append('svg')
-        .attr('viewBox', `${-radius} ${-radius} ${diameter} ${diameter}`)
+        .attr('viewBox', `${-radius - padding} ${-radius - verticalOffset - padding} ${diameter + padding * 2} ${diameter + verticalOffset + padding * 2}`)
         .attr('width', '100%')
-        .attr('height', diameter)
-        .style('max-width', `${diameter}px`)
+        .attr('height', diameter + verticalOffset + padding * 2)
+        .style('max-width', `${diameter + padding * 2}px`)
         .style('font', '12px sans-serif');
 
     g = svg.append('g');
@@ -832,12 +938,19 @@ function initVisualization() {
         .radius(d => d.y)
         .angle(d => d.x * Math.PI / 180);
 
+    const nodeRadius = 18; // Space to leave before node
+
     linkGroup.selectAll('.link')
         .data(currentLinks)
         .join('path')
         .attr('class', d => `link link-${d.type}`)
         .attr('d', d => {
             const sourcePath = d.source.path(d.target);
+            // Adjust endpoints to stop before nodes
+            if (sourcePath.length > 0) {
+                sourcePath[0] = {...sourcePath[0], y: sourcePath[0].y - nodeRadius};
+                sourcePath[sourcePath.length - 1] = {...sourcePath[sourcePath.length - 1], y: sourcePath[sourcePath.length - 1].y - nodeRadius};
+            }
             return line(sourcePath);
         })
         .attr('stroke', d => {
@@ -863,6 +976,7 @@ function initVisualization() {
             return classes;
         })
         .attr('transform', d => `rotate(${d.x - 90}) translate(${d.y},0)`)
+        .style('cursor', 'pointer')
         .on('mouseover', function(event, d) {
             if (!state.lockedNode) {
                 highlightConnections(d);
@@ -877,6 +991,7 @@ function initVisualization() {
         })
         .on('click', function(event, d) {
             event.stopPropagation();
+            console.log('Node clicked:', d.data.id, d.data.title);
             state.lockedNode = d;
             showInfoCard(d);
             highlightConnections(d);
@@ -889,14 +1004,61 @@ function initVisualization() {
         .attr('stroke', d => getActColor(d.data.act))
         .attr('stroke-width', 2);
 
+    // MDT supply indicator ring
+    nodes.append('circle')
+        .attr('class', 'mdt-supply-ring')
+        .attr('r', 9)
+        .attr('fill', 'none')
+        .attr('stroke', d => {
+            if (!d.data.mdtTracking) return 'transparent';
+            const remaining = d.data.mdtTracking.pillsRemaining || d.data.mdtTracking.remaining;
+            const status = getMDTSupplyStatus(remaining);
+            if (status.status === 'critical') return '#e74c3c';
+            if (status.status === 'low') return '#e67e22';
+            if (status.status === 'moderate') return '#f39c12';
+            if (status.status === 'plenty') return '#27ae60';
+            return 'transparent';
+        })
+        .attr('stroke-width', d => {
+            if (!d.data.mdtTracking) return 0;
+            const remaining = d.data.mdtTracking.pillsRemaining || d.data.mdtTracking.remaining;
+            const status = getMDTSupplyStatus(remaining);
+            return status.status === 'critical' ? 2.5 : 2;
+        })
+        .attr('stroke-dasharray', d => {
+            if (!d.data.mdtTracking) return 'none';
+            const remaining = d.data.mdtTracking.pillsRemaining || d.data.mdtTracking.remaining;
+            const status = getMDTSupplyStatus(remaining);
+            return status.status === 'critical' ? '2,2' : 'none';
+        })
+        .style('opacity', 0.8);
+
+    // Brain for enhanced cognitive state - always upright
+    nodes.append('text')
+        .attr('class', 'node-brain')
+        .attr('x', 0)
+        .attr('y', 0)
+        .attr('dy', '0.3em')
+        .attr('text-anchor', 'middle')
+        .attr('font-size', '9px')
+        .attr('transform', d => `rotate(${-(d.x - 90)})`) // Counter-rotate to keep upright
+        .style('opacity', d => {
+            const cogState = d.data.cognitiveState || '';
+            return cogState.includes('enhanced') ? 1 : 0;
+        })
+        .style('pointer-events', 'none')
+        .text('🧠');
+
     // Checkmarks
+    // Checkmark positioned between node and text
     nodes.append('text')
         .attr('class', 'node-checkmark')
-        .attr('x', 0)
-        .attr('y', 1.5)
+        .attr('dy', '0.31em')
+        .attr('x', d => d.x < 180 ? 20 : -20)
         .attr('text-anchor', 'middle')
-        .attr('fill', '#fff')
-        .attr('font-size', '8px')
+        .attr('transform', d => d.x >= 180 ? 'rotate(180)' : null)
+        .attr('fill', '#2ecc71')
+        .attr('font-size', '10px')
         .attr('font-weight', 'bold')
         .style('opacity', d => state.viewedScenes.has(d.data.id) ? 1 : 0)
         .text('✓');
@@ -905,7 +1067,7 @@ function initVisualization() {
     nodes.append('text')
         .attr('class', 'node-label')
         .attr('dy', '0.31em')
-        .attr('x', d => d.x < 180 ? 10 : -10)
+        .attr('x', d => d.x < 180 ? 32 : -32)
         .attr('text-anchor', d => d.x < 180 ? 'start' : 'end')
         .attr('transform', d => d.x >= 180 ? 'rotate(180)' : null)
         .attr('font-size', '10px')
@@ -930,14 +1092,15 @@ function updateNodeStyles() {
 
     nodeGroup.selectAll('.node circle')
         .attr('stroke-width', d => state.viewedScenes.has(d.data.id) ? 3 : 2)
-        .attr('stroke', d => state.viewedScenes.has(d.data.id) ? '#2ecc71' : getActColor(d.data.act));
+        .attr('stroke', d => state.viewedScenes.has(d.data.id) ? '#2ecc71' : getActColor(d.data.act))
+        .style('opacity', d => state.viewedScenes.has(d.data.id) ? 0.25 : 1);
 
     nodeGroup.selectAll('.node .node-checkmark')
         .style('opacity', d => state.viewedScenes.has(d.data.id) ? 1 : 0);
 
     nodeGroup.selectAll('.node .node-label')
         .classed('viewed-label', d => state.viewedScenes.has(d.data.id))
-        .attr('font-weight', d => state.viewedScenes.has(d.data.id) ? 600 : 400);
+        .style('opacity', d => state.viewedScenes.has(d.data.id) ? 0.25 : 1);
 }
 
 // ============================================
@@ -1030,13 +1193,49 @@ function showTooltip(node, event) {
     if (scene.plotSummary) {
         if (typeof scene.plotSummary === 'string') {
             summaryText = scene.plotSummary;
-        } else if (scene.plotSummary.detailed) {
-            summaryText = scene.plotSummary.detailed;
         } else if (scene.plotSummary.brief) {
             summaryText = scene.plotSummary.brief;
+        } else if (scene.plotSummary.detailed) {
+            summaryText = scene.plotSummary.detailed;
         }
     } else if (scene.summary) {
         summaryText = scene.summary;
+    }
+
+    // Location and time info
+    const locationTime = [];
+    if (scene.location && scene.location.primary) {
+        locationTime.push(`📍 ${scene.location.primary}`);
+    }
+    if (scene.time) {
+        const timeStr = typeof scene.time === 'string' ? scene.time : scene.time.narrative || scene.time.runtime;
+        if (timeStr) locationTime.push(`🕐 ${timeStr}`);
+    }
+    const locationTimeHtml = locationTime.length > 0 ?
+        `<div class="tooltip-location">${locationTime.join(' • ')}</div>` : '';
+
+    // Build cognitive state
+    const cognitiveHtml = buildCognitiveStateTags(scene.cognitiveState);
+
+    // Build MDT tracker with progress bar
+    let mdtHtml = '';
+    if (scene.mdtTracking && scene.mdtTracking.pillsRemaining) {
+        const remaining = scene.mdtTracking.pillsRemaining;
+        const status = getMDTSupplyStatus(remaining);
+
+        mdtHtml = `
+        <div class="tooltip-mdt-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+                <strong style="font-size: 0.75rem;">💊 MDT-48 Supply</strong>
+                <span class="mdt-status-indicator mdt-status-${status.status}">${status.label}</span>
+            </div>
+            <div class="mdt-gauge-bar-bg" style="position: relative; height: 18px;">
+                <div class="mdt-gauge-bar ${status.class}" style="width: ${status.percentage || 0}%"></div>
+                <div class="mdt-gauge-count-overlay" style="font-size: 0.7rem;">
+                    ${remaining}
+                </div>
+            </div>
+        </div>`;
     }
 
     let html = `
@@ -1044,23 +1243,54 @@ function showTooltip(node, event) {
             <span class="tooltip-icon">${getActIcon(scene.act)}</span>
             <span class="tooltip-title">${scene.id}. ${scene.title}</span>
         </div>
-        <div class="tooltip-cognitive cognitive-${scene.cognitiveState}">
-            ${scene.cognitiveState.replace('_', ' ').toUpperCase()}
+        ${locationTimeHtml}
+        <div class="tooltip-cognitive">
+            ${cognitiveHtml}
         </div>
-        <div class="tooltip-summary">${summaryText ? summaryText.substring(0, 150) + '...' : 'No summary available'}</div>
-        <div class="tooltip-hint">Click for full analysis</div>
+        ${mdtHtml}
+        ${scene.tags && scene.tags.length > 0 ? `
+        <div class="tooltip-tags">
+            ${buildTagBadges(scene.tags)}
+        </div>
+        ` : ''}
+        <div class="tooltip-hint">Click for full details & connections</div>
     `;
 
     tooltip.html(html)
-        .classed('visible', true)
-        .style('left', (event.clientX + 15) + 'px')
-        .style('top', (event.clientY + 15) + 'px')
+        .classed('visible', true);
+
+    // Better positioning like the_lighthouse
+    const x = event.clientX;
+    const y = event.clientY;
+    const tooltipNode = tooltip.node();
+    tooltipNode.style.display = 'block';
+    const tooltipWidth = tooltipNode.offsetWidth || 300;
+    const tooltipHeight = tooltipNode.offsetHeight || 150;
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    let left = x + 15;
+    let top = y + 15;
+
+    if (left + tooltipWidth > viewportWidth) {
+        left = x - tooltipWidth - 15;
+    }
+    if (top + tooltipHeight > viewportHeight) {
+        top = y - tooltipHeight - 15;
+    }
+
+    tooltip
+        .style('left', Math.max(10, left) + 'px')
+        .style('top', Math.max(10, top) + 'px')
+        .style('opacity', 1)
         .style('display', 'block');
 }
 
 function hideTooltip() {
     if (tooltip) {
-        tooltip.classed('visible', false);
+        tooltip.classed('visible', false)
+            .style('display', 'none')
+            .style('opacity', 0);
     }
 }
 
@@ -1281,23 +1511,131 @@ function buildTensionBar(scene) {
     </div>`;
 }
 
+function getMDTSupplyStatus(remaining) {
+    if (!remaining) {
+        return { status: 'na', label: 'N/A', class: 'mdt-supply-na', percentage: 0 };
+    }
+
+    // Check for N/A or pre-MDT states
+    if (remaining === 'N/A' || remaining === 'None' || remaining === 'Pre-MDT') {
+        return { status: 'na', label: 'N/A', class: 'mdt-supply-na', percentage: 0 };
+    }
+
+    // Check for depleted/zero state (after having pills)
+    if (remaining === 'Zero' || remaining === '0' || remaining === 'Depleted') {
+        return { status: 'none', label: 'DEPLETED', class: 'mdt-supply-none', percentage: 0 };
+    }
+
+    // Extract numeric value from string like "~75 pills"
+    const numMatch = remaining.toString().match(/\d+/);
+    if (!numMatch) {
+        return { status: 'unknown', label: remaining, class: 'mdt-supply-none', percentage: 0 };
+    }
+
+    const count = parseInt(numMatch[0]);
+
+    if (count >= 100) {
+        return { status: 'plenty', label: 'PLENTY', class: 'mdt-supply-plenty', percentage: 100 };
+    } else if (count >= 50) {
+        return { status: 'moderate', label: 'MODERATE', class: 'mdt-supply-moderate', percentage: (count / 200) * 100 };
+    } else if (count >= 20) {
+        return { status: 'low', label: 'LOW', class: 'mdt-supply-low', percentage: (count / 200) * 100 };
+    } else if (count > 0) {
+        return { status: 'critical', label: 'CRITICAL', class: 'mdt-supply-critical', percentage: (count / 200) * 100 };
+    } else {
+        return { status: 'none', label: 'DEPLETED', class: 'mdt-supply-none', percentage: 0 };
+    }
+}
+
+function calculateConsumptionRate(scene) {
+    // Check if current scene has MDT tracking
+    if (!scene.mdtTracking) return null;
+
+    const currentRemaining = scene.mdtTracking.pillsRemaining || scene.mdtTracking.remaining;
+    if (!currentRemaining) return null;
+
+    // Find previous scene with MDT data
+    const currentId = scene.id;
+    let prevScene = null;
+
+    for (let i = currentId - 2; i >= 0; i--) {
+        const s = state.scenes[i];
+        if (s && s.mdtTracking && (s.mdtTracking.pillsRemaining || s.mdtTracking.remaining)) {
+            prevScene = s;
+            break;
+        }
+    }
+
+    if (!prevScene) return null;
+
+    const prevRemaining = prevScene.mdtTracking.pillsRemaining || prevScene.mdtTracking.remaining;
+    if (!prevRemaining) return null;
+
+    // Safe toString with null check
+    const currentMatch = String(currentRemaining).match(/\d+/);
+    const prevMatch = String(prevRemaining).match(/\d+/);
+
+    if (!currentMatch || !prevMatch) return null;
+
+    const currentCount = parseInt(currentMatch[0]);
+    const prevCount = parseInt(prevMatch[0]);
+    const consumed = prevCount - currentCount;
+    const scenesGap = scene.id - prevScene.id;
+
+    if (consumed <= 0) return null;
+
+    return {
+        consumed: consumed,
+        scenesGap: scenesGap,
+        rate: consumed / scenesGap,
+        prevScene: prevScene.id
+    };
+}
+
 function buildMDTTracker(scene) {
     if (!scene.mdtTracking) return '';
 
     const mdt = scene.mdtTracking;
-    let html = `<div class="info-card-quotes">
-        <strong>💊 MDT-48 Tracking:</strong>
-        <div class="quotes-list">`;
+    const remaining = mdt.pillsRemaining || mdt.remaining;
+    const supplyStatus = getMDTSupplyStatus(remaining);
+    const consumptionRate = calculateConsumptionRate(scene);
+
+    let html = `<div class="mdt-section">`;
+
+    // Compact header with supply status
+    if (remaining) {
+        html += `<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <strong style="font-size: 0.85rem;">💊 MDT-48 Supply</strong>
+            <span class="mdt-status-indicator mdt-status-${supplyStatus.status}">${supplyStatus.label}</span>
+        </div>`;
+
+        // Visual gauge with overlaid number
+        html += `<div class="mdt-gauge-bar-bg" style="position: relative;">
+            <div class="mdt-gauge-bar ${supplyStatus.class}" style="width: ${supplyStatus.percentage || 0}%"></div>
+            <div class="mdt-gauge-count-overlay">
+                ${remaining}
+            </div>
+        </div>`;
+    }
+
+    // Compact info
+    html += `<div style="display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.85rem; margin-top: 0.5rem;">`;
 
     if (mdt.pillsTaken) {
-        html += `<div class="quote-item"><strong>Pills Taken:</strong> ${mdt.pillsTaken}</div>`;
+        html += `<div><strong>Taken:</strong> ${mdt.pillsTaken}</div>`;
     }
-    if (mdt.pillsRemaining !== undefined || mdt.remaining !== undefined) {
-        const remaining = mdt.pillsRemaining || mdt.remaining;
-        html += `<div class="quote-item"><strong>Remaining:</strong> ${remaining}</div>`;
+
+    // Consumption rate - more compact
+    if (consumptionRate) {
+        const rateColor = consumptionRate.rate > 2 ? '#e74c3c' : consumptionRate.rate > 1 ? '#f39c12' : '#27ae60';
+        const rateIcon = consumptionRate.rate > 2 ? '📈' : consumptionRate.rate > 1 ? '📊' : '📉';
+        html += `<div style="color: ${rateColor}; font-size: 0.85rem;">
+            <strong>${rateIcon} Rate:</strong> ${consumptionRate.consumed} pills since scene ${consumptionRate.prevScene} (${consumptionRate.rate.toFixed(1)}/scene)
+        </div>`;
     }
+
     if (mdt.effects) {
-        html += `<div class="quote-item"><strong>Effects:</strong> ${mdt.effects}</div>`;
+        html += `<div><strong>Effects:</strong> ${mdt.effects}</div>`;
     }
 
     html += `</div></div>`;
@@ -1385,6 +1723,15 @@ function showInfoCard(node) {
     if (!infoCard) initInfoCard();
 
     const scene = node.data;
+
+    // Debug logging
+    console.log('showInfoCard called for scene:', scene.id, scene.title);
+
+    if (!scene) {
+        console.error('No scene data found for node');
+        return;
+    }
+
     const isViewed = state.viewedScenes.has(scene.id);
 
     // Handle different plotSummary formats
@@ -1458,6 +1805,14 @@ function showInfoCard(node) {
         <div class="info-card-types">
             ${buildCognitiveStateTags(scene.cognitiveState)}
         </div>
+        ${scene.tags && scene.tags.length > 0 ? `
+        <div class="info-card-tags-section">
+            <div class="info-card-tags-label">🏷️ Discussion Topics</div>
+            <div class="info-card-tags">
+                ${buildTagBadges(scene.tags)}
+            </div>
+        </div>
+        ` : ''}
         <div class="info-card-body">
             ${buildMDTTracker(scene)}
             <div class="info-card-summary">
@@ -1493,6 +1848,12 @@ function showInfoCard(node) {
     infoCard.html(html);
     infoCard.classed('active', true);
     infoCardBackdrop.classed('active', true);
+
+    // Scroll to top of info card
+    const infoCardElement = infoCard.node();
+    if (infoCardElement) {
+        infoCardElement.scrollTop = 0;
+    }
 }
 
 // Add function to toggle from card and update button
@@ -1610,6 +1971,63 @@ filterVisualization = function() {
         });
     }
 };
+
+// ============================================
+// SEARCH
+// ============================================
+
+function initSearch() {
+    const searchInput = document.getElementById('search-input');
+    const searchCounter = document.getElementById('search-counter');
+
+    if (!searchInput) return;
+
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase().trim();
+        state.searchQuery = query;
+
+        if (!query) {
+            nodeGroup.selectAll('.node').classed('search-match', false).classed('search-dimmed', false);
+            searchCounter.classList.remove('visible');
+            return;
+        }
+
+        let matchCount = 0;
+
+        nodeGroup.selectAll('.node').each(function(d) {
+            const matches =
+                d.data.title.toLowerCase().includes(query) ||
+                (d.data.summary && d.data.summary.toLowerCase().includes(query)) ||
+                (d.data.tags && d.data.tags.some(t => t.toLowerCase().includes(query))) ||
+                (d.data.cognitiveState && d.data.cognitiveState.toLowerCase().includes(query));
+
+            d3.select(this)
+                .classed('search-match', matches)
+                .classed('search-dimmed', !matches);
+
+            if (matches) matchCount++;
+        });
+
+        searchCounter.textContent = `${matchCount}`;
+        searchCounter.classList.add('visible');
+        searchCounter.classList.toggle('has-results', matchCount > 0);
+        searchCounter.classList.toggle('no-results', matchCount === 0);
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        if (e.key === '/' && document.activeElement !== searchInput) {
+            e.preventDefault();
+            searchInput.focus();
+        }
+        if (e.key === 'Escape') {
+            searchInput.value = '';
+            searchInput.dispatchEvent(new Event('input'));
+            searchInput.blur();
+            hideInfoCard();
+        }
+    });
+}
 
 // ============================================
 // BOOK CLUB QUESTIONS

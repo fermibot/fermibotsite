@@ -328,7 +328,7 @@
         rgba(155, 89, 182, 0.1) 100%);
     border: 2px solid var(--enhanced-color);
     border-radius: 8px;
-    padding: 1rem;
+    padding: 0.75rem;
     margin-bottom: 1rem;
 }
 
@@ -352,6 +352,186 @@
 .mdt-item span {
     color: var(--viz-text);
     flex: 1;
+}
+
+/* MDT Visual Gauge - Compact */
+.mdt-gauge-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.mdt-gauge-label {
+    color: var(--viz-text);
+    font-size: 0.85rem;
+}
+
+.mdt-gauge-bar-bg {
+    width: 100%;
+    height: 20px;
+    background: var(--viz-border);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.mdt-gauge-count-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.75rem;
+    font-weight: normal;
+    color: #000;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow:
+        -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff,
+        -2px 0 0 #fff,
+        2px 0 0 #fff,
+        0 -2px 0 #fff,
+        0 2px 0 #fff;
+    z-index: 1;
+}
+
+.mdt-gauge-bar {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.5s ease, background 0.3s ease;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.mdt-gauge-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.3),
+        transparent);
+    border-radius: 10px 10px 0 0;
+}
+
+/* Supply status colors */
+.mdt-supply-plenty {
+    background: linear-gradient(90deg, #27ae60, #2ecc71);
+}
+
+.mdt-supply-moderate {
+    background: linear-gradient(90deg, #f39c12, #f1c40f);
+}
+
+.mdt-supply-low {
+    background: linear-gradient(90deg, #e67e22, #f39c12);
+}
+
+.mdt-supply-critical {
+    background: linear-gradient(90deg, #c0392b, #e74c3c);
+    animation: pulse-warning 2s ease-in-out infinite;
+}
+
+.mdt-supply-none {
+    background: linear-gradient(90deg, #7f8c8d, #95a5a6);
+}
+
+.mdt-supply-na {
+    background: linear-gradient(90deg, #bdc3c7, #d5dbdb);
+}
+
+@keyframes pulse-warning {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 2px 6px rgba(231, 76, 60, 0.3);
+    }
+    50% {
+        opacity: 0.7;
+        box-shadow: 0 2px 12px rgba(231, 76, 60, 0.6);
+    }
+}
+
+.mdt-status-indicator {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.mdt-status-plenty {
+    background: rgba(39, 174, 96, 0.2);
+    color: #27ae60;
+    border: 1px solid #27ae60;
+}
+
+.mdt-status-moderate {
+    background: rgba(243, 156, 18, 0.2);
+    color: #f39c12;
+    border: 1px solid #f39c12;
+}
+
+.mdt-status-low {
+    background: rgba(230, 126, 34, 0.2);
+    color: #e67e22;
+    border: 1px solid #e67e22;
+}
+
+.mdt-status-critical {
+    background: rgba(192, 57, 43, 0.2);
+    color: #c0392b;
+    border: 1px solid #c0392b;
+}
+
+.mdt-status-none {
+    background: rgba(127, 140, 141, 0.2);
+    color: #7f8c8d;
+    border: 1px solid #7f8c8d;
+}
+
+.mdt-status-na {
+    background: rgba(189, 195, 199, 0.2);
+    color: #95a5a6;
+    border: 1px solid #bdc3c7;
+}
+
+/* Pill icons visualization */
+.mdt-pills-visual {
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.mdt-pill-icon {
+    width: 12px;
+    height: 12px;
+    background: var(--enhanced-color);
+    border-radius: 6px;
+    opacity: 0.8;
+    transition: transform 0.2s ease;
+}
+
+.mdt-pill-icon:hover {
+    transform: scale(1.3);
+    opacity: 1;
+}
+
+.mdt-pill-icon.depleted {
+    background: var(--viz-border);
+    opacity: 0.3;
 }
 
 /* Info Card Section Styling */
@@ -405,18 +585,26 @@
     color: var(--viz-primary);
 }
 
-/* Animation for neural network effect */
-@keyframes pulse-glow {
+/* Enhanced cognitive state - Static brain indicator */
+.node-brain {
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+/* MDT Supply Ring Animation */
+@keyframes pulse-critical {
     0%, 100% {
-        opacity: 0.6;
+        stroke-opacity: 0.8;
+        r: 9;
     }
     50% {
-        opacity: 1;
+        stroke-opacity: 1;
+        r: 10;
     }
 }
 
-.node.enhanced circle {
-    animation: pulse-glow 2s ease-in-out infinite;
+.mdt-supply-ring[stroke="#e74c3c"] {
+    animation: pulse-critical 1.5s ease-in-out infinite;
 }
 
 /* Progress Bar with Act Colors */
@@ -447,12 +635,425 @@
     margin-right: 0.25rem;
 }
 
-/* Book Club Questions - Tag Colors */
-.tag-ethics { background: rgba(231, 76, 60, 0.1); color: #e74c3c; border-color: #e74c3c; }
-.tag-identity { background: rgba(52, 152, 219, 0.1); color: #3498db; border-color: #3498db; }
-.tag-power { background: rgba(155, 89, 182, 0.1); color: #9b59b6; border-color: #9b59b6; }
-.tag-enhanced { background: rgba(52, 152, 219, 0.1); color: #3498db; border-color: #3498db; }
-.tag-baseline { background: rgba(127, 140, 141, 0.1); color: #7f8c8d; border-color: #7f8c8d; }
-.tag-blackout { background: rgba(230, 126, 34, 0.1); color: #e67e22; border-color: #e67e22; }
-.tag-philosophy { background: rgba(39, 174, 96, 0.1); color: #27ae60; border-color: #27ae60; }
-.tag-cost { background: rgba(192, 57, 43, 0.1); color: #c0392b; border-color: #c0392b; }
+/* Legend Question Items - Match tag badge styling */
+.legend-question-item {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    opacity: 0.9;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid transparent;
+}
+
+.legend-question-item:hover {
+    opacity: 1;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.legend-question-item.active {
+    opacity: 1;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.legend-icon {
+    font-size: 0.85rem;
+    margin-right: 0.35rem;
+}
+
+.legend-text {
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* ============================================
+   TAG BADGES SYSTEM
+   ============================================ */
+
+/* ============================================
+   TAG BADGE BASE STYLING
+   Used everywhere: tooltips, info cards, questions, filters
+   ============================================ */
+
+.tag-badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    margin: 0.15rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1px solid;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    text-transform: capitalize;
+}
+
+.tag-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Override base movie_timelines.css .question-tag if present */
+.question-tag {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    margin: 0.15rem;
+    border-radius: 4px;
+    font-size: 0.75rem !important;
+    font-weight: 600;
+    border: 1px solid;
+    text-transform: capitalize !important;
+}
+
+/* ============================================
+   TOOLTIP ENHANCEMENTS
+   ============================================ */
+
+/* Override tooltip base to ensure proper constraints */
+.tooltip {
+    max-width: 350px;
+    padding: 0.75rem !important;
+}
+
+.tooltip-header {
+    margin-bottom: 0.5rem !important;
+}
+
+/* Compact tooltip location */
+.tooltip-location {
+    font-size: 0.75rem !important;
+    color: var(--viz-text-muted) !important;
+    margin-bottom: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    border-bottom: 1px solid var(--viz-border);
+}
+
+/* Tooltip cognitive state section */
+.tooltip-cognitive {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    align-items: center;
+    margin: 0.5rem 0;
+}
+
+/* Tooltip MDT section with progress bar */
+.tooltip-mdt-section {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    background: var(--viz-bg-secondary);
+    border-radius: 6px;
+    border-left: 3px solid var(--enhanced-color);
+}
+
+.tooltip-mdt-section .mdt-status-indicator {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.4rem;
+}
+
+/* Tooltip tags container */
+.tooltip-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    background: var(--viz-bg-secondary);
+    border-radius: 6px;
+    margin: 0.5rem 0;
+}
+
+/* Tooltip hint at bottom */
+.tooltip-hint {
+    margin-top: 0.75rem !important;
+    padding-top: 0.5rem !important;
+    border-top: 1px solid var(--viz-border);
+    font-size: 0.7rem !important;
+}
+
+/* Info card tags section */
+.info-card-tags-section {
+    padding: 0.75rem 1rem;
+    background: var(--viz-bg-secondary);
+    border-top: 1px solid var(--viz-border);
+    border-bottom: 1px solid var(--viz-border);
+}
+
+.info-card-tags-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--viz-text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.info-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+/* Tag Color Scheme - 15 Discussion Topics */
+.tag-ethics {
+    background: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.tag-power {
+    background: rgba(155, 89, 182, 0.1);
+    color: #9b59b6;
+    border-color: #9b59b6;
+}
+
+.tag-identity {
+    background: rgba(52, 152, 219, 0.1);
+    color: #3498db;
+    border-color: #3498db;
+}
+
+.tag-enhancement {
+    background: rgba(52, 152, 219, 0.1);
+    color: #2980b9;
+    border-color: #2980b9;
+}
+
+.tag-addiction {
+    background: rgba(230, 126, 34, 0.1);
+    color: #e67e22;
+    border-color: #e67e22;
+}
+
+.tag-consequence {
+    background: rgba(192, 57, 43, 0.1);
+    color: #c0392b;
+    border-color: #c0392b;
+}
+
+.tag-withdrawal {
+    background: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.tag-transformation {
+    background: rgba(142, 68, 173, 0.1);
+    color: #8e44ad;
+    border-color: #8e44ad;
+}
+
+.tag-ambition {
+    background: rgba(241, 196, 15, 0.1);
+    color: #f39c12;
+    border-color: #f39c12;
+}
+
+.tag-hubris {
+    background: rgba(211, 84, 0, 0.1);
+    color: #d35400;
+    border-color: #d35400;
+}
+
+.tag-violence {
+    background: rgba(192, 57, 43, 0.1);
+    color: #c0392b;
+    border-color: #c0392b;
+}
+
+.tag-relationships {
+    background: rgba(26, 188, 156, 0.1);
+    color: #1abc9c;
+    border-color: #1abc9c;
+}
+
+.tag-sacrifice {
+    background: rgba(149, 165, 166, 0.1);
+    color: #7f8c8d;
+    border-color: #7f8c8d;
+}
+
+.tag-control {
+    background: rgba(52, 73, 94, 0.1);
+    color: #34495e;
+    border-color: #34495e;
+}
+
+.tag-memory {
+    background: rgba(41, 128, 185, 0.1);
+    color: #2980b9;
+    border-color: #2980b9;
+}
+
+/* ============================================
+   LEGEND ITEM COLOR CLASSES
+   Apply tag colors to legend filter items
+   ============================================ */
+
+.legend-question-item.tag-ethics {
+    background: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.legend-question-item.tag-power {
+    background: rgba(155, 89, 182, 0.1);
+    color: #9b59b6;
+    border-color: #9b59b6;
+}
+
+.legend-question-item.tag-identity {
+    background: rgba(52, 152, 219, 0.1);
+    color: #3498db;
+    border-color: #3498db;
+}
+
+.legend-question-item.tag-enhancement {
+    background: rgba(52, 152, 219, 0.1);
+    color: #2980b9;
+    border-color: #2980b9;
+}
+
+.legend-question-item.tag-addiction {
+    background: rgba(230, 126, 34, 0.1);
+    color: #e67e22;
+    border-color: #e67e22;
+}
+
+.legend-question-item.tag-consequence {
+    background: rgba(192, 57, 43, 0.1);
+    color: #c0392b;
+    border-color: #c0392b;
+}
+
+.legend-question-item.tag-withdrawal {
+    background: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.legend-question-item.tag-transformation {
+    background: rgba(142, 68, 173, 0.1);
+    color: #8e44ad;
+    border-color: #8e44ad;
+}
+
+.legend-question-item.tag-ambition {
+    background: rgba(241, 196, 15, 0.1);
+    color: #f39c12;
+    border-color: #f39c12;
+}
+
+.legend-question-item.tag-hubris {
+    background: rgba(211, 84, 0, 0.1);
+    color: #d35400;
+    border-color: #d35400;
+}
+
+.legend-question-item.tag-violence {
+    background: rgba(192, 57, 43, 0.1);
+    color: #c0392b;
+    border-color: #c0392b;
+}
+
+.legend-question-item.tag-relationships {
+    background: rgba(26, 188, 156, 0.1);
+    color: #1abc9c;
+    border-color: #1abc9c;
+}
+
+.legend-question-item.tag-sacrifice {
+    background: rgba(149, 165, 166, 0.1);
+    color: #7f8c8d;
+    border-color: #7f8c8d;
+}
+
+.legend-question-item.tag-control {
+    background: rgba(52, 73, 94, 0.1);
+    color: #34495e;
+    border-color: #34495e;
+}
+
+.legend-question-item.tag-memory {
+    background: rgba(41, 128, 185, 0.1);
+    color: #2980b9;
+    border-color: #2980b9;
+}
+
+/* ============================================
+   SEARCH FUNCTIONALITY
+   ============================================ */
+
+/* Search Box */
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.search-input {
+    padding: 0.5rem 1rem 0.5rem 2.5rem;
+    border: 1px solid var(--viz-border);
+    border-radius: 20px;
+    background-color: var(--viz-card-bg);
+    color: var(--viz-text);
+    width: 250px;
+    font-size: 0.9rem;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--enhanced-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+.search-input::placeholder {
+    color: var(--viz-text-muted);
+}
+
+.search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--viz-text-muted);
+    pointer-events: none;
+}
+
+.search-counter {
+    font-size: 0.75rem;
+    color: var(--viz-text-muted);
+    background-color: var(--viz-bg-secondary);
+    border: 1px solid var(--viz-border);
+    border-radius: 12px;
+    padding: 0.25rem 0.6rem;
+    white-space: nowrap;
+    min-width: 30px;
+    text-align: center;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.search-counter.visible {
+    opacity: 1;
+}
+
+.search-counter.has-results {
+    color: var(--enhanced-color);
+    border-color: var(--enhanced-color);
+}
+
+.search-counter.no-results {
+    color: var(--withdrawal-color);
+}
+
+/* Search node styling */
+.node.search-dimmed {
+    opacity: 0.15;
+}
+
+.node.search-match circle {
+    filter: url(#glow);
+    stroke-width: 3px;
+}

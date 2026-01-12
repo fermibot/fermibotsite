@@ -13,7 +13,7 @@
 
     <!-- Visualization CSS -->
     <link href="../../../css/movie_timelines.css" rel="stylesheet">
-    <link href="limitless_custom.css" rel="stylesheet">
+    <link href="limitless_custom.css?v=2026.01.11.17.30.00" rel="stylesheet">
 
     <!-- Bootstrap JS -->
     <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
@@ -42,7 +42,7 @@
 <header class="mb-4">
     <h1 class="text-center mb-3">Stories | Film Analysis | Limitless</h1>
     <p class="text-center text-muted">
-        Interactive visualization of Neil Burger's screenplay - 21 scenes exploring cognitive enhancement through MDT-48
+        Interactive visualization of Neil Burger's screenplay - 50 scenes exploring cognitive enhancement through MDT-48
     </p>
 </header>
 
@@ -81,6 +81,7 @@
                     <li><strong>Click:</strong> Open full scene analysis</li>
                     <li><strong>Mark Reviewed:</strong> Track your progress</li>
                     <li><strong>Filter:</strong> View by act or cognitive state</li>
+                    <li><strong>Search:</strong> Find scenes by title, tags, or cognitive state (press <kbd>/</kbd>)</li>
                 </ul>
             </div>
             <div class="col-md-6">
@@ -103,8 +104,16 @@
         <!-- Controls Bar (like The Lighthouse) -->
         <div class="controls-bar">
             <div class="controls-left">
-                <!-- Optional: Search functionality can be added here -->
-                <span class="controls-hint">Eddie's cognitive journey through MDT-48</span>
+                <!-- Search -->
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text"
+                           id="search-input"
+                           class="search-input"
+                           placeholder="Search scenes... (press /)"
+                           autocomplete="off">
+                    <span class="search-counter" id="search-counter"></span>
+                </div>
             </div>
             <div class="controls-right">
                 <span class="controls-hint">Click scene to view details</span>
@@ -192,8 +201,9 @@
                     <p class="question-text">The film opens with Eddie on a ledge, about to jump. Why start at the ending?</p>
                 </div>
                 <div class="question-tags">
-                    <span class="question-tag tag-structure">Structure</span>
-                    <span class="question-tag tag-framing">Framing</span>
+                    <span class="tag-badge tag-consequence">⚠️ Consequence</span>
+                    <span class="tag-badge tag-hubris">🔥 Hubris</span>
+                    <span class="tag-badge tag-power">👑 Power</span>
                 </div>
                 <span class="question-meta">💊 Act I · Scene 1</span>
                 <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
@@ -208,8 +218,8 @@
                     <p class="question-text">Eddie at rock bottom: writer's block, broke, dumped. Is this the "real" Eddie?</p>
                 </div>
                 <div class="question-tags">
-                    <span class="question-tag tag-identity">Identity</span>
-                    <span class="question-tag tag-baseline">Baseline</span>
+                    <span class="tag-badge tag-identity">🎭 Identity</span>
+                    <span class="tag-badge tag-relationships">👥 Relationships</span>
                 </div>
                 <span class="question-meta">💊 Act I · Scene 2</span>
                 <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
@@ -224,8 +234,9 @@
                     <p class="question-text">Would you take MDT-48? What's the appeal—and the danger?</p>
                 </div>
                 <div class="question-tags">
-                    <span class="question-tag tag-ethics">Ethics</span>
-                    <span class="question-tag tag-choice">Choice</span>
+                    <span class="tag-badge tag-identity">🎭 Identity</span>
+                    <span class="tag-badge tag-relationships">👥 Relationships</span>
+                    <span class="tag-badge tag-transformation">🦋 Transformation</span>
                 </div>
                 <span class="question-meta">🧠 Act I · Scenes 3-4</span>
                 <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
@@ -240,8 +251,7 @@
                     <p class="question-text">Eddie's first dose unlocks his apartment and his book. What does this say about potential?</p>
                 </div>
                 <div class="question-tags">
-                    <span class="question-tag tag-potential">Potential</span>
-                    <span class="question-tag tag-enhanced">Enhanced</span>
+                    <span class="tag-badge tag-transformation">🦋 Transformation</span>
                 </div>
                 <span class="question-meta">🧠 Act I · Scene 4</span>
                 <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
@@ -256,8 +266,13 @@
                     <p class="question-text">Eddie gets Vernon's stash after his murder. Is this "lucky" or does MDT attract violence?</p>
                 </div>
                 <div class="question-tags">
-                    <span class="question-tag tag-violence">Violence</span>
-                    <span class="question-tag tag-cost">Cost</span>
+                    <span class="tag-badge tag-addiction">💊 Addiction</span>
+                    <span class="tag-badge tag-ambition">🎯 Ambition</span>
+                    <span class="tag-badge tag-consequence">⚠️ Consequence</span>
+                    <span class="tag-badge tag-enhancement">🧠 Enhancement</span>
+                    <span class="tag-badge tag-identity">🎭 Identity</span>
+                    <span class="tag-badge tag-transformation">🦋 Transformation</span>
+                    <span class="tag-badge tag-withdrawal">💢 Withdrawal</span>
                 </div>
                 <span class="question-meta">💊 Act I · Scenes 5-7</span>
                 <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
@@ -273,8 +288,11 @@
                     <p class="question-text">Eddie enters the stock market and multiplies his money. Is this genius or gambling?</p>
                 </div>
                 <div class="question-tags">
-                    <span class="question-tag tag-power">Power</span>
-                    <span class="question-tag tag-market">Market</span>
+                    <span class="tag-badge tag-ambition">🎯 Ambition</span>
+                    <span class="tag-badge tag-consequence">⚠️ Consequence</span>
+                    <span class="tag-badge tag-power">👑 Power</span>
+                    <span class="tag-badge tag-transformation">🦋 Transformation</span>
+                    <span class="tag-badge tag-violence">⚔️ Violence</span>
                 </div>
                 <span class="question-meta">📈 Act II · Scenes 8-10</span>
                 <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
@@ -289,8 +307,9 @@
                     <p class="question-text">Time skips—Eddie loses hours, can't remember what he did. How does this affect his agency?</p>
                 </div>
                 <div class="question-tags">
-                    <span class="question-tag tag-blackout">Blackout</span>
-                    <span class="question-tag tag-identity">Identity</span>
+                    <span class="tag-badge tag-ambition">🎯 Ambition</span>
+                    <span class="tag-badge tag-consequence">⚠️ Consequence</span>
+                    <span class="tag-badge tag-power">👑 Power</span>
                 </div>
                 <span class="question-meta">🔍 Act II · Scenes 11-12</span>
                 <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
@@ -305,8 +324,14 @@
                     <p class="question-text">Van Loon recruits Eddie for a massive merger. What does Van Loon really want?</p>
                 </div>
                 <div class="question-tags">
-                    <span class="question-tag tag-power">Power</span>
-                    <span class="question-tag tag-manipulation">Manipulation</span>
+                    <span class="tag-badge tag-ambition">🎯 Ambition</span>
+                    <span class="tag-badge tag-consequence">⚠️ Consequence</span>
+                    <span class="tag-badge tag-control">🎮 Control</span>
+                    <span class="tag-badge tag-enhancement">🧠 Enhancement</span>
+                    <span class="tag-badge tag-identity">🎭 Identity</span>
+                    <span class="tag-badge tag-memory">🧩 Memory</span>
+                    <span class="tag-badge tag-power">👑 Power</span>
+                    <span class="tag-badge tag-relationships">👥 Relationships</span>
                 </div>
                 <span class="question-meta">📈 Act II · Scenes 13-15</span>
                 <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
@@ -321,8 +346,8 @@
                     <p class="question-text">Melissa warns Eddie: "You're different...you're not you." Should he listen?</p>
                 </div>
                 <div class="question-tags">
-                    <span class="question-tag tag-relationship">Relationship</span>
-                    <span class="question-tag tag-identity">Identity</span>
+                    <span class="tag-badge tag-ambition">🎯 Ambition</span>
+                    <span class="tag-badge tag-power">👑 Power</span>
                 </div>
                 <span class="question-meta">💊 Act II · Scene 16</span>
                 <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
@@ -337,8 +362,8 @@
                     <p class="question-text">The murder investigation—did Eddie kill the blonde woman?</p>
                 </div>
                 <div class="question-tags">
-                    <span class="question-tag tag-mystery">Mystery</span>
-                    <span class="question-tag tag-guilt">Guilt</span>
+                    <span class="tag-badge tag-enhancement">🧠 Enhancement</span>
+                    <span class="tag-badge tag-power">👑 Power</span>
                 </div>
                 <span class="question-meta">🔍 Act II · Scene 17</span>
                 <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
@@ -354,8 +379,9 @@
                     <p class="question-text">Gennady's goons attack. MDT gives Eddie fighting skills he never learned. How?</p>
                 </div>
                 <div class="question-tags">
-                    <span class="question-tag tag-ability">Ability</span>
-                    <span class="question-tag tag-enhanced">Enhanced</span>
+                    <span class="tag-badge tag-ambition">🎯 Ambition</span>
+                    <span class="tag-badge tag-hubris">🔥 Hubris</span>
+                    <span class="tag-badge tag-power">👑 Power</span>
                 </div>
                 <span class="question-meta">⚡ Act III · Scene 18</span>
                 <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
@@ -370,8 +396,9 @@
                     <p class="question-text">Melissa takes MDT to save Eddie. What does this cost her?</p>
                 </div>
                 <div class="question-tags">
-                    <span class="question-tag tag-sacrifice">Sacrifice</span>
-                    <span class="question-tag tag-cost">Cost</span>
+                    <span class="tag-badge tag-consequence">⚠️ Consequence</span>
+                    <span class="tag-badge tag-control">🎮 Control</span>
+                    <span class="tag-badge tag-memory">🧩 Memory</span>
                 </div>
                 <span class="question-meta">💀 Act III · Scene 19</span>
                 <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
@@ -386,8 +413,9 @@
                     <p class="question-text">Eddie refuses Van Loon's control. Is this freedom or delusion?</p>
                 </div>
                 <div class="question-tags">
-                    <span class="question-tag tag-power">Power</span>
-                    <span class="question-tag tag-freedom">Freedom</span>
+                    <span class="tag-badge tag-consequence">⚠️ Consequence</span>
+                    <span class="tag-badge tag-identity">🎭 Identity</span>
+                    <span class="tag-badge tag-withdrawal">💢 Withdrawal</span>
                 </div>
                 <span class="question-meta">⚡ Act III · Scene 20</span>
                 <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
@@ -403,8 +431,13 @@
                     <p class="question-text">Is the "enhanced Eddie" still Eddie? Where is the self located?</p>
                 </div>
                 <div class="question-tags">
-                    <span class="question-tag tag-philosophy">Philosophy</span>
-                    <span class="question-tag tag-identity">Identity</span>
+                    <span class="tag-badge tag-consequence">⚠️ Consequence</span>
+                    <span class="tag-badge tag-hubris">🔥 Hubris</span>
+                    <span class="tag-badge tag-identity">🎭 Identity</span>
+                    <span class="tag-badge tag-power">👑 Power</span>
+                    <span class="tag-badge tag-relationships">👥 Relationships</span>
+                    <span class="tag-badge tag-transformation">🦋 Transformation</span>
+                    <span class="tag-badge tag-withdrawal">💢 Withdrawal</span>
                 </div>
                 <span class="question-meta">🧠 Thematic</span>
                 <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
@@ -419,8 +452,16 @@
                     <p class="question-text">Does MDT-48 grant free will or destroy it?</p>
                 </div>
                 <div class="question-tags">
-                    <span class="question-tag tag-philosophy">Philosophy</span>
-                    <span class="question-tag tag-freewill">Free Will</span>
+                    <span class="tag-badge tag-ambition">🎯 Ambition</span>
+                    <span class="tag-badge tag-consequence">⚠️ Consequence</span>
+                    <span class="tag-badge tag-control">🎮 Control</span>
+                    <span class="tag-badge tag-enhancement">🧠 Enhancement</span>
+                    <span class="tag-badge tag-identity">🎭 Identity</span>
+                    <span class="tag-badge tag-memory">🧩 Memory</span>
+                    <span class="tag-badge tag-power">👑 Power</span>
+                    <span class="tag-badge tag-transformation">🦋 Transformation</span>
+                    <span class="tag-badge tag-violence">⚔️ Violence</span>
+                    <span class="tag-badge tag-withdrawal">💢 Withdrawal</span>
                 </div>
                 <span class="question-meta">🧠 Thematic</span>
                 <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
@@ -435,8 +476,13 @@
                     <p class="question-text">What is the moral status of cognitive enhancement? Is it cheating?</p>
                 </div>
                 <div class="question-tags">
-                    <span class="question-tag tag-ethics">Ethics</span>
-                    <span class="question-tag tag-enhancement">Enhancement</span>
+                    <span class="tag-badge tag-addiction">💊 Addiction</span>
+                    <span class="tag-badge tag-consequence">⚠️ Consequence</span>
+                    <span class="tag-badge tag-control">🎮 Control</span>
+                    <span class="tag-badge tag-identity">🎭 Identity</span>
+                    <span class="tag-badge tag-memory">🧩 Memory</span>
+                    <span class="tag-badge tag-relationships">👥 Relationships</span>
+                    <span class="tag-badge tag-withdrawal">💢 Withdrawal</span>
                 </div>
                 <span class="question-meta">🧠 Thematic</span>
                 <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
@@ -451,8 +497,14 @@
                     <p class="question-text">Eddie uses his power in finance—not medicine or art. What does this say about genius?</p>
                 </div>
                 <div class="question-tags">
-                    <span class="question-tag tag-capitalism">Capitalism</span>
-                    <span class="question-tag tag-values">Values</span>
+                    <span class="tag-badge tag-ambition">🎯 Ambition</span>
+                    <span class="tag-badge tag-consequence">⚠️ Consequence</span>
+                    <span class="tag-badge tag-control">🎮 Control</span>
+                    <span class="tag-badge tag-enhancement">🧠 Enhancement</span>
+                    <span class="tag-badge tag-memory">🧩 Memory</span>
+                    <span class="tag-badge tag-power">👑 Power</span>
+                    <span class="tag-badge tag-transformation">🦋 Transformation</span>
+                    <span class="tag-badge tag-violence">⚔️ Violence</span>
                 </div>
                 <span class="question-meta">📈 Thematic</span>
                 <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
@@ -467,8 +519,11 @@
                     <p class="question-text">The ending: Eddie runs for Senate, claims he's off MDT. Do you believe him?</p>
                 </div>
                 <div class="question-tags">
-                    <span class="question-tag tag-ambiguity">Ambiguity</span>
-                    <span class="question-tag tag-ending">Ending</span>
+                    <span class="tag-badge tag-consequence">⚠️ Consequence</span>
+                    <span class="tag-badge tag-hubris">🔥 Hubris</span>
+                    <span class="tag-badge tag-identity">🎭 Identity</span>
+                    <span class="tag-badge tag-power">👑 Power</span>
+                    <span class="tag-badge tag-withdrawal">💢 Withdrawal</span>
                 </div>
                 <span class="question-meta">⚡ Act III · Scene 20</span>
                 <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
@@ -483,8 +538,16 @@
                     <p class="question-text">Count the bodies: Vernon, the woman, Melissa. Is Eddie responsible?</p>
                 </div>
                 <div class="question-tags">
-                    <span class="question-tag tag-guilt">Guilt</span>
-                    <span class="question-tag tag-cost">Cost</span>
+                    <span class="tag-badge tag-addiction">💊 Addiction</span>
+                    <span class="tag-badge tag-ambition">🎯 Ambition</span>
+                    <span class="tag-badge tag-consequence">⚠️ Consequence</span>
+                    <span class="tag-badge tag-control">🎮 Control</span>
+                    <span class="tag-badge tag-enhancement">🧠 Enhancement</span>
+                    <span class="tag-badge tag-identity">🎭 Identity</span>
+                    <span class="tag-badge tag-memory">🧩 Memory</span>
+                    <span class="tag-badge tag-power">👑 Power</span>
+                    <span class="tag-badge tag-transformation">🦋 Transformation</span>
+                    <span class="tag-badge tag-withdrawal">💢 Withdrawal</span>
                 </div>
                 <span class="question-meta">💀 Thematic</span>
                 <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
@@ -499,8 +562,13 @@
                     <p class="question-text">Would you want to be Eddie at the end—powerful, but uncertain who you are?</p>
                 </div>
                 <div class="question-tags">
-                    <span class="question-tag tag-philosophy">Philosophy</span>
-                    <span class="question-tag tag-identity">Identity</span>
+                    <span class="tag-badge tag-ambition">🎯 Ambition</span>
+                    <span class="tag-badge tag-consequence">⚠️ Consequence</span>
+                    <span class="tag-badge tag-identity">🎭 Identity</span>
+                    <span class="tag-badge tag-power">👑 Power</span>
+                    <span class="tag-badge tag-relationships">👥 Relationships</span>
+                    <span class="tag-badge tag-transformation">🦋 Transformation</span>
+                    <span class="tag-badge tag-withdrawal">💢 Withdrawal</span>
                 </div>
                 <span class="question-meta">🧠 Thematic</span>
                 <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
@@ -517,7 +585,7 @@
 <div id="footer_placeholder"></div>
 
 <!-- Visualization JS (load after DOM) -->
-<script src="limitless_timeline.js"></script>
+<script src="limitless_timeline.js?v=2026.01.11.17.30.00"></script>
 
 </body>
 </html>
