@@ -357,6 +357,24 @@ const TAG_ICONS = {
     'sacrifice': '🕯️'
 };
 
+// Tag groups - organized by thematic category
+const TAG_GROUPS = {
+    'Core Themes': ['ethics', 'power', 'identity'],
+    'Enhancement': ['enhancement', 'addiction', 'withdrawal'],
+    'Consequences': ['consequence', 'violence', 'sacrifice'],
+    'Personal': ['transformation', 'ambition', 'hubris'],
+    'Social': ['relationships', 'control', 'memory']
+};
+
+// Canonical tag order (flattened from groups)
+const ALL_TAGS_ORDERED = [
+    'ethics', 'power', 'identity',
+    'enhancement', 'addiction', 'withdrawal',
+    'consequence', 'violence', 'sacrifice',
+    'transformation', 'ambition', 'hubris',
+    'relationships', 'control', 'memory'
+];
+
 function buildTagBadges(tags) {
     if (!tags || tags.length === 0) return '';
 
@@ -365,6 +383,30 @@ function buildTagBadges(tags) {
         const label = tag.charAt(0).toUpperCase() + tag.slice(1);
         return `<span class="tag-badge tag-${tag}" title="${label}">${icon} ${label}</span>`;
     }).join(' ');
+}
+
+// Build ALL tags with only relevant ones highlighted
+function buildAllTagsWithHighlights(activeTags) {
+    const activeSet = new Set(activeTags || []);
+    let html = '';
+
+    for (const [groupName, groupTags] of Object.entries(TAG_GROUPS)) {
+        html += `<div class="tag-group">`;
+        html += `<span class="tag-group-label">${groupName}:</span>`;
+
+        groupTags.forEach(tag => {
+            const icon = TAG_ICONS[tag] || '🏷️';
+            const label = tag.charAt(0).toUpperCase() + tag.slice(1);
+            const isActive = activeSet.has(tag);
+            const activeClass = isActive ? '' : 'inactive';
+
+            html += `<span class="tag-badge tag-${tag} ${activeClass}" title="${label}">${icon} ${label}</span>`;
+        });
+
+        html += `</div>`;
+    }
+
+    return html;
 }
 
 // ============================================
@@ -993,6 +1035,7 @@ function initVisualization() {
             event.stopPropagation();
             console.log('Node clicked:', d.data.id, d.data.title);
             state.lockedNode = d;
+            hideTooltip(); // Hide hover tooltip when clicking
             showInfoCard(d);
             highlightConnections(d);
         });
@@ -2036,13 +2079,13 @@ function initSearch() {
 window.toggleAnswer = function(event, button) {
     event.stopPropagation();
     const answerContent = button.nextElementSibling;
-    const isShowing = answerContent.classList.contains('show');
+    const isShowing = answerContent.classList.contains('visible');
 
     if (isShowing) {
-        answerContent.classList.remove('show');
+        answerContent.classList.remove('visible');
         button.textContent = 'Show Answer';
     } else {
-        answerContent.classList.add('show');
+        answerContent.classList.add('visible');
         button.textContent = 'Hide Answer';
     }
 };
@@ -2113,6 +2156,68 @@ window.highlightBookClubScenes = function(questionElement, event) {
     }
 };
 
+// Sort questions by thematic or chronological order
+window.sortQuestions = function(sortType) {
+    const grid = document.querySelector('.book-club-grid');
+    if (!grid) return;
+
+    // Update button states
+    document.querySelectorAll('.sort-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.sort === sortType);
+    });
+
+    // Get all question elements
+    const questions = Array.from(grid.querySelectorAll('.book-club-question'));
+
+    // Initialize: assign permanent chronological numbers based on scene order
+    if (!questions[0].dataset.chronologicalNumber) {
+        // Store original thematic order
+        questions.forEach((q, index) => {
+            q.dataset.thematicOrder = index;
+        });
+
+        // Sort by first scene to assign chronological numbers
+        const chronologicalSorted = [...questions].sort((a, b) => {
+            const aScenesStr = a.dataset.scenes || '';
+            const bScenesStr = b.dataset.scenes || '';
+            const aFirstScene = parseInt(aScenesStr.split(',')[0]) || 999;
+            const bFirstScene = parseInt(bScenesStr.split(',')[0]) || 999;
+            return aFirstScene - bFirstScene;
+        });
+
+        // Assign permanent chronological numbers
+        chronologicalSorted.forEach((q, index) => {
+            q.dataset.chronologicalNumber = index + 1;
+            const numberSpan = q.querySelector('.question-number');
+            if (numberSpan) {
+                numberSpan.textContent = index + 1;
+            }
+        });
+    }
+
+    // Sort based on type
+    if (sortType === 'chronological') {
+        // Sort by first scene number in data-scenes
+        questions.sort((a, b) => {
+            const aScenesStr = a.dataset.scenes || '';
+            const bScenesStr = b.dataset.scenes || '';
+            const aFirstScene = parseInt(aScenesStr.split(',')[0]) || 999;
+            const bFirstScene = parseInt(bScenesStr.split(',')[0]) || 999;
+            return aFirstScene - bFirstScene;
+        });
+    } else {
+        // Sort by original thematic order
+        questions.sort((a, b) => {
+            return parseInt(a.dataset.thematicOrder) - parseInt(b.dataset.thematicOrder);
+        });
+    }
+
+    // Re-append in sorted order (numbers stay as chronological)
+    questions.forEach((question) => {
+        grid.appendChild(question);
+    });
+};
+
 // ============================================
 // START
 // ============================================
@@ -2120,5 +2225,10 @@ window.highlightBookClubScenes = function(questionElement, event) {
 document.addEventListener('DOMContentLoaded', () => {
     initialize();
     setupCognitiveMarkers();
+
+    // Sort questions chronologically by default
+    setTimeout(() => {
+        sortQuestions('chronological');
+    }, 100);
 });
 

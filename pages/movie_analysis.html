@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Analysis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="../index.css">
+
+    <!-- Bootstrap JS -->
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Site automation -->
+    <script src="../automation/loadObjects.js"></script>
+
+    <!-- Color modes (dark/light theme) -->
+    <script src="../bootstrap/assets/color-modes.js"></script>
+
+    <style>
+        .movie-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+            height: 100%;
+        }
+        .movie-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        .movie-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .movie-director {
+            color: var(--bs-secondary-color);
+            font-size: 0.9rem;
+        }
+        .movie-year {
+            color: var(--bs-secondary-color);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body class="container-lg container-fluid p-4">
+
+<!-- Header -->
+<div id="header_placeholder"></div>
+
+<!-- Page Title -->
+<header class="mb-5">
+    <h1 class="text-center mb-3">Movie Analysis</h1>
+    <p class="text-center text-muted">
+        Interactive timeline visualizations exploring narrative structure, themes, and character development
+    </p>
+</header>
+
+<!-- Movie Cards -->
+<section class="container">
+    <div class="row g-4 justify-content-center">
+
+        <!-- Avatar -->
+        <div class="col-md-6 col-lg-4">
+            <a href="stories/JamesCameron_2009_Avatar/avatar_timeline.html" class="text-decoration-none">
+                <div class="bg-body-tertiary border rounded-3 p-4 movie-card">
+                    <div class="text-center mb-3">
+                        <span style="font-size: 3rem;">🎬</span>
+                    </div>
+                    <div class="movie-title text-center">Avatar</div>
+                    <div class="movie-director text-center">James Cameron</div>
+                    <div class="movie-year text-center mb-3">2009</div>
+                    <p class="text-center small">
+                        Epic sci-fi exploration of colonialism, identity, and environmental themes on the alien world of Pandora
+                    </p>
+                </div>
+            </a>
+        </div>
+
+        <!-- The Lighthouse -->
+        <div class="col-md-6 col-lg-4">
+            <a href="stories/the_lighthouse/the_lighthouse.html" class="text-decoration-none">
+                <div class="bg-body-tertiary border rounded-3 p-4 movie-card">
+                    <div class="text-center mb-3">
+                        <span style="font-size: 3rem;">🗼</span>
+                    </div>
+                    <div class="movie-title text-center">The Lighthouse</div>
+                    <div class="movie-director text-center">Robert Eggers</div>
+                    <div class="movie-year text-center mb-3">2019</div>
+                    <p class="text-center small">
+                        Psychological horror examining isolation, madness, and power dynamics between two lighthouse keepers
+                    </p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Limitless -->
+        <div class="col-md-6 col-lg-4">
+            <a href="stories/NeilBurger_2011_Limitless/limitless.html" class="text-decoration-none">
+                <div class="bg-body-tertiary border rounded-3 p-4 movie-card">
+                    <div class="text-center mb-3">
+                        <span style="font-size: 3rem;">🧠</span>
+                    </div>
+                    <div class="movie-title text-center">Limitless</div>
+                    <div class="movie-director text-center">Neil Burger</div>
+                    <div class="movie-year text-center mb-3">2011</div>
+                    <p class="text-center small">
+                        Thriller exploring cognitive enhancement, ambition, and the ethical implications of unlimited potential
+                    </p>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- Footer -->
+<div id="footer_placeholder" class="mt-5"></div>
+
+<script>
+    loadHeaderFooter("../automation/header.html", "../automation/footer.html");
+</script>
+
+</body>
+</html>

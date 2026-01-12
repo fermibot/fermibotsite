@@ -1,13 +1,16 @@
 async function loadCards() {
     try {
-        const [cardsResponse, orderResponse] = await Promise.all([
+        const [cardsResponse, orderResponse, hiddenResponse] = await Promise.all([
             fetch('data/cards.json'),
-            fetch('data/cardsOrder.json').catch(() => null)
+            fetch('data/cardsOrder.json').catch(() => null),
+            fetch('data/hiddenCards.json').catch(() => null)
         ]);
 
         const data = await cardsResponse.json();
         const orderData = orderResponse ? await orderResponse.json().catch(() => null) : null;
+        const hiddenData = hiddenResponse ? await hiddenResponse.json().catch(() => null) : null;
         const categoriesOrder = Array.isArray(orderData?.categoriesOrder) ? orderData.categoriesOrder : [];
+        const hiddenCategories = new Set(Array.isArray(hiddenData?.hiddenCategories) ? hiddenData.hiddenCategories : []);
 
         const container = document.getElementById('cards-container');
 
