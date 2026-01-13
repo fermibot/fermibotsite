@@ -1403,28 +1403,50 @@ function buildLocationSection(scene) {
 function buildCharacterSection(scene) {
     if (!scene.characterDevelopment) return '';
 
-    const chars = scene.characterDevelopment;
-    const charEntries = Object.entries(chars);
+    const charDev = scene.characterDevelopment;
+    let html = `<div class="info-card-section">
+        <div class="info-card-section-title">👤 Character Development</div>`;
 
-    if (charEntries.length === 0) return '';
+    // Build Eddie's character development
+    if (charDev.eddie) {
+        const eddie = charDev.eddie;
+        html += `<div class="character-block">
+            <div class="character-name">Eddie Morra</div>`;
 
-    let html = `<div class="info-card-characters">
-        <strong>👤 Characters:</strong>
-        <div class="characters-grid">`;
+        if (eddie.state) {
+            html += `<div class="character-state"><strong>State:</strong> ${eddie.state}</div>`;
+        }
+        if (eddie.transformation) {
+            html += `<div class="character-arc"><strong>Transformation:</strong> ${eddie.transformation}</div>`;
+        }
+        if (eddie.psychologicalState) {
+            html += `<div class="character-cognitive"><strong>Psychological:</strong> ${eddie.psychologicalState}</div>`;
+        }
 
-    for (const [charName, charData] of charEntries) {
-        // Build a compact summary of character state
-        let summary = [];
-        if (charData.state) summary.push(charData.state);
-        if (charData.cognitiveLevel) summary.push(`🧠 ${charData.cognitiveLevel}`);
-
-        const summaryText = summary.join(', ');
-        // Format character name (handle camelCase)
-        const displayName = formatCharacterName(charName);
-        html += `<span class="character-state"><strong>${displayName}:</strong> ${summaryText}</span>`;
+        html += `</div>`;
     }
 
-    html += `</div></div>`;
+    // Build other characters section
+    if (charDev.otherCharacters && charDev.otherCharacters.length > 0) {
+        charDev.otherCharacters.forEach(char => {
+            html += `<div class="character-block">
+                <div class="character-name">${char.name}</div>`;
+
+            if (char.role) {
+                html += `<div class="character-state"><strong>Role:</strong> ${char.role}</div>`;
+            }
+            if (char.relationshipDynamics) {
+                html += `<div class="character-arc"><strong>Relationship:</strong> ${char.relationshipDynamics}</div>`;
+            }
+            if (char.characterArcMoment) {
+                html += `<div class="character-cognitive"><strong>Arc Moment:</strong> ${char.characterArcMoment}</div>`;
+            }
+
+            html += `</div>`;
+        });
+    }
+
+    html += `</div>`;
     return html;
 }
 

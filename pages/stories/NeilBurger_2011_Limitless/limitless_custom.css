@@ -190,25 +190,27 @@
 
 /* Character Development Section */
 .character-block {
-    background: var(--viz-bg-secondary);
+    margin-bottom: 1rem;
+    padding-left: 0.4rem;
     border-left: 3px solid var(--viz-primary);
-    padding: 0.75rem;
-    border-radius: 6px;
-    margin-bottom: 0.75rem;
 }
 
 .character-name {
     font-size: 0.95rem;
     font-weight: 700;
     color: var(--viz-primary);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
     letter-spacing: 0.5px;
+    margin-left: -0.4rem;
+    padding-left: 0.4rem;
 }
 
 .character-state {
     font-size: 0.9rem;
     color: var(--viz-text);
     margin-bottom: 0.25rem;
+    margin-left: -0.4rem;
+    padding-left: 0.4rem;
 }
 
 .character-cognitive {
@@ -216,12 +218,17 @@
     color: var(--enhanced-color);
     font-weight: 600;
     margin-bottom: 0.25rem;
+    margin-left: -0.4rem;
+    padding-left: 0.4rem;
 }
 
 .character-arc {
     font-size: 0.85rem;
     color: var(--viz-text-muted);
     font-style: italic;
+    margin-bottom: 0.25rem;
+    margin-left: -0.4rem;
+    padding-left: 0.4rem;
 }
 
 /* Dialogue Section */
@@ -591,13 +598,13 @@
 /* Info Card Section Styling */
 .info-card-section {
     margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--viz-border);
+    padding: 0.75rem;
+    border: 1px solid var(--viz-border);
+    border-radius: 8px;
+    background: var(--viz-bg-secondary);
 }
 
 .info-card-section:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
     margin-bottom: 0;
 }
 
