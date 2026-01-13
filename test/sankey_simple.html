@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sankey Diagram - Working Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .info-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+
+        .info-box h3 {
+            margin: 0 0 10px 0;
+            color: #667eea;
+            font-size: 1.1em;
+        }
+
+        .info-box p {
+            margin: 0;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        #chart {
+            width: 100%;
+            overflow: visible;
+            margin: 30px 0;
+        }
+
+        #chart svg {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .node rect {
+            fill-opacity: 0.9;
+            shape-rendering: crispEdges;
+            stroke: #fff;
+            stroke-width: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .node rect:hover {
+            fill-opacity: 1;
+            stroke: #333;
+            stroke-width: 3px;
+        }
+
+        .node text {
+            pointer-events: none;
+            font-size: 13px;
+            font-weight: 600;
+            fill: #2c3e50;
+        }
+
+        .link {
+            fill: none;
+            stroke-opacity: 0.35;
+            transition: stroke-opacity 0.3s ease;
+        }
+
+        .link:hover {
+            stroke-opacity: 0.65;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .legend-color {
+            width: 35px;
+            height: 25px;
+            border-radius: 4px;
+            border: 2px solid rgba(0,0,0,0.1);
+        }
+
+        .tooltip {
+            position: absolute;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            border-radius: 6px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-size: 14px;
+            z-index: 1000;
+            max-width: 300px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .tooltip strong {
+            color: #ffd700;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .stat-value {
+            font-size: 2.2em;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+
+        .stat-label {
+            font-size: 0.95em;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2em;
+            color: #667eea;
+        }
+
+        .error {
+            background: #fee;
+            border-left: 4px solid #e74c3c;
+            color: #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💰 Company Budget Flow 2026</h1>
+        <p class="subtitle">Interactive Sankey Diagram - Hover to explore the flow of funds</p>
+
+        <div class="info-box">
+            <h3>📊 About This Visualization</h3>
+            <p>This Sankey diagram illustrates how a company's revenue from different sources flows through various departments and ultimately gets allocated to specific programs. The width of each band is proportional to the amount of money flowing through that path.</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-label">Total Revenue</div>
+                <div class="stat-value">$2.5M</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Departments</div>
+                <div class="stat-value">4</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Programs</div>
+                <div class="stat-value">8</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Allocation Efficiency</div>
+                <div class="stat-value">95%</div>
+            </div>
+        </div>
+
+        <div id="chart"></div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: #3498db;"></div>
+                <span>Revenue Sources</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #2ecc71;"></div>
+                <span>Departments</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #e74c3c;"></div>
+                <span>Programs & Initiatives</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="tooltip" id="tooltip"></div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script>
+        console.log("🚀 Initializing Sankey diagram...");
+
+        // Wait for D3 to load
+        function init() {
+            if (typeof d3 === 'undefined') {
+                console.log("⏳ Waiting for D3...");
+                setTimeout(init, 100);
+                return;
+            }
+
+            console.log("✅ D3 loaded, version:", d3.version);
+
+            // Create Sankey diagram
+            createSankeyDiagram();
+        }
+
+        function createSankeyDiagram() {
+            // Data
+            const data = {
+                nodes: [
+                    // Revenue Sources (0-3)
+                    { name: "Product Sales", category: "revenue" },
+                    { name: "Consulting Services", category: "revenue" },
+                    { name: "Subscriptions", category: "revenue" },
+                    { name: "Partnerships", category: "revenue" },
+
+                    // Departments (4-7)
+                    { name: "Engineering", category: "department" },
+                    { name: "Marketing", category: "department" },
+                    { name: "Operations", category: "department" },
+                    { name: "R&D", category: "department" },
+
+                    // Programs (8-15)
+                    { name: "Core Platform", category: "program" },
+                    { name: "Mobile App", category: "program" },
+                    { name: "Digital Campaigns", category: "program" },
+                    { name: "Brand Development", category: "program" },
+                    { name: "Infrastructure", category: "program" },
+                    { name: "Customer Support", category: "program" },
+                    { name: "AI Research", category: "program" },
+                    { name: "Innovation Lab", category: "program" }
+                ],
+                links: [
+                    // Product Sales flows
+                    { source: 0, target: 4, value: 400 },
+                    { source: 0, target: 5, value: 250 },
+                    { source: 0, target: 6, value: 150 },
+
+                    // Consulting Services flows
+                    { source: 1, target: 4, value: 200 },
+                    { source: 1, target: 7, value: 150 },
+                    { source: 1, target: 6, value: 100 },
+
+                    // Subscriptions flows
+                    { source: 2, target: 4, value: 300 },
+                    { source: 2, target: 5, value: 200 },
+
+                    // Partnerships flows
+                    { source: 3, target: 7, value: 200 },
+                    { source: 3, target: 5, value: 150 },
+                    { source: 3, target: 6, value: 100 },
+
+                    // Engineering flows
+                    { source: 4, target: 8, value: 500 },
+                    { source: 4, target: 9, value: 400 },
+
+                    // Marketing flows
+                    { source: 5, target: 10, value: 350 },
+                    { source: 5, target: 11, value: 250 },
+
+                    // Operations flows
+                    { source: 6, target: 12, value: 200 },
+                    { source: 6, target: 13, value: 150 },
+
+                    // R&D flows
+                    { source: 7, target: 14, value: 200 },
+                    { source: 7, target: 15, value: 150 }
+                ]
+            };
+
+            // Dimensions
+            const margin = { top: 20, right: 180, bottom: 20, left: 180 };
+            const width = 1100 - margin.left - margin.right;
+            const height = 700 - margin.top - margin.bottom;
+
+            // Create SVG
+            const svg = d3.select("#chart")
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", `translate(${margin.left},${margin.top})`);
+
+            console.log("📐 SVG created:", width, "x", height);
+
+            // Color scale
+            const colorScale = d3.scaleOrdinal()
+                .domain(["revenue", "department", "program"])
+                .range(["#3498db", "#2ecc71", "#e74c3c"]);
+
+            // Sankey generator using d3-sankey layout algorithm
+            const sankey = d3Sankey()
+                .nodeWidth(20)
+                .nodePadding(20)
+                .extent([[0, 0], [width, height]]);
+
+            // Process the data
+            const graph = sankey({
+                nodes: data.nodes.map(d => ({ ...d })),
+                links: data.links.map(d => ({ ...d }))
+            });
+
+            console.log("📊 Graph processed:", graph.nodes.length, "nodes,", graph.links.length, "links");
+
+            // Tooltip
+            const tooltip = d3.select("#tooltip");
+            const formatCurrency = d => `$${(d / 1000).toFixed(1)}M`;
+
+            // Link path generator
+            const linkPath = d => {
+                const x0 = d.source.x1;
+                const x1 = d.target.x0;
+                const xi = d3.interpolateNumber(x0, x1);
+                const x2 = xi(0.5);
+                const y0 = d.y0;
+                const y1 = d.y1;
+                return `M${x0},${y0}C${x2},${y0} ${x2},${y1} ${x1},${y1}`;
+            };
+
+            // Draw links
+            svg.append("g")
+                .attr("class", "links")
+                .selectAll("path")
+                .data(graph.links)
+                .join("path")
+                .attr("class", "link")
+                .attr("d", linkPath)
+                .attr("stroke", d => colorScale(d.source.category))
+                .attr("stroke-width", d => Math.max(1, d.width))
+                .on("mouseover", function(event, d) {
+                    d3.select(this).attr("stroke-opacity", 0.65);
+                    tooltip
+                        .style("opacity", 1)
+                        .html(`
+                            <strong>${d.source.name}</strong> → <strong>${d.target.name}</strong><br>
+                            Amount: <strong>${formatCurrency(d.value)}</strong>
+                        `)
+                        .style("left", (event.pageX + 10) + "px")
+                        .style("top", (event.pageY - 10) + "px");
+                })
+                .on("mouseout", function() {
+                    d3.select(this).attr("stroke-opacity", 0.35);
+                    tooltip.style("opacity", 0);
+                });
+
+            console.log("🔗 Links drawn");
+
+            // Draw nodes
+            const node = svg.append("g")
+                .attr("class", "nodes")
+                .selectAll("g")
+                .data(graph.nodes)
+                .join("g");
+
+            node.append("rect")
+                .attr("x", d => d.x0)
+                .attr("y", d => d.y0)
+                .attr("height", d => d.y1 - d.y0)
+                .attr("width", d => d.x1 - d.x0)
+                .attr("fill", d => colorScale(d.category))
+                .on("mouseover", function(event, d) {
+                    const totalIn = d.targetLinks ? d.targetLinks.reduce((sum, l) => sum + l.value, 0) : 0;
+                    const totalOut = d.sourceLinks ? d.sourceLinks.reduce((sum, l) => sum + l.value, 0) : 0;
+
+                    tooltip
+                        .style("opacity", 1)
+                        .html(`
+                            <strong>${d.name}</strong><br>
+                            ${totalIn > 0 ? `Incoming: <strong>${formatCurrency(totalIn)}</strong><br>` : ''}
+                            ${totalOut > 0 ? `Outgoing: <strong>${formatCurrency(totalOut)}</strong>` : ''}
+                            ${totalIn === 0 && totalOut > 0 ? `Total: <strong>${formatCurrency(totalOut)}</strong>` : ''}
+                            ${totalOut === 0 && totalIn > 0 ? `Total: <strong>${formatCurrency(totalIn)}</strong>` : ''}
+                        `)
+                        .style("left", (event.pageX + 10) + "px")
+                        .style("top", (event.pageY - 10) + "px");
+                })
+                .on("mouseout", function() {
+                    tooltip.style("opacity", 0);
+                });
+
+            console.log("📦 Nodes drawn");
+
+            // Add labels
+            node.append("text")
+                .attr("x", d => d.x0 < width / 2 ? d.x1 + 8 : d.x0 - 8)
+                .attr("y", d => (d.y1 + d.y0) / 2)
+                .attr("dy", "0.35em")
+                .attr("text-anchor", d => d.x0 < width / 2 ? "start" : "end")
+                .text(d => d.name);
+
+            // Add value labels
+            node.append("text")
+                .attr("x", d => d.x0 < width / 2 ? d.x1 + 8 : d.x0 - 8)
+                .attr("y", d => (d.y1 + d.y0) / 2 + 18)
+                .attr("dy", "0.35em")
+                .attr("text-anchor", d => d.x0 < width / 2 ? "start" : "end")
+                .attr("fill", "#7f8c8d")
+                .style("font-size", "11px")
+                .text(d => {
+                    const total = d.sourceLinks && d.sourceLinks.length > 0
+                        ? d.sourceLinks.reduce((sum, l) => sum + l.value, 0)
+                        : (d.targetLinks ? d.targetLinks.reduce((sum, l) => sum + l.value, 0) : 0);
+                    return formatCurrency(total);
+                });
+
+            console.log("✅ Sankey diagram complete!");
+        }
+
+        // Simple Sankey layout implementation
+        function d3Sankey() {
+            let nodeWidth = 24;
+            let nodePadding = 8;
+            let extent = [[0, 0], [1, 1]];
+
+            function sankey(graph) {
+                computeNodeLinks(graph);
+                computeNodeValues(graph);
+                computeNodeDepths(graph);
+                computeNodeBreadths(graph);
+                computeLinkBreadths(graph);
+                return graph;
+            }
+
+            function computeNodeLinks(graph) {
+                graph.nodes.forEach((node, i) => {
+                    node.index = i;
+                    node.sourceLinks = [];
+                    node.targetLinks = [];
+                });
+                graph.links.forEach(link => {
+                    let source = link.source;
+                    let target = link.target;
+                    if (typeof source === "number") source = link.source = graph.nodes[link.source];
+                    if (typeof target === "number") target = link.target = graph.nodes[link.target];
+                    source.sourceLinks.push(link);
+                    target.targetLinks.push(link);
+                });
+            }
+
+            function computeNodeValues(graph) {
+                graph.nodes.forEach(node => {
+                    node.value = Math.max(
+                        d3.sum(node.sourceLinks, d => d.value),
+                        d3.sum(node.targetLinks, d => d.value)
+                    );
+                });
+            }
+
+            function computeNodeDepths(graph) {
+                const nodes = graph.nodes;
+                let current = nodes.filter(n => n.targetLinks.length === 0);
+                let next = [];
+                let x = 0;
+
+                while (current.length) {
+                    current.forEach(node => {
+                        node.depth = x;
+                        node.sourceLinks.forEach(link => {
+                            if (next.indexOf(link.target) < 0) {
+                                next.push(link.target);
+                            }
+                        });
+                    });
+                    current = next;
+                    next = [];
+                    ++x;
+                }
+
+                const maxDepth = x - 1;
+                const kx = (extent[1][0] - extent[0][0] - nodeWidth) / maxDepth;
+
+                nodes.forEach(node => {
+                    node.x0 = extent[0][0] + node.depth * kx;
+                    node.x1 = node.x0 + nodeWidth;
+                });
+            }
+
+            function computeNodeBreadths(graph) {
+                const nodes = graph.nodes;
+                const n = d3.max(nodes, d => d.depth) + 1;
+                const columns = d3.range(n).map(() => []);
+
+                nodes.forEach(node => {
+                    columns[node.depth].push(node);
+                });
+
+                columns.forEach(column => {
+                    column.sort((a, b) => b.value - a.value);
+                });
+
+                const py = d3.min(columns, c => (extent[1][1] - extent[0][1] - (c.length - 1) * nodePadding) / d3.sum(c, d => d.value));
+
+                columns.forEach(column => {
+                    let y = extent[0][1];
+                    column.forEach(node => {
+                        node.y0 = y;
+                        node.y1 = y + node.value * py;
+                        y = node.y1 + nodePadding;
+                    });
+                });
+            }
+
+            function computeLinkBreadths(graph) {
+                graph.nodes.forEach(node => {
+                    node.sourceLinks.sort((a, b) => a.target.y0 - b.target.y0);
+                    node.targetLinks.sort((a, b) => a.source.y0 - b.source.y0);
+                });
+
+                graph.nodes.forEach(node => {
+                    let y0 = node.y0;
+                    let y1 = node.y0;
+
+                    node.sourceLinks.forEach(link => {
+                        link.y0 = y0 + link.width / 2;
+                        y0 += link.width;
+                    });
+
+                    node.targetLinks.forEach(link => {
+                        link.y1 = y1 + link.width / 2;
+                        y1 += link.width;
+                    });
+                });
+
+                graph.links.forEach(link => {
+                    link.width = link.value * (extent[1][1] - extent[0][1]) / d3.sum(graph.nodes, d => d.value);
+                });
+
+                // Second pass after widths are set
+                graph.nodes.forEach(node => {
+                    let y0 = node.y0;
+                    let y1 = node.y0;
+
+                    node.sourceLinks.forEach(link => {
+                        link.y0 = y0 + link.width / 2;
+                        y0 += link.width;
+                    });
+
+                    node.targetLinks.forEach(link => {
+                        link.y1 = y1 + link.width / 2;
+                        y1 += link.width;
+                    });
+                });
+            }
+
+            sankey.nodeWidth = function(_) {
+                return arguments.length ? (nodeWidth = +_, sankey) : nodeWidth;
+            };
+
+            sankey.nodePadding = function(_) {
+                return arguments.length ? (nodePadding = +_, sankey) : nodePadding;
+            };
+
+            sankey.extent = function(_) {
+                return arguments.length ? (extent = _, sankey) : extent;
+            };
+
+            return sankey;
+        }
+
+        // Start initialization
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+</body>
+</html>
+

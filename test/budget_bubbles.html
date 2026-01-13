@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>US Federal Budget 2013 - Interactive Bubble Visualization</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: #fff;
+            padding: 30px 40px;
+            border-bottom: 3px solid #e0e0e0;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px 40px;
+            background: #fafafa;
+            border-bottom: 1px solid #e0e0e0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: 700;
+            color: #333;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.85em;
+            color: #999;
+            margin-top: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .controls {
+            padding: 25px 40px;
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            gap: 0;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 0;
+            margin-right: auto;
+        }
+
+        .btn {
+            padding: 10px 18px;
+            border: 1px solid #ccc;
+            border-radius: 0;
+            font-size: 14px;
+            font-weight: normal;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            background: #f9f9f9;
+            color: #999;
+            border-right: none;
+        }
+
+        .btn:first-of-type {
+            border-radius: 4px 0 0 4px;
+        }
+
+        .btn:last-of-type {
+            border-radius: 0 4px 4px 0;
+            border-right: 1px solid #ccc;
+        }
+
+        .btn:hover {
+            background: #f0f0f0;
+            color: #666;
+        }
+
+        .btn.active {
+            background: #e9e9e9;
+            color: #000;
+            border-color: #aaa;
+            box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn.active + .btn {
+            border-left-color: #aaa;
+        }
+
+        .search-input {
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 250px;
+        }
+
+        #chart {
+            width: 100%;
+            height: 700px;
+            position: relative;
+            background: white;
+            overflow: hidden;
+        }
+
+        .change-label {
+            position: absolute;
+            font-size: 11px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .change-label.visible {
+            opacity: 1;
+        }
+
+        .change-label-line {
+            position: absolute;
+            height: 1px;
+            background: rgba(0, 0, 0, 0.15);
+            border-top: 1px dashed rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .change-label-line.visible {
+            opacity: 1;
+        }
+
+        .bubble {
+            cursor: pointer;
+            transition: all 0.2s ease;
+            stroke-dasharray: 2 2;
+            opacity: 0.85;
+        }
+
+        .bubble:hover {
+            stroke: #333;
+            stroke-width: 2px;
+            stroke-dasharray: none;
+            opacity: 1;
+        }
+
+        .bubble.dimmed {
+            opacity: 0.2;
+        }
+
+        .bubble-label {
+            pointer-events: none;
+            font-size: 11px;
+            font-weight: 500;
+            fill: #666;
+            text-anchor: middle;
+            opacity: 0.85;
+        }
+
+        .tooltip {
+            position: absolute;
+            padding: 0;
+            background: white;
+            border-radius: 4px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.15s ease;
+            font-size: 13px;
+            z-index: 1000;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+            min-width: 200px;
+        }
+
+        .tooltip-department {
+            text-transform: uppercase;
+            font-size: 10px;
+            color: #666;
+            text-align: center;
+            padding: 8px 12px 4px;
+        }
+
+        .tooltip-name {
+            font-size: 13px;
+            text-align: center;
+            padding: 0 12px 4px;
+            color: #333;
+        }
+
+        .tooltip-type {
+            font-size: 11px;
+            font-style: italic;
+            color: #666;
+            text-align: center;
+            padding: 0 12px 6px;
+        }
+
+        .tooltip-rule {
+            height: 1px;
+            background: #ddd;
+            margin: 2px 12px 6px;
+        }
+
+        .tooltip-values {
+            padding: 6px 12px 10px;
+            text-align: center;
+        }
+
+        .tooltip-value {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .tooltip-change {
+            font-size: 16px;
+            font-weight: bold;
+            color: #666;
+            margin-left: 8px;
+        }
+
+        .tooltip-change.positive {
+            color: #090;
+        }
+
+        .tooltip-change.negative {
+            color: #900;
+        }
+
+        .tooltip-label {
+            font-size: 10px;
+            color: #999;
+            margin-top: 2px;
+        }
+
+        .legend-container {
+            display: flex;
+            gap: 40px;
+            padding: 25px 40px;
+            background: #fafafa;
+            border-top: 1px solid #ddd;
+            flex-wrap: wrap;
+        }
+
+        .size-key {
+            min-width: 200px;
+        }
+
+        .size-key h3 {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .size-key-circles {
+            position: relative;
+            height: 100px;
+            width: 200px;
+        }
+
+        .size-key-circle {
+            stroke: #999;
+            stroke-width: 1;
+            stroke-dasharray: 2 2;
+            fill: none;
+        }
+
+        .size-key-label {
+            position: absolute;
+            border-top: 1px solid #ddd;
+            width: 40px;
+            font-size: 10px;
+            color: #999;
+        }
+
+        .size-key-label span {
+            position: absolute;
+            left: 45px;
+            top: -8px;
+            white-space: nowrap;
+        }
+
+        .legend {
+            flex: 1;
+            min-width: 400px;
+        }
+
+        .legend h3 {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .legend-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: normal;
+            padding: 5px 10px;
+            background: white;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            border: 1px solid #ddd;
+        }
+
+        .legend-item:hover {
+            background: #f0f0f0;
+            border-color: #bbb;
+        }
+
+        .legend-item.active {
+            border-color: #666;
+            background: #e9e9e9;
+            box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.15);
+        }
+
+        .legend-color {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8em; }
+            #chart { height: 500px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Four Ways to Slice Obama's 2013 Budget Proposal</h1>
+            <p class="subtitle">Explore $4.5 trillion in federal spending • 395 programs from President Obama's budget proposal</p>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="stat-value" id="totalBudget">$4.5T</span>
+                <span class="stat-label">Total Budget</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="programCount">0</span>
+                <span class="stat-label">Programs</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="visibleCount">0</span>
+                <span class="stat-label">Visible</span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="button-group">
+                <button class="btn active" data-view="all">All Together</button>
+                <button class="btn" data-view="department">By Department</button>
+                <button class="btn" data-view="type">By Type</button>
+                <button class="btn" data-view="change">By Change</button>
+            </div>
+            <input type="text" class="search-input" id="searchInput" placeholder="Search programs...">
+        </div>
+
+        <div id="chart">
+            <div class="change-label" id="increasesLabel" style="top: 160px; right: 80px;">Increases</div>
+            <div class="change-label-line" id="increasesLine" style="top: 175px; right: 180px; width: 80px;"></div>
+            <div class="change-label" id="decreasesLabel" style="bottom: 190px; right: 80px;">Decreases</div>
+            <div class="change-label-line" id="decreasesLine" style="bottom: 205px; right: 180px; width: 80px;"></div>
+        </div>
+
+        <div class="legend-container">
+            <div class="size-key">
+                <h3>Size</h3>
+                <div class="size-key-circles" id="sizeKey"></div>
+            </div>
+            <div class="legend">
+                <h3>Departments (click to filter)</h3>
+                <div class="legend-items" id="legend"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tooltip" id="tooltip"></div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script>
+        // Complete NYTimes budget data (amounts in thousands)
+        const rawData = [{"name":"Benefits Programs","dept":"Veterans Affairs","type":"Mandatory","amt":75650000,"prev":66161000,"change":14.342286241138998},{"name":"Veterans Health Administration","dept":"Veterans Affairs","type":"Discretionary","amt":56270000,"prev":53981000,"change":4.24038087475223},{"name":"Departmental Administration","dept":"Veterans Affairs","type":"Mandatory","amt":1000000,"prev":0,"change":0},{"name":"Departmental Administration","dept":"Veterans Affairs","type":"Discretionary","amt":7549000,"prev":7106000,"change":6.234168308471711},{"name":"Benefits Programs","dept":"Veterans Affairs","type":"Discretionary","amt":159000,"prev":156000,"change":1.92307692307692},{"name":"Veterans Health Administration","dept":"Veterans Affairs","type":"Mandatory","amt":30000,"prev":29000,"change":3.44827586206897},{"name":"Interest on the Public Debt","dept":"Treasury","type":"Net interest","amt":472040000,"prev":450335000,"change":4.81974530072057},{"name":"Alcohol and Tobacco Tax and Trade Bureau","dept":"Treasury","type":"Discretionary","amt":97000,"prev":100000,"change":-3.0},{"name":"Financial Crimes Enforcement Network","dept":"Treasury","type":"Discretionary","amt":102000,"prev":111000,"change":-8.10810810810811},{"name":"Fiscal Service","dept":"Treasury","type":"Net interest","amt":15462000,"prev":18903000,"change":-18.2034597682907},{"name":"Internal Revenue Service","dept":"Treasury","type":"Net interest","amt":3208000,"prev":3068000,"change":4.5632333767927},{"name":"Fiscal Service","dept":"Treasury","type":"Discretionary","amt":360000,"prev":384000,"change":-6.25},{"name":"Internal Revenue Service","dept":"Treasury","type":"Mandatory","amt":92107000,"prev":87931000,"change":4.74917833301111},{"name":"Alcohol and Tobacco Tax and Trade Bureau","dept":"Treasury","type":"Mandatory","amt":466000,"prev":487000,"change":-4.31211498973306},{"name":"Departmental Offices","dept":"Treasury","type":"Mandatory","amt":4000000,"prev":32904000,"change":-87.843423292001},{"name":"Fiscal Service","dept":"Treasury","type":"Mandatory","amt":1999000,"prev":7814000,"change":-74.4177117993345},{"name":"Internal Revenue Service","dept":"Treasury","type":"Discretionary","amt":12761000,"prev":11816000,"change":7.99763033175355},{"name":"Saint Lawrence Seaway Development Corporation","dept":"Transportation","type":"Discretionary","amt":33000,"prev":32000,"change":3.125},{"name":"Maritime Administration","dept":"Transportation","type":"Mandatory","amt":151000,"prev":219000,"change":-31.0502283105023},{"name":"Office of the Secretary","dept":"Transportation","type":"Discretionary","amt":284000,"prev":295000,"change":-3.7288135593220297},{"name":"Maritime Administration","dept":"Transportation","type":"Discretionary","amt":344000,"prev":314000,"change":9.55414012738854},{"name":"National Highway Traffic Safety Administration","dept":"Transportation","type":"Mandatory","amt":981000,"prev":800000,"change":22.625},{"name":"Federal Railroad Administration","dept":"Transportation","type":"Mandatory","amt":2546000,"prev":1435000,"change":77.42160278745641},{"name":"Federal Aviation Administration","dept":"Transportation","type":"Mandatory","amt":2424000,"prev":3515000,"change":-31.0384068278805},{"name":"Surface Transportation Board","dept":"Transportation","type":"Discretionary","amt":30000,"prev":28000,"change":7.14285714285714},{"name":"Federal Aviation Administration","dept":"Transportation","type":"Discretionary","amt":12722000,"prev":12553000,"change":1.34629172309408},{"name":"Office of Inspector General","dept":"Transportation","type":"Discretionary","amt":84000,"prev":80000,"change":5.0},{"name":"Pipeline and Hazardous Materials Safety Administration","dept":"Transportation","type":"Mandatory","amt":28000,"prev":28000,"change":0.0},{"name":"Federal Motor Carrier Safety Administration","dept":"Transportation","type":"Mandatory","amt":580000,"prev":554000,"change":4.69314079422383},{"name":"Pipeline and Hazardous Materials Safety Administration","dept":"Transportation","type":"Discretionary","amt":248000,"prev":172000,"change":44.1860465116279},{"name":"Federal Highway Administration","dept":"Transportation","type":"Mandatory","amt":81090000,"prev":39947000,"change":102.993967006283},{"name":"Federal Transit Administration","dept":"Transportation","type":"Discretionary","amt":31000,"prev":150000,"change":-79.3333333333333},{"name":"Federal Railroad Administration","dept":"Transportation","type":"Discretionary","amt":146000,"prev":214000,"change":-31.775700934579397},{"name":"Federal Transit Administration","dept":"Transportation","type":"Mandatory","amt":10701000,"prev":10396000,"change":2.93382070026933},{"name":"Office of the Secretary","dept":"Transportation","type":"Mandatory","amt":600000,"prev":550000,"change":9.09090909090909},{"name":"Administration of Foreign Affairs","dept":"State","type":"Discretionary","amt":13946000,"prev":13356000,"change":4.417490266546871},{"name":"International Organizations and Conferences","dept":"State","type":"Discretionary","amt":3668000,"prev":3379000,"change":8.55282627996449},{"name":"Other","dept":"State","type":"Discretionary","amt":12993000,"prev":12424000,"change":4.5798454603992305},{"name":"Other","dept":"State","type":"Mandatory","amt":1000,"prev":1000,"change":0.0},{"name":"Administration of Foreign Affairs","dept":"State","type":"Mandatory","amt":1232000,"prev":1204000,"change":2.32558139534884},{"name":"International Commissions","dept":"State","type":"Discretionary","amt":122000,"prev":124000,"change":-1.6129032258064497},{"name":"Social Security Administration","dept":"Social Security Administration","type":"Discretionary","amt":9789000,"prev":9453000,"change":3.55442716597905},{"name":"Social Security Administration","dept":"Social Security Administration","type":"Mandatory","amt":875526000,"prev":820431000,"change":6.71537277357876},{"name":"Small Business Administration","dept":"Small Business Administration","type":"Discretionary","amt":1116000,"prev":917000,"change":21.701199563795},{"name":"Securities Investor Protection Corporation","dept":"Securities Investor Protection Corporation","type":"Mandatory","amt":299000,"prev":419000,"change":-28.6396181384248},{"name":"Railroad Retirement Board","dept":"Railroad Retirement Board","type":"Mandatory","amt":7684000,"prev":7197000,"change":6.7667083507016805},{"name":"Railroad Retirement Board","dept":"Railroad Retirement Board","type":"Discretionary","amt":163000,"prev":162000,"change":0.617283950617284},{"name":"Public Company Accounting Oversight Board","dept":"Public Company Accounting Oversight Board","type":"Discretionary","amt":1000,"prev":1000,"change":0.0},{"name":"Public Company Accounting Oversight Board","dept":"Public Company Accounting Oversight Board","type":"Mandatory","amt":236000,"prev":228000,"change":3.50877192982456},{"name":"Postal Service","dept":"Postal Service","type":"Discretionary","amt":333000,"prev":330000,"change":0.9090909090909091},{"name":"Armed Forces Retirement Home","dept":"Other Defense Civil Programs","type":"Discretionary","amt":68000,"prev":83000,"change":-18.0722891566265},{"name":"Cemeterial Expenses","dept":"Other Defense Civil Programs","type":"Discretionary","amt":46000,"prev":46000,"change":0.0},{"name":"Educational Benefits","dept":"Other Defense Civil Programs","type":"Mandatory","amt":164000,"prev":180000,"change":-8.888888888888891},{"name":"American Battle Monuments Commission","dept":"Other Defense Civil Programs","type":"Discretionary","amt":73000,"prev":77000,"change":-5.1948051948052},{"name":"Selective Service System","dept":"Other Defense Civil Programs","type":"Discretionary","amt":24000,"prev":24000,"change":0.0},{"name":"Retiree Health Care","dept":"Other Defense Civil Programs","type":"Mandatory","amt":9727000,"prev":9471000,"change":2.70298806884173},{"name":"Military Retirement","dept":"Other Defense Civil Programs","type":"Mandatory","amt":54759000,"prev":52685000,"change":3.93660434658821},{"name":"Smithsonian Institution","dept":"Other","type":"Discretionary","amt":1047000,"prev":988000,"change":5.97165991902834},{"name":"Federal Housing Finance Agency","dept":"Other","type":"Mandatory","amt":240000,"prev":224000,"change":7.14285714285714},{"name":"Harry S Truman Scholarship Foundation","dept":"Other","type":"Mandatory","amt":3000,"prev":2000,"change":50.0},{"name":"Federal Financial Institutions Examination Council Appraisal Subcommittee","dept":"Other","type":"Mandatory","amt":2000,"prev":2000,"change":0.0},{"name":"James Madison Memorial Fellowship Foundation","dept":"Other","type":"Mandatory","amt":2000,"prev":2000,"change":0.0},{"name":"Election Assistance Commission","dept":"Other","type":"Discretionary","amt":9000,"prev":9000,"change":0.0},{"name":"Electric Reliability Organization","dept":"Other","type":"Mandatory","amt":100000,"prev":100000,"change":0.0},{"name":"Japan-United States Friendship Commission","dept":"Other","type":"Mandatory","amt":3000,"prev":3000,"change":0.0},{"name":"Equal Employment Opportunity Commission","dept":"Other","type":"Discretionary","amt":374000,"prev":360000,"change":3.88888888888889},{"name":"Patient-Centered Outcomes Research Trust Fund","dept":"Other","type":"Mandatory","amt":338000,"prev":150000,"change":125.333333333333},{"name":"Denali Commission","dept":"Other","type":"Discretionary","amt":14000,"prev":25000,"change":-44.0},{"name":"Delta Regional Authority","dept":"Other","type":"Discretionary","amt":11000,"prev":12000,"change":-8.33333333333333},{"name":"Corporation for Travel Promotion","dept":"Other","type":"Mandatory","amt":100000,"prev":100000,"change":0.0},{"name":"Defense Nuclear Facilities Safety Board","dept":"Other","type":"Discretionary","amt":29000,"prev":29000,"change":0.0},{"name":"Central Intelligence Agency","dept":"Other","type":"Mandatory","amt":514000,"prev":514000,"change":0.0},{"name":"Federal Drug Control Programs","dept":"Other","type":"Discretionary","amt":319000,"prev":334000,"change":-4.49101796407186},{"name":"Federal Election Commission","dept":"Other","type":"Discretionary","amt":66000,"prev":66000,"change":0.0},{"name":"Bureau of Consumer Financial Protection","dept":"Other","type":"Mandatory","amt":448000,"prev":340000,"change":31.7647058823529},{"name":"Court Services and Offender Supervision Agency for the District of Columbia","dept":"Other","type":"Discretionary","amt":255000,"prev":250000,"change":2.0},{"name":"Real Property Activities","dept":"Other","type":"Mandatory","amt":9000,"prev":9000,"change":0.0},{"name":"Federal Labor Relations Authority","dept":"Other","type":"Discretionary","amt":25000,"prev":25000,"change":0.0},{"name":"Barry Goldwater Scholarship and Excellence in Education Foundation","dept":"Other","type":"Mandatory","amt":5000,"prev":4000,"change":25.0},{"name":"Federal Maritime Commission","dept":"Other","type":"Discretionary","amt":26000,"prev":24000,"change":8.33333333333333},{"name":"Federal Mediation and Conciliation Service","dept":"Other","type":"Discretionary","amt":47000,"prev":46000,"change":2.1739130434782603},{"name":"Federal Mine Safety and Health Review Commission","dept":"Other","type":"Discretionary","amt":16000,"prev":18000,"change":-11.1111111111111},{"name":"Corporation for Public Broadcasting","dept":"Other","type":"Discretionary","amt":445000,"prev":444000,"change":0.225225225225225},{"name":"Corporation for National and Community Service","dept":"Other","type":"Discretionary","amt":1062000,"prev":1049000,"change":1.2392755004766398},{"name":"Consumer Product Safety Commission","dept":"Other","type":"Discretionary","amt":122000,"prev":115000,"change":6.08695652173913},{"name":"Federal Trade Commission","dept":"Other","type":"Discretionary","amt":164000,"prev":183000,"change":-10.3825136612022},{"name":"Commodity Futures Trading Commission","dept":"Other","type":"Discretionary","amt":308000,"prev":205000,"change":50.2439024390244},{"name":"Committee for Purchase from People who are Blind or Severely Disabled, activities","dept":"Other","type":"Discretionary","amt":5000,"prev":5000,"change":0.0},{"name":"Allowances","dept":"Other","type":"Mandatory","amt":5488000,"prev":500000,"change":997.6000000000001},{"name":"Commission on Civil Rights","dept":"Other","type":"Discretionary","amt":9000,"prev":9000,"change":0.0},{"name":"Affordable Housing Program","dept":"Other","type":"Mandatory","amt":198000,"prev":198000,"change":0.0},{"name":"Commission of Fine Arts","dept":"Other","type":"Discretionary","amt":2000,"prev":4000,"change":-50.0},{"name":"Civilian Property Realignment Board","dept":"Other","type":"Discretionary","amt":57000,"prev":0,"change":0},{"name":"General Activities","dept":"Other","type":"Discretionary","amt":272000,"prev":234000,"change":16.2393162393162},{"name":"United States Interagency Council on Homelessness","dept":"Other","type":"Discretionary","amt":4000,"prev":3000,"change":33.3333333333333},{"name":"United States Institute of Peace","dept":"Other","type":"Discretionary","amt":37000,"prev":39000,"change":-5.12820512820513},{"name":"United States Holocaust Memorial Museum","dept":"Other","type":"Discretionary","amt":52000,"prev":51000,"change":1.9607843137254901},{"name":"United States Court of Appeals for Veterans Claims","dept":"Other","type":"Discretionary","amt":32000,"prev":31000,"change":3.2258064516128995},{"name":"Chemical Safety and Hazard Investigation Board","dept":"Other","type":"Discretionary","amt":11000,"prev":11000,"change":0.0},{"name":"State Justice Institute","dept":"Other","type":"Discretionary","amt":5000,"prev":5000,"change":0.0},{"name":"Standard Setting Body","dept":"Other","type":"Mandatory","amt":40000,"prev":39000,"change":2.56410256410256},{"name":"General Activities","dept":"Other","type":"Mandatory","amt":13000,"prev":12000,"change":8.33333333333333},{"name":"Supply and Technology Activities","dept":"Other","type":"Mandatory","amt":13000,"prev":13000,"change":0.0},{"name":"Institute of American Indian and Alaska Native Culture and Arts Development","dept":"Other","type":"Discretionary","amt":9000,"prev":9000,"change":0.0},{"name":"Tennessee Valley Authority","dept":"Other","type":"Mandatory","amt":930000,"prev":904000,"change":2.87610619469027},{"name":"Recovery Act Accountability and Transparency Board","dept":"Other","type":"Discretionary","amt":32000,"prev":28000,"change":14.285714285714299},{"name":"Intelligence Community Management Account","dept":"Other","type":"Discretionary","amt":540000,"prev":548000,"change":-1.45985401459854},{"name":"United Mine Workers of America Benefit Funds","dept":"Other","type":"Mandatory","amt":32000,"prev":35000,"change":-8.57142857142857},{"name":"United States Court of Appeals for Veterans Claims","dept":"Other","type":"Mandatory","amt":4000,"prev":2000,"change":100.0},{"name":"Privacy and Civil Liberties Oversight Board","dept":"Other","type":"Discretionary","amt":1000,"prev":0,"change":0},{"name":"International Trade Commission","dept":"Other","type":"Discretionary","amt":83000,"prev":80000,"change":3.75},{"name":"Broadcasting Board of Governors","dept":"Other","type":"Discretionary","amt":720000,"prev":751000,"change":-4.12782956058589},{"name":"Architectural and Transportation Barriers Compliance Board","dept":"Other","type":"Discretionary","amt":7000,"prev":7000,"change":0.0},{"name":"Legal Services Corporation","dept":"Other","type":"Discretionary","amt":402000,"prev":348000,"change":15.5172413793103},{"name":"Other Commissions and Boards","dept":"Other","type":"Discretionary","amt":1000,"prev":1000,"change":0.0},{"name":"Advisory Council on Historic Preservation","dept":"Other","type":"Discretionary","amt":6000,"prev":6000,"change":0.0},{"name":"Marine Mammal Commission","dept":"Other","type":"Discretionary","amt":3000,"prev":3000,"change":0.0},{"name":"Administrative Conference of the United States","dept":"Other","type":"Discretionary","amt":3000,"prev":3000,"change":0.0},{"name":"Merit Systems Protection Board","dept":"Other","type":"Discretionary","amt":39000,"prev":40000,"change":-2.5},{"name":"Office of the Federal Coordinator for Alaska Natural Gas Transportation Projects","dept":"Other","type":"Discretionary","amt":3000,"prev":1000,"change":200.0},{"name":"Office of Special Counsel","dept":"Other","type":"Discretionary","amt":19000,"prev":19000,"change":0.0},{"name":"Office of Navajo and Hopi Indian Relocation","dept":"Other","type":"Discretionary","amt":8000,"prev":8000,"change":0.0},{"name":"Office of Government Ethics","dept":"Other","type":"Discretionary","amt":13000,"prev":14000,"change":-7.14285714285714},{"name":"Morris K. Udall and Stewart L. Udall Foundation","dept":"Other","type":"Discretionary","amt":6000,"prev":6000,"change":0.0},{"name":"Occupational Safety and Health Review Commission","dept":"Other","type":"Discretionary","amt":12000,"prev":12000,"change":0.0},{"name":"Nuclear Waste Technical Review Board","dept":"Other","type":"Discretionary","amt":3000,"prev":3000,"change":0.0},{"name":"Northern Border Regional Commission","dept":"Other","type":"Discretionary","amt":1000,"prev":1000,"change":0.0},{"name":"National Labor Relations Board","dept":"Other","type":"Discretionary","amt":293000,"prev":278000,"change":5.39568345323741},{"name":"National Transportation Safety Board","dept":"Other","type":"Discretionary","amt":102000,"prev":102000,"change":0.0},{"name":"National Capital Planning Commission","dept":"Other","type":"Discretionary","amt":8000,"prev":8000,"change":0.0},{"name":"National Council on Disability","dept":"Other","type":"Discretionary","amt":3000,"prev":3000,"change":0.0},{"name":"National Credit Union Administration","dept":"Other","type":"Discretionary","amt":1000,"prev":1000,"change":0.0},{"name":"National Endowment for the Arts","dept":"Other","type":"Discretionary","amt":154000,"prev":146000,"change":5.47945205479452},{"name":"National Endowment for the Humanities","dept":"Other","type":"Discretionary","amt":154000,"prev":146000,"change":5.47945205479452},{"name":"National Railroad Passenger Corporation Office of Inspector General","dept":"Other","type":"Discretionary","amt":22000,"prev":21000,"change":4.76190476190476},{"name":"National Mediation Board","dept":"Other","type":"Discretionary","amt":14000,"prev":13000,"change":7.69230769230769},{"name":"Neighborhood Reinvestment Corporation","dept":"Other","type":"Discretionary","amt":213000,"prev":215000,"change":-0.9302325581395351},{"name":"Office of Personnel Management","dept":"Office of Personnel Management","type":"Discretionary","amt":233000,"prev":237000,"change":-1.68776371308017},{"name":"Office of Personnel Management","dept":"Office of Personnel Management","type":"Mandatory","amt":96397000,"prev":92297000,"change":4.442181219324571},{"name":"Nuclear Regulatory Commission","dept":"Nuclear Regulatory Commission","type":"Discretionary","amt":128000,"prev":128000,"change":0.0},{"name":"National Science Foundation","dept":"National Science Foundation","type":"Discretionary","amt":7372000,"prev":7032000,"change":4.83503981797497},{"name":"National Science Foundation","dept":"National Science Foundation","type":"Mandatory","amt":98000,"prev":98000,"change":0.0},{"name":"National Archives and Records Administration","dept":"National Archives and Records Administration","type":"Mandatory","amt":1000,"prev":1000,"change":0.0},{"name":"National Archives and Records Administration","dept":"National Archives and Records Administration","type":"Discretionary","amt":370000,"prev":376000,"change":-1.5957446808510598},{"name":"National Aeronautics and Space Administration","dept":"National Aeronautics and Space Administration","type":"Discretionary","amt":17712000,"prev":17770000,"change":-0.326392796848621},{"name":"Senate","dept":"Legislative Branch","type":"Mandatory","amt":30000,"prev":30000,"change":0.0},{"name":"Architect of the Capitol","dept":"Legislative Branch","type":"Discretionary","amt":658000,"prev":555000,"change":18.558558558558598},{"name":"Botanic Garden","dept":"Legislative Branch","type":"Discretionary","amt":12000,"prev":12000,"change":0.0},{"name":"Capitol Police","dept":"Legislative Branch","type":"Discretionary","amt":374000,"prev":340000,"change":10.0},{"name":"Joint Items","dept":"Legislative Branch","type":"Discretionary","amt":18000,"prev":19000,"change":-5.26315789473684},{"name":"Government Printing Office","dept":"Legislative Branch","type":"Discretionary","amt":127000,"prev":127000,"change":0.0},{"name":"Library of Congress","dept":"Legislative Branch","type":"Discretionary","amt":604000,"prev":588000,"change":2.72108843537415},{"name":"Government Accountability Office","dept":"Legislative Branch","type":"Discretionary","amt":526000,"prev":511000,"change":2.93542074363992},{"name":"United States Tax Court","dept":"Legislative Branch","type":"Discretionary","amt":53000,"prev":52000,"change":1.92307692307692},{"name":"Office of Compliance","dept":"Legislative Branch","type":"Discretionary","amt":4000,"prev":4000,"change":0.0},{"name":"House of Representatives","dept":"Legislative Branch","type":"Discretionary","amt":1226000,"prev":1226000,"change":0.0},{"name":"Library of Congress","dept":"Legislative Branch","type":"Mandatory","amt":11000,"prev":10000,"change":10.0},{"name":"Legislative Branch Boards and Commissions","dept":"Legislative Branch","type":"Mandatory","amt":1000,"prev":1000,"change":0.0},{"name":"Senate","dept":"Legislative Branch","type":"Discretionary","amt":910000,"prev":868000,"change":4.83870967741935},{"name":"House of Representatives","dept":"Legislative Branch","type":"Mandatory","amt":104000,"prev":102000,"change":1.9607843137254901},{"name":"Congressional Budget Office","dept":"Legislative Branch","type":"Discretionary","amt":45000,"prev":44000,"change":2.27272727272727},{"name":"United States Tax Court","dept":"Legislative Branch","type":"Mandatory","amt":1000,"prev":1000,"change":0.0},{"name":"Legislative Branch Boards and Commissions","dept":"Legislative Branch","type":"Discretionary","amt":96000,"prev":60000,"change":60.0},{"name":"Mine Safety and Health Administration","dept":"Labor","type":"Discretionary","amt":372000,"prev":372000,"change":0.0},{"name":"Bureau of Labor Statistics","dept":"Labor","type":"Discretionary","amt":551000,"prev":542000,"change":1.66051660516605},{"name":"Office of Labor Management Standards","dept":"Labor","type":"Discretionary","amt":42000,"prev":41000,"change":2.4390243902439},{"name":"Employee Benefits Security Administration","dept":"Labor","type":"Discretionary","amt":183000,"prev":183000,"change":0.0},{"name":"Departmental Management","dept":"Labor","type":"Discretionary","amt":517000,"prev":537000,"change":-3.7243947858473},{"name":"Occupational Safety and Health Administration","dept":"Labor","type":"Discretionary","amt":565000,"prev":565000,"change":0.0},{"name":"Employment and Training Administration","dept":"Labor","type":"Mandatory","amt":95123000,"prev":171826000,"change":-44.639926437209695},{"name":"Wage and Hour Division","dept":"Labor","type":"Mandatory","amt":35000,"prev":35000,"change":0.0},{"name":"Office of Federal Contract Compliance Programs","dept":"Labor","type":"Discretionary","amt":106000,"prev":105000,"change":0.952380952380952},{"name":"Labor","dept":"Labor","type":"Net interest","amt":4000,"prev":-25000,"change":-115.99999999999999},{"name":"Wage and Hour Division","dept":"Labor","type":"Discretionary","amt":238000,"prev":227000,"change":4.8458149779735695},{"name":"Employment and Training Administration","dept":"Labor","type":"Discretionary","amt":9279000,"prev":10550000,"change":-12.047393364928901},{"name":"Office of Workers' Compensation Programs","dept":"Labor","type":"Mandatory","amt":2397000,"prev":2392000,"change":0.20903010033444802},{"name":"Office of Workers' Compensation Programs","dept":"Labor","type":"Discretionary","amt":122000,"prev":118000,"change":3.3898305084745797},{"name":"Office of Justice Programs","dept":"Justice","type":"Mandatory","amt":9510000,"prev":4717000,"change":101.61119355522601},{"name":"Drug Enforcement Administration","dept":"Justice","type":"Mandatory","amt":335000,"prev":305000,"change":9.83606557377049},{"name":"United States Parole Commission","dept":"Justice","type":"Discretionary","amt":13000,"prev":13000,"change":0.0},{"name":"General Administration","dept":"Justice","type":"Discretionary","amt":534000,"prev":2206000,"change":-75.7932910244787},{"name":"Radiation Exposure Compensation","dept":"Justice","type":"Mandatory","amt":120000,"prev":120000,"change":0.0},{"name":"Legal Activities and U.S. Marshals","dept":"Justice","type":"Mandatory","amt":2625000,"prev":3924000,"change":-33.1039755351682},{"name":"Bureau of Alcohol, Tobacco, Firearms, and Explosives","dept":"Justice","type":"Discretionary","amt":1141000,"prev":1152000,"change":-0.954861111111111},{"name":"Federal Bureau of Investigation","dept":"Justice","type":"Discretionary","amt":8070000,"prev":8108000,"change":-0.468672915638875},{"name":"Interagency Law Enforcement","dept":"Justice","type":"Discretionary","amt":525000,"prev":527000,"change":-0.37950664136622403},{"name":"Legal Activities and U.S. Marshals","dept":"Justice","type":"Discretionary","amt":5379000,"prev":4314000,"change":24.687065368567502},{"name":"Federal Prison System","dept":"Justice","type":"Discretionary","amt":6847000,"prev":6599000,"change":3.7581451735111395},{"name":"Drug Enforcement Administration","dept":"Justice","type":"Discretionary","amt":2036000,"prev":2037000,"change":-0.0490918016691213},{"name":"National Security Division","dept":"Justice","type":"Discretionary","amt":90000,"prev":87000,"change":3.44827586206897},{"name":"Courts of Appeals, District Courts, and other Judicial Services","dept":"Judicial Branch","type":"Mandatory","amt":1084000,"prev":1029000,"change":5.34499514091351},{"name":"Courts of Appeals, District Courts, and other Judicial Services","dept":"Judicial Branch","type":"Discretionary","amt":6445000,"prev":6270000,"change":2.79106858054226},{"name":"Supreme Court of the United States","dept":"Judicial Branch","type":"Mandatory","amt":2000,"prev":2000,"change":0.0},{"name":"Supreme Court of the United States","dept":"Judicial Branch","type":"Discretionary","amt":87000,"prev":81000,"change":7.40740740740741},{"name":"United States Court of Appeals for the Federal Circuit","dept":"Judicial Branch","type":"Discretionary","amt":31000,"prev":30000,"change":3.33333333333333},{"name":"Federal Judicial Center","dept":"Judicial Branch","type":"Discretionary","amt":28000,"prev":27000,"change":3.7037037037037},{"name":"Judicial Retirement Funds","dept":"Judicial Branch","type":"Mandatory","amt":287000,"prev":243000,"change":18.1069958847737},{"name":"United States Court of International Trade","dept":"Judicial Branch","type":"Discretionary","amt":21000,"prev":19000,"change":10.526315789473701},{"name":"Administrative Office of the United States Courts","dept":"Judicial Branch","type":"Discretionary","amt":85000,"prev":83000,"change":2.40963855421687},{"name":"United States Court of International Trade","dept":"Judicial Branch","type":"Mandatory","amt":2000,"prev":2000,"change":0.0},{"name":"United States Sentencing Commission","dept":"Judicial Branch","type":"Discretionary","amt":17000,"prev":17000,"change":0.0},{"name":"United States Court of Appeals for the Federal Circuit","dept":"Judicial Branch","type":"Mandatory","amt":3000,"prev":3000,"change":0.0},{"name":"Trade and Development Agency","dept":"International Assistance Programs","type":"Discretionary","amt":58000,"prev":50000,"change":16.0},{"name":"Millennium Challenge Corporation","dept":"International Assistance Programs","type":"Discretionary","amt":898000,"prev":898000,"change":0.0},{"name":"Overseas Private Investment Corporation","dept":"International Assistance Programs","type":"Mandatory","amt":92000,"prev":144000,"change":-36.1111111111111},{"name":"African Development Foundation","dept":"International Assistance Programs","type":"Discretionary","amt":24000,"prev":30000,"change":-20.0},{"name":"Military Sales Program","dept":"International Assistance Programs","type":"Mandatory","amt":14257000,"prev":7706000,"change":85.01167921100439},{"name":"Peace Corps","dept":"International Assistance Programs","type":"Discretionary","amt":375000,"prev":375000,"change":0.0},{"name":"Inter-American Foundation","dept":"International Assistance Programs","type":"Discretionary","amt":18000,"prev":23000,"change":-21.7391304347826},{"name":"Agency for International Development","dept":"International Assistance Programs","type":"Discretionary","amt":5113000,"prev":5741000,"change":-10.9388608256401},{"name":"Multilateral Assistance","dept":"International Assistance Programs","type":"Discretionary","amt":3227000,"prev":3012000,"change":7.138114209827361},{"name":"International Security Assistance","dept":"International Assistance Programs","type":"Discretionary","amt":14055000,"prev":13993000,"change":0.44307868219824204},{"name":"Bureau of Safety and Environmental Enforcement","dept":"Interior","type":"Discretionary","amt":96000,"prev":76000,"change":26.315789473684198},{"name":"National Indian Gaming Commission","dept":"Interior","type":"Mandatory","amt":18000,"prev":17000,"change":5.88235294117647},{"name":"Bureau of Indian Affairs and Bureau of Indian Education","dept":"Interior","type":"Discretionary","amt":2526000,"prev":2532000,"change":-0.23696682464455},{"name":"Insular Affairs","dept":"Interior","type":"Discretionary","amt":60000,"prev":63000,"change":-4.76190476190476},{"name":"Department-Wide Programs","dept":"Interior","type":"Discretionary","amt":907000,"prev":653000,"change":38.8973966309342},{"name":"United States Fish and Wildlife Service","dept":"Interior","type":"Discretionary","amt":1347000,"prev":1476000,"change":-8.73983739837398},{"name":"United States Geological Survey","dept":"Interior","type":"Discretionary","amt":1102000,"prev":1068000,"change":3.18352059925094},{"name":"Office of Inspector General","dept":"Interior","type":"Discretionary","amt":48000,"prev":49000,"change":-2.04081632653061},{"name":"Department-Wide Programs","dept":"Interior","type":"Mandatory","amt":452000,"prev":451000,"change":0.221729490022173},{"name":"Bureau of Reclamation","dept":"Interior","type":"Discretionary","amt":1014000,"prev":1048000,"change":-3.24427480916031},{"name":"Office of the Special Trustee for American Indians","dept":"Interior","type":"Discretionary","amt":146000,"prev":152000,"change":-3.94736842105263},{"name":"National Park Service","dept":"Interior","type":"Discretionary","amt":2578000,"prev":2610000,"change":-1.22605363984674},{"name":"Office of the Solicitor","dept":"Interior","type":"Discretionary","amt":65000,"prev":66000,"change":-1.51515151515152},{"name":"National Park Service","dept":"Interior","type":"Mandatory","amt":407000,"prev":374000,"change":8.82352941176471},{"name":"Departmental Offices","dept":"Interior","type":"Discretionary","amt":222000,"prev":262000,"change":-15.2671755725191},{"name":"Bureau of Ocean Energy Management","dept":"Interior","type":"Discretionary","amt":63000,"prev":60000,"change":5.0},{"name":"Bureau of Reclamation","dept":"Interior","type":"Mandatory","amt":132000,"prev":176000,"change":-25.0},{"name":"Bureau of Land Management","dept":"Interior","type":"Mandatory","amt":209000,"prev":179000,"change":16.759776536312803},{"name":"Bureau of Indian Affairs and Bureau of Indian Education","dept":"Interior","type":"Mandatory","amt":108000,"prev":213000,"change":-49.2957746478873},{"name":"Office of the Special Trustee for American Indians","dept":"Interior","type":"Mandatory","amt":443000,"prev":428000,"change":3.50467289719626},{"name":"Insular Affairs","dept":"Interior","type":"Mandatory","amt":515000,"prev":520000,"change":-0.9615384615384619},{"name":"Central Utah Project","dept":"Interior","type":"Discretionary","amt":21000,"prev":30000,"change":-30.0},{"name":"Office of Surface Mining Reclamation and Enforcement","dept":"Interior","type":"Mandatory","amt":537000,"prev":739000,"change":-27.334235453315298},{"name":"United States Geological Survey","dept":"Interior","type":"Mandatory","amt":1000,"prev":1000,"change":0.0},{"name":"United States Fish and Wildlife Service","dept":"Interior","type":"Mandatory","amt":996000,"prev":954000,"change":4.40251572327044},{"name":"Bureau of Land Management","dept":"Interior","type":"Discretionary","amt":1129000,"prev":1129000,"change":0.0},{"name":"Departmental Offices","dept":"Interior","type":"Mandatory","amt":2215000,"prev":4009000,"change":-44.7493140434023},{"name":"Office of Surface Mining Reclamation and Enforcement","dept":"Interior","type":"Discretionary","amt":141000,"prev":150000,"change":-6.0},{"name":"Institute of Museum and Library Services","dept":"Institute of Museum and Library Services","type":"Discretionary","amt":232000,"prev":232000,"change":0.0},{"name":"Housing Programs","dept":"Housing and Urban Development","type":"Mandatory","amt":7681000,"prev":4716000,"change":62.8710771840543},{"name":"Fair Housing and Equal Opportunity","dept":"Housing and Urban Development","type":"Discretionary","amt":68000,"prev":72000,"change":-5.55555555555556},{"name":"Community Planning and Development","dept":"Housing and Urban Development","type":"Discretionary","amt":6670000,"prev":6701000,"change":-0.46261751977316795},{"name":"Management and Administration","dept":"Housing and Urban Development","type":"Discretionary","amt":1838000,"prev":1777000,"change":3.43275182892515},{"name":"Public and Indian Housing Programs","dept":"Housing and Urban Development","type":"Discretionary","amt":35168000,"prev":34030000,"change":3.3441081398765804},{"name":"Office of Lead Hazard Control and Healthy Homes","dept":"Housing and Urban Development","type":"Discretionary","amt":119000,"prev":120000,"change":-0.8333333333333329},{"name":"Policy Development and Research","dept":"Housing and Urban Development","type":"Discretionary","amt":52000,"prev":46000,"change":13.043478260869602},{"name":"Community Planning and Development","dept":"Housing and Urban Development","type":"Mandatory","amt":1001000,"prev":15009000,"change":-93.33066826570719},{"name":"United States Coast Guard","dept":"Homeland Security","type":"Discretionary","amt":8319000,"prev":8914000,"change":-6.674893426071351},{"name":"Customs and Border Protection","dept":"Homeland Security","type":"Mandatory","amt":1625000,"prev":1575000,"change":3.1746031746031704},{"name":"Customs and Border Protection","dept":"Homeland Security","type":"Discretionary","amt":10367000,"prev":10159000,"change":2.04744561472586},{"name":"Transportation Security Administration","dept":"Homeland Security","type":"Discretionary","amt":5106000,"prev":5425000,"change":-5.88018433179723},{"name":"Departmental Management and Operations","dept":"Homeland Security","type":"Discretionary","amt":1135000,"prev":1135000,"change":0.0},{"name":"Citizenship and Immigration Services","dept":"Homeland Security","type":"Mandatory","amt":2863000,"prev":2968000,"change":-3.5377358490566},{"name":"Transportation Security Administration","dept":"Homeland Security","type":"Mandatory","amt":250000,"prev":250000,"change":0.0},{"name":"Immigration and Customs Enforcement","dept":"Homeland Security","type":"Mandatory","amt":312000,"prev":312000,"change":0.0},{"name":"United States Secret Service","dept":"Homeland Security","type":"Discretionary","amt":1601000,"prev":1665000,"change":-3.8438438438438403},{"name":"Office of the Inspector General","dept":"Homeland Security","type":"Discretionary","amt":144000,"prev":141000,"change":2.12765957446809},{"name":"Domestic Nuclear Detection Office","dept":"Homeland Security","type":"Discretionary","amt":328000,"prev":289000,"change":13.494809688581299},{"name":"Federal Emergency Management Agency","dept":"Homeland Security","type":"Discretionary","amt":10009000,"prev":10646000,"change":-5.98346796919031},{"name":"United States Secret Service","dept":"Homeland Security","type":"Mandatory","amt":250000,"prev":245000,"change":2.04081632653061},{"name":"Immigration and Customs Enforcement","dept":"Homeland Security","type":"Discretionary","amt":5333000,"prev":5526000,"change":-3.49258052841115},{"name":"Federal Law Enforcement Training Center","dept":"Homeland Security","type":"Discretionary","amt":258000,"prev":271000,"change":-4.79704797047971},{"name":"National Protection and Programs Directorate","dept":"Homeland Security","type":"Discretionary","amt":1383000,"prev":1381000,"change":0.144822592324403},{"name":"United States Coast Guard","dept":"Homeland Security","type":"Mandatory","amt":1640000,"prev":1654000,"change":-0.846432889963724},{"name":"Science and Technology","dept":"Homeland Security","type":"Discretionary","amt":831000,"prev":668000,"change":24.4011976047904},{"name":"Citizenship and Immigration Services","dept":"Homeland Security","type":"Discretionary","amt":139000,"prev":101000,"change":37.6237623762376},{"name":"National Institutes of Health","dept":"Health and Human Services","type":"Discretionary","amt":30702000,"prev":30702000,"change":0.0},{"name":"National Institutes of Health","dept":"Health and Human Services","type":"Mandatory","amt":167000,"prev":167000,"change":0.0},{"name":"Centers for Medicare and Medicaid Services","dept":"Health and Human Services","type":"Mandatory","amt":1183616000,"prev":1092383000,"change":8.351741101793051},{"name":"Centers for Disease Control and Prevention","dept":"Health and Human Services","type":"Mandatory","amt":1150000,"prev":1055000,"change":9.00473933649289},{"name":"Food and Drug Administration","dept":"Health and Human Services","type":"Discretionary","amt":2517000,"prev":2506000,"change":0.43894652833200304},{"name":"Agency for Healthcare Research and Quality","dept":"Health and Human Services","type":"Mandatory","amt":12000,"prev":12000,"change":0.0},{"name":"Administration on Aging","dept":"Health and Human Services","type":"Mandatory","amt":23000,"prev":23000,"change":0.0},{"name":"Administration for Children and Families","dept":"Health and Human Services","type":"Mandatory","amt":34128000,"prev":33650000,"change":1.42050520059435},{"name":"Departmental Management","dept":"Health and Human Services","type":"Mandatory","amt":235000,"prev":35000,"change":571.428571428571},{"name":"Indian Health Service","dept":"Health and Human Services","type":"Mandatory","amt":158000,"prev":158000,"change":0.0},{"name":"Program Support Center","dept":"Health and Human Services","type":"Mandatory","amt":610000,"prev":571000,"change":6.83012259194396},{"name":"Substance Abuse and Mental Health Services Administration","dept":"Health and Human Services","type":"Discretionary","amt":3152000,"prev":3347000,"change":-5.82611293695847},{"name":"Health Resources and Services Administration","dept":"Health and Human Services","type":"Discretionary","amt":6087000,"prev":6228000,"change":-2.26396917148362},{"name":"Indian Health Service","dept":"Health and Human Services","type":"Discretionary","amt":4423000,"prev":4306000,"change":2.71713887598699},{"name":"Health Resources and Services Administration","dept":"Health and Human Services","type":"Mandatory","amt":2502000,"prev":2202000,"change":13.623978201634902},{"name":"Departmental Management","dept":"Health and Human Services","type":"Discretionary","amt":1013000,"prev":1099000,"change":-7.825295723384899},{"name":"Centers for Medicare and Medicaid Services","dept":"Health and Human Services","type":"Discretionary","amt":824000,"prev":6582000,"change":-87.4810088119113},{"name":"Centers for Disease Control and Prevention","dept":"Health and Human Services","type":"Discretionary","amt":5068000,"prev":5732000,"change":-11.5840893230984},{"name":"Program Support Center","dept":"Health and Human Services","type":"Discretionary","amt":26000,"prev":36000,"change":-27.7777777777778},{"name":"Substance Abuse and Mental Health Services Administration","dept":"Health and Human Services","type":"Mandatory","amt":105000,"prev":88000,"change":19.318181818181802},{"name":"Office of the Inspector General","dept":"Health and Human Services","type":"Discretionary","amt":59000,"prev":50000,"change":18.0},{"name":"Administration on Aging","dept":"Health and Human Services","type":"Discretionary","amt":1926000,"prev":1469000,"change":31.109598366235502},{"name":"Food and Drug Administration","dept":"Health and Human Services","type":"Mandatory","amt":2000,"prev":2000,"change":0.0},{"name":"Administration for Children and Families","dept":"Health and Human Services","type":"Discretionary","amt":16180000,"prev":16489000,"change":-1.87397659045424},{"name":"Orderly Liquidation","dept":"Federal Deposit Insurance Corporation","type":"Mandatory","amt":1515000,"prev":627000,"change":141.626794258373},{"name":"FDIC_Office of Inspector General","dept":"Federal Deposit Insurance Corporation","type":"Discretionary","amt":35000,"prev":45000,"change":-22.2222222222222},{"name":"Federal Communications Commission","dept":"Federal Communications Commission","type":"Mandatory","amt":9682000,"prev":9382000,"change":3.1976124493711398},{"name":"Office of Management and Budget","dept":"Executive Office of the President","type":"Discretionary","amt":92000,"prev":89000,"change":3.3707865168539297},{"name":"Office of National Drug Control Policy","dept":"Executive Office of the President","type":"Discretionary","amt":23000,"prev":25000,"change":-8.0},{"name":"Office of Science and Technology Policy","dept":"Executive Office of the President","type":"Discretionary","amt":6000,"prev":5000,"change":20.0},{"name":"Office of Administration","dept":"Executive Office of the President","type":"Discretionary","amt":115000,"prev":113000,"change":1.7699115044247802},{"name":"Office of the United States Trade Representative","dept":"Executive Office of the President","type":"Discretionary","amt":53000,"prev":51000,"change":3.9215686274509802},{"name":"National Security Council and Homeland Security Council","dept":"Executive Office of the President","type":"Discretionary","amt":13000,"prev":13000,"change":0.0},{"name":"Council of Economic Advisers","dept":"Executive Office of the President","type":"Discretionary","amt":4000,"prev":4000,"change":0.0},{"name":"Special Assistance to the President and the Official Residence of the Vice President","dept":"Executive Office of the President","type":"Discretionary","amt":5000,"prev":5000,"change":0.0},{"name":"Executive Residence at the White House","dept":"Executive Office of the President","type":"Discretionary","amt":14000,"prev":14000,"change":0.0},{"name":"Unanticipated Needs","dept":"Executive Office of the President","type":"Discretionary","amt":7000,"prev":6000,"change":16.6666666666667},{"name":"Council on Environmental Quality and Office of Environmental Quality","dept":"Executive Office of the President","type":"Discretionary","amt":3000,"prev":3000,"change":0.0},{"name":"The White House","dept":"Executive Office of the President","type":"Discretionary","amt":57000,"prev":57000,"change":0.0},{"name":"Environmental Protection Agency","dept":"Environmental Protection Agency","type":"Discretionary","amt":8344000,"prev":8450000,"change":-1.25443786982249},{"name":"Energy Programs","dept":"Energy","type":"Mandatory","amt":7003000,"prev":-99000,"change":-7173.73737373737},{"name":"Energy Programs","dept":"Energy","type":"Discretionary","amt":9649000,"prev":9248000,"change":4.33607266435986},{"name":"Power Marketing Administration","dept":"Energy","type":"Discretionary","amt":85000,"prev":85000,"change":0.0},{"name":"Environmental and Other Defense Activities","dept":"Energy","type":"Discretionary","amt":6208000,"prev":5826000,"change":6.556814280810159},{"name":"National Nuclear Security Administration","dept":"Energy","type":"Discretionary","amt":11536000,"prev":11000000,"change":4.87272727272727},{"name":"Departmental Administration","dept":"Energy","type":"Discretionary","amt":166000,"prev":168000,"change":-1.19047619047619},{"name":"Power Marketing Administration","dept":"Energy","type":"Mandatory","amt":1238000,"prev":649000,"change":90.75500770416029},{"name":"Departmental Management","dept":"Education","type":"Mandatory","amt":1533000,"prev":61333000,"change":-97.5005298941842},{"name":"Departmental Management","dept":"Education","type":"Discretionary","amt":631000,"prev":609000,"change":3.6124794745484397},{"name":"Institute of Education Sciences","dept":"Education","type":"Discretionary","amt":622000,"prev":594000,"change":4.71380471380471},{"name":"Office of Special Education and Rehabilitative Services","dept":"Education","type":"Mandatory","amt":3231000,"prev":3122000,"change":3.49135169762972},{"name":"Office of Postsecondary Education","dept":"Education","type":"Mandatory","amt":411000,"prev":423000,"change":-2.83687943262411},{"name":"Office of Elementary and Secondary Education","dept":"Education","type":"Discretionary","amt":20421000,"prev":21941000,"change":-6.9276696595414995},{"name":"Office of English Language Acquisition","dept":"Education","type":"Discretionary","amt":732000,"prev":732000,"change":0.0},{"name":"Office of Vocational and Adult Education","dept":"Education","type":"Discretionary","amt":1737000,"prev":1736000,"change":0.0576036866359447},{"name":"Office of Federal Student Aid","dept":"Education","type":"Mandatory","amt":13529000,"prev":27492000,"change":-50.789320529608595},{"name":"Office of Federal Student Aid","dept":"Education","type":"Discretionary","amt":25814000,"prev":25578000,"change":0.922667917741809},{"name":"Office of Innovation and Improvement","dept":"Education","type":"Discretionary","amt":4332000,"prev":1528000,"change":183.50785340314098},{"name":"Office of Postsecondary Education","dept":"Education","type":"Discretionary","amt":3207000,"prev":2125000,"change":50.9176470588235},{"name":"Office of Special Education and Rehabilitative Services","dept":"Education","type":"Discretionary","amt":12341000,"prev":12538000,"change":-1.57122348061892},{"name":"District of Columbia General and Special Payments","dept":"District of Columbia","type":"Mandatory","amt":563000,"prev":572000,"change":-1.5734265734265702},{"name":"District of Columbia General and Special Payments","dept":"District of Columbia","type":"Discretionary","amt":154000,"prev":128000,"change":20.3125},{"name":"District of Columbia Courts","dept":"District of Columbia","type":"Discretionary","amt":270000,"prev":288000,"change":-6.25},{"name":"District of Columbia Courts","dept":"District of Columbia","type":"Mandatory","amt":9000,"prev":10000,"change":-10.0},{"name":"Operation and Maintenance","dept":"Defense - Military","type":"Discretionary","amt":272730000,"prev":283974000,"change":-3.9595174206089303},{"name":"Trust Funds","dept":"Defense - Military","type":"Mandatory","amt":243000,"prev":417000,"change":-41.726618705036},{"name":"Procurement","dept":"Defense - Military","type":"Discretionary","amt":108511000,"prev":120516000,"change":-9.96133293504597},{"name":"Research, Development, Test, and Evaluation","dept":"Defense - Military","type":"Discretionary","amt":69654000,"prev":71902000,"change":-3.12647770576618},{"name":"Revolving and Management Funds","dept":"Defense - Military","type":"Discretionary","amt":2626000,"prev":3076000,"change":-14.629388816645001},{"name":"Operation and Maintenance","dept":"Defense - Military","type":"Mandatory","amt":913000,"prev":897000,"change":1.78372352285396},{"name":"Military Construction","dept":"Defense - Military","type":"Discretionary","amt":9572000,"prev":11367000,"change":-15.7913257675728},{"name":"Family Housing","dept":"Defense - Military","type":"Discretionary","amt":1651000,"prev":1683000,"change":-1.90136660724896},{"name":"Military Personnel","dept":"Defense - Military","type":"Discretionary","amt":149172000,"prev":153112000,"change":-2.57327969068394},{"name":"Military Personnel","dept":"Defense - Military","type":"Mandatory","amt":6950000,"prev":5376000,"change":29.278273809523803},{"name":"Corps of Engineers--Civil Works","dept":"Corps of Engineers--Civil Works","type":"Discretionary","amt":4731000,"prev":6725000,"change":-29.650557620817803},{"name":"International Trade Administration","dept":"Commerce","type":"Mandatory","amt":5000,"prev":5000,"change":0.0},{"name":"National Telecommunications and Information Administration","dept":"Commerce","type":"Discretionary","amt":47000,"prev":41000,"change":14.6341463414634},{"name":"Departmental Management","dept":"Commerce","type":"Discretionary","amt":89000,"prev":91000,"change":-2.1978021978022},{"name":"Bureau of the Census","dept":"Commerce","type":"Discretionary","amt":970000,"prev":887000,"change":9.357384441939121},{"name":"National Institute of Standards and Technology","dept":"Commerce","type":"Discretionary","amt":860000,"prev":761000,"change":13.009198423127499},{"name":"National Oceanic and Atmospheric Administration","dept":"Commerce","type":"Discretionary","amt":5060000,"prev":5014000,"change":0.9174311926605511},{"name":"National Institute of Standards and Technology","dept":"Commerce","type":"Mandatory","amt":1000000,"prev":0,"change":0},{"name":"Departmental Management","dept":"Commerce","type":"Mandatory","amt":1000,"prev":5000,"change":-80.0},{"name":"Minority Business Development Agency","dept":"Commerce","type":"Discretionary","amt":29000,"prev":30000,"change":-3.33333333333333},{"name":"National Oceanic and Atmospheric Administration","dept":"Commerce","type":"Mandatory","amt":176000,"prev":58000,"change":203.44827586206898},{"name":"Bureau of Industry and Security","dept":"Commerce","type":"Discretionary","amt":102000,"prev":101000,"change":0.99009900990099},{"name":"Bureau of the Census","dept":"Commerce","type":"Mandatory","amt":30000,"prev":23000,"change":30.4347826086957},{"name":"Economic and Statistical Analysis","dept":"Commerce","type":"Discretionary","amt":100000,"prev":96000,"change":4.16666666666667},{"name":"Economic Development Administration","dept":"Commerce","type":"Discretionary","amt":220000,"prev":458000,"change":-51.96506550218341},{"name":"National Telecommunications and Information Administration","dept":"Commerce","type":"Mandatory","amt":1266000,"prev":-4000,"change":-31750.0},{"name":"International Trade Administration","dept":"Commerce","type":"Discretionary","amt":517000,"prev":455000,"change":13.6263736263736},{"name":"Appalachian Regional Commission","dept":"Appalachian Regional Commission","type":"Discretionary","amt":65000,"prev":68000,"change":-4.41176470588235},{"name":"Risk Management Agency","dept":"Agriculture","type":"Mandatory","amt":9292000,"prev":3489000,"change":166.322728575523},{"name":"Economic Research Service","dept":"Agriculture","type":"Discretionary","amt":78000,"prev":78000,"change":0.0},{"name":"Office of the Secretary","dept":"Agriculture","type":"Discretionary","amt":17000,"prev":16000,"change":6.25},{"name":"Office of the General Counsel","dept":"Agriculture","type":"Discretionary","amt":45000,"prev":39000,"change":15.3846153846154},{"name":"Animal and Plant Health Inspection Service","dept":"Agriculture","type":"Mandatory","amt":278000,"prev":282000,"change":-1.41843971631206},{"name":"Natural Resources Conservation Service","dept":"Agriculture","type":"Mandatory","amt":3614000,"prev":3463000,"change":4.36038117239388},{"name":"Agricultural Marketing Service","dept":"Agriculture","type":"Mandatory","amt":1253000,"prev":1153000,"change":8.67302688638335},{"name":"Departmental Management","dept":"Agriculture","type":"Discretionary","amt":340000,"prev":315000,"change":7.93650793650794},{"name":"Farm Service Agency","dept":"Agriculture","type":"Mandatory","amt":10826000,"prev":9618000,"change":12.559783738822999},{"name":"Food Safety and Inspection Service","dept":"Agriculture","type":"Discretionary","amt":996000,"prev":1004000,"change":-0.796812749003984},{"name":"Office of Inspector General","dept":"Agriculture","type":"Discretionary","amt":89000,"prev":86000,"change":3.48837209302326},{"name":"Rural Development","dept":"Agriculture","type":"Discretionary","amt":207000,"prev":182000,"change":13.736263736263702},{"name":"Rural Housing Service","dept":"Agriculture","type":"Discretionary","amt":1486000,"prev":1521000,"change":-2.30111768573307},{"name":"Rural Business_Cooperative Service","dept":"Agriculture","type":"Mandatory","amt":131000,"prev":136000,"change":-3.67647058823529},{"name":"National Institute of Food and Agriculture","dept":"Agriculture","type":"Mandatory","amt":5000,"prev":134000,"change":-96.2686567164179},{"name":"Food and Nutrition Service","dept":"Agriculture","type":"Discretionary","amt":7378000,"prev":7420000,"change":-0.566037735849057},{"name":"Forest Service","dept":"Agriculture","type":"Mandatory","amt":584000,"prev":708000,"change":-17.5141242937853},{"name":"Rural Utilities Service","dept":"Agriculture","type":"Discretionary","amt":577000,"prev":587000,"change":-1.70357751277683},{"name":"Office of Communications","dept":"Agriculture","type":"Discretionary","amt":9000,"prev":8000,"change":12.5},{"name":"Foreign Agricultural Service","dept":"Agriculture","type":"Discretionary","amt":1764000,"prev":1823000,"change":-3.23642347778387},{"name":"Office of Chief Economist","dept":"Agriculture","type":"Discretionary","amt":12000,"prev":11000,"change":9.09090909090909},{"name":"National Agricultural Statistics Service","dept":"Agriculture","type":"Discretionary","amt":179000,"prev":159000,"change":12.5786163522013},{"name":"National Appeals Division","dept":"Agriculture","type":"Discretionary","amt":14000,"prev":13000,"change":7.69230769230769},{"name":"Agricultural Research Service","dept":"Agriculture","type":"Mandatory","amt":27000,"prev":31000,"change":-12.903225806451598},{"name":"Food Safety and Inspection Service","dept":"Agriculture","type":"Mandatory","amt":10000,"prev":10000,"change":0.0},{"name":"Animal and Plant Health Inspection Service","dept":"Agriculture","type":"Discretionary","amt":765000,"prev":820000,"change":-6.70731707317073},{"name":"Agricultural Research Service","dept":"Agriculture","type":"Discretionary","amt":1103000,"prev":1095000,"change":0.7305936073059359},{"name":"Agricultural Marketing Service","dept":"Agriculture","type":"Discretionary","amt":78000,"prev":83000,"change":-6.02409638554217},{"name":"Natural Resources Conservation Service","dept":"Agriculture","type":"Discretionary","amt":285000,"prev":1067000,"change":-73.2895970009372},{"name":"Grain Inspection, Packers and Stockyards Administration","dept":"Agriculture","type":"Discretionary","amt":40000,"prev":38000,"change":5.26315789473684},{"name":"Food and Nutrition Service","dept":"Agriculture","type":"Mandatory","amt":107762000,"prev":106508000,"change":1.1773763473166299},{"name":"National Institute of Food and Agriculture","dept":"Agriculture","type":"Discretionary","amt":1244000,"prev":1204000,"change":3.32225913621262},{"name":"Forest Service","dept":"Agriculture","type":"Discretionary","amt":4849000,"prev":4608000,"change":5.2300347222222205},{"name":"Farm Service Agency","dept":"Agriculture","type":"Discretionary","amt":1638000,"prev":1774000,"change":-7.666290868094699},{"name":"Office of Civil Rights","dept":"Agriculture","type":"Discretionary","amt":63000,"prev":21000,"change":200.0}];
+
+        // Process data
+        const data = rawData.map(d => ({
+            name: d.name,
+            department: d.dept,
+            type: d.type,
+            amount: d.amt / 1000000, // Convert thousands to billions
+            lastYear: d.prev / 1000000,
+            change: d.prev > 0 ? ((d.amt - d.prev) / d.prev) * 100 : 0,
+            visible: true
+        }));
+
+        // Setup
+        const chartEl = document.getElementById("chart");
+        const width = chartEl.offsetWidth;
+        const height = 700;
+        const tooltip = d3.select("#tooltip");
+
+        // Comprehensive color palette for all departments
+        const colors = {
+            "Defense - Military": "#5b9bd5",
+            "Health and Human Services": "#ed7d31",
+            "Social Security Administration": "#70ad47",
+            "Veterans Affairs": "#ffc000",
+            "Education": "#a64d79",
+            "Transportation": "#4472c4",
+            "Agriculture": "#997300",
+            "Homeland Security": "#c55a11",
+            "Housing and Urban Development": "#43682b",
+            "Energy": "#c00000",
+            "Justice": "#7030a0",
+            "State": "#d26911",
+            "Treasury": "#bf9000",
+            "Labor": "#636363",
+            "Medicare": "#f4b183",
+            "Medicaid": "#ff9966",
+            "Other Defense Civil Programs": "#8faadc",
+            "Environmental Protection Agency": "#548235",
+            "Corps of Engineers--Civil Works": "#6c8ebf",
+            "Legislative Branch": "#203864",
+            "Judicial Branch": "#305496",
+            "Postal Service": "#767171",
+            "National Aeronautics and Space Administration": "#0070c0",
+            "General Services Administration": "#afabab",
+            "Office of Personnel Management": "#7f7f7f",
+            "Small Business Administration": "#9dc3e6",
+            "International Assistance Programs": "#e67c73",
+            "Commerce": "#4a86e8",
+            "Interior": "#6aa84f",
+            "Smithsonian Institution": "#674ea7",
+            "National Science Foundation": "#3c78d8",
+            "Securities and Exchange Commission": "#3d85c6",
+            "Federal Communications Commission": "#0b5394",
+            "National Archives and Records Administration": "#8e7cc3",
+            "Executive Office of the President": "#134f5c",
+            "Broadcasting Board of Governors": "#6d9eeb",
+            "Corporation for National and Community Service": "#93c47d",
+            "Tennessee Valley Authority": "#e69138"
+        };
+
+        const changeColor = d => d.change > 5 ? "#70ad47" : d.change < -5 ? "#c00000" : "#7f7f7f";
+
+        // SVG
+        const svg = d3.select("#chart")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        // Radius scale
+        const radiusScale = d3.scaleSqrt()
+            .domain([0, d3.max(data, d => d.amount)])
+            .range([3, 85]);
+
+        // Pre-calculate positions for all views using force simulation
+        function calculatePositions() {
+            data.forEach(d => d.positions = {});
+
+            // Calculate "All Together" view positions using force simulation
+            const sim = d3.forceSimulation(data)
+                .force("charge", d3.forceManyBody().strength(0.5))
+                .force("collision", d3.forceCollide().radius(d => radiusScale(d.amount) + 2))
+                .force("x", d3.forceX(width / 2).strength(0.1))
+                .force("y", d3.forceY(d => {
+                    // Position by percent change: increases at top, decreases at bottom
+                    if (d.change > 15) return height * 0.2;
+                    if (d.change > 5) return height * 0.33;
+                    if (d.change > 0) return height * 0.45;
+                    if (d.change > -5) return height * 0.55;
+                    if (d.change > -15) return height * 0.67;
+                    return height * 0.8;
+                }).strength(0.15))
+                .alphaDecay(0.01)
+                .velocityDecay(0.4)
+                .stop();
+
+            // Run simulation to completion (600 ticks should be enough)
+            for (let i = 0; i < 600; ++i) sim.tick();
+
+            // Store the final positions
+            data.forEach(d => {
+                d.positions.all = { x: d.x, y: d.y };
+            });
+        }
+
+        calculatePositions();
+
+        // Create bubbles with initial positions
+        const bubbles = svg.selectAll(".bubble")
+            .data(data)
+            .join("circle")
+            .attr("class", "bubble")
+            .attr("r", d => radiusScale(d.amount))
+            .attr("cx", d => d.positions.all.x)
+            .attr("cy", d => d.positions.all.y)
+            .attr("fill", changeColor)
+            .attr("stroke", "#fff")
+            .attr("stroke-width", 1.5)
+            .on("mouseover", showTooltip)
+            .on("mousemove", moveTooltip)
+            .on("mouseout", hideTooltip);
+
+        // Labels (only for large bubbles > $100B)
+        const labels = svg.selectAll(".bubble-label")
+            .data(data.filter(d => d.amount > 100))
+            .join("text")
+            .attr("class", "bubble-label")
+            .attr("x", d => d.positions.all.x)
+            .attr("y", d => d.positions.all.y + 3)
+            .text(d => d.name.length > 20 ? d.name.substring(0, 18) + "..." : d.name)
+            .style("font-size", d => Math.min(radiusScale(d.amount) / 4, 12) + "px");
+
+        // Tooltip
+        function showTooltip(event, d) {
+            const fmt = val => val >= 1000 ? `$${(val/1000).toFixed(2)}T` : `$${val.toFixed(1)}B`;
+            const chg = d.change > 0 ? `+${d.change.toFixed(1)}%` : `${d.change.toFixed(1)}%`;
+            const changeClass = d.change > 0 ? 'positive' : (d.change < 0 ? 'negative' : '');
+
+            tooltip.style("opacity", 1).html(`
+                <div class="tooltip-department">${d.department}</div>
+                <div class="tooltip-name">${d.name}</div>
+                <div class="tooltip-type">${d.type}</div>
+                <div class="tooltip-rule"></div>
+                <div class="tooltip-values">
+                    <span class="tooltip-value">${fmt(d.amount)}</span>
+                    <span class="tooltip-change ${changeClass}">${chg}</span>
+                    <div class="tooltip-label">FY 2013 Budget (Change from FY 2012: ${fmt(d.lastYear)})</div>
+                </div>
+            `);
+            moveTooltip(event);
+        }
+
+        function moveTooltip(event) {
+            tooltip
+                .style("left", (event.pageX + 15) + "px")
+                .style("top", (event.pageY - 10) + "px");
+        }
+
+        function hideTooltip() {
+            tooltip.style("opacity", 0);
+        }
+
+        // Views
+        const buttons = document.querySelectorAll(".btn[data-view]");
+
+        buttons.forEach(btn => {
+            btn.addEventListener("click", function() {
+                buttons.forEach(b => b.classList.remove("active"));
+                this.classList.add("active");
+                updateView(this.dataset.view);
+            });
+        });
+
+        function updateView(view) {
+            // Show/hide change labels
+            const showChangeLabels = (view === "all" || view === "change");
+            document.getElementById("increasesLabel").className = showChangeLabels ? "change-label visible" : "change-label";
+            document.getElementById("increasesLine").className = showChangeLabels ? "change-label-line visible" : "change-label-line";
+            document.getElementById("decreasesLabel").className = showChangeLabels ? "change-label visible" : "change-label";
+            document.getElementById("decreasesLine").className = showChangeLabels ? "change-label-line visible" : "change-label-line";
+
+            // Transition to pre-calculated positions
+            if (view === "all" || view === "change") {
+                // Use "all" positions (same for both views)
+                bubbles.transition()
+                    .duration(800)
+                    .ease(d3.easeQuadInOut)
+                    .attr("cx", d => d.positions.all.x)
+                    .attr("cy", d => d.positions.all.y)
+                    .attr("fill", changeColor);
+
+                labels.transition()
+                    .duration(800)
+                    .ease(d3.easeQuadInOut)
+                    .attr("x", d => d.positions.all.x)
+                    .attr("y", d => d.positions.all.y + 3);
+
+            } else if (view === "department") {
+                // Calculate department cluster positions if needed
+                if (!data[0].positions.department) {
+                    const depts = [...new Set(data.map(d => d.department))].sort();
+                    const cols = 6;
+                    const clusterCenters = {};
+
+                    depts.forEach((dept, i) => {
+                        clusterCenters[dept] = {
+                            x: width * (0.15 + (i % cols) * 0.14),
+                            y: height * (0.2 + Math.floor(i / cols) * 0.15)
+                        };
+                    });
+
+                    // Use force simulation for non-overlapping clusters
+                    const sim = d3.forceSimulation(data)
+                        .force("charge", d3.forceManyBody().strength(0.5))
+                        .force("collision", d3.forceCollide().radius(d => radiusScale(d.amount) + 2))
+                        .force("x", d3.forceX(d => clusterCenters[d.department].x).strength(0.2))
+                        .force("y", d3.forceY(d => clusterCenters[d.department].y).strength(0.2))
+                        .alphaDecay(0.01)
+                        .velocityDecay(0.4)
+                        .stop();
+
+                    for (let i = 0; i < 600; ++i) sim.tick();
+
+                    data.forEach(d => {
+                        d.positions.department = { x: d.x, y: d.y };
+                    });
+                }
+
+                bubbles.transition()
+                    .duration(800)
+                    .ease(d3.easeQuadInOut)
+                    .attr("cx", d => d.positions.department.x)
+                    .attr("cy", d => d.positions.department.y)
+                    .attr("fill", d => colors[d.department] || "#999");
+
+                labels.transition()
+                    .duration(800)
+                    .ease(d3.easeQuadInOut)
+                    .attr("x", d => d.positions.department.x)
+                    .attr("y", d => d.positions.department.y + 3);
+
+            } else if (view === "type") {
+                // Calculate type positions if needed
+                if (!data[0].positions.type) {
+                    const typeCenters = {
+                        "Mandatory": { x: width * 0.3, y: height * 0.5 },
+                        "Discretionary": { x: width * 0.7, y: height * 0.5 }
+                    };
+
+                    // Use force simulation for non-overlapping type clusters
+                    const sim = d3.forceSimulation(data)
+                        .force("charge", d3.forceManyBody().strength(0.5))
+                        .force("collision", d3.forceCollide().radius(d => radiusScale(d.amount) + 2))
+                        .force("x", d3.forceX(d => typeCenters[d.type].x).strength(0.2))
+                        .force("y", d3.forceY(d => typeCenters[d.type].y).strength(0.2))
+                        .alphaDecay(0.01)
+                        .velocityDecay(0.4)
+                        .stop();
+
+                    for (let i = 0; i < 600; ++i) sim.tick();
+
+                    data.forEach(d => {
+                        d.positions.type = { x: d.x, y: d.y };
+                    });
+                }
+
+                bubbles.transition()
+                    .duration(800)
+                    .ease(d3.easeQuadInOut)
+                    .attr("cx", d => d.positions.type.x)
+                    .attr("cy", d => d.positions.type.y)
+                    .attr("fill", d => colors[d.department] || "#999");
+
+                labels.transition()
+                    .duration(800)
+                    .ease(d3.easeQuadInOut)
+                    .attr("x", d => d.positions.type.x)
+                    .attr("y", d => d.positions.type.y + 3);
+            }
+        }
+
+        // Search
+        const searchInput = document.getElementById("searchInput");
+        searchInput.addEventListener("input", function() {
+            const query = this.value.toLowerCase();
+            data.forEach(d => {
+                d.visible = !query || d.name.toLowerCase().includes(query) ||
+                           d.department.toLowerCase().includes(query);
+            });
+
+            bubbles.classed("dimmed", d => !d.visible);
+            labels.style("opacity", d => d.visible ? 0.9 : 0);
+            updateStats();
+        });
+
+        // Size Key
+        const sizeKeyEl = document.getElementById("sizeKey");
+        const sizeKeySvg = d3.select("#sizeKey")
+            .append("svg")
+            .attr("width", 200)
+            .attr("height", 100);
+
+        const sizeExamples = [
+            { value: 500, label: "$500B" },
+            { value: 100, label: "$100B" },
+            { value: 10, label: "$10B" }
+        ];
+
+        sizeExamples.forEach((size, i) => {
+            const r = radiusScale(size.value);
+            const cy = 85;
+
+            // Draw dashed circle
+            sizeKeySvg.append("circle")
+                .attr("class", "size-key-circle")
+                .attr("cx", r + 5)
+                .attr("cy", cy)
+                .attr("r", r);
+
+            // Add label with line
+            const labelDiv = document.createElement("div");
+            labelDiv.className = "size-key-label";
+            labelDiv.style.left = (r * 2 + 10) + "px";
+            labelDiv.style.top = (cy - 5) + "px";
+            labelDiv.innerHTML = `<span>${size.label}</span>`;
+            sizeKeyEl.appendChild(labelDiv);
+        });
+
+        // Legend
+        const depts = [...new Set(data.map(d => d.department))].sort();
+        const legendEl = document.getElementById("legend");
+        let activeDepts = new Set();
+
+        depts.forEach(dept => {
+            const item = document.createElement("div");
+            item.className = "legend-item";
+            item.innerHTML = `
+                <div class="legend-color" style="background: ${colors[dept] || '#999'}"></div>
+                <span>${dept}</span>
+            `;
+            item.addEventListener("click", function() {
+                if (activeDepts.has(dept)) {
+                    activeDepts.delete(dept);
+                    this.classList.remove("active");
+                } else {
+                    activeDepts.add(dept);
+                    this.classList.add("active");
+                }
+
+                data.forEach(d => {
+                    d.visible = activeDepts.size === 0 || activeDepts.has(d.department);
+                });
+
+                bubbles.classed("dimmed", d => !d.visible);
+                labels.style("opacity", d => d.visible ? 0.9 : 0);
+                updateStats();
+            });
+            legendEl.appendChild(item);
+        });
+
+        // Stats
+        function updateStats() {
+            const visible = data.filter(d => d.visible);
+            const total = d3.sum(visible, d => d.amount);
+
+            document.getElementById("totalBudget").textContent =
+                total >= 1000 ? `$${(total/1000).toFixed(1)}T` : `$${total.toFixed(0)}B`;
+            document.getElementById("programCount").textContent = data.length;
+            document.getElementById("visibleCount").textContent = visible.length;
+        }
+
+        updateStats();
+
+        // Show change labels initially (All Together view is default)
+        document.getElementById("increasesLabel").className = "change-label visible";
+        document.getElementById("increasesLine").className = "change-label-line visible";
+        document.getElementById("decreasesLabel").className = "change-label visible";
+        document.getElementById("decreasesLine").className = "change-label-line visible";
+    </script>
+</body>
+</html>
