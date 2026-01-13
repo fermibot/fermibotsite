@@ -233,12 +233,7 @@ function setupEventListeners() {
         });
     }
 
-    // Click outside to close info card
-    document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('info-card-backdrop')) {
-            hideInfoCard();
-        }
-    });
+    // Note: Backdrop no longer closes info card - users can click nodes directly
 }
 
 // ============================================
@@ -550,6 +545,11 @@ function createLegendWithProgress() {
             .attr('title', `Filter scenes with ${tag.label} discussion`)
             .on('click', () => toggleQuestionFilter(tag.key));
 
+        // Add active indicator (dot)
+        item.append('span')
+            .attr('class', 'active-indicator')
+            .text('✓');
+
         item.append('span')
             .attr('class', 'legend-icon')
             .text(tag.icon);
@@ -558,6 +558,11 @@ function createLegendWithProgress() {
             .attr('class', 'legend-text')
             .text(tag.label);
     });
+
+    // Add clear selection hint at bottom right of legend
+    legendContainer.append('div')
+        .attr('class', 'clear-selection-hint')
+        .html('💡 <kbd>ESC</kbd> or <strong>click outside</strong> to clear selections');
 }
 
 // ============================================
@@ -1119,12 +1124,9 @@ function initVisualization() {
 
     updateNodeStyles();
 
-    // Click outside to deselect
+    // Click outside to clear all selections
     svg.on('click', function() {
-        state.lockedNode = null; // Clear locked node selection
-        hideInfoCard();
-        hideTooltip();
-        unhighlightAll();
+        clearAllSelections();
     });
 }
 
@@ -1209,6 +1211,7 @@ function unhighlightAll() {
         .classed('connection-dimmed', false);
 
     linkGroup.selectAll('.link')
+        .style('opacity', null)  // Remove inline opacity style
         .classed('highlighted', false)
         .classed('dimmed', false);
 }
@@ -1346,9 +1349,10 @@ let infoCardBackdrop, infoCard;
 
 function initInfoCard() {
     infoCardBackdrop = d3.select('body').append('div')
-        .attr('class', 'info-card-backdrop')
-        .on('click', hideInfoCard);
+        .attr('class', 'info-card-backdrop');
+        // No click handler - backdrop doesn't close card anymore
 
+    // Append info card to body - now using fixed positioning
     infoCard = d3.select('body').append('div')
         .attr('class', 'info-card-modal');
 }
@@ -1845,6 +1849,13 @@ function showInfoCard(node) {
             </div>
             <button class="info-card-close" onclick="window.hideInfoCard()">&times;</button>
         </div>
+        <div class="info-card-action-bar">
+            <button class="btn btn-sm ${isViewed ? 'btn-success' : 'btn-outline-primary'}"
+                    id="toggle-viewed-btn-${scene.id}"
+                    onclick="window.toggleViewedFromCard(${scene.id})">
+                ${isViewed ? '✓ Reviewed' : 'Mark as Reviewed'}
+            </button>
+        </div>
         ${locationTimeHtml}
         <div class="info-card-types">
             ${buildCognitiveStateTags(scene.cognitiveState)}
@@ -1880,13 +1891,6 @@ function showInfoCard(node) {
             ` : ''}
         </div>
         ${buildConnectionsSection(scene)}
-        <div class="info-card-footer">
-            <button class="btn btn-sm ${isViewed ? 'btn-success' : 'btn-outline-primary'}"
-                    id="toggle-viewed-btn-${scene.id}"
-                    onclick="window.toggleViewedFromCard(${scene.id})">
-                ${isViewed ? '✓ Reviewed' : 'Mark as Reviewed'}
-            </button>
-        </div>
     `;
 
     infoCard.html(html);
@@ -1915,8 +1919,24 @@ function hideInfoCard() {
     if (infoCard) {
         infoCard.classed('active', false);
         infoCardBackdrop.classed('active', false);
+
+        // Clear locked node and connections since card is now outside the SVG
         state.lockedNode = null;
-        unhighlightAll();
+        state.hoveredNode = null;
+
+        // Remove highlight classes
+        if (nodeGroup) {
+            nodeGroup.selectAll('.node')
+                .classed('connection-highlighted', false)
+                .classed('connection-dimmed', false);
+        }
+
+        if (linkGroup) {
+            linkGroup.selectAll('.link')
+                .style('opacity', null)
+                .classed('highlighted', false)
+                .classed('dimmed', false);
+        }
     }
 }
 
@@ -2017,6 +2037,84 @@ filterVisualization = function() {
 };
 
 // ============================================
+// CLEAR ALL SELECTIONS
+// ============================================
+
+function clearAllSelections() {
+    // Clear search
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.value = '';
+        searchInput.dispatchEvent(new Event('input'));
+        searchInput.blur();
+    }
+
+    // Clear info card
+    hideInfoCard();
+    hideTooltip();
+
+    // Clear locked node and unhighlight connections
+    state.lockedNode = null;
+    state.hoveredNode = null;
+
+    // Remove all highlight classes
+    if (nodeGroup) {
+        nodeGroup.selectAll('.node')
+            .classed('connection-highlighted', false)
+            .classed('connection-dimmed', false);
+    }
+
+    if (linkGroup) {
+        linkGroup.selectAll('.link')
+            .classed('highlighted', false)
+            .classed('dimmed', false);
+    }
+
+    // Clear legend filters (act, cognitive, question)
+    legendState.activeActs.clear();
+    legendState.activeCognitive.clear();
+    legendState.activeQuestions.clear();
+
+    // Update legend item appearance
+    d3.selectAll('.legend-item[data-act]').classed('active', false);
+    d3.selectAll('.legend-marker-item').classed('active', false);
+    d3.selectAll('.legend-question-item').classed('active', false);
+
+    // Clear book club question highlights
+    document.querySelectorAll('.book-club-question').forEach(q => {
+        q.classList.remove('active');
+    });
+
+    // Reset visualization filters
+    applyLegendFilters();
+
+    // Show all nodes and reset opacity
+    if (allNodes && nodeGroup) {
+        allNodes.forEach(node => {
+            if (!node.data.id) return;
+            const nodeElement = nodeGroup.selectAll('.node').filter(d => d === node);
+            nodeElement.style('opacity', 1);
+            nodeElement.style('pointer-events', 'auto');
+            nodeElement.classed('highlighted', false);
+            nodeElement.classed('search-dimmed', false);
+            nodeElement.classed('connection-highlighted', false);
+            nodeElement.classed('connection-dimmed', false);
+        });
+    }
+
+    // Reset all links to default opacity (remove inline styles to use stroke-opacity attribute)
+    if (linkGroup) {
+        linkGroup.selectAll('.link')
+            .style('opacity', null)  // Remove inline opacity to restore default stroke-opacity
+            .classed('highlighted', false)
+            .classed('dimmed', false);
+    }
+}
+
+// Make clearAllSelections globally accessible
+window.clearAllSelections = clearAllSelections;
+
+// ============================================
 // SEARCH
 // ============================================
 
@@ -2065,10 +2163,7 @@ function initSearch() {
             searchInput.focus();
         }
         if (e.key === 'Escape') {
-            searchInput.value = '';
-            searchInput.dispatchEvent(new Event('input'));
-            searchInput.blur();
-            hideInfoCard();
+            clearAllSelections();
         }
     });
 }
@@ -2231,5 +2326,21 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         sortQuestions('chronological');
     }, 100);
+
+    // Add click to page background to clear selections
+    document.body.addEventListener('click', function(e) {
+        // Only trigger if not clicking on interactive elements
+        if (!e.target.closest('.node') &&
+            !e.target.closest('.legend-item') &&
+            !e.target.closest('.book-club-question') &&
+            !e.target.closest('.info-card-modal') &&
+            !e.target.closest('button') &&
+            !e.target.closest('input') &&
+            !e.target.closest('svg') &&
+            !e.target.closest('.controls-bar') &&
+            !e.target.closest('#legend-container')) {
+            clearAllSelections();
+        }
+    });
 });
 

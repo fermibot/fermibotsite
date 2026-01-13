@@ -9,8 +9,7 @@
     pointer-events: auto;
 }
 
-.info-card.active,
-.info-card-modal.active {
+.info-card.active {
     opacity: 1;
     pointer-events: auto;
 }
@@ -18,22 +17,78 @@
 /* Make .info-card-modal use same styles as .info-card */
 .info-card-modal {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    right: 0;
+    transform: translateX(100%);
     background: var(--viz-card-bg);
-    border: 1px solid var(--viz-border);
-    border-radius: 12px;
+    border-left: 1px solid var(--viz-border);
+    border-radius: 0;
     padding: 0;
     width: 400px;
-    max-width: 90vw;
-    max-height: 80vh;
+    height: 100vh;
     overflow-y: auto;
-    box-shadow: 0 8px 32px var(--viz-card-shadow);
+    box-shadow: -4px 0 24px var(--viz-card-shadow);
     z-index: 1003;
     opacity: 0;
     pointer-events: none;
-    transition: opacity var(--transition-normal);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.info-card-modal.active {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Make backdrop not block interaction with nodes */
+.info-card-backdrop {
+    pointer-events: none !important;
+}
+
+.info-card-backdrop.active {
+    background: transparent;
+}
+
+/* Ensure visualization container can show info card next to it */
+#visualization-container {
+    position: relative;
+    overflow: visible;
+}
+
+.visualization-main {
+    overflow: visible;
+}
+
+/* Scrollbar styling for side panel */
+.info-card-modal::-webkit-scrollbar {
+    width: 8px;
+}
+
+.info-card-modal::-webkit-scrollbar-track {
+    background: var(--viz-bg-secondary);
+}
+
+.info-card-modal::-webkit-scrollbar-thumb {
+    background: var(--viz-border);
+    border-radius: 4px;
+}
+
+.info-card-modal::-webkit-scrollbar-thumb:hover {
+    background: var(--viz-text-muted);
+}
+
+/* Responsive: Adjust width on smaller screens */
+@media (max-width: 768px) {
+    .info-card-modal {
+        width: 90vw;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .info-card-modal {
+        width: 100vw;
+    }
 }
 
 :root {
@@ -811,6 +866,22 @@
     font-size: 0.7rem !important;
 }
 
+/* Info card action bar (for mark as reviewed button) */
+.info-card-action-bar {
+    padding: 0.25rem 1rem 0.5rem 1rem;
+    padding-top: 0.25rem;
+    margin-top: -0.5rem;
+    border-bottom: 1px solid var(--viz-border);
+    display: flex;
+    justify-content: flex-end;
+    background: var(--viz-bg-secondary);
+}
+
+.info-card-action-bar .btn {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+}
+
 /* Info card tags section */
 .info-card-tags-section {
     padding: 0.75rem 1rem;
@@ -1175,5 +1246,94 @@
     .sort-btn {
         font-size: 0.75rem;
         padding: 0.3rem 0.6rem;
+    }
+}
+
+/* ============================================
+   CLEAR SELECTION HINT
+   ============================================ */
+
+.clear-selection-hint {
+    font-size: 0.75rem;
+    color: var(--viz-text-muted);
+    text-align: right;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-top: 1px solid var(--viz-border);
+    font-style: italic;
+}
+
+.clear-selection-hint kbd {
+    background: var(--viz-bg-secondary);
+    border: 1px solid var(--viz-border);
+    border-radius: 3px;
+    padding: 0.15rem 0.4rem;
+    font-size: 0.7rem;
+    font-family: monospace;
+    font-weight: 600;
+    color: var(--viz-text);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.clear-selection-hint strong {
+    font-weight: 600;
+    color: var(--viz-text);
+}
+
+/* ============================================
+   ACTIVE INDICATOR FOR DISCUSSION TOPICS
+   ============================================ */
+
+.legend-question-item {
+    position: relative;
+}
+
+.active-indicator {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 14px;
+    height: 14px;
+    background: #27ae60;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: bold;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.2s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.legend-question-item.active .active-indicator {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Alternative: Light green dot with pulse */
+.legend-question-item.active::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 8px;
+    height: 8px;
+    background: #27ae60;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.3);
+    animation: pulse-dot 2s ease-in-out infinite;
+    z-index: 11;
+}
+
+@keyframes pulse-dot {
+    0%, 100% {
+        box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 0 4px rgba(39, 174, 96, 0.1);
     }
 }
