@@ -27,6 +27,7 @@
     width: 400px;
     height: 100vh;
     overflow-y: auto;
+    overscroll-behavior: contain;
     box-shadow: -4px 0 24px var(--viz-card-shadow);
     z-index: 1003;
     opacity: 0;
