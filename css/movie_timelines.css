@@ -679,10 +679,11 @@
 }
 
 .legend-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
+    gap: 0.5rem;
+    align-items: start;
 }
 
 .legend-item {
@@ -735,24 +736,30 @@
 }
 
 .legend-separator {
-    flex-basis: 100%;
-    width: 100%;
     height: 1px;
     background-color: var(--viz-border);
     opacity: 0.3;
     margin: 0.25rem 0;
 }
 
+/* Legend items row - for Acts, States, etc - items inline */
+.legend-items-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+}
+
 /* Legend Tag Groups - Discussion Topics (based on Limitless patterns) */
 .legend-tag-group-row {
-    flex-basis: 100%;
+    grid-column: 1 / -1;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 0.0rem;  /* Tight spacing from Limitless */
-    line-height: 1.2;       /* From Limitless */
+    margin-bottom: 0.25rem;
+    line-height: 1.2;
 }
 
 .legend-tag-group-label {
@@ -766,8 +773,6 @@
 
 /* Legend Connection Lines Row - all on one line */
 .legend-connections-row {
-    flex-basis: 100%;
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -775,8 +780,6 @@
 }
 
 .legend-section-label {
-    flex-basis: 100%;
-    width: 100%;
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--viz-text-muted);
@@ -1462,7 +1465,7 @@
 
 .book-club-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: 1fr;
     gap: 1rem;
 }
 
@@ -1598,9 +1601,7 @@
 }
 
 .question-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.25rem;
+    display: block;
     margin-top: 0.5rem;
 }
 
@@ -1635,6 +1636,28 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Non-clickable tags in question cards */
+.tag-badge.tag-non-clickable {
+    cursor: default;
+    pointer-events: none;
+}
+
+.tag-badge.tag-non-clickable:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Bright outline for tags matching active filter */
+.tag-badge.tag-filter-match {
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.6), 0 0 8px rgba(255, 215, 0, 0.4);
+    border-width: 2px;
+    font-weight: 700;
+}
+
+[data-bs-theme="dark"] .tag-badge.tag-filter-match {
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.8), 0 0 12px rgba(255, 215, 0, 0.5);
+}
+
 /* Inactive tags - dimmed and grayscale */
 .tag-badge.inactive {
     opacity: 0.25;
@@ -1652,7 +1675,9 @@
 
 /* Tag group headers */
 .tag-group {
-    margin-bottom: 0.0rem;
+    display: block;
+    width: 100%;
+    margin-bottom: 0.25rem;
     line-height: 1.2;
 }
 
@@ -1993,24 +2018,6 @@
     }
 }
 
-@media (max-width: 1400px) {
-    .book-club-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-@media (max-width: 1200px) {
-    .book-club-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 992px) {
-    .book-club-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
 @media (max-width: 768px) {
     .controls-bar {
         flex-direction: column;
@@ -2032,10 +2039,6 @@
 
     .keyboard-help {
         display: none;
-    }
-
-    .book-club-grid {
-        grid-template-columns: 1fr;
     }
 
     .book-club-question {

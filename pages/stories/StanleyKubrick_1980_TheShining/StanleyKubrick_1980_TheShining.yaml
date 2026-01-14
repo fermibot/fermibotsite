@@ -11,7 +11,7 @@
     - "determine natural scene breaks based on DRAMATIC BEATS, not camera directions"
     - "target 30-40 narrative scenes (The Shining: 33 scenes from 231 camera setups)"
     - "count total scenes - verify against screenplay (NEVER pad with fake scenes!)"
-    - "create shining_scenes.json with metadata section:"
+    - "create StanleyKubrick_1980_TheShining_scenes.json with metadata section:"
     - "  - title, director, writer, year, runtime, genre, themes[], totalScenes, analysisDate"
     - "for each scene, extract from StanleyKubrick_1980_TheShining.txt:"
     - "  - id (sequential, starting at 1)"
@@ -58,7 +58,7 @@
 
 - step_05_discussion_questions:
     - "create 15-20 thought-provoking discussion questions IN JAVASCRIPT"
-    - "define DISCUSSION_QUESTIONS constant in shining_timeline.js"
+    - "define DISCUSSION_QUESTIONS constant in StanleyKubrick_1980_TheShining_timeline.js"
     - "each question needs: {id, question, tags[], relatedScenes[]}"
     - "EXTRACT ALL UNIQUE TAGS used across all questions (The Shining: 32 tags)"
     - "ORGANIZE tags into 5-6 logical groups for display:"
@@ -78,9 +78,9 @@
 
 - step_06_html_page:
     - "study pages/stories/NeilBurger_2011_Limitless/limitless.html"
-    - "create shining.html based on Limitless template"
+    - "create StanleyKubrick_1980_TheShining.html based on Limitless template"
     - "use css/movie_timelines.css as base stylesheet"
-    - "link to shining_custom.css?v=YYYY.MM.DD.HH.MM.SS"
+    - "link to StanleyKubrick_1980_TheShining_custom.css?v=YYYY.MM.DD.HH.MM.SS"
     - "CRITICAL: Use placeholders for header/footer:"
     - "  - <div id='header_placeholder'></div>"
     - "  - <div id='footer_placeholder'></div> (NOT hardcoded footer)"
@@ -102,9 +102,9 @@
 
 - step_07_visualization_js:
     - "study pages/stories/NeilBurger_2011_Limitless/limitless_timeline.js"
-    - "create shining_timeline.js adapting from Limitless:"
+    - "create StanleyKubrick_1980_TheShining_timeline.js adapting from Limitless:"
     - "CRITICAL ADAPTATIONS:"
-    - "  - CONFIG.DATA_FILE: 'shining_scenes.json'"
+    - "  - CONFIG.DATA_FILE: 'StanleyKubrick_1980_TheShining_scenes.json'"
     - "  - cognitiveState → psychologicalState everywhere"
     - "  - PSYCHOLOGICAL_COLORS: {stable, deteriorating, psychotic} not cognitive colors"
     - "  - ACT_COLORS: theme-appropriate (blue/red/black for The Shining)"
@@ -136,7 +136,7 @@
     - "use timestamp versioning: ?v=YYYY.MM.DD.HH.MM.SS"
 
 - step_08_custom_css_critical_fixes:
-    - "create shining_custom.css with CRITICAL FIXES AT TOP:"
+    - "create StanleyKubrick_1980_TheShining_custom.css with CRITICAL FIXES AT TOP:"
     - "SECTION 1: INFO CARD MODAL FIX (MUST BE FIRST - critical override)"
     - "  .info-card-backdrop.active { opacity: 1; pointer-events: auto; }"
     - "  .info-card.active { opacity: 1; pointer-events: auto; }"
@@ -228,6 +228,480 @@
 # - Critical CSS fixes go at TOP of custom stylesheet
 # - renderDiscussionQuestions() must show ALL tags with active/inactive states
 # - Test visual appearance AND interaction behavior
+
+# ============================================
+# POST-IMPLEMENTATION FIXES & LEARNINGS (2026-01-14)
+# ============================================
+
+- step_11_tag_system_fixes:
+    - "CRITICAL ISSUE: TAG_GROUPS must use ACTUAL scene tags, not conceptual discussion tags"
+    - "WRONG: TAG_GROUPS = {'Core Themes': ['psychology', 'interpretation', 'kubrick']}"
+    - "RIGHT: TAG_GROUPS = {'Horror & Madness': ['supernatural', 'madness', 'violence']}"
+    - "HOW TO FIX:"
+    - "  1. Extract all unique tags from scene data: python -c 'import json; print(set(tag for scene in json.load(open(\"scenes.json\"))[\"scenes\"] for tag in scene.get(\"tags\", [])))'"
+    - "  2. Update TAG_ICONS to map actual scene tags (supernatural, madness, hotel, maze, etc.)"
+    - "  3. Organize TAG_GROUPS by actual tags used in scenes, not thematic discussion topics"
+    - "  4. Verify every tag in TAG_GROUPS exists in at least one scene"
+    - "RESULT: Clicking legend tags now correctly filters and highlights matching nodes"
+
+- step_12_search_functionality_fix:
+    - "CRITICAL ISSUE: Search highlighting not working - CSS uses filter: url(#glow) but SVG filter missing"
+    - "SYMPTOM: Search counts matches but nodes don't glow or dim"
+    - "FIX: Add SVG filter definition to visualization initialization:"
+    - "  const defs = svg.append('defs');"
+    - "  const filter = defs.append('filter')"
+    - "    .attr('id', 'glow')"
+    - "    .attr('x', '-50%').attr('y', '-50%')"
+    - "    .attr('width', '200%').attr('height', '200%');"
+    - "  filter.append('feGaussianBlur')"
+    - "    .attr('in', 'SourceGraphic')"
+    - "    .attr('stdDeviation', '3')"
+    - "    .attr('result', 'blur');"
+    - "  filter.append('feMerge')"
+    - "    .selectAll('feMergeNode')"
+    - "    .data(['blur', 'SourceGraphic'])"
+    - "    .enter().append('feMergeNode').attr('in', d => d);"
+    - "LOCATION: In initVisualization() after creating SVG, before creating g"
+    - "RESULT: Search now properly glows matching nodes and dims others"
+
+- step_13_legend_layout_fixes:
+    - "CRITICAL ISSUE: Legend uses flexbox (display: flex) not CSS Grid"
+    - "WRONG: .legend-section-label { grid-column: 1 / -1; }"
+    - "RIGHT: .legend-section-label { flex-basis: 100%; width: 100%; }"
+    - "Apply to ALL full-width legend elements:"
+    - "  - .legend-separator"
+    - "  - .legend-section-label"
+    - "  - .legend-tag-group-row"
+    - "  - .legend-connections-row"
+    - "STRUCTURE for tag groups:"
+    - "  - Each tag group = one .legend-tag-group-row (flex container)"
+    - "  - Contains: .legend-tag-group-label + inline tag items"
+    - "  - Set margin-bottom: 0.0rem for tight spacing (from Limitless pattern)"
+    - "STRUCTURE for connection lines:"
+    - "  - Single .legend-connections-row (flex container)"
+    - "  - Contains: label + both connection types inline"
+    - "SEPARATORS:"
+    - "  - Add after: header, acts, psychological states, discussion topics"
+    - "  - Style: height: 1px, opacity: 0.3, margin: 0.25rem 0"
+    - "RESULT: Clean vertical layout with proper line breaks and spacing"
+
+- step_14_tag_sizing_consistency:
+    - "CRITICAL ISSUE: Legend tags taller in Limitless than Shining"
+    - "ROOT CAUSE: Elements have both .legend-item AND .legend-question-item classes"
+    - "  .legend-item has padding: 0.3rem 0.6rem (larger)"
+    - "  .legend-question-item has padding: 0.2rem 0.5rem (smaller)"
+    - "  Without !important, .legend-item wins due to specificity"
+    - "FIX in movie_timelines.css (centralized):"
+    - "  .legend-question-item {"
+    - "    font-size: 0.75rem !important;  /* Override .legend-item's 0.85rem */"
+    - "    padding: 0.2rem 0.5rem !important;  /* Override .legend-item's 0.3rem 0.6rem */"
+    - "    line-height: 1.2 !important;  /* Compact vertical height */"
+    - "  }"
+    - "REMOVE padding from custom CSS files (limitless_custom.css, StanleyKubrick_1980_TheShining_custom.css)"
+    - "RESULT: Consistent tag height across all visualizations"
+
+- step_15_clickable_tags_in_questions:
+    - "CRITICAL ISSUE: Tags in discussion questions not clickable"
+    - "FIX 1: Add onclick to buildAllTagsWithHighlights() function:"
+    - "  html += `<span class=\"tag-badge tag-${tag} ${activeClass}\""
+    - "    title=\"Click to filter scenes with ${label}\""
+    - "    onclick=\"window.toggleQuestionFilter('${tag}'); event.stopPropagation();\">"
+    - "    ${icon} ${label}</span>`;"
+    - "FIX 2: Expose function to window scope:"
+    - "  window.toggleQuestionFilter = toggleQuestionFilter;"
+    - "FIX 3: Update CSS - remove pointer-events: none from .question-tags .tag-badge"
+    - "  .tag-badge { cursor: pointer; }  /* Make all tags clickable */"
+    - "FIX 4: Update toggleQuestionFilter() to update badge visual states:"
+    - "  - Add code to toggle .inactive class on badges based on legendState.activeQuestions"
+    - "RESULT: Tags in questions are now clickable and filter visualization"
+
+- step_16_centralized_css_architecture:
+    - "MOVE all common legend styles to movie_timelines.css:"
+    - "  - .legend-separator (flex-basis, height, opacity, margin)"
+    - "  - .legend-section-label (flex-basis, font-size, color)"
+    - "  - .legend-tag-group-row (flex-basis, display, gap, margin-bottom, line-height)"
+    - "  - .legend-tag-group-label (font-size, font-weight, text-transform, letter-spacing)"
+    - "  - .legend-connections-row (flex-basis, display, gap)"
+    - "  - .legend-question-item (font-size, padding, line-height with !important)"
+    - "REMOVE duplicate styles from custom CSS files"
+    - "USE !important only when necessary to override multiple class specificity"
+    - "BENEFIT: Single source of truth, consistent appearance, easier maintenance"
+    - "PATTERN: movie_timelines.css = base/shared, custom.css = film-specific colors only"
+
+# ============================================
+# ADVANCED FEATURES & ENHANCEMENTS (2026-01-14)
+# ============================================
+
+- step_17_discussion_question_system_enhancements:
+    - "PHASE 1: TAG SYNCHRONIZATION & CSS COMPLETION"
+    - "  ISSUE: 17 tags in DISCUSSION_QUESTIONS didn't exist in scene data"
+    - "  FIX: Used Python to extract all unique tags from StanleyKubrick_1980_TheShining_scenes.json"
+    - "  python -c 'import json; tags = set(); [tags.update(s.get(\"tags\", [])) for s in json.load(open(\"StanleyKubrick_1980_TheShining_scenes.json\"))[\"scenes\"]]; print(sorted(tags))'"
+    - "  UPDATED all 20 DISCUSSION_QUESTIONS to use only actual scene tags"
+    - "  ADDED 10 missing tags to TAG_GROUPS: horror, murder, possession, ghosts, alcoholism, family-violence, etc."
+    - "  ADDED complete CSS definitions for 25 missing tags in StanleyKubrick_1980_TheShining_custom.css:"
+    - "    - Pattern: .tag-{name} { background, color, border-color }"
+    - "    - Pattern: .legend-question-item.tag-{name} { same colors for legend }"
+    - "    - Used horror-appropriate color palette (dark reds, purples, blacks)"
+    - "  RESULT: All tags now have proper borders and colors in both legend and questions"
+    - ""
+    - "PHASE 2: SINGLE COLUMN LAYOUT FOR QUESTIONS"
+    - "  ISSUE: Questions displayed in 2-column grid; StanleyKubrick_1980_TheShining_custom.css override not working"
+    - "  FIX in StanleyKubrick_1980_TheShining_custom.css:"
+    - "    .book-club-grid {"
+    - "      display: grid;"
+    - "      grid-template-columns: 1fr !important;  /* Force single column */"
+    - "      gap: 1rem;"
+    - "    }"
+    - "  REMOVED media query overrides from movie_timelines.css"
+    - "  RESULT: Questions always display in single column for better readability"
+    - ""
+    - "PHASE 3: TAG LAYOUT WITHIN QUESTION CARDS"
+    - "  ISSUE: Tag groups (Characters, Key Locations) appearing on same line instead of separate rows"
+    - "  CHANGED .legend-grid to CSS Grid layout in movie_timelines.css:"
+    - "    .legend-grid {"
+    - "      display: grid;"
+    - "      grid-template-columns: 1fr;"
+    - "      grid-auto-flow: row;"
+    - "      gap: 0.5rem;"
+    - "    }"
+    - "  CHANGED .tag-group to block display:"
+    - "    .tag-group {"
+    - "      display: block;"
+    - "      width: 100%;"
+    - "      margin-bottom: 0.25rem;"
+    - "    }"
+    - "  CHANGED .question-tags from flex to block:"
+    - "    .question-tags { display: block; margin-top: 0.5rem; }"
+    - "  ADDED .legend-items-row wrapper for horizontal groups (Acts, Psychological States)"
+    - "  RESULT: Each tag category appears on its own line within question cards"
+
+- step_18_screenplay_based_answers:
+    - "ISSUE: Discussion question answers were placeholders ('This explores...')"
+    - "REQUIREMENT: Detailed answers using ONLY screenplay content, no external interpretation"
+    - "IMPLEMENTATION: Updated all 20 DISCUSSION_QUESTIONS in StanleyKubrick_1980_TheShining_timeline.js:"
+    - "  - Each answer references specific scene numbers and screenplay moments"
+    - "  - Analyzes character psychology, symbolism, and narrative progression"
+    - "  - Uses concrete examples from dialogue, visuals, and character actions"
+    - "  EXAMPLE - Question 1 (supernatural vs psychological):"
+    - "    'Scene 2 shows Ullman mentioning previous caretaker murder-suicide, planting seeds'"
+    - "    'Scene 6: Jack dreams of killing family, suggesting pre-existing violent ideation'"
+    - "    'Scene 12: Jack meets Grady who claims \"You've always been the caretaker\"'"
+    - "    'Scene 23: \"All work and no play\" manuscript reveals complete mental break'"
+    - "    'Final photograph (Scene 33) suggests cyclical supernatural entrapment'"
+    - "  - Answer length: 4-8 sentences with scene-specific analysis"
+    - "  - Focus on \"why\" and \"how\" rather than just summarizing events"
+    - "UPDATED renderDiscussionQuestions() to display answers:"
+    - "  - Added answer paragraph with class 'question-answer'"
+    - "  - Display logic: q.answer || 'Analysis coming soon.'"
+    - "  - Toggle with 'Show Answer' / 'Hide Answer' button"
+    - "RESULT: Rich, screenplay-grounded analysis for book clubs and film classes"
+
+- step_19_timeline_theme_sorting:
+    - "ISSUE: Default sort was 'Film Order'; wanted 'Timeline' with Theme as secondary option"
+    - "FIX 1: Changed button label from 'Film Order' to 'Timeline' in StanleyKubrick_1980_TheShining.html"
+    - "FIX 2: Updated sortQuestions() function in StanleyKubrick_1980_TheShining_timeline.js:"
+    - "  - Timeline mode: Dynamically renumber questions 1-20 sequentially"
+    - "    questions.forEach((question, index) => {"
+    - "      numberSpan.textContent = index + 1;  // Sequential 1-20"
+    - "    });"
+    - "  - Theme mode: Preserve original question IDs from dataset.originalNumber"
+    - "    numberSpan.textContent = question.dataset.originalNumber;"
+    - "  - Store original ID on mount: question.dataset.originalNumber = q.id"
+    - "RESULT: Questions naturally flow 1-20 in timeline mode, group by theme in theme mode"
+
+- step_20_tag_filtering_system:
+    - "FEATURE: Click tags in Discussion Topics legend to filter questions and highlight nodes"
+    - ""
+    - "IMPLEMENTATION 1: Clear Filter Button"
+    - "  ADDED button in StanleyKubrick_1980_TheShining.html:"
+    - "    <button class='btn btn-sm btn-outline-danger' id='clear-question-filter' style='display: none;'>"
+    - "      Clear Filter"
+    - "    </button>"
+    - "  AUTO-SHOW when filters active, AUTO-HIDE when no filters"
+    - "  FUNCTION clearQuestionFilter() clears legendState.activeQuestions Set"
+    - ""
+    - "IMPLEMENTATION 2: Question Card Filtering"
+    - "  FUNCTION filterQuestionCards() in StanleyKubrick_1980_TheShining_timeline.js:"
+    - "    - Check if question has any tags matching legendState.activeQuestions"
+    - "    - Hide questions that don't match: questionCard.style.display = 'none'"
+    - "    - Show matching questions: questionCard.style.display = ''"
+    - "  CALLED from toggleQuestionFilter() whenever tags are clicked"
+    - ""
+    - "IMPLEMENTATION 3: Tag Highlighting State Management"
+    - "  COMPLEX LOGIC to handle three states:"
+    - "    A. No filters active: Show each question's own tags as active, others as inactive"
+    - "    B. Filters active: Show ALL question's tags, but add special styling to filtered ones"
+    - "    C. After clearing: Restore state A (original state)"
+    - "  CODE PATTERN:"
+    - "    const hasActiveFilters = legendState.activeQuestions.size > 0;"
+    - "    if (hasActiveFilters) {"
+    - "      if (questionData.tags.includes(tag)) {  // Tag belongs to this question"
+    - "        badge.classList.remove('inactive');"
+    - "        if (legendState.activeQuestions.has(tag)) {"
+    - "          badge.classList.add('tag-filter-match');  // Bright outline"
+    - "        } else {"
+    - "          badge.classList.remove('tag-filter-match');"
+    - "        }"
+    - "      } else {  // Tag doesn't belong to this question"
+    - "        badge.classList.add('inactive');"
+    - "      }"
+    - "    } else {  // No filters - restore original state"
+    - "      badge.classList.remove('tag-filter-match');"
+    - "      if (questionData.tags.includes(tag)) {"
+    - "        badge.classList.remove('inactive');"
+    - "      } else {"
+    - "        badge.classList.add('inactive');"
+    - "      }"
+    - "    }"
+    - ""
+    - "IMPLEMENTATION 4: Non-Clickable Tags in Questions"
+    - "  ISSUE: Tags in question cards shouldn't be clickable (filtering happens in legend only)"
+    - "  ADDED .tag-non-clickable class to tags in buildAllTagsWithHighlights():"
+    - "    html += `<span class='tag-badge tag-${tag} ${activeClass} tag-non-clickable'...`"
+    - "  CSS in movie_timelines.css:"
+    - "    .tag-badge.tag-non-clickable {"
+    - "      cursor: default;"
+    - "      pointer-events: none;"
+    - "    }"
+    - "  RESULT: Users can only filter via legend tags, not question card tags"
+    - ""
+    - "IMPLEMENTATION 5: Bright Outline for Filtered Tags"
+    - "  REQUIREMENT: When filtering, show ALL question's relevant tags but highlight filtered ones"
+    - "  ADDED .tag-filter-match class with golden outline in movie_timelines.css:"
+    - "    .tag-badge.tag-filter-match {"
+    - "      box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.6), 0 0 8px rgba(255, 215, 0, 0.4);"
+    - "      border-width: 2px;"
+    - "      font-weight: 700;"
+    - "    }"
+    - "  DARK MODE enhancement:"
+    - "    [data-bs-theme='dark'] .tag-badge.tag-filter-match {"
+    - "      box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.8), 0 0 12px rgba(255, 215, 0, 0.5);"
+    - "    }"
+    - "  VISUAL EFFECT: Bright golden halo around filtered tags, all other tags remain visible"
+    - ""
+    - "DEBUGGING JOURNEY:"
+    - "  - Initial attempt: Used regex /tag-(\S+)/ to extract tag name → matched 'badge' instead"
+    - "  - Fixed: Split className and find class starting with 'tag-' that isn't 'tag-badge'"
+    - "  - Issue: Empty filter Set was being treated same as filter with items"
+    - "  - Fixed: Added hasActiveFilters boolean check before applying logic"
+    - "  - Issue: Clearing filters made all tags inactive"
+    - "  - Fixed: Restore original state - check if tag belongs to question"
+    - "  - Issue: Wrong tags highlighted in wrong questions"
+    - "  - Fixed: Check BOTH legendState.activeQuestions.has(tag) AND questionData.tags.includes(tag)"
+    - ""
+    - "FINAL BEHAVIOR:"
+    - "  1. Click 'supernatural' in Discussion Topics legend"
+    - "  2. Only questions with 'supernatural' tag are displayed"
+    - "  3. Those questions show ALL their relevant tags (supernatural, possession, madness, etc.)"
+    - "  4. 'supernatural' tag has bright golden outline"
+    - "  5. Other tags (possession, madness) are visible but without outline"
+    - "  6. Nodes with 'supernatural' tag are highlighted in visualization"
+    - "  7. Click 'Clear Filter' → all questions reappear, outlines disappear, original state restored"
+
+- step_21_css_variable_consistency:
+    - "ISSUE: Character development styling not consistent with Limitless"
+    - "FIX: Added --viz-primary CSS variable to both StanleyKubrick_1980_TheShining_custom.css files:"
+    - "  :root {"
+    - "    --viz-primary: #4A90E2;  /* Match primary theme color */"
+    - "  }"
+    - "UPDATED .character-block and .character-name to use var(--viz-primary)"
+    - "RESULT: Consistent theming across character development sections"
+
+# ============================================
+# COMMON PITFALLS TO AVOID
+# ============================================
+# 1. Don't create TAG_GROUPS with tags that don't exist in scene data
+# 2. Don't forget SVG filter definitions when using CSS filter: url(#id)
+# 3. Don't mix grid-column with flexbox layouts (use flex-basis instead)
+# 4. Don't skip !important when element has multiple conflicting classes
+# 5. Don't forget to expose functions to window scope for HTML onclick handlers
+# 6. Always verify tag filtering actually highlights matching nodes (test with python scene tag extraction)
+# 7. Always check both visualizations for consistency when updating shared CSS
+# 8. Line-height significantly affects tag height - set explicitly for consistency
+# 9. Tag state management requires checking BOTH filter state AND question membership
+# 10. Empty Set vs populated Set requires different handling in conditional logic
+# 11. CSS Grid better than flexbox for strict row-based layouts (tag categories)
+# 12. When filtering with visual indicators, show ALL relevant items but highlight matches
+# 13. Tag extraction from className needs careful parsing to avoid matching meta-classes like 'tag-badge'
+
+# ============================================
+# KEY LEARNINGS FROM ADVANCED FEATURES (2026-01-14)
+# ============================================
+
+- lesson_01_tag_state_complexity:
+    - "Managing tag states across three contexts is complex:"
+    - "  1. Legend tags (clickable filters)"
+    - "  2. Question tags (display-only, reflect filter state)"
+    - "  3. Node tags (highlight when filtered)"
+    - "SOLUTION: Single source of truth (legendState.activeQuestions Set)"
+    - "PATTERN: Check filter state first, then apply context-specific logic"
+    - "CRITICAL: Always distinguish between 'no filter' and 'filter exists' states"
+
+- lesson_02_progressive_enhancement_ux:
+    - "Better UX: Show all information but highlight what matters"
+    - "BAD: Hide non-matching tags when filtering (loses context)"
+    - "GOOD: Show all tags but add bright outline to matching ones"
+    - "BENEFIT: Users see full context while focusing on filtered content"
+    - "IMPLEMENTATION: Use additive CSS classes (.tag-filter-match) not removal"
+
+- lesson_03_layout_system_choices:
+    - "CSS Grid vs Flexbox decision tree:"
+    - "  - Use Grid: When elements MUST be in separate rows/columns (tag categories)"
+    - "  - Use Flexbox: When elements can wrap and flow (individual tags)"
+    - "  - Use both: Grid for outer structure, flexbox for inner content"
+    - "SHINING EXAMPLE:"
+    - "  - .legend-grid: CSS Grid (single column, strict rows)"
+    - "  - .tag-group: Block display (each category on own line)"
+    - "  - Individual tags within group: Inline flow (natural wrapping)"
+
+- lesson_04_screenplay_based_analysis:
+    - "Discussion answers must be grounded in observable screenplay content"
+    - "TECHNIQUE: Reference specific scene numbers"
+    - "TECHNIQUE: Quote or paraphrase key dialogue"
+    - "TECHNIQUE: Describe visual symbolism shown on screen"
+    - "TECHNIQUE: Analyze character actions and progression"
+    - "AVOID: External theories not supported by film"
+    - "AVOID: Generic statements without scene references"
+    - "RESULT: Answers serve as mini film analysis lessons"
+
+- lesson_05_filter_restoration_pattern:
+    - "When clearing filters, must restore original state exactly"
+    - "PATTERN:"
+    - "  1. Store original state implicitly (question's own tags)"
+    - "  2. On filter clear: legendState.activeQuestions.clear()"
+    - "  3. For each tag in each question:"
+    - "     if (questionData.tags.includes(tag)) → active"
+    - "     else → inactive"
+    - "  4. Remove all filter-specific classes (.tag-filter-match)"
+    - "DEBUGGING TIP: Log both Set size and individual tag checks"
+
+- lesson_06_class_name_extraction:
+    - "Extracting tag names from className string is error-prone"
+    - "WRONG: /tag-(\S+)/.exec(className)[1] → matches 'badge' from 'tag-badge'"
+    - "RIGHT: className.split(' ').find(c => c.startsWith('tag-') && c !== 'tag-badge')"
+    - "BETTER: Use data attributes (data-tag='supernatural') for cleaner access"
+    - "LESSON: Avoid regex for multi-class elements; use explicit parsing"
+
+# ============================================
+# REUSABLE CODE PATTERNS
+# ============================================
+
+- pattern_01_tag_filtering_with_visual_retention:
+    code: |
+      // Show all question's tags, but highlight filtered ones
+      const hasActiveFilters = legendState.activeQuestions.size > 0;
+
+      questionCard.querySelectorAll('.tag-badge').forEach(badge => {
+        const tag = extractTagName(badge); // Get 'supernatural' from 'tag-supernatural'
+
+        if (hasActiveFilters) {
+          if (questionData.tags.includes(tag)) {
+            badge.classList.remove('inactive');
+            // Add special styling if this tag is being filtered
+            if (legendState.activeQuestions.has(tag)) {
+              badge.classList.add('tag-filter-match');
+            } else {
+              badge.classList.remove('tag-filter-match');
+            }
+          } else {
+            badge.classList.add('inactive');
+          }
+        } else {
+          // No filter: restore original state
+          badge.classList.remove('tag-filter-match');
+          badge.classList.toggle('inactive', !questionData.tags.includes(tag));
+        }
+      });
+
+- pattern_02_clear_filter_restoration:
+    code: |
+      function clearQuestionFilter() {
+        // Clear filter state
+        legendState.activeQuestions.clear();
+
+        // Update legend visual state
+        d3.selectAll('.legend-question-item').classed('active', false);
+
+        // Restore all question tags to original state
+        document.querySelectorAll('.book-club-question').forEach(card => {
+          const questionData = findQuestionData(card);
+
+          card.querySelectorAll('.tag-badge').forEach(badge => {
+            const tag = extractTagName(badge);
+            badge.classList.remove('tag-filter-match');
+            badge.classList.toggle('inactive', !questionData.tags.includes(tag));
+          });
+
+          // Show all question cards
+          card.style.display = '';
+        });
+
+        // Clear visualization filters
+        applyLegendFilters();
+      }
+
+- pattern_03_dynamic_question_numbering:
+    code: |
+      function sortQuestions(sortType) {
+        const container = document.getElementById('questions-container');
+        const questions = Array.from(container.querySelectorAll('.book-club-question'));
+
+        // Sort by criteria
+        questions.sort((a, b) => {
+          if (sortType === 'film-order') {
+            return parseInt(a.dataset.originalNumber) - parseInt(b.dataset.originalNumber);
+          } else {
+            // Sort by theme/tags
+            return a.dataset.theme.localeCompare(b.dataset.theme);
+          }
+        });
+
+        // Re-append and renumber
+        questions.forEach((question, index) => {
+          container.appendChild(question);
+          const numberSpan = question.querySelector('.question-number');
+          if (sortType === 'film-order') {
+            numberSpan.textContent = index + 1; // Sequential 1-20
+          } else {
+            numberSpan.textContent = question.dataset.originalNumber; // Original ID
+          }
+        });
+      }
+
+# ============================================
+# TESTING CHECKLIST FOR FILTER FEATURES
+# ============================================
+
+- filter_testing_checklist:
+    - "INITIAL STATE (No filters):"
+    - "  ✓ All questions visible"
+    - "  ✓ Each question shows only its own tags as active (colored)"
+    - "  ✓ Tags from other questions shown as inactive (grayscale)"
+    - "  ✓ Clear Filter button hidden"
+    - ""
+    - "FILTER ACTIVE STATE (Click 'supernatural' in legend):"
+    - "  ✓ Only questions with 'supernatural' tag visible"
+    - "  ✓ Other questions hidden (display: none)"
+    - "  ✓ Visible questions show ALL their own tags"
+    - "  ✓ 'supernatural' tag has bright golden outline"
+    - "  ✓ Other tags (if belonging to question) remain colored but no outline"
+    - "  ✓ Clear Filter button visible"
+    - "  ✓ Nodes with 'supernatural' tag highlighted in visualization"
+    - ""
+    - "AFTER CLEAR FILTER:"
+    - "  ✓ All questions visible again"
+    - "  ✓ All golden outlines removed"
+    - "  ✓ Tags return to original state (active if belongs to question, inactive otherwise)"
+    - "  ✓ Clear Filter button hidden"
+    - "  ✓ Visualization returns to normal (all nodes visible)"
+    - ""
+    - "EDGE CASES:"
+    - "  ✓ Click same tag twice → toggles filter off"
+    - "  ✓ Click multiple tags → union (OR) filtering"
+    - "  ✓ Tags in questions not clickable (legend only)"
+    - "  ✓ Search + filter work together"
+    - "  ✓ Sort + filter preserve filter state"
 
 # My original outline for The Shining based on Limitless:
 #- step_01:

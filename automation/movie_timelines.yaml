@@ -1,0 +1,754 @@
+# ============================================
+# MOVIE TIMELINE VISUALIZATION - GENERIC RECIPE
+# ============================================
+# This recipe guides you through creating an interactive radial timeline visualization
+# for any film, based on the patterns established in Limitless (2011) and The Shining (1980).
+#
+# USAGE: Replace {DIRECTOR}, {YEAR}, {TITLE}, {FILENAME} with actual values
+# EXAMPLE: StanleyKubrick_1980_TheShining
+#
+# PREREQUISITES:
+# - Screenplay PDF in pages/stories/{DIRECTOR}_{YEAR}_{TITLE}/ directory
+# - Python 3 with PyPDF2 and json modules
+# - D3.js v7 (already included in project)
+# - Bootstrap 5 (already included in project)
+# - Base CSS at css/movie_timelines.css (already exists)
+# ============================================
+
+# ============================================
+# PHASE 1: SCREENPLAY EXTRACTION & SCENE ANALYSIS
+# ============================================
+
+- step_01_extract_screenplay:
+    - "use PyPDF2 python script to read {DIRECTOR}_{YEAR}_{TITLE}.pdf"
+    - "write raw text to {DIRECTOR}_{YEAR}_{TITLE}.txt"
+    - "verify the screenplay text is complete and searchable (test with grep)"
+    - "note the total number of pages and approximate runtime"
+    - "result: N pages extracted to X lines of text"
+
+- step_02_scene_extraction:
+    - "study pages/stories/NeilBurger_2011_Limitless/limitless_scenes.json as template"
+    - "USE AGENT (general-purpose or Explore) to systematically extract scenes"
+    - "determine natural scene breaks based on DRAMATIC BEATS, not camera directions"
+    - "target 30-40 narrative scenes (adjust based on film complexity)"
+    - "  - The Shining: 33 scenes from 231 camera setups"
+    - "  - Limitless: 34 scenes covering full narrative arc"
+    - "count total scenes - verify against screenplay (NEVER pad with fake scenes!)"
+    - "create {FILENAME}_scenes.json with metadata section:"
+    - "  - title, director, writer, year, runtime, genre, themes[], totalScenes, analysisDate"
+    - "for each scene, extract from {DIRECTOR}_{YEAR}_{TITLE}.txt:"
+    - "  - id (sequential, starting at 1)"
+    - "  - act (use 'TBD' for now - will assign in step_04)"
+    - "  - title (concise, descriptive)"
+    - "  - location (primary + description)"
+    - "  - time (runtime timestamp + narrative description)"
+    - "  - plotSummary (brief, detailed, subtext)"
+    - "  - keyDialogue (array of {quote, speaker, significance, context})"
+    - "  - characterDevelopment (main characters with state + arc)"
+    - "  - PRIMARY STATE FIELD (choose based on film genre):"
+    - "    OPTION A - psychologicalState: stable/deteriorating/psychotic (psychological thrillers)"
+    - "    OPTION B - cognitiveState: baseline/enhanced/overload (cognitive enhancement films)"
+    - "    OPTION C - emotionalState: calm/anxious/desperate (dramas)"
+    - "    OPTION D - moralState: innocent/conflicted/corrupted (crime films)"
+    - "  - tensionLevel (1-10 scale)"
+    - "  - significance (why this scene matters to the story)"
+    - "  - foreshadowing (empty array [] for now - will populate in step_04)"
+    - "  - tags (genre-appropriate: supernatural, technology, romance, action, etc.)"
+
+- step_03_data_validation:
+    - "verify JSON is valid (python json.load() test)"
+    - "verify ALL scene IDs are sequential 1 to N with no gaps"
+    - "verify metadata.totalScenes matches len(scenes)"
+    - "FIX any JSON syntax errors (common: closing } instead of ] in arrays)"
+    - "verify character development tracks progression across all scenes"
+    - "verify primary state field progression is logical (check against chosen state type)"
+    - "count state distribution (e.g., The Shining: stable=10, deteriorating=7, psychotic=16)"
+    - "cross-reference key dialogue against screenplay text"
+    - "ensure no fabricated content - everything must match screenplay"
+    - "NOTE: foreshadowing will be empty at this stage - that's correct"
+
+- step_04_act_structure_and_foreshadowing:
+    - "determine natural three-act structure based on dramatic turning points:"
+    - "  Act I: Setup and introduction (typically scenes 1 to ~30% of total)"
+    - "  Act II: Conflict and development (typically ~40-50% of total - longest act)"
+    - "  Act III: Climax and resolution (typically final ~25-30% of total)"
+    - "EXAMPLES:"
+    - "  - The Shining: 9/17/7 (setup at hotel, isolation/deterioration, final chase)"
+    - "  - Limitless: 10/15/9 (discovery, rise to power, consequences)"
+    - "USE PYTHON to programmatically assign 'act' field: replace all 'TBD' with act1/act2/act3"
+    - "verify act distribution feels balanced"
+    - "choose act emojis that fit film themes:"
+    - "  - The Shining: 🏔️ arrival, 🔥 deterioration, ❄️ frozen"
+    - "  - Limitless: 🧪 discovery, 📈 ascent, ⚡ limits"
+    - "  - Generic options: 📍 setup, ⚔️ conflict, 🎯 resolution"
+    - "choose act colors that match mood:"
+    - "  - The Shining: #4A90E2 blue, #D32F2F red, #212121 black"
+    - "  - Limitless: #4A90E2 blue, #F57C00 orange, #C62828 red"
+    - "  - Consider color psychology: blues (calm), reds (danger), dark (finality)"
+    - "ADD FORESHADOWING CONNECTIONS (now that acts are assigned):"
+    - "  - use Python to add foreshadowing arrays to key scenes"
+    - "  - create narrative web of connections (The Shining: 49, Limitless: 47)"
+    - "  - verify ALL foreshadowing references point to valid scene IDs"
+    - "  - example: early warning scene → later crisis scenes"
+    - "do NOT create redundant callbacks arrays (auto-generated from foreshadowing)"
+
+# ============================================
+# PHASE 2: DISCUSSION QUESTIONS & TAGGING
+# ============================================
+
+- step_05_discussion_questions:
+    - "create 15-20 thought-provoking discussion questions IN JAVASCRIPT"
+    - "define DISCUSSION_QUESTIONS constant in {FILENAME}_timeline.js"
+    - "each question needs: {id, question, tags[], relatedScenes[], answer}"
+    - "CRITICAL: Use ONLY tags that exist in scene data (verify with Python):"
+    - "  python -c 'import json; tags = set(); [tags.update(s.get(\"tags\", [])) for s in json.load(open(\"{FILENAME}_scenes.json\"))[\"scenes\"]]; print(sorted(tags))'"
+    - "ORGANIZE tags into 5-6 logical groups for TAG_GROUPS:"
+    - "  - Core Themes (main thematic elements)"
+    - "  - Characters (character names and relationships)"
+    - "  - Genre Elements (genre-specific: horror, sci-fi, action, etc.)"
+    - "  - Director's Vision (cinematic techniques, adaptation choices)"
+    - "  - Key Symbols (important objects, locations, motifs)"
+    - "  - Character Traits (abilities, development arcs)"
+    - "EXAMPLES:"
+    - "  The Shining groups: Horror & Madness, Characters, Key Locations, etc."
+    - "  Limitless groups: Cognitive Enhancement, Characters, Power & Money, etc."
+    - "question types to include:"
+    - "  - Character psychology and motivation"
+    - "  - Central themes and interpretations"
+    - "  - Symbolism and visual storytelling"
+    - "  - Cinematography and directorial choices"
+    - "  - Moral/philosophical questions"
+    - "  - Comparison to source material (if adapted)"
+    - "ANSWERS: Write detailed, screenplay-based analysis:"
+    - "  - Reference specific scene numbers"
+    - "  - Quote or paraphrase key dialogue"
+    - "  - Describe visual symbolism shown on screen"
+    - "  - Analyze character actions and progression"
+    - "  - 4-8 sentences per answer"
+    - "  - Ground in observable film content, avoid external theories"
+
+- step_06_tag_icons_and_css:
+    - "define TAG_ICONS in {FILENAME}_timeline.js for every tag:"
+    - "  - Use thematically appropriate emoji (🎬 cinema, 💊 drugs, 🏨 hotel, etc.)"
+    - "  - VERIFY: Every tag in TAG_GROUPS has an icon"
+    - "  - VERIFY: Every tag in DISCUSSION_QUESTIONS has an icon"
+    - "create CSS definitions for ALL tags in {FILENAME}_custom.css:"
+    - "  - Pattern:"
+    - "    .tag-{name} {"
+    - "      background: rgba(R, G, B, 0.1);"
+    - "      color: #RRGGBB;"
+    - "      border-color: #RRGGBB;"
+    - "    }"
+    - "  - Also define: .legend-question-item.tag-{name} with same colors"
+    - "  - Use color palette appropriate to genre/mood:"
+    - "    Horror: dark reds, purples, blacks (#4A0000, #6A0080)"
+    - "    Sci-fi: blues, greens, cyans (#0066CC, #00CC66)"
+    - "    Drama: warm neutrals, earth tones (#8B6914, #654321)"
+    - "  - Ensure sufficient contrast for readability"
+    - "  - Test in both light and dark modes"
+
+# ============================================
+# PHASE 3: HTML PAGE STRUCTURE
+# ============================================
+
+- step_07_html_page:
+    - "study pages/stories/NeilBurger_2011_Limitless/limitless.html"
+    - "create {FILENAME}.html based on template"
+    - "use css/movie_timelines.css as base stylesheet"
+    - "link to {FILENAME}_custom.css?v=YYYY.MM.DD.HH.MM.SS"
+    - "CRITICAL: Use placeholders for header/footer:"
+    - "  - <div id='header_placeholder'></div>"
+    - "  - <div id='footer_placeholder'></div> (NOT hardcoded footer)"
+    - "CRITICAL: Add loadHeaderFooter script at END:"
+    - "  <script>"
+    - "    loadHeaderFooter('../../../automation/header.html', '../../../automation/footer.html');"
+    - "  </script>"
+    - "include sections:"
+    - "  - Film overview with metadata (director, year, genre, runtime)"
+    - "  - Introduction explaining the visualization approach"
+    - "  - How to use the visualization:"
+    - "    • Hover: Preview scene details"
+    - "    • Click: Open full scene analysis"
+    - "    • Mark Reviewed: Track your progress"
+    - "    • Filter: View by act or primary state"
+    - "    • Search: Find scenes by title, tags, or themes (press /)"
+    - "  - Color legend for acts (3 act colors)"
+    - "  - Primary state legend (3-4 states based on film type)"
+    - "  - Connection lines legend:"
+    - "    • Solid blue: Foreshadowing (what this scene hints at)"
+    - "    • Dashed purple: Callbacks (what earlier scenes hinted at this)"
+    - "  - Key recurring themes section (6-9 major themes/motifs)"
+    - "  - Discussion questions section with:"
+    - "    • <div id='questions-container'> (JS will populate this)"
+    - "    • Sort toggle buttons (Timeline / Theme)"
+    - "    • Clear Filter button (hidden by default)"
+    - "use timestamp versioning: ?v=YYYY.MM.DD.HH.MM.SS"
+    - "TITLE FORMAT: 'Stories | Film Analysis | {TITLE}'"
+
+# ============================================
+# PHASE 4: VISUALIZATION JAVASCRIPT
+# ============================================
+
+- step_08_visualization_js:
+    - "study pages/stories/NeilBurger_2011_Limitless/limitless_timeline.js"
+    - "create {FILENAME}_timeline.js adapting from template"
+    - "CRITICAL ADAPTATIONS:"
+    - "  - CONFIG.DATA_FILE: '{FILENAME}_scenes.json'"
+    - "  - PRIMARY STATE FIELD: Replace cognitiveState/psychologicalState with chosen field"
+    - "  - PRIMARY_COLORS: Define 3-4 colors for your chosen state field"
+    - "    Example: PSYCHOLOGICAL_COLORS = {stable: '#4CAF50', deteriorating: '#FF9800', psychotic: '#D32F2F'}"
+    - "  - ACT_COLORS: Use colors chosen in step_04"
+    - "  - ACT_ICONS: Use emojis chosen in step_04"
+    - "  - STATE_LABELS: Define display labels for your state field"
+    - "  - Remove film-specific tracking (e.g., MDT tracking only in Limitless)"
+    - "INCLUDE from template:"
+    - "  - circular radial tree layout (D3.js)"
+    - "  - connection logic: auto-generate callbacks from foreshadowing"
+    - "  - for each foreshadowing A→B, create:"
+    - "    1. Foreshadowing link: A → B (solid blue)"
+    - "    2. Callback link: B → A (dashed purple)"
+    - "  - hover behavior: show tooltip when no node locked"
+    - "  - click behavior: lock node, hide tooltip, show info card"
+    - "  - Escape key: clear all selections and unlock"
+    - "  - click outside: clear all selections"
+    - "  - progressive disclosure: track viewed scenes in localStorage"
+    - "  - act filtering with scene counts"
+    - "  - primary state filtering with scene counts"
+    - "  - search functionality with / keyboard shortcut"
+    - "  - info card modal (side panel slide-in from right)"
+    - "  - hideInfoCard, showInfoCard, toggleViewedFromCard functions"
+    - "CRITICAL: IMPLEMENT renderDiscussionQuestions() function:"
+    - "  - called from initialize() after loadProgress()"
+    - "  - dynamically generate question cards from DISCUSSION_QUESTIONS array"
+    - "  - for EACH question, show ALL tags in organized groups via TAG_GROUPS"
+    - "  - mark tags as 'active' (in color) or 'inactive' (grayscale)"
+    - "  - tags in question cards should be NON-CLICKABLE (.tag-non-clickable)"
+    - "  - create buildAllTagsWithHighlights() function"
+    - "  - add 'Show Answer' / 'Hide Answer' toggle button"
+    - "  - display: q.answer || 'Analysis coming soon.'"
+    - "IMPLEMENT tag filtering system:"
+    - "  - toggleQuestionFilter(questionKey) - toggle tag in legendState.activeQuestions"
+    - "  - filterQuestionCards() - show/hide questions based on active tags"
+    - "  - clearQuestionFilter() - restore all questions and original tag states"
+    - "  - TAG STATE LOGIC (complex - see pattern_01 below):"
+    - "    • No filters: Show each question's own tags as active, others inactive"
+    - "    • Filters active: Show ALL question's tags, add .tag-filter-match to filtered ones"
+    - "    • After clear: Restore original state"
+    - "  - expose to window: window.toggleQuestionFilter = toggleQuestionFilter"
+    - "IMPLEMENT question sorting:"
+    - "  - sortQuestions(sortType) - 'film-order' or 'theme'"
+    - "  - Timeline mode: Renumber questions sequentially 1-20"
+    - "  - Theme mode: Preserve original question IDs"
+    - "  - Store original ID: question.dataset.originalNumber = q.id"
+    - "use timestamp versioning: ?v=YYYY.MM.DD.HH.MM.SS"
+
+# ============================================
+# PHASE 5: CUSTOM CSS STYLING
+# ============================================
+
+- step_09_custom_css:
+    - "create {FILENAME}_custom.css with CRITICAL FIXES AT TOP:"
+    - "SECTION 1: INFO CARD MODAL FIX (MUST BE FIRST - critical override)"
+    - "  .info-card-backdrop.active { opacity: 1; pointer-events: auto; }"
+    - "  .info-card.active { opacity: 1; pointer-events: auto; }"
+    - "  .info-card-modal {"
+    - "    position: fixed; top: 0; right: 0;"
+    - "    transform: translateX(100%);"
+    - "    width: 400px; height: 100vh;"
+    - "    transition: transform 0.3s ease, opacity 0.3s ease;"
+    - "  }"
+    - "  .info-card-modal.active {"
+    - "    transform: translateX(0); opacity: 1; pointer-events: auto;"
+    - "  }"
+    - "  .info-card-backdrop { pointer-events: none !important; }"
+    - "  #visualization-container, .visualization-main { overflow: visible; }"
+    - "SECTION 2: COLOR VARIABLES"
+    - "  :root {"
+    - "    --viz-primary: #RRGGBB;  /* Primary theme color */"
+    - "    --act1-color: #RRGGBB;   /* From step_04 */"
+    - "    --act2-color: #RRGGBB;   /* From step_04 */"
+    - "    --act3-color: #RRGGBB;   /* From step_04 */"
+    - "    --state1-color: #RRGGBB; /* Primary state colors */"
+    - "    --state2-color: #RRGGBB;"
+    - "    --state3-color: #RRGGBB;"
+    - "    /* Optional film-specific colors */"
+    - "    --theme-accent-1: #RRGGBB;"
+    - "    --theme-accent-2: #RRGGBB;"
+    - "  }"
+    - "SECTION 3: PRIMARY STATE STYLING"
+    - "  - Define .{state}-state-badge classes for each state"
+    - "  - Style nodes based on state (.node.state-{name})"
+    - "  - Use colors defined in SECTION 2"
+    - "SECTION 4: BOOK CLUB GRID LAYOUT"
+    - "  .book-club-grid {"
+    - "    display: grid;"
+    - "    grid-template-columns: 1fr !important;  /* Single column for readability */"
+    - "    gap: 1rem;"
+    - "  }"
+    - "SECTION 5: TAG COLOR DEFINITIONS (END OF FILE)"
+    - "  - Define .tag-{name} for EVERY tag used (from step_06)"
+    - "  - Pattern:"
+    - "    .tag-{name} {"
+    - "      background: rgba(R, G, B, 0.1);"
+    - "      color: #RRGGBB;"
+    - "      border-color: #RRGGBB;"
+    - "    }"
+    - "    .legend-question-item.tag-{name} { /* same colors */ }"
+    - "  - Use thematically appropriate color palette"
+    - "  - Verify every tag in scenes.json has CSS definition"
+    - "ADDITIONAL ENHANCEMENTS (optional):"
+    - "  - Film-specific motif styling"
+    - "  - Custom scrollbars"
+    - "  - Tension level indicators"
+    - "  - Thematic animations or transitions"
+
+# ============================================
+# PHASE 6: TESTING & VERIFICATION
+# ============================================
+
+- step_10_final_verification:
+    - "CRITICAL VISUAL TESTS:"
+    - "  ✓ Header and footer load properly (not blank)"
+    - "  ✓ Info card slides in from RIGHT as side panel (not bottom of page)"
+    - "  ✓ Discussion questions appear in single-column grid"
+    - "  ✓ ALL tags visible in each question with active/inactive states"
+    - "  ✓ Tag colors display correctly (not gray boxes)"
+    - "  ✓ All theme motifs display with proper styling"
+    - "INTERACTION TESTS:"
+    - "  ✓ Hover shows tooltip when no node is locked"
+    - "  ✓ Click locks node, hides tooltip, shows info card"
+    - "  ✓ Escape key clears selections and unlocks node"
+    - "  ✓ Click outside clears selections"
+    - "  ✓ Search works (press / to focus)"
+    - "  ✓ Act filtering works with correct scene counts"
+    - "  ✓ Primary state filtering works with correct scene counts"
+    - "  ✓ Discussion question tags in legend are clickable"
+    - "  ✓ Discussion question tags in cards are NON-clickable"
+    - "  ✓ Tag filtering shows correct questions"
+    - "  ✓ Tag filtering adds golden outline to matching tags (.tag-filter-match)"
+    - "  ✓ Clear Filter button appears/disappears correctly"
+    - "  ✓ Clear Filter restores original tag states"
+    - "  ✓ Timeline sort: questions numbered 1-20 sequentially"
+    - "  ✓ Theme sort: questions show original IDs"
+    - "  ✓ 'Show Answer' / 'Hide Answer' toggles work"
+    - "DATA INTEGRITY TESTS:"
+    - "  ✓ All foreshadowing connections visualize correctly"
+    - "  ✓ No broken scene references (console errors)"
+    - "  ✓ All scene IDs are valid"
+    - "  ✓ Progress tracking persists in localStorage"
+    - "  ✓ All tags in DISCUSSION_QUESTIONS exist in scene data"
+    - "  ✓ All tags in TAG_GROUPS have icons and CSS"
+    - "RESPONSIVE DESIGN:"
+    - "  ✓ Mobile: questions remain single column"
+    - "  ✓ Mobile: info card adjusts width"
+    - "  ✓ Tablet: visualization scales properly"
+    - "  ✓ Desktop: all features accessible"
+    - "VERSION CONSISTENCY:"
+    - "  ✓ Same timestamp across HTML, CSS, and JS links"
+    - "DARK MODE:"
+    - "  ✓ All colors readable in dark theme"
+    - "  ✓ .tag-filter-match outline more prominent in dark mode"
+    - "  ✓ Info card styling works in dark mode"
+
+- step_11_commit:
+    - "commit with descriptive message following project patterns"
+    - "include Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
+    - "verify git status is clean (no temp files)"
+    - "example: 'Add {TITLE} film analysis with interactive timeline visualization'"
+
+# ============================================
+# KEY PRINCIPLES
+# ============================================
+# - NEVER pad scenes - only use scenes that actually exist in screenplay
+# - Use only foreshadowing arrays (callbacks auto-generated by visualization)
+# - All references must point to valid scene IDs
+# - Character development must track throughout entire film
+# - Verify everything against source screenplay - no fabricated content
+# - Timestamp versioning for cache busting
+# - Single source of truth for narrative connections (foreshadowing only)
+# - Use agents for complex extraction/analysis tasks
+# - Programmatic data manipulation (Python) > manual editing
+# - Critical CSS fixes go at TOP of custom stylesheet
+# - Test visual appearance AND interaction behavior
+# - Tag synchronization: DISCUSSION_QUESTIONS tags must exist in scene data
+# - Progressive enhancement UX: Show all, highlight what matters
+# - State management: Distinguish between "no filter" and "filter exists"
+
+# ============================================
+# COMMON PITFALLS TO AVOID
+# ============================================
+# 1. Don't create TAG_GROUPS with tags that don't exist in scene data
+# 2. Don't forget SVG filter definitions when using CSS filter: url(#id)
+# 3. Don't mix grid-column with flexbox layouts (use flex-basis instead)
+# 4. Don't skip !important when element has multiple conflicting classes
+# 5. Don't forget to expose functions to window scope for HTML onclick handlers
+# 6. Always verify tag filtering actually highlights matching nodes
+# 7. Always check visualizations for consistency when updating shared CSS
+# 8. Line-height significantly affects tag height - set explicitly
+# 9. Tag state management requires checking BOTH filter state AND question membership
+# 10. Empty Set vs populated Set requires different handling in conditional logic
+# 11. CSS Grid better than flexbox for strict row-based layouts
+# 12. When filtering with visual indicators, show ALL relevant items but highlight matches
+# 13. Tag extraction from className needs careful parsing to avoid matching 'tag-badge'
+# 14. Don't use film-specific state fields in generic code (parameterize them)
+# 15. Always provide default/fallback values for optional scene properties
+
+# ============================================
+# KEY LEARNINGS
+# ============================================
+
+- lesson_01_tag_state_complexity:
+    - "Managing tag states across three contexts is complex:"
+    - "  1. Legend tags (clickable filters)"
+    - "  2. Question tags (display-only, reflect filter state)"
+    - "  3. Node tags (highlight when filtered)"
+    - "SOLUTION: Single source of truth (legendState.activeQuestions Set)"
+    - "PATTERN: Check filter state first, then apply context-specific logic"
+    - "CRITICAL: Always distinguish between 'no filter' and 'filter exists' states"
+
+- lesson_02_progressive_enhancement_ux:
+    - "Better UX: Show all information but highlight what matters"
+    - "BAD: Hide non-matching tags when filtering (loses context)"
+    - "GOOD: Show all tags but add bright outline to matching ones"
+    - "BENEFIT: Users see full context while focusing on filtered content"
+    - "IMPLEMENTATION: Use additive CSS classes (.tag-filter-match) not removal"
+
+- lesson_03_layout_system_choices:
+    - "CSS Grid vs Flexbox decision tree:"
+    - "  - Use Grid: When elements MUST be in separate rows/columns (tag categories)"
+    - "  - Use Flexbox: When elements can wrap and flow (individual tags)"
+    - "  - Use both: Grid for outer structure, flexbox for inner content"
+    - "EXAMPLE:"
+    - "  - .legend-grid: CSS Grid (single column, strict rows)"
+    - "  - .tag-group: Block display (each category on own line)"
+    - "  - Individual tags within group: Inline flow (natural wrapping)"
+
+- lesson_04_screenplay_based_analysis:
+    - "Discussion answers must be grounded in observable screenplay content"
+    - "TECHNIQUE: Reference specific scene numbers"
+    - "TECHNIQUE: Quote or paraphrase key dialogue"
+    - "TECHNIQUE: Describe visual symbolism shown on screen"
+    - "TECHNIQUE: Analyze character actions and progression"
+    - "AVOID: External theories not supported by film"
+    - "AVOID: Generic statements without scene references"
+    - "RESULT: Answers serve as mini film analysis lessons"
+
+- lesson_05_filter_restoration_pattern:
+    - "When clearing filters, must restore original state exactly"
+    - "PATTERN:"
+    - "  1. Store original state implicitly (question's own tags)"
+    - "  2. On filter clear: legendState.activeQuestions.clear()"
+    - "  3. For each tag in each question:"
+    - "     if (questionData.tags.includes(tag)) → active"
+    - "     else → inactive"
+    - "  4. Remove all filter-specific classes (.tag-filter-match)"
+    - "DEBUGGING TIP: Log both Set size and individual tag checks"
+
+- lesson_06_class_name_extraction:
+    - "Extracting tag names from className string is error-prone"
+    - "WRONG: /tag-(\S+)/.exec(className)[1] → matches 'badge' from 'tag-badge'"
+    - "RIGHT: className.split(' ').find(c => c.startsWith('tag-') && c !== 'tag-badge')"
+    - "BETTER: Use data attributes (data-tag='supernatural') for cleaner access"
+    - "LESSON: Avoid regex for multi-class elements; use explicit parsing"
+
+- lesson_07_primary_state_abstraction:
+    - "Different films need different state tracking:"
+    - "  - Psychological thrillers: psychologicalState (stable/deteriorating/psychotic)"
+    - "  - Cognitive films: cognitiveState (baseline/enhanced/overload)"
+    - "  - Character arcs: moralState (innocent/conflicted/corrupted)"
+    - "  - Emotional dramas: emotionalState (calm/anxious/desperate)"
+    - "SOLUTION: Choose appropriate state field during scene extraction"
+    - "IMPLEMENTATION: Replace state field name throughout JS and CSS"
+    - "CONSISTENCY: Use consistent naming in scenes.json and visualization code"
+
+# ============================================
+# REUSABLE CODE PATTERNS
+# ============================================
+
+- pattern_01_tag_filtering_with_visual_retention:
+    description: "Show all question's tags, but highlight filtered ones with golden outline"
+    code: |
+      // In toggleQuestionFilter() function
+      const hasActiveFilters = legendState.activeQuestions.size > 0;
+
+      document.querySelectorAll('.book-club-question').forEach(questionCard => {
+        const questionData = findQuestionData(questionCard);
+
+        questionCard.querySelectorAll('.tag-badge').forEach(badge => {
+          const classes = badge.className.split(' ');
+          const tagClass = classes.find(c => c.startsWith('tag-') && c !== 'tag-badge');
+          const tag = tagClass ? tagClass.replace('tag-', '') : null;
+
+          if (!tag) return;
+
+          if (hasActiveFilters) {
+            if (questionData.tags.includes(tag)) {
+              // Tag belongs to this question - show it
+              badge.classList.remove('inactive');
+              // Add bright outline if this tag matches the filter
+              if (legendState.activeQuestions.has(tag)) {
+                badge.classList.add('tag-filter-match');
+              } else {
+                badge.classList.remove('tag-filter-match');
+              }
+            } else {
+              // Tag doesn't belong to this question - hide it
+              badge.classList.add('inactive');
+              badge.classList.remove('tag-filter-match');
+            }
+          } else {
+            // No filter: restore original state
+            badge.classList.remove('tag-filter-match');
+            if (questionData.tags.includes(tag)) {
+              badge.classList.remove('inactive');
+            } else {
+              badge.classList.add('inactive');
+            }
+          }
+        });
+      });
+
+- pattern_02_clear_filter_restoration:
+    description: "Restore all questions and tag states to original unfiltered state"
+    code: |
+      function clearQuestionFilter() {
+        // Clear filter state
+        legendState.activeQuestions.clear();
+
+        // Update legend visual state
+        d3.selectAll('.legend-question-item').classed('active', false);
+
+        // Restore all question tags to original state
+        document.querySelectorAll('.book-club-question').forEach(card => {
+          const questionData = DISCUSSION_QUESTIONS.find(q => {
+            const scenes = card.dataset.scenes;
+            return scenes && q.relatedScenes.join(',') === scenes;
+          });
+
+          if (questionData) {
+            card.querySelectorAll('.tag-badge').forEach(badge => {
+              const classes = badge.className.split(' ');
+              const tagClass = classes.find(c => c.startsWith('tag-') && c !== 'tag-badge');
+              const tag = tagClass ? tagClass.replace('tag-', '') : null;
+
+              if (tag) {
+                badge.classList.remove('tag-filter-match');
+                if (questionData.tags.includes(tag)) {
+                  badge.classList.remove('inactive');
+                } else {
+                  badge.classList.add('inactive');
+                }
+              }
+            });
+          }
+
+          // Show all question cards
+          card.style.display = '';
+        });
+
+        // Hide clear filter button
+        const clearFilterBtn = document.getElementById('clear-question-filter');
+        if (clearFilterBtn) {
+          clearFilterBtn.style.display = 'none';
+        }
+
+        // Clear visualization filters
+        applyLegendFilters();
+      }
+
+- pattern_03_dynamic_question_numbering:
+    description: "Renumber questions based on sort mode (Timeline: 1-20, Theme: original IDs)"
+    code: |
+      function sortQuestions(sortType) {
+        const container = document.getElementById('questions-container');
+        const grid = container.querySelector('.book-club-grid');
+        const questions = Array.from(grid.querySelectorAll('.book-club-question'));
+
+        // Sort by criteria
+        if (sortType === 'film-order') {
+          questions.sort((a, b) =>
+            parseInt(a.dataset.originalNumber) - parseInt(b.dataset.originalNumber)
+          );
+        } else {
+          // Sort by first tag (theme)
+          questions.sort((a, b) => {
+            const aTag = a.dataset.firstTag || '';
+            const bTag = b.dataset.firstTag || '';
+            return aTag.localeCompare(bTag);
+          });
+        }
+
+        // Re-append to DOM and renumber
+        questions.forEach((question, index) => {
+          grid.appendChild(question);
+          const numberSpan = question.querySelector('.question-number');
+          if (numberSpan) {
+            if (sortType === 'film-order') {
+              numberSpan.textContent = index + 1; // Sequential 1-20
+            } else {
+              numberSpan.textContent = question.dataset.originalNumber; // Original ID
+            }
+          }
+        });
+
+        // Update button active states
+        document.querySelectorAll('[data-sort]').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.sort === sortType);
+        });
+      }
+
+- pattern_04_build_tags_with_highlights:
+    description: "Generate tag HTML with proper active/inactive states for question cards"
+    code: |
+      function buildAllTagsWithHighlights(questionTags) {
+        let html = '';
+
+        // Iterate through TAG_GROUPS to maintain organization
+        for (const [groupName, groupTags] of Object.entries(TAG_GROUPS)) {
+          const hasAnyTag = groupTags.some(tag => questionTags.includes(tag));
+          if (!hasAnyTag) continue; // Skip groups with no relevant tags
+
+          html += `<div class="tag-group">`;
+          html += `<span class="tag-group-label">${groupName}:</span> `;
+
+          groupTags.forEach(tag => {
+            const icon = TAG_ICONS[tag] || '🎬';
+            const label = tag.replace(/-/g, ' ');
+            const activeClass = questionTags.includes(tag) ? '' : 'inactive';
+
+            // Non-clickable tags in question cards
+            html += `<span class="tag-badge tag-${tag} ${activeClass} tag-non-clickable"
+                           title="${label}">${icon} ${label}</span>`;
+          });
+
+          html += `</div>`;
+        }
+
+        return html;
+      }
+
+- pattern_05_python_tag_extraction:
+    description: "Extract all unique tags from scene data for verification"
+    code: |
+      # Verify tags in DISCUSSION_QUESTIONS match tags in scene data
+      import json
+
+      # Load scene data
+      with open('FILENAME_scenes.json', 'r') as f:
+          data = json.load(f)
+
+      # Extract all unique tags from scenes
+      scene_tags = set()
+      for scene in data['scenes']:
+          scene_tags.update(scene.get('tags', []))
+
+      print("Scene tags:", sorted(scene_tags))
+      print(f"Total unique tags: {len(scene_tags)}")
+
+      # Check if discussion question tags exist in scene data
+      # (Manually compare with DISCUSSION_QUESTIONS in JS file)
+
+# ============================================
+# TESTING CHECKLIST FOR FILTER FEATURES
+# ============================================
+
+- filter_testing_checklist:
+    - "INITIAL STATE (No filters):"
+    - "  ✓ All questions visible"
+    - "  ✓ Each question shows only its own tags as active (colored)"
+    - "  ✓ Tags from other questions shown as inactive (grayscale)"
+    - "  ✓ Clear Filter button hidden"
+    - ""
+    - "FILTER ACTIVE STATE (Click tag in Discussion Topics legend):"
+    - "  ✓ Only questions with that tag visible"
+    - "  ✓ Other questions hidden (display: none)"
+    - "  ✓ Visible questions show ALL their own tags"
+    - "  ✓ Filtered tag has bright golden outline (.tag-filter-match)"
+    - "  ✓ Other tags (if belonging to question) remain colored but no outline"
+    - "  ✓ Clear Filter button visible"
+    - "  ✓ Nodes with that tag highlighted in visualization"
+    - ""
+    - "AFTER CLEAR FILTER:"
+    - "  ✓ All questions visible again"
+    - "  ✓ All golden outlines removed"
+    - "  ✓ Tags return to original state (active if belongs to question, inactive otherwise)"
+    - "  ✓ Clear Filter button hidden"
+    - "  ✓ Visualization returns to normal (all nodes visible)"
+    - ""
+    - "EDGE CASES:"
+    - "  ✓ Click same tag twice → toggles filter off"
+    - "  ✓ Click multiple tags → union (OR) filtering"
+    - "  ✓ Tags in questions not clickable (legend only)"
+    - "  ✓ Search + filter work together"
+    - "  ✓ Sort + filter preserve filter state"
+    - "  ✓ No console errors when filtering"
+    - "  ✓ Filter state persists during resize/responsive changes"
+
+# ============================================
+# ADVANCED CUSTOMIZATION OPTIONS
+# ============================================
+
+- customization_01_alternative_layouts:
+    - "Radial tree is default, but consider alternatives:"
+    - "  - Force-directed graph: For complex interconnected narratives"
+    - "  - Timeline strip: For linear, chronological stories"
+    - "  - Hierarchical tree: For nested/flashback structures"
+    - "  - Sankey diagram: For showing character journey flows"
+    - "Choose based on narrative structure and connection density"
+
+- customization_02_additional_metrics:
+    - "Consider tracking beyond primary state:"
+    - "  - Tension level visualization (node size/pulse)"
+    - "  - Character presence (multi-ring nodes)"
+    - "  - Location changes (color zones)"
+    - "  - Time of day (gradient backgrounds)"
+    - "  - Music/score intensity (audio integration)"
+    - "Don't overcomplicate - clarity over features"
+
+- customization_03_interactive_enhancements:
+    - "Advanced interactions to consider:"
+    - "  - Filter by multiple criteria simultaneously"
+    - "  - Character-specific journey highlighting"
+    - "  - Comparison mode (two scenes side-by-side)"
+    - "  - Export scene notes/analysis"
+    - "  - Share specific scene URLs"
+    - "  - Print-friendly analysis view"
+    - "  - Video timestamp integration"
+
+- customization_04_educational_features:
+    - "For classroom/study use:"
+    - "  - Spoiler-free mode (progressive reveal)"
+    - "  - Quiz mode based on discussion questions"
+    - "  - Note-taking integration"
+    - "  - Group discussion tracking"
+    - "  - Printable study guides"
+    - "  - Citation generator for essays"
+
+# ============================================
+# FILE STRUCTURE REFERENCE
+# ============================================
+#
+# pages/stories/{DIRECTOR}_{YEAR}_{TITLE}/
+#   ├── {DIRECTOR}_{YEAR}_{TITLE}.pdf        # Original screenplay PDF
+#   ├── {DIRECTOR}_{YEAR}_{TITLE}.txt        # Extracted text (step_01)
+#   ├── {FILENAME}_scenes.json               # Scene data (step_02-04)
+#   ├── {FILENAME}.html                      # Main page (step_07)
+#   ├── {FILENAME}_timeline.js               # Visualization logic (step_08)
+#   ├── {FILENAME}_custom.css                # Film-specific styles (step_09)
+#   └── {DIRECTOR}_{YEAR}_{TITLE}.yaml       # Implementation log (optional)
+#
+# Shared resources:
+#   ├── css/movie_timelines.css              # Base styles (shared)
+#   ├── d3/d3.v7.min.js                      # D3.js library (shared)
+#   ├── automation/header.html               # Site header (shared)
+#   ├── automation/footer.html               # Site footer (shared)
+#   └── automation/movie_timelines.yaml      # This recipe file
+#
+# ============================================
+
+# ============================================
+# VERSION HISTORY
+# ============================================
+# v1.0 - 2026-01-14 - Initial generic recipe based on The Shining (1980) and Limitless (2011)
+#                     Includes all advanced features: tag filtering, question sorting,
+#                     screenplay-based answers, progressive enhancement UX
