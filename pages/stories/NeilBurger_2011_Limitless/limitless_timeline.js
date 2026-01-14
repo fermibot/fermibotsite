@@ -43,7 +43,7 @@ const CONFIG = {
     // Layout
     DIAMETER: 900,
     STORAGE_KEY: 'limitless-viewed-scenes',
-    DATA_FILE: 'limitless_scenes_50.json'
+    DATA_FILE: 'limitless_scenes.json'
 };
 
 // ============================================
@@ -458,8 +458,8 @@ function createLegendWithProgress() {
     // Act colors with scene counts
     const actDetails = {
         'act1': { count: 15 },
-        'act2': { count: 25 },
-        'act3': { count: 10 }
+        'act2': { count: 14 },
+        'act3': { count: 5 }
     };
 
     Object.entries(CONFIG.ACT_NAMES).forEach(([actId, name]) => {
@@ -1877,6 +1877,10 @@ function showInfoCard(node) {
                     onclick="window.toggleViewedFromCard(${scene.id})">
                 ${isViewed ? '✓ Reviewed' : 'Mark as Reviewed'}
             </button>
+            <button class="btn btn-sm btn-outline-secondary"
+                    onclick="window.showScreenplayExcerpt(${scene.id})">
+                📄 View Screenplay
+            </button>
         </div>
         ${locationTimeHtml}
         <div class="info-card-types">
@@ -2343,6 +2347,56 @@ window.sortQuestions = function(sortType) {
 document.addEventListener('DOMContentLoaded', () => {
     initialize();
     setupCognitiveMarkers();
+
+    // Show screenplay excerpt for a scene
+    window.showScreenplayExcerpt = function(sceneId) {
+        const scene = SCENES.find(s => s.id === sceneId);
+        if (!scene) return;
+
+        // Create modal overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'screenplay-modal-overlay';
+        overlay.onclick = () => document.body.removeChild(overlay);
+
+        // Create modal content
+        const modal = document.createElement('div');
+        modal.className = 'screenplay-modal';
+        modal.onclick = (e) => e.stopPropagation();
+
+        modal.innerHTML = `
+            <div class="screenplay-modal-header">
+                <h4>📄 Screenplay Excerpt - Scene ${scene.id}</h4>
+                <button class="screenplay-modal-close" onclick="this.closest('.screenplay-modal-overlay').remove()">&times;</button>
+            </div>
+            <div class="screenplay-modal-body">
+                <div class="screenplay-info">
+                    <p><strong>Scene:</strong> ${scene.title}</p>
+                    <p><strong>Location:</strong> ${scene.location?.primary || 'N/A'}</p>
+                    <p><strong>Runtime:</strong> ${scene.time?.runtime || 'N/A'}</p>
+                </div>
+                <div class="screenplay-text">
+                    <p class="screenplay-note">
+                        <strong>Note:</strong> To verify this scene against the original screenplay,
+                        open <code>NeilBurger_2011_Limitless.txt</code> and search for:
+                    </p>
+                    <ul class="screenplay-search-hints">
+                        ${scene.keyDialogue && scene.keyDialogue.length > 0 ?
+                            `<li>Key dialogue: "${scene.keyDialogue[0].quote.substring(0, 50)}..."</li>` : ''}
+                        ${scene.location?.primary ?
+                            `<li>Location: "${scene.location.primary}"</li>` : ''}
+                        <li>Runtime: approximately ${scene.time?.approximate || scene.time?.runtime || 'unknown'}</li>
+                    </ul>
+                    <p class="screenplay-note">
+                        The screenplay file is located at:<br>
+                        <code>pages/stories/NeilBurger_2011_Limitless/NeilBurger_2011_Limitless.txt</code>
+                    </p>
+                </div>
+            </div>
+        `;
+
+        overlay.appendChild(modal);
+        document.body.appendChild(overlay);
+    };
 
     // Sort questions chronologically by default
     setTimeout(() => {
