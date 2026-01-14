@@ -1,0 +1,2029 @@
+{
+  "metadata": {
+    "title": "The Shining",
+    "director": "Stanley Kubrick",
+    "writer": "Stanley Kubrick & Diane Johnson (based on novel by Stephen King)",
+    "year": 1980,
+    "runtime": "146 minutes",
+    "genre": "Psychological Horror",
+    "themes": [
+      "Isolation",
+      "Madness",
+      "Supernatural",
+      "Family Dysfunction",
+      "Violence",
+      "The Past",
+      "Psychic Ability",
+      "Alcoholism",
+      "Cyclical Time"
+    ],
+    "totalScenes": 33,
+    "analysisDate": "2026-01-13"
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "act": "act1",
+      "title": "The Mountain Drive - Opening Credits",
+      "location": {
+        "primary": "Colorado Mountains - Going-to-the-Sun Road",
+        "description": "Winding mountain road through pristine wilderness, lake and mountains, VW Beetle driving to remote location"
+      },
+      "time": {
+        "narrative": "October - Before winter season",
+        "runtime": "0:00-0:03",
+        "approximate": "Opening sequence"
+      },
+      "plotSummary": {
+        "brief": "Aerial tracking shots follow Jack's car through isolated Colorado mountains to the Overlook Hotel",
+        "detailed": "Helicopter shots track a small yellow VW Beetle as it winds through spectacular but ominous mountain passes. The car appears tiny against the vast, indifferent landscape. The journey establishes the extreme isolation and the journey to a place cut off from civilization.",
+        "subtext": "Visual foreshadowing of isolation and insignificance. The hotel's remote location will trap the family. Nature is beautiful but hostile."
+      },
+      "keyDialogue": [],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Unknown driver heading toward destiny",
+          "arc": "Journey to isolation begins"
+        },
+        "Wendy": {
+          "state": "Unseen passenger",
+          "arc": "Beginning of family's isolation"
+        },
+        "Danny": {
+          "state": "Unseen passenger",
+          "arc": "Approaching supernatural forces"
+        }
+      },
+      "psychologicalState": "stable",
+      "tensionLevel": 2,
+      "significance": "Establishes isolation theme and visual tone. The hotel literally cuts people off from the world.",
+      "foreshadowing": [],
+      "tags": [
+        "isolation",
+        "nature",
+        "journey",
+        "ominous"
+      ]
+    },
+    {
+      "id": 2,
+      "act": "act1",
+      "title": "The Job Interview - Ullman's Office",
+      "location": {
+        "primary": "Overlook Hotel - Manager's Office",
+        "description": "Professional office with mountain views, tastefully decorated"
+      },
+      "time": {
+        "narrative": "October - Weeks before closing day",
+        "runtime": "0:03-0:10",
+        "approximate": "Early October"
+      },
+      "plotSummary": {
+        "brief": "Jack interviews with manager Ullman for the winter caretaker position",
+        "detailed": "Stuart Ullman explains the job: maintain the boiler, prevent damage during brutal winter isolation. The hotel will be completely cut off - 25 miles of road gets 20 feet of snow. Ullman then reveals the dark history: Charles Grady, the 1970 winter caretaker, suffered cabin fever and murdered his wife and two daughters with an axe, then killed himself. Jack dismisses the warning, saying his wife loves ghost stories and isolation is exactly what he wants for writing.",
+        "subtext": "Jack is too eager, too confident. His desire for isolation is a red flag. He doesn't heed the warning about what happened to the last caretaker. History will repeat itself."
+      },
+      "keyDialogue": [
+        {
+          "quote": "The winters can be fantastically cruel... and the basic idea is to cope with the very costly damage and depreciation which can occur.",
+          "speaker": "Ullman",
+          "significance": "Foreshadows both physical and psychological damage",
+          "context": "Describing the caretaker's job"
+        },
+        {
+          "quote": "For some people, solitude and isolation can of itself be a problem.",
+          "speaker": "Ullman",
+          "significance": "Direct warning that Jack ignores",
+          "context": "Expressing concern about the job"
+        },
+        {
+          "quote": "He ran amok and killed his family with an axe... The police thought it was cabin fever.",
+          "speaker": "Ullman",
+          "significance": "Foreshadows Jack's trajectory exactly",
+          "context": "Telling the story of Charles Grady"
+        },
+        {
+          "quote": "That just happens to be exactly what I'm looking for. Five months of peace is just what I want.",
+          "speaker": "Jack",
+          "significance": "Jack's dangerous overconfidence and misunderstanding of isolation",
+          "context": "Responding to warnings about isolation"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Confident, eager, charming in interview mode",
+          "arc": "Former teacher, writer seeking isolation to work. Shows no concern about the murder-suicide."
+        },
+        "Wendy": {
+          "state": "Not present but mentioned",
+          "arc": "Described by Jack as loving ghost stories"
+        },
+        "Danny": {
+          "state": "Not present",
+          "arc": "Has a son who will experience the hotel"
+        }
+      },
+      "psychologicalState": "stable",
+      "tensionLevel": 4,
+      "significance": "Establishes backstory, job parameters, and foreshadows the entire plot through the Grady murders",
+      "foreshadowing": [
+        8,
+        23,
+        25,
+        29
+      ],
+      "tags": [
+        "exposition",
+        "warning",
+        "history",
+        "grady",
+        "cabin-fever",
+        "isolation"
+      ]
+    },
+    {
+      "id": 3,
+      "act": "act1",
+      "title": "Tony Doesn't Want to Go",
+      "location": {
+        "primary": "Boulder Apartment - Living Room and Bathroom",
+        "description": "Modest family apartment in Boulder, Colorado"
+      },
+      "time": {
+        "narrative": "Same day as interview - while Jack is at hotel",
+        "runtime": "0:10-0:15",
+        "approximate": "Mid-morning"
+      },
+      "plotSummary": {
+        "brief": "Danny talks to his imaginary friend Tony about moving to the hotel, revealing Tony's fear",
+        "detailed": "Wendy and Danny discuss the hotel. Danny asks if she really wants to go. Speaking through his finger as Tony, Danny reveals Tony doesn't want to go but won't explain why. Danny then has his first vision: blood pouring from hotel elevators, the Grady twins. He screams and passes out. A doctor examines him, asking about Tony. Wendy reveals Danny's shoulder was dislocated by Jack during a drunken incident, but Jack has been sober for five months.",
+        "subtext": "Danny has psychic ability (shining). Tony is warning him. The hotel is calling to Danny through visions. The family has a history of violence from Jack's alcoholism."
+      },
+      "keyDialogue": [
+        {
+          "quote": "I don't want to go there, Mrs. Torrance.",
+          "speaker": "Tony (through Danny)",
+          "significance": "First clear supernatural warning",
+          "context": "Danny's alter ego expressing fear of the hotel"
+        },
+        {
+          "quote": "My husband had been drinking... he just used too much strength and he injured Danny's arm.",
+          "speaker": "Wendy",
+          "significance": "Reveals Jack's history of violence and alcoholism",
+          "context": "Explaining Danny's past injury to the doctor"
+        },
+        {
+          "quote": "Wendy, I'm never gonna touch another drop, and if I do you can leave me.",
+          "speaker": "Jack (quoted by Wendy)",
+          "significance": "Jack's promise - foreshadows his breaking it",
+          "context": "What Jack said after hurting Danny"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Not present but history revealed",
+          "arc": "Past violence revealed - dislocated Danny's shoulder while drunk"
+        },
+        "Wendy": {
+          "state": "Concerned mother, defensive of Jack",
+          "arc": "In denial about Jack's potential for violence"
+        },
+        "Danny": {
+          "state": "Psychic child with alter ego Tony, experiencing terrifying visions",
+          "arc": "First major supernatural vision - blood elevators and twins"
+        }
+      },
+      "psychologicalState": "stable",
+      "tensionLevel": 8,
+      "significance": "Introduces Danny's psychic ability, Tony, and the visions. Reveals Jack's violent past and alcoholism.",
+      "foreshadowing": [
+        10,
+        13,
+        15,
+        27
+      ],
+      "tags": [
+        "supernatural",
+        "tony",
+        "shining",
+        "vision",
+        "family-violence",
+        "alcoholism",
+        "grady-twins"
+      ]
+    },
+    {
+      "id": 4,
+      "act": "act1",
+      "title": "Closing Day Tour",
+      "location": {
+        "primary": "Overlook Hotel - Various locations",
+        "description": "Grand hotel in final hours of operation, staff departing"
+      },
+      "time": {
+        "narrative": "October 30 - Last day before winter closure",
+        "runtime": "0:15-0:26",
+        "approximate": "Morning to afternoon"
+      },
+      "plotSummary": {
+        "brief": "The Torrance family arrives on closing day for a comprehensive tour of the hotel",
+        "detailed": "Jack, Wendy, and Danny arrive as the hotel staff depart. Ullman and Watson give them a tour: the Colorado Lounge with Native American designs, the Games Room where Danny sees the Grady twins briefly, their apartment, the hedge maze (warned it takes an hour to navigate), the Snowcat, the Gold Ballroom. Jack meets Dick Halloran, the head chef, who will give Wendy a kitchen tour.",
+        "subtext": "The hotel is impressive and beautiful but has an unsettling quality. The maze foreshadows entrapment. Danny sees the murdered twins - the hotel is already reaching out to him."
+      },
+      "keyDialogue": [
+        {
+          "quote": "This old place has had an illustrious past. We've had four presidents, lots of movie stars... all the best people.",
+          "speaker": "Ullman",
+          "significance": "The hotel's glamorous past vs. dark present",
+          "context": "Describing the hotel's history"
+        },
+        {
+          "quote": "The walls are thirteen feet high... I wouldn't go in there unless I had an hour to spare to find my way out.",
+          "speaker": "Ullman",
+          "significance": "The maze as metaphor for entrapment",
+          "context": "Describing the hedge maze"
+        },
+        {
+          "quote": "The site is supposed to be located on an Indian burial ground.",
+          "speaker": "Ullman",
+          "significance": "Supernatural explanation for the hotel's evil",
+          "context": "Hotel history"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Friendly, engaged, impressed by the hotel",
+          "arc": "Meeting the staff, seeing his winter home"
+        },
+        "Wendy": {
+          "state": "Delighted and overwhelmed by the hotel's beauty",
+          "arc": "Excited about the adventure ahead"
+        },
+        "Danny": {
+          "state": "Quiet, experiencing another vision of the twins",
+          "arc": "Second vision of the Grady twins in the games room"
+        }
+      },
+      "psychologicalState": "stable",
+      "tensionLevel": 5,
+      "significance": "Establishes the hotel's geography, beauty, and ominous qualities. Introduces the maze and Halloran.",
+      "foreshadowing": [
+        31
+      ],
+      "tags": [
+        "hotel",
+        "tour",
+        "maze",
+        "grady-twins",
+        "indian-burial-ground"
+      ]
+    },
+    {
+      "id": 5,
+      "act": "act1",
+      "title": "The Shining - Halloran and Danny",
+      "location": {
+        "primary": "Overlook Hotel - Kitchen and Storeroom",
+        "description": "Massive professional kitchen with industrial freezer and extensive storeroom"
+      },
+      "time": {
+        "narrative": "Closing Day - Afternoon",
+        "runtime": "0:26-0:39",
+        "approximate": "Same afternoon"
+      },
+      "plotSummary": {
+        "brief": "Halloran gives Wendy and Danny a kitchen tour, then privately explains 'shining' to Danny",
+        "detailed": "Halloran shows Wendy the massive kitchen, walk-in freezer with meat, and storeroom with endless provisions. He mysteriously knows Danny's nickname 'Doc' without being told. Halloran sends Wendy away and explains to Danny that they both have 'the shining' - psychic ability to communicate without speaking and see things. He warns that the hotel 'shines' too - bad things happened here and left traces. When Danny asks about Room 237, Halloran becomes afraid and commands Danny to STAY OUT.",
+        "subtext": "Halloran recognizes Danny's gift and tries to explain/protect him. Room 237 is the heart of the hotel's evil. The warning is urgent but won't be heeded."
+      },
+      "keyDialogue": [
+        {
+          "quote": "My grandmother and I could hold conversations entirely without ever opening our mouths. She called it shining.",
+          "speaker": "Halloran",
+          "significance": "Names and explains the psychic ability",
+          "context": "Explaining the gift to Danny"
+        },
+        {
+          "quote": "Some places are like people... some shine and some don't. The Overlook Hotel has something about it that's like shining.",
+          "speaker": "Halloran",
+          "significance": "The hotel itself has supernatural power",
+          "context": "Warning Danny about the hotel"
+        },
+        {
+          "quote": "When something happens it can leave a trace of itself behind... like if someone burns toast. Not things that anyone can notice, but things that people who shine can see.",
+          "speaker": "Halloran",
+          "significance": "Explains how past violence leaves psychic imprints",
+          "context": "Describing what Danny will experience"
+        },
+        {
+          "quote": "There ain't nothing in Room 237, but you ain't got no business going in there anyway, so stay out! You understand, stay out!",
+          "speaker": "Halloran",
+          "significance": "Desperate warning about the most dangerous room",
+          "context": "Responding to Danny's question about Room 237"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Not present",
+          "arc": "Continuing tour with Ullman"
+        },
+        "Wendy": {
+          "state": "Overwhelmed but practical about the provisions",
+          "arc": "Unaware of the psychic conversation happening"
+        },
+        "Danny": {
+          "state": "Curious, learning about his gift, frightened by Halloran's intensity about Room 237",
+          "arc": "Gets explanation for his visions and abilities"
+        }
+      },
+      "psychologicalState": "stable",
+      "tensionLevel": 7,
+      "significance": "Critical exposition about the shining, establishes Danny and Halloran's connection, sets up Room 237 as forbidden",
+      "foreshadowing": [
+        19,
+        24,
+        30
+      ],
+      "tags": [
+        "shining",
+        "supernatural",
+        "halloran",
+        "room-237",
+        "warning",
+        "psychic"
+      ]
+    },
+    {
+      "id": 6,
+      "act": "act1",
+      "title": "A Month Later - Settling In",
+      "location": {
+        "primary": "Overlook Hotel - Various locations",
+        "description": "Vast empty hotel, now occupied only by the Torrance family"
+      },
+      "time": {
+        "narrative": "A Month Later (Late November)",
+        "runtime": "0:39-0:43",
+        "approximate": "One month into winter"
+      },
+      "plotSummary": {
+        "brief": "Life at the hotel has become routine - Wendy does chores, Danny rides his tricycle, Jack sleeps late",
+        "detailed": "Title card: 'A MONTH LATER.' Wendy brings Jack breakfast in bed around 11:30 AM. They discuss staying up late. Jack says he loves the hotel and has never been happier. Wendy admits she initially found it scary. Jack describes feeling d\u00e9j\u00e0 vu, as if he'd been here before. Danny rides his tricycle through endless corridors while Wendy works.",
+        "subtext": "Routine has set in but isolation is taking hold. Jack sleeping late suggests depression or avoidance of writing. His 'd\u00e9j\u00e0 vu' suggests supernatural connection to the hotel's past. The family is separating into individual routines."
+      },
+      "keyDialogue": [
+        {
+          "quote": "I love it. I really do. I've never been this happy, or comfortable anywhere.",
+          "speaker": "Jack",
+          "significance": "Jack's disturbing level of attachment to the hotel",
+          "context": "Discussing life at the Overlook"
+        },
+        {
+          "quote": "When I came up here for my interview, it was as though I had been here before... It was almost as though I knew what was going to be around every corner.",
+          "speaker": "Jack",
+          "significance": "Supernatural connection to hotel's past/Grady",
+          "context": "Describing his feelings about the hotel"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Oversleeping, not writing much, eerily comfortable at the hotel",
+          "arc": "Forming unhealthy attachment to the Overlook"
+        },
+        "Wendy": {
+          "state": "Cheerful, doing domestic duties, initially scared but adapting",
+          "arc": "Settling into routine, making the best of isolation"
+        },
+        "Danny": {
+          "state": "Solitary, endlessly riding tricycle through corridors",
+          "arc": "Exploring the hotel alone, vulnerable to visions"
+        }
+      },
+      "psychologicalState": "stable",
+      "tensionLevel": 4,
+      "significance": "Shows the settling-in period, Jack's ominous attachment to the hotel, and the family's isolation routines",
+      "foreshadowing": [],
+      "tags": [
+        "isolation",
+        "routine",
+        "deja-vu",
+        "attachment"
+      ]
+    },
+    {
+      "id": 7,
+      "act": "act1",
+      "title": "Writer's Block and Family Play",
+      "location": {
+        "primary": "Overlook Hotel - Lounge, Maze, and Lobby",
+        "description": "Colorado Lounge with typewriter, snow-covered hedge maze outside"
+      },
+      "time": {
+        "narrative": "Tuesday (Early December)",
+        "runtime": "0:43-0:50",
+        "approximate": "Another week later"
+      },
+      "plotSummary": {
+        "brief": "Jack struggles with writer's block while Wendy and Danny play in the maze",
+        "detailed": "Jack sits at his typewriter throwing a tennis ball against the wall, achieving nothing. Wendy and Danny play chase in the snow-covered hedge maze, laughing together. Jack watches them from inside, looking down at a model of the maze and seeing them as tiny figures within it. The imagery suggests god-like control or surveillance.",
+        "subtext": "Jack is not writing despite claiming that's why he came. The maze model scene shows Jack watching his family like pieces on a board. He's disconnected from their joy and increasingly isolated in his own mind."
+      },
+      "keyDialogue": [],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Frustrated, unable to write, watching his family from a distance",
+          "arc": "Writer's block setting in, emotional distance growing"
+        },
+        "Wendy": {
+          "state": "Playful, engaged with Danny, maintaining normalcy",
+          "arc": "Trying to keep things fun for Danny"
+        },
+        "Danny": {
+          "state": "Playful with mother, enjoying the snow",
+          "arc": "Brief moment of childhood normalcy"
+        }
+      },
+      "psychologicalState": "deteriorating",
+      "tensionLevel": 5,
+      "significance": "Establishes Jack's failure to write and his god-like perspective watching his family in the maze model",
+      "foreshadowing": [],
+      "tags": [
+        "writer-block",
+        "maze",
+        "isolation",
+        "surveillance",
+        "family"
+      ]
+    },
+    {
+      "id": 8,
+      "act": "act1",
+      "title": "First Confrontation - Don't Disturb Me",
+      "location": {
+        "primary": "Overlook Hotel - Colorado Lounge",
+        "description": "Jack's workspace with typewriter"
+      },
+      "time": {
+        "narrative": "Night (same Tuesday)",
+        "runtime": "0:50-0:55",
+        "approximate": "That evening"
+      },
+      "plotSummary": {
+        "brief": "Wendy interrupts Jack's 'work' and he explodes at her with profane hostility",
+        "detailed": "Wendy cheerfully approaches Jack while he's typing, asking how his work is going and mentioning snow forecast. Jack becomes increasingly hostile, sarcastically asking what he should do about the weather. When Wendy offers to bring sandwiches later and read his work, Jack explodes. He tells her that interruptions break his concentration and establishes a new rule: when he's in this room, don't come in. He tells her to 'get the fuck out of here.'",
+        "subtext": "Jack's anger is wildly disproportionate to Wendy's friendly interruption. He's not actually writing productively. His rage reveals deterioration and the abusive dynamic in their relationship. Wendy immediately apologizes and complies - she's used to placating him."
+      },
+      "keyDialogue": [
+        {
+          "quote": "Whenever you come in here and interrupt me, you're breaking my concentration... and it will then take me time to get back to where I was.",
+          "speaker": "Jack",
+          "significance": "Disproportionate anger at minor interruption",
+          "context": "Attacking Wendy for saying hello"
+        },
+        {
+          "quote": "Whatever the fuck you hear me doing in here, when I am in here that means I am working - that means don't come in.",
+          "speaker": "Jack",
+          "significance": "Establishing isolation and control",
+          "context": "Creating new rules"
+        },
+        {
+          "quote": "Why don't you start right now and get the fuck out of here?",
+          "speaker": "Jack",
+          "significance": "Verbal abuse emerging",
+          "context": "Dismissing Wendy cruelly"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Irritable, hostile, verbally abusive, unproductive",
+          "arc": "First major sign of psychological deterioration"
+        },
+        "Wendy": {
+          "state": "Hurt, submissive, immediately apologetic",
+          "arc": "Reveals pattern of abuse and her coping mechanism"
+        },
+        "Danny": {
+          "state": "Not present",
+          "arc": "Unaware of parents' conflict"
+        }
+      },
+      "psychologicalState": "deteriorating",
+      "tensionLevel": 7,
+      "significance": "First overt sign of Jack's mental deterioration and abusive behavior toward Wendy",
+      "foreshadowing": [
+        12,
+        17,
+        25
+      ],
+      "tags": [
+        "abuse",
+        "anger",
+        "deterioration",
+        "marriage",
+        "isolation"
+      ]
+    },
+    {
+      "id": 9,
+      "act": "act1",
+      "title": "Phone Lines Down",
+      "location": {
+        "primary": "Overlook Hotel - Office and Ranger Station",
+        "description": "Hotel office with radio equipment, ranger station in town"
+      },
+      "time": {
+        "narrative": "Thursday and Saturday (Mid-December)",
+        "runtime": "0:55-0:59",
+        "approximate": "Days later"
+      },
+      "plotSummary": {
+        "brief": "Wendy discovers phone lines are down due to storm, radio contact with rangers established",
+        "detailed": "Title: THURSDAY. Wendy and Danny play in snow while Jack watches from inside. Title: SATURDAY. Wendy tries the switchboard and discovers phones aren't working. She radios the ranger station. They confirm phone lines are down due to the storm and typically stay down until spring. The ranger suggests they keep the radio on at all times. Heavy snow is falling. They are now completely cut off.",
+        "subtext": "Final severance from the outside world. No way to call for help. The storm represents both physical and psychological isolation closing in."
+      },
+      "keyDialogue": [
+        {
+          "quote": "Most winters they stay that way until spring.",
+          "speaker": "Ranger",
+          "significance": "Total isolation confirmed - no escape route",
+          "context": "About the downed phone lines"
+        },
+        {
+          "quote": "I think it might be a good idea if you leave your radio on all the time now.",
+          "speaker": "Ranger",
+          "significance": "Even authorities are concerned about their isolation",
+          "context": "Suggesting safety precaution"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Withdrawn, watching family from distance",
+          "arc": "Continuing isolation from family"
+        },
+        "Wendy": {
+          "state": "Maintaining contact with outside world, responsible",
+          "arc": "Taking charge of practical matters"
+        },
+        "Danny": {
+          "state": "Playing, riding tricycle",
+          "arc": "About to encounter the twins again"
+        }
+      },
+      "psychologicalState": "deteriorating",
+      "tensionLevel": 6,
+      "significance": "Establishes complete isolation - no phone contact with outside world possible",
+      "foreshadowing": [
+        19,
+        24
+      ],
+      "tags": [
+        "isolation",
+        "storm",
+        "communication",
+        "trapped"
+      ]
+    },
+    {
+      "id": 10,
+      "act": "act2",
+      "title": "The Grady Twins Appear",
+      "location": {
+        "primary": "Overlook Hotel - Green Corridor",
+        "description": "Art deco corridor with geometric carpet pattern"
+      },
+      "time": {
+        "narrative": "Same Saturday",
+        "runtime": "0:59-1:03",
+        "approximate": "Afternoon"
+      },
+      "plotSummary": {
+        "brief": "Danny encounters the Grady twins who invite him to play, showing their murdered bodies",
+        "detailed": "Danny rides his tricycle through corridors and stops when he sees the two Grady girls standing at the end of a hallway. They speak in unison: 'Come and play with us, Danny. For ever, and ever, and ever.' The image flashes to their murdered bodies on the floor, covered in blood, an axe nearby, walls splattered. The vision alternates between the living girls and their corpses. Danny covers his eyes, then peeks through his fingers - the corridor is empty. Tony speaks through Danny, reminding him it's 'just like pictures in a book... it isn't real.'",
+        "subtext": "The hotel is actively reaching out to Danny through the murdered children. The repetition of 'forever' links to Jack's earlier statement about staying 'forever and ever.' The visions are intensifying."
+      },
+      "keyDialogue": [
+        {
+          "quote": "Come and play with us, Danny. For ever... and ever... and ever.",
+          "speaker": "Grady Twins",
+          "significance": "Invitation from the dead, echoes Jack's 'forever' desire",
+          "context": "Appearing to Danny in the corridor"
+        },
+        {
+          "quote": "Remember what Mr. Halloran said. It's just like pictures in a book, Danny. It isn't real.",
+          "speaker": "Tony",
+          "significance": "Protective voice trying to minimize trauma",
+          "context": "After the terrifying vision"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Not present",
+          "arc": "Unaware of supernatural events"
+        },
+        "Wendy": {
+          "state": "Not present",
+          "arc": "Unaware of what Danny is experiencing"
+        },
+        "Danny": {
+          "state": "Terrified but trying to cope using Halloran's advice",
+          "arc": "Major supernatural encounter with murder victims"
+        }
+      },
+      "psychologicalState": "stable",
+      "tensionLevel": 9,
+      "significance": "Most explicit supernatural manifestation yet. The murdered children are trying to connect with Danny.",
+      "foreshadowing": [
+        15,
+        31
+      ],
+      "tags": [
+        "supernatural",
+        "grady-twins",
+        "murder",
+        "vision",
+        "horror"
+      ]
+    },
+    {
+      "id": 11,
+      "act": "act2",
+      "title": "Monday Morning - TV Watching",
+      "location": {
+        "primary": "Overlook Hotel - Lobby",
+        "description": "Lobby with television set, Wendy and Danny watching together"
+      },
+      "time": {
+        "narrative": "Monday (Week later)",
+        "runtime": "1:03-1:06",
+        "approximate": "Late December"
+      },
+      "plotSummary": {
+        "brief": "Wendy and Danny watch TV together; Danny asks to get his toy from his room",
+        "detailed": "Title: MONDAY. Wendy and Danny watch 'Summer of '42' on television. Danny asks to get his fire engine from his room. Wendy says not now because Daddy is asleep. Danny promises to be quiet and Wendy reluctantly agrees, warning him not to make a sound and to come right back because she's making lunch soon.",
+        "subtext": "Mundane domestic scene establishes their routine. Jack is sleeping during the day again - depression/avoidance. Danny's solo journey will lead to danger."
+      },
+      "keyDialogue": [
+        {
+          "quote": "Not right now, Daddy's asleep... He only went to bed a few hours ago.",
+          "speaker": "Wendy",
+          "significance": "Jack's deteriorating schedule - sleeping during day",
+          "context": "Explaining why Danny can't get his toy"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Sleeping during day, nocturnal schedule emerging",
+          "arc": "Further deterioration of normal routine"
+        },
+        "Wendy": {
+          "state": "Protective of Jack's sleep, maintaining normalcy for Danny",
+          "arc": "Enabling Jack's dysfunction"
+        },
+        "Danny": {
+          "state": "Bored, wanting his toy, about to walk into danger",
+          "arc": "Heading toward confrontation with Jack"
+        }
+      },
+      "psychologicalState": "deteriorating",
+      "tensionLevel": 5,
+      "significance": "Sets up Danny's journey to his room where he'll see Jack in disturbing state",
+      "foreshadowing": [],
+      "tags": [
+        "family",
+        "routine",
+        "tv",
+        "calm-before-storm"
+      ]
+    },
+    {
+      "id": 12,
+      "act": "act2",
+      "title": "Jack's Disturbing Questions",
+      "location": {
+        "primary": "Overlook Hotel - Torrance Apartment, Bedroom",
+        "description": "The family's living quarters"
+      },
+      "time": {
+        "narrative": "Same Monday morning",
+        "runtime": "1:06-1:09",
+        "approximate": "Moments later"
+      },
+      "plotSummary": {
+        "brief": "Danny finds Jack awake and sitting on the bed, leading to an unsettling conversation",
+        "detailed": "Danny enters and finds Jack sitting on the bed, awake. Jack calls him over and sits Danny on his knee affectionately. He asks if Danny is having a good time, saying he wants him to. Then Danny asks, 'Do you feel bad?' Jack denies it, saying he's just tired. Danny asks, 'Do you like this hotel?' Jack says he loves it and wishes they could stay 'forever, and ever, and ever.' Then Danny asks the crucial question: 'You wouldn't ever hurt Mommy and me, would you?' Jack asks if Wendy said that. Danny denies it. Jack insists he loves Danny more than anything and would never hurt him.",
+        "subtext": "Jack's repetition of 'forever and ever' echoes the Grady twins - he's being influenced. Danny's question reveals he senses danger. Jack's defensiveness about Wendy suggests guilt and paranoia. The affection is real but unstable."
+      },
+      "keyDialogue": [
+        {
+          "quote": "I wish we could stay here for ever, and ever... and ever.",
+          "speaker": "Jack",
+          "significance": "Exact phrase used by the Grady twins, showing possession/influence",
+          "context": "Expressing his feelings about the hotel"
+        },
+        {
+          "quote": "You wouldn't ever hurt Mommy and me, would you?",
+          "speaker": "Danny",
+          "significance": "Danny's psychic sense that Jack is dangerous",
+          "context": "Crucial question revealing Danny's fear"
+        },
+        {
+          "quote": "I love you more than anything else in the whole world, and I'd never do anything to hurt you, never.",
+          "speaker": "Jack",
+          "significance": "Promise he will break - dramatic irony",
+          "context": "Reassuring Danny"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Superficially affectionate but showing signs of possession, using twins' language",
+          "arc": "Hotel's influence visible in his speech patterns"
+        },
+        "Wendy": {
+          "state": "Not present but mentioned - Jack paranoid she's turning Danny against him",
+          "arc": "Jack beginning to see her as enemy"
+        },
+        "Danny": {
+          "state": "Sensing danger, asking direct questions, trying to get reassurance",
+          "arc": "Psychically aware his father is becoming dangerous"
+        }
+      },
+      "psychologicalState": "deteriorating",
+      "tensionLevel": 8,
+      "significance": "Jack uses the twins' exact phrase 'forever and ever,' showing supernatural influence. Danny directly asks if Jack will hurt them.",
+      "foreshadowing": [
+        14,
+        17,
+        25
+      ],
+      "tags": [
+        "family",
+        "threat",
+        "supernatural-influence",
+        "foreshadowing",
+        "possession"
+      ]
+    },
+    {
+      "id": 13,
+      "act": "act2",
+      "title": "The Yellow Ball and Room 237",
+      "location": {
+        "primary": "Overlook Hotel - Corridor to Room 237",
+        "description": "Corridor leading to the forbidden room"
+      },
+      "time": {
+        "narrative": "Wednesday (Late December)",
+        "runtime": "1:09-1:13",
+        "approximate": "Two days later"
+      },
+      "plotSummary": {
+        "brief": "A mysterious yellow ball rolls to Danny, leading him to discover Room 237's door is open",
+        "detailed": "Title: WEDNESDAY. Night exterior of hotel with three lit windows. Danny plays with toy cars on the corridor floor. A yellow ball rolls in from offscreen and stops by his toys. Danny looks up - the corridor is empty. He calls 'Mom?' twice and walks down the corridor looking for who threw the ball. He finds the door to Room 237 standing open. He calls 'Mom, are you in there?' and the camera tracks into the room.",
+        "subtext": "The hotel is actively luring Danny to Room 237. The ball is supernatural bait. Despite Halloran's warning to stay out, Danny is being manipulated into entering. This is a trap."
+      },
+      "keyDialogue": [
+        {
+          "quote": "Mom? Mom, are you in there?",
+          "speaker": "Danny",
+          "significance": "Danny thinks his mother is in the forbidden room - the hotel is deceiving him",
+          "context": "Approaching Room 237"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Not present - will later investigate the room",
+          "arc": "About to have his own encounter"
+        },
+        "Wendy": {
+          "state": "Not present - being impersonated by the hotel",
+          "arc": "Will discover Danny has been hurt"
+        },
+        "Danny": {
+          "state": "Curious, deceived by the hotel, walking into danger despite warnings",
+          "arc": "About to be attacked in Room 237"
+        }
+      },
+      "psychologicalState": "stable",
+      "tensionLevel": 10,
+      "significance": "Danny enters the forbidden Room 237 despite Halloran's warning. The hotel has successfully lured him.",
+      "foreshadowing": [
+        20
+      ],
+      "tags": [
+        "room-237",
+        "supernatural",
+        "trap",
+        "danger",
+        "horror"
+      ]
+    },
+    {
+      "id": 14,
+      "act": "act2",
+      "title": "Jack's Nightmare",
+      "location": {
+        "primary": "Overlook Hotel - Colorado Lounge and Boiler Room",
+        "description": "Jack asleep at his typewriter, Wendy in basement checking boilers"
+      },
+      "time": {
+        "narrative": "Same Wednesday night",
+        "runtime": "1:13-1:16",
+        "approximate": "Same evening"
+      },
+      "plotSummary": {
+        "brief": "Jack has a nightmare about killing his family; Wendy hears him screaming and rushes to him",
+        "detailed": "Wendy is in the boiler room checking dials when she hears Jack groaning and screaming in his sleep. She runs through corridors to the lounge where Jack is slumped over his typewriter, having a nightmare. She wakes him and he falls from his chair onto the floor, gasping. He tells her about the terrible dream: 'I dreamed that I killed you and Danny. But I didn't just kill you, I cut you up into little pieces.' He cries, 'My God, I must be losing my mind!' Wendy comforts him.",
+        "subtext": "Jack's subconscious is processing what he will do - or what the hotel is programming him to do. The nightmare mirrors exactly what Grady did. Jack's mind is breaking down. His horror at the dream shows he hasn't fully turned yet."
+      },
+      "keyDialogue": [
+        {
+          "quote": "I had the most terrible nightmare I ever had. I dreamed that I killed you and Danny. But I didn't just kill you, I cut you up into little pieces.",
+          "speaker": "Jack",
+          "significance": "Prophetic nightmare of what he'll attempt to do",
+          "context": "Describing his nightmare to Wendy"
+        },
+        {
+          "quote": "My God, I must be losing my mind!",
+          "speaker": "Jack",
+          "significance": "Rare moment of self-awareness and horror at his mental state",
+          "context": "Reacting to his nightmare"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Terrified by his own dreams, aware something is wrong, crying",
+          "arc": "Subconscious awareness of his violent trajectory"
+        },
+        "Wendy": {
+          "state": "Concerned, comforting, trying to calm him",
+          "arc": "Still trying to hold family together"
+        },
+        "Danny": {
+          "state": "Not present - being attacked in Room 237",
+          "arc": "Simultaneous trauma occurring"
+        }
+      },
+      "psychologicalState": "deteriorating",
+      "tensionLevel": 9,
+      "significance": "Jack dreams of murdering his family exactly as Grady did - prophetic nightmare showing his trajectory",
+      "foreshadowing": [
+        25,
+        28,
+        29
+      ],
+      "tags": [
+        "nightmare",
+        "murder",
+        "prophecy",
+        "mental-breakdown",
+        "grady"
+      ]
+    },
+    {
+      "id": 15,
+      "act": "act2",
+      "title": "Danny is Injured",
+      "location": {
+        "primary": "Overlook Hotel - Colorado Lounge",
+        "description": "Jack and Wendy dealing with his nightmare"
+      },
+      "time": {
+        "narrative": "Same Wednesday night - continuous",
+        "runtime": "1:16-1:19",
+        "approximate": "Moments later"
+      },
+      "plotSummary": {
+        "brief": "Danny appears with bruises on his neck; Wendy immediately accuses Jack of hurting him",
+        "detailed": "As Wendy comforts Jack after his nightmare, Danny walks into the lounge in a daze, sucking his thumb. Wendy tells him to go to his room. Then she notices bruising on Danny's neck and pulls his thumb from his mouth to examine it. She asks what happened. Danny doesn't speak. Wendy turns on Jack accusingly: 'You did this to him, didn't you? You son of a bitch!' Jack shakes his head in denial. Wendy backs away with Danny in her arms, crying 'How could you?' and runs out. Jack sits devastated.",
+        "subtext": "Danny has been attacked in Room 237 (we'll learn details later). Wendy immediately assumes Jack did it based on his history of violence. Jack is innocent this time but has lost all credibility. The family is fracturing."
+      },
+      "keyDialogue": [
+        {
+          "quote": "You did this to him, didn't you? You son of a bitch!",
+          "speaker": "Wendy",
+          "significance": "Wendy immediately assumes Jack's guilt based on his history",
+          "context": "Seeing bruises on Danny's neck"
+        },
+        {
+          "quote": "How could you? How could you?",
+          "speaker": "Wendy",
+          "significance": "Wendy's horror and disgust at Jack",
+          "context": "Taking Danny away from Jack"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Devastated, falsely accused, shaking his head in denial",
+          "arc": "Innocent of this attack but blamed due to history"
+        },
+        "Wendy": {
+          "state": "Protective mother, terrified, convinced Jack hurt Danny",
+          "arc": "Trust in Jack completely broken"
+        },
+        "Danny": {
+          "state": "Traumatized, mute, bruised neck, sucking thumb",
+          "arc": "Has been strangled by something in Room 237"
+        }
+      },
+      "psychologicalState": "deteriorating",
+      "tensionLevel": 10,
+      "significance": "Danny returns with neck bruises from Room 237. Wendy blames Jack, destroying remaining family trust.",
+      "foreshadowing": [
+        20,
+        21
+      ],
+      "tags": [
+        "injury",
+        "accusation",
+        "room-237",
+        "family-breakdown",
+        "trust"
+      ]
+    },
+    {
+      "id": 16,
+      "act": "act2",
+      "title": "The Gold Room - Meeting Lloyd",
+      "location": {
+        "primary": "Overlook Hotel - Gold Ballroom",
+        "description": "Ornate empty ballroom with closed bar"
+      },
+      "time": {
+        "narrative": "Same Wednesday night - continuous",
+        "runtime": "1:19-1:24",
+        "approximate": "Shortly after"
+      },
+      "plotSummary": {
+        "brief": "Devastated by Wendy's accusation, Jack goes to the ballroom and hallucinates a bartender",
+        "detailed": "Jack walks to the ballroom muttering and waving his arms. He turns on the lights and approaches the bar, saying to himself, 'God, I'd give anything for a drink. My goddamn soul, just a glass of beer.' He sits down and suddenly sees Lloyd, the bartender, fully stocked bar behind him. Jack orders bourbon. Lloyd serves him, saying there's no charge - 'Orders from the house.' Jack wants to know who's buying but Lloyd deflects. Jack toasts 'five miserable months on the wagon' and drinks.",
+        "subtext": "Jack has fully broken his sobriety - though this is a hallucination. The hotel is rewarding his breaking point. Lloyd is either a ghost or Jack's projection. The 'house' buying drinks suggests the hotel is purchasing Jack's soul."
+      },
+      "keyDialogue": [
+        {
+          "quote": "God, I'd give anything for a drink. My goddamn soul, just a glass of beer.",
+          "speaker": "Jack",
+          "significance": "Literal Faustian bargain - selling soul for alcohol",
+          "context": "Alone in the empty bar"
+        },
+        {
+          "quote": "Hi Lloyd. A little slow tonight, isn't it?",
+          "speaker": "Jack",
+          "significance": "Jack immediately recognizes ghost bartender as if he knows him",
+          "context": "Greeting the hallucination"
+        },
+        {
+          "quote": "Your money's no good here. Orders from the house.",
+          "speaker": "Lloyd",
+          "significance": "The hotel is buying Jack's soul/loyalty",
+          "context": "Refusing Jack's payment"
+        },
+        {
+          "quote": "Here's to five miserable months on the wagon and all the irreparable harm that it's caused me.",
+          "speaker": "Jack",
+          "significance": "Jack blames sobriety for his problems, not his addiction",
+          "context": "Toasting before drinking"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Broken, desperate, talking to hallucinations, drinking (or believing he is)",
+          "arc": "Complete psychological break - seeing ghosts, abandoning sobriety"
+        },
+        "Wendy": {
+          "state": "Not present - with Danny",
+          "arc": "Unaware Jack is having psychotic break"
+        },
+        "Danny": {
+          "state": "Not present - traumatized",
+          "arc": "Recovering from Room 237 attack"
+        }
+      },
+      "psychologicalState": "psychotic",
+      "tensionLevel": 8,
+      "significance": "Jack's first extended supernatural encounter - hallucinates Lloyd the bartender, breaks sobriety (symbolically)",
+      "foreshadowing": [
+        22
+      ],
+      "tags": [
+        "supernatural",
+        "hallucination",
+        "alcohol",
+        "breakdown",
+        "lloyd",
+        "gold-room"
+      ]
+    },
+    {
+      "id": 17,
+      "act": "act2",
+      "title": "Jack's Rant to Lloyd",
+      "location": {
+        "primary": "Overlook Hotel - Gold Ballroom Bar",
+        "description": "Jack drinking and talking to Lloyd"
+      },
+      "time": {
+        "narrative": "Same Wednesday night - continuous",
+        "runtime": "1:24-1:28",
+        "approximate": "Continuing"
+      },
+      "plotSummary": {
+        "brief": "Jack drinks and complains to Lloyd about Wendy and Danny, defending his past violence",
+        "detailed": "Jack drinks and discusses his problems with Lloyd. He calls Wendy 'the old sperm bank upstairs' and rants about her never letting him forget he once hurt Danny. He explains it was an accident three years ago - Danny scattered his papers and he grabbed his arm too hard, dislocating his shoulder. 'A momentary loss of muscular coordination,' he says. Lloyd sympathizes: 'Women! Can't live with 'em, can't live without 'em!' Jack insists he loves Danny and would do anything for him, then calls Wendy 'that damn bitch.'",
+        "subtext": "Jack is rationalizing his violence, minimizing it, blaming Wendy. His language about her is dehumanizing and misogynistic. He's building justification for future violence. The conversation with Lloyd lets him rehearse his grievances."
+      },
+      "keyDialogue": [
+        {
+          "quote": "Just a little problem with the old sperm bank upstairs.",
+          "speaker": "Jack",
+          "significance": "Dehumanizing, misogynistic reference to Wendy",
+          "context": "Complaining to Lloyd about his marriage"
+        },
+        {
+          "quote": "I did hurt him once, okay? It was an accident, completely unintentional... A momentary loss of muscular coordination.",
+          "speaker": "Jack",
+          "significance": "Jack minimizing and rationalizing his violence",
+          "context": "Defending his past abuse of Danny"
+        },
+        {
+          "quote": "The little fucker had thrown all my papers all over the floor.",
+          "speaker": "Jack",
+          "significance": "Blaming child victim for his violence",
+          "context": "Explaining why he hurt Danny"
+        },
+        {
+          "quote": "Women! Can't live with 'em. Can't live without 'em!",
+          "speaker": "Lloyd",
+          "significance": "Enabling Jack's misogyny",
+          "context": "Sympathizing with Jack's complaints"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Ranting, drinking, rationalizing violence, dehumanizing his family",
+          "arc": "Building psychological justification for harming them"
+        },
+        "Wendy": {
+          "state": "Not present but being verbally degraded",
+          "arc": "Now seen as enemy in Jack's mind"
+        },
+        "Danny": {
+          "state": "Not present but being blamed for Jack's past violence",
+          "arc": "Victim being blamed"
+        }
+      },
+      "psychologicalState": "psychotic",
+      "tensionLevel": 7,
+      "significance": "Jack rationalizes his violence, dehumanizes Wendy, builds psychological justification for harming his family",
+      "foreshadowing": [
+        25,
+        28
+      ],
+      "tags": [
+        "rationalization",
+        "misogyny",
+        "abuse",
+        "alcohol",
+        "lloyd"
+      ]
+    },
+    {
+      "id": 18,
+      "act": "act2",
+      "title": "Wendy Finds Jack - Woman in 237",
+      "location": {
+        "primary": "Overlook Hotel - Gold Ballroom",
+        "description": "Wendy running into the ballroom to find Jack"
+      },
+      "time": {
+        "narrative": "Same Wednesday night - continuous",
+        "runtime": "1:28-1:30",
+        "approximate": "Shortly after"
+      },
+      "plotSummary": {
+        "brief": "Wendy bursts in sobbing, telling Jack there's a crazy woman in Room 237 who strangled Danny",
+        "detailed": "As Jack rants to Lloyd, Wendy runs into the ballroom sobbing, 'Oh Jack! Thank God you're here!' She tells him there's someone else in the hotel - a crazy woman in one of the rooms who tried to strangle Danny. Jack asks which room. Wendy says Danny told her he went into a room with an open door, saw a woman in the bathtub, and she tried to strangle him. Jack asks 'Are you out of your fucking mind?' but agrees to investigate.",
+        "subtext": "Wendy has no idea Jack was just talking to a ghost. Jack immediately dismisses her but has no choice but to check. From his perspective, the bar and Lloyd vanish - was he hallucinating? The hotel's manifestations are selective."
+      },
+      "keyDialogue": [
+        {
+          "quote": "There's someone else in the hotel with us. There's a crazy woman in one of the rooms. She tried to strangle Danny.",
+          "speaker": "Wendy",
+          "significance": "Confirmation that Danny was attacked by supernatural entity",
+          "context": "Explaining what happened to Danny"
+        },
+        {
+          "quote": "Are you out of your fucking mind?",
+          "speaker": "Jack",
+          "significance": "Jack's hostile response to Wendy's crisis",
+          "context": "Immediate reaction to her claim"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Irritated at interruption, hostile, but curious about Room 237",
+          "arc": "About to investigate and have his own encounter"
+        },
+        "Wendy": {
+          "state": "Terrified, crying, relieved to find Jack, believing Danny's story",
+          "arc": "Desperate for Jack's protection despite their conflict"
+        },
+        "Danny": {
+          "state": "Not present - traumatized in bedroom",
+          "arc": "Has told Wendy about the woman in 237"
+        }
+      },
+      "psychologicalState": "psychotic",
+      "tensionLevel": 9,
+      "significance": "Danny's story about the woman in Room 237 is revealed, setting up Jack's investigation",
+      "foreshadowing": [],
+      "tags": [
+        "room-237",
+        "attack",
+        "woman",
+        "investigation"
+      ]
+    },
+    {
+      "id": 19,
+      "act": "act2",
+      "title": "Halloran Senses Danger",
+      "location": {
+        "primary": "Miami - Halloran's Apartment",
+        "description": "Halloran's bedroom with TV showing news about Colorado snowstorm"
+      },
+      "time": {
+        "narrative": "Same night - Miami",
+        "runtime": "1:30-1:33",
+        "approximate": "Simultaneous"
+      },
+      "plotSummary": {
+        "brief": "In Miami, Halloran watches news about the Colorado storm and psychically senses Danny is in danger",
+        "detailed": "TV news reports on the massive Colorado snowstorm: ten inches of snow, travel impossible, airports shut down, three people dead from exposure. Miami is experiencing record heat. As the newscaster describes the storm, Halloran lies on his bed and suddenly reacts with psychic awareness - he senses something is wrong at the Overlook. His face shows alarm and concern.",
+        "subtext": "The shining connects Danny and Halloran across 2,000 miles. Danny's terror in Room 237 has sent out a psychic distress call. Halloran's gift makes him aware but he's trapped by distance and weather."
+      },
+      "keyDialogue": [
+        {
+          "quote": "In Colorado ten inches of snow has fallen in just a few hours tonight. Travel in the Rockies is almost impossible.",
+          "speaker": "TV Newscaster",
+          "significance": "Establishes that Halloran cannot easily reach them",
+          "context": "News report about the storm"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Not present - investigating Room 237",
+          "arc": "About to encounter the woman"
+        },
+        "Wendy": {
+          "state": "Not present - waiting with Danny",
+          "arc": "Hoping Jack finds explanation"
+        },
+        "Danny": {
+          "state": "Not present but psychically calling for help",
+          "arc": "His terror reaches Halloran"
+        }
+      },
+      "psychologicalState": "stable",
+      "tensionLevel": 7,
+      "significance": "Establishes Halloran psychically senses Danny's danger but is trapped by weather/distance",
+      "foreshadowing": [],
+      "tags": [
+        "halloran",
+        "shining",
+        "psychic",
+        "miami",
+        "storm",
+        "distance"
+      ]
+    },
+    {
+      "id": 20,
+      "act": "act2",
+      "title": "Room 237 - The Woman in the Bath",
+      "location": {
+        "primary": "Overlook Hotel - Room 237",
+        "description": "Elegant hotel suite with bathroom containing bathtub"
+      },
+      "time": {
+        "narrative": "Same Wednesday night",
+        "runtime": "1:33-1:38",
+        "approximate": "Minutes later"
+      },
+      "plotSummary": {
+        "brief": "Jack investigates Room 237 and encounters a beautiful naked woman who transforms into a rotting corpse",
+        "detailed": "Cross-cutting between Danny trembling in his bedroom and Jack entering Room 237. The bathroom door swings open revealing a beautiful young woman in the bathtub behind a curtain. She draws the curtain aside and stands up, naked and beautiful. Jack smiles. She steps out and walks to him. They embrace and kiss. Jack opens his eyes and sees in the mirror that she's covered with sores and decay. He pulls away as she begins to laugh. The image alternates between young beauty and rotting corpse. She rises from the bathtub as a cackling old woman, walking toward Jack with outstretched arms. Jack backs out of the room and locks the door.",
+        "subtext": "The room contains predatory supernatural evil that appears seductive to lure victims. Jack is tempted but repulsed. The woman is both real (she strangled Danny) and symbolic (corruption, decay beneath beauty, the hotel's true nature). Jack's encounter makes him complicit."
+      },
+      "keyDialogue": [],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Initially attracted, then horrified, backing away, disturbed",
+          "arc": "Direct encounter with the hotel's evil, but tempted before repulsed"
+        },
+        "Wendy": {
+          "state": "Not present - waiting anxiously",
+          "arc": "Will be lied to about what Jack found"
+        },
+        "Danny": {
+          "state": "Trembling in bed, psychically connected to the room",
+          "arc": "Reliving the trauma as Jack experiences it"
+        }
+      },
+      "psychologicalState": "psychotic",
+      "tensionLevel": 10,
+      "significance": "Iconic horror scene - Jack's direct encounter with the supernatural confirms the hotel's evil",
+      "foreshadowing": [
+        21,
+        22
+      ],
+      "tags": [
+        "room-237",
+        "horror",
+        "supernatural",
+        "woman",
+        "corpse",
+        "decay"
+      ]
+    },
+    {
+      "id": 21,
+      "act": "act2",
+      "title": "Jack Lies to Wendy",
+      "location": {
+        "primary": "Overlook Hotel - Torrance Apartment",
+        "description": "Family living quarters"
+      },
+      "time": {
+        "narrative": "Same Wednesday night - shortly after",
+        "runtime": "1:38-1:42",
+        "approximate": "Minutes later"
+      },
+      "plotSummary": {
+        "brief": "Jack returns and lies to Wendy, saying he saw nothing in Room 237",
+        "detailed": "Halloran tries to call the hotel but gets 'cannot be completed as dialed.' Jack returns to the apartment. Wendy asks if he found anything. Jack lies: 'No, nothing at all. I didn't see one goddamn thing.' He confirms he went to Room 237 but saw nothing. He suggests Danny did it to himself. When Wendy says that's impossible, Jack argues there's no other explanation. Wendy says they need to get Danny out of the hotel. Jack explodes: 'It is so fucking typical of you to create a problem when I finally have a chance to accomplish something!' He accuses her of fucking up his life and storms out.",
+        "subtext": "Jack is lying about what he saw - protecting the hotel or himself. He gaslights Wendy, suggesting Danny hurt himself. His violent rage at her suggestion to leave shows he's now loyal to the hotel, not his family. The choice is made."
+      },
+      "keyDialogue": [
+        {
+          "quote": "No, nothing at all. I didn't see one goddamn thing.",
+          "speaker": "Jack",
+          "significance": "Jack's crucial lie - denying the supernatural",
+          "context": "Reporting back to Wendy about Room 237"
+        },
+        {
+          "quote": "I think he did it to himself.",
+          "speaker": "Jack",
+          "significance": "Gaslighting - blaming the victim",
+          "context": "About Danny's neck bruises"
+        },
+        {
+          "quote": "I think we have to get Danny out of here.",
+          "speaker": "Wendy",
+          "significance": "Wendy's maternal instinct to protect Danny",
+          "context": "Proposing they leave"
+        },
+        {
+          "quote": "It is so fucking typical of you to create a problem like this when I finally have a chance to accomplish something!",
+          "speaker": "Jack",
+          "significance": "Jack prioritizes his work over his son's safety",
+          "context": "Attacking Wendy for suggesting they leave"
+        },
+        {
+          "quote": "Wendy, I have let you fuck up my life so far, but I'm not going to let you fuck this up!",
+          "speaker": "Jack",
+          "significance": "Complete blame reversal - making himself the victim",
+          "context": "Refusing to leave the hotel"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Lying, gaslighting, rageful, loyal to hotel over family",
+          "arc": "Chooses the hotel over his family's safety"
+        },
+        "Wendy": {
+          "state": "Terrified, crying, wanting to protect Danny",
+          "arc": "Realizes she's losing Jack to madness"
+        },
+        "Danny": {
+          "state": "Silent, traumatized, with 'REDRUM' written on door",
+          "arc": "Psychically aware of coming violence"
+        }
+      },
+      "psychologicalState": "psychotic",
+      "tensionLevel": 9,
+      "significance": "Jack lies about Room 237 and violently refuses to leave, showing his allegiance is now to the hotel",
+      "foreshadowing": [],
+      "tags": [
+        "lies",
+        "gaslighting",
+        "rage",
+        "refusal",
+        "family-breakdown"
+      ]
+    },
+    {
+      "id": 22,
+      "act": "act2",
+      "title": "Jack's Rampage and the Gold Room Party",
+      "location": {
+        "primary": "Overlook Hotel - Kitchen and Gold Ballroom",
+        "description": "Jack destroying kitchen, then entering crowded ballroom"
+      },
+      "time": {
+        "narrative": "Same Wednesday night - continuous",
+        "runtime": "1:42-1:46",
+        "approximate": "Shortly after"
+      },
+      "plotSummary": {
+        "brief": "Jack destroys the kitchen in rage, then enters a fully populated 1920s party in the Gold Ballroom",
+        "detailed": "Halloran calls the ranger station asking them to check on the family. Jack walks through the kitchen violently sweeping coffee pots and equipment to the floor, kicking and destroying things. He walks down a corridor now decorated with balloons and streamers. He enters the Gold Ballroom which is now filled with elegant 1920s partygoers in formal wear. The maitre d' greets him by name. Jack sits at the bar where Lloyd serves him. Lloyd says drinks are on the house. Jack asks who's buying. Lloyd deflects: 'It's not a matter that concerns you, at least not at this point.'",
+        "subtext": "Jack's rage is explosive and dangerous. The hotel rewards his commitment with a full party - showing him the glamorous past. He's being welcomed into the hotel's ghostly world. 'Not at this point' suggests he'll learn the truth later."
+      },
+      "keyDialogue": [
+        {
+          "quote": "Good evening, Mr. Torrance.",
+          "speaker": "Maitre d'",
+          "significance": "The ghosts know and welcome Jack",
+          "context": "Greeting Jack at the ballroom entrance"
+        },
+        {
+          "quote": "Hi Lloyd. I've been away. Now I'm back.",
+          "speaker": "Jack",
+          "significance": "Jack implies he's always been here - losing sense of time/identity",
+          "context": "Greeting Lloyd at the bar"
+        },
+        {
+          "quote": "It's not a matter that concerns you, Mr. Torrance - at least not at this point.",
+          "speaker": "Lloyd",
+          "significance": "Mysterious answer about who's buying drinks",
+          "context": "Jack asking who's paying"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Violently destructive, then welcomed by ghosts at elaborate party",
+          "arc": "Fully entering the hotel's supernatural world"
+        },
+        "Wendy": {
+          "state": "Not present - crying in bedroom",
+          "arc": "Unaware of Jack's psychotic break"
+        },
+        "Danny": {
+          "state": "Not present - in room",
+          "arc": "Psychically aware of danger growing"
+        }
+      },
+      "psychologicalState": "psychotic",
+      "tensionLevel": 8,
+      "significance": "Jack is welcomed into the hotel's ghostly 1920s party, showing full supernatural immersion",
+      "foreshadowing": [
+        23
+      ],
+      "tags": [
+        "rage",
+        "destruction",
+        "party",
+        "ghosts",
+        "1920s",
+        "lloyd",
+        "gold-room"
+      ]
+    },
+    {
+      "id": 23,
+      "act": "act2",
+      "title": "Meeting Delbert Grady",
+      "location": {
+        "primary": "Overlook Hotel - Gold Ballroom and Men's Room",
+        "description": "Crowded party, then men's bathroom"
+      },
+      "time": {
+        "narrative": "Same Wednesday night - continuous",
+        "runtime": "1:46-1:56",
+        "approximate": "Continuing"
+      },
+      "plotSummary": {
+        "brief": "A waiter spills drinks on Jack and takes him to the bathroom, revealing he's Delbert Grady",
+        "detailed": "Jack drinks and talks with Lloyd. A waiter carrying drinks bumps into a woman and spills advocaat on Jack's jacket. The waiter apologizes profusely and takes Jack to the men's room to clean it. In the bathroom, Jack asks his name. 'Grady, sir. Delbert Grady.' Jack is shocked - 'Delbert Grady?' Grady confirms it. Jack tells him, 'I'm sorry to differ with you sir, but YOU are the caretaker. You've always been the caretaker. I should know sir, I've always been here.' Grady tells Jack that his son Danny has 'a very great talent' and has 'contacted the outside world' through the shine. He says Wendy and Danny are trying to 'break up the party' and damage the hotel. Grady reminds Jack that the previous caretaker had to 'correct' his wife and daughters, and suggests Jack needs to do the same.",
+        "subtext": "This is the murderer from the 1970 incident - but he denies being the previous caretaker and insists Jack has 'always' been here. Time is collapsing. Grady is recruiting Jack to repeat the murder cycle. The hotel operates in eternal recurrence."
+      },
+      "keyDialogue": [
+        {
+          "quote": "Mr. Grady, you were the caretaker here. I recognize you from the pictures.",
+          "speaker": "Jack",
+          "significance": "Jack identifies the murderer",
+          "context": "Confronting Grady"
+        },
+        {
+          "quote": "I'm sorry to differ with you sir, but YOU are the caretaker. You've always been the caretaker. I should know sir, I've always been here.",
+          "speaker": "Grady",
+          "significance": "Key statement about cyclical time and Jack's eternal role",
+          "context": "Denying he was the caretaker"
+        },
+        {
+          "quote": "Your son has a very great talent. I don't think you're aware how great it is. He is attempting to use that talent against your will.",
+          "speaker": "Grady",
+          "significance": "Grady knows about Danny's shining",
+          "context": "Warning Jack about Danny"
+        },
+        {
+          "quote": "My girls, sir, they didn't care for the Overlook at first. One of them actually stole a pack of matches and tried to burn it down. But I corrected them, sir. And when my wife tried to prevent me from doing my duty, I corrected her.",
+          "speaker": "Grady",
+          "significance": "Euphemistic description of murdering his family",
+          "context": "Explaining what he did"
+        },
+        {
+          "quote": "I fear you will have to deal with this matter in the harshest possible way, Mr. Torrance... There is nothing I can do, sir. Not a thing.",
+          "speaker": "Grady",
+          "significance": "Grady plants the idea that Jack must kill his family",
+          "context": "Suggesting Jack 'correct' his family"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Conversing with the murderous ghost, being recruited to kill",
+          "arc": "Accepts that he's 'always been' the caretaker"
+        },
+        "Wendy": {
+          "state": "Not present - being discussed as enemy",
+          "arc": "Grady frames her as threat to hotel"
+        },
+        "Danny": {
+          "state": "Not present - Grady reveals knowledge of his shining",
+          "arc": "Identified as threat because he contacted outside world"
+        }
+      },
+      "psychologicalState": "psychotic",
+      "tensionLevel": 10,
+      "significance": "Jack meets the 1970 murderer who recruits him to repeat the murders, revealing cyclical time theme",
+      "foreshadowing": [
+        26,
+        28
+      ],
+      "tags": [
+        "grady",
+        "murder",
+        "recruitment",
+        "cyclical-time",
+        "always-been-here",
+        "correction"
+      ]
+    },
+    {
+      "id": 24,
+      "act": "act2",
+      "title": "Halloran's Journey Begins",
+      "location": {
+        "primary": "Miami and Colorado - Multiple locations",
+        "description": "Ranger station, airport, car rental, journey through storm"
+      },
+      "time": {
+        "narrative": "Thursday (Next day)",
+        "runtime": "1:56-2:04",
+        "approximate": "Following day"
+      },
+      "plotSummary": {
+        "brief": "Halloran flies to Colorado and struggles through the snowstorm toward the hotel",
+        "detailed": "Title: THURSDAY. The ranger visits the hotel and reports to Halloran by phone that everything seems fine, though no one answered. Halloran isn't satisfied and flies to Colorado. He rents a Snowcat and begins the difficult journey through the massive snowstorm. Meanwhile, Wendy carries breakfast to Jack in their apartment and finds him sleeping. She sees his manuscript and begins to read it. Page after page contains only one sentence typed repeatedly: 'All work and no play makes Jack a dull boy' in different formats and patterns. She's horrified. Jack wakes up.",
+        "subtext": "Halloran's psychic alarm is so strong he travels across the country in a deadly storm. The ranger saw nothing wrong because the family appeared normal. Jack's 'writing' reveals his complete mental collapse - obsessive, meaningless repetition instead of creativity."
+      },
+      "keyDialogue": [
+        {
+          "quote": "All work and no play makes Jack a dull boy.",
+          "speaker": "Jack's manuscript",
+          "significance": "Iconic revelation of Jack's madness - hundreds of pages of one sentence",
+          "context": "What Wendy discovers in his manuscript"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Sleeping, has written hundreds of pages of one repeated sentence",
+          "arc": "Complete creative/mental collapse revealed"
+        },
+        "Wendy": {
+          "state": "Bringing breakfast, discovers the manuscript, horrified",
+          "arc": "Final proof of Jack's insanity"
+        },
+        "Danny": {
+          "state": "Not present",
+          "arc": "In danger as rescue approaches"
+        }
+      },
+      "psychologicalState": "psychotic",
+      "tensionLevel": 9,
+      "significance": "Iconic 'All work and no play' manuscript reveals Jack's madness; Halloran begins rescue journey",
+      "foreshadowing": [
+        28,
+        30
+      ],
+      "tags": [
+        "manuscript",
+        "madness",
+        "halloran",
+        "rescue",
+        "revelation"
+      ]
+    },
+    {
+      "id": 25,
+      "act": "act2",
+      "title": "Confrontation on the Stairs",
+      "location": {
+        "primary": "Overlook Hotel - Colorado Lounge Staircase",
+        "description": "Grand staircase in the lounge"
+      },
+      "time": {
+        "narrative": "Same Thursday",
+        "runtime": "2:04-2:09",
+        "approximate": "Same morning"
+      },
+      "plotSummary": {
+        "brief": "Wendy backs up the stairs with a baseball bat as Jack follows, taunting and threatening",
+        "detailed": "Wendy grabs a baseball bat as Jack wakes and approaches. She backs up the grand staircase while Jack follows, limping and taunting her. He calls her 'baby' and mocks her thinking he would hurt them. He asks sarcastically about taking Danny to a doctor. When she swings the bat, he jumps forward and she hits him on the head. He falls down the stairs, unconscious. Wendy drags him to the pantry and locks him inside.",
+        "subtext": "Wendy has never hit anyone before - her hands shake violently. Jack deliberately provokes her to attack so he can play victim. His taunting is sadistic. He's enjoying terrorizing her. Only his injury stops him."
+      },
+      "keyDialogue": [
+        {
+          "quote": "I'm not gonna hurt ya. You didn't let me finish my sentence. I said, I'm not gonna hurt ya. I'm just going to bash your brains in.",
+          "speaker": "Jack",
+          "significance": "Sadistic wordplay revealing his intent to kill",
+          "context": "Following Wendy up the stairs"
+        },
+        {
+          "quote": "I love you. I said, I love you! Wendy, darling, Light of my Life! I'm not gonna hurt ya. I'm just gonna bash your fucking brains in!",
+          "speaker": "Jack",
+          "significance": "Mixing love language with murder threats",
+          "context": "Taunting Wendy"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Openly threatening murder, limping, taunting, sadistic",
+          "arc": "All pretense dropped - now openly murderous"
+        },
+        "Wendy": {
+          "state": "Terrified, desperate, forced to defend herself physically",
+          "arc": "Becomes a survivor, fights back"
+        },
+        "Danny": {
+          "state": "Not present - whereabouts unknown",
+          "arc": "In danger while parents fight"
+        }
+      },
+      "psychologicalState": "psychotic",
+      "tensionLevel": 10,
+      "significance": "Jack openly threatens to kill Wendy; she fights back and locks him in the pantry",
+      "foreshadowing": [
+        28,
+        29
+      ],
+      "tags": [
+        "violence",
+        "baseball-bat",
+        "stairs",
+        "threat",
+        "defense",
+        "pantry"
+      ]
+    },
+    {
+      "id": 26,
+      "act": "act2",
+      "title": "Locked in the Pantry - Grady Frees Jack",
+      "location": {
+        "primary": "Overlook Hotel - Kitchen Pantry",
+        "description": "Large walk-in food storage room"
+      },
+      "time": {
+        "narrative": "Same Thursday - hours later",
+        "runtime": "2:09-2:14",
+        "approximate": "Later that day"
+      },
+      "plotSummary": {
+        "brief": "Jack is locked in the pantry; Grady's ghost unlocks the door from outside",
+        "detailed": "Jack sits in the locked pantry, talking to Grady through the door. Grady reminds him of his responsibilities as caretaker and criticizes his 'willingness to give your word and then not keep it.' Grady says Jack's son has contacted the outside world - 'a nigger cook' - who is coming to the hotel. Grady suggests this interference must be dealt with. Jack hears the lock click and the door swings open. The corridor is empty. Jack is free.",
+        "subtext": "The hotel won't let Jack fail. Grady is the hotel's voice. The racist language shows the 1920s ghost's era and the hotel's evil nature. Jack is being directed to kill Halloran when he arrives."
+      },
+      "keyDialogue": [
+        {
+          "quote": "Did you know that your son is attempting to bring an outside party into this situation? Did you know that?",
+          "speaker": "Grady",
+          "significance": "Grady knows Danny contacted Halloran psychically",
+          "context": "Speaking through the pantry door"
+        },
+        {
+          "quote": "He's a nigger. A nigger cook.",
+          "speaker": "Grady",
+          "significance": "Reveals the ghost's 1920s racism and evil nature",
+          "context": "Identifying Halloran"
+        },
+        {
+          "quote": "I feel you will have to deal with this... in the harshest possible way.",
+          "speaker": "Grady",
+          "significance": "Ordering Jack to kill Halloran",
+          "context": "Instructing Jack"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Trapped but conversing with ghost, receiving orders",
+          "arc": "Directed to kill Halloran when he arrives"
+        },
+        "Wendy": {
+          "state": "Not present - believes Jack is safely contained",
+          "arc": "False sense of security"
+        },
+        "Danny": {
+          "state": "Not present - psychic contact with Halloran revealed",
+          "arc": "His call for help endangers Halloran"
+        }
+      },
+      "psychologicalState": "psychotic",
+      "tensionLevel": 8,
+      "significance": "Grady supernaturally frees Jack from the pantry and orders him to kill Halloran",
+      "foreshadowing": [
+        28
+      ],
+      "tags": [
+        "pantry",
+        "grady",
+        "supernatural",
+        "escape",
+        "orders",
+        "halloran"
+      ]
+    },
+    {
+      "id": 27,
+      "act": "act3",
+      "title": "REDRUM - Danny's Prophecy",
+      "location": {
+        "primary": "Overlook Hotel - Torrance Apartment",
+        "description": "Danny's bedroom and family living quarters"
+      },
+      "time": {
+        "narrative": "Same Thursday evening",
+        "runtime": "2:14-2:17",
+        "approximate": "Evening"
+      },
+      "plotSummary": {
+        "brief": "Danny writes REDRUM on the bathroom door in lipstick while speaking in Tony's voice",
+        "detailed": "Wendy checks the pantry door - Jack is silent inside. Danny sits on his bed saying 'REDRUM' in Tony's croaking voice repeatedly. He takes Wendy's lipstick and writes REDRUM on the bathroom door. Wendy searches for Danny, calling his name. The word REDRUM is written in large letters. Danny continues chanting the word in Tony's voice.",
+        "subtext": "REDRUM is murder backwards - a prophecy/warning. Danny is in deep psychic trance. Tony is trying to warn them. The mirror will later reveal the word's meaning. This is Danny's strongest vision yet."
+      },
+      "keyDialogue": [
+        {
+          "quote": "REDRUM... REDRUM... REDRUM...",
+          "speaker": "Danny/Tony",
+          "significance": "Murder spelled backwards - cryptic prophecy",
+          "context": "Danny in trance state"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Silent in pantry - about to be freed",
+          "arc": "Soon to escape and hunt his family"
+        },
+        "Wendy": {
+          "state": "Checking on Jack, searching for Danny, confused by REDRUM",
+          "arc": "About to face final terror"
+        },
+        "Danny": {
+          "state": "Deep psychic trance, possessed by Tony, prophesying murder",
+          "arc": "Strongest supernatural state yet"
+        }
+      },
+      "psychologicalState": "stable",
+      "tensionLevel": 9,
+      "significance": "Danny writes REDRUM (murder backwards) as prophetic warning of Jack's intent",
+      "foreshadowing": [
+        28,
+        29,
+        31
+      ],
+      "tags": [
+        "redrum",
+        "prophecy",
+        "tony",
+        "mirror",
+        "warning"
+      ]
+    },
+    {
+      "id": 28,
+      "act": "act3",
+      "title": "Jack Breaks Free - The Chase Begins",
+      "location": {
+        "primary": "Overlook Hotel - Various locations",
+        "description": "Hotel corridors, radio room, apartment"
+      },
+      "time": {
+        "narrative": "Thursday night into Friday morning",
+        "runtime": "2:17-2:22",
+        "approximate": "Night"
+      },
+      "plotSummary": {
+        "brief": "Jack escapes the pantry, sabotages the radio and Snowcat, and begins hunting his family with an axe",
+        "detailed": "Wendy checks the pantry - Jack is gone. She's terrified. She tries the radio but Jack has destroyed it. She runs outside and tries to start the Snowcat but Jack has disabled it. She runs back inside with Danny. Jack wanders through the hotel with an axe, calling 'Wendy? Darling? Light of my Life!' The ranger radios asking if they copy - no response. Halloran continues his journey through the snowstorm.",
+        "subtext": "Jack has systematically cut off all escape routes. He's hunting them methodically. His pet names ('darling,' 'light of my life') mixed with murder intent are chilling. They're completely trapped."
+      },
+      "keyDialogue": [
+        {
+          "quote": "Wendy? Darling? Light of my Life! I'm not gonna hurt ya... You didn't let me finish my sentence...",
+          "speaker": "Jack",
+          "significance": "Sadistic repetition of earlier taunts while hunting",
+          "context": "Searching for Wendy with an axe"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Free, armed with axe, systematically hunting family",
+          "arc": "Full transformation to murderer complete"
+        },
+        "Wendy": {
+          "state": "Discovering escape routes cut off, protecting Danny, terrified",
+          "arc": "Realizes they're completely trapped"
+        },
+        "Danny": {
+          "state": "With Wendy, in mortal danger",
+          "arc": "Flight mode activated"
+        }
+      },
+      "psychologicalState": "psychotic",
+      "tensionLevel": 10,
+      "significance": "Jack escapes, sabotages all escape routes, arms himself with axe, begins hunting his family",
+      "foreshadowing": [
+        29,
+        30,
+        31
+      ],
+      "tags": [
+        "escape",
+        "axe",
+        "hunt",
+        "sabotage",
+        "chase",
+        "terror"
+      ]
+    },
+    {
+      "id": 29,
+      "act": "act3",
+      "title": "Here's Johnny! - The Bathroom Door",
+      "location": {
+        "primary": "Overlook Hotel - Torrance Apartment Bathroom",
+        "description": "Small bathroom with window and door"
+      },
+      "time": {
+        "narrative": "Friday morning",
+        "runtime": "2:22-2:26",
+        "approximate": "Early morning (8 a.m.)"
+      },
+      "plotSummary": {
+        "brief": "Wendy and Danny hide in the bathroom; Jack chops through the door with his axe",
+        "detailed": "Title: 8 A.M. Wendy and Danny lock themselves in the bathroom. Wendy tries to open the window but it won't budge. Jack begins chopping through the bathroom door with the axe. He breaks a hole and peers through, grinning maniacally. He famously says 'Here's Johnny!' then reaches through to unlock the door. Wendy slashes his hand with a knife. Meanwhile, Wendy pushes Danny through the small bathroom window to escape. Jack's hand is too big to fit through the window frame. Halloran arrives at the hotel in the Snowcat.",
+        "subtext": "The 'Here's Johnny' line (referencing The Tonight Show) shows Jack performing his madness, enjoying it. He's fully psychotic. Wendy's quick thinking saves Danny. Jack's larger body size is now a disadvantage."
+      },
+      "keyDialogue": [
+        {
+          "quote": "Little pigs, little pigs, let me come in. Not by the hair on your chinny-chin-chin? Then I'll huff and I'll puff, and I'll blow your house in!",
+          "speaker": "Jack",
+          "significance": "Fairy tale reference - casting himself as the wolf",
+          "context": "Chopping through the door"
+        },
+        {
+          "quote": "Here's Johnny!",
+          "speaker": "Jack",
+          "significance": "Iconic line showing Jack's theatrical madness",
+          "context": "Peering through the broken door"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Fully psychotic, theatrical, enjoying the violence, grinning maniacally",
+          "arc": "Peak madness and murderous intent"
+        },
+        "Wendy": {
+          "state": "Desperate, quick-thinking, sacrifices escape to save Danny first",
+          "arc": "Mother's protective instinct in full force"
+        },
+        "Danny": {
+          "state": "Escapes through window onto snow",
+          "arc": "Saved by Wendy, now alone outside"
+        }
+      },
+      "psychologicalState": "psychotic",
+      "tensionLevel": 10,
+      "significance": "Iconic 'Here's Johnny' scene - Jack breaks through bathroom door, Danny escapes through window",
+      "foreshadowing": [
+        31
+      ],
+      "tags": [
+        "heres-johnny",
+        "axe",
+        "bathroom",
+        "door",
+        "escape",
+        "iconic"
+      ]
+    },
+    {
+      "id": 30,
+      "act": "act3",
+      "title": "Halloran's Death",
+      "location": {
+        "primary": "Overlook Hotel - Main Lobby",
+        "description": "Grand hotel lobby entrance"
+      },
+      "time": {
+        "narrative": "Same Friday morning",
+        "runtime": "2:26-2:28",
+        "approximate": "Moments later"
+      },
+      "plotSummary": {
+        "brief": "Halloran enters the hotel and Jack immediately kills him with the axe",
+        "detailed": "Halloran drives up to the hotel in the Snowcat and enters the lobby calling 'Hello? Anybody here?' Jack appears from behind a pillar and drives the axe into Halloran's chest. He falls dead. The killing is sudden and brutal. Danny witnesses this from nearby and screams. Jack turns toward Danny's scream.",
+        "subtext": "Halloran's psychic journey to save Danny ends in instant death. Jack was waiting for him as Grady instructed. The hotel's prophecy is fulfilled. Danny's scream reveals his location to Jack. The helper is destroyed."
+      },
+      "keyDialogue": [
+        {
+          "quote": "Hello? Anybody here?",
+          "speaker": "Halloran",
+          "significance": "Last words before death",
+          "context": "Entering the hotel"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Ambushing, cold, efficient killer",
+          "arc": "Murders the helper who came to rescue his family"
+        },
+        "Wendy": {
+          "state": "Not present - still trapped in bathroom",
+          "arc": "Unaware of Halloran's death"
+        },
+        "Danny": {
+          "state": "Witnessing Halloran's murder, screaming in horror",
+          "arc": "Loses his would-be rescuer, reveals position to Jack"
+        }
+      },
+      "psychologicalState": "psychotic",
+      "tensionLevel": 10,
+      "significance": "Jack murders Halloran, eliminating the outside helper and trapping the family completely",
+      "foreshadowing": [],
+      "tags": [
+        "halloran",
+        "death",
+        "murder",
+        "axe",
+        "rescue-failed"
+      ]
+    },
+    {
+      "id": 31,
+      "act": "act3",
+      "title": "The Maze Chase - Final Confrontation",
+      "location": {
+        "primary": "Overlook Hotel - Hedge Maze",
+        "description": "Snow-covered hedge maze, moonlit, Danny hunted by Jack"
+      },
+      "time": {
+        "narrative": "Friday morning",
+        "runtime": "2:28-2:35",
+        "approximate": "Early morning"
+      },
+      "plotSummary": {
+        "brief": "Danny flees into the maze; Jack pursues him through the snow with the axe",
+        "detailed": "Danny runs outside into the hedge maze. Jack follows his footprints in the snow, walking methodically with the axe. Danny runs through the maze corridors while Jack follows, calling his name. Danny realizes Jack is tracking his footprints. He backtracks, stepping in his own footprints, then jumps off the path and hides behind a hedge. Jack passes by, following the footprint trail that now appears to end. Confused, Jack searches but can't find Danny. Danny escapes the maze and runs toward Halloran's Snowcat. Jack continues searching in the maze, becoming increasingly lost and disoriented in the cold.",
+        "subtext": "Danny uses intelligence to defeat Jack's brute force. The maze that was warned about now saves Danny. Jack is lost in his own mind (metaphorical maze) as well as the physical one. The hotel's geography defeats its own instrument."
+      },
+      "keyDialogue": [
+        {
+          "quote": "Danny... Danny... I'm coming... Danny...",
+          "speaker": "Jack",
+          "significance": "Predator hunting his son through the maze",
+          "context": "Following Danny's footprints"
+        }
+      ],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Methodical hunter, then confused and lost in the maze",
+          "arc": "Defeated by his son's intelligence, trapped in the maze"
+        },
+        "Wendy": {
+          "state": "Not present - escaping the hotel",
+          "arc": "Making her way to safety"
+        },
+        "Danny": {
+          "state": "Clever, resourceful, using cunning to escape",
+          "arc": "Survives by outsmarting Jack"
+        }
+      },
+      "psychologicalState": "psychotic",
+      "tensionLevel": 10,
+      "significance": "Climactic chase in the maze - Danny outsmarts Jack using the footprint trick, Jack becomes lost",
+      "foreshadowing": [
+        32
+      ],
+      "tags": [
+        "maze",
+        "chase",
+        "snow",
+        "footprints",
+        "clever",
+        "escape"
+      ]
+    },
+    {
+      "id": 32,
+      "act": "act3",
+      "title": "Frozen - Jack's Death",
+      "location": {
+        "primary": "Overlook Hotel - Hedge Maze",
+        "description": "Frozen maze at night"
+      },
+      "time": {
+        "narrative": "Friday morning into afternoon",
+        "runtime": "2:35-2:37",
+        "approximate": "Hours later"
+      },
+      "plotSummary": {
+        "brief": "Danny and Wendy escape in the Snowcat; Jack freezes to death in the maze",
+        "detailed": "Danny reaches the Snowcat where Wendy has made it out of the hotel. They embrace and Wendy drives the Snowcat away from the hotel, rescuing both of them. In the maze, Jack continues stumbling through the snow, lost and freezing. He collapses. Time passes. Morning comes. Jack is frozen solid, sitting with his back against the hedge, face frozen in a grimace, eyes staring, completely covered in frost and ice. He has frozen to death in the maze.",
+        "subtext": "Jack dies the same way his victims were meant to - from the cold. His body becomes part of the hotel's landscape. The maze that Ullman warned about takes its victim. Death by freezing is slow and agonizing."
+      },
+      "keyDialogue": [],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Lost, freezing, dying, then frozen corpse",
+          "arc": "Destroyed by the cold and isolation he sought"
+        },
+        "Wendy": {
+          "state": "Reunited with Danny, driving to safety",
+          "arc": "Survival and escape achieved"
+        },
+        "Danny": {
+          "state": "Reunited with Wendy, escaping the hotel",
+          "arc": "Survival through intelligence and psychic warnings"
+        }
+      },
+      "psychologicalState": "psychotic",
+      "tensionLevel": 7,
+      "significance": "Jack freezes to death in the maze, defeated by the isolation he desired",
+      "foreshadowing": [],
+      "tags": [
+        "death",
+        "frozen",
+        "maze",
+        "escape",
+        "survival"
+      ]
+    },
+    {
+      "id": 33,
+      "act": "act3",
+      "title": "July 4th, 1921 - The Photo",
+      "location": {
+        "primary": "Overlook Hotel - Corridor Gallery",
+        "description": "Hotel hallway with framed photographs on walls"
+      },
+      "time": {
+        "narrative": "Epilogue - timeframe ambiguous",
+        "runtime": "2:37-2:40",
+        "approximate": "After the escape"
+      },
+      "plotSummary": {
+        "brief": "The camera reveals Jack in a 1921 photograph, suggesting he was 'always' there",
+        "detailed": "The camera slowly tracks in on a wall of old photographs from the hotel's history. It focuses on a group photograph labeled 'Overlook Hotel - July 4th Ball - 1921.' At the center of the crowd, smiling at the camera, is Jack Torrance. He has been there all along.",
+        "subtext": "Confirms Grady's statement that Jack 'has always been' the caretaker. Time is not linear at the hotel. Jack may have been reincarnated or the hotel exists outside time. His soul now belongs to the Overlook. The hotel claims its victims eternally. Ambiguous ending leaves interpretation open."
+      },
+      "keyDialogue": [],
+      "characterDevelopment": {
+        "Jack": {
+          "state": "Dead but eternally present in the hotel",
+          "arc": "Soul absorbed into the hotel's cyclical time"
+        },
+        "Wendy": {
+          "state": "Escaped but traumatized",
+          "arc": "Survived but forever changed"
+        },
+        "Danny": {
+          "state": "Escaped with shining intact",
+          "arc": "Survived with psychic scars"
+        }
+      },
+      "psychologicalState": "psychotic",
+      "tensionLevel": 3,
+      "significance": "Iconic ending - Jack appears in 1921 photograph, confirming he 'always' was the caretaker",
+      "foreshadowing": [],
+      "tags": [
+        "photograph",
+        "1921",
+        "cyclical-time",
+        "always-been-here",
+        "ambiguous-ending",
+        "eternal"
+      ]
+    }
+  ]
+}

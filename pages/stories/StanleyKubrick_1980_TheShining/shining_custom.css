@@ -1,0 +1,738 @@
+/* The Shining - Custom Styles */
+/* Inspired by Kubrick's visual aesthetic: symmetry, cold colors, deep reds */
+
+/* ============================================
+   INFO CARD MODAL - CRITICAL STYLES
+   Fix for side panel display
+   ============================================ */
+
+/* Support .active class for info card */
+.info-card-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.info-card.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Make .info-card-modal use side panel layout */
+.info-card-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    transform: translateX(100%);
+    background: var(--viz-card-bg);
+    border-left: 1px solid var(--viz-border);
+    border-radius: 0;
+    padding: 0;
+    width: 400px;
+    height: 100vh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    box-shadow: -4px 0 24px var(--viz-card-shadow);
+    z-index: 1003;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.info-card-modal.active {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Make backdrop not block interaction with nodes */
+.info-card-backdrop {
+    pointer-events: none !important;
+}
+
+.info-card-backdrop.active {
+    background: transparent;
+}
+
+/* Ensure visualization container can show info card next to it */
+#visualization-container {
+    position: relative;
+    overflow: visible;
+}
+
+.visualization-main {
+    overflow: visible;
+}
+
+/* Scrollbar styling for side panel */
+.info-card-modal::-webkit-scrollbar {
+    width: 8px;
+}
+
+.info-card-modal::-webkit-scrollbar-track {
+    background: var(--viz-bg-secondary);
+}
+
+.info-card-modal::-webkit-scrollbar-thumb {
+    background: var(--viz-border);
+    border-radius: 4px;
+}
+
+.info-card-modal::-webkit-scrollbar-thumb:hover {
+    background: var(--viz-text-muted);
+}
+
+/* Responsive: Adjust width on smaller screens */
+@media (max-width: 768px) {
+    .info-card-modal {
+        width: 90vw;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .info-card-modal {
+        width: 100vw;
+    }
+}
+
+/* ============================================
+   COLOR VARIABLES
+   ============================================ */
+
+:root {
+    /* Act colors - matching The Shining's visual progression */
+    --act1-color: #4A90E2;  /* Cold blue - arrival and setup */
+    --act2-color: #D32F2F;  /* Deep red - deterioration and danger */
+    --act3-color: #212121;  /* Near black - terror and darkness */
+
+    /* Psychological state colors */
+    --stable-color: #66BB6A;       /* Green - normal state */
+    --deteriorating-color: #FF9800; /* Orange - declining */
+    --psychotic-color: #C62828;    /* Dark red - madness */
+
+    /* The Shining brand colors */
+    --overlook-gold: #D4AF37;    /* Gold Room elegance */
+    --snow-white: #F5F5F5;       /* Winter isolation */
+    --blood-red: #8B0000;        /* Horror and violence */
+    --carpet-orange: #E67E22;    /* Iconic carpet pattern */
+
+    /* Primary accent color for character development and other UI elements */
+    --viz-primary: var(--act2-color);
+}
+
+/* Custom motif styling for The Shining themes */
+.motif-item {
+    padding: 1rem;
+    border-left: 3px solid var(--overlook-gold);
+    transition: all 0.3s ease;
+}
+
+.motif-item:hover {
+    background-color: rgba(212, 175, 55, 0.1);
+    transform: translateX(5px);
+}
+
+/* Enhanced node styling for psychological states */
+.timeline-node.stable {
+    stroke: var(--stable-color);
+    stroke-width: 2px;
+}
+
+.timeline-node.deteriorating {
+    stroke: var(--deteriorating-color);
+    stroke-width: 3px;
+}
+
+.timeline-node.psychotic {
+    stroke: var(--psychotic-color);
+    stroke-width: 4px;
+    filter: drop-shadow(0 0 4px var(--psychotic-color));
+}
+
+/* Act-specific styling */
+.act1 {
+    fill: var(--act1-color);
+}
+
+.act2 {
+    fill: var(--act2-color);
+}
+
+.act3 {
+    fill: var(--act3-color);
+}
+
+/* Custom connection line styling */
+.foreshadowing-line {
+    stroke: #2196F3;
+    stroke-width: 2px;
+    stroke-opacity: 0.6;
+    fill: none;
+}
+
+.callback-line {
+    stroke: #9C27B0;
+    stroke-width: 2px;
+    stroke-opacity: 0.5;
+    stroke-dasharray: 5,5;
+    fill: none;
+}
+
+/* Scene info card customization */
+.scene-info-card {
+    border-left: 4px solid var(--overlook-gold);
+}
+
+.scene-info-card .psychological-state-badge {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    display: inline-block;
+    margin: 0.5rem 0;
+}
+
+.scene-info-card .psychological-state-badge.stable {
+    background-color: var(--stable-color);
+    color: white;
+}
+
+.scene-info-card .psychological-state-badge.deteriorating {
+    background-color: var(--deteriorating-color);
+    color: white;
+}
+
+.scene-info-card .psychological-state-badge.psychotic {
+    background-color: var(--psychotic-color);
+    color: white;
+}
+
+/* Tension level indicator */
+.tension-indicator {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+}
+
+.tension-bar {
+    width: 20px;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 2px;
+}
+
+.tension-bar.filled {
+    background: linear-gradient(90deg, var(--stable-color) 0%, var(--deteriorating-color) 50%, var(--psychotic-color) 100%);
+}
+
+/* Kubrick-inspired symmetrical layout */
+.symmetry-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+/* Animated "Here's Johnny!" effect for high-tension scenes */
+@keyframes shining-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.high-tension-scene {
+    animation: shining-pulse 2s ease-in-out infinite;
+}
+
+/* Custom scrollbar for dark theme (optional) */
+.bg-body-tertiary::-webkit-scrollbar {
+    width: 8px;
+}
+
+.bg-body-tertiary::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.bg-body-tertiary::-webkit-scrollbar-thumb {
+    background: var(--overlook-gold);
+    border-radius: 4px;
+}
+
+.bg-body-tertiary::-webkit-scrollbar-thumb:hover {
+    background: var(--blood-red);
+}
+
+/* ============================================
+   BOOK CLUB QUESTIONS - 2 COLUMN LAYOUT
+   ============================================ */
+
+/* Override base grid to use 2 columns */
+.book-club-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .book-club-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ============================================
+   LEGEND QUESTION ITEMS - MATCH TAG BADGE SIZE
+   ============================================ */
+
+/* Legend Question Items - Match tag badge styling */
+.legend-question-item {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    opacity: 0.9;
+    border-radius: 4px;
+    border: 1px solid transparent;
+}
+
+.legend-question-item:hover {
+    opacity: 1;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.legend-question-item.active {
+    opacity: 1;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Active indicator for discussion topics */
+.legend-question-item {
+    position: relative;
+}
+
+.active-indicator {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 14px;
+    height: 14px;
+    background: #27ae60;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: bold;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.2s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.legend-question-item.active .active-indicator {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ============================================
+   TAG COLOR SCHEME - THE SHINING THEMES
+   ============================================ */
+
+/* Core Themes */
+.tag-supernatural {
+    background: rgba(156, 39, 176, 0.1);
+    color: #9C27B0;
+    border-color: #9C27B0;
+}
+
+.tag-psychology {
+    background: rgba(33, 150, 243, 0.1);
+    color: #2196F3;
+    border-color: #2196F3;
+}
+
+.tag-interpretation {
+    background: rgba(103, 58, 183, 0.1);
+    color: #673AB7;
+    border-color: #673AB7;
+}
+
+.tag-symbolism {
+    background: rgba(212, 175, 55, 0.1);
+    color: #D4AF37;
+    border-color: #D4AF37;
+}
+
+.tag-identity {
+    background: rgba(96, 125, 139, 0.1);
+    color: #607D8B;
+    border-color: #607D8B;
+}
+
+/* Characters */
+.tag-jack {
+    background: rgba(211, 47, 47, 0.1);
+    color: #D32F2F;
+    border-color: #D32F2F;
+}
+
+.tag-wendy {
+    background: rgba(233, 30, 99, 0.1);
+    color: #E91E63;
+    border-color: #E91E63;
+}
+
+.tag-danny {
+    background: rgba(3, 169, 244, 0.1);
+    color: #03A9F4;
+    border-color: #03A9F4;
+}
+
+.tag-family {
+    background: rgba(0, 150, 136, 0.1);
+    color: #009688;
+    border-color: #009688;
+}
+
+.tag-children {
+    background: rgba(63, 81, 181, 0.1);
+    color: #3F51B5;
+    border-color: #3F51B5;
+}
+
+/* Horror Elements */
+.tag-madness {
+    background: rgba(244, 67, 54, 0.1);
+    color: #F44336;
+    border-color: #F44336;
+}
+
+.tag-violence {
+    background: rgba(183, 28, 28, 0.1);
+    color: #B71C1C;
+    border-color: #B71C1C;
+}
+
+.tag-abuse {
+    background: rgba(230, 81, 0, 0.1);
+    color: #E65100;
+    border-color: #E65100;
+}
+
+.tag-evil {
+    background: rgba(33, 33, 33, 0.2);
+    color: #212121;
+    border-color: #212121;
+}
+
+.tag-isolation {
+    background: rgba(69, 90, 100, 0.1);
+    color: #455A64;
+    border-color: #455A64;
+}
+
+.tag-addiction {
+    background: rgba(255, 111, 0, 0.1);
+    color: #FF6F00;
+    border-color: #FF6F00;
+}
+
+/* Kubrick's Vision */
+.tag-kubrick {
+    background: rgba(66, 66, 66, 0.1);
+    color: #424242;
+    border-color: #424242;
+}
+
+.tag-cinematography {
+    background: rgba(121, 85, 72, 0.1);
+    color: #795548;
+    border-color: #795548;
+}
+
+.tag-visual {
+    background: rgba(0, 121, 107, 0.1);
+    color: #00796B;
+    border-color: #00796B;
+}
+
+.tag-adaptation {
+    background: rgba(94, 53, 177, 0.1);
+    color: #5E35B1;
+    border-color: #5E35B1;
+}
+
+.tag-history {
+    background: rgba(141, 110, 99, 0.1);
+    color: #8D6E63;
+    border-color: #8D6E63;
+}
+
+/* Key Symbols */
+.tag-hotel {
+    background: rgba(139, 0, 0, 0.1);
+    color: #8B0000;
+    border-color: #8B0000;
+}
+
+.tag-maze {
+    background: rgba(46, 125, 50, 0.1);
+    color: #2E7D32;
+    border-color: #2E7D32;
+}
+
+.tag-room-237 {
+    background: rgba(123, 31, 162, 0.1);
+    color: #7B1FA2;
+    border-color: #7B1FA2;
+}
+
+.tag-photograph {
+    background: rgba(84, 110, 122, 0.1);
+    color: #546E7A;
+    border-color: #546E7A;
+}
+
+.tag-time {
+    background: rgba(81, 45, 168, 0.1);
+    color: #512DA8;
+    border-color: #512DA8;
+}
+
+.tag-prophecy {
+    background: rgba(106, 27, 154, 0.1);
+    color: #6A1B9A;
+    border-color: #6A1B9A;
+}
+
+.tag-environment {
+    background: rgba(55, 71, 79, 0.1);
+    color: #37474F;
+    border-color: #37474F;
+}
+
+/* Character Traits */
+.tag-psychic {
+    background: rgba(142, 36, 170, 0.1);
+    color: #8E24AA;
+    border-color: #8E24AA;
+}
+
+.tag-survival {
+    background: rgba(27, 94, 32, 0.1);
+    color: #1B5E20;
+    border-color: #1B5E20;
+}
+
+.tag-intelligence {
+    background: rgba(13, 71, 161, 0.1);
+    color: #0D47A1;
+    border-color: #0D47A1;
+}
+
+.tag-escape {
+    background: rgba(0, 77, 64, 0.1);
+    color: #004D40;
+    border-color: #004D40;
+}
+
+/* ============================================
+   LEGEND ITEM COLOR CLASSES
+   Apply tag colors to legend filter items
+   ============================================ */
+
+/* Core Themes */
+.legend-question-item.tag-supernatural {
+    background: rgba(156, 39, 176, 0.1);
+    color: #9C27B0;
+    border-color: #9C27B0;
+}
+
+.legend-question-item.tag-psychology {
+    background: rgba(33, 150, 243, 0.1);
+    color: #2196F3;
+    border-color: #2196F3;
+}
+
+.legend-question-item.tag-interpretation {
+    background: rgba(103, 58, 183, 0.1);
+    color: #673AB7;
+    border-color: #673AB7;
+}
+
+.legend-question-item.tag-symbolism {
+    background: rgba(212, 175, 55, 0.1);
+    color: #D4AF37;
+    border-color: #D4AF37;
+}
+
+.legend-question-item.tag-identity {
+    background: rgba(96, 125, 139, 0.1);
+    color: #607D8B;
+    border-color: #607D8B;
+}
+
+/* Characters */
+.legend-question-item.tag-jack {
+    background: rgba(211, 47, 47, 0.1);
+    color: #D32F2F;
+    border-color: #D32F2F;
+}
+
+.legend-question-item.tag-wendy {
+    background: rgba(233, 30, 99, 0.1);
+    color: #E91E63;
+    border-color: #E91E63;
+}
+
+.legend-question-item.tag-danny {
+    background: rgba(3, 169, 244, 0.1);
+    color: #03A9F4;
+    border-color: #03A9F4;
+}
+
+.legend-question-item.tag-family {
+    background: rgba(0, 150, 136, 0.1);
+    color: #009688;
+    border-color: #009688;
+}
+
+.legend-question-item.tag-children {
+    background: rgba(63, 81, 181, 0.1);
+    color: #3F51B5;
+    border-color: #3F51B5;
+}
+
+/* Horror Elements */
+.legend-question-item.tag-madness {
+    background: rgba(244, 67, 54, 0.1);
+    color: #F44336;
+    border-color: #F44336;
+}
+
+.legend-question-item.tag-violence {
+    background: rgba(183, 28, 28, 0.1);
+    color: #B71C1C;
+    border-color: #B71C1C;
+}
+
+.legend-question-item.tag-abuse {
+    background: rgba(230, 81, 0, 0.1);
+    color: #E65100;
+    border-color: #E65100;
+}
+
+.legend-question-item.tag-evil {
+    background: rgba(33, 33, 33, 0.2);
+    color: #212121;
+    border-color: #212121;
+}
+
+.legend-question-item.tag-isolation {
+    background: rgba(69, 90, 100, 0.1);
+    color: #455A64;
+    border-color: #455A64;
+}
+
+.legend-question-item.tag-addiction {
+    background: rgba(255, 111, 0, 0.1);
+    color: #FF6F00;
+    border-color: #FF6F00;
+}
+
+/* Kubrick's Vision */
+.legend-question-item.tag-kubrick {
+    background: rgba(66, 66, 66, 0.1);
+    color: #424242;
+    border-color: #424242;
+}
+
+.legend-question-item.tag-cinematography {
+    background: rgba(121, 85, 72, 0.1);
+    color: #795548;
+    border-color: #795548;
+}
+
+.legend-question-item.tag-visual {
+    background: rgba(0, 121, 107, 0.1);
+    color: #00796B;
+    border-color: #00796B;
+}
+
+.legend-question-item.tag-adaptation {
+    background: rgba(94, 53, 177, 0.1);
+    color: #5E35B1;
+    border-color: #5E35B1;
+}
+
+.legend-question-item.tag-history {
+    background: rgba(141, 110, 99, 0.1);
+    color: #8D6E63;
+    border-color: #8D6E63;
+}
+
+/* Key Symbols */
+.legend-question-item.tag-hotel {
+    background: rgba(139, 0, 0, 0.1);
+    color: #8B0000;
+    border-color: #8B0000;
+}
+
+.legend-question-item.tag-maze {
+    background: rgba(46, 125, 50, 0.1);
+    color: #2E7D32;
+    border-color: #2E7D32;
+}
+
+.legend-question-item.tag-room-237 {
+    background: rgba(123, 31, 162, 0.1);
+    color: #7B1FA2;
+    border-color: #7B1FA2;
+}
+
+.legend-question-item.tag-photograph {
+    background: rgba(84, 110, 122, 0.1);
+    color: #546E7A;
+    border-color: #546E7A;
+}
+
+.legend-question-item.tag-time {
+    background: rgba(81, 45, 168, 0.1);
+    color: #512DA8;
+    border-color: #512DA8;
+}
+
+.legend-question-item.tag-prophecy {
+    background: rgba(106, 27, 154, 0.1);
+    color: #6A1B9A;
+    border-color: #6A1B9A;
+}
+
+.legend-question-item.tag-environment {
+    background: rgba(55, 71, 79, 0.1);
+    color: #37474F;
+    border-color: #37474F;
+}
+
+/* Character Traits */
+.legend-question-item.tag-psychic {
+    background: rgba(142, 36, 170, 0.1);
+    color: #8E24AA;
+    border-color: #8E24AA;
+}
+
+.legend-question-item.tag-survival {
+    background: rgba(27, 94, 32, 0.1);
+    color: #1B5E20;
+    border-color: #1B5E20;
+}
+
+.legend-question-item.tag-intelligence {
+    background: rgba(13, 71, 161, 0.1);
+    color: #0D47A1;
+    border-color: #0D47A1;
+}
+
+.legend-question-item.tag-escape {
+    background: rgba(0, 77, 64, 0.1);
+    color: #004D40;
+    border-color: #004D40;
+}

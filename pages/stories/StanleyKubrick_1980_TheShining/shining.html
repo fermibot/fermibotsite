@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <title>Stories | Film Analysis | The Shining</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
+
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="../../../index.css">
+
+    <!-- Visualization CSS -->
+    <link href="../../../css/movie_timelines.css?v=2026.01.14.08.56.19" rel="stylesheet">
+    <link href="shining_custom.css?v=2026.01.14.08.56.19" rel="stylesheet">
+
+    <!-- Bootstrap JS -->
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+
+    <!-- MathJax for equations -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <!-- D3.js v7 -->
+    <script src="../../../d3/d3.v7.min.js"></script>
+
+    <!-- Site automation -->
+    <script src="../../../automation/loadObjects.js"></script>
+
+    <!-- Color modes (dark/light theme) -->
+    <script src="../../../bootstrap/assets/color-modes.js"></script>
+</head>
+<body class="container-lg container-fluid p-4">
+
+<!-- Header -->
+<div id="header_placeholder"></div>
+
+<!-- Page Title -->
+<header class="mb-4">
+    <h1 class="text-center mb-3">Stories | Film Analysis | The Shining</h1>
+    <p class="text-center text-muted">
+        Interactive visualization of Stanley Kubrick's psychological horror masterpiece - 33 scenes exploring isolation, madness, and the supernatural
+    </p>
+</header>
+
+<!-- Introduction -->
+<section class="mb-4">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <p class="mb-2">
+            This interactive timeline explores <strong>The Shining</strong> (1980), Stanley Kubrick's adaptation of Stephen King's novel about
+            a family isolated in the haunted Overlook Hotel during winter. The visualization tracks Jack Torrance's psychological
+            deterioration from stable family man to homicidal madman, revealing how isolation, supernatural forces, and personal
+            demons converge into terror.
+        </p>
+        <p class="mb-2">
+            <strong>Key Features:</strong>
+            Psychological State Tracking (Jack's descent from stable to psychotic),
+            Story Connections (hover to see foreshadowing and callbacks),
+            Progress Tracking (mark scenes as reviewed),
+            Deep Analysis (click for detailed character, thematic, and supernatural insights).
+        </p>
+        <p class="mb-0">
+            The radial layout represents the cyclical nature of the hotel's evil - the final photograph suggests Jack has
+            "always" been the caretaker, trapped in an eternal loop of violence.
+        </p>
+    </div>
+</section>
+
+<!-- How to Use -->
+<section class="mb-4">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <h5 class="mb-3">How to Use This Visualization</h5>
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>🖱️ Interactions:</strong></p>
+                <ul class="mb-3">
+                    <li><strong>Hover:</strong> Preview scene details</li>
+                    <li><strong>Click:</strong> Open full scene analysis</li>
+                    <li><strong>Mark Reviewed:</strong> Track your progress</li>
+                    <li><strong>Filter:</strong> View by act or psychological state</li>
+                    <li><strong>Search:</strong> Find scenes by title, tags, or themes (press <kbd>/</kbd>)</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <p><strong>🎨 Color Legend:</strong></p>
+                <ul class="mb-3">
+                    <li><strong>Blue:</strong> Act I - Arrival & Setup</li>
+                    <li><strong>Red:</strong> Act II - Isolation & Deterioration</li>
+                    <li><strong>Black:</strong> Act III - Terror & Escape</li>
+                    <li><strong>Node Fill:</strong> Psychological state (green=stable, orange=deteriorating, red=psychotic)</li>
+                </ul>
+                <p><strong>🔗 Connection Lines:</strong></p>
+                <ul class="mb-3">
+                    <li><strong>Solid blue:</strong> Foreshadowing (what this scene hints at)</li>
+                    <li><strong>Dashed purple:</strong> Callbacks (what earlier scenes hinted at this)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Visualization Section -->
+<section class="mb-4">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+
+        <!-- Controls Bar -->
+        <div class="controls-bar">
+            <div class="controls-left">
+                <!-- Search -->
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text"
+                           id="search-input"
+                           class="search-input"
+                           placeholder="Search scenes... (press /)"
+                           autocomplete="off">
+                    <span class="search-counter" id="search-counter"></span>
+                </div>
+            </div>
+            <div class="controls-right">
+                <span class="controls-hint">Click scene to view details</span>
+            </div>
+        </div>
+
+        <!-- Legend at Top -->
+        <div class="legend-top" id="legend-container">
+            <!-- Legend content will be injected by JS -->
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="visualization-main">
+            <!-- Visualization Container -->
+            <div class="visualization-container" id="visualization-container">
+                <!-- Loading state -->
+                <div class="text-center text-muted">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-3">Loading the Overlook's timeline...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Key Themes Section -->
+<section class="mt-4">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <h5 class="mb-3">🏔️ Key Recurring Themes</h5>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>❄️ Isolation</strong>
+                    <p class="small text-muted mb-0">Snowbound and cut off from civilization, the Torrance family becomes trapped with no escape. Isolation doesn't create Jack's violence—it unleashes it.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>🏨 The Overlook Hotel</strong>
+                    <p class="small text-muted mb-0">Built on an Indian burial ground, the hotel absorbs and amplifies evil. Is it alive? Does it feed on violence? Jack says he feels like he's "always been here."</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>👥 The Grady Twins</strong>
+                    <p class="small text-muted mb-0">"Come play with us, Danny." The murdered daughters appear to Danny, beckoning him toward darkness. Their symmetry suggests eternal recurrence.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>🌀 The Shining</strong>
+                    <p class="small text-muted mb-0">Danny and Dick Hallorann share psychic ability—"shining." It reveals truth but also attracts the hotel's evil. A gift and a curse.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>🚪 Room 237</strong>
+                    <p class="small text-muted mb-0">The forbidden room where beauty becomes horror. The woman in the bath represents the hotel's seductive evil and grotesque reality.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>🌲 The Maze</strong>
+                    <p class="small text-muted mb-0">A physical and metaphorical labyrinth. Jack loses himself trying to hunt Danny, while Danny escapes through cleverness. The maze represents entrapment.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>⏰ Cyclical Time</strong>
+                    <p class="small text-muted mb-0">The 1921 photograph suggests Jack has always been the caretaker. Time loops. History repeats. The hotel traps souls across decades.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>🪓 Violence & Alcoholism</strong>
+                    <p class="small text-muted mb-0">Jack's past—dislocating Danny's shoulder while drunk—foreshadows his final rage. Sobriety is fragile; the hotel offers him a drink.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>✍️ "All Work and No Play"</strong>
+                    <p class="small text-muted mb-0">Jack's manuscript reveals madness—hundreds of pages of one sentence. The writer's block becomes obsessive repetition, not creation.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Discussion Questions Section -->
+<section class="mt-4" id="book-club-section">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0">📖 Discussion Questions</h5>
+            <div class="question-sort-toggle">
+                <small class="text-muted">Sort by:</small>
+                <button class="btn btn-sm btn-outline-secondary ms-2 active" data-sort="film-order">Film Order</button>
+                <button class="btn btn-sm btn-outline-secondary ms-1" data-sort="theme">Theme</button>
+            </div>
+        </div>
+        <p class="text-muted mb-4">
+            Click any question to highlight related scenes in the visualization. Perfect for book clubs, film classes, or deep dives into Kubrick's masterpiece.
+        </p>
+
+        <div id="questions-container">
+            <!-- Questions will be generated by JavaScript -->
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<div id="footer_placeholder"></div>
+
+<!-- Visualization JS (load after DOM) -->
+<script src="shining_timeline.js?v=2026.01.14.08.56.19"></script>
+
+<!-- Load Header/Footer -->
+<script>
+    loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html");
+</script>
+
+</body>
+</html>

@@ -1,50 +1,365 @@
 /* ============================================
-   LIMITLESS - COGNITIVE ENHANCEMENT TIMELINE
+   THE SHINING - PSYCHOLOGICAL DESCENT TIMELINE
    D3.js Radial Visualization
    ============================================ */
 
-console.log('Limitless - Cognitive Timeline v1.0 loaded');
+console.log('The Shining - Psychological Timeline v1.0 loaded');
 
 // ============================================
 // CONFIGURATION
 // ============================================
 
 const CONFIG = {
-    // Act colors
+    // Act colors - matching visual progression
     ACT_COLORS: {
-        'act1': '#27ae60',  // Green - Rock Bottom
-        'act2': '#3498db',  // Blue - Ascending
-        'act3': '#9b59b6'   // Purple - Consequences
+        'act1': '#4A90E2',  // Blue - Arrival
+        'act2': '#D32F2F',  // Red - Deterioration
+        'act3': '#212121'   // Black - Terror
     },
 
-    // Cognitive state colors
-    COGNITIVE_COLORS: {
-        'baseline': '#7f8c8d',
-        'enhanced': '#3498db',
-        'withdrawal': '#e74c3c',
-        'enhanced_unstable': '#e67e22',
-        'unclear': '#95a5a6'
+    // Psychological state colors
+    PSYCHOLOGICAL_COLORS: {
+        'stable': '#66BB6A',
+        'deteriorating': '#FF9800',
+        'psychotic': '#C62828'
     },
 
     // Act icons
     ACT_ICONS: {
-        'act1': '💊',
-        'act2': '🧠',
-        'act3': '⚡'
+        'act1': '🏔️',
+        'act2': '🔥',
+        'act3': '❄️'
     },
 
     // Act names
     ACT_NAMES: {
-        'act1': 'Act I: Rock Bottom',
-        'act2': 'Act II: Ascending',
-        'act3': 'Act III: Consequences'
+        'act1': 'Act I: Arrival',
+        'act2': 'Act II: Deterioration',
+        'act3': 'Act III: Terror'
     },
 
     // Layout
     DIAMETER: 900,
-    STORAGE_KEY: 'limitless-viewed-scenes',
-    DATA_FILE: 'limitless_scenes.json'
+    STORAGE_KEY: 'shining-viewed-scenes',
+    DATA_FILE: 'shining_scenes.json'
 };
+
+// ============================================
+// DISCUSSION QUESTIONS
+// ============================================
+
+const DISCUSSION_QUESTIONS = [
+    {
+        id: 1,
+        question: "Is Jack's descent into madness supernatural possession or psychological breakdown?",
+        tags: ["supernatural", "psychology", "interpretation"],
+        relatedScenes: [2, 6, 12, 16, 23]
+    },
+    {
+        id: 2,
+        question: "What does the Overlook Hotel represent symbolically?",
+        tags: ["symbolism", "hotel", "evil"],
+        relatedScenes: [2, 4, 6, 22, 33]
+    },
+    {
+        id: 3,
+        question: "How does Kubrick use symmetry and visual composition to create unease?",
+        tags: ["kubrick", "cinematography", "visual"],
+        relatedScenes: [1, 4, 7, 10, 22]
+    },
+    {
+        id: 4,
+        question: "What is the significance of Danny's 'shining' ability?",
+        tags: ["supernatural", "danny", "psychic"],
+        relatedScenes: [3, 5, 10, 19, 27]
+    },
+    {
+        id: 5,
+        question: "How does the film explore the cycle of abuse and family violence?",
+        tags: ["family", "violence", "abuse"],
+        relatedScenes: [3, 8, 12, 17, 25]
+    },
+    {
+        id: 6,
+        question: "What is the meaning of the photograph at the end?",
+        tags: ["symbolism", "time", "photograph"],
+        relatedScenes: [6, 12, 23, 33]
+    },
+    {
+        id: 7,
+        question: "How does isolation contribute to Jack's transformation?",
+        tags: ["isolation", "madness", "environment"],
+        relatedScenes: [1, 2, 6, 7, 9]
+    },
+    {
+        id: 8,
+        question: "What role does the hedge maze play symbolically and literally?",
+        tags: ["symbolism", "maze", "escape"],
+        relatedScenes: [4, 7, 31, 32]
+    },
+    {
+        id: 9,
+        question: "How does Kubrick deviate from Stephen King's novel, and why?",
+        tags: ["kubrick", "adaptation", "interpretation"],
+        relatedScenes: [2, 20, 23, 33]
+    },
+    {
+        id: 10,
+        question: "What is the significance of Room 237?",
+        tags: ["supernatural", "room-237", "symbolism"],
+        relatedScenes: [5, 13, 18, 20, 21]
+    },
+    {
+        id: 11,
+        question: "How does the film portray Wendy's character and her survival?",
+        tags: ["family", "wendy", "survival"],
+        relatedScenes: [8, 15, 18, 21, 25, 29]
+    },
+    {
+        id: 12,
+        question: "What does the Gold Room represent in Jack's psyche?",
+        tags: ["symbolism", "psychology", "hotel"],
+        relatedScenes: [16, 17, 22, 23]
+    },
+    {
+        id: 13,
+        question: "Is the supernatural real or a projection of mental illness?",
+        tags: ["supernatural", "psychology", "interpretation"],
+        relatedScenes: [10, 16, 20, 22, 23]
+    },
+    {
+        id: 14,
+        question: "How does the film explore alcoholism and addiction?",
+        tags: ["addiction", "psychology", "jack"],
+        relatedScenes: [3, 16, 17, 21]
+    },
+    {
+        id: 15,
+        question: "What is the meaning of 'REDRUM' and mirror imagery?",
+        tags: ["symbolism", "danny", "prophecy"],
+        relatedScenes: [27, 28, 29]
+    },
+    {
+        id: 16,
+        question: "How do the Grady twins function as symbols of innocence corrupted?",
+        tags: ["supernatural", "symbolism", "children"],
+        relatedScenes: [2, 3, 10, 23]
+    },
+    {
+        id: 17,
+        question: "What does Delbert Grady mean by 'You've always been the caretaker'?",
+        tags: ["time", "supernatural", "identity"],
+        relatedScenes: [2, 6, 23, 33]
+    },
+    {
+        id: 18,
+        question: "How does the film use color symbolism (red, blue, orange)?",
+        tags: ["kubrick", "visual", "symbolism"],
+        relatedScenes: [1, 4, 10, 22, 27]
+    },
+    {
+        id: 19,
+        question: "What is the significance of Native American imagery and the burial ground?",
+        tags: ["symbolism", "history", "supernatural"],
+        relatedScenes: [4, 5]
+    },
+    {
+        id: 20,
+        question: "How does Danny's intelligence and resourcefulness save him?",
+        tags: ["danny", "survival", "intelligence"],
+        relatedScenes: [29, 31, 32]
+    }
+];
+
+// Make questions accessible globally
+window.DISCUSSION_QUESTIONS = DISCUSSION_QUESTIONS;
+
+// ============================================
+// CENTRALIZED TAG SYSTEM
+// ============================================
+
+// Tag icon mapping - using actual scene tags
+const TAG_ICONS = {
+    // Core supernatural/horror
+    'supernatural': '👻',
+    'madness': '🌀',
+    'violence': '🪓',
+    'isolation': '🏔️',
+    'possession': '😈',
+    'ghosts': '👤',
+    // Family dynamics
+    'family': '👨‍👩‍👦',
+    'family-violence': '💔',
+    'family-breakdown': '⚠️',
+    'abuse': '💢',
+    'alcoholism': '🍺',
+    // Psychic/visions
+    'shining': '✨',
+    'psychic': '🔮',
+    'vision': '👁️',
+    'prophecy': '🔮',
+    'redrum': '🪞',
+    // Key locations
+    'hotel': '🏨',
+    'maze': '🌿',
+    'room-237': '🚪',
+    'gold-room': '🏛️',
+    'pantry': '🔒',
+    // Characters
+    'grady': '👔',
+    'grady-twins': '👯',
+    'halloran': '🧑',
+    'tony': '🗣️',
+    'lloyd': '🍸',
+    // Key objects
+    'photograph': '📸',
+    'manuscript': '📝',
+    'axe': '🪓',
+    'baseball-bat': '⚾',
+    'mirror': '🪞',
+    // Themes
+    'cyclical-time': '⏰',
+    'history': '📜',
+    'indian-burial-ground': '🪦',
+    'cabin-fever': '❄️',
+    'breakdown': '💥',
+    'deterioration': '📉',
+    // Actions
+    'escape': '🏃',
+    'survival': '🛡️',
+    'chase': '🏃‍♂️',
+    'attack': '⚔️',
+    'rescue': '🚁',
+    'trap': '🪤'
+};
+
+// Tag groups organized by actual scene tags
+const TAG_GROUPS = {
+    'Horror & Madness': ['supernatural', 'madness', 'violence', 'isolation', 'possession', 'ghosts'],
+    'Family & Relationships': ['family', 'family-violence', 'family-breakdown', 'abuse', 'alcoholism'],
+    'Psychic Powers': ['shining', 'psychic', 'vision', 'prophecy', 'redrum', 'tony'],
+    'Key Locations': ['hotel', 'maze', 'room-237', 'gold-room', 'pantry'],
+    'Characters': ['grady', 'grady-twins', 'halloran', 'lloyd'],
+    'Symbols & Objects': ['photograph', 'manuscript', 'axe', 'baseball-bat', 'mirror'],
+    'Time & History': ['cyclical-time', 'history', 'indian-burial-ground'],
+    'Survival & Action': ['escape', 'survival', 'chase', 'attack', 'rescue', 'trap']
+};
+
+// Canonical tag order (flattened from groups)
+const ALL_TAGS_ORDERED = [
+    'supernatural', 'madness', 'violence', 'isolation', 'possession', 'ghosts',
+    'family', 'family-violence', 'family-breakdown', 'abuse', 'alcoholism',
+    'shining', 'psychic', 'vision', 'prophecy', 'redrum', 'tony',
+    'hotel', 'maze', 'room-237', 'gold-room', 'pantry',
+    'grady', 'grady-twins', 'halloran', 'lloyd',
+    'photograph', 'manuscript', 'axe', 'baseball-bat', 'mirror',
+    'cyclical-time', 'history', 'indian-burial-ground',
+    'escape', 'survival', 'chase', 'attack', 'rescue', 'trap'
+];
+
+function buildTagBadges(tags) {
+    if (!tags || tags.length === 0) return '';
+
+    return tags.map(tag => {
+        const icon = TAG_ICONS[tag] || '🏷️';
+        const label = tag.charAt(0).toUpperCase() + tag.slice(1).replace(/-/g, ' ');
+        return `<span class="tag-badge tag-${tag}" title="${label}">${icon} ${label}</span>`;
+    }).join(' ');
+}
+
+// Build ALL tags with only relevant ones highlighted
+function buildAllTagsWithHighlights(activeTags) {
+    const activeSet = new Set(activeTags || []);
+    let html = '';
+
+    for (const [groupName, groupTags] of Object.entries(TAG_GROUPS)) {
+        html += `<div class="tag-group">`;
+        html += `<span class="tag-group-label">${groupName}:</span>`;
+
+        groupTags.forEach(tag => {
+            const icon = TAG_ICONS[tag] || '🏷️';
+            const label = tag.charAt(0).toUpperCase() + tag.slice(1).replace(/-/g, ' ');
+            const isActive = activeSet.has(tag);
+            const activeClass = isActive ? '' : 'inactive';
+
+            html += `<span class="tag-badge tag-${tag} ${activeClass}" title="Click to filter scenes with ${label}" onclick="window.toggleQuestionFilter('${tag}'); event.stopPropagation();">${icon} ${label}</span>`;
+        });
+
+        html += `</div>`;
+    }
+
+    return html;
+}
+
+// ============================================
+// RENDER DISCUSSION QUESTIONS
+// ============================================
+
+function renderDiscussionQuestions() {
+    const container = document.getElementById('questions-container');
+    if (!container) {
+        console.warn('Questions container not found');
+        return;
+    }
+
+    // Create book-club-grid wrapper
+    const grid = document.createElement('div');
+    grid.className = 'book-club-grid';
+
+    DISCUSSION_QUESTIONS.forEach(q => {
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'book-club-question';
+        questionDiv.setAttribute('onclick', 'highlightBookClubScenes(this, event)');
+        questionDiv.setAttribute('data-scenes', q.relatedScenes.join(','));
+
+        // Question header
+        const header = document.createElement('div');
+        header.className = 'question-header';
+        header.innerHTML = `
+            <span class="question-number">${q.id}</span>
+            <p class="question-text">${q.question}</p>
+        `;
+
+        // Question tags - show ALL tags with active/inactive states using centralized function
+        const tagsDiv = document.createElement('div');
+        tagsDiv.className = 'question-tags';
+        tagsDiv.innerHTML = buildAllTagsWithHighlights(q.tags);
+
+        // Find first scene to determine act
+        const firstScene = q.relatedScenes[0];
+        const scene = state.scenes.find(s => s.id === firstScene);
+        const actIcon = scene ? CONFIG.ACT_ICONS[scene.act] : '🎬';
+        const sceneText = q.relatedScenes.length === 1 ? `Scene ${q.relatedScenes[0]}` : `Scenes ${q.relatedScenes[0]}-${q.relatedScenes[q.relatedScenes.length-1]}`;
+
+        // Question meta
+        const meta = document.createElement('span');
+        meta.className = 'question-meta';
+        meta.textContent = `${actIcon} ${sceneText}`;
+
+        // Show Answer button
+        const answerToggle = document.createElement('button');
+        answerToggle.className = 'answer-toggle';
+        answerToggle.textContent = 'Show Answer';
+        answerToggle.setAttribute('onclick', 'toggleAnswer(event, this)');
+
+        // Answer content (hidden by default)
+        const answerContent = document.createElement('div');
+        answerContent.className = 'answer-content';
+        answerContent.innerHTML = `<p>This question explores key themes in The Shining. Consider how multiple scenes work together to develop this idea, and how Kubrick's visual storytelling reinforces the narrative.</p>`;
+
+        // Assemble
+        questionDiv.appendChild(header);
+        questionDiv.appendChild(tagsDiv);
+        questionDiv.appendChild(meta);
+        questionDiv.appendChild(answerToggle);
+        questionDiv.appendChild(answerContent);
+
+        grid.appendChild(questionDiv);
+    });
+
+    container.appendChild(grid);
+    console.log(`Rendered ${DISCUSSION_QUESTIONS.length} discussion questions`);
+}
 
 // ============================================
 // STATE MANAGEMENT
@@ -55,7 +370,7 @@ const state = {
     root: null,
     viewedScenes: new Set(),
     currentFilter: 'all',
-    cognitiveFilter: null,
+    psychologicalFilter: null,
     hoveredNode: null,
     lockedNode: null,
     searchQuery: ''
@@ -70,7 +385,7 @@ async function loadSceneData() {
         const response = await fetch(CONFIG.DATA_FILE);
         const data = await response.json();
         state.scenes = data.scenes;
-        console.log(`Loaded ${state.scenes.length} Limitless scenes`);
+        console.log(`Loaded ${state.scenes.length} The Shining scenes`);
         return true;
     } catch (error) {
         console.error('Failed to load scene data:', error);
@@ -90,12 +405,13 @@ async function initialize() {
     }
 
     loadProgress();
+    renderDiscussionQuestions();  // Render discussion questions
     initVisualization();
     setupEventListeners();
     initSearch();
     updateProgressUI();
 
-    console.log('Limitless visualization initialized');
+    console.log('The Shining visualization initialized');
 }
 
 // ============================================
@@ -204,19 +520,29 @@ function setupEventListeners() {
         });
     });
 
-    // Cognitive filter buttons
-    document.querySelectorAll('[data-cognitive]').forEach(btn => {
+    // Psychological filter buttons
+    document.querySelectorAll('[data-psychological]').forEach(btn => {
         btn.addEventListener('click', function() {
             const isActive = this.classList.contains('active');
-            document.querySelectorAll('[data-cognitive]').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('[data-psychological]').forEach(b => b.classList.remove('active'));
 
             if (isActive) {
-                state.cognitiveFilter = null;
+                state.psychologicalFilter = null;
             } else {
                 this.classList.add('active');
-                state.cognitiveFilter = this.dataset.cognitive;
+                state.psychologicalFilter = this.dataset.psychological;
             }
             filterVisualization();
+        });
+    });
+
+    // Sort buttons for discussion questions
+    document.querySelectorAll('[data-sort]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const sortType = this.dataset.sort;
+            if (typeof window.sortQuestions === 'function') {
+                window.sortQuestions(sortType);
+            }
         });
     });
 
@@ -232,8 +558,6 @@ function setupEventListeners() {
             }
         });
     }
-
-    // Note: Backdrop no longer closes info card - users can click nodes directly
 }
 
 // ============================================
@@ -242,7 +566,7 @@ function setupEventListeners() {
 
 function buildHierarchy() {
     const root = {
-        name: 'Limitless',
+        name: 'The Shining',
         children: [
             {
                 name: 'Act I',
@@ -287,7 +611,6 @@ function packageImports(nodes) {
                     });
 
                     // Also create callback link: target ← source (dashed purple)
-                    // This is the same relationship viewed from the target's perspective
                     imports.push({
                         source: target,
                         target: node,
@@ -309,8 +632,8 @@ function getActColor(act) {
     return CONFIG.ACT_COLORS[act] || '#666';
 }
 
-function getCognitiveColor(cognitiveState) {
-    return CONFIG.COGNITIVE_COLORS[cognitiveState] || '#666';
+function getPsychologicalColor(psychologicalState) {
+    return CONFIG.PSYCHOLOGICAL_COLORS[psychologicalState] || '#666';
 }
 
 function getActIcon(act) {
@@ -319,86 +642,13 @@ function getActIcon(act) {
 
 function formatCharacterName(name) {
     if (!name) return '';
-    // Convert camelCase to spaced name (e.g., "JohnSteadman" → "John Steadman")
     return name
-        .replace(/([A-Z])/g, ' $1')  // Add space before capital letters
-        .trim()                        // Remove leading space
-        .replace(/\s+/g, ' ')          // Normalize multiple spaces
+        .replace(/([A-Z])/g, ' $1')
+        .trim()
+        .replace(/\s+/g, ' ')
         .split(' ')
         .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
         .join(' ');
-}
-
-// Tag icon mapping - using actual scene tags
-const TAG_ICONS = {
-    'ethics': '⚖️',
-    'power': '👑',
-    'identity': '🎭',
-    'enhancement': '🧠',
-    'addiction': '💊',
-    'consequence': '⚠️',
-    'violence': '⚔️',
-    'relationships': '👥',
-    'transformation': '🦋',
-    'ambition': '🎯',
-    'hubris': '🔥',
-    'withdrawal': '💢',
-    'control': '🎮',
-    'memory': '🧩',
-    'danger': '⚡',
-    'risk': '🎲'
-};
-
-// Tag groups - organized by actual scene tags
-const TAG_GROUPS = {
-    'Core Themes': ['ethics', 'power', 'identity'],
-    'Enhancement': ['enhancement', 'addiction', 'withdrawal'],
-    'Consequences': ['consequence', 'violence', 'danger', 'risk'],
-    'Personal': ['transformation', 'ambition', 'hubris'],
-    'Social': ['relationships', 'control', 'memory']
-};
-
-// Canonical tag order (flattened from groups)
-const ALL_TAGS_ORDERED = [
-    'ethics', 'power', 'identity',
-    'enhancement', 'addiction', 'withdrawal',
-    'consequence', 'violence', 'danger', 'risk',
-    'transformation', 'ambition', 'hubris',
-    'relationships', 'control', 'memory'
-];
-
-function buildTagBadges(tags) {
-    if (!tags || tags.length === 0) return '';
-
-    return tags.map(tag => {
-        const icon = TAG_ICONS[tag] || '🏷️';
-        const label = tag.charAt(0).toUpperCase() + tag.slice(1);
-        return `<span class="tag-badge tag-${tag}" title="${label}">${icon} ${label}</span>`;
-    }).join(' ');
-}
-
-// Build ALL tags with only relevant ones highlighted
-function buildAllTagsWithHighlights(activeTags) {
-    const activeSet = new Set(activeTags || []);
-    let html = '';
-
-    for (const [groupName, groupTags] of Object.entries(TAG_GROUPS)) {
-        html += `<div class="tag-group">`;
-        html += `<span class="tag-group-label">${groupName}:</span>`;
-
-        groupTags.forEach(tag => {
-            const icon = TAG_ICONS[tag] || '🏷️';
-            const label = tag.charAt(0).toUpperCase() + tag.slice(1);
-            const isActive = activeSet.has(tag);
-            const activeClass = isActive ? '' : 'inactive';
-
-            html += `<span class="tag-badge tag-${tag} ${activeClass}" title="Click to filter scenes with ${label}" onclick="window.toggleQuestionFilter('${tag}'); event.stopPropagation();">${icon} ${label}</span>`;
-        });
-
-        html += `</div>`;
-    }
-
-    return html;
 }
 
 // ============================================
@@ -441,7 +691,7 @@ function createLegendWithProgress() {
 
     progressInline.append('span')
         .attr('class', 'progress-text')
-        .text('0/20');
+        .text('0/33');
 
     // Grid of legend items
     const grid = legendContainer.append('div')
@@ -457,9 +707,9 @@ function createLegendWithProgress() {
 
     // Act colors with scene counts
     const actDetails = {
-        'act1': { count: 15 },
-        'act2': { count: 14 },
-        'act3': { count: 5 }
+        'act1': { count: 9 },
+        'act2': { count: 15 },
+        'act3': { count: 9 }
     };
 
     Object.entries(CONFIG.ACT_NAMES).forEach(([actId, name]) => {
@@ -485,24 +735,24 @@ function createLegendWithProgress() {
     // Separator
     grid.append('div').attr('class', 'legend-separator');
 
-    // Section label for Cognitive States
+    // Section label for Psychological States
     grid.append('span')
         .attr('class', 'legend-section-label')
-        .text('Cognitive States:');
+        .text('Psychological States:');
 
-    // Cognitive states
-    const cognitiveStates = [
-        { key: 'baseline', label: 'Baseline (20%)', color: '#7f8c8d' },
-        { key: 'enhanced', label: 'Enhanced (100%)', color: '#3498db' },
-        { key: 'withdrawal', label: 'Withdrawal', color: '#e74c3c' }
+    // Psychological states
+    const psychologicalStates = [
+        { key: 'stable', label: 'Stable', color: '#66BB6A' },
+        { key: 'deteriorating', label: 'Deteriorating', color: '#FF9800' },
+        { key: 'psychotic', label: 'Psychotic', color: '#C62828' }
     ];
 
-    cognitiveStates.forEach(state => {
+    psychologicalStates.forEach(state => {
         const item = grid.append('div')
             .attr('class', 'legend-item legend-marker-item')
             .attr('data-marker', state.key)
             .attr('title', `Click to filter: ${state.label}`)
-            .on('click', () => toggleCognitiveFilter(state.key));
+            .on('click', () => togglePsychologicalFilter(state.key));
 
         item.append('span')
             .attr('class', 'legend-color')
@@ -522,42 +772,42 @@ function createLegendWithProgress() {
         .attr('class', 'legend-section-label')
         .text('Discussion Topics:');
 
-    // Discussion tags
-    const discussionTags = [
-        { key: 'ethics', label: 'Ethics', icon: '⚖️' },
-        { key: 'power', label: 'Power', icon: '👑' },
-        { key: 'identity', label: 'Identity', icon: '🎭' },
-        { key: 'enhancement', label: 'Enhancement', icon: '🧠' },
-        { key: 'addiction', label: 'Addiction', icon: '💊' },
-        { key: 'consequence', label: 'Consequence', icon: '⚠️' },
-        { key: 'violence', label: 'Violence', icon: '⚔️' },
-        { key: 'relationships', label: 'Relationships', icon: '👥' },
-        { key: 'transformation', label: 'Transformation', icon: '🦋' },
-        { key: 'ambition', label: 'Ambition', icon: '🎯' },
-        { key: 'hubris', label: 'Hubris', icon: '🔥' },
-        { key: 'withdrawal', label: 'Withdrawal', icon: '💢' }
-    ];
+    // Build discussion tags from centralized TAG_GROUPS with group headers
+    for (const [groupName, groupTags] of Object.entries(TAG_GROUPS)) {
+        // Create a wrapper div for the entire group row (spans full width, one line per group)
+        const groupRow = grid.append('div')
+            .attr('class', 'legend-tag-group-row');
 
-    discussionTags.forEach(tag => {
-        const item = grid.append('div')
-            .attr('class', `legend-item legend-question-item tag-${tag.key}`)
-            .attr('data-question', tag.key)
-            .attr('title', `Filter scenes with ${tag.label} discussion`)
-            .on('click', () => toggleQuestionFilter(tag.key));
+        // Add group label inline
+        groupRow.append('span')
+            .attr('class', 'legend-tag-group-label')
+            .text(groupName + ':');
 
-        // Add active indicator (dot)
-        item.append('span')
-            .attr('class', 'active-indicator')
-            .text('✓');
+        // Add tags inline in the same row
+        groupTags.forEach(tagKey => {
+            const label = tagKey.charAt(0).toUpperCase() + tagKey.slice(1).replace(/-/g, ' ');
+            const icon = TAG_ICONS[tagKey] || '🏷️';
 
-        item.append('span')
-            .attr('class', 'legend-icon')
-            .text(tag.icon);
+            const item = groupRow.append('div')
+                .attr('class', `legend-item legend-question-item tag-${tagKey}`)
+                .attr('data-question', tagKey)
+                .attr('title', `Filter scenes with ${label} discussion`)
+                .on('click', () => toggleQuestionFilter(tagKey));
 
-        item.append('span')
-            .attr('class', 'legend-text')
-            .text(tag.label);
-    });
+            // Add active indicator (dot)
+            item.append('span')
+                .attr('class', 'active-indicator')
+                .text('✓');
+
+            item.append('span')
+                .attr('class', 'legend-icon')
+                .text(icon);
+
+            item.append('span')
+                .attr('class', 'legend-text')
+                .text(label);
+        });
+    }
 
     // Separator
     grid.append('div').attr('class', 'legend-separator');
@@ -618,7 +868,7 @@ function createLegendWithProgress() {
 
 const legendState = {
     activeActs: new Set(),
-    activeCognitive: new Set(),
+    activePsychological: new Set(),
     activeQuestions: new Set()
 };
 
@@ -639,17 +889,17 @@ function toggleActFilter(actId) {
     applyLegendFilters();
 }
 
-function toggleCognitiveFilter(cogKey) {
-    if (legendState.activeCognitive.has(cogKey)) {
-        legendState.activeCognitive.delete(cogKey);
+function togglePsychologicalFilter(psychKey) {
+    if (legendState.activePsychological.has(psychKey)) {
+        legendState.activePsychological.delete(psychKey);
     } else {
-        legendState.activeCognitive.add(cogKey);
+        legendState.activePsychological.add(psychKey);
     }
 
     // Update legend item appearance
     d3.selectAll('.legend-marker-item')
         .classed('active', function() {
-            return legendState.activeCognitive.has(this.dataset.marker);
+            return legendState.activePsychological.has(this.dataset.marker);
         });
 
     // Update visualization
@@ -708,7 +958,7 @@ function applyLegendFilters() {
     if (!allNodes || !nodeGroup) return;
 
     const hasActFilter = legendState.activeActs.size > 0;
-    const hasCognitiveFilter = legendState.activeCognitive.size > 0;
+    const hasPsychologicalFilter = legendState.activePsychological.size > 0;
     const hasQuestionFilter = legendState.activeQuestions.size > 0;
 
     allNodes.forEach(node => {
@@ -721,9 +971,9 @@ function applyLegendFilters() {
             visible = visible && legendState.activeActs.has(node.data.act);
         }
 
-        // Cognitive filter
-        if (hasCognitiveFilter) {
-            visible = visible && legendState.activeCognitive.has(node.data.cognitiveState);
+        // Psychological filter
+        if (hasPsychologicalFilter) {
+            visible = visible && legendState.activePsychological.has(node.data.psychologicalState);
         }
 
         // Question tag filter
@@ -749,12 +999,12 @@ function applyLegendFilters() {
 
             const sourceVisible = d.source.data.id &&
                 (!hasActFilter || legendState.activeActs.has(d.source.data.act)) &&
-                (!hasCognitiveFilter || legendState.activeCognitive.has(d.source.data.cognitiveState)) &&
+                (!hasPsychologicalFilter || legendState.activePsychological.has(d.source.data.psychologicalState)) &&
                 sourceHasMatchingTag;
 
             const targetVisible = d.target.data.id &&
                 (!hasActFilter || legendState.activeActs.has(d.target.data.act)) &&
-                (!hasCognitiveFilter || legendState.activeCognitive.has(d.target.data.cognitiveState)) &&
+                (!hasPsychologicalFilter || legendState.activePsychological.has(d.target.data.psychologicalState)) &&
                 targetHasMatchingTag;
 
             return (sourceVisible && targetVisible) ? 0.3 : 0.05;
@@ -909,7 +1159,7 @@ function showProgressModal() {
 
         scenes.forEach(scene => {
             const isViewed = state.viewedScenes.has(scene.id);
-            const cogState = scene.cognitiveState || 'unknown';
+            const psychState = scene.psychologicalState || 'unknown';
 
             modalHTML += `
                 <div class="progress-item ${isViewed ? 'viewed' : ''}" data-scene-id="${scene.id}">
@@ -918,7 +1168,7 @@ function showProgressModal() {
                            onchange="window.toggleSceneViewed(${scene.id})">
                     <span class="progress-item-number">${scene.id}.</span>
                     <label class="progress-item-label">${scene.title}</label>
-                    <span class="progress-item-cognitive" style="background: ${getCognitiveColor(cogState)}" title="${cogState}"></span>
+                    <span class="progress-item-cognitive" style="background: ${getPsychologicalColor(psychState)}" title="${psychState}"></span>
                     <button class="progress-item-info-btn" onclick="window.showSceneFromModal(${scene.id})" title="View details">ℹ️</button>
                 </div>
             `;
@@ -1011,8 +1261,6 @@ window.markAllViewed = function() {
 // ============================================
 // VISUALIZATION
 // ============================================
-// VISUALIZATION
-// ============================================
 
 function initVisualization() {
     // Create legend first
@@ -1021,12 +1269,11 @@ function initVisualization() {
     const container = d3.select('#visualization-container');
     container.html(''); // Clear loading overlay
 
-
     const diameter = CONFIG.DIAMETER;
     const radius = diameter / 2;
     const innerRadius = radius - 150;
-    const verticalOffset = 50; // Shift diagram down by 50px to match lighthouse
-    const padding = 150; // Add padding on all sides to prevent cutoff
+    const verticalOffset = 50;
+    const padding = 150;
 
     svg = container.append('svg')
         .attr('viewBox', `${-radius - padding} ${-radius - verticalOffset - padding} ${diameter + padding * 2} ${diameter + verticalOffset + padding * 2}`)
@@ -1084,7 +1331,7 @@ function initVisualization() {
         .radius(d => d.y)
         .angle(d => d.x * Math.PI / 180);
 
-    const nodeRadius = 18; // Space to leave before node
+    const nodeRadius = 18;
 
     linkGroup.selectAll('.link')
         .data(currentLinks)
@@ -1092,7 +1339,6 @@ function initVisualization() {
         .attr('class', d => `link link-${d.type}`)
         .attr('d', d => {
             const sourcePath = d.source.path(d.target);
-            // Adjust endpoints to stop before nodes
             if (sourcePath.length > 0) {
                 sourcePath[0] = {...sourcePath[0], y: sourcePath[0].y - nodeRadius};
                 sourcePath[sourcePath.length - 1] = {...sourcePath[sourcePath.length - 1], y: sourcePath[sourcePath.length - 1].y - nodeRadius};
@@ -1116,8 +1362,8 @@ function initVisualization() {
         .join('g')
         .attr('class', d => {
             let classes = 'node';
-            if (d.data.cognitiveState) {
-                classes += ` ${d.data.cognitiveState}`;
+            if (d.data.psychologicalState) {
+                classes += ` ${d.data.psychologicalState}`;
             }
             return classes;
         })
@@ -1139,65 +1385,19 @@ function initVisualization() {
             event.stopPropagation();
             console.log('Node clicked:', d.data.id, d.data.title);
             state.lockedNode = d;
-            hideTooltip(); // Hide hover tooltip when clicking
+            hideTooltip();
             showInfoCard(d);
             highlightConnections(d);
         });
 
-    // Node circles with cognitive state coloring
+    // Node circles with psychological state coloring
     nodes.append('circle')
         .attr('r', 6)
-        .attr('fill', d => getCognitiveColor(d.data.cognitiveState))
+        .attr('fill', d => getPsychologicalColor(d.data.psychologicalState))
         .attr('stroke', d => getActColor(d.data.act))
         .attr('stroke-width', 2);
 
-    // MDT supply indicator ring
-    nodes.append('circle')
-        .attr('class', 'mdt-supply-ring')
-        .attr('r', 9)
-        .attr('fill', 'none')
-        .attr('stroke', d => {
-            if (!d.data.mdtTracking) return 'transparent';
-            const remaining = d.data.mdtTracking.pillsRemaining || d.data.mdtTracking.remaining;
-            const status = getMDTSupplyStatus(remaining);
-            if (status.status === 'critical') return '#e74c3c';
-            if (status.status === 'low') return '#e67e22';
-            if (status.status === 'moderate') return '#f39c12';
-            if (status.status === 'plenty') return '#27ae60';
-            return 'transparent';
-        })
-        .attr('stroke-width', d => {
-            if (!d.data.mdtTracking) return 0;
-            const remaining = d.data.mdtTracking.pillsRemaining || d.data.mdtTracking.remaining;
-            const status = getMDTSupplyStatus(remaining);
-            return status.status === 'critical' ? 2.5 : 2;
-        })
-        .attr('stroke-dasharray', d => {
-            if (!d.data.mdtTracking) return 'none';
-            const remaining = d.data.mdtTracking.pillsRemaining || d.data.mdtTracking.remaining;
-            const status = getMDTSupplyStatus(remaining);
-            return status.status === 'critical' ? '2,2' : 'none';
-        })
-        .style('opacity', 0.8);
-
-    // Brain for enhanced cognitive state - always upright
-    nodes.append('text')
-        .attr('class', 'node-brain')
-        .attr('x', 0)
-        .attr('y', 0)
-        .attr('dy', '0.3em')
-        .attr('text-anchor', 'middle')
-        .attr('font-size', '9px')
-        .attr('transform', d => `rotate(${-(d.x - 90)})`) // Counter-rotate to keep upright
-        .style('opacity', d => {
-            const cogState = d.data.cognitiveState || '';
-            return cogState.includes('enhanced') ? 1 : 0;
-        })
-        .style('pointer-events', 'none')
-        .text('🧠');
-
     // Checkmarks
-    // Checkmark positioned between node and text
     nodes.append('text')
         .attr('class', 'node-checkmark')
         .attr('dy', '0.31em')
@@ -1256,8 +1456,8 @@ function filterVisualization() {
     nodeGroup.selectAll('.node')
         .style('opacity', d => {
             let actMatch = state.currentFilter === 'all' || d.data.act === state.currentFilter;
-            let cognitiveMatch = !state.cognitiveFilter || d.data.cognitiveState === state.cognitiveFilter;
-            return (actMatch && cognitiveMatch) ? 1 : 0.2;
+            let psychologicalMatch = !state.psychologicalFilter || d.data.psychologicalState === state.psychologicalFilter;
+            return (actMatch && psychologicalMatch) ? 1 : 0.2;
         });
 
     linkGroup.selectAll('.link')
@@ -1265,10 +1465,10 @@ function filterVisualization() {
             let actMatch = state.currentFilter === 'all' ||
                           d.source.data.act === state.currentFilter ||
                           d.target.data.act === state.currentFilter;
-            let cognitiveMatch = !state.cognitiveFilter ||
-                                d.source.data.cognitiveState === state.cognitiveFilter ||
-                                d.target.data.cognitiveState === state.cognitiveFilter;
-            return (actMatch && cognitiveMatch) ? 0.3 : 0.05;
+            let psychologicalMatch = !state.psychologicalFilter ||
+                                d.source.data.psychologicalState === state.psychologicalFilter ||
+                                d.target.data.psychologicalState === state.psychologicalFilter;
+            return (actMatch && psychologicalMatch) ? 0.3 : 0.05;
         });
 }
 
@@ -1281,11 +1481,7 @@ function highlightConnections(node) {
 
     const connectedIds = new Set([node.data.id]);
 
-    // Collect all connected nodes from this node's perspective
     currentLinks.forEach(link => {
-        // Only show links WHERE THIS NODE IS THE SOURCE
-        // - Foreshadowing (solid blue): what this node foreshadows
-        // - Callback (dashed purple): what foreshadowed this node (shown as callback FROM this node)
         if (link.source.data.id === node.data.id) {
             connectedIds.add(link.target.data.id);
         }
@@ -1299,7 +1495,6 @@ function highlightConnections(node) {
     // Highlight relevant links
     linkGroup.selectAll('.link')
         .style('opacity', d => {
-            // Only highlight links where clicked node is the SOURCE
             const isFromNode = (d.source.data.id === node.data.id);
             return isFromNode ? 1 : 0.1;
         })
@@ -1317,7 +1512,7 @@ function unhighlightAll() {
         .classed('connection-dimmed', false);
 
     linkGroup.selectAll('.link')
-        .style('opacity', null)  // Remove inline opacity style
+        .style('opacity', null)
         .classed('highlighted', false)
         .classed('dimmed', false);
 }
@@ -1367,29 +1562,8 @@ function showTooltip(node, event) {
     const locationTimeHtml = locationTime.length > 0 ?
         `<div class="tooltip-location">${locationTime.join(' • ')}</div>` : '';
 
-    // Build cognitive state
-    const cognitiveHtml = buildCognitiveStateTags(scene.cognitiveState);
-
-    // Build MDT tracker with progress bar
-    let mdtHtml = '';
-    if (scene.mdtTracking && scene.mdtTracking.pillsRemaining) {
-        const remaining = scene.mdtTracking.pillsRemaining;
-        const status = getMDTSupplyStatus(remaining);
-
-        mdtHtml = `
-        <div class="tooltip-mdt-section">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
-                <strong style="font-size: 0.75rem;">💊 MDT-48 Supply</strong>
-                <span class="mdt-status-indicator mdt-status-${status.status}">${status.label}</span>
-            </div>
-            <div class="mdt-gauge-bar-bg" style="position: relative; height: 18px;">
-                <div class="mdt-gauge-bar ${status.class}" style="width: ${status.percentage || 0}%"></div>
-                <div class="mdt-gauge-count-overlay" style="font-size: 0.7rem;">
-                    ${remaining}
-                </div>
-            </div>
-        </div>`;
-    }
+    // Build psychological state
+    const psychologicalHtml = buildPsychologicalStateTags(scene.psychologicalState);
 
     let html = `
         <div class="tooltip-header">
@@ -1398,9 +1572,8 @@ function showTooltip(node, event) {
         </div>
         ${locationTimeHtml}
         <div class="tooltip-cognitive">
-            ${cognitiveHtml}
+            ${psychologicalHtml}
         </div>
-        ${mdtHtml}
         ${scene.tags && scene.tags.length > 0 ? `
         <div class="tooltip-tags">
             ${buildTagBadges(scene.tags)}
@@ -1412,7 +1585,7 @@ function showTooltip(node, event) {
     tooltip.html(html)
         .classed('visible', true);
 
-    // Better positioning like the_lighthouse
+    // Position tooltip
     const x = event.clientX;
     const y = event.clientY;
     const tooltipNode = tooltip.node();
@@ -1456,9 +1629,7 @@ let infoCardBackdrop, infoCard;
 function initInfoCard() {
     infoCardBackdrop = d3.select('body').append('div')
         .attr('class', 'info-card-backdrop');
-        // No click handler - backdrop doesn't close card anymore
 
-    // Append info card to body - now using fixed positioning
     infoCard = d3.select('body').append('div')
         .attr('class', 'info-card-modal');
 }
@@ -1478,11 +1649,10 @@ function buildLocationSection(scene) {
     if (loc.primary) {
         html += `<div class="location-primary"><strong>Setting:</strong> ${loc.primary}</div>`;
     }
-    if (loc.significance) {
-        html += `<div class="location-significance"><em>${loc.significance}</em></div>`;
+    if (loc.description) {
+        html += `<div class="location-significance"><em>${loc.description}</em></div>`;
     }
     if (scene.time) {
-        // Handle time as object or string
         let timeText = '';
         if (typeof scene.time === 'string') {
             timeText = scene.time;
@@ -1498,9 +1668,6 @@ function buildLocationSection(scene) {
             html += `<div class="scene-time"><strong>When:</strong> ${timeText}</div>`;
         }
     }
-    if (scene.duration) {
-        html += `<div class="scene-duration"><strong>Duration:</strong> ${scene.duration}</div>`;
-    }
 
     html += `</div></div>`;
     return html;
@@ -1513,44 +1680,23 @@ function buildCharacterSection(scene) {
     let html = `<div class="info-card-section">
         <div class="info-card-section-title">👤 Character Development</div>`;
 
-    // Build Eddie's character development
-    if (charDev.eddie) {
-        const eddie = charDev.eddie;
-        html += `<div class="character-block">
-            <div class="character-name">Eddie Morra</div>`;
-
-        if (eddie.state) {
-            html += `<div class="character-state"><strong>State:</strong> ${eddie.state}</div>`;
-        }
-        if (eddie.transformation) {
-            html += `<div class="character-arc"><strong>Transformation:</strong> ${eddie.transformation}</div>`;
-        }
-        if (eddie.psychologicalState) {
-            html += `<div class="character-cognitive"><strong>Psychological:</strong> ${eddie.psychologicalState}</div>`;
-        }
-
-        html += `</div>`;
-    }
-
-    // Build other characters section
-    if (charDev.otherCharacters && charDev.otherCharacters.length > 0) {
-        charDev.otherCharacters.forEach(char => {
+    // Build character development for Jack, Wendy, Danny
+    ['Jack', 'Wendy', 'Danny'].forEach(charName => {
+        const char = charDev[charName];
+        if (char) {
             html += `<div class="character-block">
-                <div class="character-name">${char.name}</div>`;
+                <div class="character-name">${charName} Torrance</div>`;
 
-            if (char.role) {
-                html += `<div class="character-state"><strong>Role:</strong> ${char.role}</div>`;
+            if (char.state) {
+                html += `<div class="character-state"><strong>State:</strong> ${char.state}</div>`;
             }
-            if (char.relationshipDynamics) {
-                html += `<div class="character-arc"><strong>Relationship:</strong> ${char.relationshipDynamics}</div>`;
-            }
-            if (char.characterArcMoment) {
-                html += `<div class="character-cognitive"><strong>Arc Moment:</strong> ${char.characterArcMoment}</div>`;
+            if (char.arc) {
+                html += `<div class="character-arc"><strong>Arc:</strong> ${char.arc}</div>`;
             }
 
             html += `</div>`;
-        });
-    }
+        }
+    });
 
     html += `</div>`;
     return html;
@@ -1564,8 +1710,8 @@ function buildDialogueSection(scene) {
         <div class="quotes-list">`;
 
     scene.keyDialogue.forEach(dialogue => {
-        const speaker = formatCharacterName(dialogue.speaker || dialogue.character);
-        const quote = dialogue.quote || dialogue.line;
+        const speaker = dialogue.speaker || '';
+        const quote = dialogue.quote || '';
         const sig = dialogue.significance ? ` — ${dialogue.significance}` : '';
         html += `<div class="quote-item"><strong>${speaker}:</strong> <em>"${quote}"</em>${sig}</div>`;
     });
@@ -1574,292 +1720,79 @@ function buildDialogueSection(scene) {
     return html;
 }
 
-function buildVisualSection(scene) {
-    if (!scene.visualStorytelling) return '';
-
-    const visual = scene.visualStorytelling;
-    let html = `<div class="info-card-quotes">
-        <strong>🎬 Visual Storytelling:</strong>
-        <div class="quotes-list">`;
-
-    if (visual.cameraWork) {
-        html += `<div class="quote-item"><strong>Camera:</strong> ${visual.cameraWork}</div>`;
-    }
-    if (visual.colorPalette) {
-        html += `<div class="quote-item"><strong>Colors:</strong> ${visual.colorPalette}</div>`;
-    }
-    if (visual.symbolism) {
-        // Handle symbolism - could be array or string
-        let symbolismText = '';
-        if (Array.isArray(visual.symbolism)) {
-            symbolismText = visual.symbolism.join(', ');
-        } else {
-            symbolismText = visual.symbolism;
-        }
-        html += `<div class="quote-item"><strong>Symbolism:</strong> ${symbolismText}</div>`;
-    }
-
-    html += `</div></div>`;
-    return html;
-}
-
 function buildThemesSection(scene) {
-    if (!scene.thematicElements) return '';
-
-    const thematic = scene.thematicElements;
+    if (!scene.tags || scene.tags.length === 0) return '';
 
     let html = `<div class="info-card-quotes">
         <strong>🎭 Themes:</strong>
         <div class="quotes-list">`;
 
-    if (thematic.primaryThemes && Array.isArray(thematic.primaryThemes)) {
-        html += `<div class="quote-item">${thematic.primaryThemes.join(', ')}</div>`;
-    }
-
-    if (thematic.exploration) {
-        html += `<div class="quote-item"><em>${thematic.exploration}</em></div>`;
-    }
-
-    if (thematic.moralQuestions && Array.isArray(thematic.moralQuestions)) {
-        html += `<div class="quote-item"><strong>Questions:</strong> ${thematic.moralQuestions.join(' • ')}</div>`;
-    }
+    html += `<div class="quote-item">${scene.tags.map(t => t.charAt(0).toUpperCase() + t.slice(1).replace(/-/g, ' ')).join(', ')}</div>`;
 
     html += `</div></div>`;
     return html;
 }
 
-function buildSciFiSection(scene) {
-    if (!scene.scienceFiction) return '';
-
-    const sci = scene.scienceFiction;
-    let html = `<div class="info-card-section">
-        <div class="info-card-section-title">🧪 Science Fiction Analysis</div>
-        <div class="info-card-section-content">`;
-
-    if (sci.concept) {
-        html += `<div class="scifi-item"><strong>Concept:</strong> ${sci.concept}</div>`;
-    }
-    if (sci.realism) {
-        html += `<div class="scifi-item"><strong>Realism:</strong> ${sci.realism}</div>`;
-    }
-    if (sci.consequences) {
-        html += `<div class="scifi-item"><strong>Consequences:</strong> ${sci.consequences}</div>`;
-    }
-
-    html += `</div></div>`;
-    return html;
-}
-
-function buildSymbolsSection(scene) {
-    if (!scene.symbols || scene.symbols.length === 0) return '';
-
-    let html = `<div class="info-card-quotes">
-        <strong>🔣 Symbols:</strong>
-        <div class="quotes-list">`;
-
-    if (Array.isArray(scene.symbols)) {
-        scene.symbols.forEach(symbolObj => {
-            if (typeof symbolObj === 'object' && symbolObj.symbol) {
-                // Array of objects with symbol and meaning
-                html += `<div class="quote-item"><strong>${symbolObj.symbol}:</strong> ${symbolObj.meaning}</div>`;
-            } else if (typeof symbolObj === 'string') {
-                // Simple string array
-                html += `<div class="quote-item">${symbolObj}</div>`;
-            }
-        });
-    }
-
-    html += `</div></div>`;
-    return html;
+function getTensionColor(tension) {
+    if (tension <= 3) return '#43a047'; // Green - low tension
+    if (tension <= 5) return '#ffc107'; // Yellow - medium tension
+    if (tension <= 7) return '#ff9800'; // Orange - high tension
+    return '#c62828'; // Dark red - extreme tension (matching psychotic state)
 }
 
 function buildTensionBar(scene) {
-    if (!scene.tension) return '';
+    if (!scene.tensionLevel) return '';
 
-    const tensionLevel = Math.min(10, Math.max(1, scene.tension));
+    const tensionLevel = Math.min(10, Math.max(1, scene.tensionLevel));
     const tensionPercent = (tensionLevel / 10) * 100;
 
     return `<div class="info-card-section">
-        <div class="info-card-section-title">⚡ Tension Level: ${tensionLevel}/10</div>
-        <div class="tension-bar-container">
-            <div class="tension-bar" style="width: ${tensionPercent}%"></div>
+        <div class="info-card-section-title">⚡ Tension Level</div>
+        <div class="tension-bar-wrapper">
+            <div class="tension-bar">
+                <div class="tension-fill" style="width: ${tensionPercent}%; background: ${getTensionColor(tensionLevel)};"></div>
+            </div>
+            <span class="tension-value">${tensionLevel}/10</span>
         </div>
     </div>`;
 }
 
-function getMDTSupplyStatus(remaining) {
-    if (!remaining) {
-        return { status: 'na', label: 'N/A', class: 'mdt-supply-na', percentage: 0 };
+function buildPsychologicalStateTags(psychologicalState) {
+    if (!psychologicalState) {
+        return '<span class="info-card-type psychological-unknown">❓ unknown</span>';
     }
 
-    // Check for N/A or pre-MDT states
-    if (remaining === 'N/A' || remaining === 'None' || remaining === 'Pre-MDT') {
-        return { status: 'na', label: 'N/A', class: 'mdt-supply-na', percentage: 0 };
-    }
-
-    // Check for depleted/zero state (after having pills)
-    if (remaining === 'Zero' || remaining === '0' || remaining === 'Depleted') {
-        return { status: 'none', label: 'DEPLETED', class: 'mdt-supply-none', percentage: 0 };
-    }
-
-    // Extract numeric value from string like "~75 pills"
-    const numMatch = remaining.toString().match(/\d+/);
-    if (!numMatch) {
-        return { status: 'unknown', label: remaining, class: 'mdt-supply-none', percentage: 0 };
-    }
-
-    const count = parseInt(numMatch[0]);
-
-    if (count >= 100) {
-        return { status: 'plenty', label: 'PLENTY', class: 'mdt-supply-plenty', percentage: 100 };
-    } else if (count >= 50) {
-        return { status: 'moderate', label: 'MODERATE', class: 'mdt-supply-moderate', percentage: (count / 200) * 100 };
-    } else if (count >= 20) {
-        return { status: 'low', label: 'LOW', class: 'mdt-supply-low', percentage: (count / 200) * 100 };
-    } else if (count > 0) {
-        return { status: 'critical', label: 'CRITICAL', class: 'mdt-supply-critical', percentage: (count / 200) * 100 };
-    } else {
-        return { status: 'none', label: 'DEPLETED', class: 'mdt-supply-none', percentage: 0 };
-    }
-}
-
-function calculateConsumptionRate(scene) {
-    // Check if current scene has MDT tracking
-    if (!scene.mdtTracking) return null;
-
-    const currentRemaining = scene.mdtTracking.pillsRemaining || scene.mdtTracking.remaining;
-    if (!currentRemaining) return null;
-
-    // Find previous scene with MDT data
-    const currentId = scene.id;
-    let prevScene = null;
-
-    for (let i = currentId - 2; i >= 0; i--) {
-        const s = state.scenes[i];
-        if (s && s.mdtTracking && (s.mdtTracking.pillsRemaining || s.mdtTracking.remaining)) {
-            prevScene = s;
-            break;
-        }
-    }
-
-    if (!prevScene) return null;
-
-    const prevRemaining = prevScene.mdtTracking.pillsRemaining || prevScene.mdtTracking.remaining;
-    if (!prevRemaining) return null;
-
-    // Safe toString with null check
-    const currentMatch = String(currentRemaining).match(/\d+/);
-    const prevMatch = String(prevRemaining).match(/\d+/);
-
-    if (!currentMatch || !prevMatch) return null;
-
-    const currentCount = parseInt(currentMatch[0]);
-    const prevCount = parseInt(prevMatch[0]);
-    const consumed = prevCount - currentCount;
-    const scenesGap = scene.id - prevScene.id;
-
-    if (consumed <= 0) return null;
-
-    return {
-        consumed: consumed,
-        scenesGap: scenesGap,
-        rate: consumed / scenesGap,
-        prevScene: prevScene.id
+    // Map psychological states to appropriate icons
+    const stateIcons = {
+        'stable': '😊',
+        'deteriorating': '⚠️',
+        'psychotic': '😱'
     };
+
+    const icon = stateIcons[psychologicalState] || '❓';
+    const state = psychologicalState.replace(/_/g, ' ');
+    return `<span class="info-card-type psychological-${psychologicalState}">${icon} ${state}</span>`;
 }
 
-function buildMDTTracker(scene) {
-    if (!scene.mdtTracking) return '';
-
-    const mdt = scene.mdtTracking;
-    const remaining = mdt.pillsRemaining || mdt.remaining;
-    const supplyStatus = getMDTSupplyStatus(remaining);
-    const consumptionRate = calculateConsumptionRate(scene);
-
-    let html = `<div class="mdt-section">`;
-
-    // Compact header with supply status
-    if (remaining) {
-        html += `<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-            <strong style="font-size: 0.85rem;">💊 MDT-48 Supply</strong>
-            <span class="mdt-status-indicator mdt-status-${supplyStatus.status}">${supplyStatus.label}</span>
-        </div>`;
-
-        // Visual gauge with overlaid number
-        html += `<div class="mdt-gauge-bar-bg" style="position: relative;">
-            <div class="mdt-gauge-bar ${supplyStatus.class}" style="width: ${supplyStatus.percentage || 0}%"></div>
-            <div class="mdt-gauge-count-overlay">
-                ${remaining}
-            </div>
-        </div>`;
+function getPsychologicalStatePrefix(psychologicalState) {
+    if (!psychologicalState) {
+        return '❓';
     }
 
-    // Compact info
-    html += `<div style="display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.85rem; margin-top: 0.5rem;">`;
+    // Map psychological states to appropriate icons
+    const stateIcons = {
+        'stable': '😊',
+        'deteriorating': '⚠️',
+        'psychotic': '😱'
+    };
 
-    if (mdt.pillsTaken) {
-        html += `<div><strong>Taken:</strong> ${mdt.pillsTaken}</div>`;
-    }
-
-    // Consumption rate - more compact
-    if (consumptionRate) {
-        const rateColor = consumptionRate.rate > 2 ? '#e74c3c' : consumptionRate.rate > 1 ? '#f39c12' : '#27ae60';
-        const rateIcon = consumptionRate.rate > 2 ? '📈' : consumptionRate.rate > 1 ? '📊' : '📉';
-        html += `<div style="color: ${rateColor}; font-size: 0.85rem;">
-            <strong>${rateIcon} Rate:</strong> ${consumptionRate.consumed} pills since scene ${consumptionRate.prevScene} (${consumptionRate.rate.toFixed(1)}/scene)
-        </div>`;
-    }
-
-    if (mdt.effects) {
-        html += `<div><strong>Effects:</strong> ${mdt.effects}</div>`;
-    }
-
-    html += `</div></div>`;
-    return html;
-}
-
-function buildCognitiveStateTags(cognitiveState) {
-    if (!cognitiveState) {
-        return '<span class="info-card-type cognitive-unknown">🧠 unknown</span>';
-    }
-
-    // Check if it's a transition (contains →)
-    if (cognitiveState.includes('→')) {
-        // Parse the transition: "withdrawal → enhanced (drinking Gennady's blood)"
-        const arrowParts = cognitiveState.split('→');
-        const fromState = arrowParts[0].trim().replace(/_/g, ' ');
-
-        // Extract state without note
-        const toPartFull = arrowParts[1].trim();
-        const parenMatch = toPartFull.match(/^([^(]+)(\(.+\))?$/);
-        const toState = parenMatch ? parenMatch[1].trim().replace(/_/g, ' ') : toPartFull.replace(/_/g, ' ');
-
-        return `<span class="info-card-type cognitive-${fromState.replace(/ /g, '_')}">🧠 ${fromState}</span>
-                <span style="margin: 0 0.3rem; color: var(--viz-text);">→</span>
-                <span class="info-card-type cognitive-${toState.replace(/ /g, '_')}">🧠 ${toState}</span>`;
-    }
-
-    // State with note in parentheses but no transition: "enhanced (from blood)"
-    // Strip out the note and just show the state
-    const parenMatch = cognitiveState.match(/^([^(]+)(\(.+\))?$/);
-    const state = parenMatch ? parenMatch[1].trim().replace(/_/g, ' ') : cognitiveState.replace(/_/g, ' ');
-
-    return `<span class="info-card-type cognitive-${state.replace(/ /g, '_')}">🧠 ${state}</span>`;
-}
-
-function extractCognitiveContext(cognitiveState) {
-    if (!cognitiveState) return '';
-
-    // Extract context from parentheses if present
-    const parenMatch = cognitiveState.match(/\((.+)\)/);
-    return parenMatch ? parenMatch[1] : '';
+    return stateIcons[psychologicalState] || '❓';
 }
 
 function buildConnectionsSection(scene) {
     const hasForeshadowing = scene.foreshadowing && scene.foreshadowing.length > 0;
-    const hasCallbacks = scene.callbacks && scene.callbacks.length > 0;
 
-    if (!hasForeshadowing && !hasCallbacks) return '';
+    if (!hasForeshadowing) return '';
 
     let html = `<div class="info-card-connections">`;
 
@@ -1867,20 +1800,6 @@ function buildConnectionsSection(scene) {
         html += `<div class="connections-group">
             <strong>🔮 Foreshadows:</strong>`;
         scene.foreshadowing.forEach(sceneId => {
-            const targetScene = state.scenes.find(s => s.id === sceneId);
-            if (targetScene) {
-                html += `<a href="#" class="connection-link" onclick="window.jumpToScene(${sceneId}); return false;">
-                    Scene ${sceneId}: ${targetScene.title}
-                </a>`;
-            }
-        });
-        html += `</div>`;
-    }
-
-    if (hasCallbacks) {
-        html += `<div class="connections-group">
-            <strong>↩️ Callbacks to:</strong>`;
-        scene.callbacks.forEach(sceneId => {
             const targetScene = state.scenes.find(s => s.id === sceneId);
             if (targetScene) {
                 html += `<a href="#" class="connection-link" onclick="window.jumpToScene(${sceneId}); return false;">
@@ -1900,7 +1819,6 @@ function showInfoCard(node) {
 
     const scene = node.data;
 
-    // Debug logging
     console.log('showInfoCard called for scene:', scene.id, scene.title);
 
     if (!scene) {
@@ -1924,17 +1842,15 @@ function showInfoCard(node) {
         summaryText = scene.summary;
     }
 
-    // Build location/time display with icons only
+    // Build location/time display
     let locationTimeHtml = '';
     if (scene.location || scene.time) {
         locationTimeHtml = '<div class="info-card-location" style="display: block; padding: 0.5rem 1rem;">';
 
-        // Location
         if (scene.location && scene.location.primary) {
             locationTimeHtml += `<div class="location-text" style="margin-bottom: 0.15rem;">📍 ${scene.location.primary}</div>`;
         }
 
-        // Time
         if (scene.time) {
             let timeText = '';
             if (typeof scene.time === 'string') {
@@ -1948,20 +1864,12 @@ function showInfoCard(node) {
                 timeText = scene.time.runtime;
             }
             if (timeText) {
-                locationTimeHtml += `<div class="time-text" style="margin-bottom: 0.15rem;">🕐 ${timeText}`;
-                if (scene.duration) {
-                    locationTimeHtml += ` • ${scene.duration}`;
-                }
-                locationTimeHtml += `</div>`;
+                locationTimeHtml += `<div class="time-text" style="margin-bottom: 0.15rem;">🕐 ${timeText}</div>`;
             }
-        } else if (scene.duration) {
-            locationTimeHtml += `<div class="time-text" style="margin-bottom: 0.15rem;">🕐 ${scene.duration}</div>`;
         }
 
-        // Context (location significance or description) - AFTER time
-        if (scene.location && (scene.location.significance || scene.location.description)) {
-            const contextText = scene.location.significance || scene.location.description;
-            locationTimeHtml += `<div style="font-size: 0.85rem; color: var(--viz-text-muted);">💡 ${contextText}</div>`;
+        if (scene.location && scene.location.description) {
+            locationTimeHtml += `<div style="font-size: 0.85rem; color: var(--viz-text-muted);">💡 ${scene.location.description}</div>`;
         }
 
         locationTimeHtml += '</div>';
@@ -1978,20 +1886,17 @@ function showInfoCard(node) {
             <button class="info-card-close" onclick="window.hideInfoCard()">&times;</button>
         </div>
         <div class="info-card-action-bar">
+            <button class="btn btn-sm btn-outline-secondary"
+                    onclick="window.showScreenplayExcerpt(${scene.id})">
+                📄 View Screenplay
+            </button>
             <button class="btn btn-sm ${isViewed ? 'btn-success' : 'btn-outline-primary'}"
                     id="toggle-viewed-btn-${scene.id}"
                     onclick="window.toggleViewedFromCard(${scene.id})">
                 ${isViewed ? '✓ Reviewed' : 'Mark as Reviewed'}
             </button>
-            <button class="btn btn-sm btn-outline-secondary"
-                    onclick="window.showScreenplayExcerpt(${scene.id})">
-                📄 View Screenplay
-            </button>
         </div>
         ${locationTimeHtml}
-        <div class="info-card-types">
-            ${buildCognitiveStateTags(scene.cognitiveState)}
-        </div>
         ${scene.tags && scene.tags.length > 0 ? `
         <div class="info-card-tags-section">
             <div class="info-card-tags-label">🏷️ Discussion Topics</div>
@@ -2001,18 +1906,13 @@ function showInfoCard(node) {
         </div>
         ` : ''}
         <div class="info-card-body">
-            ${buildMDTTracker(scene)}
             <div class="info-card-summary">
-                ${summaryText || 'No summary available'}
-                ${extractCognitiveContext(scene.cognitiveState) ? `<div style="margin-top: 0.25rem; font-size: 0.85rem; color: var(--viz-text-muted);">💡 ${extractCognitiveContext(scene.cognitiveState)}</div>` : ''}
+                <strong>${getPsychologicalStatePrefix(scene.psychologicalState)}</strong> | ${summaryText || 'No summary available'}
             </div>
+            ${buildTensionBar(scene)}
             ${buildCharacterSection(scene)}
             ${buildDialogueSection(scene)}
-            ${buildVisualSection(scene)}
             ${buildThemesSection(scene)}
-            ${buildSciFiSection(scene)}
-            ${buildSymbolsSection(scene)}
-            ${buildTensionBar(scene)}
             ${scene.significance ? `
             <div class="info-card-quotes">
                 <strong>💡 Significance:</strong>
@@ -2052,11 +1952,9 @@ function hideInfoCard() {
         infoCard.classed('active', false);
         infoCardBackdrop.classed('active', false);
 
-        // Clear locked node and connections since card is now outside the SVG
         state.lockedNode = null;
         state.hoveredNode = null;
 
-        // Remove highlight classes
         if (nodeGroup) {
             nodeGroup.selectAll('.node')
                 .classed('connection-highlighted', false)
@@ -2083,7 +1981,6 @@ function jumpToScene(sceneId) {
         showInfoCard(nodeData);
         highlightConnections(nodeData);
 
-        // Scroll the info card to the top
         const infoCardElement = document.querySelector('.info-card-modal');
         if (infoCardElement) {
             infoCardElement.scrollTop = 0;
@@ -2097,12 +1994,12 @@ window.toggleViewed = toggleViewed;
 window.jumpToScene = jumpToScene;
 
 // ============================================
-// COGNITIVE MARKER FILTERS
+// PSYCHOLOGICAL MARKER FILTERS
 // ============================================
 
 let activeMarkers = new Set();
 
-function setupCognitiveMarkers() {
+function setupPsychologicalMarkers() {
     document.querySelectorAll('[data-marker]').forEach(btn => {
         btn.addEventListener('click', function() {
             const marker = this.dataset.marker;
@@ -2120,7 +2017,7 @@ function setupCognitiveMarkers() {
     });
 }
 
-// Update the filterVisualization function to include cognitive markers
+// Update the filterVisualization function to include psychological markers
 filterVisualization = function() {
     if (!state.root || !allNodes) return;
 
@@ -2129,39 +2026,34 @@ filterVisualization = function() {
 
         let visible = true;
 
-        // Act filter
         if (state.currentFilter !== 'all') {
             visible = visible && node.data.act === state.currentFilter;
         }
 
-        // Cognitive filter
-        if (state.cognitiveFilter) {
-            visible = visible && node.data.cognitiveState === state.cognitiveFilter;
+        if (state.psychologicalFilter) {
+            visible = visible && node.data.psychologicalState === state.psychologicalFilter;
         }
 
-        // Marker filter (AND logic - scene must have at least one active marker)
         if (activeMarkers.size > 0) {
-            visible = visible && activeMarkers.has(node.data.cognitiveState);
+            visible = visible && activeMarkers.has(node.data.psychologicalState);
         }
 
-        // Apply visibility
         const nodeElement = nodeGroup.selectAll('.node').filter(d => d === node);
         nodeElement.style('opacity', visible ? 1 : 0.15);
         nodeElement.style('pointer-events', visible ? 'auto' : 'none');
     });
 
-    // Update links
     if (linkGroup) {
         linkGroup.selectAll('.link').style('opacity', d => {
             const sourceVisible = d.source.data.id &&
                 (state.currentFilter === 'all' || d.source.data.act === state.currentFilter) &&
-                (!state.cognitiveFilter || d.source.data.cognitiveState === state.cognitiveFilter) &&
-                (activeMarkers.size === 0 || activeMarkers.has(d.source.data.cognitiveState));
+                (!state.psychologicalFilter || d.source.data.psychologicalState === state.psychologicalFilter) &&
+                (activeMarkers.size === 0 || activeMarkers.has(d.source.data.psychologicalState));
 
             const targetVisible = d.target.data.id &&
                 (state.currentFilter === 'all' || d.target.data.act === state.currentFilter) &&
-                (!state.cognitiveFilter || d.target.data.cognitiveState === state.cognitiveFilter) &&
-                (activeMarkers.size === 0 || activeMarkers.has(d.target.data.cognitiveState));
+                (!state.psychologicalFilter || d.target.data.psychologicalState === state.psychologicalFilter) &&
+                (activeMarkers.size === 0 || activeMarkers.has(d.target.data.psychologicalState));
 
             return (sourceVisible && targetVisible) ? 0.3 : 0.05;
         });
@@ -2175,10 +2067,14 @@ filterVisualization = function() {
 function clearAllSelections() {
     // Clear search
     const searchInput = document.getElementById('search-input');
+    const searchCounter = document.getElementById('search-counter');
     if (searchInput) {
         searchInput.value = '';
         searchInput.dispatchEvent(new Event('input'));
         searchInput.blur();
+    }
+    if (searchCounter) {
+        searchCounter.classList.remove('visible');
     }
 
     // Clear info card
@@ -2202,9 +2098,9 @@ function clearAllSelections() {
             .classed('dimmed', false);
     }
 
-    // Clear legend filters (act, cognitive, question)
+    // Clear legend filters (act, psychological, question)
     legendState.activeActs.clear();
-    legendState.activeCognitive.clear();
+    legendState.activePsychological.clear();
     legendState.activeQuestions.clear();
 
     // Update legend item appearance
@@ -2228,6 +2124,7 @@ function clearAllSelections() {
             nodeElement.style('opacity', 1);
             nodeElement.style('pointer-events', 'auto');
             nodeElement.classed('highlighted', false);
+            nodeElement.classed('search-match', false);
             nodeElement.classed('search-dimmed', false);
             nodeElement.classed('connection-highlighted', false);
             nodeElement.classed('connection-dimmed', false);
@@ -2262,7 +2159,7 @@ function initSearch() {
 
         if (!query) {
             nodeGroup.selectAll('.node').classed('search-match', false).classed('search-dimmed', false);
-            searchCounter.classList.remove('visible');
+            if (searchCounter) searchCounter.classList.remove('visible');
             return;
         }
 
@@ -2273,7 +2170,7 @@ function initSearch() {
                 d.data.title.toLowerCase().includes(query) ||
                 (d.data.summary && d.data.summary.toLowerCase().includes(query)) ||
                 (d.data.tags && d.data.tags.some(t => t.toLowerCase().includes(query))) ||
-                (d.data.cognitiveState && d.data.cognitiveState.toLowerCase().includes(query));
+                (d.data.psychologicalState && d.data.psychologicalState.toLowerCase().includes(query));
 
             d3.select(this)
                 .classed('search-match', matches)
@@ -2282,10 +2179,12 @@ function initSearch() {
             if (matches) matchCount++;
         });
 
-        searchCounter.textContent = `${matchCount}`;
-        searchCounter.classList.add('visible');
-        searchCounter.classList.toggle('has-results', matchCount > 0);
-        searchCounter.classList.toggle('no-results', matchCount === 0);
+        if (searchCounter) {
+            searchCounter.textContent = `${matchCount}`;
+            searchCounter.classList.add('visible');
+            searchCounter.classList.toggle('has-results', matchCount > 0);
+            searchCounter.classList.toggle('no-results', matchCount === 0);
+        }
     });
 
     // Keyboard shortcuts
@@ -2319,7 +2218,6 @@ window.toggleAnswer = function(event, button) {
 };
 
 window.highlightBookClubScenes = function(questionElement, event) {
-    // Don't trigger if clicking answer button
     if (event.target.classList.contains('answer-toggle')) {
         return;
     }
@@ -2329,16 +2227,13 @@ window.highlightBookClubScenes = function(questionElement, event) {
 
     const sceneIds = scenesStr.split(',').map(s => parseInt(s.trim()));
 
-    // Toggle active state
     const wasActive = questionElement.classList.contains('active');
 
-    // Remove active from all questions
     document.querySelectorAll('.book-club-question').forEach(q => {
         q.classList.remove('active');
     });
 
     if (wasActive) {
-        // Deactivate - show all scenes
         if (allNodes) {
             allNodes.forEach(node => {
                 if (!node.data.id) return;
@@ -2350,10 +2245,8 @@ window.highlightBookClubScenes = function(questionElement, event) {
         return;
     }
 
-    // Activate this question
     questionElement.classList.add('active');
 
-    // Highlight relevant scenes
     if (allNodes) {
         allNodes.forEach(node => {
             if (!node.data.id) return;
@@ -2365,7 +2258,6 @@ window.highlightBookClubScenes = function(questionElement, event) {
             nodeElement.classed('highlighted', isHighlighted);
 
             if (isHighlighted) {
-                // Pulse effect
                 nodeElement.select('circle')
                     .transition()
                     .duration(300)
@@ -2377,7 +2269,6 @@ window.highlightBookClubScenes = function(questionElement, event) {
         });
     }
 
-    // Scroll visualization into view
     const vizContainer = document.getElementById('visualization-container');
     if (vizContainer) {
         vizContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -2390,42 +2281,23 @@ window.sortQuestions = function(sortType) {
     if (!grid) return;
 
     // Update button states
-    document.querySelectorAll('.sort-btn').forEach(btn => {
+    document.querySelectorAll('[data-sort]').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.sort === sortType);
     });
 
-    // Get all question elements
     const questions = Array.from(grid.querySelectorAll('.book-club-question'));
 
-    // Initialize: assign permanent chronological numbers based on scene order
-    if (!questions[0].dataset.chronologicalNumber) {
-        // Store original thematic order
+    // Initialize order attributes on first run - store original serial number
+    if (!questions[0].dataset.originalNumber) {
         questions.forEach((q, index) => {
-            q.dataset.thematicOrder = index;
-        });
-
-        // Sort by first scene to assign chronological numbers
-        const chronologicalSorted = [...questions].sort((a, b) => {
-            const aScenesStr = a.dataset.scenes || '';
-            const bScenesStr = b.dataset.scenes || '';
-            const aFirstScene = parseInt(aScenesStr.split(',')[0]) || 999;
-            const bFirstScene = parseInt(bScenesStr.split(',')[0]) || 999;
-            return aFirstScene - bFirstScene;
-        });
-
-        // Assign permanent chronological numbers
-        chronologicalSorted.forEach((q, index) => {
-            q.dataset.chronologicalNumber = index + 1;
-            const numberSpan = q.querySelector('.question-number');
-            if (numberSpan) {
-                numberSpan.textContent = index + 1;
-            }
+            q.dataset.originalNumber = index + 1; // Store original serial number (1-based)
+            q.dataset.thematicOrder = index; // Store original thematic position (0-based for sorting)
         });
     }
 
     // Sort based on type
-    if (sortType === 'chronological') {
-        // Sort by first scene number in data-scenes
+    if (sortType === 'film-order') {
+        // Sort by first scene number (chronological in film)
         questions.sort((a, b) => {
             const aScenesStr = a.dataset.scenes || '';
             const bScenesStr = b.dataset.scenes || '';
@@ -2440,7 +2312,7 @@ window.sortQuestions = function(sortType) {
         });
     }
 
-    // Re-append in sorted order (numbers stay as chronological)
+    // Re-append in sorted order (numbers don't change, they stay with their questions)
     questions.forEach((question) => {
         grid.appendChild(question);
     });
@@ -2452,11 +2324,11 @@ window.sortQuestions = function(sortType) {
 
 document.addEventListener('DOMContentLoaded', () => {
     initialize();
-    setupCognitiveMarkers();
+    setupPsychologicalMarkers();
 
     // Show screenplay excerpt for a scene
     window.showScreenplayExcerpt = function(sceneId) {
-        const scene = SCENES.find(s => s.id === sceneId);
+        const scene = state.scenes.find(s => s.id === sceneId);
         if (!scene) return;
 
         // Create modal overlay
@@ -2469,33 +2341,46 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.className = 'screenplay-modal';
         modal.onclick = (e) => e.stopPropagation();
 
+        // Build summary text
+        let summaryText = '';
+        if (scene.plotSummary) {
+            if (typeof scene.plotSummary === 'string') {
+                summaryText = scene.plotSummary;
+            } else if (scene.plotSummary.detailed) {
+                summaryText = scene.plotSummary.detailed;
+            } else if (scene.plotSummary.brief) {
+                summaryText = scene.plotSummary.brief;
+            }
+        }
+
         modal.innerHTML = `
             <div class="screenplay-modal-header">
-                <h4>📄 Screenplay Excerpt - Scene ${scene.id}</h4>
+                <h4>Scene ${scene.id}: ${scene.title}</h4>
                 <button class="screenplay-modal-close" onclick="this.closest('.screenplay-modal-overlay').remove()">&times;</button>
             </div>
             <div class="screenplay-modal-body">
                 <div class="screenplay-info">
-                    <p><strong>Scene:</strong> ${scene.title}</p>
-                    <p><strong>Location:</strong> ${scene.location?.primary || 'N/A'}</p>
-                    <p><strong>Runtime:</strong> ${scene.time?.runtime || 'N/A'}</p>
+                    <p><strong>Act:</strong> ${CONFIG.ACT_NAMES[scene.act]}</p>
+                    <p><strong>Location:</strong> ${scene.location?.primary || 'Unknown'}</p>
+                    ${scene.time?.narrative ? `<p><strong>Time:</strong> ${scene.time.narrative}</p>` : ''}
+                    <p><strong>Psychological State:</strong> ${getPsychologicalStatePrefix(scene.psychologicalState)} ${scene.psychologicalState || 'Unknown'}</p>
                 </div>
-                <div class="screenplay-text">
-                    <p class="screenplay-note">
-                        <strong>Note:</strong> To verify this scene against the original screenplay,
-                        open <code>NeilBurger_2011_Limitless.txt</code> and search for:
-                    </p>
-                    <ul class="screenplay-search-hints">
-                        ${scene.keyDialogue && scene.keyDialogue.length > 0 ?
-                            `<li>Key dialogue: "${scene.keyDialogue[0].quote.substring(0, 50)}..."</li>` : ''}
-                        ${scene.location?.primary ?
-                            `<li>Location: "${scene.location.primary}"</li>` : ''}
-                        <li>Runtime: approximately ${scene.time?.approximate || scene.time?.runtime || 'unknown'}</li>
-                    </ul>
-                    <p class="screenplay-note">
-                        The screenplay file is located at:<br>
-                        <code>pages/stories/NeilBurger_2011_Limitless/NeilBurger_2011_Limitless.txt</code>
-                    </p>
+                <div class="screenplay-content">
+                    <h5>Scene Summary</h5>
+                    <p>${summaryText || 'No summary available'}</p>
+                    ${scene.significance ? `
+                    <h5>Significance</h5>
+                    <p>${scene.significance}</p>
+                    ` : ''}
+                    ${scene.keyDialogue && scene.keyDialogue.length > 0 ? `
+                    <h5>Key Dialogue</h5>
+                    ${scene.keyDialogue.map(d => `
+                        <div class="dialogue-item">
+                            <p><strong>${d.speaker}:</strong> "${d.quote}"</p>
+                            ${d.significance ? `<p class="dialogue-context">${d.significance}</p>` : ''}
+                        </div>
+                    `).join('')}
+                    ` : ''}
                 </div>
             </div>
         `;
@@ -2504,14 +2389,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(overlay);
     };
 
-    // Sort questions chronologically by default
+    // Sort questions by film order by default
     setTimeout(() => {
-        sortQuestions('chronological');
+        if (typeof window.sortQuestions === 'function') {
+            sortQuestions('film-order');
+        }
     }, 100);
 
     // Add click to page background to clear selections
     document.body.addEventListener('click', function(e) {
-        // Only trigger if not clicking on interactive elements
         if (!e.target.closest('.node') &&
             !e.target.closest('.legend-item') &&
             !e.target.closest('.book-club-question') &&
@@ -2525,4 +2411,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-
