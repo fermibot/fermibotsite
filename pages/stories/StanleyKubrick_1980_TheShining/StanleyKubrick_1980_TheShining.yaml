@@ -1,0 +1,143 @@
+- step_01_extract_screenplay:
+    - "read StanleyKubrick_1980_TheShining.pdf"
+    - "write raw text to StanleyKubrick_1980_TheShining.txt"
+    - "verify the screenplay text is complete and searchable"
+    - "note the total number of pages and approximate runtime"
+
+- step_02_scene_extraction:
+    - "study pages/stories/NeilBurger_2011_Limitless/limitless_scenes.json as template"
+    - "determine natural scene breaks based on location/time changes in screenplay"
+    - "count total scenes - verify against screenplay (no padding scenes!)"
+    - "for each scene, extract from StanleyKubrick_1980_TheShining.txt:"
+    - "  - id (sequential, starting at 1)"
+    - "  - title (concise, descriptive)"
+    - "  - location (primary + secondary if applicable)"
+    - "  - time (runtime timestamp + narrative description)"
+    - "  - plotSummary (2-3 sentences, factual)"
+    - "  - keyDialogue (memorable quotes with character attribution)"
+    - "  - characterDevelopment (Jack, Wendy, Danny at minimum)"
+    - "  - psychologicalState (Jack's mental state: stable/deteriorating/psychotic)"
+    - "  - tensionLevel (1-10 scale)"
+    - "  - significance (why this scene matters to the story)"
+    - "  - foreshadowing (array of scene IDs this hints at - ONLY if clear connections exist)"
+    - "  - tags (horror, family, isolation, supernatural, violence, madness, etc.)"
+
+- step_03_data_validation:
+    - "verify ALL scene IDs are sequential with no gaps"
+    - "verify ALL foreshadowing references point to valid scene IDs (no references to non-existent scenes)"
+    - "do NOT create redundant callbacks arrays (inferred from foreshadowing)"
+    - "verify character development tracks progression across all scenes"
+    - "verify psychological state progression is consistent"
+    - "cross-reference key dialogue against screenplay text"
+    - "ensure no fabricated content - everything must match screenplay"
+
+- step_04_act_structure:
+    - "determine natural three-act structure based on dramatic turning points:"
+    - "  Act I: Setup and arrival at Overlook Hotel"
+    - "  Act II: Isolation and Jack's deterioration"
+    - "  Act III: Final confrontation and escape"
+    - "assign 'act' field to each scene (act1, act2, act3)"
+    - "verify act distribution feels balanced (Act III typically shortest)"
+    - "choose act emojis that fit The Shining's themes"
+    - "choose act colors that match the mood progression"
+
+- step_05_discussion_questions:
+    - "create 15-20 thought-provoking discussion questions"
+    - "each question should reference specific scenes (data-scenes attribute)"
+    - "tag each question with relevant themes"
+    - "question types to include:"
+    - "  - Character psychology and motivation"
+    - "  - Supernatural vs psychological interpretation"
+    - "  - Symbolism and themes"
+    - "  - Cinematography and visual storytelling"
+    - "  - Family dynamics and isolation"
+    - "  - Kubrick's directorial choices"
+
+- step_06_html_page:
+    - "study pages/stories/NeilBurger_2011_Limitless/limitless.html"
+    - "use css/movie_timelines.css as base stylesheet"
+    - "create shining_custom.css for film-specific styling"
+    - "include sections:"
+    - "  - Film overview with metadata"
+    - "  - How to use the visualization"
+    - "  - Color legend for acts"
+    - "  - Psychological state legend"
+    - "  - Connection lines legend (foreshadowing/callbacks)"
+    - "  - Discussion questions"
+    - "  - Thematic analysis"
+    - "add screenplay excerpt modal (like Limitless)"
+    - "use timestamp versioning: ?v=YYYY.MM.DD.HH.MM.SS"
+
+- step_07_visualization_js:
+    - "study pages/stories/NeilBurger_2011_Limitless/limitless_timeline.js"
+    - "create shining_timeline.js with:"
+    - "  - circular radial tree layout (like Limitless)"
+    - "  - connection logic: auto-generate callbacks from foreshadowing"
+    - "  - for each foreshadowing A→B, create:"
+    - "    1. Foreshadowing link: A → B (solid blue)"
+    - "    2. Callback link: B → A (dashed purple)"
+    - "  - when clicking node, show only connections WHERE node is SOURCE"
+    - "  - progressive disclosure: track viewed scenes"
+    - "  - act filtering with scene counts"
+    - "  - psychological state filtering"
+    - "  - search functionality"
+    - "  - discussion question highlighting"
+    - "  - info card with all scene details"
+    - "use timestamp versioning: ?v=YYYY.MM.DD.HH.MM.SS"
+
+- step_08_unique_enhancements:
+    - "The Shining-specific features to consider:"
+    - "  - Track Room 237 references across scenes"
+    - "  - Highlight supernatural vs psychological interpretations"
+    - "  - Visualize Jack's descent into madness (color gradient?)"
+    - "  - Track recurring motifs (twins, maze, typewriter, etc.)"
+    - "  - Danny's 'shining' ability progression"
+    - "  - Overlook Hotel as character (building presence)"
+    - "  - Winter isolation timeline"
+    - "  - Creative typography/colors matching film's aesthetic"
+
+- step_09_final_verification:
+    - "run through entire visualization manually"
+    - "verify all connections work correctly"
+    - "verify no broken scene references"
+    - "verify all discussion questions link to correct scenes"
+    - "test all filters and search"
+    - "verify screenplay excerpts are accurate"
+    - "check responsive design on different screen sizes"
+    - "verify versioning is consistent across HTML, CSS, JS"
+
+- step_10_commit:
+    - "commit with descriptive message following Limitless patterns"
+    - "include Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
+    - "verify git status is clean (no temp files)"
+
+# Key Learnings from Limitless:
+# - NEVER pad scenes - only use scenes that actually exist in screenplay
+# - Use only foreshadowing arrays (callbacks auto-generated)
+# - All references must point to valid scene IDs
+# - Character development must track throughout entire film
+# - Verify everything against source screenplay
+# - No fabricated dialogue or content
+# - Timestamp versioning for cache busting
+# - Single source of truth for narrative connections
+
+# My original outline for The Shining based on Limitless:
+#- step_01:
+#    - "read StanleyKubrick_1980_TheShining.pdf"
+#    - "write raw to StanleyKubrick_1980_TheShining.txt"
+#- step_02:
+#    - "study pages/stories/NeilBurger_2011_Limitless/limitless_scenes.json"
+#    - "determine the number of scenes that fit this movie"
+#    - "fix the number of scenes and keep always going back to the StanleyKubrick_1980_TheShining.txt for reference"
+#    - "extract scenes from StanleyKubrick_1980_TheShining.txt using
+#    -limitless_scenes.json as a template"
+#- step_03:
+#    - "study pages/stores/NeilBurger_2011_Limitless/limitless.html"
+#    - "use css/movie_timelines.css as the base css for StanleyKubrick_1980_TheShining.html"
+#    - "add any more css needed to StanleyKubrick_1980_TheShining.css"
+#- step_04:
+#    - "study pages/stories/NeilBurger_2011_Limitless/limitless_timeline.js"
+#    - "create StanleyKubrick_1980_TheShining.js to visualize the scenes extracted in -step_02"
+#    - "Include any additional javascript needed for -StanleyKubrick_1980_TheShining.html"
+#- step_05:
+#      "In addition to the templates, use creative spins to make StanleyKubrick_1980_TheShining.html unique and interesting"
