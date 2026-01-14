@@ -279,22 +279,18 @@ function packageImports(nodes) {
             scene.foreshadowing.forEach(targetId => {
                 const target = map.get(targetId);
                 if (target) {
+                    // Create foreshadowing link: source → target (solid blue)
                     imports.push({
                         source: node,
                         target: target,
                         type: 'foreshadowing'
                     });
-                }
-            });
-        }
 
-        if (scene.callbacks) {
-            scene.callbacks.forEach(targetId => {
-                const target = map.get(targetId);
-                if (target) {
+                    // Also create callback link: target ← source (dashed purple)
+                    // This is the same relationship viewed from the target's perspective
                     imports.push({
-                        source: node,
-                        target: target,
+                        source: target,
+                        target: node,
                         type: 'callback'
                     });
                 }
@@ -557,6 +553,50 @@ function createLegendWithProgress() {
         item.append('span')
             .attr('class', 'legend-text')
             .text(tag.label);
+    });
+
+    // Separator
+    grid.append('div')
+        .attr('class', 'legend-separator')
+        .style('grid-column', '1 / -1');
+
+    // Section label for Connection Lines
+    grid.append('span')
+        .attr('class', 'legend-section-label')
+        .style('grid-column', '1 / -1')
+        .text('Connection Lines:');
+
+    // Connection types
+    const connectionTypes = [
+        { key: 'foreshadowing', label: 'Foreshadows (what this scene hints at)', style: 'solid', color: '#3498db' },
+        { key: 'callback', label: 'Callbacks (what earlier scenes hinted at this)', style: 'dashed', color: '#9b59b6' }
+    ];
+
+    connectionTypes.forEach(conn => {
+        const item = grid.append('div')
+            .attr('class', 'legend-item legend-connection-item')
+            .style('grid-column', '1 / -1')
+            .style('cursor', 'default')
+            .style('pointer-events', 'none');
+
+        const svg = item.append('svg')
+            .attr('width', 30)
+            .attr('height', 12)
+            .style('vertical-align', 'middle')
+            .style('margin-right', '8px');
+
+        svg.append('line')
+            .attr('x1', 0)
+            .attr('y1', 6)
+            .attr('x2', 30)
+            .attr('y2', 6)
+            .attr('stroke', conn.color)
+            .attr('stroke-width', 2)
+            .attr('stroke-dasharray', conn.style === 'dashed' ? '5,3' : null);
+
+        item.append('span')
+            .attr('class', 'legend-text')
+            .text(conn.label);
     });
 
     // Add clear selection hint at bottom right of legend
@@ -1181,24 +1221,31 @@ function highlightConnections(node) {
     state.hoveredNode = node;
 
     const connectedIds = new Set([node.data.id]);
+
+    // Collect all connected nodes from this node's perspective
     currentLinks.forEach(link => {
+        // Only show links WHERE THIS NODE IS THE SOURCE
+        // - Foreshadowing (solid blue): what this node foreshadows
+        // - Callback (dashed purple): what foreshadowed this node (shown as callback FROM this node)
         if (link.source.data.id === node.data.id) {
             connectedIds.add(link.target.data.id);
         }
-        if (link.target.data.id === node.data.id) {
-            connectedIds.add(link.source.data.id);
-        }
     });
 
+    // Highlight connected nodes
     nodeGroup.selectAll('.node')
         .classed('connection-highlighted', d => d.data.id === node.data.id)
         .classed('connection-dimmed', d => !connectedIds.has(d.data.id));
 
+    // Highlight relevant links
     linkGroup.selectAll('.link')
-        .classed('highlighted', d =>
-            d.source.data.id === node.data.id || d.target.data.id === node.data.id)
-        .classed('dimmed', d =>
-            d.source.data.id !== node.data.id && d.target.data.id !== node.data.id);
+        .style('opacity', d => {
+            // Only highlight links where clicked node is the SOURCE
+            const isFromNode = (d.source.data.id === node.data.id);
+            return isFromNode ? 1 : 0.1;
+        })
+        .classed('highlighted', d => d.source.data.id === node.data.id)
+        .classed('dimmed', d => d.source.data.id !== node.data.id);
 }
 
 function unhighlightAll() {
