@@ -1786,6 +1786,108 @@ function initInfoCard() {
 }
 
 // ============================================
+// SCREENPLAY VIEWER
+// ============================================
+
+let screenplayViewer = null;
+let screenplayBackdrop = null;
+
+function initScreenplayViewer() {
+    screenplayBackdrop = d3.select('body').append('div')
+        .attr('class', 'screenplay-viewer-backdrop')
+        .on('click', hideScreenplayViewer);
+
+    screenplayViewer = d3.select('body').append('div')
+        .attr('class', 'screenplay-viewer-modal');
+}
+
+function showScreenplayViewer(scene) {
+    if (!screenplayViewer) initScreenplayViewer();
+
+    // Build screenplay viewer content
+    let html = `
+        <div class="screenplay-viewer-header">
+            <div class="screenplay-viewer-title">
+                <span class="screenplay-icon">📄</span>
+                <div>
+                    <div class="screenplay-title">The Shining Screenplay</div>
+                    <div class="screenplay-scene">Scene ${scene.id}: ${scene.title}</div>
+                </div>
+            </div>
+            <button class="screenplay-close-btn" onclick="hideScreenplayViewer()">✕</button>
+        </div>
+        <div class="screenplay-viewer-content">
+            <iframe
+                src="StanleyKubrick_1980_TheShining.pdf#page=${getScreenplayPage(scene)}"
+                class="screenplay-iframe"
+                title="The Shining Screenplay">
+            </iframe>
+        </div>
+    `;
+
+    screenplayViewer.html(html);
+
+    // Show with animation
+    setTimeout(() => {
+        screenplayBackdrop.classed('active', true);
+        screenplayViewer.classed('active', true);
+    }, 10);
+}
+
+function hideScreenplayViewer() {
+    if (!screenplayViewer) return;
+
+    screenplayBackdrop.classed('active', false);
+    screenplayViewer.classed('active', false);
+}
+
+function getScreenplayPage(scene) {
+    // Map scene IDs to approximate screenplay page numbers
+    // This is a rough mapping based on scene progression
+    const pageMapping = {
+        1: 1,    // Opening credits
+        2: 3,    // Interview
+        3: 8,    // Boulder apartment
+        4: 12,   // Doctor's office
+        5: 18,   // Closing day tour
+        6: 25,   // Jack's dream
+        7: 30,   // First month
+        8: 35,   // Tuesday
+        9: 40,   // Room 237 investigation
+        10: 45,  // Wendy and doctor
+        11: 50,  // Jack at typewriter
+        12: 55,  // Gold Room - Jack and Lloyd
+        13: 60,  // Hallorann's vision
+        14: 65,  // Jack and Grady
+        15: 70,  // Wendy discovers manuscript
+        16: 75,  // Jack breaks down door
+        17: 80,  // Hallorann returns
+        18: 85,  // Jack chases Danny
+        19: 90,  // The hedge maze
+        20: 95,  // Jack freezes
+        21: 100, // Escape
+        22: 45,  // (additional scenes - approximate)
+        23: 55,
+        24: 65,
+        25: 75,
+        26: 85,
+        27: 90,
+        28: 95,
+        29: 100,
+        30: 105,
+        31: 110,
+        32: 115,
+        33: 120
+    };
+
+    return pageMapping[scene.id] || 1;
+}
+
+// Expose to window
+window.showScreenplayViewer = showScreenplayViewer;
+window.hideScreenplayViewer = hideScreenplayViewer;
+
+// ============================================
 // INFO CARD SECTION BUILDERS
 // ============================================
 
@@ -2037,8 +2139,8 @@ function showInfoCard(node) {
             <button class="info-card-close" onclick="window.hideInfoCard()">&times;</button>
         </div>
         <div class="info-card-action-bar">
-            <button class="btn btn-sm btn-outline-secondary"
-                    onclick="window.showScreenplayExcerpt(${scene.id})">
+            <button class="btn btn-sm btn-outline-secondary screenplay-viewer-btn"
+                    onclick="window.showScreenplayViewer({id: ${scene.id}, title: '${scene.title.replace(/'/g, "\\'")}'}); event.stopPropagation();">
                 📄 View Screenplay
             </button>
             <button class="btn btn-sm ${isViewed ? 'btn-success' : 'btn-outline-primary'}"
@@ -2373,7 +2475,12 @@ function initSearch() {
             searchInput.focus();
         }
         if (e.key === 'Escape') {
-            clearAllSelections();
+            // Close screenplay viewer if open
+            if (screenplayViewer && screenplayViewer.classed('active')) {
+                hideScreenplayViewer();
+            } else {
+                clearAllSelections();
+            }
         }
     });
 }
