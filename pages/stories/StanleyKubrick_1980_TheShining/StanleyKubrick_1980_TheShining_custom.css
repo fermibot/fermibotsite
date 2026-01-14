@@ -260,20 +260,14 @@
 }
 
 /* ============================================
-   BOOK CLUB QUESTIONS - 2 COLUMN LAYOUT
+   BOOK CLUB QUESTIONS - 1 COLUMN LAYOUT
    ============================================ */
 
-/* Override base grid to use 2 columns */
+/* Override base grid to use 1 column */
 .book-club-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: 1fr !important;
     gap: 1rem;
-}
-
-@media (max-width: 768px) {
-    .book-club-grid {
-        grid-template-columns: 1fr !important;
-    }
 }
 
 /* ============================================
@@ -398,6 +392,30 @@
     border-color: #3F51B5;
 }
 
+.tag-grady {
+    background: rgba(62, 39, 35, 0.1);
+    color: #3E2723;
+    border-color: #3E2723;
+}
+
+.tag-grady-twins {
+    background: rgba(233, 30, 99, 0.1);
+    color: #E91E63;
+    border-color: #E91E63;
+}
+
+.tag-halloran {
+    background: rgba(0, 150, 136, 0.1);
+    color: #009688;
+    border-color: #009688;
+}
+
+.tag-lloyd {
+    background: rgba(139, 0, 0, 0.1);
+    color: #8B0000;
+    border-color: #8B0000;
+}
+
 /* Horror Elements */
 .tag-madness {
     background: rgba(244, 67, 54, 0.1);
@@ -466,6 +484,18 @@
     border-color: #8D6E63;
 }
 
+.tag-cyclical-time {
+    background: rgba(81, 45, 168, 0.1);
+    color: #512DA8;
+    border-color: #512DA8;
+}
+
+.tag-indian-burial-ground {
+    background: rgba(121, 85, 72, 0.1);
+    color: #795548;
+    border-color: #795548;
+}
+
 /* Key Symbols */
 .tag-hotel {
     background: rgba(139, 0, 0, 0.1);
@@ -485,10 +515,46 @@
     border-color: #7B1FA2;
 }
 
+.tag-gold-room {
+    background: rgba(255, 193, 7, 0.15);
+    color: #F57F17;
+    border-color: #F57F17;
+}
+
+.tag-pantry {
+    background: rgba(62, 39, 35, 0.1);
+    color: #3E2723;
+    border-color: #3E2723;
+}
+
 .tag-photograph {
     background: rgba(84, 110, 122, 0.1);
     color: #546E7A;
     border-color: #546E7A;
+}
+
+.tag-manuscript {
+    background: rgba(141, 110, 99, 0.1);
+    color: #8D6E63;
+    border-color: #8D6E63;
+}
+
+.tag-axe {
+    background: rgba(183, 28, 28, 0.1);
+    color: #B71C1C;
+    border-color: #B71C1C;
+}
+
+.tag-baseball-bat {
+    background: rgba(230, 81, 0, 0.1);
+    color: #E65100;
+    border-color: #E65100;
+}
+
+.tag-mirror {
+    background: rgba(96, 125, 139, 0.1);
+    color: #607D8B;
+    border-color: #607D8B;
 }
 
 .tag-time {
@@ -532,6 +598,149 @@
     background: rgba(0, 77, 64, 0.1);
     color: #004D40;
     border-color: #004D40;
+}
+
+.tag-attack {
+    background: rgba(198, 40, 40, 0.1);
+    color: #C62828;
+    border-color: #C62828;
+}
+
+.tag-chase {
+    background: rgba(230, 81, 0, 0.1);
+    color: #E65100;
+    border-color: #E65100;
+}
+
+.tag-rescue {
+    background: rgba(0, 150, 136, 0.1);
+    color: #009688;
+    border-color: #009688;
+}
+
+.tag-trap {
+    background: rgba(62, 39, 35, 0.1);
+    color: #3E2723;
+    border-color: #3E2723;
+}
+
+/* Additional Horror & Madness Tags */
+.tag-horror {
+    background: rgba(74, 0, 0, 0.15);
+    color: #4A0000;
+    border-color: #4A0000;
+}
+
+.tag-possession {
+    background: rgba(191, 54, 12, 0.1);
+    color: #BF360C;
+    border-color: #BF360C;
+}
+
+.tag-ghosts {
+    background: rgba(156, 39, 176, 0.1);
+    color: #9C27B0;
+    border-color: #9C27B0;
+}
+
+.tag-murder {
+    background: rgba(136, 14, 79, 0.1);
+    color: #880E4F;
+    border-color: #880E4F;
+}
+
+.tag-cabin-fever {
+    background: rgba(1, 87, 155, 0.1);
+    color: #01579B;
+    border-color: #01579B;
+}
+
+/* Additional Family Tags */
+.tag-alcohol {
+    background: rgba(191, 54, 12, 0.1);
+    color: #BF360C;
+    border-color: #BF360C;
+}
+
+.tag-alcoholism {
+    background: rgba(255, 111, 0, 0.1);
+    color: #FF6F00;
+    border-color: #FF6F00;
+}
+
+.tag-family-violence {
+    background: rgba(198, 40, 40, 0.1);
+    color: #C62828;
+    border-color: #C62828;
+}
+
+.tag-family-breakdown {
+    background: rgba(211, 47, 47, 0.1);
+    color: #D32F2F;
+    border-color: #D32F2F;
+}
+
+.tag-breakdown {
+    background: rgba(198, 40, 40, 0.1);
+    color: #C62828;
+    border-color: #C62828;
+}
+
+/* Additional Psychic Tags */
+.tag-hallucination {
+    background: rgba(123, 31, 162, 0.1);
+    color: #7B1FA2;
+    border-color: #7B1FA2;
+}
+
+.tag-shining {
+    background: rgba(142, 36, 170, 0.1);
+    color: #8E24AA;
+    border-color: #8E24AA;
+}
+
+.tag-vision {
+    background: rgba(106, 27, 154, 0.1);
+    color: #6A1B9A;
+    border-color: #6A1B9A;
+}
+
+.tag-redrum {
+    background: rgba(198, 40, 40, 0.1);
+    color: #C62828;
+    border-color: #C62828;
+}
+
+.tag-tony {
+    background: rgba(3, 169, 244, 0.1);
+    color: #03A9F4;
+    border-color: #03A9F4;
+}
+
+/* Additional Time & History Tags */
+.tag-always-been-here {
+    background: rgba(49, 27, 146, 0.1);
+    color: #311B92;
+    border-color: #311B92;
+}
+
+.tag-ambiguous-ending {
+    background: rgba(69, 39, 160, 0.1);
+    color: #4527A0;
+    border-color: #4527A0;
+}
+
+/* Additional Survival & Action Tags */
+.tag-defense {
+    background: rgba(0, 96, 100, 0.1);
+    color: #006064;
+    border-color: #006064;
+}
+
+.tag-clever {
+    background: rgba(0, 121, 107, 0.1);
+    color: #00796B;
+    border-color: #00796B;
 }
 
 /* ============================================
@@ -735,4 +944,226 @@
     background: rgba(0, 77, 64, 0.1);
     color: #004D40;
     border-color: #004D40;
+}
+
+/* Additional Horror & Madness Tags */
+.legend-question-item.tag-horror {
+    background: rgba(74, 0, 0, 0.15);
+    color: #4A0000;
+    border-color: #4A0000;
+}
+
+.legend-question-item.tag-murder {
+    background: rgba(136, 14, 79, 0.1);
+    color: #880E4F;
+    border-color: #880E4F;
+}
+
+.legend-question-item.tag-cabin-fever {
+    background: rgba(1, 87, 155, 0.1);
+    color: #01579B;
+    border-color: #01579B;
+}
+
+/* Additional Family Tags */
+.legend-question-item.tag-alcohol {
+    background: rgba(191, 54, 12, 0.1);
+    color: #BF360C;
+    border-color: #BF360C;
+}
+
+.legend-question-item.tag-breakdown {
+    background: rgba(198, 40, 40, 0.1);
+    color: #C62828;
+    border-color: #C62828;
+}
+
+/* Additional Psychic Tag */
+.legend-question-item.tag-hallucination {
+    background: rgba(123, 31, 162, 0.1);
+    color: #7B1FA2;
+    border-color: #7B1FA2;
+}
+
+/* Additional Time & History Tags */
+.legend-question-item.tag-always-been-here {
+    background: rgba(49, 27, 146, 0.1);
+    color: #311B92;
+    border-color: #311B92;
+}
+
+.legend-question-item.tag-ambiguous-ending {
+    background: rgba(69, 39, 160, 0.1);
+    color: #4527A0;
+    border-color: #4527A0;
+}
+
+/* Additional Survival & Action Tags */
+.legend-question-item.tag-defense {
+    background: rgba(0, 96, 100, 0.1);
+    color: #006064;
+    border-color: #006064;
+}
+
+.legend-question-item.tag-clever {
+    background: rgba(0, 121, 107, 0.1);
+    color: #00796B;
+    border-color: #00796B;
+}
+
+/* Missing Horror & Madness Tags */
+.legend-question-item.tag-possession {
+    background: rgba(191, 54, 12, 0.1);
+    color: #BF360C;
+    border-color: #BF360C;
+}
+
+.legend-question-item.tag-ghosts {
+    background: rgba(156, 39, 176, 0.1);
+    color: #9C27B0;
+    border-color: #9C27B0;
+}
+
+/* Missing Family Tags */
+.legend-question-item.tag-alcoholism {
+    background: rgba(255, 111, 0, 0.1);
+    color: #FF6F00;
+    border-color: #FF6F00;
+}
+
+.legend-question-item.tag-family-violence {
+    background: rgba(198, 40, 40, 0.1);
+    color: #C62828;
+    border-color: #C62828;
+}
+
+.legend-question-item.tag-family-breakdown {
+    background: rgba(211, 47, 47, 0.1);
+    color: #D32F2F;
+    border-color: #D32F2F;
+}
+
+/* Missing Psychic Tags */
+.legend-question-item.tag-shining {
+    background: rgba(142, 36, 170, 0.1);
+    color: #8E24AA;
+    border-color: #8E24AA;
+}
+
+.legend-question-item.tag-vision {
+    background: rgba(106, 27, 154, 0.1);
+    color: #6A1B9A;
+    border-color: #6A1B9A;
+}
+
+.legend-question-item.tag-redrum {
+    background: rgba(198, 40, 40, 0.1);
+    color: #C62828;
+    border-color: #C62828;
+}
+
+.legend-question-item.tag-tony {
+    background: rgba(3, 169, 244, 0.1);
+    color: #03A9F4;
+    border-color: #03A9F4;
+}
+
+/* Missing Location/Symbol Tags */
+.legend-question-item.tag-gold-room {
+    background: rgba(255, 193, 7, 0.15);
+    color: #F57F17;
+    border-color: #F57F17;
+}
+
+.legend-question-item.tag-pantry {
+    background: rgba(62, 39, 35, 0.1);
+    color: #3E2723;
+    border-color: #3E2723;
+}
+
+.legend-question-item.tag-manuscript {
+    background: rgba(141, 110, 99, 0.1);
+    color: #8D6E63;
+    border-color: #8D6E63;
+}
+
+.legend-question-item.tag-axe {
+    background: rgba(183, 28, 28, 0.1);
+    color: #B71C1C;
+    border-color: #B71C1C;
+}
+
+.legend-question-item.tag-baseball-bat {
+    background: rgba(230, 81, 0, 0.1);
+    color: #E65100;
+    border-color: #E65100;
+}
+
+.legend-question-item.tag-mirror {
+    background: rgba(96, 125, 139, 0.1);
+    color: #607D8B;
+    border-color: #607D8B;
+}
+
+/* Missing Character Tags */
+.legend-question-item.tag-grady {
+    background: rgba(62, 39, 35, 0.1);
+    color: #3E2723;
+    border-color: #3E2723;
+}
+
+.legend-question-item.tag-grady-twins {
+    background: rgba(233, 30, 99, 0.1);
+    color: #E91E63;
+    border-color: #E91E63;
+}
+
+.legend-question-item.tag-halloran {
+    background: rgba(0, 150, 136, 0.1);
+    color: #009688;
+    border-color: #009688;
+}
+
+.legend-question-item.tag-lloyd {
+    background: rgba(139, 0, 0, 0.1);
+    color: #8B0000;
+    border-color: #8B0000;
+}
+
+/* Missing Time & History Tags */
+.legend-question-item.tag-cyclical-time {
+    background: rgba(81, 45, 168, 0.1);
+    color: #512DA8;
+    border-color: #512DA8;
+}
+
+.legend-question-item.tag-indian-burial-ground {
+    background: rgba(121, 85, 72, 0.1);
+    color: #795548;
+    border-color: #795548;
+}
+
+/* Missing Survival & Action Tags */
+.legend-question-item.tag-attack {
+    background: rgba(198, 40, 40, 0.1);
+    color: #C62828;
+    border-color: #C62828;
+}
+
+.legend-question-item.tag-chase {
+    background: rgba(230, 81, 0, 0.1);
+    color: #E65100;
+    border-color: #E65100;
+}
+
+.legend-question-item.tag-rescue {
+    background: rgba(0, 150, 136, 0.1);
+    color: #009688;
+    border-color: #009688;
+}
+
+.legend-question-item.tag-trap {
+    background: rgba(62, 39, 35, 0.1);
+    color: #3E2723;
+    border-color: #3E2723;
 }
