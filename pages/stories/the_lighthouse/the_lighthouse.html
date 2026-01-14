@@ -204,8 +204,16 @@
 <!-- Book Club Questions Section -->
 <section class="mt-4" id="book-club-section">
     <div class="bg-body-tertiary border rounded-3 p-4">
-        <h5 class="mb-3">📖 Book Club Discussion Questions</h5>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0">📖 Book Club Discussion Questions</h5>
+            <div class="question-sort-toggle">
+                <label class="sort-label">Sort by:</label>
+                <button class="sort-btn active" data-sort="chronological" onclick="sortQuestions('chronological')">Chronological</button>
+                <button class="sort-btn" data-sort="thematic" onclick="sortQuestions('thematic')">Thematic</button>
+            </div>
+        </div>
         <p class="text-muted small mb-3">Click any question to highlight the relevant scenes in the diagram above. Click "Show Answer" for discussion points.</p>
+        <div class="clear-selection-hint">💡 <kbd>ESC</kbd> or <strong>click outside</strong> to clear selections</div>
         <div class="book-club-grid">
             <!-- ACT I Questions -->
             <div class="book-club-question" data-scenes="1">

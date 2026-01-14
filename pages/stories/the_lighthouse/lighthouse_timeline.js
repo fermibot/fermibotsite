@@ -904,6 +904,13 @@ function showInfoCard(d, event, updateInPlace = false) {
             </div>
             <button class="info-card-close" onclick="window.hideInfoCard()" title="Close">×</button>
         </div>
+        <div class="info-card-action-bar">
+            <button class="btn btn-sm ${isViewed ? 'btn-success' : 'btn-outline-primary'}"
+                    id="toggle-viewed-btn-${scene.id}"
+                    onclick="window.toggleViewedFromCard(${scene.id})">
+                ${isViewed ? '✓ Reviewed' : 'Mark as Reviewed'}
+            </button>
+        </div>
         ${scene.location || scene.time ? `
         <div class="info-card-location">
             ${scene.location ? `<span class="location-text">📍 ${scene.location}</span>` : ''}
@@ -946,25 +953,8 @@ function showInfoCard(d, event, updateInPlace = false) {
             ` : ''}
             ${scene.symbols ? `<p class="info-card-symbols"><strong>🔑 Key Symbols:</strong> ${scene.symbols.join(', ')}</p>` : ''}
         </div>
-        <div class="info-card-footer">
-            <button class="mark-viewed-btn ${isViewed ? 'viewed' : ''}" data-scene-id="${scene.id}">
-                ${isViewed ? '✓ Viewed' : '○ Mark as Viewed'}
-            </button>
-        </div>
         ${connectionsHTML ? `<div class="info-card-connections">${connectionsHTML}</div>` : ''}
     `);
-
-    // Add click handler for mark as viewed button
-    infoCard.select('.mark-viewed-btn').on('click', function(event) {
-        event.preventDefault();
-        const sceneId = parseInt(this.dataset.sceneId);
-        toggleViewed(sceneId);
-        // Update button appearance
-        const btn = d3.select(this);
-        const nowViewed = state.viewedScenes.has(sceneId);
-        btn.classed('viewed', nowViewed);
-        btn.text(nowViewed ? '✓ Viewed' : '○ Mark as Viewed');
-    });
 
     // Add click handlers for connection links - UPDATE IN PLACE
     infoCard.selectAll('.connection-link').on('click', function(event) {
@@ -982,10 +972,8 @@ function showInfoCard(d, event, updateInPlace = false) {
         }
     });
 
-    // Only reposition if not updating in place
+    // Reset scroll position to top only when opening a new card (not when clicking references)
     if (!updateInPlace) {
-        positionInfoCard(event);
-        // Reset scroll position to top only when opening a new card (not when clicking references)
         infoCard.node().scrollTop = 0;
     }
 
@@ -1007,6 +995,17 @@ function toggleViewed(sceneId) {
     updateProgressUI();
     updateNodeStyles();
 }
+
+// Toggle viewed from info card and update button
+window.toggleViewedFromCard = function(sceneId) {
+    toggleViewed(sceneId);
+    const btn = document.getElementById(`toggle-viewed-btn-${sceneId}`);
+    const isViewed = state.viewedScenes.has(sceneId);
+    if (btn) {
+        btn.className = `btn btn-sm ${isViewed ? 'btn-success' : 'btn-outline-primary'}`;
+        btn.textContent = isViewed ? '✓ Reviewed' : 'Mark as Reviewed';
+    }
+};
 
 // Update node visual styles based on viewed status
 function updateNodeStyles() {
@@ -1043,6 +1042,44 @@ function hideInfoCard() {
 }
 
 window.hideInfoCard = hideInfoCard;
+
+function clearAllSelections() {
+    // Clear search
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.value = '';
+        state.searchQuery = '';
+    }
+
+    // Clear info card
+    hideInfoCard();
+    hideTooltip();
+
+    // Clear locked node
+    state.lockedNode = null;
+    state.selectedNode = null;
+
+    // Clear legend filters
+    state.activeActs.clear();
+    state.activeMarkers.clear();
+    state.activeConnections.clear();
+
+    // Update UI
+    d3.selectAll('.legend-item[data-act]').classed('active', false);
+    d3.selectAll('.legend-marker-item').classed('active', false);
+    d3.selectAll('.legend-connection-item').classed('active', false);
+
+    // Clear book club question highlights
+    document.querySelectorAll('.book-club-question').forEach(q => {
+        q.classList.remove('active');
+    });
+
+    // Reset all node visibility
+    updateHighlights();
+    renderTimeline();
+}
+
+window.clearAllSelections = clearAllSelections;
 
 function positionInfoCard(event) {
     if (!infoCard) return;
@@ -1417,6 +1454,11 @@ function initLegend() {
             .attr('class', 'legend-text')
             .text(conn.label);
     });
+
+    // Add clear selection hint at bottom
+    legendContainer.append('div')
+        .attr('class', 'clear-selection-hint')
+        .html('💡 <kbd>ESC</kbd> or <strong>click outside</strong> to clear selections');
 
     updateProgressUI();
 }
@@ -2041,11 +2083,23 @@ function initSearch() {
             searchInput.focus();
         }
         if (e.key === 'Escape') {
-            searchInput.value = '';
-            searchInput.dispatchEvent(new Event('input'));
-            searchInput.blur();
-            hideInfoCard();
-            clearBookClubHighlights();
+            // Clear all selections: search, filters, locked nodes, everything
+            clearAllSelections();
+        }
+    });
+
+    // Click outside to clear selections
+    document.addEventListener('click', function(e) {
+        // Check if click is on an interactive element
+        const clickedInteractive = e.target.closest(
+            '.node, .legend-item, .legend-marker-item, .legend-connection-item, ' +
+            '.info-card, #search-input, .book-club-question, ' +
+            '[data-interactive]'
+        );
+
+        // If not clicking on interactive elements, clear all selections
+        if (!clickedInteractive) {
+            clearAllSelections();
         }
     });
 }
@@ -2146,6 +2200,39 @@ function toggleAnswer(event, button) {
 }
 
 window.toggleAnswer = toggleAnswer;
+
+// Sort book club questions by chronological or thematic order
+window.sortQuestions = function(sortType) {
+    const grid = document.querySelector('.book-club-grid');
+    if (!grid) return;
+
+    // Update button states
+    document.querySelectorAll('.sort-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.sort === sortType);
+    });
+
+    // Get all question elements
+    const questions = Array.from(grid.querySelectorAll('.book-club-question'));
+
+    if (sortType === 'chronological') {
+        // Sort by first scene number
+        questions.sort((a, b) => {
+            const aScenes = a.dataset.scenes.split(',').map(s => parseInt(s.trim()));
+            const bScenes = b.dataset.scenes.split(',').map(s => parseInt(s.trim()));
+            return Math.min(...aScenes) - Math.min(...bScenes);
+        });
+    } else {
+        // Thematic: restore original DOM order by data-question-number
+        questions.sort((a, b) => {
+            const aNum = parseInt(a.querySelector('.question-number').textContent);
+            const bNum = parseInt(b.querySelector('.question-number').textContent);
+            return aNum - bNum;
+        });
+    }
+
+    // Re-append in sorted order
+    questions.forEach(q => grid.appendChild(q));
+};
 
 // ============================================
 // INITIALIZATION
