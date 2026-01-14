@@ -1817,11 +1817,17 @@ function showScreenplayViewer(scene) {
             <button class="screenplay-close-btn" onclick="hideScreenplayViewer()">✕</button>
         </div>
         <div class="screenplay-viewer-content">
-            <iframe
-                src="StanleyKubrick_1980_TheShining.pdf#page=${getScreenplayPage(scene)}"
+            <object
+                data="StanleyKubrick_1980_TheShining.pdf#page=${getScreenplayPage(scene)}"
+                type="application/pdf"
                 class="screenplay-iframe"
                 title="The Shining Screenplay">
-            </iframe>
+                <iframe
+                    src="StanleyKubrick_1980_TheShining.pdf#page=${getScreenplayPage(scene)}"
+                    class="screenplay-iframe"
+                    title="The Shining Screenplay">
+                </iframe>
+            </object>
         </div>
     `;
 
