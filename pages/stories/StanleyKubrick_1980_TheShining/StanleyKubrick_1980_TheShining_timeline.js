@@ -811,28 +811,41 @@ function createLegendWithProgress() {
     // Separator
     grid.append('div').attr('class', 'legend-separator');
 
-    // Section label for Question Tags
-    grid.append('span')
-        .attr('class', 'legend-section-label')
+    // Section label for Question Tags - collapsible
+    const topicsHeader = grid.append('div')
+        .attr('class', 'legend-section-label legend-collapsible-header')
+        .style('cursor', 'pointer')
+        .style('user-select', 'none')
+        .on('click', function() {
+            const content = d3.select(this.nextSibling);
+            const isCollapsed = content.style('display') === 'none';
+            content.style('display', isCollapsed ? 'flex' : 'none');
+            d3.select(this).select('.collapse-icon').text(isCollapsed ? '▼' : '▶');
+        });
+
+    topicsHeader.append('span')
+        .attr('class', 'collapse-icon')
+        .text('▼')
+        .style('margin-right', '0.5rem')
+        .style('font-size', '0.7rem');
+
+    topicsHeader.append('span')
         .text('Discussion Topics:');
 
-    // Build discussion tags from centralized TAG_GROUPS with group headers
+    // Build discussion tags from centralized TAG_GROUPS - all in one row
+    const topicsRow = grid.append('div')
+        .attr('class', 'legend-items-row')
+        .style('flex-wrap', 'wrap')
+        .style('gap', '0.5rem')
+        .style('display', 'flex');
+
     for (const [groupName, groupTags] of Object.entries(TAG_GROUPS)) {
-        // Create a wrapper div for the entire group row (spans full width, one line per group)
-        const groupRow = grid.append('div')
-            .attr('class', 'legend-tag-group-row');
-
-        // Add group label inline
-        groupRow.append('span')
-            .attr('class', 'legend-tag-group-label')
-            .text(groupName + ':');
-
         // Add tags inline in the same row
         groupTags.forEach(tagKey => {
             const label = tagKey.charAt(0).toUpperCase() + tagKey.slice(1).replace(/-/g, ' ');
             const icon = TAG_ICONS[tagKey] || '🏷️';
 
-            const item = groupRow.append('div')
+            const item = topicsRow.append('div')
                 .attr('class', `legend-item legend-question-item tag-${tagKey}`)
                 .attr('data-question', tagKey)
                 .attr('title', `Filter scenes with ${label} discussion`)

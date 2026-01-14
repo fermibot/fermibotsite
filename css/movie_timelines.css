@@ -788,6 +788,26 @@
     margin-right: 0.25rem;
 }
 
+/* Collapsible section header */
+.legend-collapsible-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.2s ease;
+}
+
+.legend-collapsible-header:hover {
+    color: var(--viz-primary);
+}
+
+.collapse-icon {
+    margin-right: 0.5rem;
+    font-size: 0.7rem;
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
 .legend-line {
     width: 20px;
     height: 3px;

@@ -47,6 +47,43 @@ const CONFIG = {
 };
 
 // ============================================
+// DISCUSSION QUESTIONS
+// ============================================
+
+const DISCUSSION_QUESTIONS = [
+    {id: 1, tags: ['power', 'consequence', 'hubris'], relatedScenes: [1]},
+    {id: 2, tags: ['identity', 'relationships'], relatedScenes: [2]},
+    {id: 3, tags: ['identity', 'transformation', 'relationships'], relatedScenes: [3, 4]},
+    {id: 4, tags: ['transformation'], relatedScenes: [4]},
+    {id: 5, tags: ['identity', 'enhancement', 'addiction', 'withdrawal', 'consequence', 'transformation', 'ambition'], relatedScenes: [5, 6, 7]},
+    {id: 6, tags: ['enhancement', 'addiction', 'withdrawal', 'consequence', 'hubris'], relatedScenes: [8, 9, 10]},
+    {id: 7, tags: ['power', 'addiction', 'consequence', 'ambition', 'relationships'], relatedScenes: [11, 12]},
+    {id: 8, tags: ['power', 'identity', 'consequence', 'transformation', 'hubris'], relatedScenes: [13, 14, 15]},
+    {id: 9, tags: ['ethics', 'consequence', 'violence', 'hubris', 'memory'], relatedScenes: [16]},
+    {id: 10, tags: ['power', 'addiction', 'withdrawal', 'consequence', 'hubris', 'relationships'], relatedScenes: [17]},
+    {id: 11, tags: ['power', 'addiction', 'withdrawal', 'consequence', 'violence', 'control'], relatedScenes: [18]},
+    {id: 12, tags: ['ethics', 'addiction', 'withdrawal', 'consequence', 'relationships'], relatedScenes: [19]},
+    {id: 13, tags: ['power', 'consequence', 'sacrifice', 'hubris'], relatedScenes: [20]},
+    {id: 14, tags: ['power', 'identity', 'withdrawal', 'consequence', 'transformation', 'hubris', 'relationships'], relatedScenes: [1, 2, 4, 20]},
+    {id: 15, tags: ['ethics', 'power', 'consequence', 'sacrifice', 'hubris', 'control'], relatedScenes: [4, 8, 13, 15, 20]},
+    {id: 16, tags: ['power', 'identity', 'consequence', 'transformation', 'control'], relatedScenes: [3, 7, 14, 19]},
+    {id: 17, tags: ['ethics', 'consequence', 'violence', 'sacrifice'], relatedScenes: [8, 9, 10, 13, 15]},
+    {id: 18, tags: ['power', 'consequence', 'hubris', 'control'], relatedScenes: [1, 20]},
+    {id: 19, tags: ['power', 'consequence', 'ambition', 'hubris', 'control'], relatedScenes: [5, 6, 7, 16, 19]},
+    {id: 20, tags: ['ethics', 'power', 'identity', 'consequence', 'hubris'], relatedScenes: [2, 4, 11, 16, 20]},
+    {id: 21, tags: ['identity', 'sacrifice', 'transformation', 'relationships'], relatedScenes: [3, 10, 14, 19]},
+    {id: 22, tags: ['ethics', 'enhancement'], relatedScenes: [2, 4]},
+    {id: 23, tags: ['addiction', 'consequence', 'violence'], relatedScenes: [5, 6, 7]},
+    {id: 24, tags: ['ethics', 'power', 'consequence', 'hubris', 'control'], relatedScenes: [13, 15, 20]},
+    {id: 25, tags: ['power', 'identity', 'enhancement', 'addiction', 'consequence', 'violence', 'hubris'], relatedScenes: [28, 32, 34]},
+    {id: 26, tags: ['ethics', 'consequence', 'memory'], relatedScenes: [11, 16, 17]},
+    {id: 27, tags: ['identity', 'enhancement', 'transformation'], relatedScenes: [2, 4, 8]},
+    {id: 28, tags: ['power', 'consequence', 'ambition', 'control'], relatedScenes: [15, 20]},
+    {id: 29, tags: ['ethics', 'addiction', 'withdrawal', 'consequence', 'sacrifice'], relatedScenes: [30, 32, 34]},
+    {id: 30, tags: ['ethics', 'power', 'identity', 'enhancement', 'addiction', 'withdrawal', 'consequence', 'sacrifice', 'transformation', 'ambition', 'hubris', 'control'], relatedScenes: [1, 4, 10, 20, 34]}
+];
+
+// ============================================
 // STATE MANAGEMENT
 // ============================================
 
@@ -455,7 +492,10 @@ function createLegendWithProgress() {
         .attr('class', 'legend-section-label')
         .text('Filter by Act:');
 
-    // Act colors with scene counts
+    // Act colors with scene counts - wrap in row
+    const actsRow = grid.append('div')
+        .attr('class', 'legend-items-row');
+
     const actDetails = {
         'act1': { count: 15 },
         'act2': { count: 14 },
@@ -463,7 +503,7 @@ function createLegendWithProgress() {
     };
 
     Object.entries(CONFIG.ACT_NAMES).forEach(([actId, name]) => {
-        const item = grid.append('div')
+        const item = actsRow.append('div')
             .attr('class', 'legend-item')
             .attr('data-act', actId)
             .attr('title', `Click to filter: ${name} (${actDetails[actId].count} scenes)`)
@@ -490,7 +530,10 @@ function createLegendWithProgress() {
         .attr('class', 'legend-section-label')
         .text('Cognitive States:');
 
-    // Cognitive states
+    // Cognitive states - wrap in row
+    const statesRow = grid.append('div')
+        .attr('class', 'legend-items-row');
+
     const cognitiveStates = [
         { key: 'baseline', label: 'Baseline (20%)', color: '#7f8c8d' },
         { key: 'enhanced', label: 'Enhanced (100%)', color: '#3498db' },
@@ -498,7 +541,7 @@ function createLegendWithProgress() {
     ];
 
     cognitiveStates.forEach(state => {
-        const item = grid.append('div')
+        const item = statesRow.append('div')
             .attr('class', 'legend-item legend-marker-item')
             .attr('data-marker', state.key)
             .attr('title', `Click to filter: ${state.label}`)
@@ -517,12 +560,28 @@ function createLegendWithProgress() {
     // Separator
     grid.append('div').attr('class', 'legend-separator');
 
-    // Section label for Question Tags
-    grid.append('span')
-        .attr('class', 'legend-section-label')
+    // Section label for Question Tags - collapsible
+    const topicsHeader = grid.append('div')
+        .attr('class', 'legend-section-label legend-collapsible-header')
+        .style('cursor', 'pointer')
+        .style('user-select', 'none')
+        .on('click', function() {
+            const content = d3.select(this.nextSibling);
+            const isCollapsed = content.style('display') === 'none';
+            content.style('display', isCollapsed ? 'flex' : 'none');
+            d3.select(this).select('.collapse-icon').text(isCollapsed ? '▼' : '▶');
+        });
+
+    topicsHeader.append('span')
+        .attr('class', 'collapse-icon')
+        .text('▼')
+        .style('margin-right', '0.5rem')
+        .style('font-size', '0.7rem');
+
+    topicsHeader.append('span')
         .text('Discussion Topics:');
 
-    // Discussion tags
+    // Discussion tags - all in one row
     const discussionTags = [
         { key: 'ethics', label: 'Ethics', icon: '⚖️' },
         { key: 'power', label: 'Power', icon: '👑' },
@@ -535,11 +594,20 @@ function createLegendWithProgress() {
         { key: 'transformation', label: 'Transformation', icon: '🦋' },
         { key: 'ambition', label: 'Ambition', icon: '🎯' },
         { key: 'hubris', label: 'Hubris', icon: '🔥' },
-        { key: 'withdrawal', label: 'Withdrawal', icon: '💢' }
+        { key: 'withdrawal', label: 'Withdrawal', icon: '💢' },
+        { key: 'control', label: 'Control', icon: '🎮' },
+        { key: 'sacrifice', label: 'Sacrifice', icon: '🕯️' },
+        { key: 'memory', label: 'Memory', icon: '🧩' }
     ];
 
+    const topicsRow = grid.append('div')
+        .attr('class', 'legend-items-row')
+        .style('flex-wrap', 'wrap')
+        .style('gap', '0.5rem')
+        .style('display', 'flex');
+
     discussionTags.forEach(tag => {
-        const item = grid.append('div')
+        const item = topicsRow.append('div')
             .attr('class', `legend-item legend-question-item tag-${tag.key}`)
             .attr('data-question', tag.key)
             .attr('title', `Filter scenes with ${tag.label} discussion`)
@@ -670,39 +738,142 @@ function toggleQuestionFilter(questionKey) {
         });
 
     // Update tag badges in discussion questions to reflect active state
-    document.querySelectorAll('.tag-badge').forEach(badge => {
-        const tagMatch = badge.className.match(/tag-(\S+)/);
-        if (tagMatch && tagMatch[1]) {
-            const tag = tagMatch[1].replace(/\s+inactive$/, '');
-            if (legendState.activeQuestions.has(tag)) {
-                badge.classList.remove('inactive');
-            } else {
-                // Only add inactive if the parent question doesn't have this tag active
-                const parentQuestion = badge.closest('.book-club-question');
-                if (parentQuestion) {
-                    const questionTags = parentQuestion.querySelector('.question-tags');
-                    if (questionTags) {
-                        const activeTagsInQuestion = Array.from(questionTags.querySelectorAll('.tag-badge:not(.inactive)'))
-                            .map(b => {
-                                const m = b.className.match(/tag-(\S+)/);
-                                return m ? m[1] : null;
-                            })
-                            .filter(Boolean);
-                        if (!activeTagsInQuestion.includes(tag)) {
+    const hasActiveFilters = legendState.activeQuestions.size > 0;
+
+    document.querySelectorAll('.book-club-question').forEach(questionCard => {
+        // Find which question this card represents by checking its data-scenes attribute
+        const scenesAttr = questionCard.dataset.scenes;
+        if (!scenesAttr) return;
+
+        // Find matching question from DISCUSSION_QUESTIONS
+        const questionData = DISCUSSION_QUESTIONS.find(q => {
+            return q.relatedScenes.join(',') === scenesAttr;
+        });
+
+        if (questionData) {
+            questionCard.querySelectorAll('.tag-badge').forEach(badge => {
+                const classes = badge.className.split(' ');
+                const tagClass = classes.find(c => c.startsWith('tag-') && c !== 'tag-badge' && c !== 'tag-non-clickable' && c !== 'tag-filter-match');
+
+                if (tagClass) {
+                    const tag = tagClass.replace('tag-', '');
+
+                    if (hasActiveFilters) {
+                        if (questionData.tags.includes(tag)) {
+                            // This tag belongs to this question - show it as active
+                            badge.classList.remove('inactive');
+
+                            // Add bright outline if this tag matches the filter
+                            if (legendState.activeQuestions.has(tag)) {
+                                badge.classList.add('tag-filter-match');
+                            } else {
+                                badge.classList.remove('tag-filter-match');
+                            }
+                        } else {
+                            // This tag doesn't belong to this question - hide it
+                            badge.classList.add('inactive');
+                            badge.classList.remove('tag-filter-match');
+                        }
+                    } else {
+                        // No filter: restore original state - question's own tags active
+                        badge.classList.remove('tag-filter-match');
+                        if (questionData.tags.includes(tag)) {
+                            badge.classList.remove('inactive');
+                        } else {
                             badge.classList.add('inactive');
                         }
                     }
                 }
-            }
+            });
         }
     });
+
+    // Filter question cards based on active tags
+    filterQuestionCards();
 
     // Update visualization
     applyLegendFilters();
 }
 
+function filterQuestionCards() {
+    const hasQuestionFilter = legendState.activeQuestions.size > 0;
+    const clearFilterBtn = document.getElementById('clear-question-filter');
+
+    // Show/hide clear filter button
+    if (clearFilterBtn) {
+        clearFilterBtn.style.display = hasQuestionFilter ? 'inline-block' : 'none';
+    }
+
+    // Filter question cards
+    document.querySelectorAll('.book-club-question').forEach(questionCard => {
+        if (!hasQuestionFilter) {
+            // No filter - show all questions
+            questionCard.style.display = '';
+            return;
+        }
+
+        // Check if this question has any of the active tags
+        const scenesAttr = questionCard.dataset.scenes;
+        const questionData = DISCUSSION_QUESTIONS.find(q => {
+            return scenesAttr && q.relatedScenes.join(',') === scenesAttr;
+        });
+
+        if (questionData) {
+            const hasMatchingTag = questionData.tags.some(tag =>
+                legendState.activeQuestions.has(tag)
+            );
+            questionCard.style.display = hasMatchingTag ? '' : 'none';
+        }
+    });
+}
+
+function clearQuestionFilter() {
+    legendState.activeQuestions.clear();
+
+    // Update legend appearance
+    d3.selectAll('.legend-question-item').classed('active', false);
+
+    // Reset tag badges to their original state (active for question's own tags, inactive for others)
+    document.querySelectorAll('.book-club-question').forEach(questionCard => {
+        const scenesAttr = questionCard.dataset.scenes;
+        const questionData = DISCUSSION_QUESTIONS.find(q => {
+            return scenesAttr && q.relatedScenes.join(',') === scenesAttr;
+        });
+
+        if (questionData) {
+            questionCard.querySelectorAll('.tag-badge').forEach(badge => {
+                const classes = badge.className.split(' ');
+                const tagClass = classes.find(c => c.startsWith('tag-') && c !== 'tag-badge' && c !== 'tag-non-clickable' && c !== 'tag-filter-match');
+
+                if (tagClass) {
+                    const tag = tagClass.replace('tag-', '');
+                    badge.classList.remove('tag-filter-match');
+                    if (questionData.tags.includes(tag)) {
+                        badge.classList.remove('inactive');
+                    } else {
+                        badge.classList.add('inactive');
+                    }
+                }
+            });
+        }
+
+        // Show all question cards
+        questionCard.style.display = '';
+    });
+
+    // Hide clear filter button
+    const clearFilterBtn = document.getElementById('clear-question-filter');
+    if (clearFilterBtn) {
+        clearFilterBtn.style.display = 'none';
+    }
+
+    // Clear visualization filters
+    applyLegendFilters();
+}
+
 // Expose to window for onclick handlers
 window.toggleQuestionFilter = toggleQuestionFilter;
+window.clearQuestionFilter = clearQuestionFilter;
 
 function applyLegendFilters() {
     if (!allNodes || !nodeGroup) return;
