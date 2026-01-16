@@ -10,8 +10,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 50%;
-    max-width: 800px;
+    width: 400px;
     height: 100vh;
     background: rgba(0, 0, 0, 0.2);
     z-index: 9997;
@@ -25,16 +24,16 @@
     pointer-events: none;
 }
 
-/* Screenplay viewer panel - LEFT SIDE */
+/* Screenplay viewer panel - LEFT SIDE - matches right info card (400px) */
 .screenplay-viewer-modal {
     position: fixed;
     top: 0;
     left: 0;
-    width: 50%;
-    max-width: 800px;
+    width: 400px;
     height: 100vh;
     background: var(--viz-card-bg);
     box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
+    border-right: 1px solid var(--viz-border);
     z-index: 9999;
     display: flex;
     flex-direction: column;
@@ -104,8 +103,108 @@
     overflow-y: auto;
     overflow-x: hidden;
     position: relative;
-    padding: 2rem 1rem;
+    padding: 1.5rem;
     background: var(--viz-bg);
+}
+
+/* Text-based screenplay display */
+.screenplay-text-content {
+    width: 100%;
+}
+
+.screenplay-text {
+    font-family: 'Courier Prime', 'Courier New', 'Courier', monospace;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--viz-text);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 0;
+    padding: 2rem 1.5rem;
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.03) 0%,
+        rgba(255, 255, 255, 0.01) 100%);
+    border: none;
+    border-radius: 8px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Dark mode adjustments for screenplay */
+[data-bs-theme="dark"] .screenplay-text {
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.02) 0%,
+        rgba(0, 0, 0, 0.02) 100%);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Screenplay element styling - scene headings */
+.screenplay-text .scene-heading {
+    font-weight: 700;
+    color: #0277BD;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    display: block;
+}
+
+[data-bs-theme="dark"] .screenplay-text .scene-heading {
+    color: #4FC3F7;
+}
+
+/* Character names */
+.screenplay-text .character {
+    font-weight: 600;
+    color: #00897B;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 0.25em;
+    margin-left: 2.5em;
+}
+
+[data-bs-theme="dark"] .screenplay-text .character {
+    color: #4DB6AC;
+}
+
+/* Dialogue */
+.screenplay-text .dialogue {
+    display: block;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+    margin-bottom: 0.5em;
+    color: var(--viz-text);
+}
+
+/* Parentheticals (character directions) */
+.screenplay-text .parenthetical {
+    display: block;
+    margin-left: 2em;
+    font-style: italic;
+    color: var(--viz-text-muted);
+    margin-bottom: 0.25em;
+}
+
+/* Action/description lines */
+.screenplay-text .action {
+    display: block;
+    margin-bottom: 0.75em;
+    color: var(--viz-text);
+}
+
+/* Transitions */
+.screenplay-text .transition {
+    font-weight: 600;
+    text-align: right;
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #6A1B9A;
+}
+
+[data-bs-theme="dark"] .screenplay-text .transition {
+    color: #BA68C8;
 }
 
 /* Scroll container */
@@ -174,17 +273,37 @@
     background: white;
 }
 
+/* Scrollbar styling for screenplay viewer */
+.screenplay-viewer-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.screenplay-viewer-content::-webkit-scrollbar-track {
+    background: var(--viz-bg-secondary);
+}
+
+.screenplay-viewer-content::-webkit-scrollbar-thumb {
+    background: var(--viz-border);
+    border-radius: 4px;
+}
+
+.screenplay-viewer-content::-webkit-scrollbar-thumb:hover {
+    background: var(--viz-text-muted);
+}
+
 /* Responsive adjustments */
-@media (max-width: 1200px) {
-    .screenplay-viewer-modal {
-        width: 60%;
+@media (max-width: 768px) {
+    .screenplay-viewer-modal,
+    .screenplay-viewer-backdrop {
+        width: 90vw;
+        max-width: 400px;
     }
 }
 
-@media (max-width: 768px) {
-    .screenplay-viewer-modal {
-        width: 100%;
-        max-width: 100%;
+@media (max-width: 480px) {
+    .screenplay-viewer-modal,
+    .screenplay-viewer-backdrop {
+        width: 100vw;
     }
 }
 
@@ -1290,4 +1409,666 @@
 /* No pulse animation on chapter numbers */
 .legend-chapter-item:hover span[style*="background-color"] {
     /* No animation */
+}
+
+/* ============================================
+   LIMITLESS TAG BADGE COLORS - All 53 Tags
+   ============================================ */
+
+/* Characters (6) - Purple/Blue tones */
+.tag-badge.tag-eddie {
+    background-color: #E3F2FD;
+    color: #1565C0;
+    border-color: #1565C0;
+}
+
+.tag-badge.tag-lindy {
+    background-color: #FCE4EC;
+    color: #C2185B;
+    border-color: #C2185B;
+}
+
+.tag-badge.tag-vernon {
+    background-color: #F3E5F5;
+    color: #7B1FA2;
+    border-color: #7B1FA2;
+}
+
+.tag-badge.tag-melissa {
+    background-color: #EDE7F6;
+    color: #5E35B1;
+    border-color: #5E35B1;
+}
+
+.tag-badge.tag-van-loon {
+    background-color: #E0F2F1;
+    color: #00695C;
+    border-color: #00695C;
+}
+
+.tag-badge.tag-gennady {
+    background-color: #FFEBEE;
+    color: #C62828;
+    border-color: #C62828;
+}
+
+/* Plot Progression (6) - Story arc colors */
+.tag-badge.tag-rock-bottom {
+    background-color: #EFEBE9;
+    color: #5D4037;
+    border-color: #5D4037;
+}
+
+.tag-badge.tag-nzt-discovery {
+    background-color: #E1F5FE;
+    color: #0277BD;
+    border-color: #0277BD;
+}
+
+.tag-badge.tag-transformation {
+    background-color: #E0F2F1;
+    color: #00897B;
+    border-color: #00897B;
+}
+
+.tag-badge.tag-wall-street {
+    background-color: #E8F5E9;
+    color: #2E7D32;
+    border-color: #2E7D32;
+}
+
+.tag-badge.tag-withdrawal-crisis {
+    background-color: #F3E5F5;
+    color: #6A1B9A;
+    border-color: #6A1B9A;
+}
+
+.tag-badge.tag-resolution {
+    background-color: #E8F5E9;
+    color: #388E3C;
+    border-color: #388E3C;
+}
+
+/* NZT & States (7) - Cyan/Blue enhancement theme */
+.tag-badge.tag-nzt, .tag-badge.tag-pill {
+    background-color: #E0F7FA;
+    color: #00838F;
+    border-color: #00838F;
+}
+
+.tag-badge.tag-taking-nzt {
+    background-color: #B2EBF2;
+    color: #006064;
+    border-color: #006064;
+}
+
+.tag-badge.tag-intelligence {
+    background-color: #E1F5FE;
+    color: #01579B;
+    border-color: #01579B;
+}
+
+.tag-badge.tag-withdrawal {
+    background-color: #F1F8E9;
+    color: #558B2F;
+    border-color: #558B2F;
+}
+
+.tag-badge.tag-withdrawal-symptoms {
+    background-color: #FFF9C4;
+    color: #F57F17;
+    border-color: #F57F17;
+}
+
+.tag-badge.tag-confidence {
+    background-color: #FFF3E0;
+    color: #E65100;
+    border-color: #E65100;
+}
+
+/* Locations (6) - Gray/neutral tones */
+.tag-badge.tag-apartment {
+    background-color: #F5F5F5;
+    color: #424242;
+    border-color: #616161;
+}
+
+.tag-badge.tag-bar {
+    background-color: #FBE9E7;
+    color: #BF360C;
+    border-color: #BF360C;
+}
+
+.tag-badge.tag-office {
+    background-color: #E3F2FD;
+    color: #1565C0;
+    border-color: #1565C0;
+}
+
+.tag-badge.tag-street {
+    background-color: #ECEFF1;
+    color: #37474F;
+    border-color: #546E7A;
+}
+
+.tag-badge.tag-restaurant {
+    background-color: #FFF8E1;
+    color: #F57C00;
+    border-color: #F57C00;
+}
+
+.tag-badge.tag-penthouse {
+    background-color: #F3E5F5;
+    color: #4A148C;
+    border-color: #6A1B9A;
+}
+
+/* Objects (4) */
+.tag-badge.tag-book {
+    background-color: #EFEBE9;
+    color: #4E342E;
+    border-color: #5D4037;
+}
+
+.tag-badge.tag-money {
+    background-color: #F1F8E9;
+    color: #33691E;
+    border-color: #558B2F;
+}
+
+.tag-badge.tag-phone {
+    background-color: #E0E0E0;
+    color: #212121;
+    border-color: #424242;
+}
+
+.tag-badge.tag-weapon {
+    background-color: #FFEBEE;
+    color: #B71C1C;
+    border-color: #C62828;
+}
+
+/* Actions (8) - Red/Orange action colors */
+.tag-badge.tag-violence {
+    background-color: #FFEBEE;
+    color: #C62828;
+    border-color: #D32F2F;
+}
+
+.tag-badge.tag-chase {
+    background-color: #FBE9E7;
+    color: #D84315;
+    border-color: #E64A19;
+}
+
+.tag-badge.tag-deal {
+    background-color: #E8F5E9;
+    color: #2E7D32;
+    border-color: #388E3C;
+}
+
+.tag-badge.tag-meeting {
+    background-color: #E3F2FD;
+    color: #1565C0;
+    border-color: #1976D2;
+}
+
+.tag-badge.tag-trading {
+    background-color: #E8F5E9;
+    color: #1B5E20;
+    border-color: #2E7D32;
+}
+
+.tag-badge.tag-presentation {
+    background-color: #E1F5FE;
+    color: #01579B;
+    border-color: #0277BD;
+}
+
+.tag-badge.tag-merger {
+    background-color: #F3E5F5;
+    color: #4A148C;
+    border-color: #6A1B9A;
+}
+
+.tag-badge.tag-betrayal {
+    background-color: #FCE4EC;
+    color: #880E4F;
+    border-color: #AD1457;
+}
+
+/* Relationships (6) - Pink/Purple emotional tones */
+.tag-badge.tag-relationship {
+    background-color: #FCE4EC;
+    color: #C2185B;
+    border-color: #D81B60;
+}
+
+.tag-badge.tag-intimacy {
+    background-color: #F8BBD0;
+    color: #880E4F;
+    border-color: #AD1457;
+}
+
+.tag-badge.tag-breakup {
+    background-color: #FFEBEE;
+    color: #B71C1C;
+    border-color: #C62828;
+}
+
+.tag-badge.tag-manipulation {
+    background-color: #EDE7F6;
+    color: #4527A0;
+    border-color: #5E35B1;
+}
+
+.tag-badge.tag-desperation {
+    background-color: #FFF3E0;
+    color: #E65100;
+    border-color: #EF6C00;
+}
+
+.tag-badge.tag-paranoia {
+    background-color: #FFF9C4;
+    color: #F57F17;
+    border-color: #F9A825;
+}
+
+/* Themes (7) - Bold thematic colors */
+.tag-badge.tag-finance {
+    background-color: #E8F5E9;
+    color: #1B5E20;
+    border-color: #2E7D32;
+}
+
+.tag-badge.tag-power {
+    background-color: #FFF3E0;
+    color: #E65100;
+    border-color: #EF6C00;
+}
+
+.tag-badge.tag-danger {
+    background-color: #FFEBEE;
+    color: #C62828;
+    border-color: #D32F2F;
+}
+
+.tag-badge.tag-addiction {
+    background-color: #F3E5F5;
+    color: #6A1B9A;
+    border-color: #7B1FA2;
+}
+
+.tag-badge.tag-ethics {
+    background-color: #E0F2F1;
+    color: #00695C;
+    border-color: #00897B;
+}
+
+.tag-badge.tag-identity {
+    background-color: #E1F5FE;
+    color: #01579B;
+    border-color: #0277BD;
+}
+
+.tag-badge.tag-wealth {
+    background-color: #FFF9C4;
+    color: #F57F17;
+    border-color: #F9A825;
+}
+
+/* Story Structure (3) - Purple narrative tones */
+.tag-badge.tag-voiceover {
+    background-color: #EDE7F6;
+    color: #4527A0;
+    border-color: #5E35B1;
+}
+
+.tag-badge.tag-flashback {
+    background-color: #F3E5F5;
+    color: #6A1B9A;
+    border-color: #7B1FA2;
+}
+
+.tag-badge.tag-montage {
+    background-color: #E8EAF6;
+    color: #283593;
+    border-color: #3949AB;
+}
+
+/* Dark mode adjustments */
+[data-bs-theme="dark"] .tag-badge {
+    opacity: 0.9;
+}
+
+[data-bs-theme="dark"] .tag-badge:hover {
+    opacity: 1;
+}
+
+
+/* ============================================
+   LEGEND QUESTION ITEM TAG COLORS (Discussion Topics Section)
+   Same colors as tag-badge but for legend items
+   ============================================ */
+
+/* Characters (6) */
+.legend-question-item.tag-eddie {
+    background-color: #E3F2FD !important;
+    color: #1565C0 !important;
+    border-color: #1565C0 !important;
+}
+
+.legend-question-item.tag-lindy {
+    background-color: #FCE4EC !important;
+    color: #C2185B !important;
+    border-color: #C2185B !important;
+}
+
+.legend-question-item.tag-vernon {
+    background-color: #F3E5F5 !important;
+    color: #7B1FA2 !important;
+    border-color: #7B1FA2 !important;
+}
+
+.legend-question-item.tag-melissa {
+    background-color: #EDE7F6 !important;
+    color: #5E35B1 !important;
+    border-color: #5E35B1 !important;
+}
+
+.legend-question-item.tag-van-loon {
+    background-color: #E0F2F1 !important;
+    color: #00695C !important;
+    border-color: #00695C !important;
+}
+
+.legend-question-item.tag-gennady {
+    background-color: #FFEBEE !important;
+    color: #C62828 !important;
+    border-color: #C62828 !important;
+}
+
+/* Plot Progression (6) */
+.legend-question-item.tag-rock-bottom {
+    background-color: #EFEBE9 !important;
+    color: #5D4037 !important;
+    border-color: #5D4037 !important;
+}
+
+.legend-question-item.tag-nzt-discovery {
+    background-color: #E1F5FE !important;
+    color: #0277BD !important;
+    border-color: #0277BD !important;
+}
+
+.legend-question-item.tag-transformation {
+    background-color: #E0F2F1 !important;
+    color: #00897B !important;
+    border-color: #00897B !important;
+}
+
+.legend-question-item.tag-wall-street {
+    background-color: #E8F5E9 !important;
+    color: #2E7D32 !important;
+    border-color: #2E7D32 !important;
+}
+
+.legend-question-item.tag-withdrawal-crisis {
+    background-color: #F3E5F5 !important;
+    color: #6A1B9A !important;
+    border-color: #6A1B9A !important;
+}
+
+.legend-question-item.tag-resolution {
+    background-color: #E8F5E9 !important;
+    color: #388E3C !important;
+    border-color: #388E3C !important;
+}
+
+/* NZT & States (7) */
+.legend-question-item.tag-nzt,
+.legend-question-item.tag-pill {
+    background-color: #E0F7FA !important;
+    color: #00838F !important;
+    border-color: #00838F !important;
+}
+
+.legend-question-item.tag-taking-nzt {
+    background-color: #B2EBF2 !important;
+    color: #006064 !important;
+    border-color: #006064 !important;
+}
+
+.legend-question-item.tag-intelligence {
+    background-color: #E1F5FE !important;
+    color: #01579B !important;
+    border-color: #01579B !important;
+}
+
+.legend-question-item.tag-withdrawal {
+    background-color: #F1F8E9 !important;
+    color: #558B2F !important;
+    border-color: #558B2F !important;
+}
+
+.legend-question-item.tag-withdrawal-symptoms {
+    background-color: #FFF9C4 !important;
+    color: #F57F17 !important;
+    border-color: #F57F17 !important;
+}
+
+.legend-question-item.tag-confidence {
+    background-color: #FFF3E0 !important;
+    color: #E65100 !important;
+    border-color: #E65100 !important;
+}
+
+/* Locations (6) */
+.legend-question-item.tag-apartment {
+    background-color: #F5F5F5 !important;
+    color: #424242 !important;
+    border-color: #616161 !important;
+}
+
+.legend-question-item.tag-bar {
+    background-color: #FBE9E7 !important;
+    color: #BF360C !important;
+    border-color: #BF360C !important;
+}
+
+.legend-question-item.tag-office {
+    background-color: #E3F2FD !important;
+    color: #1565C0 !important;
+    border-color: #1565C0 !important;
+}
+
+.legend-question-item.tag-street {
+    background-color: #ECEFF1 !important;
+    color: #37474F !important;
+    border-color: #546E7A !important;
+}
+
+.legend-question-item.tag-restaurant {
+    background-color: #FFF8E1 !important;
+    color: #F57C00 !important;
+    border-color: #F57C00 !important;
+}
+
+.legend-question-item.tag-penthouse {
+    background-color: #F3E5F5 !important;
+    color: #4A148C !important;
+    border-color: #6A1B9A !important;
+}
+
+/* Objects (4) */
+.legend-question-item.tag-book {
+    background-color: #EFEBE9 !important;
+    color: #4E342E !important;
+    border-color: #5D4037 !important;
+}
+
+.legend-question-item.tag-money {
+    background-color: #F1F8E9 !important;
+    color: #33691E !important;
+    border-color: #558B2F !important;
+}
+
+.legend-question-item.tag-phone {
+    background-color: #E0E0E0 !important;
+    color: #212121 !important;
+    border-color: #424242 !important;
+}
+
+.legend-question-item.tag-weapon {
+    background-color: #FFEBEE !important;
+    color: #B71C1C !important;
+    border-color: #C62828 !important;
+}
+
+/* Actions (8) */
+.legend-question-item.tag-violence {
+    background-color: #FFEBEE !important;
+    color: #C62828 !important;
+    border-color: #D32F2F !important;
+}
+
+.legend-question-item.tag-chase {
+    background-color: #FBE9E7 !important;
+    color: #D84315 !important;
+    border-color: #E64A19 !important;
+}
+
+.legend-question-item.tag-deal {
+    background-color: #E8F5E9 !important;
+    color: #2E7D32 !important;
+    border-color: #388E3C !important;
+}
+
+.legend-question-item.tag-meeting {
+    background-color: #E3F2FD !important;
+    color: #1565C0 !important;
+    border-color: #1976D2 !important;
+}
+
+.legend-question-item.tag-trading {
+    background-color: #E8F5E9 !important;
+    color: #1B5E20 !important;
+    border-color: #2E7D32 !important;
+}
+
+.legend-question-item.tag-presentation {
+    background-color: #E1F5FE !important;
+    color: #01579B !important;
+    border-color: #0277BD !important;
+}
+
+.legend-question-item.tag-merger {
+    background-color: #F3E5F5 !important;
+    color: #4A148C !important;
+    border-color: #6A1B9A !important;
+}
+
+.legend-question-item.tag-betrayal {
+    background-color: #FCE4EC !important;
+    color: #880E4F !important;
+    border-color: #AD1457 !important;
+}
+
+/* Relationships (6) */
+.legend-question-item.tag-relationship {
+    background-color: #FCE4EC !important;
+    color: #C2185B !important;
+    border-color: #D81B60 !important;
+}
+
+.legend-question-item.tag-intimacy {
+    background-color: #F8BBD0 !important;
+    color: #880E4F !important;
+    border-color: #AD1457 !important;
+}
+
+.legend-question-item.tag-breakup {
+    background-color: #FFEBEE !important;
+    color: #B71C1C !important;
+    border-color: #C62828 !important;
+}
+
+.legend-question-item.tag-manipulation {
+    background-color: #EDE7F6 !important;
+    color: #4527A0 !important;
+    border-color: #5E35B1 !important;
+}
+
+.legend-question-item.tag-desperation {
+    background-color: #FFF3E0 !important;
+    color: #E65100 !important;
+    border-color: #EF6C00 !important;
+}
+
+.legend-question-item.tag-paranoia {
+    background-color: #FFF9C4 !important;
+    color: #F57F17 !important;
+    border-color: #F9A825 !important;
+}
+
+/* Themes (7) */
+.legend-question-item.tag-finance {
+    background-color: #E8F5E9 !important;
+    color: #1B5E20 !important;
+    border-color: #2E7D32 !important;
+}
+
+.legend-question-item.tag-power {
+    background-color: #FFF3E0 !important;
+    color: #E65100 !important;
+    border-color: #EF6C00 !important;
+}
+
+.legend-question-item.tag-danger {
+    background-color: #FFEBEE !important;
+    color: #C62828 !important;
+    border-color: #D32F2F !important;
+}
+
+.legend-question-item.tag-addiction {
+    background-color: #F3E5F5 !important;
+    color: #6A1B9A !important;
+    border-color: #7B1FA2 !important;
+}
+
+.legend-question-item.tag-ethics {
+    background-color: #E0F2F1 !important;
+    color: #00695C !important;
+    border-color: #00897B !important;
+}
+
+.legend-question-item.tag-identity {
+    background-color: #E1F5FE !important;
+    color: #01579B !important;
+    border-color: #0277BD !important;
+}
+
+.legend-question-item.tag-wealth {
+    background-color: #FFF9C4 !important;
+    color: #F57F17 !important;
+    border-color: #F9A825 !important;
+}
+
+/* Story Structure (3) */
+.legend-question-item.tag-voiceover {
+    background-color: #EDE7F6 !important;
+    color: #4527A0 !important;
+    border-color: #5E35B1 !important;
+}
+
+.legend-question-item.tag-flashback {
+    background-color: #F3E5F5 !important;
+    color: #6A1B9A !important;
+    border-color: #7B1FA2 !important;
+}
+
+.legend-question-item.tag-montage {
+    background-color: #E8EAF6 !important;
+    color: #283593 !important;
+    border-color: #3949AB !important;
 }
