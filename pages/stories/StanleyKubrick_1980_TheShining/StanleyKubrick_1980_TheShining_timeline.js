@@ -438,7 +438,8 @@ async function loadSceneData() {
         const response = await fetch(`${CONFIG.DATA_FILE}?v=${Date.now()}`);
         const data = await response.json();
         state.scenes = data.scenes;
-        console.log(`Loaded ${state.scenes.length} The Shining scenes`);
+        state.discussionQuestions = data.metadata?.discussionQuestions || [];
+        console.log(`Loaded ${state.scenes.length} The Shining scenes and ${state.discussionQuestions.length} discussion questions`);
         return true;
     } catch (error) {
         console.error('Failed to load scene data:', error);
@@ -871,27 +872,30 @@ function createLegendWithProgress() {
         .style('font-size', '0.7rem');
 
     topicsHeader.append('span')
-        .text('Discussion Topics:');
+        .text('Discussion Questions:');
 
-    // Build discussion tags from centralized TAG_GROUPS - multi-column layout
-    const categoriesContainer = grid.append('div')
-        .attr('class', 'legend-categories-container')
-        .style('column-count', '4')
-        .style('column-gap', '2rem')
+    // Build discussion questions list - organized by category
+    const questionsContainer = grid.append('div')
+        .attr('class', 'legend-questions-container')
         .style('margin-top', '0.5rem');
 
-    for (const [groupName, groupTags] of Object.entries(TAG_GROUPS)) {
-        // Create category container (vertical column)
-        const categoryContainer = categoriesContainer.append('div')
-            .attr('class', 'legend-category-container')
-            .style('display', 'inline-block')
-            .style('width', '100%')
-            .style('margin-bottom', '1rem')
-            .style('padding-right', '1rem')
-            .style('break-inside', 'avoid');
+    // Group questions by category
+    const questionsByCategory = {};
+    (state.discussionQuestions || []).forEach(q => {
+        if (!questionsByCategory[q.category]) {
+            questionsByCategory[q.category] = [];
+        }
+        questionsByCategory[q.category].push(q);
+    });
 
-        // Add category label
-        categoryContainer.append('div')
+    // Render each category
+    Object.entries(questionsByCategory).forEach(([category, questions]) => {
+        // Category header
+        const categorySection = questionsContainer.append('div')
+            .attr('class', 'legend-question-category')
+            .style('margin-bottom', '1.5rem');
+
+        categorySection.append('div')
             .attr('class', 'legend-category-label')
             .style('font-weight', '700')
             .style('color', '#555')
@@ -899,66 +903,72 @@ function createLegendWithProgress() {
             .style('font-size', '0.9rem')
             .style('border-bottom', '2px solid #ddd')
             .style('padding-bottom', '0.3rem')
-            .text(groupName);
+            .text(category);
 
-        // Create vertical list of tags for this category
-        const tagsList = categoryContainer.append('div')
-            .attr('class', 'legend-category-tags')
+        // Questions list
+        const questionsList = categorySection.append('div')
             .style('display', 'flex')
             .style('flex-direction', 'column')
-            .style('gap', '0.3rem');
+            .style('gap', '0.5rem');
 
-        // Add tags for this category
-        groupTags.forEach(tagKey => {
-            const label = tagKey.charAt(0).toUpperCase() + tagKey.slice(1).replace(/-/g, ' ');
-            const icon = TAG_ICONS[tagKey] || '🏷️';
+        questions.forEach(q => {
+            // Count scenes related to this question
+            const relatedScenes = state.scenes.filter(s =>
+                s.discussionQuestions && s.discussionQuestions.some(dq => dq.id === q.id)
+            );
+            const sceneCount = relatedScenes.length;
 
-            // Count scenes with this tag
-            const sceneCount = state.scenes.filter(s => s.tags && s.tags.includes(tagKey)).length;
-
-            // Create row container for badge + count
-            const row = tagsList.append('div')
+            const questionRow = questionsList.append('div')
+                .attr('class', 'legend-question-row')
                 .style('display', 'flex')
+                .style('align-items', 'flex-start')
+                .style('gap', '0.5rem')
+                .style('padding', '0.5rem')
+                .style('border-radius', '4px')
+                .style('cursor', 'pointer')
+                .style('transition', 'all 0.2s ease')
+                .attr('data-question-id', q.id)
+                .on('click', () => toggleQuestionFilterById(q.id))
+                .on('mouseenter', function() {
+                    d3.select(this).style('background', 'rgba(0, 0, 0, 0.05)');
+                })
+                .on('mouseleave', function() {
+                    const isActive = legendState.activeQuestions.has(q.id);
+                    d3.select(this).style('background', isActive ? 'rgba(33, 150, 243, 0.1)' : 'transparent');
+                });
+
+            // Question number badge
+            questionRow.append('span')
+                .style('flex-shrink', '0')
+                .style('width', '1.5rem')
+                .style('height', '1.5rem')
+                .style('display', 'inline-flex')
                 .style('align-items', 'center')
-                .style('justify-content', 'space-between')
-                .style('width', '100%');
+                .style('justify-content', 'center')
+                .style('background', '#2196F3')
+                .style('color', 'white')
+                .style('border-radius', '50%')
+                .style('font-size', '0.75rem')
+                .style('font-weight', '600')
+                .text(q.id);
 
-            const item = row.append('div')
-                .attr('class', `legend-item legend-question-item tag-${tagKey}`)
-                .attr('data-question', tagKey)
-                .attr('title', `Filter scenes with ${label} discussion (${sceneCount} scenes)`)
-                .style('width', 'fit-content')
-                .on('click', () => toggleQuestionFilter(tagKey));
+            // Question text
+            questionRow.append('span')
+                .style('flex', '1')
+                .style('font-size', '0.85rem')
+                .style('line-height', '1.4')
+                .text(q.question);
 
-            // Add active indicator (dot)
-            item.append('span')
-                .attr('class', 'active-indicator')
-                .text('✓');
-
-            item.append('span')
-                .attr('class', 'legend-icon')
-                .text(icon);
-
-            item.append('span')
-                .attr('class', 'legend-text')
-                .text(label);
-
-            // Add connecting line
-            row.append('span')
-                .style('flex-grow', '1')
-                .style('border-bottom', '1px dotted #ccc')
-                .style('margin', '0 0.5rem')
-                .style('min-width', '10px');
-
-            // Add count outside the badge (zero-padded)
-            row.append('span')
-                .style('font-size', '0.7rem')
+            // Scene count
+            questionRow.append('span')
+                .style('flex-shrink', '0')
+                .style('font-size', '0.75rem')
                 .style('color', '#888')
                 .style('font-weight', '500')
                 .style('font-family', 'monospace')
-                .text(`(${String(sceneCount).padStart(2, '0')})`);
+                .text(`(${sceneCount})`);
         });
-    }
+    });
 
     // Separator
     grid.append('div').attr('class', 'legend-separator');
@@ -1057,141 +1067,35 @@ function togglePsychologicalFilter(psychKey) {
     applyLegendFilters();
 }
 
-function toggleQuestionFilter(questionKey) {
-    if (legendState.activeQuestions.has(questionKey)) {
-        legendState.activeQuestions.delete(questionKey);
+function toggleQuestionFilterById(questionId) {
+    if (legendState.activeQuestions.has(questionId)) {
+        legendState.activeQuestions.delete(questionId);
     } else {
-        legendState.activeQuestions.add(questionKey);
+        legendState.activeQuestions.add(questionId);
     }
 
-    // Update legend item appearance
-    d3.selectAll('.legend-question-item')
-        .classed('active', function() {
-            return legendState.activeQuestions.has(this.dataset.question);
+    // Update legend question row appearance
+    d3.selectAll('.legend-question-row')
+        .style('background', function() {
+            const qId = parseInt(this.dataset.questionId);
+            return legendState.activeQuestions.has(qId) ? 'rgba(33, 150, 243, 0.1)' : 'transparent';
+        })
+        .style('border-left', function() {
+            const qId = parseInt(this.dataset.questionId);
+            return legendState.activeQuestions.has(qId) ? '3px solid #2196F3' : 'none';
         });
-
-    // Update tag badges in discussion questions to reflect active state
-    const hasActiveFilters = legendState.activeQuestions.size > 0;
-
-    document.querySelectorAll('.book-club-question').forEach(questionCard => {
-        const questionData = DISCUSSION_QUESTIONS.find(q => {
-            const scenes = questionCard.dataset.scenes;
-            return scenes && q.relatedScenes.join(',') === scenes;
-        });
-
-        if (questionData) {
-            questionCard.querySelectorAll('.tag-badge').forEach(badge => {
-                const classes = badge.className.split(' ');
-                const tagClass = classes.find(c => c.startsWith('tag-') && c !== 'tag-badge');
-
-                if (tagClass) {
-                    const tag = tagClass.replace('tag-', '');
-
-                    if (hasActiveFilters) {
-                        // Filter mode: show all question's tags, but highlight filtered ones
-                        if (questionData.tags.includes(tag)) {
-                            // This tag belongs to this question - show it as active
-                            badge.classList.remove('inactive');
-
-                            // Add bright outline if this tag matches the filter
-                            if (legendState.activeQuestions.has(tag)) {
-                                badge.classList.add('tag-filter-match');
-                            } else {
-                                badge.classList.remove('tag-filter-match');
-                            }
-                        } else {
-                            // This tag doesn't belong to this question - hide it
-                            badge.classList.add('inactive');
-                            badge.classList.remove('tag-filter-match');
-                        }
-                    } else {
-                        // No filter: restore original state - question's own tags active
-                        badge.classList.remove('tag-filter-match');
-                        if (questionData.tags.includes(tag)) {
-                            badge.classList.remove('inactive');
-                        } else {
-                            badge.classList.add('inactive');
-                        }
-                    }
-                }
-            });
-        }
-    });
-
-    // Filter question cards based on active tags
-    filterQuestionCards();
 
     // Update visualization
     applyLegendFilters();
-}
-
-// Expose to window for onclick handlers
-window.toggleQuestionFilter = toggleQuestionFilter;
-
-function filterQuestionCards() {
-    const hasQuestionFilter = legendState.activeQuestions.size > 0;
-    const clearFilterBtn = document.getElementById('clear-question-filter');
-
-    // Show/hide clear filter button
-    if (clearFilterBtn) {
-        clearFilterBtn.style.display = hasQuestionFilter ? 'inline-block' : 'none';
-    }
-
-    // Filter question cards
-    document.querySelectorAll('.book-club-question').forEach(questionCard => {
-        if (!hasQuestionFilter) {
-            // No filter - show all questions
-            questionCard.style.display = '';
-            return;
-        }
-
-        // Check if this question has any of the active tags
-        const questionData = DISCUSSION_QUESTIONS.find(q => {
-            const scenes = questionCard.dataset.scenes;
-            return scenes && q.relatedScenes.join(',') === scenes;
-        });
-
-        if (questionData) {
-            const hasMatchingTag = questionData.tags.some(tag =>
-                legendState.activeQuestions.has(tag)
-            );
-            questionCard.style.display = hasMatchingTag ? '' : 'none';
-        }
-    });
 }
 
 function clearQuestionFilter() {
     legendState.activeQuestions.clear();
 
     // Update legend appearance
-    d3.selectAll('.legend-question-item').classed('active', false);
-
-    // Reset tag badges to their original state (active for question's own tags, inactive for others)
-    document.querySelectorAll('.book-club-question').forEach(questionCard => {
-        const questionData = DISCUSSION_QUESTIONS.find(q => {
-            const scenes = questionCard.dataset.scenes;
-            return scenes && q.relatedScenes.join(',') === scenes;
-        });
-
-        if (questionData) {
-            questionCard.querySelectorAll('.tag-badge').forEach(badge => {
-                const classes = badge.className.split(' ');
-                const tagClass = classes.find(c => c.startsWith('tag-') && c !== 'tag-badge');
-                if (tagClass) {
-                    const tag = tagClass.replace('tag-', '');
-                    // Active if this tag belongs to this question, inactive otherwise
-                    if (questionData.tags.includes(tag)) {
-                        badge.classList.remove('inactive');
-                    } else {
-                        badge.classList.add('inactive');
-                    }
-                }
-            });
-        }
-    });
-
-    // Show all question cards
-    filterQuestionCards();
+    d3.selectAll('.legend-question-row')
+        .style('background', 'transparent')
+        .style('border-left', 'none');
 
     // Update visualization
     applyLegendFilters();
@@ -1221,11 +1125,13 @@ function applyLegendFilters() {
             visible = visible && legendState.activePsychological.has(node.data.psychologicalState);
         }
 
-        // Question tag filter
+        // Question filter (by discussion question IDs)
         if (hasQuestionFilter) {
-            const hasMatchingTag = node.data.tags &&
-                Array.from(legendState.activeQuestions).some(q => node.data.tags.includes(q));
-            visible = visible && hasMatchingTag;
+            const hasMatchingQuestion = node.data.discussionQuestions &&
+                Array.from(legendState.activeQuestions).some(qId =>
+                    node.data.discussionQuestions.some(dq => dq.id === qId)
+                );
+            visible = visible && hasMatchingQuestion;
         }
 
         // Apply visibility
@@ -1238,20 +1144,24 @@ function applyLegendFilters() {
     // Update links
     if (linkGroup) {
         linkGroup.selectAll('.link').style('opacity', d => {
-            const sourceHasMatchingTag = !hasQuestionFilter || (d.source.data.tags &&
-                Array.from(legendState.activeQuestions).some(q => d.source.data.tags.includes(q)));
-            const targetHasMatchingTag = !hasQuestionFilter || (d.target.data.tags &&
-                Array.from(legendState.activeQuestions).some(q => d.target.data.tags.includes(q)));
+            const sourceHasMatchingQuestion = !hasQuestionFilter || (d.source.data.discussionQuestions &&
+                Array.from(legendState.activeQuestions).some(qId =>
+                    d.source.data.discussionQuestions.some(dq => dq.id === qId)
+                ));
+            const targetHasMatchingQuestion = !hasQuestionFilter || (d.target.data.discussionQuestions &&
+                Array.from(legendState.activeQuestions).some(qId =>
+                    d.target.data.discussionQuestions.some(dq => dq.id === qId)
+                ));
 
             const sourceVisible = d.source.data.id &&
                 (!hasActFilter || legendState.activeActs.has(d.source.data.act)) &&
                 (!hasPsychologicalFilter || legendState.activePsychological.has(d.source.data.psychologicalState)) &&
-                sourceHasMatchingTag;
+                sourceHasMatchingQuestion;
 
             const targetVisible = d.target.data.id &&
                 (!hasActFilter || legendState.activeActs.has(d.target.data.act)) &&
                 (!hasPsychologicalFilter || legendState.activePsychological.has(d.target.data.psychologicalState)) &&
-                targetHasMatchingTag;
+                targetHasMatchingQuestion;
 
             return (sourceVisible && targetVisible) ? 0.3 : 0.05;
         });

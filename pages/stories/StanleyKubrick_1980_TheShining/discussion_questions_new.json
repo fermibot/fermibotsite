@@ -1,0 +1,244 @@
+{
+  "discussionQuestions": [
+    {
+      "id": 1,
+      "question": "How does Jack's psychological deterioration unfold across the film's structure, and what early warning signs appear before his complete breakdown?",
+      "category": "Character Analysis",
+      "relatedTags": ["jack-declining", "jack-violence", "alcoholism", "writer-block"],
+      "keyScenes": [60, 80, 100, 104, 114, 120],
+      "depth": "deep"
+    },
+    {
+      "id": 2,
+      "question": "What role does Wendy play in the narrative beyond being a victim, and how does her agency evolve throughout the film?",
+      "category": "Character Analysis",
+      "relatedTags": ["wendy-defending", "wendy-discovering", "baseball-bat", "knife"],
+      "keyScenes": [8, 57, 114, 115, 120, 138],
+      "depth": "medium"
+    },
+    {
+      "id": 3,
+      "question": "How does Danny's 'shining' ability function as both a supernatural gift and a narrative device to reveal hidden truths?",
+      "category": "Supernatural",
+      "relatedTags": ["danny-shining", "danny-tony", "shining-vision", "red-rum"],
+      "keyScenes": [8, 30, 78, 107],
+      "depth": "deep"
+    },
+    {
+      "id": 4,
+      "question": "What is the significance of Halloran's connection to Danny, and how does his rescue attempt subvert or fulfill horror genre expectations?",
+      "category": "Character Analysis",
+      "relatedTags": ["halloran-shining", "halloran-rescue", "snowcat"],
+      "keyScenes": [22, 83, 124, 134],
+      "depth": "medium"
+    },
+    {
+      "id": 5,
+      "question": "Is the Overlook Hotel a sentient entity, a repository of evil, or simply a catalyst for Jack's pre-existing madness?",
+      "category": "Interpretation",
+      "relatedTags": ["possession", "ghost-encounter", "time-distortion", "hotel-tour"],
+      "keyScenes": [44, 80, 104, 142],
+      "depth": "deep"
+    },
+    {
+      "id": 6,
+      "question": "How does isolation function as both a physical setting and a psychological pressure throughout the film?",
+      "category": "Themes",
+      "relatedTags": ["isolation", "trapped-by-weather", "snow", "outside-contact"],
+      "keyScenes": [1, 50, 72, 96],
+      "depth": "medium"
+    },
+    {
+      "id": 7,
+      "question": "What does the film suggest about the cyclical nature of violence within families across generations?",
+      "category": "Themes",
+      "relatedTags": ["family-breakdown", "violence-history", "parent-child", "always-been-caretaker"],
+      "keyScenes": [8, 44, 104, 142],
+      "depth": "deep"
+    },
+    {
+      "id": 8,
+      "question": "How does Kubrick use the Grady twins as a symbol, and what do they represent in the film's thematic landscape?",
+      "category": "Symbolism",
+      "relatedTags": ["grady-twins", "twins", "shining-vision"],
+      "keyScenes": [30, 40],
+      "depth": "medium"
+    },
+    {
+      "id": 9,
+      "question": "What is the relationship between Jack's alcoholism and his capacity for violence, and how does the film explore addiction as supernatural vulnerability?",
+      "category": "Themes",
+      "relatedTags": ["alcoholism", "jack-drunk", "lloyd", "ghost-party"],
+      "keyScenes": [80, 100, 104],
+      "depth": "deep"
+    },
+    {
+      "id": 10,
+      "question": "How does the Gold Room/Ballroom function as a liminal space between past and present, reality and delusion?",
+      "category": "Supernatural",
+      "relatedTags": ["gold-ballroom", "ghost-party", "lloyd", "time-distortion"],
+      "keyScenes": [80, 100, 104],
+      "depth": "deep"
+    },
+    {
+      "id": 11,
+      "question": "What does Room 237 represent, and why is it the focal point of supernatural danger in the hotel?",
+      "category": "Symbolism",
+      "relatedTags": ["room-237", "woman-237", "ghost-encounter"],
+      "keyScenes": [95, 96, 97],
+      "depth": "medium"
+    },
+    {
+      "id": 12,
+      "question": "How does the hedge maze serve as both a literal location and a metaphor for the characters' psychological entrapment?",
+      "category": "Symbolism",
+      "relatedTags": ["maze", "chase", "footprint-trick"],
+      "keyScenes": [30, 138, 139, 140],
+      "depth": "medium"
+    },
+    {
+      "id": 13,
+      "question": "What is the meaning of the final photograph showing Jack at the 1921 ball, and how does it resolve or complicate the film's central mysteries?",
+      "category": "Interpretation",
+      "relatedTags": ["photograph", "time-distortion", "always-been-caretaker", "epilogue"],
+      "keyScenes": [142],
+      "depth": "deep"
+    },
+    {
+      "id": 14,
+      "question": "How does Kubrick's use of symmetry, one-point perspective, and tracking shots create unease and reflect the hotel's inhuman geometry?",
+      "category": "Cinematography",
+      "relatedTags": ["tricycle", "colorado-lounge", "intercutting"],
+      "keyScenes": [10, 30, 54, 78],
+      "depth": "medium"
+    },
+    {
+      "id": 15,
+      "question": "What is the significance of REDRUM/MURDER, and how does Danny's use of mirror-writing connect to the film's themes of duality and hidden truth?",
+      "category": "Symbolism",
+      "relatedTags": ["red-rum", "danny-tony", "shining-vision"],
+      "keyScenes": [78, 107, 113],
+      "depth": "medium"
+    },
+    {
+      "id": 16,
+      "question": "How does the 'All work and no play' manuscript scene reveal both Jack's madness and Wendy's discovery of it?",
+      "category": "Iconic Moments",
+      "relatedTags": ["all-work-no-play", "wendy-discovering", "typewriter"],
+      "keyScenes": [57, 116],
+      "depth": "medium"
+    },
+    {
+      "id": 17,
+      "question": "What makes the 'Here's Johnny!' scene so iconic, and how does it balance horror with dark humor?",
+      "category": "Iconic Moments",
+      "relatedTags": ["heres-johnny", "axe", "bathroom", "dark-humor"],
+      "keyScenes": [129],
+      "depth": "easy"
+    },
+    {
+      "id": 18,
+      "question": "How does the baseball bat confrontation on the stairs demonstrate the power dynamics and communication breakdown in Jack and Wendy's marriage?",
+      "category": "Iconic Moments",
+      "relatedTags": ["baseball-bat", "marriage-strain", "gaslighting", "threatened-violence"],
+      "keyScenes": [114, 115, 120, 121],
+      "depth": "medium"
+    },
+    {
+      "id": 19,
+      "question": "What does Grady mean when he tells Jack 'You've always been the caretaker,' and how does this line reframe our understanding of the entire story?",
+      "category": "Interpretation",
+      "relatedTags": ["always-been-caretaker", "grady", "time-distortion", "possession"],
+      "keyScenes": [44, 104],
+      "depth": "deep"
+    },
+    {
+      "id": 20,
+      "question": "How does the blood elevator imagery function as both a literal vision and a metaphor for the hotel's violent history?",
+      "category": "Supernatural",
+      "relatedTags": ["blood-elevator", "shining-vision", "violence-history"],
+      "keyScenes": [13, 140],
+      "depth": "medium"
+    },
+    {
+      "id": 21,
+      "question": "How does Kubrick adapt Stephen King's novel, and what changes fundamentally alter the story's meaning?",
+      "category": "Adaptation",
+      "relatedTags": ["jack-declining", "possession", "family-breakdown"],
+      "keyScenes": [1, 80, 104, 142],
+      "depth": "deep"
+    },
+    {
+      "id": 22,
+      "question": "What role does weather play in trapping the family, and how does the snow function symbolically throughout the film?",
+      "category": "Themes",
+      "relatedTags": ["snow", "trapped-by-weather", "storm", "isolation"],
+      "keyScenes": [50, 72, 96, 124],
+      "depth": "easy"
+    },
+    {
+      "id": 23,
+      "question": "How do failed communication attempts (phone, radio) heighten the family's vulnerability and isolation?",
+      "category": "Plot Analysis",
+      "relatedTags": ["outside-contact", "contact-blocked", "phone-call", "radio-call"],
+      "keyScenes": [72, 83, 96, 108],
+      "depth": "medium"
+    },
+    {
+      "id": 24,
+      "question": "How does Danny's footprint trick in the maze demonstrate intelligence and survival instinct, subverting the 'helpless child' trope?",
+      "category": "Character Analysis",
+      "relatedTags": ["footprint-trick", "maze", "chase", "danny-endangered"],
+      "keyScenes": [139, 140],
+      "depth": "easy"
+    },
+    {
+      "id": 25,
+      "question": "What is the significance of Jack's writer's block, and how does it connect to his masculine identity crisis and rage?",
+      "category": "Themes",
+      "relatedTags": ["writer-block", "typewriter", "responsibility", "all-work-no-play"],
+      "keyScenes": [54, 57, 60, 116],
+      "depth": "medium"
+    },
+    {
+      "id": 26,
+      "question": "How does Kubrick use intercutting between storylines to build tension and suggest psychic connections?",
+      "category": "Cinematography",
+      "relatedTags": ["intercutting", "danny-shining", "halloran-shining"],
+      "keyScenes": [83, 108, 124],
+      "depth": "medium"
+    },
+    {
+      "id": 27,
+      "question": "What does the film suggest about the nature of evil—is it external (the hotel) or internal (Jack's pre-existing darkness)?",
+      "category": "Interpretation",
+      "relatedTags": ["possession", "jack-declining", "violence-history", "ghost-encounter"],
+      "keyScenes": [8, 44, 80, 104],
+      "depth": "deep"
+    },
+    {
+      "id": 28,
+      "question": "How do the film's three acts structure Jack's transformation from frustrated writer to homicidal maniac?",
+      "category": "Structure",
+      "relatedTags": ["act1", "act2", "act3", "escalation", "breaking-point"],
+      "keyScenes": [1, 50, 80, 114, 140],
+      "depth": "medium"
+    },
+    {
+      "id": 29,
+      "question": "What role does dark humor play in The Shining, and how does Kubrick balance comedy with horror?",
+      "category": "Tone",
+      "relatedTags": ["dark-humor", "lloyd", "gaslighting", "iconic-dialogue"],
+      "keyScenes": [80, 100, 104, 114],
+      "depth": "medium"
+    },
+    {
+      "id": 30,
+      "question": "How does the ending (Wendy and Danny's escape, Jack's death, the final photograph) provide resolution while maintaining ambiguity?",
+      "category": "Interpretation",
+      "relatedTags": ["resolution", "photograph", "climax", "epilogue"],
+      "keyScenes": [138, 139, 140, 141, 142],
+      "depth": "deep"
+    }
+  ]
+}
