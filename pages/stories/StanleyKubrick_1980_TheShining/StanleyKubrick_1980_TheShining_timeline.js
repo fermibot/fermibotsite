@@ -1662,26 +1662,11 @@ function initVisualization() {
 
     const nodeRadius = 18;
 
+    // Don't render any connections by default - only show on hover for performance
     linkGroup.selectAll('.link')
-        .data(currentLinks)
+        .data([]) // Empty - connections only shown on hover
         .join('path')
-        .attr('class', d => `link link-${d.type}`)
-        .attr('d', d => {
-            const sourcePath = d.source.path(d.target);
-            if (sourcePath.length > 0) {
-                sourcePath[0] = {...sourcePath[0], y: sourcePath[0].y - nodeRadius};
-                sourcePath[sourcePath.length - 1] = {...sourcePath[sourcePath.length - 1], y: sourcePath[sourcePath.length - 1].y - nodeRadius};
-            }
-            return line(sourcePath);
-        })
-        .attr('stroke', d => {
-            if (d.type === 'callback') return '#8b0000'; // Dark blood red for callbacks (dashed)
-            return '#00bcd4'; // Eerie cyan for foreshadowing (solid, glowy)
-        })
-        .attr('stroke-width', d => d.type === 'callback' ? 0.5 : 0.6)
-        .attr('stroke-opacity', d => d.type === 'callback' ? 0.15 : 0.15)
-        .attr('stroke-dasharray', d => d.type === 'callback' ? '4,2' : null)
-        .attr('filter', d => d.type === 'callback' ? null : 'url(#spooky-glow)');
+        .attr('class', d => `link link-${d.type}`);
 
     // Draw nodes
     nodeGroup = g.append('g')
@@ -1816,36 +1801,46 @@ function highlightConnections(node) {
     state.hoveredNode = node;
 
     const connectedIds = new Set([node.data.id]);
+    const relevantLinks = [];
 
     currentLinks.forEach(link => {
         if (link.source.data.id === node.data.id) {
             connectedIds.add(link.target.data.id);
+            relevantLinks.push(link);
         }
     });
 
     // Highlight connected nodes
     nodeGroup.selectAll('.node')
-        .classed('main-hovered', d => d.data.id === node.data.id)  // Main node gets special class
-        .classed('connection-highlighted', d => connectedIds.has(d.data.id) && d.data.id !== node.data.id)  // Connected nodes (not main)
+        .classed('main-hovered', d => d.data.id === node.data.id)
+        .classed('connection-highlighted', d => connectedIds.has(d.data.id) && d.data.id !== node.data.id)
         .classed('connection-dimmed', d => !connectedIds.has(d.data.id));
 
-    // Highlight relevant links instantly - strong contrast
+    // Render only relevant connections using simple straight lines
     linkGroup.selectAll('.link')
-        .classed('highlighted', d => d.source.data.id === node.data.id)
-        .attr('stroke-width', d => {
-            const isFromNode = (d.source.data.id === node.data.id);
-            if (isFromNode) {
-                return d.type === 'callback' ? 2.5 : 3.0; // Much thicker when highlighted
-            }
-            return d.type === 'callback' ? 0.5 : 0.6; // Thin default
+        .data(relevantLinks, d => `${d.source.data.id}-${d.target.data.id}`)
+        .join('line')
+        .attr('class', d => `link link-${d.type}`)
+        .attr('x1', d => {
+            const angle = (d.source.x - 90) * Math.PI / 180;
+            return d.source.y * Math.cos(angle);
         })
-        .attr('stroke-opacity', d => {
-            const isFromNode = (d.source.data.id === node.data.id);
-            if (isFromNode) {
-                return d.type === 'callback' ? 0.95 : 0.9; // Very bright when highlighted
-            }
-            return d.type === 'callback' ? 0.15 : 0.15; // Very dim default
-        });
+        .attr('y1', d => {
+            const angle = (d.source.x - 90) * Math.PI / 180;
+            return d.source.y * Math.sin(angle);
+        })
+        .attr('x2', d => {
+            const angle = (d.target.x - 90) * Math.PI / 180;
+            return d.target.y * Math.cos(angle);
+        })
+        .attr('y2', d => {
+            const angle = (d.target.x - 90) * Math.PI / 180;
+            return d.target.y * Math.sin(angle);
+        })
+        .attr('stroke', d => d.type === 'callback' ? '#8b0000' : '#00bcd4')
+        .attr('stroke-width', d => d.type === 'callback' ? 2.0 : 2.5)
+        .attr('stroke-opacity', d => d.type === 'callback' ? 0.8 : 0.7)
+        .attr('stroke-dasharray', d => d.type === 'callback' ? '4,2' : null);
 }
 
 function unhighlightAll() {
@@ -1858,11 +1853,10 @@ function unhighlightAll() {
         .classed('connection-highlighted', false)
         .classed('connection-dimmed', false);
 
-    // Reset all links to normal state
+    // Remove all connections when not hovering
     linkGroup.selectAll('.link')
-        .classed('highlighted', false)
-        .attr('stroke-width', d => d.type === 'callback' ? 0.5 : 0.6)
-        .attr('stroke-opacity', d => d.type === 'callback' ? 0.15 : 0.15);
+        .data([])
+        .join('line');
 }
 
 // ============================================
