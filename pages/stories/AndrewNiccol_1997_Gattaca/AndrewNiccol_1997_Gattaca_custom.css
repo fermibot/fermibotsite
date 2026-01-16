@@ -1,0 +1,768 @@
+/* Gattaca - Custom Styles */
+/* Sci-Fi genetic discrimination aesthetic: sterile blues, corporate golds, DNA patterns */
+
+/* ============================================
+   LAYOUT ADJUSTMENTS
+   ============================================ */
+
+/* Add gap between controls bar and legend */
+.controls-bar {
+    margin-bottom: 1rem;
+}
+
+/* ============================================
+   SCREENPLAY VIEWER - LEFT PANEL
+   ============================================ */
+
+/* Screenplay backdrop - ONLY BEHIND PANEL */
+.screenplay-viewer-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 9997;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.screenplay-viewer-backdrop.active {
+    opacity: 1;
+    pointer-events: none;
+}
+
+/* Screenplay viewer panel - LEFT SIDE */
+.screenplay-viewer-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 100vh;
+    background: var(--viz-card-bg);
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.screenplay-viewer-modal.active {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Screenplay header */
+.screenplay-viewer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--viz-border);
+    background: var(--viz-card-bg);
+    flex-shrink: 0;
+}
+
+.screenplay-viewer-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.screenplay-icon {
+    font-size: 1.5rem;
+}
+
+.screenplay-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--viz-text);
+    margin-bottom: 0.25rem;
+}
+
+.screenplay-scene {
+    font-size: 0.85rem;
+    color: var(--viz-text-muted);
+}
+
+.screenplay-close-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--viz-text-muted);
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.screenplay-close-btn:hover {
+    color: var(--viz-text);
+}
+
+/* Screenplay content area - scrollable */
+.screenplay-viewer-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    padding: 2rem 1rem;
+    background: var(--viz-bg);
+}
+
+/* Scroll container */
+#screenplay-scroll-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Loading message */
+.screenplay-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    text-align: center;
+    color: var(--viz-text-muted);
+    padding: 2rem;
+    font-size: 1.1rem;
+}
+
+.screenplay-loading .spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+.screenplay-loading p {
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Individual page container */
+.screenplay-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    scroll-margin-top: 1rem;
+}
+
+/* Page label */
+.screenplay-page-label {
+    font-size: 0.85rem;
+    color: var(--viz-text-muted);
+    font-weight: 600;
+    text-align: center;
+    padding: 0.25rem 0.75rem;
+    background: var(--viz-card-bg);
+    border-radius: 4px;
+    border: 1px solid var(--viz-border);
+}
+
+/* Canvas for each page */
+.screenplay-canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--viz-border);
+    background: white;
+}
+
+/* Screenplay text formatting */
+.screenplay-text-content {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.screenplay-text {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--viz-text);
+    background: var(--viz-card-bg);
+    padding: 1rem;
+    border: 1px solid var(--viz-border);
+    border-radius: 4px;
+    white-space: pre-wrap; /* Wrap long lines */
+    word-wrap: break-word; /* Break long words if needed */
+    overflow-wrap: break-word;
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .screenplay-viewer-modal,
+    .screenplay-viewer-backdrop {
+        width: 90vw;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .screenplay-viewer-modal,
+    .screenplay-viewer-backdrop {
+        width: 100vw;
+    }
+}
+
+/* ============================================
+   INFO CARD - ACTION BAR BUTTONS
+   Fix button positioning when text changes
+   ============================================ */
+
+/* Fix for "Mark as Reviewed" / "Reviewed" button width change */
+.info-card-action-bar .btn {
+    min-width: 140px; /* Ensure consistent width for review button */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Screenplay button can be narrower */
+.info-card-action-bar .screenplay-viewer-btn {
+    min-width: 145px;
+}
+
+/* Reserve space for scene title wrapping - keeps buttons at same vertical position */
+.info-card-titles {
+    min-height: 70px; /* Accommodates up to 3 lines of title text */
+}
+
+/* Adjust spacing since Act is now above Scene title */
+.info-card-act {
+    margin: 0 0 0.5rem 0 !important; /* Bottom margin since it's now on top */
+}
+
+.info-card-scene {
+    margin: 0 !important; /* No extra margin since Act is above */
+}
+
+/* ============================================
+   INFO CARD MODAL - CRITICAL STYLES
+   Fix for side panel display
+   ============================================ */
+
+/* Support .active class for info card */
+.info-card-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.info-card.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Make .info-card-modal use side panel layout */
+.info-card-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    transform: translateX(100%);
+    background: var(--viz-card-bg);
+    border-left: 1px solid var(--viz-border);
+    border-radius: 0;
+    padding: 0;
+    width: 400px;
+    height: 100vh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    box-shadow: -4px 0 24px var(--viz-card-shadow);
+    z-index: 1003;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.info-card-modal.active {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Make backdrop not block interaction with nodes */
+.info-card-backdrop {
+    pointer-events: none !important;
+}
+
+.info-card-backdrop.active {
+    background: transparent;
+}
+
+/* Ensure visualization container can show info card next to it */
+#visualization-container {
+    position: relative;
+    overflow: visible;
+}
+
+.visualization-main {
+    overflow: visible;
+}
+
+/* Scrollbar styling for side panel */
+.info-card-modal::-webkit-scrollbar {
+    width: 8px;
+}
+
+.info-card-modal::-webkit-scrollbar-track {
+    background: var(--viz-bg-secondary);
+}
+
+.info-card-modal::-webkit-scrollbar-thumb {
+    background: var(--viz-border);
+    border-radius: 4px;
+}
+
+.info-card-modal::-webkit-scrollbar-thumb:hover {
+    background: var(--viz-text-muted);
+}
+
+/* Responsive: Adjust width on smaller screens */
+@media (max-width: 768px) {
+    .info-card-modal {
+        width: 90vw;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .info-card-modal {
+        width: 100vw;
+    }
+}
+
+/* ============================================
+   COLOR VARIABLES - Gattaca Genetic Theme
+   ============================================ */
+
+:root {
+    /* Act colors - matching Gattaca's visual progression */
+    --act1-color: #1565C0;  /* Deep blue - Corporate sterility */
+    --act2-color: #F9A825;  /* Gold - Investigation tension */
+    --act3-color: #90A4AE;  /* Silver - Ascension to space */
+
+    /* Tension state colors */
+    --safe-color: #4FC3F7;       /* Light blue - Deception holding */
+    --concern-color: #FFA726;    /* Amber - Mounting pressure */
+    --crisis-color: #EF5350;     /* Red - Near exposure */
+    --critical-color: #C62828;   /* Dark red - Imminent discovery */
+
+    /* Gattaca brand colors */
+    --gattaca-blue: #1565C0;     /* Corporate blue */
+    --gattaca-gold: #F9A825;     /* Achievement gold */
+    --valid-green: #66BB6A;      /* Valid genetics */
+    --invalid-red: #EF5350;      /* Invalid genetics */
+    --dna-helix: #00BCD4;        /* DNA visualization cyan */
+
+    /* Primary accent color */
+    --viz-primary: var(--gattaca-blue);
+}
+
+/* ============================================
+   DNA HELIX BACKGROUND PATTERN
+   ============================================ */
+
+.bg-body-tertiary {
+    position: relative;
+}
+
+.bg-body-tertiary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(45deg, transparent 48%, rgba(21, 101, 192, 0.02) 49%, rgba(21, 101, 192, 0.02) 51%, transparent 52%),
+        linear-gradient(-45deg, transparent 48%, rgba(249, 168, 37, 0.02) 49%, rgba(249, 168, 37, 0.02) 51%, transparent 52%);
+    background-size: 40px 40px;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+/* Custom motif styling for Gattaca themes */
+.motif-item {
+    padding: 1rem;
+    border-left: 3px solid var(--gattaca-gold);
+    background: linear-gradient(90deg, rgba(21, 101, 192, 0.05) 0%, transparent 100%);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.motif-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--gattaca-blue) 0%, var(--gattaca-gold) 50%, var(--act3-color) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.motif-item:hover {
+    background: linear-gradient(90deg, rgba(21, 101, 192, 0.1) 0%, transparent 100%);
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(21, 101, 192, 0.2);
+}
+
+.motif-item:hover::before {
+    opacity: 1;
+}
+
+/* Enhanced node styling for tension states */
+.timeline-node.safe {
+    stroke: var(--safe-color);
+    stroke-width: 2px;
+}
+
+.timeline-node.concern {
+    stroke: var(--concern-color);
+    stroke-width: 3px;
+}
+
+.timeline-node.crisis {
+    stroke: var(--crisis-color);
+    stroke-width: 4px;
+    filter: drop-shadow(0 0 4px var(--crisis-color));
+}
+
+.timeline-node.critical {
+    stroke: var(--critical-color);
+    stroke-width: 5px;
+    filter: drop-shadow(0 0 6px var(--critical-color));
+}
+
+/* Main hovered node - cyan glow for DNA theme */
+.node.main-hovered text {
+    text-shadow:
+        0 0 8px rgba(0, 188, 212, 0.9),
+        0 0 12px rgba(0, 188, 212, 0.7),
+        0 0 16px rgba(0, 188, 212, 0.5);
+    font-weight: 600;
+}
+
+.node.main-hovered circle {
+    stroke: var(--dna-helix);
+    stroke-width: 3px;
+    filter: drop-shadow(0 0 6px rgba(0, 188, 212, 0.8));
+}
+
+/* Act-specific styling */
+.act1 {
+    fill: var(--act1-color);
+}
+
+.act2 {
+    fill: var(--act2-color);
+}
+
+.act3 {
+    fill: var(--act3-color);
+}
+
+/* Custom connection line styling */
+.foreshadowing-line {
+    stroke: #00BCD4;
+    stroke-width: 2px;
+    stroke-opacity: 0.6;
+    fill: none;
+}
+
+.callback-line {
+    stroke: #9C27B0;
+    stroke-width: 2px;
+    stroke-opacity: 0.5;
+    stroke-dasharray: 5,5;
+    fill: none;
+}
+
+/* Scene info card customization */
+.scene-info-card {
+    border-left: 4px solid var(--gattaca-gold);
+}
+
+/* Custom scrollbar for Gattaca - sterile corporate theme */
+.bg-body-tertiary::-webkit-scrollbar {
+    width: 8px;
+}
+
+.bg-body-tertiary::-webkit-scrollbar-track {
+    background: rgba(21, 101, 192, 0.1);
+}
+
+.bg-body-tertiary::-webkit-scrollbar-thumb {
+    background: var(--gattaca-blue);
+    border-radius: 4px;
+}
+
+.bg-body-tertiary::-webkit-scrollbar-thumb:hover {
+    background: var(--gattaca-gold);
+}
+
+/* ============================================
+   BOOK CLUB QUESTIONS - GRID LAYOUT
+   ============================================ */
+
+.book-club-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+/* ============================================
+   LEGEND QUESTION ITEMS - MATCH TAG BADGE SIZE
+   ============================================ */
+
+.legend-question-item {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    opacity: 0.9;
+    border-radius: 4px;
+    border: 1px solid transparent;
+}
+
+.legend-question-item:hover {
+    opacity: 1;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.legend-question-item.active {
+    opacity: 1;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Active indicator for discussion topics */
+.legend-question-item {
+    position: relative;
+}
+
+.active-indicator {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 14px;
+    height: 14px;
+    background: #27ae60;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: bold;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.2s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.legend-question-item.active .active-indicator {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ============================================
+   TAG COLOR SCHEME - GATTACA THEMES
+   ============================================ */
+
+/* CHARACTERS - Main protagonists */
+.tag-badge.tag-vincent,
+.legend-question-item.tag-vincent {
+    background: rgba(21, 101, 192, 0.15);
+    color: #0D47A1;
+    border-color: #1565C0;
+}
+
+.tag-badge.tag-jerome-eugene,
+.legend-question-item.tag-jerome-eugene {
+    background: rgba(249, 168, 37, 0.15);
+    color: #F57F17;
+    border-color: #F9A825;
+}
+
+.tag-badge.tag-irene,
+.legend-question-item.tag-irene {
+    background: rgba(236, 64, 122, 0.15);
+    color: #AD1457;
+    border-color: #EC407A;
+}
+
+.tag-badge.tag-anton,
+.legend-question-item.tag-anton {
+    background: rgba(94, 53, 177, 0.15);
+    color: #4527A0;
+    border-color: #5E35B1;
+}
+
+.tag-badge.tag-lamar,
+.legend-question-item.tag-lamar {
+    background: rgba(0, 150, 136, 0.15);
+    color: #00695C;
+    border-color: #009688;
+}
+
+/* GENETICS - Core theme */
+.tag-badge.tag-genetics,
+.legend-question-item.tag-genetics {
+    background: rgba(0, 188, 212, 0.15);
+    color: #00838F;
+    border-color: #00BCD4;
+    font-weight: 600;
+}
+
+.tag-badge.tag-valid,
+.legend-question-item.tag-valid {
+    background: rgba(102, 187, 106, 0.15);
+    color: #2E7D32;
+    border-color: #66BB6A;
+}
+
+.tag-badge.tag-invalid,
+.legend-question-item.tag-invalid {
+    background: rgba(239, 83, 80, 0.15);
+    color: #C62828;
+    border-color: #EF5350;
+}
+
+/* IDENTITY & DECEPTION */
+.tag-badge.tag-identity,
+.legend-question-item.tag-identity {
+    background: rgba(103, 58, 183, 0.15);
+    color: #4527A0;
+    border-color: #673AB7;
+}
+
+.tag-badge.tag-deception,
+.legend-question-item.tag-deception {
+    background: rgba(123, 31, 162, 0.15);
+    color: #6A1B9A;
+    border-color: #7B1FA2;
+}
+
+/* LOCATIONS */
+.tag-badge.tag-gattaca-corporation,
+.legend-question-item.tag-gattaca-corporation {
+    background: rgba(21, 101, 192, 0.15);
+    color: #1565C0;
+    border-color: #1976D2;
+    font-weight: 600;
+}
+
+.tag-badge.tag-home,
+.legend-question-item.tag-home {
+    background: rgba(121, 85, 72, 0.15);
+    color: #5D4037;
+    border-color: #795548;
+}
+
+/* SPACE & MISSION */
+.tag-badge.tag-space-travel,
+.legend-question-item.tag-space-travel {
+    background: rgba(144, 164, 174, 0.15);
+    color: #455A64;
+    border-color: #90A4AE;
+    font-weight: 600;
+}
+
+/* ROMANCE */
+.tag-badge.tag-romance,
+.legend-question-item.tag-romance {
+    background: rgba(236, 64, 122, 0.15);
+    color: #AD1457;
+    border-color: #EC407A;
+}
+
+/* INVESTIGATION & DANGER */
+.tag-badge.tag-investigation,
+.legend-question-item.tag-investigation {
+    background: rgba(255, 167, 38, 0.15);
+    color: #E65100;
+    border-color: #FFA726;
+}
+
+.tag-badge.tag-murder,
+.legend-question-item.tag-murder {
+    background: rgba(198, 40, 40, 0.15);
+    color: #B71C1C;
+    border-color: #C62828;
+}
+
+/* THEMES */
+.tag-badge.tag-discrimination,
+.legend-question-item.tag-discrimination {
+    background: rgba(198, 40, 40, 0.15);
+    color: #B71C1C;
+    border-color: #C62828;
+}
+
+.tag-badge.tag-determination,
+.legend-question-item.tag-determination {
+    background: rgba(67, 160, 71, 0.15);
+    color: #2E7D32;
+    border-color: #43A047;
+}
+
+.tag-badge.tag-sacrifice,
+.legend-question-item.tag-sacrifice {
+    background: rgba(156, 39, 176, 0.15);
+    color: #7B1FA2;
+    border-color: #9C27B0;
+}
+
+.tag-badge.tag-perfection,
+.legend-question-item.tag-perfection {
+    background: rgba(249, 168, 37, 0.15);
+    color: #F57F17;
+    border-color: #F9A825;
+}
+
+/* Dark mode adjustments */
+[data-bs-theme="dark"] .tag-badge {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+[data-bs-theme="dark"] .tag-badge.tag-vincent { color: #42A5F5; }
+[data-bs-theme="dark"] .tag-badge.tag-jerome-eugene { color: #FFCA28; }
+[data-bs-theme="dark"] .tag-badge.tag-irene { color: #F06292; }
+[data-bs-theme="dark"] .tag-badge.tag-genetics { color: #26C6DA; }
+[data-bs-theme="dark"] .tag-badge.tag-space-travel { color: #B0BEC5; }
+
+/* ============================================
+   DNA HELIX ANIMATION
+   ============================================ */
+
+@keyframes dna-helix {
+    0% {
+        box-shadow: 0 0 5px rgba(0, 188, 212, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(0, 188, 212, 0.5), 0 0 25px rgba(249, 168, 37, 0.3);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(0, 188, 212, 0.3);
+    }
+}
+
+.legend-item.active,
+.legend-chapter-item.active,
+.legend-question-item.active {
+    box-shadow: 0 0 8px rgba(0, 188, 212, 0.4);
+    animation: dna-helix 3s ease-in-out infinite;
+}

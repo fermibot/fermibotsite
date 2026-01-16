@@ -1938,3 +1938,47 @@
     }
 }
 
+/* ============================================
+   INFO CARD FIXES
+   ============================================ */
+
+/* Fix header layout to properly center icon and spread buttons */
+.info-card-header-top {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1rem;
+}
+
+.info-card-header-top .info-card-nav-btn:first-child {
+    justify-self: start;
+}
+
+.info-card-icon-centered {
+    justify-self: center;
+    grid-column: 2;
+}
+
+.info-card-header-top .info-card-nav-btn:last-child {
+    justify-self: end;
+}
+
+/* Enhanced styling for imagery, themes, and symbols */
+.info-card-imagery,
+.info-card-themes,
+.info-card-symbols {
+    padding: 0.5rem 0.75rem;
+    background: var(--viz-bg-secondary);
+    border-radius: 6px;
+    border-left: 3px solid var(--act-02);
+    line-height: 1.6;
+}
+
+.info-card-imagery strong,
+.info-card-themes strong,
+.info-card-symbols strong {
+    color: var(--viz-text);
+    display: inline;
+    margin-right: 0.25rem;
+}
+

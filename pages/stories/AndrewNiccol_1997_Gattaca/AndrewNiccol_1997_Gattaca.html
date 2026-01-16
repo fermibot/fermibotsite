@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <title>Stories | Film Analysis | Gattaca</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
+
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="../../../index.css">
+
+    <!-- Visualization CSS -->
+    <link href="../../../css/movie_timelines.css?v=2026.01.16.04" rel="stylesheet">
+    <link href="AndrewNiccol_1997_Gattaca_custom.css?v=2026.01.16.04" rel="stylesheet">
+
+    <!-- Bootstrap JS -->
+    <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/popper.min.js"></script>
+    <script src="../../../external_libraries/bootstrap/bootstrap.min.js"></script>
+
+    <!-- MathJax for equations -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+    <!-- D3.js v7 -->
+    <script src="../../../d3/d3.v7.min.js"></script>
+
+    <!-- Site automation -->
+    <script src="../../../automation/loadObjects.js"></script>
+
+    <!-- Color modes (dark/light theme) -->
+    <script src="../../../bootstrap/assets/color-modes.js"></script>
+</head>
+<body class="container-lg container-fluid p-4">
+
+<!-- Header -->
+<div id="header_placeholder"></div>
+
+<!-- Page Title -->
+<header class="mb-4">
+    <h1 class="text-center mb-3">Stories | Film Analysis | Gattaca</h1>
+    <p class="text-center text-muted">
+        Interactive visualization of Andrew Niccol's sci-fi masterpiece - All 125 scenes exploring genetic discrimination, identity, and the triumph of human will over predetermined fate
+    </p>
+</header>
+
+<!-- Introduction -->
+<section class="mb-4">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <p class="mb-2">
+            This interactive timeline explores <strong>Gattaca</strong> (1997), Andrew Niccol's dystopian vision of a future where
+            genetic perfection determines destiny. Vincent Freeman, an "In-Valid" born naturally with genetic imperfections, assumes the
+            identity of Jerome Morrow, a genetically superior "Valid," to pursue his dream of space travel. The visualization tracks
+            Vincent's daily deception, the mounting investigation that threatens to expose him, and his ultimate triumph of determination
+            over biology.
+        </p>
+        <p class="mb-2">
+            <strong>Key Features:</strong>
+            Identity State Tracking (Vincent's dual life as himself and Jerome),
+            Story Connections (hover to see foreshadowing and callbacks),
+            Progress Tracking (mark scenes as reviewed),
+            Deep Analysis (click for detailed character, thematic, and symbolic insights).
+        </p>
+        <p class="mb-0">
+            The radial layout represents the cyclical nature of Vincent's deception—each day begins with the same meticulous
+            ritual of scrubbing away his true genetic identity. Yet through this circle, he ascends toward the stars.
+        </p>
+    </div>
+</section>
+
+<!-- How to Use -->
+<section class="mb-4">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <h5 class="mb-3">How to Use This Visualization</h5>
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>🖱️ Interactions:</strong></p>
+                <ul class="mb-3">
+                    <li><strong>Hover:</strong> Preview scene details</li>
+                    <li><strong>Click:</strong> Open full scene analysis</li>
+                    <li><strong>Navigate:</strong> Use Previous/Next buttons or arrow keys (← →) to browse scenes</li>
+                    <li><strong>Mark Reviewed:</strong> Track your progress</li>
+                    <li><strong>Filter:</strong> View by act, chapter, or genetic themes</li>
+                    <li><strong>Search:</strong> Find scenes by title, tags, or themes (press <kbd>/</kbd>)</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <p><strong>🎨 Color Legend:</strong></p>
+                <ul class="mb-3">
+                    <li><strong>Blue:</strong> Act I - The Daily Deception</li>
+                    <li><strong>Gold:</strong> Act II - Living the Dream & Investigation</li>
+                    <li><strong>Silver:</strong> Act III - Truth & Triumph</li>
+                    <li><strong>Node Fill:</strong> Tension level (blue=calm, amber=concern, red=crisis)</li>
+                </ul>
+                <p><strong>🔗 Connection Lines:</strong></p>
+                <ul class="mb-3">
+                    <li><strong>Solid cyan:</strong> Foreshadowing (what this scene hints at)</li>
+                    <li><strong>Dashed purple:</strong> Callbacks (what earlier scenes hinted at this)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Visualization Section -->
+<section class="mb-4">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+
+        <!-- Controls Bar -->
+        <div class="controls-bar">
+            <div class="controls-left">
+                <!-- Search -->
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text"
+                           id="search-input"
+                           class="search-input"
+                           placeholder="Search scenes... (press /)"
+                           autocomplete="off">
+                    <span class="search-counter" id="search-counter"></span>
+                </div>
+            </div>
+            <div class="controls-right">
+                <span class="controls-hint">Click scene to view details</span>
+            </div>
+        </div>
+
+        <!-- Legend at Top -->
+        <div class="legend-top" id="legend-container">
+            <!-- Legend content will be injected by JS -->
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="visualization-main">
+            <!-- Visualization Container -->
+            <div class="visualization-container" id="visualization-container">
+                <!-- Loading state -->
+                <div class="text-center text-muted">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-3">Loading Gattaca's genetic timeline...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Key Themes Section -->
+<section class="mt-4">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <h5 class="mb-3">🧬 Key Recurring Themes</h5>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>🧬 Genetic Discrimination</strong>
+                    <p class="small text-muted mb-0">In the "not-too-distant future," society is divided into Valids (genetically enhanced) and In-Valids (naturally born). Your DNA is your resume—and your destiny.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>🎭 Identity Swap</strong>
+                    <p class="small text-muted mb-0">Vincent becomes Jerome, living a daily lie. Every fingerprint, every DNA sample must be perfect. One stray eyelash could expose everything.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>🔬 The Daily Ritual</strong>
+                    <p class="small text-muted mb-0">Vincent scrubs his skin raw, burns every cell, plants false DNA evidence. The morning routine is meticulous, exhausting, and essential to survival.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>🚀 Titan Mission</strong>
+                    <p class="small text-muted mb-0">A manned mission to Saturn's moon represents the ultimate achievement. Vincent's impossible dream drives every risk he takes.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>💔 Eugene/Jerome</strong>
+                    <p class="small text-muted mb-0">The real Jerome Morrow—genetically perfect but paralyzed, bitter, alcoholic. He supplies Vincent with his DNA but carries the weight of unfulfilled potential.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>❤️ Irene</strong>
+                    <p class="small text-muted mb-0">A fellow Valid with a minor heart defect. Vincent falls for her, but loving her means hiding who he truly is. Can love survive deception?</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>🔍 The Investigation</strong>
+                    <p class="small text-muted mb-0">The Mission Director is murdered. An eyelash at the crime scene—Vincent's DNA. The investigation closes in as launch date approaches.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>👥 Anton (Brother)</strong>
+                    <p class="small text-muted mb-0">Vincent's genetically superior younger brother became a detective. Their rivalry began in childhood swimming contests and culminates in a final test of will.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="motif-item">
+                    <strong>⚖️ Fate vs. Will</strong>
+                    <p class="small text-muted mb-0">"They used to say that a child conceived in love has a greater chance of happiness. They don't say that anymore." Vincent proves genetics isn't destiny.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Discussion Questions Section -->
+<section class="mt-4" id="book-club-section">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="d-flex align-items-center gap-2">
+                <h5 class="mb-0">📖 Discussion Questions</h5>
+                <button class="btn btn-sm btn-outline-danger" id="clear-question-filter" style="display: none;">
+                    Clear Filter
+                </button>
+            </div>
+            <div class="question-sort-toggle">
+                <small class="text-muted">Sort by:</small>
+                <button class="btn btn-sm btn-outline-secondary ms-2 active" data-sort="film-order">Timeline</button>
+                <button class="btn btn-sm btn-outline-secondary ms-1" data-sort="theme">Theme</button>
+            </div>
+        </div>
+        <p class="text-muted mb-4">
+            Click any question to highlight related scenes in the visualization. Perfect for book clubs, film classes, or deep dives into bioethics and human potential.
+        </p>
+
+        <div id="questions-container">
+            <!-- Questions will be generated by JavaScript -->
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<div id="footer_placeholder"></div>
+
+<!-- Visualization JS (load after DOM) -->
+<script src="AndrewNiccol_1997_Gattaca_timeline.js?v=2026.01.16.04"></script>
+
+<!-- Load Header/Footer -->
+<script>
+    loadHeaderFooter("../../../automation/header.html", "../../../automation/footer.html");
+</script>
+
+</body>
+</html>
