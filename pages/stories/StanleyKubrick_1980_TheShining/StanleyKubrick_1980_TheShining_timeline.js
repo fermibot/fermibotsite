@@ -763,14 +763,22 @@ function createLegendWithProgress() {
     // Separator after header
     grid.append('div').attr('class', 'legend-separator');
 
-    // Section label for Acts
-    grid.append('span')
+    // Section label for Acts - inline with items
+    const actsContainer = grid.append('div')
+        .style('display', 'flex')
+        .style('align-items', 'center')
+        .style('gap', '0.75rem')
+        .style('flex-wrap', 'wrap');
+
+    actsContainer.append('span')
         .attr('class', 'legend-section-label')
+        .style('margin', '0')
         .text('Filter by Act:');
 
-    // Act colors with scene counts - wrap in row
-    const actsRow = grid.append('div')
-        .attr('class', 'legend-items-row');
+    // Act colors with scene counts - inline
+    const actsRow = actsContainer.append('div')
+        .attr('class', 'legend-items-row')
+        .style('margin', '0');
 
     const actDetails = {
         'act1': { count: 9 },
@@ -801,14 +809,22 @@ function createLegendWithProgress() {
     // Separator
     grid.append('div').attr('class', 'legend-separator');
 
-    // Section label for Psychological States
-    grid.append('span')
+    // Section label for Psychological States - inline with items
+    const statesContainer = grid.append('div')
+        .style('display', 'flex')
+        .style('align-items', 'center')
+        .style('gap', '0.75rem')
+        .style('flex-wrap', 'wrap');
+
+    statesContainer.append('span')
         .attr('class', 'legend-section-label')
+        .style('margin', '0')
         .text('Psychological States:');
 
-    // Psychological states - wrap in row
-    const statesRow = grid.append('div')
-        .attr('class', 'legend-items-row');
+    // Psychological states - inline
+    const statesRow = statesContainer.append('div')
+        .attr('class', 'legend-items-row')
+        .style('margin', '0');
 
     const psychologicalStates = [
         { key: 'stable', label: 'Stable', color: '#66BB6A' },
