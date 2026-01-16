@@ -17,7 +17,7 @@
       "Alcoholism",
       "Cyclical Time"
     ],
-    "totalScenes": 231,
+    "totalScenes": 142,
     "analysisDate": "2026-01-14",
     "structure": "All 231 technical screenplay scenes",
     "discussionQuestions": [
@@ -635,7 +635,11 @@
       "thematicElements": [],
       "supernaturalElements": [],
       "foreshadowing": [
-        142
+        142,
+        2,
+        3,
+        39,
+        60
       ],
       "callbacks": [],
       "location": {
@@ -709,7 +713,13 @@
       "supernaturalElements": [],
       "foreshadowing": [
         72,
-        124
+        124,
+        3,
+        18,
+        39,
+        60,
+        83,
+        142
       ],
       "callbacks": [
         1
@@ -1717,7 +1727,9 @@
       "characterInsights": {},
       "thematicElements": [],
       "supernaturalElements": [],
-      "foreshadowing": [],
+      "foreshadowing": [
+        116
+      ],
       "callbacks": [],
       "location": {
         "primary": "HOTEL",
@@ -1859,7 +1871,12 @@
         96,
         126,
         127,
-        128
+        128,
+        14,
+        16,
+        116,
+        119,
+        140
       ],
       "callbacks": [],
       "location": {
@@ -1955,7 +1972,16 @@
       "supernaturalElements": [],
       "foreshadowing": [
         75,
-        76
+        76,
+        15,
+        25,
+        27,
+        52,
+        69,
+        70,
+        72,
+        103,
+        116
       ],
       "callbacks": [],
       "location": {
@@ -2051,7 +2077,10 @@
       "characterInsights": {},
       "thematicElements": [],
       "supernaturalElements": [],
-      "foreshadowing": [],
+      "foreshadowing": [
+        107,
+        114
+      ],
       "callbacks": [],
       "location": {
         "primary": "BOULDER APARTMENT/BATHROOM",
@@ -2192,7 +2221,9 @@
       "foreshadowing": [
         15,
         16,
-        27
+        27,
+        107,
+        114
       ],
       "callbacks": [
         7,
@@ -2315,7 +2346,9 @@
       "foreshadowing": [
         16,
         27,
-        28
+        28,
+        107,
+        114
       ],
       "callbacks": [
         7,
@@ -2958,10 +2991,7 @@
       "foreshadowing": [
         31,
         43,
-        44,
-        166,
-        174,
-        175
+        44
       ],
       "callbacks": [],
       "location": {
@@ -4409,28 +4439,7 @@
       "foreshadowing": [
         34,
         45,
-        46,
-        210,
-        211,
-        212,
-        213,
-        214,
-        215,
-        216,
-        217,
-        218,
-        219,
-        220,
-        221,
-        222,
-        223,
-        224,
-        225,
-        226,
-        227,
-        228,
-        229,
-        230
+        46
       ],
       "callbacks": [],
       "location": {
@@ -4682,7 +4691,9 @@
       "characterInsights": {},
       "thematicElements": [],
       "supernaturalElements": [],
-      "foreshadowing": [],
+      "foreshadowing": [
+        139
+      ],
       "callbacks": [],
       "location": {
         "primary": "HOTEL",
@@ -4885,7 +4896,9 @@
       "characterInsights": {},
       "thematicElements": [],
       "supernaturalElements": [],
-      "foreshadowing": [],
+      "foreshadowing": [
+        139
+      ],
       "callbacks": [],
       "location": {
         "primary": "HOTEL",
@@ -5045,7 +5058,8 @@
       "foreshadowing": [
         45,
         46,
-        47
+        47,
+        139
       ],
       "callbacks": [
         30
@@ -5666,7 +5680,13 @@
       "supernaturalElements": [],
       "foreshadowing": [
         72,
-        142
+        142,
+        49,
+        60,
+        87,
+        89,
+        99,
+        105
       ],
       "callbacks": [],
       "location": {
@@ -5834,7 +5854,8 @@
         103,
         104,
         105,
-        106
+        106,
+        99
       ],
       "callbacks": [
         1,
@@ -6505,7 +6526,9 @@
       "foreshadowing": [
         80,
         107,
-        108
+        108,
+        103,
+        104
       ],
       "callbacks": [
         20,
@@ -6740,28 +6763,7 @@
       "foreshadowing": [
         46,
         47,
-        48,
-        210,
-        211,
-        212,
-        213,
-        214,
-        215,
-        216,
-        217,
-        218,
-        219,
-        220,
-        221,
-        222,
-        223,
-        224,
-        225,
-        226,
-        227,
-        228,
-        229,
-        230
+        48
       ],
       "callbacks": [
         30,
@@ -6875,28 +6877,7 @@
       "foreshadowing": [
         47,
         48,
-        49,
-        210,
-        211,
-        212,
-        213,
-        214,
-        215,
-        216,
-        217,
-        218,
-        219,
-        220,
-        221,
-        222,
-        223,
-        224,
-        225,
-        226,
-        227,
-        228,
-        229,
-        230
+        49
       ],
       "callbacks": [
         30,
@@ -7027,28 +7008,7 @@
       "foreshadowing": [
         48,
         49,
-        50,
-        210,
-        211,
-        212,
-        213,
-        214,
-        215,
-        216,
-        217,
-        218,
-        219,
-        220,
-        221,
-        222,
-        223,
-        224,
-        225,
-        226,
-        227,
-        228,
-        229,
-        230
+        50
       ],
       "callbacks": [
         34,
@@ -7168,28 +7128,7 @@
       "foreshadowing": [
         49,
         50,
-        51,
-        210,
-        211,
-        212,
-        213,
-        214,
-        215,
-        216,
-        217,
-        218,
-        219,
-        220,
-        221,
-        222,
-        223,
-        224,
-        225,
-        226,
-        227,
-        228,
-        229,
-        230
+        51
       ],
       "callbacks": [
         45,
@@ -7301,10 +7240,16 @@
         105,
         106,
         107,
-        108
+        108,
+        50,
+        51,
+        136
       ],
       "callbacks": [
-        38
+        38,
+        46,
+        47,
+        48
       ],
       "location": {
         "primary": "MAZE",
@@ -7413,9 +7358,7 @@
       "thematicElements": [],
       "supernaturalElements": [],
       "foreshadowing": [
-        51,
-        212,
-        213
+        51
       ],
       "callbacks": [
         47,
@@ -7494,11 +7437,7 @@
       "characterInsights": {},
       "thematicElements": [],
       "supernaturalElements": [],
-      "foreshadowing": [
-        212,
-        213,
-        214
-      ],
+      "foreshadowing": [],
       "callbacks": [
         48,
         49,
@@ -7652,7 +7591,8 @@
       "foreshadowing": [
         53,
         73,
-        74
+        74,
+        119
       ],
       "callbacks": [
         12,
@@ -7781,7 +7721,8 @@
         73,
         74,
         84,
-        107
+        107,
+        119
       ],
       "callbacks": [
         16,
@@ -8337,7 +8278,9 @@
       "characterInsights": {},
       "thematicElements": [],
       "supernaturalElements": [],
-      "foreshadowing": [],
+      "foreshadowing": [
+        64
+      ],
       "callbacks": [],
       "location": {
         "primary": "HOTEL",
@@ -8538,7 +8481,9 @@
       "characterInsights": {},
       "thematicElements": [],
       "supernaturalElements": [],
-      "foreshadowing": [],
+      "foreshadowing": [
+        110
+      ],
       "callbacks": [
         1,
         2,
@@ -8845,8 +8790,7 @@
       "supernaturalElements": [],
       "foreshadowing": [
         70,
-        107,
-        155
+        107
       ],
       "callbacks": [],
       "location": {
@@ -9063,10 +9007,7 @@
         "Nature as antagonist"
       ],
       "supernaturalElements": [],
-      "foreshadowing": [
-        155,
-        170
-      ],
+      "foreshadowing": [],
       "callbacks": [],
       "location": {
         "primary": "RANGER'S OFFICE",
@@ -9242,8 +9183,8 @@
       ],
       "supernaturalElements": [],
       "foreshadowing": [
-        155,
-        170
+        99,
+        108
       ],
       "callbacks": [],
       "location": {
@@ -9455,13 +9396,16 @@
       "foreshadowing": [
         70,
         107,
-        108
+        108,
+        103,
+        106
       ],
       "callbacks": [
         12,
         27,
         28,
-        53
+        53,
+        68
       ],
       "location": {
         "primary": "HOTEL - GREEN CORRIDOR",
@@ -9622,13 +9566,17 @@
         107,
         108,
         109,
-        211
+        71,
+        103,
+        106
       ],
       "callbacks": [
         12,
         28,
         53,
-        69
+        69,
+        63,
+        68
       ],
       "location": {
         "primary": "HOTEL - CORRIDOR",
@@ -10002,12 +9950,27 @@
       ],
       "foreshadowing": [
         84,
-        124
+        124,
+        77,
+        78,
+        79,
+        81,
+        82,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        110,
+        120,
+        142
       ],
       "callbacks": [
         2,
         12,
-        38
+        38,
+        71
       ],
       "location": {
         "primary": "HOTEL - JACK'S APARTMENT",
@@ -10515,10 +10478,12 @@
       ],
       "supernaturalElements": [],
       "foreshadowing": [
-        76
+        76,
+        77
       ],
       "callbacks": [
-        12
+        12,
+        39
       ],
       "location": {
         "primary": "HOTEL - BOILER ROOM",
@@ -10609,11 +10574,12 @@
       ],
       "foreshadowing": [
         78,
-        175
+        77
       ],
       "callbacks": [
         12,
-        75
+        75,
+        39
       ],
       "location": {
         "primary": "HOTEL - COLORADO LOUNGE",
@@ -10848,12 +10814,13 @@
         "Nightmare foreshadows actual future attempt"
       ],
       "foreshadowing": [
-        79,
-        175
+        79
       ],
       "callbacks": [
         39,
-        72
+        72,
+        76,
+        77
       ],
       "location": {
         "primary": "OVERLOOK HOTEL - COLORADO LOUNGE",
@@ -11031,11 +10998,16 @@
         80,
         107,
         108,
-        109
+        109,
+        82,
+        92,
+        93,
+        94
       ],
       "callbacks": [
         39,
-        72
+        72,
+        78
       ],
       "location": {
         "primary": "OVERLOOK HOTEL - COLORADO LOUNGE",
@@ -11245,13 +11217,18 @@
         107,
         108,
         109,
-        231
+        81,
+        82,
+        98,
+        100,
+        101
       ],
       "callbacks": [
         31,
         39,
         43,
-        44
+        44,
+        79
       ],
       "location": {
         "primary": "HOTEL - GOLD BALLROOM",
@@ -11477,8 +11454,7 @@
       ],
       "foreshadowing": [
         82,
-        90,
-        175
+        90
       ],
       "callbacks": [
         39,
@@ -11662,7 +11638,11 @@
       "foreshadowing": [
         83,
         90,
-        91
+        91,
+        92,
+        98,
+        100,
+        101
       ],
       "callbacks": [
         39,
@@ -11877,10 +11857,22 @@
       "foreshadowing": [
         84,
         85,
-        86
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        99,
+        105
       ],
       "callbacks": [
-        2
+        2,
+        39,
+        82
       ],
       "location": {
         "primary": "HOTEL BALLROOM / MIAMI APARTMENT",
@@ -12105,7 +12097,12 @@
         90
       ],
       "callbacks": [
-        83
+        83,
+        39,
+        53,
+        72,
+        73,
+        74
       ],
       "location": {
         "primary": "OVERLOOK HOTEL - CORRIDOR",
@@ -12265,7 +12262,10 @@
       ],
       "callbacks": [
         83,
-        84
+        84,
+        39,
+        73,
+        74
       ],
       "location": {
         "primary": "HOTEL - DANNY'S BEDROOM",
@@ -12402,7 +12402,10 @@
       "callbacks": [
         83,
         84,
-        85
+        85,
+        39,
+        73,
+        74
       ],
       "location": {
         "primary": "HOTEL - ROOM 237",
@@ -12674,7 +12677,8 @@
         83,
         85,
         86,
-        87
+        87,
+        84
       ],
       "location": {
         "primary": "HOTEL - ROOM 237 BATHROOM",
@@ -12801,7 +12805,9 @@
         83,
         86,
         87,
-        88
+        88,
+        84,
+        85
       ],
       "location": {
         "primary": "HOTEL - DANNY'S BEDROOM",
@@ -12955,11 +12961,27 @@
         "Danny witnesses psychically"
       ],
       "foreshadowing": [
-        95
+        95,
+        91,
+        92,
+        93,
+        94,
+        111
       ],
       "callbacks": [
         18,
-        83
+        83,
+        39,
+        73,
+        74,
+        81,
+        82,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
       ],
       "location": {
         "primary": "HOTEL - ROOM 237 / DANNY'S BEDROOM / CORRIDOR",
@@ -13078,12 +13100,20 @@
       ],
       "foreshadowing": [
         110,
-        111
+        111,
+        99,
+        108
       ],
       "callbacks": [
         18,
         83,
-        90
+        90,
+        39,
+        73,
+        74,
+        82,
+        88,
+        89
       ],
       "location": {
         "primary": "MIAMI APARTMENT",
@@ -13241,7 +13271,12 @@
         79,
         82,
         83,
-        90
+        90,
+        39,
+        73,
+        74,
+        88,
+        89
       ],
       "location": {
         "primary": "HOTEL - JACK'S APARTMENT",
@@ -13392,7 +13427,9 @@
         79,
         83,
         90,
-        92
+        92,
+        39,
+        73
       ],
       "location": {
         "primary": "HOTEL - JACK'S APARTMENT",
@@ -13548,7 +13585,8 @@
         83,
         90,
         92,
-        93
+        93,
+        39
       ],
       "location": {
         "primary": "HOTEL - JACK'S APARTMENT",
@@ -13730,10 +13768,15 @@
         98,
         99,
         100,
-        107
+        107,
+        119
       ],
       "callbacks": [
-        11
+        11,
+        90,
+        92,
+        93,
+        94
       ],
       "location": {
         "primary": "HOTEL - JACK'S APARTMENT / DANNY'S BEDROOM / LOBBY",
@@ -13924,7 +13967,8 @@
       ],
       "callbacks": [
         11,
-        95
+        95,
+        94
       ],
       "location": {
         "primary": "HOTEL - JACK'S APARTMENT BEDROOM",
@@ -14040,11 +14084,11 @@
       "foreshadowing": [
         98,
         99,
-        100,
-        175
+        100
       ],
       "callbacks": [
-        95
+        95,
+        96
       ],
       "location": {
         "primary": "HOTEL - KITCHEN",
@@ -14145,7 +14189,9 @@
       "callbacks": [
         80,
         82,
-        97
+        97,
+        95,
+        96
       ],
       "location": {
         "primary": "HOTEL - CORRIDOR TO BALLROOM",
@@ -14259,14 +14305,20 @@
         100,
         101,
         102,
-        103
+        103,
+        108,
+        109
       ],
       "callbacks": [
         38,
         39,
         67,
         83,
-        91
+        91,
+        95,
+        96,
+        97,
+        98
       ],
       "location": {
         "primary": "MIAMI APARTMENT / RANGER'S OFFICE",
@@ -14434,12 +14486,16 @@
         107,
         108,
         109,
-        110
+        110,
+        101
       ],
       "callbacks": [
         80,
         82,
-        98
+        98,
+        95,
+        97,
+        99
       ],
       "location": {
         "primary": "HOTEL - CORRIDOR TO BALLROOM / BALLROOM",
@@ -14651,7 +14707,9 @@
         72,
         80,
         82,
-        100
+        100,
+        39,
+        99
       ],
       "location": {
         "primary": "HOTEL BALLROOM",
@@ -14858,7 +14916,9 @@
       ],
       "callbacks": [
         72,
-        101
+        101,
+        39,
+        99
       ],
       "location": {
         "primary": "HOTEL BALLROOM & CORRIDOR",
@@ -15035,7 +15095,11 @@
         44,
         69,
         70,
-        72
+        72,
+        39,
+        99,
+        101,
+        102
       ],
       "location": {
         "primary": "MEN'S TOILET",
@@ -15202,13 +15266,15 @@
       ],
       "foreshadowing": [
         105,
-        106,
-        231
+        106
       ],
       "callbacks": [
         44,
         72,
-        103
+        103,
+        39,
+        101,
+        102
       ],
       "location": {
         "primary": "MEN'S TOILET",
@@ -15371,14 +15437,19 @@
       ],
       "foreshadowing": [
         106,
-        199,
-        200
+        108,
+        136
       ],
       "callbacks": [
         38,
         39,
         72,
-        83
+        83,
+        49,
+        101,
+        102,
+        103,
+        104
       ],
       "location": {
         "primary": "MEN'S TOILET",
@@ -15560,15 +15631,19 @@
       ],
       "foreshadowing": [
         107,
-        160,
-        161,
-        231
+        136
       ],
       "callbacks": [
         69,
         70,
         72,
-        105
+        105,
+        39,
+        49,
+        101,
+        102,
+        103,
+        104
       ],
       "location": {
         "primary": "MEN'S TOILET / JACK'S APARTMENT",
@@ -15748,15 +15823,26 @@
         "Danny's consciousness 'gone away'"
       ],
       "foreshadowing": [
-        163,
-        164,
-        165
+        114,
+        119
       ],
       "callbacks": [
         13,
         14,
         15,
-        95
+        95,
+        43,
+        44,
+        49,
+        53,
+        63,
+        69,
+        70,
+        79,
+        80,
+        98,
+        100,
+        106
       ],
       "location": {
         "primary": "DANNY'S BEDROOM",
@@ -15925,14 +16011,20 @@
       "foreshadowing": [
         109,
         110,
-        111,
-        160
+        111
       ],
       "callbacks": [
         67,
         91,
         99,
-        105
+        105,
+        44,
+        49,
+        69,
+        70,
+        79,
+        80,
+        100
       ],
       "location": {
         "primary": "HOTEL LOBBY & OFFICE",
@@ -16065,7 +16157,11 @@
       ],
       "callbacks": [
         99,
-        108
+        108,
+        70,
+        79,
+        80,
+        100
       ],
       "location": {
         "primary": "MIAMI APARTMENT / RANGER'S OFFICE",
@@ -16191,11 +16287,17 @@
       ],
       "foreshadowing": [
         111,
-        112
+        112,
+        113,
+        116
       ],
       "callbacks": [
         60,
-        72
+        72,
+        91,
+        100,
+        108,
+        109
       ],
       "location": {
         "primary": "AIRPLANE / HOTEL LOUNGE",
@@ -16315,12 +16417,16 @@
       ],
       "foreshadowing": [
         113,
-        114
+        114,
+        112,
+        134
       ],
       "callbacks": [
         90,
         91,
-        110
+        110,
+        108,
+        109
       ],
       "location": {
         "primary": "AIRPORT / DURKIN'S GARAGE",
@@ -16436,10 +16542,14 @@
       ],
       "foreshadowing": [
         120,
-        121
+        121,
+        113,
+        134
       ],
       "callbacks": [
-        111
+        111,
+        109,
+        110
       ],
       "location": {
         "primary": "DURKIN'S GARAGE / AIRPORT",
@@ -16651,13 +16761,13 @@
         "Halloran driven by psychic call despite rational warnings"
       ],
       "foreshadowing": [
-        199,
-        200,
-        201
+        134
       ],
       "callbacks": [
         110,
-        112
+        112,
+        109,
+        111
       ],
       "location": {
         "primary": "ROAD / HALLORAN'S CAR",
@@ -16814,13 +16924,15 @@
         117,
         118,
         119,
-        120
+        120,
+        134
       ],
       "callbacks": [
         13,
         14,
         15,
-        107
+        107,
+        111
       ],
       "location": {
         "primary": "HOTEL - JACK'S APARTMENT",
@@ -17163,7 +17275,9 @@
         10,
         11,
         12,
-        110
+        110,
+        114,
+        115
       ],
       "location": {
         "primary": "HOTEL LOUNGE",
@@ -17280,7 +17394,9 @@
         120
       ],
       "callbacks": [
-        116
+        116,
+        114,
+        115
       ],
       "location": {
         "primary": "HOTEL LOUNGE",
@@ -17411,7 +17527,9 @@
       ],
       "callbacks": [
         116,
-        117
+        117,
+        114,
+        115
       ],
       "location": {
         "primary": "HOTEL LOUNGE",
@@ -17573,17 +17691,19 @@
         "Visions synchronized with parents' argument"
       ],
       "foreshadowing": [
-        120,
-        163,
-        164,
-        165
+        120
       ],
       "callbacks": [
         11,
         52,
         53,
         95,
-        107
+        107,
+        114,
+        115,
+        116,
+        117,
+        118
       ],
       "location": {
         "primary": "HOTEL LOUNGE / APARTMENT / LOBBY",
@@ -17769,12 +17889,18 @@
       ],
       "supernaturalElements": [],
       "foreshadowing": [
-        130
+        130,
+        121
       ],
       "callbacks": [
         72,
         112,
-        124
+        124,
+        114,
+        116,
+        117,
+        118,
+        119
       ],
       "location": {
         "primary": "HOTEL LOUNGE & STAIRS",
@@ -18046,8 +18172,7 @@
       "supernaturalElements": [],
       "foreshadowing": [
         122,
-        123,
-        160
+        123
       ],
       "callbacks": [
         112,
@@ -18320,7 +18445,10 @@
       ],
       "supernaturalElements": [],
       "foreshadowing": [],
-      "callbacks": [],
+      "callbacks": [
+        121,
+        122
+      ],
       "location": {
         "primary": "HOTEL GARAGE & EXT. HOTEL",
         "description": "Interior - Hotel garage with disabled Snowcat; Exterior - Long shot of Overlook Hotel in snow"
@@ -18469,11 +18597,14 @@
         130,
         131,
         132,
-        133
+        133,
+        120,
+        142
       ],
       "callbacks": [
         2,
-        72
+        72,
+        122
       ],
       "location": {
         "primary": "HOTEL - FOOD STORE ROOM & HALLORAN'S SNOWCAT",
@@ -18703,7 +18834,9 @@
       ],
       "supernaturalElements": [],
       "foreshadowing": [],
-      "callbacks": [],
+      "callbacks": [
+        122
+      ],
       "location": {
         "primary": "EXT. ROAD & INT. HALLORAN'S SNOWCAT",
         "description": "Exterior - Snow-covered road at night through trees; Interior - Halloran's snowcat cab with wipers working through windscreen"
@@ -18812,8 +18945,12 @@
         "Deep trance state - Danny as psychic vessel",
         "Preparation for REDRUM message (MURDER spelled backwards)"
       ],
-      "foreshadowing": [],
-      "callbacks": [],
+      "foreshadowing": [
+        128
+      ],
+      "callbacks": [
+        11
+      ],
       "location": {
         "primary": "HOTEL - JACK'S APARTMENT",
         "description": "Interior - Jack's apartment at night, Danny in trance, Wendy asleep in bed"
@@ -18985,8 +19122,12 @@
         "Danny speaking 'Red Rum' while in trance state",
         "Psychic message for Wendy to decode"
       ],
-      "foreshadowing": [],
-      "callbacks": [],
+      "foreshadowing": [
+        128
+      ],
+      "callbacks": [
+        11
+      ],
       "location": {
         "primary": "OVERLOOK HOTEL - JACK'S APARTMENT",
         "description": "Interior - Jack's apartment at night, Danny writing MURDER on door, Wendy waking in bed"
@@ -19166,11 +19307,13 @@
       "foreshadowing": [
         131,
         132,
-        133
+        133,
+        129
       ],
       "callbacks": [
         126,
-        127
+        127,
+        11
       ],
       "location": {
         "primary": "JACK'S APARTMENT, CORRIDOR & BATHROOM",
@@ -19445,7 +19588,9 @@
         133
       ],
       "callbacks": [
-        129
+        129,
+        120,
+        124
       ],
       "location": {
         "primary": "BEDROOM, BATHROOM & EXT. HOTEL",
@@ -19611,7 +19756,8 @@
       "callbacks": [
         128,
         129,
-        130
+        130,
+        124
       ],
       "location": {
         "primary": "HOTEL - BEDROOM & BATHROOM / EXT. HOTEL",
@@ -19775,7 +19921,11 @@
         133
       ],
       "callbacks": [
-        131
+        131,
+        124,
+        128,
+        129,
+        130
       ],
       "location": {
         "primary": "HOTEL - BEDROOM & BATHROOM",
@@ -19901,7 +20051,9 @@
         124,
         130,
         131,
-        132
+        132,
+        128,
+        129
       ],
       "location": {
         "primary": "HOTEL - BEDROOM & BATHROOM",
@@ -20036,7 +20188,8 @@
         111,
         112,
         113,
-        114
+        114,
+        133
       ],
       "location": {
         "primary": "MULTIPLE - ROAD, BATHROOM, BEDROOM, EXT. HOTEL",
@@ -20169,10 +20322,12 @@
       ],
       "supernaturalElements": [],
       "foreshadowing": [
-        136
+        136,
+        137
       ],
       "callbacks": [
-        134
+        134,
+        133
       ],
       "location": {
         "primary": "MULTIPLE - KITCHEN CORRIDOR, BATHROOM, EXT. HOTEL, LOBBY",
@@ -20338,12 +20493,15 @@
         "Danny's psychic vision of Halloran's death"
       ],
       "foreshadowing": [
-        140
+        140,
+        137
       ],
       "callbacks": [
         49,
         105,
-        106
+        106,
+        134,
+        135
       ],
       "location": {
         "primary": "HOTEL - LOBBY",
@@ -20803,7 +20961,8 @@
       "callbacks": [
         32,
         33,
-        34
+        34,
+        137
       ],
       "location": {
         "primary": "HOTEL LOBBY, EXT. HOTEL, HEDGE MAZE",
@@ -20981,7 +21140,10 @@
       ],
       "callbacks": [
         11,
-        136
+        136,
+        137,
+        138,
+        139
       ],
       "location": {
         "primary": "HEDGE MAZE & HOTEL INTERIOR",
@@ -21196,7 +21358,8 @@
         142
       ],
       "callbacks": [
-        140
+        140,
+        139
       ],
       "location": {
         "primary": "HEDGE MAZE & HOTEL EXTERIOR",
@@ -21419,7 +21582,9 @@
         2,
         38,
         72,
-        124
+        124,
+        139,
+        141
       ],
       "location": {
         "primary": "HEDGE MAZE (DAY) & GOLD BALLROOM",
