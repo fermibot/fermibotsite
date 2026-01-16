@@ -146,7 +146,8 @@
       "tags": [
         "lighthouse",
         "light",
-        "atmosphere"
+        "atmosphere",
+        "gull"
       ],
       "screenplayPage": 3,
       "chapter": "ch01-crossing",
@@ -191,7 +192,8 @@
         "vision",
         "light",
         "storm",
-        "atmosphere"
+        "atmosphere",
+        "hallucination"
       ],
       "screenplayPage": 4,
       "chapter": "ch01-crossing",
@@ -279,7 +281,8 @@
         "old",
         "quarters",
         "light",
-        "atmosphere"
+        "atmosphere",
+        "mermaid"
       ],
       "screenplayPage": 6,
       "chapter": "ch02-first-steps",
@@ -365,7 +368,8 @@
       "callbacks": [],
       "tags": [
         "young",
-        "quarters"
+        "quarters",
+        "mermaid"
       ],
       "screenplayPage": 8,
       "chapter": "ch02-first-steps",
@@ -453,7 +457,9 @@
         "old",
         "quarters",
         "vision",
-        "labor"
+        "labor",
+        "mermaid",
+        "guilt"
       ],
       "screenplayPage": 10,
       "chapter": "ch02-first-steps",
@@ -500,7 +506,8 @@
         "young",
         "labor",
         "light",
-        "atmosphere"
+        "atmosphere",
+        "mermaid"
       ],
       "screenplayPage": 11,
       "chapter": "ch02-first-steps",
@@ -551,7 +558,9 @@
         "labor",
         "alcohol",
         "light",
-        "atmosphere"
+        "atmosphere",
+        "mermaid",
+        "madness"
       ],
       "screenplayPage": 12,
       "chapter": "ch02-first-steps",
@@ -829,7 +838,8 @@
         "vision",
         "light",
         "conflict",
-        "storm"
+        "storm",
+        "mermaid"
       ],
       "screenplayPage": 18,
       "chapter": "ch03-the-work",
@@ -1217,7 +1227,9 @@
         "young",
         "old",
         "labor",
-        "light"
+        "light",
+        "mermaid",
+        "gull"
       ],
       "screenplayPage": 27,
       "chapter": "ch04-bonds",
@@ -1351,7 +1363,8 @@
         "young",
         "old",
         "lighthouse",
-        "light"
+        "light",
+        "mermaid"
       ],
       "screenplayPage": 30,
       "chapter": "ch05-dominance",
@@ -1404,7 +1417,10 @@
         "light",
         "violence",
         "conflict",
-        "storm"
+        "storm",
+        "mermaid",
+        "gull",
+        "madness"
       ],
       "screenplayPage": 31,
       "chapter": "ch05-dominance",
@@ -1449,7 +1465,9 @@
         "old",
         "quarters",
         "vision",
-        "storm"
+        "storm",
+        "mermaid",
+        "gull"
       ],
       "screenplayPage": 32,
       "chapter": "ch05-dominance",
@@ -1677,7 +1695,8 @@
         "old",
         "quarters",
         "labor",
-        "light"
+        "light",
+        "mermaid"
       ],
       "screenplayPage": 37,
       "chapter": "ch05-dominance",
@@ -1861,7 +1880,9 @@
         "light",
         "violence",
         "conflict",
-        "storm"
+        "storm",
+        "mermaid",
+        "logbook"
       ],
       "screenplayPage": 41,
       "chapter": "ch05-dominance",
@@ -1907,7 +1928,8 @@
         "young",
         "old",
         "lighthouse",
-        "violence"
+        "violence",
+        "gull"
       ],
       "screenplayPage": 42,
       "chapter": "ch06-omens",
@@ -1950,7 +1972,9 @@
       "tags": [
         "young",
         "old",
-        "quarters"
+        "quarters",
+        "mermaid",
+        "logbook"
       ],
       "screenplayPage": 43,
       "chapter": "ch06-omens",
@@ -2001,7 +2025,9 @@
         "labor",
         "alcohol",
         "light",
-        "violence"
+        "violence",
+        "mermaid",
+        "guilt"
       ],
       "screenplayPage": 44,
       "chapter": "ch06-omens",
@@ -2051,7 +2077,9 @@
         "quarters",
         "alcohol",
         "light",
-        "violence"
+        "violence",
+        "gull",
+        "guilt"
       ],
       "screenplayPage": 45,
       "chapter": "ch06-omens",
@@ -2142,7 +2170,8 @@
         "quarters",
         "vision",
         "violence",
-        "storm"
+        "storm",
+        "mermaid"
       ],
       "screenplayPage": 47,
       "chapter": "ch06-omens",
@@ -2193,7 +2222,10 @@
         "light",
         "violence",
         "storm",
-        "atmosphere"
+        "atmosphere",
+        "mermaid",
+        "tentacles",
+        "hallucination"
       ],
       "screenplayPage": 48,
       "chapter": "ch06-omens",
@@ -2238,7 +2270,9 @@
         "quarters",
         "alcohol",
         "storm",
-        "atmosphere"
+        "atmosphere",
+        "mermaid",
+        "gull"
       ],
       "screenplayPage": 49,
       "chapter": "ch06-omens",
@@ -2287,7 +2321,9 @@
         "old",
         "light",
         "violence",
-        "storm"
+        "storm",
+        "gull",
+        "guilt"
       ],
       "screenplayPage": 50,
       "chapter": "ch06-omens",
@@ -2381,7 +2417,9 @@
         "old",
         "lighthouse",
         "labor",
-        "storm"
+        "storm",
+        "logbook",
+        "guilt"
       ],
       "screenplayPage": 52,
       "chapter": "ch07-storm-arrives",
@@ -2472,7 +2510,9 @@
       "tags": [
         "young",
         "old",
-        "sea"
+        "sea",
+        "mermaid",
+        "guilt"
       ],
       "screenplayPage": 54,
       "chapter": "ch07-storm-arrives",
@@ -2522,7 +2562,8 @@
         "quarters",
         "labor",
         "alcohol",
-        "light"
+        "light",
+        "guilt"
       ],
       "screenplayPage": 55,
       "chapter": "ch07-storm-arrives",
@@ -2779,7 +2820,8 @@
       "foreshadowing": [],
       "callbacks": [],
       "tags": [
-        "young"
+        "young",
+        "mermaid"
       ],
       "screenplayPage": 61,
       "chapter": "ch07-storm-arrives",
@@ -2828,7 +2870,10 @@
         "violence",
         "conflict",
         "storm",
-        "atmosphere"
+        "atmosphere",
+        "mermaid",
+        "guilt",
+        "hallucination"
       ],
       "screenplayPage": 62,
       "chapter": "ch07-storm-arrives",
@@ -3182,7 +3227,8 @@
         "violence",
         "conflict",
         "storm",
-        "atmosphere"
+        "atmosphere",
+        "mermaid"
       ],
       "screenplayPage": 70,
       "chapter": "ch08-neptune",
@@ -3235,7 +3281,8 @@
         "light",
         "conflict",
         "storm",
-        "atmosphere"
+        "atmosphere",
+        "hallucination"
       ],
       "screenplayPage": 71,
       "chapter": "ch08-neptune",
@@ -3325,7 +3372,10 @@
         "old",
         "quarters",
         "alcohol",
-        "storm"
+        "storm",
+        "mermaid",
+        "madness",
+        "guilt"
       ],
       "screenplayPage": 73,
       "chapter": "ch08-neptune",
@@ -3372,7 +3422,8 @@
       "tags": [
         "young",
         "old",
-        "storm"
+        "storm",
+        "madness"
       ],
       "screenplayPage": 74,
       "chapter": "ch08-neptune",
@@ -3423,7 +3474,9 @@
         "labor",
         "alcohol",
         "violence",
-        "storm"
+        "storm",
+        "mermaid",
+        "logbook"
       ],
       "screenplayPage": 75,
       "chapter": "ch08-neptune",
@@ -3475,7 +3528,12 @@
         "alcohol",
         "violence",
         "conflict",
-        "storm"
+        "storm",
+        "mermaid",
+        "gull",
+        "tentacles",
+        "guilt",
+        "obsession"
       ],
       "screenplayPage": 76,
       "chapter": "ch09-visions",
@@ -3563,7 +3621,8 @@
         "young",
         "old",
         "lighthouse",
-        "light"
+        "light",
+        "madness"
       ],
       "screenplayPage": 78,
       "chapter": "ch09-visions",
@@ -3737,7 +3796,8 @@
       "tags": [
         "young",
         "old",
-        "quarters"
+        "quarters",
+        "logbook"
       ],
       "screenplayPage": 82,
       "chapter": "ch09-visions",
@@ -3786,7 +3846,9 @@
         "old",
         "quarters",
         "labor",
-        "storm"
+        "storm",
+        "mermaid",
+        "logbook"
       ],
       "screenplayPage": 83,
       "chapter": "ch09-visions",
@@ -3924,7 +3986,9 @@
         "sea",
         "vision",
         "light",
-        "conflict"
+        "conflict",
+        "mermaid",
+        "tentacles"
       ],
       "screenplayPage": 86,
       "chapter": "ch09-visions",
@@ -3975,7 +4039,11 @@
         "labor",
         "conflict",
         "storm",
-        "atmosphere"
+        "atmosphere",
+        "mermaid",
+        "gull",
+        "tentacles",
+        "guilt"
       ],
       "screenplayPage": 87,
       "chapter": "ch09-visions",
@@ -4027,7 +4095,10 @@
         "alcohol",
         "light",
         "violence",
-        "storm"
+        "storm",
+        "gull",
+        "madness",
+        "guilt"
       ],
       "screenplayPage": 88,
       "chapter": "ch10-confessions",
@@ -4076,7 +4147,10 @@
         "quarters",
         "labor",
         "conflict",
-        "storm"
+        "storm",
+        "mermaid",
+        "guilt",
+        "hallucination"
       ],
       "screenplayPage": 89,
       "chapter": "ch10-confessions",
@@ -4428,7 +4502,8 @@
         "young",
         "old",
         "quarters",
-        "storm"
+        "storm",
+        "madness"
       ],
       "screenplayPage": 97,
       "chapter": "ch11-ascension",
@@ -4478,7 +4553,10 @@
         "vision",
         "alcohol",
         "light",
-        "violence"
+        "violence",
+        "mermaid",
+        "madness",
+        "guilt"
       ],
       "screenplayPage": 98,
       "chapter": "ch11-ascension",
@@ -4751,7 +4829,8 @@
         "old",
         "quarters",
         "alcohol",
-        "storm"
+        "storm",
+        "guilt"
       ],
       "screenplayPage": 104,
       "chapter": "ch11-ascension",
@@ -4797,7 +4876,9 @@
         "quarters",
         "light",
         "violence",
-        "storm"
+        "storm",
+        "mermaid",
+        "logbook"
       ],
       "screenplayPage": 105,
       "chapter": "ch11-ascension",
@@ -4851,7 +4932,12 @@
         "light",
         "violence",
         "conflict",
-        "storm"
+        "storm",
+        "mermaid",
+        "gull",
+        "tentacles",
+        "logbook",
+        "guilt"
       ],
       "screenplayPage": 106,
       "chapter": "ch11-ascension",
@@ -4901,7 +4987,9 @@
         "labor",
         "light",
         "violence",
-        "storm"
+        "storm",
+        "gull",
+        "guilt"
       ],
       "screenplayPage": 107,
       "chapter": "ch11-ascension",
@@ -5216,7 +5304,8 @@
         "young",
         "old",
         "light",
-        "violence"
+        "violence",
+        "gull"
       ],
       "screenplayPage": 114,
       "chapter": "ch12-reckoning",

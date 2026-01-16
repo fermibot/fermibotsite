@@ -46,7 +46,7 @@ const CONFIG = {
     // Layout dimensions
     DIAMETER: 900,
     STORAGE_KEY: 'lighthouse-viewed-scenes',
-    DATA_FILE: 'RobertEggers_2019_TheLighthouse_scenes_analyzed.json?v=2026.01.16.03'
+    DATA_FILE: 'RobertEggers_2019_TheLighthouse_scenes_analyzed.json?v=2026.01.16.04'
 };
 
 // ============================================
@@ -161,10 +161,11 @@ const TAG_ICONS = {
 
 const TAG_GROUPS = {
     'Characters': ['young', 'old'],
-    'Key Symbols': ['light', 'lighthouse', 'mermaid', 'gull', 'tentacles', 'logbook'],
-    'Environment': ['sea', 'storm', 'atmosphere', 'quarters'],
-    'States': ['vision', 'alcohol', 'violence', 'labor', 'conflict'],
-    'Psychology': ['madness', 'guilt', 'obsession', 'hallucination']
+    'Key Symbols': ['mermaid', 'gull', 'logbook', 'tentacles'],
+    'Environment': ['storm', 'quarters', 'atmosphere', 'sea', 'lighthouse'],
+    'Work & Conflict': ['labor', 'violence', 'conflict', 'alcohol'],
+    'Psychological': ['guilt', 'madness', 'vision', 'hallucination', 'obsession'],
+    'Power & Mystery': ['light']
 };
 
 function buildTagBadges(tags) {
