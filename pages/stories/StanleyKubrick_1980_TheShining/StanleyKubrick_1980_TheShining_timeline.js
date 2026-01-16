@@ -1097,9 +1097,9 @@ function createLegendWithProgress() {
             .attr('x2', 30)
             .attr('y2', 6)
             .attr('stroke', conn.color)
-            .attr('stroke-width', conn.style === 'dashed' ? 0.5 : 2)
+            .attr('stroke-width', conn.style === 'dashed' ? 1.5 : 2)
             .attr('stroke-dasharray', conn.style === 'dashed' ? '4,2' : null)
-            .attr('stroke-opacity', conn.style === 'dashed' ? 0.5 : 0.8)
+            .attr('stroke-opacity', conn.style === 'dashed' ? 0.7 : 0.8)
             .style('filter', conn.style === 'dashed' ? 'none' : 'drop-shadow(0 0 2px ' + conn.color + ')');
 
         item.append('span')
@@ -1678,8 +1678,8 @@ function initVisualization() {
             if (d.type === 'callback') return '#8b0000'; // Dark blood red for callbacks (dashed)
             return '#00bcd4'; // Eerie cyan for foreshadowing (solid, glowy)
         })
-        .attr('stroke-width', d => d.type === 'callback' ? 0.5 : 1.2)
-        .attr('stroke-opacity', d => d.type === 'callback' ? 0.3 : 0.4)
+        .attr('stroke-width', d => d.type === 'callback' ? 1.0 : 1.2)
+        .attr('stroke-opacity', d => d.type === 'callback' ? 0.5 : 0.4)
         .attr('stroke-dasharray', d => d.type === 'callback' ? '4,2' : null)
         .attr('filter', d => d.type === 'callback' ? null : 'url(#spooky-glow)');
 
@@ -1829,12 +1829,16 @@ function highlightConnections(node) {
         .classed('connection-highlighted', d => connectedIds.has(d.data.id) && d.data.id !== node.data.id)  // Connected nodes (not main)
         .classed('connection-dimmed', d => !connectedIds.has(d.data.id));
 
-    // Highlight relevant links
+    // Highlight relevant links with smooth sticky transitions
     linkGroup.selectAll('.link')
+        .transition()
+        .duration(200) // Fast fade-in for new connections
         .style('opacity', d => {
             const isFromNode = (d.source.data.id === node.data.id);
             return isFromNode ? 1 : 0.1;
-        })
+        });
+
+    linkGroup.selectAll('.link')
         .classed('highlighted', d => d.source.data.id === node.data.id)
         .classed('dimmed', d => d.source.data.id !== node.data.id);
 }
@@ -1849,8 +1853,13 @@ function unhighlightAll() {
         .classed('connection-highlighted', false)
         .classed('connection-dimmed', false);
 
+    // Slow fade-out for sticky effect - old connections linger
     linkGroup.selectAll('.link')
-        .style('opacity', null)
+        .transition()
+        .duration(600) // Slower fade-out creates sticky trailing effect
+        .style('opacity', null);
+
+    linkGroup.selectAll('.link')
         .classed('highlighted', false)
         .classed('dimmed', false);
 }
