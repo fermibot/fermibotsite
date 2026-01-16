@@ -872,11 +872,124 @@ function createLegendWithProgress() {
         .style('font-size', '0.7rem');
 
     topicsHeader.append('span')
-        .text('Discussion Questions:');
+        .text('Discussion Topics:');
+
+    // Build discussion tags from centralized TAG_GROUPS - multi-column layout
+    const categoriesContainer = grid.append('div')
+        .attr('class', 'legend-categories-container')
+        .style('column-count', '4')
+        .style('column-gap', '2rem')
+        .style('margin-top', '0.5rem');
+
+    for (const [groupName, groupTags] of Object.entries(TAG_GROUPS)) {
+        // Create category container (vertical column)
+        const categoryContainer = categoriesContainer.append('div')
+            .attr('class', 'legend-category-container')
+            .style('display', 'inline-block')
+            .style('width', '100%')
+            .style('margin-bottom', '1rem')
+            .style('padding-right', '1rem')
+            .style('break-inside', 'avoid');
+
+        // Add category label
+        categoryContainer.append('div')
+            .attr('class', 'legend-category-label')
+            .style('font-weight', '700')
+            .style('color', '#555')
+            .style('margin-bottom', '0.5rem')
+            .style('font-size', '0.9rem')
+            .style('border-bottom', '2px solid #ddd')
+            .style('padding-bottom', '0.3rem')
+            .text(groupName);
+
+        // Create vertical list of tags for this category
+        const tagsList = categoryContainer.append('div')
+            .attr('class', 'legend-category-tags')
+            .style('display', 'flex')
+            .style('flex-direction', 'column')
+            .style('gap', '0.3rem');
+
+        // Add tags for this category
+        groupTags.forEach(tagKey => {
+            const label = tagKey.charAt(0).toUpperCase() + tagKey.slice(1).replace(/-/g, ' ');
+            const icon = TAG_ICONS[tagKey] || '🏷️';
+
+            // Count scenes with this tag
+            const sceneCount = state.scenes.filter(s => s.tags && s.tags.includes(tagKey)).length;
+
+            // Create row container for badge + count
+            const row = tagsList.append('div')
+                .style('display', 'flex')
+                .style('align-items', 'center')
+                .style('justify-content', 'space-between')
+                .style('width', '100%');
+
+            const item = row.append('div')
+                .attr('class', `legend-item legend-question-item tag-${tagKey}`)
+                .attr('data-question', tagKey)
+                .attr('title', `Filter scenes with ${label} (${sceneCount} scenes)`)
+                .style('width', 'fit-content')
+                .on('click', () => toggleTagFilter(tagKey));
+
+            // Add active indicator (dot)
+            item.append('span')
+                .attr('class', 'active-indicator')
+                .text('✓');
+
+            item.append('span')
+                .attr('class', 'legend-icon')
+                .text(icon);
+
+            item.append('span')
+                .attr('class', 'legend-text')
+                .text(label);
+
+            // Add connecting line
+            row.append('span')
+                .style('flex-grow', '1')
+                .style('border-bottom', '1px dotted #ccc')
+                .style('margin', '0 0.5rem')
+                .style('min-width', '10px');
+
+            // Add count outside the badge (zero-padded)
+            row.append('span')
+                .style('font-size', '0.7rem')
+                .style('color', '#888')
+                .style('font-weight', '500')
+                .style('font-family', 'monospace')
+                .text(`(${String(sceneCount).padStart(2, '0')})`);
+        });
+    }
+
+    // Separator
+    grid.append('div').attr('class', 'legend-separator');
+
+    // Section label for Discussion Questions - collapsible
+    const questionsHeader = grid.append('div')
+        .attr('class', 'legend-section-label legend-collapsible-header')
+        .style('cursor', 'pointer')
+        .style('user-select', 'none')
+        .on('click', function() {
+            const content = d3.select(this.nextSibling);
+            const isCollapsed = content.style('display') === 'none';
+            content.style('display', isCollapsed ? 'block' : 'none');
+            d3.select(this).select('.collapse-icon').text(isCollapsed ? '▼' : '▶');
+        });
+
+    questionsHeader.append('span')
+        .attr('class', 'collapse-icon')
+        .text('▼')
+        .style('margin-right', '0.5rem')
+        .style('font-size', '0.7rem');
+
+    questionsHeader.append('span')
+        .text('📖 Discussion Questions');
 
     // Build discussion questions list - organized by category
     const questionsContainer = grid.append('div')
         .attr('class', 'legend-questions-container')
+        .style('column-count', '5')
+        .style('column-gap', '1rem')
         .style('margin-top', '0.5rem');
 
     // Group questions by category
@@ -893,7 +1006,8 @@ function createLegendWithProgress() {
         // Category header
         const categorySection = questionsContainer.append('div')
             .attr('class', 'legend-question-category')
-            .style('margin-bottom', '1.5rem');
+            .style('margin-bottom', '1.5rem')
+            .style('break-inside', 'avoid');
 
         categorySection.append('div')
             .attr('class', 'legend-category-label')
@@ -1030,6 +1144,7 @@ function createLegendWithProgress() {
 const legendState = {
     activeActs: new Set(),
     activePsychological: new Set(),
+    activeTags: new Set(),
     activeQuestions: new Set()
 };
 
@@ -1061,6 +1176,23 @@ function togglePsychologicalFilter(psychKey) {
     d3.selectAll('.legend-marker-item')
         .classed('active', function() {
             return legendState.activePsychological.has(this.dataset.marker);
+        });
+
+    // Update visualization
+    applyLegendFilters();
+}
+
+function toggleTagFilter(tagKey) {
+    if (legendState.activeTags.has(tagKey)) {
+        legendState.activeTags.delete(tagKey);
+    } else {
+        legendState.activeTags.add(tagKey);
+    }
+
+    // Update legend item appearance
+    d3.selectAll('.legend-question-item')
+        .classed('active', function() {
+            return legendState.activeTags.has(this.dataset.question);
         });
 
     // Update visualization
@@ -1108,6 +1240,7 @@ function applyLegendFilters() {
 
     const hasActFilter = legendState.activeActs.size > 0;
     const hasPsychologicalFilter = legendState.activePsychological.size > 0;
+    const hasTagFilter = legendState.activeTags.size > 0;
     const hasQuestionFilter = legendState.activeQuestions.size > 0;
 
     allNodes.forEach(node => {
@@ -1123,6 +1256,13 @@ function applyLegendFilters() {
         // Psychological filter
         if (hasPsychologicalFilter) {
             visible = visible && legendState.activePsychological.has(node.data.psychologicalState);
+        }
+
+        // Tag filter
+        if (hasTagFilter) {
+            const hasMatchingTag = node.data.tags &&
+                Array.from(legendState.activeTags).some(tag => node.data.tags.includes(tag));
+            visible = visible && hasMatchingTag;
         }
 
         // Question filter (by discussion question IDs)
@@ -1144,6 +1284,11 @@ function applyLegendFilters() {
     // Update links
     if (linkGroup) {
         linkGroup.selectAll('.link').style('opacity', d => {
+            const sourceHasMatchingTag = !hasTagFilter || (d.source.data.tags &&
+                Array.from(legendState.activeTags).some(tag => d.source.data.tags.includes(tag)));
+            const targetHasMatchingTag = !hasTagFilter || (d.target.data.tags &&
+                Array.from(legendState.activeTags).some(tag => d.target.data.tags.includes(tag)));
+
             const sourceHasMatchingQuestion = !hasQuestionFilter || (d.source.data.discussionQuestions &&
                 Array.from(legendState.activeQuestions).some(qId =>
                     d.source.data.discussionQuestions.some(dq => dq.id === qId)
@@ -1156,11 +1301,13 @@ function applyLegendFilters() {
             const sourceVisible = d.source.data.id &&
                 (!hasActFilter || legendState.activeActs.has(d.source.data.act)) &&
                 (!hasPsychologicalFilter || legendState.activePsychological.has(d.source.data.psychologicalState)) &&
+                sourceHasMatchingTag &&
                 sourceHasMatchingQuestion;
 
             const targetVisible = d.target.data.id &&
                 (!hasActFilter || legendState.activeActs.has(d.target.data.act)) &&
                 (!hasPsychologicalFilter || legendState.activePsychological.has(d.target.data.psychologicalState)) &&
+                targetHasMatchingTag &&
                 targetHasMatchingQuestion;
 
             return (sourceVisible && targetVisible) ? 0.3 : 0.05;
