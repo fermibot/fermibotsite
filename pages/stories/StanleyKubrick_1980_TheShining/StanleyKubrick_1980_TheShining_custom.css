@@ -1230,3 +1230,72 @@
 [data-bs-theme="dark"] .tag-badge.tag-danny-tony { color: #BA68C8; }
 [data-bs-theme="dark"] .tag-badge.tag-halloran-shining { color: #4DB6AC; }
 [data-bs-theme="dark"] .tag-badge.tag-halloran-rescue { color: #26A69A; }
+
+/* ============================================
+   SPOOKY HOVER EFFECTS
+   ============================================ */
+
+/* Shake animation - subtle and creepy */
+@keyframes spooky-shake {
+    0%, 100% { transform: translateX(0); }
+    10% { transform: translateX(-2px) rotate(-0.5deg); }
+    20% { transform: translateX(2px) rotate(0.5deg); }
+    30% { transform: translateX(-2px) rotate(-0.5deg); }
+    40% { transform: translateX(2px) rotate(0.5deg); }
+    50% { transform: translateX(-1px) rotate(-0.3deg); }
+    60% { transform: translateX(1px) rotate(0.3deg); }
+    70% { transform: translateX(-1px) rotate(-0.3deg); }
+    80% { transform: translateX(1px) rotate(0.3deg); }
+    90% { transform: translateX(-0.5px) rotate(-0.1deg); }
+}
+
+/* Glitch animation for icons */
+@keyframes spooky-glitch {
+    0%, 100% { opacity: 1; transform: translate(0, 0); }
+    33% { opacity: 0.8; transform: translate(-1px, 1px); }
+    66% { opacity: 0.9; transform: translate(1px, -1px); }
+}
+
+/* Apply shake to legend items on hover */
+.legend-question-item:hover,
+.legend-chapter-item:hover,
+.legend-item[data-act]:hover,
+.legend-marker-item:hover {
+    animation: spooky-shake 0.5s ease-in-out;
+}
+
+/* Apply glitch to icons on hover */
+.legend-question-item:hover .legend-icon,
+.legend-chapter-item:hover .legend-icon,
+.legend-item:hover .legend-icon {
+    animation: spooky-glitch 0.3s ease-in-out infinite;
+}
+
+/* Shake discussion question cards on hover */
+.book-club-question:hover {
+    animation: spooky-shake 0.6s ease-in-out;
+}
+
+/* Shake tags in scene details */
+.tag-badge:hover {
+    animation: spooky-shake 0.4s ease-in-out;
+    cursor: pointer;
+}
+
+/* Creepy glow effect on active elements */
+.legend-item.active,
+.legend-chapter-item.active,
+.legend-question-item.active {
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+    transition: box-shadow 0.3s ease;
+}
+
+/* Subtle pulse on chapter numbers */
+.legend-chapter-item:hover span[style*="background-color"] {
+    animation: spooky-pulse 1s ease-in-out infinite;
+}
+
+@keyframes spooky-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
