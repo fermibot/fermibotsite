@@ -336,6 +336,22 @@
             const branchTip = localRepo.branches[branchName];
             if (!branchTip) return { ok: false, error: 'Branch not found' };
 
+            // Check if remote has this branch
+            if (this.initialized && this.branches[branchName]) {
+                const remoteTip = this.branches[branchName];
+
+                // Check if local tip is ahead of remote tip (i.e., remote tip is ancestor of local tip)
+                // If remote has commits that local doesn't have, reject the push
+                const isRemoteAhead = !this._isAncestorOf(localRepo, remoteTip, branchTip);
+
+                if (isRemoteAhead && remoteTip !== branchTip) {
+                    return {
+                        ok: false,
+                        error: 'Push rejected! Remote has changes you don\'t have. Pull first.'
+                    };
+                }
+            }
+
             // Find all commits reachable from this branch
             const newCommits = localRepo.commits.filter(c =>
                 !this.commits.find(rc => rc.oid === c.oid)
@@ -348,8 +364,35 @@
             return { ok: true, pushed: newCommits.length };
         }
 
+        _isAncestorOf(repo, ancestorOid, descendantOid) {
+            if (!ancestorOid || !descendantOid) return false;
+            if (ancestorOid === descendantOid) return true;
+
+            const visited = new Set();
+            const queue = [descendantOid];
+
+            while (queue.length > 0) {
+                const currentOid = queue.shift();
+                if (visited.has(currentOid)) continue;
+                visited.add(currentOid);
+
+                const commit = repo.commits.find(c => c.oid === currentOid);
+                if (!commit) continue;
+
+                for (const parentOid of (commit.parents || [])) {
+                    if (parentOid === ancestorOid) return true;
+                    queue.push(parentOid);
+                }
+            }
+
+            return false;
+        }
+
         pull(localRepo, branchName) {
             if (!this.initialized) return { ok: false, error: 'Remote not initialized' };
+
+            console.log('Pull: Before sync - Local main:', localRepo.branches.main ? localRepo.branches.main.substring(0, 7) : 'null');
+            console.log('Pull: Remote main:', this.branches.main ? this.branches.main.substring(0, 7) : 'null');
 
             // Copy ALL commits from remote to local (that don't exist locally)
             const newCommits = this.commits.filter(c =>
@@ -367,6 +410,8 @@
                 // Always update to ensure sync (remote is source of truth for pushed branches)
                 localRepo.branches[remoteBranch] = this.branches[remoteBranch];
             });
+
+            console.log('Pull: After sync - Local main:', localRepo.branches.main ? localRepo.branches.main.substring(0, 7) : 'null');
 
             // Sync files from the current branch's latest commit
             if (this.branches[branchName]) {
@@ -466,44 +511,97 @@
     }
 
     // ============================================
+    // STATE PERSISTENCE
+    // ============================================
+
+    const STORAGE_KEY = 'gitBetaState';
+
+    function saveState() {
+        try {
+            const state = {
+                gitRepos: gitEngine.repos,
+                remoteRepo: {
+                    branches: remoteRepo.branches,
+                    commits: remoteRepo.commits,
+                    initialized: remoteRepo.initialized
+                },
+                remoteSelectedBranch,
+                timestamp: Date.now()
+            };
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        } catch (e) {
+            console.error('Failed to save state:', e);
+        }
+    }
+
+    function loadState() {
+        try {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (!saved) return false;
+
+            const state = JSON.parse(saved);
+
+            // Restore git repos
+            gitEngine.repos = state.gitRepos;
+
+            // Restore remote repo
+            remoteRepo.branches = state.remoteRepo.branches;
+            remoteRepo.commits = state.remoteRepo.commits;
+            remoteRepo.initialized = state.remoteRepo.initialized;
+
+            // Restore remote selected branch
+            remoteSelectedBranch = state.remoteSelectedBranch || 'main';
+
+            return true;
+        } catch (e) {
+            console.error('Failed to load state:', e);
+            return false;
+        }
+    }
+
+    function clearState() {
+        localStorage.removeItem(STORAGE_KEY);
+    }
+
+    // ============================================
     // INITIALIZATION
     // ============================================
 
     function init() {
-        // Create repos for Alice and Bob
-        gitEngine.createRepo('alice-repo');
-        gitEngine.createRepo('bob-repo');
+        // Try to load saved state
+        const loaded = loadState();
+
+        if (!loaded) {
+            // Create repos for Alice and Bob
+            gitEngine.createRepo('alice-repo');
+            gitEngine.createRepo('bob-repo');
+
+            // Alice creates initial commit and pushes to remote
+            gitEngine.addFile('alice-repo', 'README.md', '# Git Beta Demo\n\nShared repository for Alice and Bob.');
+            gitEngine.stageFile('alice-repo', 'README.md');
+            const initialCommit = gitEngine.commit('alice-repo', 'Initial commit', 'alice');
+
+            // Alice pushes to remote
+            remoteRepo.push(gitEngine.getRepo('alice-repo'), 'main');
+
+            // Bob clones (pulls) from remote to get the shared starting point
+            remoteRepo.pull(gitEngine.getRepo('bob-repo'), 'main');
+
+            // Save initial state
+            saveState();
+        }
 
         // Setup event listeners
         setupEventListeners();
 
-        // Render everything first (so consoles exist)
+        // Render everything
         renderAll();
 
-        // Alice creates initial commit and pushes to remote
-        gitEngine.addFile('alice-repo', 'README.md', '# Git Beta Demo\n\nShared repository for Alice and Bob.');
-        gitEngine.stageFile('alice-repo', 'README.md');
-        const initialCommit = gitEngine.commit('alice-repo', 'Initial commit', 'alice');
-
-        logConsole('[alice] Created initial commit: ' + initialCommit.oid.substring(0, 7), 'success');
-
-        // Alice pushes to remote
-        const pushResult = remoteRepo.push(gitEngine.getRepo('alice-repo'), 'main');
-        if (pushResult.ok) {
-            logConsole('[alice] Pushed to remote', 'success');
+        // Log status only if this is a fresh start
+        if (!loaded) {
+            logConsole('[alice] Ready', 'info');
+            logConsole('[bob] Ready', 'info');
         }
-
-        // Bob clones (pulls) from remote to get the shared starting point
-        const pullResult = remoteRepo.pull(gitEngine.getRepo('bob-repo'), 'main');
-        if (pullResult.ok) {
-            logConsole('[bob] Cloned from remote: ' + pullResult.pulled + ' commit(s)', 'success');
-        }
-
-        logConsole('[alice] Ready', 'info');
-        logConsole('[bob] Ready', 'info');
-
-        // Final render to show synced state
-        renderAll();
     }
 
     // ============================================
@@ -774,6 +872,8 @@
             return;
         }
 
+        console.log('renderGraph - main pointer:', branchPointers.main ? branchPointers.main.substring(0, 7) : 'null');
+
 
         const nodeRadius = 8, nodeSpacingY = 40, branchSpacingX = 80, startX = 50, startY = 50;
 
@@ -1030,7 +1130,8 @@
 
         // Reset all
         document.getElementById('reset-all-btn')?.addEventListener('click', () => {
-            if (confirm('Reset all? This will clear all repositories.')) {
+            if (confirm('Reset all? This will clear all repositories and saved state.')) {
+                clearState();
                 location.reload();
             }
         });
@@ -1078,6 +1179,7 @@
             if (gitEngine.addFile(user.repoName, filename, `// ${filename}\n// Created by ${username}`)) {
                 logConsole(`[${username}] Created file: ${filename}`, 'success');
                 input.value = '';
+                saveState();
                 renderWorkspace(username);
             }
         },
@@ -1086,6 +1188,7 @@
             const user = STATE.users[username];
             if (gitEngine.modifyFile(user.repoName, filename)) {
                 logConsole(`[${username}] Modified file: ${filename}`, 'info');
+                saveState();
                 renderWorkspace(username);
             }
         },
@@ -1097,6 +1200,7 @@
             if (gitEngine.deleteFile(user.repoName, filename)) {
                 logConsole(`[${username}] git rm ${filename}`, 'warning', true);
                 logConsole(`[${username}] Deleted and staged: ${filename}`, 'warning');
+                saveState();
                 renderWorkspace(username);
             }
         },
@@ -1105,6 +1209,7 @@
             const user = STATE.users[username];
             if (gitEngine.stageFile(user.repoName, filename)) {
                 logConsole(`[${username}] git add ${filename}`, 'success', true);
+                saveState();
                 renderWorkspace(username);
             }
         },
@@ -1120,6 +1225,7 @@
                 } else {
                     logConsole(`[${username}] Unstaged: ${filename}`, 'info');
                 }
+                saveState();
                 renderWorkspace(username);
             }
         },
@@ -1134,6 +1240,7 @@
             if (commit) {
                 logConsole(`[${username}] git commit -m "${msg}"`, 'success', true);
                 logConsole(`[${username}] Created commit: ${commit.oid.substring(0, 7)}`, 'success');
+                saveState();
                 renderAll();
             } else {
                 logConsole(`[${username}] Nothing to commit`, 'warning');
@@ -1149,6 +1256,7 @@
             const result = remoteRepo.push(repo, repo.head);
             if (result.ok) {
                 logConsole(`[${username}] Push successful (${result.pushed} commit(s))`, 'success');
+                saveState();
                 renderAll(); // Render all workspaces and remote so graphs sync
             } else {
                 logConsole(`[${username}] Push failed: ${result.error}`, 'error');
@@ -1165,6 +1273,7 @@
             const result = remoteRepo.pull(repo, repo.head);
             if (result.ok) {
                 logConsole(`[${username}] Pull successful (${result.pulled} commit(s))`, 'success');
+                saveState();
                 renderAll(); // Render all workspaces and remote so graphs sync
             } else {
                 logConsole(`[${username}] Pull failed: ${result.error}`, 'error');
@@ -1186,6 +1295,7 @@
                 logConsole(`[${username}] git branch ${name}`, 'success', true);
                 gitEngine.switchBranch(user.repoName, name);
                 logConsole(`[${username}] git checkout ${name}`, 'success', true);
+                saveState();
                 renderWorkspace(username);
             } else {
                 logConsole(`[${username}] Branch already exists locally`, 'error');
@@ -1196,6 +1306,7 @@
             const user = STATE.users[username];
             if (gitEngine.switchBranch(user.repoName, branch)) {
                 logConsole(`[${username}] git checkout ${branch}`, 'success', true);
+                saveState();
                 renderWorkspace(username);
             }
         },
@@ -1212,6 +1323,7 @@
                     logConsole(`[${username}] Note: Branch still exists on remote. Use "Push Delete" to remove it.`, 'info');
                 }
 
+                saveState();
                 renderWorkspace(username);
             } else {
                 logConsole(`[${username}] Cannot delete branch`, 'error');
@@ -1227,6 +1339,7 @@
             if (result.ok) {
                 logConsole(`[${username}] git push origin --delete ${branch}`, 'success', true);
                 logConsole(`[${username}] Deleted branch '${branch}' from remote`, 'success');
+                saveState();
                 renderAll();
             } else {
                 logConsole(`[${username}] ${result.error}`, 'error');
@@ -1258,6 +1371,7 @@
             if (result.ok) {
                 logConsole(`[${username}] Merge successful: ${result.commit.oid.substring(0, 7)}`, 'success');
                 logConsole(`[${username}] Merged '${sourceBranch}' into '${repo.head}'`, 'success');
+                saveState();
                 renderAll();
             } else {
                 logConsole(`[${username}] Merge failed: ${result.error}`, 'error');
@@ -1273,6 +1387,7 @@
 
         selectRemoteBranch: (branchName) => {
             remoteSelectedBranch = branchName;
+            saveState();
             renderRemote();
         }
     };
