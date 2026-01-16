@@ -1,0 +1,237 @@
+/* ============================================
+   TAG BADGE COLORS - Universal Tag System
+   ============================================ */
+
+/* CHARACTER ARCS - Jack (Red/Dark tones) */
+.tag-badge.tag-jack-declining {
+    background: rgba(139, 0, 0, 0.15);
+    color: #8B0000;
+    border-color: #8B0000;
+}
+
+.tag-badge.tag-jack-violence {
+    background: rgba(198, 40, 40, 0.15);
+    color: #C62828;
+    border-color: #C62828;
+}
+
+.tag-badge.tag-jack-supernatural {
+    background: rgba(106, 27, 154, 0.15);
+    color: #6A1B9A;
+    border-color: #6A1B9A;
+}
+
+.tag-badge.tag-jack-drunk {
+    background: rgba(191, 54, 12, 0.15);
+    color: #BF360C;
+    border-color: #BF360C;
+}
+
+/* CHARACTER ARCS - Wendy (Blue/Protective tones) */
+.tag-badge.tag-wendy-discovering {
+    background: rgba(25, 118, 210, 0.15);
+    color: #1976D2;
+    border-color: #1976D2;
+}
+
+.tag-badge.tag-wendy-defending {
+    background: rgba(13, 71, 161, 0.15);
+    color: #0D47A1;
+    border-color: #0D47A1;
+}
+
+.tag-badge.tag-wendy-supernatural {
+    background: rgba(74, 20, 140, 0.15);
+    color: #4A148C;
+    border-color: #4A148C;
+}
+
+/* CHARACTER ARCS - Danny (Gold/Light tones) */
+.tag-badge.tag-danny-shining {
+    background: rgba(255, 193, 7, 0.15);
+    color: #B8860B;
+    border-color: #FFC107;
+}
+
+.tag-badge.tag-danny-endangered {
+    background: rgba(255, 152, 0, 0.15);
+    color: #E65100;
+    border-color: #FF9800;
+}
+
+.tag-badge.tag-danny-tony {
+    background: rgba(156, 39, 176, 0.15);
+    color: #7B1FA2;
+    border-color: #9C27B0;
+}
+
+/* CHARACTER ARCS - Halloran (Teal/Rescue tones) */
+.tag-badge.tag-halloran-shining {
+    background: rgba(0, 150, 136, 0.15);
+    color: #00695C;
+    border-color: #009688;
+}
+
+.tag-badge.tag-halloran-rescue {
+    background: rgba(0, 121, 107, 0.15);
+    color: #004D40;
+    border-color: #00796B;
+}
+
+/* LOCATIONS (Brown/Earth tones) */
+.tag-badge.tag-hotel-tour,
+.tag-badge.tag-gold-ballroom,
+.tag-badge.tag-room-237,
+.tag-badge.tag-maze,
+.tag-badge.tag-pantry,
+.tag-badge.tag-apartment,
+.tag-badge.tag-colorado-lounge,
+.tag-badge.tag-bathroom {
+    background: rgba(121, 85, 72, 0.15);
+    color: #5D4037;
+    border-color: #795548;
+}
+
+/* SUPERNATURAL (Purple/Mystical tones) */
+.tag-badge.tag-ghost-encounter,
+.tag-badge.tag-ghost-party,
+.tag-badge.tag-lloyd,
+.tag-badge.tag-grady,
+.tag-badge.tag-grady-twins,
+.tag-badge.tag-woman-237,
+.tag-badge.tag-blood-elevator,
+.tag-badge.tag-possession,
+.tag-badge.tag-shining-vision,
+.tag-badge.tag-time-distortion {
+    background: rgba(106, 27, 154, 0.15);
+    color: #4A148C;
+    border-color: #6A1B9A;
+}
+
+/* ICONIC MOMENTS (Gold/Highlight tones) */
+.tag-badge.tag-heres-johnny,
+.tag-badge.tag-all-work-no-play,
+.tag-badge.tag-red-rum,
+.tag-badge.tag-twins,
+.tag-badge.tag-photograph,
+.tag-badge.tag-baseball-bat,
+.tag-badge.tag-tricycle,
+.tag-badge.tag-always-been-caretaker,
+.tag-badge.tag-footprint-trick {
+    background: rgba(255, 215, 0, 0.2);
+    color: #B8860B;
+    border-color: #FFD700;
+    font-weight: 700;
+}
+
+/* VIOLENCE & HORROR (Red/Dark red tones) */
+.tag-badge.tag-physical-violence,
+.tag-badge.tag-threatened-violence,
+.tag-badge.tag-psychological-horror,
+.tag-badge.tag-murder,
+.tag-badge.tag-chase,
+.tag-badge.tag-weapon {
+    background: rgba(183, 28, 28, 0.15);
+    color: #B71C1C;
+    border-color: #C62828;
+}
+
+/* KEY DIALOGUE (Amber/Speech tones) */
+.tag-badge.tag-iconic-dialogue,
+.tag-badge.tag-gaslighting,
+.tag-badge.tag-dark-humor {
+    background: rgba(255, 111, 0, 0.15);
+    color: #E65100;
+    border-color: #FF6F00;
+}
+
+/* PLOT PROGRESSION (Blue/Story tones) */
+.tag-badge.tag-arrival,
+.tag-badge.tag-interview,
+.tag-badge.tag-tour,
+.tag-badge.tag-closing-day,
+.tag-badge.tag-isolation-begins,
+.tag-badge.tag-one-month-later,
+.tag-badge.tag-escalation,
+.tag-badge.tag-breaking-point,
+.tag-badge.tag-crisis,
+.tag-badge.tag-climax,
+.tag-badge.tag-resolution,
+.tag-badge.tag-epilogue {
+    background: rgba(33, 150, 243, 0.15);
+    color: #0D47A1;
+    border-color: #2196F3;
+}
+
+/* THEMES (Gray/Conceptual tones) */
+.tag-badge.tag-isolation,
+.tag-badge.tag-family-breakdown,
+.tag-badge.tag-alcoholism,
+.tag-badge.tag-violence-history,
+.tag-badge.tag-writer-block,
+.tag-badge.tag-responsibility,
+.tag-badge.tag-parent-child,
+.tag-badge.tag-marriage-strain {
+    background: rgba(96, 125, 139, 0.15);
+    color: #37474F;
+    border-color: #607D8B;
+}
+
+/* OBJECTS (Orange/Item tones) */
+.tag-badge.tag-typewriter,
+.tag-badge.tag-axe,
+.tag-badge.tag-knife,
+.tag-badge.tag-radio,
+.tag-badge.tag-snowcat,
+.tag-badge.tag-telephone {
+    background: rgba(230, 81, 0, 0.15);
+    color: #BF360C;
+    border-color: #E65100;
+}
+
+/* COMMUNICATION (Cyan/Signal tones) */
+.tag-badge.tag-outside-contact,
+.tag-badge.tag-radio-call,
+.tag-badge.tag-phone-call,
+.tag-badge.tag-contact-blocked {
+    background: rgba(0, 172, 193, 0.15);
+    color: #006064;
+    border-color: #00ACC1;
+}
+
+/* WEATHER (Light blue/Cold tones) */
+.tag-badge.tag-storm,
+.tag-badge.tag-snow,
+.tag-badge.tag-trapped-by-weather {
+    background: rgba(129, 212, 250, 0.15);
+    color: #01579B;
+    border-color: #81D4FA;
+}
+
+/* STRUCTURE (Green/Meta tones) */
+.tag-badge.tag-callback,
+.tag-badge.tag-foreshadowing,
+.tag-badge.tag-parallel,
+.tag-badge.tag-intercutting {
+    background: rgba(67, 160, 71, 0.15);
+    color: #1B5E20;
+    border-color: #43A047;
+}
+
+/* Dark mode adjustments */
+[data-bs-theme="dark"] .tag-badge {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+[data-bs-theme="dark"] .tag-badge.tag-jack-declining { color: #EF5350; }
+[data-bs-theme="dark"] .tag-badge.tag-jack-violence { color: #F44336; }
+[data-bs-theme="dark"] .tag-badge.tag-jack-supernatural { color: #AB47BC; }
+[data-bs-theme="dark"] .tag-badge.tag-jack-drunk { color: #FF6E40; }
+[data-bs-theme="dark"] .tag-badge.tag-wendy-discovering { color: #42A5F5; }
+[data-bs-theme="dark"] .tag-badge.tag-wendy-defending { color: #1E88E5; }
+[data-bs-theme="dark"] .tag-badge.tag-wendy-supernatural { color: #8E24AA; }
+[data-bs-theme="dark"] .tag-badge.tag-danny-shining { color: #FFD54F; }
+[data-bs-theme="dark"] .tag-badge.tag-danny-endangered { color: #FFB74D; }
+[data-bs-theme="dark"] .tag-badge.tag-danny-tony { color: #BA68C8; }
+[data-bs-theme="dark"] .tag-badge.tag-halloran-shining { color: #4DB6AC; }
+[data-bs-theme="dark"] .tag-badge.tag-halloran-rescue { color: #26A69A; }

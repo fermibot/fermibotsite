@@ -41,7 +41,7 @@ const CONFIG = {
     // Layout
     DIAMETER: 900,
     STORAGE_KEY: 'shining-viewed-scenes',
-    DATA_FILE: 'StanleyKubrick_1980_TheShining_scenes.json'
+    DATA_FILE: 'StanleyKubrick_1980_TheShining_scenes_all_231.json'
 };
 
 // ============================================
@@ -52,140 +52,140 @@ const DISCUSSION_QUESTIONS = [
     {
         id: 1,
         question: "Is Jack's descent into madness supernatural possession or psychological breakdown?",
-        tags: ["supernatural", "possession", "breakdown"],
+        tags: ["jack-declining", "possession", "psychological-horror", "ghost-encounter"],
         relatedScenes: [2, 6, 12, 16, 23],
         answer: "The film deliberately blurs this line. Scene 2 shows Ullman mentioning the previous caretaker's murder-suicide, planting seeds of cyclical violence. Scene 6 has Jack dreaming of killing his family, suggesting pre-existing violent ideation. Scene 12 shows Jack's isolation and writer's block intensifying his frustration. By Scene 16, Jack converses with Lloyd the bartender who appears from nowhere, and Scene 23 reveals Grady—a ghost or manifestation—directly instructing Jack to 'correct' his family. The ambiguity is intentional: the hotel may amplify what was already dormant in Jack's psyche."
     },
     {
         id: 2,
         question: "What does the Overlook Hotel represent symbolically?",
-        tags: ["hotel", "ghosts", "cyclical-time"],
+        tags: ["ghost-encounter", "ghost-party", "time-distortion", "possession"],
         relatedScenes: [2, 4, 6, 22, 33],
         answer: "The Overlook functions as a container for accumulated violence and evil. Scene 2's tour reveals its dark history built on a Native American burial ground. Scene 4 shows its labyrinthine architecture that traps and disorients. In Scene 6, Grady's ghost reveals the hotel absorbs and recycles violence across decades. Scene 22's ballroom full of 1920s partygoers suggests the hotel exists outside normal time. The final photograph in Scene 33 confirms Jack has been absorbed into the hotel's eternal cycle—he was always there, will always be there."
     },
     {
         id: 3,
         question: "How does Kubrick use symmetry and visual composition to create unease?",
-        tags: ["grady-twins", "gold-room", "hotel"],
+        tags: ["grady-twins", "gold-ballroom", "hotel-tour", "psychological-horror"],
         relatedScenes: [1, 4, 7, 10, 22],
         answer: "Kubrick employs perfect symmetry to suggest artificial order concealing chaos. Scene 1's aerial shots show the car dwarfed by mountains, establishing cosmic indifference. Scene 4's steadicam tracking Danny through corridors uses one-point perspective creating hypnotic geometry. Scene 7's appearance of the Grady twins in perfect symmetry is deeply unsettling—their mirrored stance defies natural human behavior. Scene 10 repeats this pattern with room layouts and furniture placement. Scene 22's Gold Room features centered compositions with Jack surrounded by ghostly attendees, suggesting he's being absorbed into the hotel's geometric perfection."
     },
     {
         id: 4,
         question: "What is the significance of Danny's 'shining' ability?",
-        tags: ["supernatural", "shining", "psychic"],
+        tags: ["danny-shining", "halloran-shining", "shining-vision", "danny-tony"],
         relatedScenes: [3, 5, 10, 19, 27],
         answer: "The shining serves as both gift and curse—it reveals truth but attracts evil. In Scene 3, Hallorann explains the ability to Danny, establishing it as rare psychic sensitivity. Scene 5 shows Danny experiencing violent visions of the hotel's past atrocities—the Grady murders flash before him unbidden. Scene 10 has Danny witnessing the ghostly twins, confirming his perception of supernatural presences. Scene 19 shows Tony, Danny's finger-voice alter ego, warning of danger through dissociative episodes. Scene 27 features Danny's prophetic vision of REDRUM (murder spelled backward), demonstrating how his gift provides survival information through cryptic means."
     },
     {
         id: 5,
         question: "How does the film explore the cycle of abuse and family violence?",
-        tags: ["family", "violence", "abuse"],
+        tags: ["family-breakdown", "physical-violence", "alcoholism", "parent-child"],
         relatedScenes: [3, 8, 12, 17, 25],
         answer: "The film reveals abuse as intergenerational trauma that repeats unless broken. Scene 3 has the doctor examining Danny's injury while Wendy nervously explains Jack once dislocated Danny's shoulder during a drunken rage—establishing Jack's capacity for violence while sober enough to regret it. Scene 8 shows Jack's growing irritability toward Wendy's 'interruptions' of his work, displaying controlling behavior. Scene 12 escalates to verbal abuse as Jack explodes at Wendy for disturbing him. Scene 17 has Wendy discovering Jack's manuscript—hundreds of pages of 'All work and no play makes Jack a dull boy'—confirming his mental deterioration. Scene 25 shows Jack attempting to murder Wendy with an axe, completing the cycle from emotional abuse to lethal violence, mirroring what Grady did to his family."
     },
     {
         id: 6,
         question: "What is the meaning of the photograph at the end?",
-        tags: ["photograph", "cyclical-time", "always-been-here"],
+        tags: ["photograph", "time-distortion", "always-been-caretaker", "ghost-party"],
         relatedScenes: [6, 12, 23, 33],
         answer: "The final photograph of Jack at a July 4th, 1921 ball suggests eternal recurrence and predestination. Scene 6 establishes that Grady murdered his family in 1970, yet Jack later encounters him. Scene 12 shows Jack staring at old hotel photographs, as if recognizing something familiar. In Scene 23, Grady tells Jack 'You've always been the caretaker'—not that you will be, but that you always have been. Scene 33's closing shot zooms into a 1921 photograph showing Jack front and center, grinning at the camera. The hotel exists outside linear time—Jack didn't just die there, he has always existed there, suggesting his violence was predetermined, or that the hotel traps souls in an infinite loop."
     },
     {
         id: 7,
         question: "How does isolation contribute to Jack's transformation?",
-        tags: ["isolation", "cabin-fever", "breakdown"],
+        tags: ["isolation", "jack-declining", "psychological-horror", "trapped-by-weather"],
         relatedScenes: [1, 2, 6, 7, 9],
         answer: "Isolation strips away Jack's social masks, revealing underlying instability. Scene 1's aerial journey to the Overlook emphasizes vast distances from civilization. Scene 2 has Ullman warning about cabin fever during winter isolation—a warning Jack dismisses with arrogance. Scene 6 shows one month passing with Jack already experiencing nightmares of violence. Scene 7 captures the family's growing disconnection as they drift through empty spaces alone. Scene 9 shows the radio failing and roads becoming impassable due to snow—cutting off all escape routes. Without external structure, social judgment, or distraction, Jack's alcoholism, rage, and violent impulses have no counterweight, allowing the hotel's influence to fill the void."
     },
     {
         id: 8,
         question: "What role does the hedge maze play symbolically and literally?",
-        tags: ["maze", "escape", "chase"],
+        tags: ["maze", "chase", "footprint-trick", "climax"],
         relatedScenes: [4, 7, 31, 32],
         answer: "The maze represents entrapment, confusion, and the film's core dynamic of hunter versus hunted. Scene 4 introduces the massive hedge maze from above, showing its intricate dead-ends and winding paths—impossible to navigate without knowledge. Scene 7 has Wendy and Danny exploring the maze while Jack studies a model of it from above, establishing his god-like perspective versus their vulnerability within. Scene 31 reverses this power dynamic when Jack hunts Danny through the real maze at night, but his rage clouds his judgment. Scene 32 shows Danny using intelligence over brute force—he walks backward in his own footprints to confuse his father, then escapes while Jack becomes lost and freezes to death. The maze literalizes Jack's psychological labyrinth while providing the space where Danny's wit defeats his father's madness."
     },
     {
         id: 9,
         question: "How does Kubrick deviate from Stephen King's novel, and why?",
-        tags: ["history", "photograph", "ambiguous-ending"],
+        tags: ["photograph", "possession", "time-distortion", "room-237"],
         relatedScenes: [2, 20, 23, 33],
         answer: "Kubrick emphasizes ambiguity and cosmic horror over King's explicit supernatural forces. Scene 2 strips away the novel's detailed backstory, presenting only fragments about the hotel's dark past. Scene 20 shows Jack's investigation of Room 237 resulting in mysterious bruises on Danny, but Kubrick never confirms what happened—the novel is more explicit. Scene 23's bathroom encounter with Grady is more philosophical than the novel's version, focusing on cyclical time rather than simple possession. Scene 33's ending photograph replaces the novel's boiler explosion with an enigmatic image suggesting eternal recurrence. Kubrick removes the redemptive father figure from King's ending, presenting Jack as irredeemably consumed by evil—a bleaker, more fatalistic vision."
     },
     {
         id: 10,
         question: "What is the significance of Room 237?",
-        tags: ["supernatural", "room-237", "horror"],
+        tags: ["room-237", "woman-237", "ghost-encounter", "psychological-horror"],
         relatedScenes: [5, 13, 18, 20, 21],
         answer: "Room 237 serves as the hotel's concentrated evil—a space where illusion becomes reality and desire transforms into horror. Scene 5 has Hallorann warning Danny never to enter it, establishing forbidden territory. Scene 13 shows Danny drawn to the room despite warnings, finding the door mysteriously unlocked. Scene 18 has Wendy discovering Jack emerging from the room with strange scratches on his neck, claiming he saw nothing. Scene 20 shows Hallorann's psychic vision of the room's horrors—blood, decay, violence. Scene 21 reveals Wendy's encounter with decomposing figures. The room represents temptation that reveals its true grotesque nature only after the victim is committed—a metaphor for addiction, desire, and the hotel's fundamental deception."
     },
     {
         id: 11,
         question: "How does the film portray Wendy's character and her survival?",
-        tags: ["family", "survival", "defense"],
+        tags: ["wendy-defending", "wendy-discovering", "baseball-bat", "weapon"],
         relatedScenes: [8, 15, 18, 21, 25, 29],
         answer: "Wendy transforms from passive accommodation to active survival. Scene 8 shows her tiptoeing around Jack's mood, trying to maintain peace through submission. Scene 15 has her attempting to reach the outside world via radio, showing growing awareness of danger. Scene 18 captures her discovering Jack's manuscript breakdown, confronting the full extent of his deterioration. Scene 21 shows her experiencing the hotel's supernatural horrors firsthand—corpses, ghosts, blood—confirming this isn't just Jack's madness. Scene 25 depicts her desperate defense with a baseball bat as Jack stalks her up the stairs, injuring him to escape. Scene 29 shows her rescuing Danny and fleeing in Hallorann's snowcat—she survives not through violence but through maternal protection and refusal to abandon her child."
     },
     {
         id: 12,
         question: "What does the Gold Room represent in Jack's psyche?",
-        tags: ["gold-room", "lloyd", "alcohol"],
+        tags: ["gold-ballroom", "lloyd", "alcoholism", "ghost-party"],
         relatedScenes: [16, 17, 22, 23],
         answer: "The Gold Room materializes Jack's deepest addictions and delusions of grandeur. Scene 16 shows Jack arriving at the completely empty bar, desperate for a drink after months of sobriety. Lloyd the bartender appears to serve him—the hotel providing exactly what Jack craves. Scene 17 has Jack confessing his frustrations and fears to Lloyd, who offers unconditional sympathy and endless drinks without judgment or payment. Scene 22 transforms the empty ballroom into a roaring 1920s party full of elegant guests treating Jack as an honored member—feeding his narcissistic fantasy of sophistication and belonging. Scene 23's bathroom encounter with Grady occurs in the Gold Room's privileged space where Jack receives his murderous instructions. The room represents Jack's escape from responsibility into fantasy, addiction, and ultimately violence."
     },
     {
         id: 13,
         question: "Is the supernatural real or a projection of mental illness?",
-        tags: ["supernatural", "hallucination", "possession"],
+        tags: ["ghost-encounter", "possession", "psychological-horror", "shining-vision"],
         relatedScenes: [10, 16, 20, 22, 23],
         answer: "Kubrick deliberately provides evidence for both interpretations. Scene 10 shows Danny seeing the Grady twins—but only those with 'the shining' perceive ghosts, suggesting they're real. Scene 16 has Jack conversing with Lloyd, yet no one else sees him and Jack's drink spills are never shown being cleaned. Scene 20 depicts Jack opening the storeroom door for himself from the inside—physically impossible unless Grady actually unlocked it. Scene 22's ballroom party involves physical contact with other guests, yet it vanishes instantly. Scene 23 shows Jack covered in actual alcohol after Lloyd serves him—but where did it come from? The film refuses to resolve this ambiguity, suggesting both explanations coexist: the hotel's evil is real, but it requires psychologically vulnerable hosts to manifest."
     },
     {
         id: 14,
         question: "How does the film explore alcoholism and addiction?",
-        tags: ["alcoholism", "lloyd", "family-violence"],
+        tags: ["alcoholism", "jack-drunk", "jack-violence", "family-breakdown"],
         relatedScenes: [3, 16, 17, 21],
         answer: "Alcoholism functions as both symptom and enabler of Jack's violence. Scene 3 reveals Jack injured Danny during a previous drinking episode, then quit after—suggesting awareness that alcohol unleashes his rage. Scene 16 shows Jack's relapse after months of sobriety, with Lloyd appearing precisely when Jack is most vulnerable and desperate. Scene 17 has Jack making excuses for his past violence while drinking, shifting blame to Wendy and Danny. Scene 21 connects his drinking to permission for violence—he's now fully intoxicated when Grady instructs him to murder his family. The hotel weaponizes Jack's addiction, offering endless drinks with no consequences or judgment, removing the social controls that kept his violence in check."
     },
     {
         id: 15,
         question: "What is the meaning of 'REDRUM' and mirror imagery?",
-        tags: ["redrum", "mirror", "prophecy"],
+        tags: ["red-rum", "danny-shining", "danny-tony", "shining-vision"],
         relatedScenes: [27, 28, 29],
         answer: "REDRUM demonstrates how truth requires proper perspective to understand. Scene 27 shows Danny, in a dissociative state, writing REDRUM on the bathroom door in lipstick—a cryptic warning from Tony. Scene 28 features Wendy waking to find REDRUM scrawled everywhere while Jack hunts them with an axe. Scene 29 reveals the meaning when Wendy sees REDRUM reflected in the mirror, reading MURDER backward. The reversal symbolizes how the film's horror has been present all along but required the correct angle to perceive—Jack's violence was always there, the hotel merely reflected it back. Mirrors throughout the film show dual realities: Danny speaks through Tony via mirror reflection, Room 237's horror transforms through reflection, suggesting truth exists in inversions and hidden perspectives."
     },
     {
         id: 16,
         question: "How do the Grady twins function as symbols of innocence corrupted?",
-        tags: ["supernatural", "grady-twins", "murder"],
+        tags: ["grady-twins", "murder", "ghost-encounter", "parent-child"],
         relatedScenes: [2, 3, 10, 23],
         answer: "The twins embody childhood innocence destroyed by parental violence, serving as Danny's dark mirror. Scene 2 mentions Grady murdered his two daughters—establishing their deaths as historical fact. Scene 3 shows Danny first encountering them as ghostly visions during Hallorann's shining explanation. Scene 10 depicts their most iconic appearance in matching blue dresses, speaking in eerie unison, inviting Danny to play with them forever—then flashing to their bloody corpses. Scene 23 has Grady casually dismissing his daughters' murder, calling it 'correction.' The twins represent what Danny could become if Jack succeeds—another murdered child trapped in the hotel's eternal cycle. Their perfect symmetry and unnatural synchronization suggests death has frozen them in an artificial, nightmarish version of childhood."
     },
     {
         id: 17,
         question: "What does Delbert Grady mean by 'You've always been the caretaker'?",
-        tags: ["cyclical-time", "supernatural", "always-been-here"],
+        tags: ["always-been-caretaker", "grady", "time-distortion", "possession"],
         relatedScenes: [2, 6, 23, 33],
         answer: "This line collapses linear time, suggesting Jack exists simultaneously across decades. Scene 2 establishes Grady as the 1970 caretaker who murdered his family, yet Scene 6 shows Jack dreaming about this as if remembering rather than imagining. Scene 23's bathroom confrontation has Grady correcting Jack when he mentions the past murders—Grady insists it's Jack who is and always has been the caretaker, not him. This isn't metaphor but literal timelessness within the hotel. Scene 33 confirms this when the camera reveals Jack in a 1921 photograph, decades before his birth. The hotel doesn't move through time sequentially—all moments coexist. Jack isn't becoming the caretaker, he has eternally been the caretaker, suggesting his fate was never a choice but an unchangeable role he's always occupied."
     },
     {
         id: 18,
         question: "How does the film use color symbolism (red, blue, orange)?",
-        tags: ["hotel", "gold-room", "grady-twins"],
+        tags: ["gold-ballroom", "room-237", "psychological-horror", "ghost-encounter"],
         relatedScenes: [1, 4, 10, 22, 27],
         answer: "Kubrick employs color to signal psychological and supernatural states. Scene 1 uses cold blues in mountain landscapes, establishing isolation and emotional frigidity. Scene 4's tour reveals the hotel's warm oranges and reds in carpets and walls—colors associated with danger, passion, and violence. Scene 10 dresses the Grady twins in pale blue, creating uncanny contrast against the violent red of their murder flashback. Scene 22's Gold Room bathes Jack in warm amber tones, suggesting comfort and seduction leading to his corruption. Scene 27 features Danny's prophetic REDRUM written in red lipstick—the color of blood and murder made literal. Throughout, red signals imminent violence, blue suggests ghostly presence, and orange marks corrupted warmth—the hotel's false hospitality concealing bloodshed."
     },
     {
         id: 19,
         question: "What is the significance of Native American imagery and the burial ground?",
-        tags: ["indian-burial-ground", "history", "supernatural"],
+        tags: ["violence-history", "ghost-encounter", "hotel-tour"],
         relatedScenes: [4, 5],
         answer: "The burial ground suggests American violence built on stolen land and genocide. Scene 4 has Ullman casually mentioning the hotel was built on a Native American burial ground, dismissing it as trivial history. Scene 5 shows Native American artwork and patterns throughout the hotel's design—aestheticizing the culture while literally built atop its dead. This establishes the hotel's foundation in historical violence and desecration, with the land itself rejecting those who occupy it. The supernatural evil isn't random but rooted in specific colonial atrocities—the hotel doesn't just contain violence, it's constructed from violence. Kubrick implies American prosperity is haunted by its genocidal origins, with the Overlook serving as microcosm for a nation built on burial grounds."
     },
     {
         id: 20,
         question: "How does Danny's intelligence and resourcefulness save him?",
-        tags: ["escape", "survival", "clever"],
+        tags: ["maze", "footprint-trick", "danny-shining", "chase"],
         relatedScenes: [29, 31, 32],
         answer: "Danny survives through intellect and observation where adults fail through brute force. Scene 29 shows Danny remaining calm despite terror, using his shining to understand danger and communicate warnings. Scene 31 depicts the maze chase where Danny initially flees in panic but quickly formulates a survival strategy. Scene 32 reveals Danny's brilliant escape—he walks backward in his own footprints through the snow, then steps aside, leaving Jack to follow a trail that ends mysteriously. This requires memory of the maze's layout from earlier exploration, understanding of tracking, and calm execution under mortal threat. While Jack relies on physical dominance and rage, Danny uses deception and spatial intelligence. His survival isn't luck but the application of careful observation and creative thinking under pressure—child wisdom defeating adult madness."
     }
@@ -195,94 +195,118 @@ const DISCUSSION_QUESTIONS = [
 window.DISCUSSION_QUESTIONS = DISCUSSION_QUESTIONS;
 
 // ============================================
-// CENTRALIZED TAG SYSTEM
+// CENTRALIZED TAG SYSTEM - Universal Tags (85 total)
 // ============================================
 
-// Tag icon mapping - using actual scene tags
+// Tag icon mapping
 const TAG_ICONS = {
-    // Core supernatural/horror
-    'supernatural': '👻',
-    'madness': '🌀',
-    'violence': '🪓',
-    'isolation': '🏔️',
-    'possession': '😈',
-    'ghosts': '👤',
-    'horror': '💀',
-    'murder': '🔪',
-    // Family dynamics
-    'family': '👨‍👩‍👦',
-    'family-violence': '💔',
-    'family-breakdown': '⚠️',
-    'abuse': '💢',
-    'alcoholism': '🍺',
-    'alcohol': '🥃',
-    // Psychic/visions
-    'shining': '✨',
-    'psychic': '🔮',
-    'vision': '👁️',
-    'prophecy': '🔮',
-    'redrum': '🪞',
-    'hallucination': '🌫️',
-    // Key locations
-    'hotel': '🏨',
-    'maze': '🌿',
+    'jack-declining': '📉',
+    'jack-violence': '🔪',
+    'jack-supernatural': '👻',
+    'jack-drunk': '🥃',
+    'wendy-discovering': '🔍',
+    'wendy-defending': '🛡️',
+    'wendy-supernatural': '👤',
+    'danny-shining': '✨',
+    'danny-endangered': '⚠️',
+    'danny-tony': '🗣️',
+    'halloran-shining': '🔮',
+    'halloran-rescue': '🚁',
+    'hotel-tour': '🚶',
+    'gold-ballroom': '🏛️',
     'room-237': '🚪',
-    'gold-room': '🏛️',
+    'maze': '🌿',
     'pantry': '🔒',
-    // Characters
+    'apartment': '🏠',
+    'colorado-lounge': '🪑',
+    'bathroom': '🚿',
+    'ghost-encounter': '👻',
+    'ghost-party': '🎭',
+    'lloyd': '🍸',
     'grady': '👔',
     'grady-twins': '👯',
-    'halloran': '🧑',
-    'tony': '🗣️',
-    'lloyd': '🍸',
-    // Key objects
+    'woman-237': '🛁',
+    'blood-elevator': '🩸',
+    'possession': '😈',
+    'shining-vision': '👁️',
+    'time-distortion': '⏰',
+    'heres-johnny': '🚪',
+    'all-work-no-play': '📝',
+    'red-rum': '🪞',
+    'twins': '👯',
     'photograph': '📸',
-    'manuscript': '📝',
-    'axe': '🪓',
     'baseball-bat': '⚾',
-    'mirror': '🪞',
-    // Themes
-    'cyclical-time': '⏰',
-    'history': '📜',
-    'indian-burial-ground': '🪦',
-    'cabin-fever': '❄️',
-    'breakdown': '💥',
-    'deterioration': '📉',
-    'always-been-here': '♾️',
-    'ambiguous-ending': '❓',
-    // Actions
-    'escape': '🏃',
-    'survival': '🛡️',
-    'chase': '🏃‍♂️',
-    'attack': '⚔️',
-    'rescue': '🚁',
-    'trap': '🪤',
-    'defense': '🛡️',
-    'clever': '🧠'
+    'tricycle': '🚲',
+    'always-been-caretaker': '♾️',
+    'footprint-trick': '👣',
+    'physical-violence': '💥',
+    'threatened-violence': '⚔️',
+    'psychological-horror': '🌀',
+    'murder': '🔪',
+    'chase': '🏃',
+    'weapon': '🪓',
+    'iconic-dialogue': '💬',
+    'gaslighting': '🌫️',
+    'dark-humor': '😏',
+    'arrival': '🚗',
+    'interview': '📋',
+    'closing-day': '👋',
+    'isolation-begins': '🏔️',
+    'one-month-later': '📅',
+    'escalation': '📈',
+    'breaking-point': '💔',
+    'crisis': '🚨',
+    'act1': '📖',
+    'act2': '📕',
+    'act3': '📗',
+    'climax': '⚡',
+    'resolution': '✓',
+    'epilogue': '🎬',
+    'isolation': '❄️',
+    'family-breakdown': '💔',
+    'alcoholism': '🍺',
+    'violence-history': '📜',
+    'writer-block': '✍️',
+    'responsibility': '⚖️',
+    'parent-child': '👨‍👦',
+    'marriage-strain': '💍',
+    'typewriter': '⌨️',
+    'axe': '🪓',
+    'knife': '🔪',
+    'radio': '📻',
+    'snowcat': '🚜',
+    'telephone': '☎️',
+    'outside-contact': '📡',
+    'radio-call': '📻',
+    'phone-call': '☎️',
+    'contact-blocked': '🚫',
+    'storm': '🌨️',
+    'snow': '❄️',
+    'trapped-by-weather': '🌨️',
+    'callback': '↩️',
+    'foreshadowing': '🔮',
+    'intercutting': '✂️'
 };
 
-// Tag groups organized by actual scene tags
+// Tag groups organized by category
 const TAG_GROUPS = {
-    'Horror & Madness': ['supernatural', 'madness', 'violence', 'isolation', 'possession', 'ghosts', 'horror', 'cabin-fever', 'murder'],
-    'Family & Relationships': ['family', 'family-violence', 'family-breakdown', 'abuse', 'alcoholism', 'alcohol', 'breakdown'],
-    'Psychic Powers': ['shining', 'psychic', 'vision', 'prophecy', 'redrum', 'tony', 'hallucination'],
-    'Key Locations': ['hotel', 'maze', 'room-237', 'gold-room', 'pantry'],
-    'Characters': ['grady', 'grady-twins', 'halloran', 'lloyd'],
-    'Symbols & Objects': ['photograph', 'manuscript', 'axe', 'baseball-bat', 'mirror'],
-    'Time & History': ['cyclical-time', 'history', 'indian-burial-ground', 'always-been-here', 'ambiguous-ending'],
-    'Survival & Action': ['escape', 'survival', 'chase', 'attack', 'rescue', 'trap', 'defense', 'clever']
+    'Character Arcs': ['jack-declining', 'jack-violence', 'jack-supernatural', 'jack-drunk', 'wendy-discovering', 'wendy-defending', 'wendy-supernatural', 'danny-shining', 'danny-endangered', 'danny-tony', 'halloran-shining', 'halloran-rescue'],
+    'Supernatural': ['ghost-encounter', 'ghost-party', 'lloyd', 'grady', 'grady-twins', 'woman-237', 'blood-elevator', 'possession', 'shining-vision', 'time-distortion'],
+    'Themes': ['isolation', 'family-breakdown', 'alcoholism', 'violence-history', 'writer-block', 'responsibility', 'parent-child', 'marriage-strain'],
+    'Iconic Moments': ['heres-johnny', 'all-work-no-play', 'red-rum', 'twins', 'photograph', 'baseball-bat', 'tricycle', 'always-been-caretaker', 'footprint-trick'],
+    'Violence & Horror': ['physical-violence', 'threatened-violence', 'psychological-horror', 'murder', 'chase', 'weapon'],
+    'Plot Progression': ['arrival', 'interview', 'closing-day', 'isolation-begins', 'one-month-later', 'escalation', 'breaking-point', 'crisis', 'act1', 'act2', 'act3', 'climax', 'resolution', 'epilogue'],
+    'Locations': ['hotel-tour', 'gold-ballroom', 'room-237', 'maze', 'pantry', 'apartment', 'colorado-lounge', 'bathroom'],
+    'Key Dialogue': ['iconic-dialogue', 'gaslighting', 'dark-humor'],
+    'Objects': ['typewriter', 'axe', 'knife', 'radio', 'snowcat', 'telephone'],
+    'Communication': ['outside-contact', 'radio-call', 'phone-call', 'contact-blocked'],
+    'Weather': ['storm', 'snow', 'trapped-by-weather'],
+    'Structure': ['callback', 'foreshadowing', 'intercutting']
 };
 
 // Canonical tag order (flattened from groups)
 const ALL_TAGS_ORDERED = [
-    'supernatural', 'madness', 'violence', 'isolation', 'possession', 'ghosts', 'horror', 'cabin-fever', 'murder',
-    'family', 'family-violence', 'family-breakdown', 'abuse', 'alcoholism', 'alcohol', 'breakdown',
-    'shining', 'psychic', 'vision', 'prophecy', 'redrum', 'tony', 'hallucination',
-    'hotel', 'maze', 'room-237', 'gold-room', 'pantry',
-    'grady', 'grady-twins', 'halloran', 'lloyd',
-    'photograph', 'manuscript', 'axe', 'baseball-bat', 'mirror',
-    'cyclical-time', 'history', 'indian-burial-ground', 'always-been-here', 'ambiguous-ending',
-    'escape', 'survival', 'chase', 'attack', 'rescue', 'trap', 'defense', 'clever'
+    'jack-declining', 'jack-violence', 'jack-supernatural', 'jack-drunk', 'wendy-discovering', 'wendy-defending', 'wendy-supernatural', 'danny-shining', 'danny-endangered', 'danny-tony', 'halloran-shining', 'halloran-rescue', 'ghost-encounter', 'ghost-party', 'lloyd', 'grady', 'grady-twins', 'woman-237', 'blood-elevator', 'possession', 'shining-vision', 'time-distortion', 'isolation', 'family-breakdown', 'alcoholism', 'violence-history', 'writer-block', 'responsibility', 'parent-child', 'marriage-strain', 'heres-johnny', 'all-work-no-play', 'red-rum', 'twins', 'photograph', 'baseball-bat', 'tricycle', 'always-been-caretaker', 'footprint-trick', 'physical-violence', 'threatened-violence', 'psychological-horror', 'murder', 'chase', 'weapon', 'arrival', 'interview', 'closing-day', 'isolation-begins', 'one-month-later', 'escalation', 'breaking-point', 'crisis', 'act1', 'act2', 'act3', 'climax', 'resolution', 'epilogue', 'hotel-tour', 'gold-ballroom', 'room-237', 'maze', 'pantry', 'apartment', 'colorado-lounge', 'bathroom', 'iconic-dialogue', 'gaslighting', 'dark-humor', 'typewriter', 'axe', 'knife', 'radio', 'snowcat', 'telephone', 'outside-contact', 'radio-call', 'phone-call', 'contact-blocked', 'storm', 'snow', 'trapped-by-weather', 'callback', 'foreshadowing', 'intercutting'
 ];
 
 function buildTagBadges(tags) {
@@ -348,10 +372,10 @@ function renderDiscussionQuestions() {
             <p class="question-text">${q.question}</p>
         `;
 
-        // Question tags - show ALL tags with active/inactive states using centralized function
+        // Question tags - show only relevant tags as styled badges
         const tagsDiv = document.createElement('div');
         tagsDiv.className = 'question-tags';
-        tagsDiv.innerHTML = buildAllTagsWithHighlights(q.tags);
+        tagsDiv.innerHTML = buildTagBadges(q.tags);
 
         // Find first scene to determine act
         const firstScene = q.relatedScenes[0];
@@ -410,7 +434,8 @@ const state = {
 
 async function loadSceneData() {
     try {
-        const response = await fetch(CONFIG.DATA_FILE);
+        // Add cache-busting parameter to ensure fresh data
+        const response = await fetch(`${CONFIG.DATA_FILE}?v=${Date.now()}`);
         const data = await response.json();
         state.scenes = data.scenes;
         console.log(`Loaded ${state.scenes.length} The Shining scenes`);
@@ -832,23 +857,61 @@ function createLegendWithProgress() {
     topicsHeader.append('span')
         .text('Discussion Topics:');
 
-    // Build discussion tags from centralized TAG_GROUPS - all in one row
-    const topicsRow = grid.append('div')
-        .attr('class', 'legend-items-row')
-        .style('flex-wrap', 'wrap')
-        .style('gap', '0.5rem')
-        .style('display', 'flex');
+    // Build discussion tags from centralized TAG_GROUPS - multi-column layout
+    const categoriesContainer = grid.append('div')
+        .attr('class', 'legend-categories-container')
+        .style('column-count', '4')
+        .style('column-gap', '2rem')
+        .style('margin-top', '0.5rem');
 
     for (const [groupName, groupTags] of Object.entries(TAG_GROUPS)) {
-        // Add tags inline in the same row
+        // Create category container (vertical column)
+        const categoryContainer = categoriesContainer.append('div')
+            .attr('class', 'legend-category-container')
+            .style('display', 'inline-block')
+            .style('width', '100%')
+            .style('margin-bottom', '1rem')
+            .style('padding-right', '1rem')
+            .style('break-inside', 'avoid');
+
+        // Add category label
+        categoryContainer.append('div')
+            .attr('class', 'legend-category-label')
+            .style('font-weight', '700')
+            .style('color', '#555')
+            .style('margin-bottom', '0.5rem')
+            .style('font-size', '0.9rem')
+            .style('border-bottom', '2px solid #ddd')
+            .style('padding-bottom', '0.3rem')
+            .text(groupName);
+
+        // Create vertical list of tags for this category
+        const tagsList = categoryContainer.append('div')
+            .attr('class', 'legend-category-tags')
+            .style('display', 'flex')
+            .style('flex-direction', 'column')
+            .style('gap', '0.3rem');
+
+        // Add tags for this category
         groupTags.forEach(tagKey => {
             const label = tagKey.charAt(0).toUpperCase() + tagKey.slice(1).replace(/-/g, ' ');
             const icon = TAG_ICONS[tagKey] || '🏷️';
 
-            const item = topicsRow.append('div')
+            // Count scenes with this tag
+            const sceneCount = state.scenes.filter(s => s.tags && s.tags.includes(tagKey)).length;
+
+            // Create row container for badge + count
+            const row = tagsList.append('div')
+                .style('display', 'flex')
+                .style('align-items', 'center')
+                .style('justify-content', 'space-between')
+                .style('width', '100%');
+
+            const item = row.append('div')
                 .attr('class', `legend-item legend-question-item tag-${tagKey}`)
                 .attr('data-question', tagKey)
-                .attr('title', `Filter scenes with ${label} discussion`)
+                .attr('title', `Filter scenes with ${label} discussion (${sceneCount} scenes)`)
+                .style('width', 'fit-content')
                 .on('click', () => toggleQuestionFilter(tagKey));
 
             // Add active indicator (dot)
@@ -863,6 +926,21 @@ function createLegendWithProgress() {
             item.append('span')
                 .attr('class', 'legend-text')
                 .text(label);
+
+            // Add connecting line
+            row.append('span')
+                .style('flex-grow', '1')
+                .style('border-bottom', '1px dotted #ccc')
+                .style('margin', '0 0.5rem')
+                .style('min-width', '10px');
+
+            // Add count outside the badge (zero-padded)
+            row.append('span')
+                .style('font-size', '0.7rem')
+                .style('color', '#888')
+                .style('font-weight', '500')
+                .style('font-family', 'monospace')
+                .text(`(${String(sceneCount).padStart(2, '0')})`);
         });
     }
 
@@ -1137,7 +1215,8 @@ function applyLegendFilters() {
         // Apply visibility
         const nodeElement = nodeGroup.selectAll('.node').filter(d => d === node);
         nodeElement.style('opacity', visible ? 1 : 0.15);
-        nodeElement.style('pointer-events', visible ? 'auto' : 'none');
+        // Keep pointer events enabled for all nodes to allow hover/tooltips
+        nodeElement.style('pointer-events', 'auto');
     });
 
     // Update links
@@ -1423,8 +1502,8 @@ function initVisualization() {
     const diameter = CONFIG.DIAMETER;
     const radius = diameter / 2;
     const innerRadius = radius - 150;
-    const verticalOffset = 50;
-    const padding = 150;
+    const verticalOffset = 80;
+    const padding = 200;
 
     svg = container.append('svg')
         .attr('viewBox', `${-radius - padding} ${-radius - verticalOffset - padding} ${diameter + padding * 2} ${diameter + verticalOffset + padding * 2}`)
@@ -1521,15 +1600,21 @@ function initVisualization() {
         .attr('transform', d => `rotate(${d.x - 90}) translate(${d.y},0)`)
         .style('cursor', 'pointer')
         .on('mouseover', function(event, d) {
-            if (!state.lockedNode) {
+            // Always show tooltip on hover, even when info card is pinned
+            showTooltip(d, event);
+            // Only highlight connections if no card is locked, or if hovering a different node
+            if (!state.lockedNode || state.lockedNode.data.id !== d.data.id) {
                 highlightConnections(d);
-                showTooltip(d, event);
             }
         })
         .on('mouseout', function() {
-            if (!state.lockedNode) {
+            // Always hide tooltip on mouseout
+            hideTooltip();
+            // Restore locked node highlights if card is pinned
+            if (state.lockedNode) {
+                highlightConnections(state.lockedNode);
+            } else {
                 unhighlightAll();
-                hideTooltip();
             }
         })
         .on('click', function(event, d) {
@@ -1640,7 +1725,8 @@ function highlightConnections(node) {
 
     // Highlight connected nodes
     nodeGroup.selectAll('.node')
-        .classed('connection-highlighted', d => d.data.id === node.data.id)
+        .classed('main-hovered', d => d.data.id === node.data.id)  // Main node gets special class
+        .classed('connection-highlighted', d => connectedIds.has(d.data.id) && d.data.id !== node.data.id)  // Connected nodes (not main)
         .classed('connection-dimmed', d => !connectedIds.has(d.data.id));
 
     // Highlight relevant links
@@ -1659,6 +1745,7 @@ function unhighlightAll() {
     if (state.lockedNode) return;
 
     nodeGroup.selectAll('.node')
+        .classed('main-hovered', false)
         .classed('connection-highlighted', false)
         .classed('connection-dimmed', false);
 
@@ -1786,23 +1873,33 @@ function initInfoCard() {
 }
 
 // ============================================
-// SCREENPLAY VIEWER
+// SCREENPLAY VIEWER (PDF.js with Scrolling)
 // ============================================
 
 let screenplayViewer = null;
 let screenplayBackdrop = null;
+let pdfDoc = null;
+let renderedPages = new Set();
+let shouldStopRendering = false;
 
 function initScreenplayViewer() {
     screenplayBackdrop = d3.select('body').append('div')
-        .attr('class', 'screenplay-viewer-backdrop')
-        .on('click', hideScreenplayViewer);
+        .attr('class', 'screenplay-viewer-backdrop');
+        // No click handler - keep background interactive
 
     screenplayViewer = d3.select('body').append('div')
         .attr('class', 'screenplay-viewer-modal');
 }
 
-function showScreenplayViewer(scene) {
+async function showScreenplayViewer(scene) {
     if (!screenplayViewer) initScreenplayViewer();
+
+    // Reset state
+    shouldStopRendering = false;
+    renderedPages.clear();
+
+    // Get target page from scene data (use startPage which includes PDF cover page offset)
+    const targetPage = scene.startPage || 1;
 
     // Build screenplay viewer content
     let html = `
@@ -1811,23 +1908,13 @@ function showScreenplayViewer(scene) {
                 <span class="screenplay-icon">📄</span>
                 <div>
                     <div class="screenplay-title">The Shining Screenplay</div>
-                    <div class="screenplay-scene">Scene ${scene.id}: ${scene.title}</div>
+                    <div class="screenplay-scene">Scene ${scene.id}: ${scene.title} (Page ${targetPage})</div>
                 </div>
             </div>
             <button class="screenplay-close-btn" onclick="hideScreenplayViewer()">✕</button>
         </div>
-        <div class="screenplay-viewer-content">
-            <object
-                data="StanleyKubrick_1980_TheShining.pdf#page=${getScreenplayPage(scene)}"
-                type="application/pdf"
-                class="screenplay-iframe"
-                title="The Shining Screenplay">
-                <iframe
-                    src="StanleyKubrick_1980_TheShining.pdf#page=${getScreenplayPage(scene)}"
-                    class="screenplay-iframe"
-                    title="The Shining Screenplay">
-                </iframe>
-            </object>
+        <div class="screenplay-viewer-content" id="screenplay-scroll-container">
+            <div class="screenplay-loading">Loading screenplay...</div>
         </div>
     `;
 
@@ -1838,55 +1925,225 @@ function showScreenplayViewer(scene) {
         screenplayBackdrop.classed('active', true);
         screenplayViewer.classed('active', true);
     }, 10);
+
+    // Configure PDF.js worker
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    // Load PDF
+    try {
+        const loadingTask = pdfjsLib.getDocument('StanleyKubrick_1980_TheShining.pdf');
+        pdfDoc = await loadingTask.promise;
+
+        console.log(`PDF loaded: ${pdfDoc.numPages} pages`);
+
+        // Render pages progressively
+        await renderAllPages(targetPage);
+    } catch (error) {
+        console.error('Error loading PDF:', error);
+        const container = document.getElementById('screenplay-scroll-container');
+        if (container) {
+            container.innerHTML = '<p style="color: red; text-align: center; padding: 2rem;">Error loading screenplay PDF</p>';
+        }
+    }
+}
+
+async function renderAllPages(targetPage) {
+    const container = document.getElementById('screenplay-scroll-container');
+    if (!container || !pdfDoc) return;
+
+    const totalPages = pdfDoc.numPages;
+
+    // Show loading with progress
+    container.innerHTML = `
+        <div class="screenplay-loading">
+            <div class="spinner-border text-primary mb-3" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p>Loading page ${targetPage}...</p>
+        </div>
+    `;
+
+    // Get container width - wait a moment for layout
+    await new Promise(resolve => setTimeout(resolve, 50));
+    // Use full container width minus small padding (1rem = 16px on each side)
+    const containerWidth = container.clientWidth - 32;
+
+    console.log(`Container width: ${container.clientWidth}px, effective: ${containerWidth}px`);
+    console.log(`Rendering ${totalPages} pages, starting at page ${targetPage}`);
+
+    // Determine priority pages to render first
+    const pagesToRenderFirst = [];
+    for (let i = Math.max(1, targetPage - 3); i <= Math.min(totalPages, targetPage + 3); i++) {
+        pagesToRenderFirst.push(i);
+    }
+
+    console.log(`Rendering priority pages: ${pagesToRenderFirst.join(', ')}`);
+
+    // Pre-render priority pages OFF-SCREEN first
+    const tempContainer = document.createElement('div');
+    tempContainer.style.position = 'absolute';
+    tempContainer.style.left = '-9999px';
+    tempContainer.style.width = `${containerWidth}px`;
+    document.body.appendChild(tempContainer);
+
+    // Create and render priority pages in temp container
+    for (const pageNum of pagesToRenderFirst) {
+        if (shouldStopRendering) break;
+
+        const pageDiv = document.createElement('div');
+        pageDiv.className = 'screenplay-page';
+        pageDiv.id = `screenplay-page-temp-${pageNum}`;
+
+        const canvas = document.createElement('canvas');
+        canvas.id = `screenplay-canvas-temp-${pageNum}`;
+        canvas.className = 'screenplay-canvas';
+
+        pageDiv.appendChild(canvas);
+        tempContainer.appendChild(pageDiv);
+
+        // Render into temp canvas
+        await renderSinglePageToCanvas(pageNum, canvas, containerWidth);
+    }
+
+    // Now clear loading and create all page containers
+    container.innerHTML = '';
+
+    // Create page containers for all pages
+    for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+        const pageDiv = document.createElement('div');
+        pageDiv.className = 'screenplay-page';
+        pageDiv.id = `screenplay-page-${pageNum}`;
+        pageDiv.setAttribute('data-page', pageNum);
+
+        const canvas = document.createElement('canvas');
+        canvas.id = `screenplay-canvas-${pageNum}`;
+        canvas.className = 'screenplay-canvas';
+
+        const pageLabel = document.createElement('div');
+        pageLabel.className = 'screenplay-page-label';
+        pageLabel.textContent = `Page ${pageNum}`;
+
+        pageDiv.appendChild(pageLabel);
+        pageDiv.appendChild(canvas);
+        container.appendChild(pageDiv);
+
+        // Copy rendered content from temp canvas if available
+        const tempCanvas = document.getElementById(`screenplay-canvas-temp-${pageNum}`);
+        if (tempCanvas && tempCanvas.width > 0) {
+            canvas.width = tempCanvas.width;
+            canvas.height = tempCanvas.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(tempCanvas, 0, 0);
+            renderedPages.add(pageNum);
+            console.log(`✓ Page ${pageNum} copied from temp`);
+        }
+    }
+
+    // Remove temp container
+    document.body.removeChild(tempContainer);
+
+    // NOW scroll to target page (pages are already rendered)
+    const targetElement = document.getElementById(`screenplay-page-${targetPage}`);
+    if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'instant', block: 'start' });
+    }
+
+    console.log(`Scrolled to page ${targetPage}, priority pages rendered`);
+
+    // Render remaining pages in background
+    setTimeout(() => {
+        renderRemainingPages(containerWidth, pagesToRenderFirst);
+    }, 300);
+}
+
+// Helper function to render a page to a specific canvas
+async function renderSinglePageToCanvas(pageNum, canvas, containerWidth) {
+    if (!pdfDoc || !canvas) return false;
+
+    try {
+        const page = await pdfDoc.getPage(pageNum);
+        const ctx = canvas.getContext('2d');
+
+        // Get viewport at scale 1.0 first
+        const viewport = page.getViewport({scale: 1});
+
+        // Calculate scale based on container width (fallback to 700px if container is too small)
+        const effectiveWidth = containerWidth > 100 ? containerWidth : 700;
+        const scale = effectiveWidth / viewport.width;
+        const scaledViewport = page.getViewport({scale: scale});
+
+        // Set canvas dimensions
+        canvas.height = scaledViewport.height;
+        canvas.width = scaledViewport.width;
+
+        console.log(`Rendering page ${pageNum}: containerWidth=${containerWidth}, scale=${scale.toFixed(2)}, canvas=${canvas.width}x${canvas.height}`);
+
+        const renderContext = {
+            canvasContext: ctx,
+            viewport: scaledViewport
+        };
+
+        await page.render(renderContext).promise;
+        console.log(`✓ Page ${pageNum} rendered successfully`);
+        return true;
+    } catch (error) {
+        console.error(`Error rendering page ${pageNum}:`, error);
+        return false;
+    }
+}
+
+async function renderSinglePage(pageNum, containerWidth) {
+    if (renderedPages.has(pageNum) || shouldStopRendering || !pdfDoc) return;
+
+    const canvas = document.getElementById(`screenplay-canvas-${pageNum}`);
+    if (!canvas || shouldStopRendering) return;
+
+    const success = await renderSinglePageToCanvas(pageNum, canvas, containerWidth);
+    if (success) {
+        renderedPages.add(pageNum);
+    }
+}
+
+async function renderRemainingPages(containerWidth, alreadyRendered) {
+    if (shouldStopRendering || !pdfDoc) return;
+
+    const totalPages = pdfDoc.numPages;
+    console.log(`Starting background render of remaining pages (total: ${totalPages})`);
+
+    for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+        if (shouldStopRendering || !pdfDoc) {
+            console.log('Background rendering stopped');
+            break;
+        }
+
+        if (!alreadyRendered.includes(pageNum) && !renderedPages.has(pageNum)) {
+            await renderSinglePage(pageNum, containerWidth);
+            // Small delay to avoid blocking UI
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
+    }
+
+    console.log(`Background rendering complete: ${renderedPages.size} pages rendered`);
 }
 
 function hideScreenplayViewer() {
     if (!screenplayViewer) return;
 
+    console.log('Closing screenplay viewer');
+
+    // Stop all rendering immediately
+    shouldStopRendering = true;
+
     screenplayBackdrop.classed('active', false);
     screenplayViewer.classed('active', false);
-}
 
-function getScreenplayPage(scene) {
-    // Map scene IDs to approximate screenplay page numbers
-    // This is a rough mapping based on scene progression
-    const pageMapping = {
-        1: 1,    // Opening credits
-        2: 3,    // Interview
-        3: 8,    // Boulder apartment
-        4: 12,   // Doctor's office
-        5: 18,   // Closing day tour
-        6: 25,   // Jack's dream
-        7: 30,   // First month
-        8: 35,   // Tuesday
-        9: 40,   // Room 237 investigation
-        10: 45,  // Wendy and doctor
-        11: 50,  // Jack at typewriter
-        12: 55,  // Gold Room - Jack and Lloyd
-        13: 60,  // Hallorann's vision
-        14: 65,  // Jack and Grady
-        15: 70,  // Wendy discovers manuscript
-        16: 75,  // Jack breaks down door
-        17: 80,  // Hallorann returns
-        18: 85,  // Jack chases Danny
-        19: 90,  // The hedge maze
-        20: 95,  // Jack freezes
-        21: 100, // Escape
-        22: 45,  // (additional scenes - approximate)
-        23: 55,
-        24: 65,
-        25: 75,
-        26: 85,
-        27: 90,
-        28: 95,
-        29: 100,
-        30: 105,
-        31: 110,
-        32: 115,
-        33: 120
-    };
-
-    return pageMapping[scene.id] || 1;
+    // Clean up after animation
+    setTimeout(() => {
+        if (pdfDoc) {
+            pdfDoc = null;
+        }
+        renderedPages.clear();
+    }, 300);
 }
 
 // Expose to window
@@ -2061,7 +2318,7 @@ function buildConnectionsSection(scene) {
         scene.foreshadowing.forEach(sceneId => {
             const targetScene = state.scenes.find(s => s.id === sceneId);
             if (targetScene) {
-                html += `<a href="#" class="connection-link" onclick="window.jumpToScene(${sceneId}); return false;">
+                html += `<a href="#" class="connection-link" data-scene-id="${sceneId}">
                     Scene ${sceneId}: ${targetScene.title}
                 </a>`;
             }
@@ -2135,18 +2392,41 @@ function showInfoCard(node) {
     }
 
     // Build comprehensive info card
+    const currentIndex = state.scenes.findIndex(s => s.id === scene.id);
+    const hasPrevious = currentIndex > 0;
+    const hasNext = currentIndex < state.scenes.length - 1;
+    const previousId = hasPrevious ? state.scenes[currentIndex - 1].id : null;
+    const nextId = hasNext ? state.scenes[currentIndex + 1].id : null;
+
     let html = `
+        <div class="info-card-content-wrapper">
         <div class="info-card-header">
-            <span class="info-card-icon">${getActIcon(scene.act)}</span>
-            <div class="info-card-titles">
-                <h3 class="info-card-scene">${scene.id}. ${scene.title}</h3>
-                <p class="info-card-act">${CONFIG.ACT_NAMES[scene.act]}</p>
+            <div class="info-card-header-top">
+                <button class="info-card-nav-btn ${!hasPrevious ? 'disabled' : ''}"
+                        onclick="${hasPrevious ? `window.navigateToScene(${previousId})` : 'return false'}"
+                        ${!hasPrevious ? 'disabled' : ''}
+                        title="${hasPrevious ? 'Previous scene' : 'First scene'}">
+                    ← Previous
+                </button>
+                <span class="info-card-icon-centered">${getActIcon(scene.act)}</span>
+                <button class="info-card-nav-btn ${!hasNext ? 'disabled' : ''}"
+                        onclick="${hasNext ? `window.navigateToScene(${nextId})` : 'return false'}"
+                        ${!hasNext ? 'disabled' : ''}
+                        title="${hasNext ? 'Next scene' : 'Last scene'}">
+                    Next →
+                </button>
             </div>
-            <button class="info-card-close" onclick="window.hideInfoCard()">&times;</button>
+            <div class="info-card-header-bottom">
+                <div class="info-card-titles">
+                    <p class="info-card-act">${CONFIG.ACT_NAMES[scene.act]}</p>
+                    <h3 class="info-card-scene">${scene.id}. ${scene.title}</h3>
+                </div>
+                <button class="info-card-close" onclick="window.hideInfoCard()">&times;</button>
+            </div>
         </div>
         <div class="info-card-action-bar">
             <button class="btn btn-sm btn-outline-secondary screenplay-viewer-btn"
-                    onclick="window.showScreenplayViewer({id: ${scene.id}, title: '${scene.title.replace(/'/g, "\\'")}'}); event.stopPropagation();">
+                    onclick="window.showScreenplayViewer({id: ${scene.id}, title: '${scene.title.replace(/'/g, "\\'")}', startPage: ${scene.startPage || 1}, endPage: ${scene.endPage || 1}, screenplayPage: ${scene.screenplayPage || 1}}); event.stopPropagation();">
                 📄 View Screenplay
             </button>
             <button class="btn btn-sm ${isViewed ? 'btn-success' : 'btn-outline-primary'}"
@@ -2182,16 +2462,31 @@ function showInfoCard(node) {
             ` : ''}
         </div>
         ${buildConnectionsSection(scene)}
+        </div>
     `;
 
     infoCard.html(html);
     infoCard.classed('active', true);
     infoCardBackdrop.classed('active', true);
 
+    // Add event listeners to connection links
+    const connectionLinks = infoCard.node().querySelectorAll('.connection-link');
+    connectionLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const sceneId = parseInt(this.getAttribute('data-scene-id'));
+            jumpToSceneAndUpdate(sceneId);
+        });
+    });
+
     // Scroll to top of info card
     const infoCardElement = infoCard.node();
     if (infoCardElement) {
-        infoCardElement.scrollTop = 0;
+        const wrapper = infoCardElement.querySelector('.info-card-content-wrapper');
+        if (wrapper) {
+            wrapper.scrollTop = 0;
+        }
     }
 }
 
@@ -2216,6 +2511,7 @@ function hideInfoCard() {
 
         if (nodeGroup) {
             nodeGroup.selectAll('.node')
+                .classed('main-hovered', false)
                 .classed('connection-highlighted', false)
                 .classed('connection-dimmed', false);
         }
@@ -2242,8 +2538,47 @@ function jumpToScene(sceneId) {
 
         const infoCardElement = document.querySelector('.info-card-modal');
         if (infoCardElement) {
-            infoCardElement.scrollTop = 0;
+            const wrapper = infoCardElement.querySelector('.info-card-content-wrapper');
+            if (wrapper) {
+                wrapper.scrollTop = 0;
+            }
         }
+    }
+}
+
+// Navigate to scene (for navigation buttons)
+window.navigateToScene = function(sceneId) {
+    if (!sceneId) return;
+    jumpToSceneAndUpdate(sceneId);
+};
+
+// Jump to scene and update info card (keep card open)
+function jumpToSceneAndUpdate(sceneId) {
+    console.log('Jumping to scene:', sceneId);
+
+    const targetNode = d3.selectAll('.node')
+        .filter(d => d.data.id === sceneId)
+        .node();
+
+    if (targetNode) {
+        const nodeData = d3.select(targetNode).datum();
+
+        // Update the info card content
+        showInfoCard(nodeData);
+
+        // Update connection highlights
+        highlightConnections(nodeData);
+
+        // Scroll card to top
+        const infoCardElement = document.querySelector('.info-card-modal');
+        if (infoCardElement) {
+            const wrapper = infoCardElement.querySelector('.info-card-content-wrapper');
+            if (wrapper) {
+                wrapper.scrollTop = 0;
+            }
+        }
+
+        console.log('Updated to scene:', nodeData.data.id, nodeData.data.title);
     }
 }
 
@@ -2299,7 +2634,8 @@ filterVisualization = function() {
 
         const nodeElement = nodeGroup.selectAll('.node').filter(d => d === node);
         nodeElement.style('opacity', visible ? 1 : 0.15);
-        nodeElement.style('pointer-events', visible ? 'auto' : 'none');
+        // Keep pointer events enabled for all nodes to allow hover/tooltips
+        nodeElement.style('pointer-events', 'auto');
     });
 
     if (linkGroup) {
@@ -2347,6 +2683,7 @@ function clearAllSelections() {
     // Remove all highlight classes
     if (nodeGroup) {
         nodeGroup.selectAll('.node')
+            .classed('main-hovered', false)
             .classed('connection-highlighted', false)
             .classed('connection-dimmed', false);
     }
@@ -2413,6 +2750,7 @@ function clearAllSelections() {
             nodeElement.classed('highlighted', false);
             nodeElement.classed('search-match', false);
             nodeElement.classed('search-dimmed', false);
+            nodeElement.classed('main-hovered', false);
             nodeElement.classed('connection-highlighted', false);
             nodeElement.classed('connection-dimmed', false);
         });
@@ -2486,6 +2824,32 @@ function initSearch() {
                 hideScreenplayViewer();
             } else {
                 clearAllSelections();
+            }
+        }
+
+        // Arrow key navigation when info card is open
+        if (infoCard && infoCard.classed('active')) {
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                // Only if not typing in an input field
+                if (document.activeElement.tagName !== 'INPUT' &&
+                    document.activeElement.tagName !== 'TEXTAREA') {
+                    e.preventDefault();
+
+                    // Get current scene from the info card
+                    const sceneTitle = document.querySelector('.info-card-scene');
+                    if (sceneTitle) {
+                        const currentId = parseInt(sceneTitle.textContent.split('.')[0]);
+                        const currentIndex = state.scenes.findIndex(s => s.id === currentId);
+
+                        if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                            // Previous scene
+                            window.navigateToScene(state.scenes[currentIndex - 1].id);
+                        } else if (e.key === 'ArrowRight' && currentIndex < state.scenes.length - 1) {
+                            // Next scene
+                            window.navigateToScene(state.scenes[currentIndex + 1].id);
+                        }
+                    }
+                }
             }
         }
     });

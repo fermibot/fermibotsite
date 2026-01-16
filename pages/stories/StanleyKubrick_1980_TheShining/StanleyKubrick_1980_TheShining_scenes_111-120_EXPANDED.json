@@ -1,0 +1,463 @@
+{
+  "expandedScenes": [
+    {
+      "id": 111,
+      "note": "NO CHANGES NEEDED - Scene 111 is complete. It's a visual-only scene with no dialogue, showing airport landing and Durkin's garage exterior."
+    },
+    {
+      "id": 112,
+      "note": "MINOR ADDITIONS - Scene 112 is mostly complete but should add physical action descriptions",
+      "additionalActions": [
+        "Durkin enters stamping snow off his feet (line 6070)",
+        "Durkin moves behind counter (line 6070-6071)",
+        "Durkin checks watch (line 6212) - shows time pressure",
+        "Multiple intercutting between garage interior and airport telephone booth"
+      ],
+      "verifiedComplete": true
+    },
+    {
+      "id": 113,
+      "note": "COMPLETE - All radio dialogue verified, visual of overturned truck included"
+    },
+    {
+      "id": 114,
+      "note": "COMPLETE - All dialogue and actions verified including Tony speaking and baseball bat pickup"
+    },
+    {
+      "id": 115,
+      "note": "COMPLETE - Both instances of 'Jack...?' calling verified"
+    },
+    {
+      "id": 116,
+      "note": "COMPLETE - Manuscript discovery scene with all visual descriptions accurate"
+    },
+    {
+      "id": 117,
+      "note": "COMPLETE - Both instances of 'How do you like it?' verified"
+    },
+    {
+      "id": 118,
+      "note": "COMPLETE - Interrogation dialogue all verified"
+    },
+    {
+      "id": 119,
+      "note": "MINOR ADDITION NEEDED - Add Wendy's nervous laugh action",
+      "additionalDialogue": [
+        {
+          "action": "WENDY holding bat gives nervous laugh",
+          "location": "After 'What should be done with him?' - line 6593",
+          "significance": "Shows Wendy's terror manifesting as nervous laughter, no real answer to Jack's threatening question"
+        }
+      ]
+    },
+    {
+      "id": 120,
+      "note": "SIGNIFICANT EXPANSION NEEDED - Scene currently summarizes 6 pages of dialogue (pages 111-117). Full dialogue exchange required.",
+      "expandedKeyDialogue": [
+        {
+          "quote": "I don't know.",
+          "speaker": "Wendy (OFF)",
+          "significance": "Wendy unable to answer Jack's threatening question about Danny",
+          "context": "Jack moving forward, camera tracking back"
+        },
+        {
+          "quote": "I don't think that's true. I think you have some very definite ideas about what should be done with Danny... and I'd like to know what they are.",
+          "speaker": "Jack",
+          "significance": "Interrogating, demanding Wendy reveal plan for Danny",
+          "context": "Moving forward, camera tracking back"
+        },
+        {
+          "quote": "Well I... I think maybe he should be taken to a doctor.",
+          "speaker": "Wendy",
+          "significance": "Tentative, hesitant answer - fear evident in her hesitation",
+          "context": "Holding bat, moves back, weeping"
+        },
+        {
+          "quote": "You think maybe he should be taken to a doctor?",
+          "speaker": "Jack",
+          "significance": "Mocking repetition of Wendy's words",
+          "context": "Looking at Wendy"
+        },
+        {
+          "quote": "Yes...",
+          "speaker": "Wendy",
+          "significance": "Weak affirmation",
+          "context": "Holding bat"
+        },
+        {
+          "quote": "When do you think maybe he should be taken to a doctor?",
+          "speaker": "Jack",
+          "significance": "Continuing interrogation, mocking tone",
+          "context": "Staring at Wendy"
+        },
+        {
+          "quote": "As soon as possible?",
+          "speaker": "Wendy",
+          "significance": "Questioning tone shows uncertainty and fear",
+          "context": "Holding bat"
+        },
+        {
+          "quote": "As soon as possible.",
+          "speaker": "Jack",
+          "significance": "Repeating her words mockingly",
+          "context": "Moving forward"
+        },
+        {
+          "quote": "Jack... please...",
+          "speaker": "Wendy",
+          "significance": "Beginning to plead",
+          "context": "Holding bat"
+        },
+        {
+          "quote": "You believe his health might be at stake?",
+          "speaker": "Jack",
+          "significance": "Interrogation continuing",
+          "context": "Moving forward, camera tracks back"
+        },
+        {
+          "quote": "Ye...yes.",
+          "speaker": "Wendy",
+          "significance": "Stuttering shows fear",
+          "context": "Holding bat, moving back"
+        },
+        {
+          "quote": "And you are concerned about him?",
+          "speaker": "Jack",
+          "significance": "Building to turn question on himself",
+          "context": "Moving forward, camera tracks back"
+        },
+        {
+          "quote": "Yes.",
+          "speaker": "Wendy",
+          "significance": "Simple affirmation",
+          "context": "Holding bat, moving back"
+        },
+        {
+          "quote": "And are you concerned about me?",
+          "speaker": "Jack",
+          "significance": "CRITICAL - Turning focus to himself, victimizing himself despite being the threat",
+          "context": "Points to himself as he moves forward"
+        },
+        {
+          "quote": "Of course I am.",
+          "speaker": "Wendy",
+          "significance": "Trying to placate him",
+          "context": "Holding bat, moving backwards"
+        },
+        {
+          "quote": "Of course you are.",
+          "speaker": "Jack (OFF)",
+          "significance": "Mocking repetition",
+          "context": "Moving forward"
+        },
+        {
+          "quote": "Have you ever thought about my responsibilities?",
+          "speaker": "Jack",
+          "significance": "CRITICAL - Beginning responsibilities rant, prioritizing hotel over family",
+          "context": "Moving forward, camera tracks back, points to himself and gestures"
+        },
+        {
+          "quote": "Oh Jack, what are you talking about?",
+          "speaker": "Wendy (OFF)",
+          "significance": "Confusion and fear at his rhetoric",
+          "context": "Moving backwards"
+        },
+        {
+          "quote": "Have you ever had a single moment's thought about my responsibilities? Have you ever thought for a single solitary moment about my responsibilities to my employers?",
+          "speaker": "Jack",
+          "significance": "CRITICAL - Abuser's rhetoric, prioritizing contract over family safety",
+          "context": "Moving forward, gesturing"
+        },
+        {
+          "quote": "Has it ever occurred to you that I have agreed to look after the Overlook Hotel until May the first? Does it matter to you at all that the owners have placed their complete confidence and trust in me, and that I have signed a letter of agreement, a contract, in which I have accepted that responsibility?",
+          "speaker": "Jack",
+          "significance": "CRITICAL - Full responsibilities rant, hotel contract paramount",
+          "context": "Moving forward, camera tracks back"
+        },
+        {
+          "quote": "Do you have the slightest idea what a moral and ethical principal is? Do you?",
+          "speaker": "Jack (OFF)",
+          "significance": "Attacking Wendy's morality while threatening her life",
+          "context": "Wendy backing to foot of stairs"
+        },
+        {
+          "quote": "Has it ever occurred to you what would happen to my future, if I were to fail to live up to my responsibilities?",
+          "speaker": "Jack",
+          "significance": "Self-centered focus on his 'future' while threatening family",
+          "context": "Moving forward"
+        },
+        {
+          "quote": "Has it ever occurred to you? Has it?",
+          "speaker": "Jack",
+          "significance": "Demanding answer, aggressive",
+          "context": "Moving after Wendy, she's on stairs"
+        },
+        {
+          "quote": "Stay away from me!",
+          "speaker": "Wendy",
+          "significance": "REPEATED THROUGHOUT - Defensive plea while backing up stairs",
+          "context": "Swinging bat, backing up stairs"
+        },
+        {
+          "quote": "Why?",
+          "speaker": "Jack",
+          "significance": "Mock innocence",
+          "context": "Following her"
+        },
+        {
+          "quote": "I just want to go back to my room.",
+          "speaker": "Wendy",
+          "significance": "Trying to defuse, seeking escape",
+          "context": "Backing up stairs"
+        },
+        {
+          "quote": "Why?",
+          "speaker": "Jack",
+          "significance": "Continuing mock interrogation",
+          "context": "Following her up stairs"
+        },
+        {
+          "quote": "Well... I'm very confused, and I just need a chance to think things over.",
+          "speaker": "Wendy",
+          "significance": "Requesting time, trying to de-escalate",
+          "context": "Sobbing, backing up stairs"
+        },
+        {
+          "quote": "You've had your whole fucking life to think things over - what's good a few minutes more going to do you now?",
+          "speaker": "Jack",
+          "significance": "CRITICAL - Dismissing her request, escalating aggression with profanity",
+          "context": "High angle, moving up stairs after her"
+        },
+        {
+          "quote": "Jack... stay away from me... please.",
+          "speaker": "Wendy",
+          "significance": "Desperate pleading",
+          "context": "Backing up stairs"
+        },
+        {
+          "quote": "Don't hurt me! Don't hurt me!",
+          "speaker": "Wendy",
+          "significance": "Direct plea for safety",
+          "context": "Jack reaches up to her"
+        },
+        {
+          "quote": "I'm not going to hurt you.",
+          "speaker": "Jack",
+          "significance": "False reassurance before threat",
+          "context": "Reaching toward her"
+        },
+        {
+          "quote": "Stay away from me,",
+          "speaker": "Wendy",
+          "significance": "Continuing defense",
+          "context": "Swinging bat in front of her, backing up stairs"
+        },
+        {
+          "quote": "Wendy!",
+          "speaker": "Jack",
+          "significance": "Getting her attention for threat",
+          "context": "Following her"
+        },
+        {
+          "quote": "Stay away...!",
+          "speaker": "Wendy",
+          "significance": "Desperate",
+          "context": "Swinging bat"
+        },
+        {
+          "quote": "Darling, light of my life, I'm not going to hurt you. You didn't let me finish my sentence. I said 'I'm not going to hurt you... I'm just going to bash your brains in!' I'm going to bash them right the fuck in.",
+          "speaker": "Jack",
+          "significance": "ICONIC LINE - Murder threat delivered with false endearments, complete psychotic break, mixing loving terms with explicit violence",
+          "context": "On stairs, camera tracking back, Jack laughing"
+        },
+        {
+          "quote": "Stay away from me!",
+          "speaker": "Wendy",
+          "significance": "Repeated defense",
+          "context": "Waving bat"
+        },
+        {
+          "quote": "I'm not going to hurt you.",
+          "speaker": "Jack",
+          "significance": "Continuing false reassurance",
+          "context": "Following her up stairs"
+        },
+        {
+          "quote": "Stay away from me!",
+          "speaker": "Wendy",
+          "significance": "Repeated throughout",
+          "context": "Backing up stairs"
+        },
+        {
+          "quote": "Stay away from me! Please...",
+          "speaker": "Wendy",
+          "significance": "Pleading continues",
+          "context": "High angle, swinging bat"
+        },
+        {
+          "quote": "Stop swinging the bat.",
+          "speaker": "Jack",
+          "significance": "Command to disarm her",
+          "context": "Following up stairs"
+        },
+        {
+          "quote": "Stay away from me.",
+          "speaker": "Wendy",
+          "significance": "Repeated defense",
+          "context": "Continuing to back up"
+        },
+        {
+          "quote": "Put the bat down, Wendy.",
+          "speaker": "Jack",
+          "significance": "Command",
+          "context": "Pursuing"
+        },
+        {
+          "quote": "Stop it!",
+          "speaker": "Wendy",
+          "significance": "Command back at Jack",
+          "context": "Swinging bat"
+        },
+        {
+          "quote": "Wendy give me the bat.",
+          "speaker": "Jack",
+          "significance": "REPEATED THROUGHOUT - Demanding bat",
+          "context": "Approaching"
+        },
+        {
+          "quote": "Stay... stay away!",
+          "speaker": "Wendy",
+          "significance": "Stuttering shows terror",
+          "context": "Backing away"
+        },
+        {
+          "quote": "Give me the bat.",
+          "speaker": "Jack",
+          "significance": "Repeated command",
+          "context": "Low angle, camera tracking forward as they come up stairs"
+        },
+        {
+          "quote": "Stay away from me.",
+          "speaker": "Wendy",
+          "significance": "Continued defense",
+          "context": "Backing up"
+        },
+        {
+          "quote": "Jack, stay away from me!",
+          "speaker": "Wendy",
+          "significance": "Using his name - more desperate",
+          "context": "Backing up stairs"
+        },
+        {
+          "quote": "Stop swinging the bat.",
+          "speaker": "Jack",
+          "significance": "Repeated command",
+          "context": "Pursuing"
+        },
+        {
+          "quote": "Get down.",
+          "speaker": "Wendy",
+          "significance": "Commanding Jack to retreat",
+          "context": "High angle over Jack"
+        },
+        {
+          "quote": "Give me the bat.",
+          "speaker": "Jack",
+          "significance": "Repeated demand",
+          "context": "Moving up stairs"
+        },
+        {
+          "quote": "Go away from me.",
+          "speaker": "Wendy",
+          "significance": "Variation on 'stay away'",
+          "context": "Swinging bat"
+        },
+        {
+          "quote": "Wendy...",
+          "speaker": "Jack",
+          "significance": "Mock gentleness",
+          "context": "Reaching up"
+        },
+        {
+          "quote": "Go away.",
+          "speaker": "Wendy",
+          "significance": "Desperate",
+          "context": "Backing away"
+        },
+        {
+          "quote": "Give me the bat.",
+          "speaker": "Jack",
+          "significance": "Repeated",
+          "context": "Reaching toward her"
+        },
+        {
+          "quote": "Go away.",
+          "speaker": "Wendy",
+          "significance": "Desperate pleading",
+          "context": "Swinging bat"
+        },
+        {
+          "quote": "Give me the bat.",
+          "speaker": "Jack",
+          "significance": "Final demand before attempting to grab it",
+          "context": "Reaching up with hand"
+        },
+        {
+          "action": "JACK reaches up with hand. WENDY HITS HIS HAND WITH BAT. SHE SCREAMS. HE YELLS and grabs his wrist.",
+          "significance": "CRITICAL ACTION - First defensive strike, Wendy hits Jack's hand"
+        },
+        {
+          "quote": "Goddamn!",
+          "speaker": "Jack",
+          "significance": "Pain and shock from hand being hit",
+          "context": "Low angle, Wendy over Jack, grabbing his wrist"
+        },
+        {
+          "action": "WENDY HITS JACK ON HEAD WITH BAT.",
+          "significance": "CRITICAL ACTION - Full defensive strike, knocks Jack unconscious"
+        },
+        {
+          "action": "JACK throws up hand and leans back. He falls backwards down stairs. Camera pans left-right with him as he somersaults down stairs, stopping face down on half landing.",
+          "significance": "CRITICAL ACTION - Jack defeated, falls unconscious down stairs"
+        },
+        {
+          "quote": "Oh...oh!",
+          "speaker": "Wendy",
+          "significance": "Shock and horror at what she's done - not triumph, but shock",
+          "context": "Back to camera at top of stairs, Jack lying facedown on half landing"
+        }
+      ],
+      "estimatedDialogueExchanges": "Approximately 40+ rapid-fire exchanges over 6 pages",
+      "keyActionSequences": [
+        "Jack interrogating Wendy about Danny (page 111)",
+        "Jack's responsibilities rant (pages 112-113)",
+        "Jack's 'moral and ethical principal' speech (page 113)",
+        "Transition to stairs, Wendy backing up (page 114)",
+        "Jack's 'bash your brains in' threat (page 115)",
+        "Extended 'Give me the bat' / 'Stay away' exchange (pages 115-117)",
+        "Wendy strikes Jack's hand (page 117)",
+        "Wendy strikes Jack's head, he falls down stairs (page 117)"
+      ]
+    }
+  ],
+  "expansionSummary": {
+    "scene111": "Complete - no changes needed",
+    "scene112": "Minor additions - add physical actions (stamping snow, checking watch)",
+    "scene113": "Complete - verified",
+    "scene114": "Complete - verified",
+    "scene115": "Complete - verified",
+    "scene116": "Complete - verified",
+    "scene117": "Complete - verified",
+    "scene118": "Complete - verified",
+    "scene119": "Minor addition - add nervous laugh action",
+    "scene120": "MAJOR expansion - add all dialogue exchanges from 6-page confrontation"
+  },
+  "overlapCheck": {
+    "status": "NO OVERLAPS DETECTED",
+    "verification": "Scenes 111-120 begin after scene 110's time jump to 8am Thursday with completely new content. No repetition of scenes 108-110.",
+    "scene108ends": "Jack destroys radio",
+    "scene109ends": "Halloran calls ranger, no response, puts hand to head",
+    "scene110ends": "Time jump to 8am, Halloran on plane, Jack typing",
+    "scene111begins": "Airport landing, Durkin's garage - NEW CONTENT"
+  }
+}

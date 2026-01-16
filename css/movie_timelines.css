@@ -731,8 +731,8 @@
 
 .legend-question-item {
     font-size: 0.75rem !important;
-    padding: 0.2rem 0.5rem !important;
-    line-height: 1.2 !important;
+    padding: 0.3rem 0.6rem !important;
+    line-height: 1 !important;
 }
 
 .legend-separator {
@@ -1028,40 +1028,93 @@
     pointer-events: auto;
 }
 
-.info-card {
+.info-card-modal {
     position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
     background: var(--viz-card-bg);
     border: 1px solid var(--viz-border);
-    border-radius: 12px;
+    border-radius: 12px 0 0 12px;
     padding: 0;
-    width: 400px;
+    width: 550px;
     max-width: 90vw;
-    max-height: 80vh;
-    overflow-y: auto;
+    overflow: hidden;
     box-shadow: 0 8px 32px var(--viz-card-shadow);
     z-index: 1003;
     opacity: 0;
     pointer-events: none;
     transition: opacity var(--transition-normal);
+    display: flex;
+    flex-direction: column;
 }
 
-.info-card.visible {
+/* Content wrapper - this is the scrollable part */
+.info-card-content-wrapper {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
+}
+
+/* Force visible scrollbar */
+.info-card-content-wrapper::-webkit-scrollbar {
+    width: 14px;
+    background: var(--viz-bg-secondary);
+}
+
+.info-card-content-wrapper::-webkit-scrollbar-thumb {
+    background: var(--viz-border);
+    border-radius: 7px;
+    border: 3px solid var(--viz-bg-secondary);
+}
+
+.info-card-content-wrapper::-webkit-scrollbar-thumb:hover {
+    background: var(--viz-text-muted);
+}
+
+/* Firefox scrollbar */
+.info-card-content-wrapper {
+    scrollbar-width: auto;
+    scrollbar-color: var(--viz-border) var(--viz-bg-secondary);
+}
+
+.info-card-modal.active,
+.info-card-modal.visible {
     opacity: 1;
     pointer-events: auto;
 }
 
 .info-card-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    padding: 1rem;
     background: var(--viz-bg-secondary);
     border-radius: 12px 12px 0 0;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
 }
 
-.info-card-icon {
-    font-size: 1.5rem;
+/* Top row: Previous button - Act emoji - Next button */
+.info-card-header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+/* Centered act icon in top row */
+.info-card-icon-centered {
+    font-size: 2rem;
     flex-shrink: 0;
+}
+
+/* Bottom row: Title and close button */
+.info-card-header-bottom {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
 }
 
 .info-card-titles {
@@ -1089,10 +1142,37 @@
     padding: 0;
     line-height: 1;
     transition: color var(--transition-fast);
+    flex-shrink: 0;
 }
 
 .info-card-close:hover {
     color: var(--viz-text);
+}
+
+/* Navigation buttons */
+.info-card-nav-btn {
+    background: var(--viz-bg);
+    border: 1px solid var(--viz-border);
+    color: var(--viz-text);
+    padding: 0.4rem 0.75rem;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+}
+
+.info-card-nav-btn:hover:not(.disabled) {
+    background: var(--viz-bg-secondary);
+    border-color: var(--viz-primary);
+    color: var(--viz-primary);
+    transform: translateY(-1px);
+}
+
+.info-card-nav-btn.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: var(--viz-bg-tertiary);
 }
 
 /* Info card action bar (for buttons like Mark as Reviewed) */
@@ -1636,11 +1716,12 @@
 /* Tag badge base styles - used across all visualizations */
 .tag-badge {
     display: inline-block;
-    padding: 0.25rem 0.5rem;
+    padding: 0.3rem 0.6rem;
     margin: 0.15rem;
     border-radius: 4px;
     font-size: 0.75rem;
     font-weight: 600;
+    line-height: 1;
     border: 1px solid;
     transition: all 0.2s ease;
     white-space: nowrap;
