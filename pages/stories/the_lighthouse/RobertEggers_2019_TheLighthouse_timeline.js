@@ -46,7 +46,7 @@ const CONFIG = {
     // Layout dimensions
     DIAMETER: 900,
     STORAGE_KEY: 'lighthouse-viewed-scenes',
-    DATA_FILE: 'RobertEggers_2019_TheLighthouse_scenes_analyzed.json?v=2026.01.16.02'
+    DATA_FILE: 'RobertEggers_2019_TheLighthouse_scenes_analyzed.json?v=2026.01.16.03'
 };
 
 // ============================================
@@ -1252,6 +1252,100 @@ function initLegend() {
     // Separator
     grid.append('div').attr('class', 'legend-separator');
 
+    // Section label for Scene Tags - collapsible
+    const tagsHeader = grid.append('div')
+        .attr('class', 'legend-section-label legend-collapsible-header')
+        .style('cursor', 'pointer')
+        .style('user-select', 'none')
+        .on('click', function() {
+            const content = d3.select(this.nextSibling);
+            const isCollapsed = content.style('display') === 'none';
+            content.style('display', isCollapsed ? 'block' : 'none');
+            d3.select(this).select('.collapse-icon').text(isCollapsed ? '▼' : '▶');
+        });
+
+    tagsHeader.append('span')
+        .attr('class', 'collapse-icon')
+        .text('▼')
+        .style('margin-right', '0.5rem')
+        .style('font-size', '0.7rem');
+
+    tagsHeader.append('span')
+        .text('🏷️ Scene Tags:');
+
+    // Build scene tags from TAG_GROUPS - multi-column layout
+    const tagsContainer = grid.append('div')
+        .attr('class', 'legend-categories-container')
+        .style('column-count', '4')
+        .style('column-gap', '2rem')
+        .style('margin-top', '0.5rem');
+
+    for (const [groupName, groupTags] of Object.entries(TAG_GROUPS)) {
+        // Create category container (vertical column)
+        const categoryContainer = tagsContainer.append('div')
+            .attr('class', 'legend-category-container')
+            .style('display', 'inline-block')
+            .style('width', '100%')
+            .style('margin-bottom', '1rem')
+            .style('padding-right', '1rem')
+            .style('break-inside', 'avoid');
+
+        // Add category label
+        categoryContainer.append('div')
+            .attr('class', 'legend-category-label')
+            .style('font-weight', '700')
+            .style('color', '#555')
+            .style('margin-bottom', '0.5rem')
+            .style('font-size', '0.9rem')
+            .style('border-bottom', '2px solid #ddd')
+            .style('padding-bottom', '0.3rem')
+            .text(groupName);
+
+        // Create vertical list of tags for this category
+        const tagsList = categoryContainer.append('div')
+            .attr('class', 'legend-category-tags')
+            .style('display', 'flex')
+            .style('flex-direction', 'column')
+            .style('gap', '0.3rem');
+
+        // Add tags for this category
+        groupTags.forEach(tagKey => {
+            const label = tagKey.charAt(0).toUpperCase() + tagKey.slice(1).replace(/-/g, ' ');
+            const icon = TAG_ICONS[tagKey] || '🏷️';
+
+            // Count scenes with this tag
+            const sceneCount = SCENES.filter(s => s.tags && s.tags.includes(tagKey)).length;
+
+            // Create row container for badge + count
+            const row = tagsList.append('div')
+                .style('display', 'flex')
+                .style('align-items', 'center')
+                .style('justify-content', 'space-between')
+                .style('width', '100%');
+
+            const badge = row.append('div')
+                .attr('class', `tag-badge tag-${tagKey}`)
+                .style('cursor', 'pointer')
+                .style('flex-grow', '1')
+                .attr('title', `Click to filter: ${label}`)
+                .on('click', () => toggleTagFilter(tagKey));
+
+            badge.append('span').text(`${icon} ${label}`);
+
+            // Add count (zero-padded)
+            row.append('span')
+                .style('font-size', '0.7rem')
+                .style('color', '#888')
+                .style('font-weight', '500')
+                .style('font-family', 'monospace')
+                .style('margin-left', '0.5rem')
+                .text(`(${String(sceneCount).padStart(2, '0')})`);
+        });
+    }
+
+    // Separator
+    grid.append('div').attr('class', 'legend-separator');
+
     // Section label for Connections - inline with items
     const connectionsContainer = grid.append('div')
         .style('display', 'flex')
@@ -1336,6 +1430,21 @@ function toggleChapterFilter(chapterId) {
     applyNodeFilters();
 }
 
+function toggleTagFilter(tagKey) {
+    if (state.activeTags.has(tagKey)) {
+        state.activeTags.delete(tagKey);
+    } else {
+        state.activeTags.add(tagKey);
+    }
+
+    // Update legend tag badge appearance
+    d3.selectAll(`.tag-badge.tag-${tagKey}`)
+        .classed('active', state.activeTags.has(tagKey));
+
+    // Apply combined filters
+    applyNodeFilters();
+}
+
 function toggleMarkerFilter(markerKey, field) {
     if (state.activeMarkers.has(markerKey)) {
         state.activeMarkers.delete(markerKey);
@@ -1359,9 +1468,10 @@ function applyNodeFilters() {
 
     const hasActFilter = state.activeActs.size > 0;
     const hasChapterFilter = state.activeChapters.size > 0;
+    const hasTagFilter = state.activeTags.size > 0;
     const hasMarkerFilter = state.activeMarkers.size > 0;
 
-    if (!hasActFilter && !hasChapterFilter && !hasMarkerFilter) {
+    if (!hasActFilter && !hasChapterFilter && !hasTagFilter && !hasMarkerFilter) {
         // No filters - show all
         nodeGroup.selectAll('.node').classed('filtered', false);
     } else {
@@ -1369,6 +1479,7 @@ function applyNodeFilters() {
             .classed('filtered', d => {
                 let passesActFilter = true;
                 let passesChapterFilter = true;
+                let passesTagFilter = true;
                 let passesMarkerFilter = true;
 
                 // Check act filter
@@ -1381,6 +1492,11 @@ function applyNodeFilters() {
                     passesChapterFilter = state.activeChapters.has(d.data.chapter);
                 }
 
+                // Check tag filter (scene must have at least one of the active tags)
+                if (hasTagFilter) {
+                    passesTagFilter = d.data.tags && d.data.tags.some(tag => state.activeTags.has(tag));
+                }
+
                 // Check marker filter (scene must have at least one of the active markers)
                 if (hasMarkerFilter) {
                     passesMarkerFilter = false;
@@ -1390,7 +1506,7 @@ function applyNodeFilters() {
                 }
 
                 // Must pass all active filters
-                return !(passesActFilter && passesChapterFilter && passesMarkerFilter);
+                return !(passesActFilter && passesChapterFilter && passesTagFilter && passesMarkerFilter);
             });
     }
 }
