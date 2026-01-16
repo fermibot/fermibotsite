@@ -494,13 +494,13 @@
 }
 
 /* ============================================
-   BOOK CLUB QUESTIONS - 1 COLUMN LAYOUT
+   BOOK CLUB QUESTIONS - 5 COLUMN LAYOUT
    ============================================ */
 
-/* Override base grid to use 1 column */
+/* Override base grid to use 5 columns */
 .book-club-grid {
     display: grid;
-    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(5, 1fr) !important;
     gap: 1rem;
 }
 

@@ -397,23 +397,10 @@ function renderDiscussionQuestions() {
         meta.className = 'question-meta';
         meta.textContent = `${actIcon} ${sceneText} | ${q.category}`;
 
-        // Show Answer button
-        const answerToggle = document.createElement('button');
-        answerToggle.className = 'answer-toggle';
-        answerToggle.textContent = 'Show Analysis';
-        answerToggle.setAttribute('onclick', 'toggleAnswer(event, this)');
-
-        // Answer content (hidden by default)
-        const answerContent = document.createElement('div');
-        answerContent.className = 'answer-content';
-        answerContent.innerHTML = `<p><em>Click scenes in the visualization to explore this question.</em></p>`;
-
         // Assemble
         questionDiv.appendChild(header);
         questionDiv.appendChild(tagsDiv);
         questionDiv.appendChild(meta);
-        questionDiv.appendChild(answerToggle);
-        questionDiv.appendChild(answerContent);
 
         grid.appendChild(questionDiv);
     });
