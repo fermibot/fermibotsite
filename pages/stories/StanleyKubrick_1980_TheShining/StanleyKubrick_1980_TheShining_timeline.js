@@ -358,11 +358,20 @@ function renderDiscussionQuestions() {
     const grid = document.createElement('div');
     grid.className = 'book-club-grid';
 
-    DISCUSSION_QUESTIONS.forEach(q => {
+    (state.discussionQuestions || []).forEach(q => {
+        // Find scenes related to this question
+        const relatedScenes = state.scenes.filter(s =>
+            s.discussionQuestions && s.discussionQuestions.some(dq => dq.id === q.id)
+        );
+        const sceneIds = relatedScenes.map(s => s.id);
+
+        if (sceneIds.length === 0) return; // Skip if no scenes
+
         const questionDiv = document.createElement('div');
         questionDiv.className = 'book-club-question';
         questionDiv.setAttribute('onclick', 'highlightBookClubScenes(this, event)');
-        questionDiv.setAttribute('data-scenes', q.relatedScenes.join(','));
+        questionDiv.setAttribute('data-scenes', sceneIds.join(','));
+        questionDiv.setAttribute('data-question-id', q.id);
 
         // Question header
         const header = document.createElement('div');
@@ -372,32 +381,32 @@ function renderDiscussionQuestions() {
             <p class="question-text">${q.question}</p>
         `;
 
-        // Question tags - show only relevant tags as styled badges
+        // Question tags - show category and related tags as styled badges
         const tagsDiv = document.createElement('div');
         tagsDiv.className = 'question-tags';
-        tagsDiv.innerHTML = buildTagBadges(q.tags);
+        tagsDiv.innerHTML = buildTagBadges(q.relatedTags);
 
         // Find first scene to determine act
-        const firstScene = q.relatedScenes[0];
+        const firstScene = sceneIds[0];
         const scene = state.scenes.find(s => s.id === firstScene);
         const actIcon = scene ? CONFIG.ACT_ICONS[scene.act] : '🎬';
-        const sceneText = q.relatedScenes.length === 1 ? `Scene ${q.relatedScenes[0]}` : `Scenes ${q.relatedScenes[0]}-${q.relatedScenes[q.relatedScenes.length-1]}`;
+        const sceneText = sceneIds.length === 1 ? `Scene ${sceneIds[0]}` : `${sceneIds.length} scenes`;
 
         // Question meta
         const meta = document.createElement('span');
         meta.className = 'question-meta';
-        meta.textContent = `${actIcon} ${sceneText}`;
+        meta.textContent = `${actIcon} ${sceneText} | ${q.category}`;
 
         // Show Answer button
         const answerToggle = document.createElement('button');
         answerToggle.className = 'answer-toggle';
-        answerToggle.textContent = 'Show Answer';
+        answerToggle.textContent = 'Show Analysis';
         answerToggle.setAttribute('onclick', 'toggleAnswer(event, this)');
 
         // Answer content (hidden by default)
         const answerContent = document.createElement('div');
         answerContent.className = 'answer-content';
-        answerContent.innerHTML = `<p>${q.answer || 'Analysis coming soon.'}</p>`;
+        answerContent.innerHTML = `<p><em>Click scenes in the visualization to explore this question.</em></p>`;
 
         // Assemble
         questionDiv.appendChild(header);
@@ -410,7 +419,7 @@ function renderDiscussionQuestions() {
     });
 
     container.appendChild(grid);
-    console.log(`Rendered ${DISCUSSION_QUESTIONS.length} discussion questions`);
+    console.log(`Rendered ${state.discussionQuestions.length} discussion questions`);
 }
 
 // ============================================
@@ -960,129 +969,6 @@ function createLegendWithProgress() {
                 .text(`(${String(sceneCount).padStart(2, '0')})`);
         });
     }
-
-    // Separator
-    grid.append('div').attr('class', 'legend-separator');
-
-    // Section label for Discussion Questions - collapsible
-    const questionsHeader = grid.append('div')
-        .attr('class', 'legend-section-label legend-collapsible-header')
-        .style('cursor', 'pointer')
-        .style('user-select', 'none')
-        .on('click', function() {
-            const content = d3.select(this.nextSibling);
-            const isCollapsed = content.style('display') === 'none';
-            content.style('display', isCollapsed ? 'block' : 'none');
-            d3.select(this).select('.collapse-icon').text(isCollapsed ? '▼' : '▶');
-        });
-
-    questionsHeader.append('span')
-        .attr('class', 'collapse-icon')
-        .text('▼')
-        .style('margin-right', '0.5rem')
-        .style('font-size', '0.7rem');
-
-    questionsHeader.append('span')
-        .text('📖 Discussion Questions');
-
-    // Build discussion questions list - organized by category
-    const questionsContainer = grid.append('div')
-        .attr('class', 'legend-questions-container')
-        .style('column-count', '5')
-        .style('column-gap', '1rem')
-        .style('margin-top', '0.5rem');
-
-    // Group questions by category
-    const questionsByCategory = {};
-    (state.discussionQuestions || []).forEach(q => {
-        if (!questionsByCategory[q.category]) {
-            questionsByCategory[q.category] = [];
-        }
-        questionsByCategory[q.category].push(q);
-    });
-
-    // Render each category
-    Object.entries(questionsByCategory).forEach(([category, questions]) => {
-        // Category header
-        const categorySection = questionsContainer.append('div')
-            .attr('class', 'legend-question-category')
-            .style('margin-bottom', '1.5rem')
-            .style('break-inside', 'avoid');
-
-        categorySection.append('div')
-            .attr('class', 'legend-category-label')
-            .style('font-weight', '700')
-            .style('color', '#555')
-            .style('margin-bottom', '0.5rem')
-            .style('font-size', '0.9rem')
-            .style('border-bottom', '2px solid #ddd')
-            .style('padding-bottom', '0.3rem')
-            .text(category);
-
-        // Questions list
-        const questionsList = categorySection.append('div')
-            .style('display', 'flex')
-            .style('flex-direction', 'column')
-            .style('gap', '0.5rem');
-
-        questions.forEach(q => {
-            // Count scenes related to this question
-            const relatedScenes = state.scenes.filter(s =>
-                s.discussionQuestions && s.discussionQuestions.some(dq => dq.id === q.id)
-            );
-            const sceneCount = relatedScenes.length;
-
-            const questionRow = questionsList.append('div')
-                .attr('class', 'legend-question-row')
-                .style('display', 'flex')
-                .style('align-items', 'flex-start')
-                .style('gap', '0.5rem')
-                .style('padding', '0.5rem')
-                .style('border-radius', '4px')
-                .style('cursor', 'pointer')
-                .style('transition', 'all 0.2s ease')
-                .attr('data-question-id', q.id)
-                .on('click', () => toggleQuestionFilterById(q.id))
-                .on('mouseenter', function() {
-                    d3.select(this).style('background', 'rgba(0, 0, 0, 0.05)');
-                })
-                .on('mouseleave', function() {
-                    const isActive = legendState.activeQuestions.has(q.id);
-                    d3.select(this).style('background', isActive ? 'rgba(33, 150, 243, 0.1)' : 'transparent');
-                });
-
-            // Question number badge
-            questionRow.append('span')
-                .style('flex-shrink', '0')
-                .style('width', '1.5rem')
-                .style('height', '1.5rem')
-                .style('display', 'inline-flex')
-                .style('align-items', 'center')
-                .style('justify-content', 'center')
-                .style('background', '#2196F3')
-                .style('color', 'white')
-                .style('border-radius', '50%')
-                .style('font-size', '0.75rem')
-                .style('font-weight', '600')
-                .text(q.id);
-
-            // Question text
-            questionRow.append('span')
-                .style('flex', '1')
-                .style('font-size', '0.85rem')
-                .style('line-height', '1.4')
-                .text(q.question);
-
-            // Scene count
-            questionRow.append('span')
-                .style('flex-shrink', '0')
-                .style('font-size', '0.75rem')
-                .style('color', '#888')
-                .style('font-weight', '500')
-                .style('font-family', 'monospace')
-                .text(`(${sceneCount})`);
-        });
-    });
 
     // Separator
     grid.append('div').attr('class', 'legend-separator');
