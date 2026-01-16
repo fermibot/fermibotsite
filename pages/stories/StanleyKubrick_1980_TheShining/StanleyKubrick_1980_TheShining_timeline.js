@@ -807,47 +807,33 @@ function createLegendWithProgress() {
     // Separator
     grid.append('div').attr('class', 'legend-separator');
 
-    // Section label for Chapters - inline with items, collapsible
-    const chaptersOuterContainer = grid.append('div')
-        .style('display', 'flex')
-        .style('flex-direction', 'column')
-        .style('gap', '0.5rem');
-
-    const chaptersHeaderRow = chaptersOuterContainer.append('div')
-        .style('display', 'flex')
-        .style('align-items', 'center')
-        .style('gap', '0.75rem')
-        .style('flex-wrap', 'wrap');
-
-    const chaptersLabel = chaptersHeaderRow.append('span')
+    // Section label for Chapters - collapsible
+    const chaptersHeader = grid.append('div')
         .attr('class', 'legend-section-label legend-collapsible-header')
-        .style('margin', '0')
         .style('cursor', 'pointer')
         .style('user-select', 'none')
         .on('click', function() {
-            const content = d3.select('#chapters-content');
+            const content = d3.select(this.nextSibling);
             const isCollapsed = content.style('display') === 'none';
-            content.style('display', isCollapsed ? 'flex' : 'none');
+            content.style('display', isCollapsed ? 'block' : 'none');
             d3.select(this).select('.collapse-icon').text(isCollapsed ? '▼' : '▶');
         });
 
-    chaptersLabel.append('span')
+    chaptersHeader.append('span')
         .attr('class', 'collapse-icon')
         .text('▼')
-        .style('margin-right', '0.35rem')
+        .style('margin-right', '0.5rem')
         .style('font-size', '0.7rem');
 
-    chaptersLabel.append('span')
+    chaptersHeader.append('span')
         .text('📖 Chapters:');
 
-    // Chapters - inline layout
-    const chaptersContainer = chaptersHeaderRow.append('div')
-        .attr('id', 'chapters-content')
-        .attr('class', 'legend-items-row')
-        .style('margin', '0')
-        .style('display', 'flex')
-        .style('gap', '0.5rem')
-        .style('flex-wrap', 'wrap');
+    // Chapters - 4 column layout like Discussion Topics
+    const chaptersContainer = grid.append('div')
+        .attr('class', 'legend-categories-container')
+        .style('column-count', '4')
+        .style('column-gap', '2rem')
+        .style('margin-top', '0.5rem');
 
     // Get chapters in order
     const chapterOrder = ['ch1-interview', 'ch2-arrival', 'ch3-month-later', 'ch4-unraveling', 'ch5-gold-room', 'ch6-grady', 'ch7-confrontation', 'ch8-heres-johnny', 'ch9-maze', 'ch10-photograph'];
@@ -857,22 +843,38 @@ function createLegendWithProgress() {
         if (!chapter) return;
 
         const chapterNum = chapterId.split('-')[0].replace('ch', '');
+        const nameWithoutIcon = chapter.name.replace(/^[^\s]+\s/, ''); // Remove first emoji
 
-        const item = chaptersContainer.append('div')
+        // Create row container for badge + line + count
+        const row = chaptersContainer.append('div')
+            .style('display', 'flex')
+            .style('align-items', 'center')
+            .style('justify-content', 'space-between')
+            .style('width', '100%')
+            .style('margin-bottom', '0.3rem')
+            .style('break-inside', 'avoid');
+
+        const item = row.append('div')
             .attr('class', 'legend-item legend-chapter-item')
             .attr('data-chapter', chapterId)
             .attr('title', `Click to filter: ${chapter.name} - ${chapter.description} (${chapter.sceneCount} scenes)`)
+            .style('width', 'fit-content')
             .on('click', () => toggleChapterFilter(chapterId));
 
-        // Chapter number badge
+        // Add active indicator (checkmark)
         item.append('span')
-            .attr('class', 'legend-color')
+            .attr('class', 'active-indicator')
+            .text('✓');
+
+        // Chapter number (styled as small badge)
+        item.append('span')
             .style('background-color', chapter.color)
             .style('color', 'white')
             .style('font-weight', '700')
-            .style('font-size', '0.7rem')
-            .style('padding', '0.15rem 0.4rem')
+            .style('font-size', '0.65rem')
+            .style('padding', '0.15rem 0.35rem')
             .style('border-radius', '3px')
+            .style('margin-right', '0.4rem')
             .text(chapterNum);
 
         // Chapter icon
@@ -880,11 +882,25 @@ function createLegendWithProgress() {
             .attr('class', 'legend-icon')
             .text(chapter.icon);
 
-        // Chapter name (without icon since we have it separately) and count
-        const nameWithoutIcon = chapter.name.replace(/^[^\s]+\s/, ''); // Remove first emoji
+        // Chapter name
         item.append('span')
             .attr('class', 'legend-text')
-            .html(`${nameWithoutIcon} <small>(${chapter.sceneCount})</small>`);
+            .text(nameWithoutIcon);
+
+        // Add connecting line
+        row.append('span')
+            .style('flex-grow', '1')
+            .style('border-bottom', '1px dotted #ccc')
+            .style('margin', '0 0.5rem')
+            .style('min-width', '10px');
+
+        // Add count (zero-padded)
+        row.append('span')
+            .style('font-size', '0.7rem')
+            .style('color', '#888')
+            .style('font-weight', '500')
+            .style('font-family', 'monospace')
+            .text(`(${String(chapter.sceneCount).padStart(2, '0')})`);
     });
 
     // Separator
