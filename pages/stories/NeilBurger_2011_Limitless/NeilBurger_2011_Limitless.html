@@ -2,7 +2,7 @@
 <html lang="en" data-bs-theme="auto">
 <head>
     <meta charset="UTF-8">
-    <title>Stories | Film Analysis | The Shining</title>
+    <title>Stories | Film Analysis | Limitless</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="../../../index.css">
 
     <!-- Visualization CSS -->
-    <link href="../../../css/movie_timelines.css?v=2026.01.16.01" rel="stylesheet">
-    <link href="StanleyKubrick_1980_TheShining_custom.css?v=2026.01.16.01" rel="stylesheet">
+    <link href="../../../css/movie_timelines.css?v=2026.01.16.00.00.00" rel="stylesheet">
+    <link href="NeilBurger_2011_Limitless_custom.css?v=2026.01.16.00.00.00" rel="stylesheet">
 
     <!-- Bootstrap JS -->
     <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
@@ -26,9 +26,6 @@
 
     <!-- D3.js v7 -->
     <script src="../../../d3/d3.v7.min.js"></script>
-
-    <!-- PDF.js for screenplay viewer -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
     <!-- Site automation -->
     <script src="../../../automation/loadObjects.js"></script>
@@ -43,9 +40,9 @@
 
 <!-- Page Title -->
 <header class="mb-4">
-    <h1 class="text-center mb-3">Stories | Film Analysis | The Shining</h1>
+    <h1 class="text-center mb-3">Stories | Film Analysis | Limitless</h1>
     <p class="text-center text-muted">
-        Interactive visualization of Stanley Kubrick's psychological horror masterpiece - All 231 technical scenes from the screenplay exploring isolation, madness, and the supernatural
+        Interactive visualization of Neil Burger's sci-fi thriller - All 187 scenes exploring cognitive enhancement, ambition, and the price of perfection
     </p>
 </header>
 
@@ -53,21 +50,21 @@
 <section class="mb-4">
     <div class="bg-body-tertiary border rounded-3 p-4">
         <p class="mb-2">
-            This interactive timeline explores <strong>The Shining</strong> (1980), Stanley Kubrick's adaptation of Stephen King's novel about
-            a family isolated in the haunted Overlook Hotel during winter. The visualization tracks Jack Torrance's psychological
-            deterioration from stable family man to homicidal madman, revealing how isolation, supernatural forces, and personal
-            demons converge into terror.
+            This interactive timeline explores <strong>Limitless</strong> (2011), Neil Burger's adaptation of Alan Glynn's novel about
+            Eddie Morra, a struggling writer who discovers NZT-48—a drug that unlocks 100% of his brain's potential. The visualization tracks Eddie's
+            transformation from failure to superhuman success, revealing how enhancement, ambition, and addiction converge into a
+            high-stakes thriller.
         </p>
         <p class="mb-2">
             <strong>Key Features:</strong>
-            Psychological State Tracking (Jack's descent from stable to psychotic),
+            Enhancement State Tracking (Eddie's journey from baseline to enhanced to withdrawal),
             Story Connections (hover to see foreshadowing and callbacks),
             Progress Tracking (mark scenes as reviewed),
-            Deep Analysis (click for detailed character, thematic, and supernatural insights).
+            Deep Analysis (click for detailed character, thematic, and dialogue insights).
         </p>
         <p class="mb-0">
-            The radial layout represents the cyclical nature of the hotel's evil - the final photograph suggests Jack has
-            "always" been the caretaker, trapped in an eternal loop of violence.
+            The radial layout represents Eddie's cyclical journey—from rock bottom to the heights of power and back again.
+            Each revolution brings him closer to either transcendence or destruction.
         </p>
     </div>
 </section>
@@ -84,22 +81,22 @@
                     <li><strong>Click:</strong> Open full scene analysis</li>
                     <li><strong>Navigate:</strong> Use Previous/Next buttons or arrow keys (← →) to browse scenes</li>
                     <li><strong>Mark Reviewed:</strong> Track your progress</li>
-                    <li><strong>Filter:</strong> View by act or psychological state</li>
+                    <li><strong>Filter:</strong> View by act, chapter, or enhancement state</li>
                     <li><strong>Search:</strong> Find scenes by title, tags, or themes (press <kbd>/</kbd>)</li>
                 </ul>
             </div>
             <div class="col-md-6">
                 <p><strong>🎨 Color Legend:</strong></p>
                 <ul class="mb-3">
-                    <li><strong>Blue:</strong> Act I - Arrival & Setup</li>
-                    <li><strong>Red:</strong> Act II - Isolation & Deterioration</li>
-                    <li><strong>Black:</strong> Act III - Terror & Escape</li>
-                    <li><strong>Node Fill:</strong> Psychological state (green=stable, orange=deteriorating, red=psychotic)</li>
+                    <li><strong>Brown:</strong> Act I - Rock Bottom & Discovery</li>
+                    <li><strong>Cyan:</strong> Act II - Transformation & Power</li>
+                    <li><strong>Green:</strong> Act III - Crisis & Resolution</li>
+                    <li><strong>Node Fill:</strong> Enhancement state (gray=baseline, cyan=enhanced, purple=withdrawal, red=crisis)</li>
                 </ul>
                 <p><strong>🔗 Connection Lines:</strong></p>
                 <ul class="mb-3">
-                    <li><strong>Solid blue:</strong> Foreshadowing (what this scene hints at)</li>
-                    <li><strong>Dashed purple:</strong> Callbacks (what earlier scenes hinted at this)</li>
+                    <li><strong>Solid cyan:</strong> Foreshadowing (what this scene hints at)</li>
+                    <li><strong>Dashed red:</strong> Callbacks (what earlier scenes hinted at this)</li>
                 </ul>
             </div>
         </div>
@@ -143,7 +140,7 @@
                     <div class="spinner-border" role="status">
                         <span class="visually-hidden">Loading...</span>
                     </div>
-                    <p class="mt-3">Loading the Overlook's timeline...</p>
+                    <p class="mt-3">Loading Eddie's transformation...</p>
                 </div>
             </div>
         </div>
@@ -154,60 +151,60 @@
 <!-- Key Themes Section -->
 <section class="mt-4">
     <div class="bg-body-tertiary border rounded-3 p-4">
-        <h5 class="mb-3">🏔️ Key Recurring Themes</h5>
+        <h5 class="mb-3">🧠 Key Recurring Themes</h5>
         <div class="row g-3">
             <div class="col-md-4">
                 <div class="motif-item">
-                    <strong>❄️ Isolation</strong>
-                    <p class="small text-muted mb-0">Snowbound and cut off from civilization, the Torrance family becomes trapped with no escape. Isolation doesn't create Jack's violence—it unleashes it.</p>
+                    <strong>💊 NZT-48</strong>
+                    <p class="small text-muted mb-0">The clear pill that unlocks 100% brain capacity. Is it a miracle drug or a Faustian bargain? Eddie gains everything but risks losing himself.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="motif-item">
-                    <strong>🏨 The Overlook Hotel</strong>
-                    <p class="small text-muted mb-0">Built on an Indian burial ground, the hotel absorbs and amplifies evil. Is it alive? Does it feed on violence? Jack says he feels like he's "always been here."</p>
+                    <strong>🧠 The Perfect Self</strong>
+                    <p class="small text-muted mb-0">Eddie asks: "How many of us ever know what it is to become the perfect version of ourselves?" NZT promises perfection—but at what cost?</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="motif-item">
-                    <strong>👥 The Grady Twins</strong>
-                    <p class="small text-muted mb-0">"Come play with us, Danny." The murdered daughters appear to Danny, beckoning him toward darkness. Their symmetry suggests eternal recurrence.</p>
+                    <strong>📉 Rock Bottom</strong>
+                    <p class="small text-muted mb-0">Overweight, broke, blocked writer with nothing left to lose. Eddie's failure makes him desperate enough to try anything—including an experimental drug.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="motif-item">
-                    <strong>🌀 The Shining</strong>
-                    <p class="small text-muted mb-0">Danny and Dick Hallorann share psychic ability—"shining." It reveals truth but also attracts the hotel's evil. A gift and a curse.</p>
+                    <strong>💰 Wall Street</strong>
+                    <p class="small text-muted mb-0">Eddie abandons his book for high finance, making millions through pattern recognition and market manipulation. Success becomes more addictive than writing.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="motif-item">
-                    <strong>🚪 Room 237</strong>
-                    <p class="small text-muted mb-0">The forbidden room where beauty becomes horror. The woman in the bath represents the hotel's seductive evil and grotesque reality.</p>
+                    <strong>🔪 Dangerous Pursuits</strong>
+                    <p class="small text-muted mb-0">Vernon is murdered. Gennady the Russian pursues Eddie. Van Loon suspects. Success brings deadly enemies—everyone wants Eddie's edge.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="motif-item">
-                    <strong>🌲 The Maze</strong>
-                    <p class="small text-muted mb-0">A physical and metaphorical labyrinth. Jack loses himself trying to hunt Danny, while Danny escapes through cleverness. The maze represents entrapment.</p>
+                    <strong>💔 Lindy</strong>
+                    <p class="small text-muted mb-0">She leaves baseline Eddie but returns when he's enhanced. Does she love him or his success? Does Eddie even know who he really is?</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="motif-item">
-                    <strong>⏰ Cyclical Time</strong>
-                    <p class="small text-muted mb-0">The 1921 photograph suggests Jack has always been the caretaker. Time loops. History repeats. The hotel traps souls across decades.</p>
+                    <strong>🤒 Withdrawal</strong>
+                    <p class="small text-muted mb-0">Running out of NZT means headaches, nausea, cognitive collapse. The enhanced self crumbles. Dependence is the hidden price of perfection.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="motif-item">
-                    <strong>🪓 Violence & Alcoholism</strong>
-                    <p class="small text-muted mb-0">Jack's past—dislocating Danny's shoulder while drunk—foreshadows his final rage. Sobriety is fragile; the hotel offers him a drink.</p>
+                    <strong>👻 Melissa</strong>
+                    <p class="small text-muted mb-0">Eddie's ex-wife haunts him—brilliant, wasted potential, mysterious fate. She's the warning Eddie refuses to heed until it's too late.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="motif-item">
-                    <strong>✍️ "All Work and No Play"</strong>
-                    <p class="small text-muted mb-0">Jack's manuscript reveals madness—hundreds of pages of one sentence. The writer's block becomes obsessive repetition, not creation.</p>
+                    <strong>⚖️ The Choice</strong>
+                    <p class="small text-muted mb-0">In the end, Eddie must decide: remain enhanced and dependent, or find another way. The film asks: would you take the pill?</p>
                 </div>
             </div>
         </div>
@@ -231,7 +228,7 @@
             </div>
         </div>
         <p class="text-muted mb-4">
-            Click any question to highlight related scenes in the visualization. Perfect for book clubs, film classes, or deep dives into Kubrick's masterpiece.
+            Click any question to highlight related scenes in the visualization. Perfect for book clubs, film classes, or deep dives into the ethics of enhancement.
         </p>
 
         <div id="questions-container">
@@ -244,7 +241,7 @@
 <div id="footer_placeholder"></div>
 
 <!-- Visualization JS (load after DOM) -->
-<script src="StanleyKubrick_1980_TheShining_timeline.js?v=2026.01.16.01"></script>
+<script src="NeilBurger_2011_Limitless_timeline.js?v=2026.01.16.00.00.00"></script>
 
 <!-- Load Header/Footer -->
 <script>
