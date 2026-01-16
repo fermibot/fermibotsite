@@ -1726,26 +1726,12 @@
    TAG BADGES - THE LIGHTHOUSE THEMES
    ============================================ */
 
-.tag-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    border: 1px solid;
-    transition: all 0.2s ease;
-}
-
-.tag-badge:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
+/* Universal tag badge styles are in movie_timelines.css */
+/* Only define color themes here */
 
 .tag-badge.active {
     border-width: 2px;
-    font-weight: 600;
+    font-weight: 700;
     box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.3);
 }
 
