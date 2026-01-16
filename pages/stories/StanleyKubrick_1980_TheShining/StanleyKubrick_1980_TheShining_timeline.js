@@ -1662,11 +1662,26 @@ function initVisualization() {
 
     const nodeRadius = 18;
 
-    // Don't render any connections by default - only show on hover for performance
+    // Render all connections with colors - no expensive filters for performance
     linkGroup.selectAll('.link')
-        .data([]) // Empty - connections only shown on hover
+        .data(currentLinks)
         .join('path')
-        .attr('class', d => `link link-${d.type}`);
+        .attr('class', d => `link link-${d.type}`)
+        .attr('d', d => {
+            const sourcePath = d.source.path(d.target);
+            if (sourcePath.length > 0) {
+                sourcePath[0] = {...sourcePath[0], y: sourcePath[0].y - nodeRadius};
+                sourcePath[sourcePath.length - 1] = {...sourcePath[sourcePath.length - 1], y: sourcePath[sourcePath.length - 1].y - nodeRadius};
+            }
+            return line(sourcePath);
+        })
+        .attr('stroke', d => {
+            if (d.type === 'callback') return '#8b0000'; // Dark blood red for callbacks
+            return '#00bcd4'; // Eerie cyan for foreshadowing
+        })
+        .attr('stroke-width', d => d.type === 'callback' ? 0.5 : 0.6)
+        .attr('stroke-opacity', d => d.type === 'callback' ? 0.2 : 0.2)
+        .attr('stroke-dasharray', d => d.type === 'callback' ? '4,2' : null);
 
     // Draw nodes
     nodeGroup = g.append('g')
@@ -1801,12 +1816,10 @@ function highlightConnections(node) {
     state.hoveredNode = node;
 
     const connectedIds = new Set([node.data.id]);
-    const relevantLinks = [];
 
     currentLinks.forEach(link => {
         if (link.source.data.id === node.data.id) {
             connectedIds.add(link.target.data.id);
-            relevantLinks.push(link);
         }
     });
 
@@ -1816,31 +1829,23 @@ function highlightConnections(node) {
         .classed('connection-highlighted', d => connectedIds.has(d.data.id) && d.data.id !== node.data.id)
         .classed('connection-dimmed', d => !connectedIds.has(d.data.id));
 
-    // Render only relevant connections using simple straight lines
+    // Highlight relevant connections - make them brighter and thicker
     linkGroup.selectAll('.link')
-        .data(relevantLinks, d => `${d.source.data.id}-${d.target.data.id}`)
-        .join('line')
-        .attr('class', d => `link link-${d.type}`)
-        .attr('x1', d => {
-            const angle = (d.source.x - 90) * Math.PI / 180;
-            return d.source.y * Math.cos(angle);
+        .classed('highlighted', d => d.source.data.id === node.data.id)
+        .attr('stroke-width', d => {
+            const isFromNode = (d.source.data.id === node.data.id);
+            if (isFromNode) {
+                return d.type === 'callback' ? 2.5 : 3.0;
+            }
+            return d.type === 'callback' ? 0.5 : 0.6;
         })
-        .attr('y1', d => {
-            const angle = (d.source.x - 90) * Math.PI / 180;
-            return d.source.y * Math.sin(angle);
-        })
-        .attr('x2', d => {
-            const angle = (d.target.x - 90) * Math.PI / 180;
-            return d.target.y * Math.cos(angle);
-        })
-        .attr('y2', d => {
-            const angle = (d.target.x - 90) * Math.PI / 180;
-            return d.target.y * Math.sin(angle);
-        })
-        .attr('stroke', d => d.type === 'callback' ? '#8b0000' : '#00bcd4')
-        .attr('stroke-width', d => d.type === 'callback' ? 2.0 : 2.5)
-        .attr('stroke-opacity', d => d.type === 'callback' ? 0.8 : 0.7)
-        .attr('stroke-dasharray', d => d.type === 'callback' ? '4,2' : null);
+        .attr('stroke-opacity', d => {
+            const isFromNode = (d.source.data.id === node.data.id);
+            if (isFromNode) {
+                return d.type === 'callback' ? 0.9 : 0.85;
+            }
+            return d.type === 'callback' ? 0.2 : 0.2;
+        });
 }
 
 function unhighlightAll() {
@@ -1853,10 +1858,11 @@ function unhighlightAll() {
         .classed('connection-highlighted', false)
         .classed('connection-dimmed', false);
 
-    // Remove all connections when not hovering
+    // Reset connections to default styling
     linkGroup.selectAll('.link')
-        .data([])
-        .join('line');
+        .classed('highlighted', false)
+        .attr('stroke-width', d => d.type === 'callback' ? 0.5 : 0.6)
+        .attr('stroke-opacity', d => d.type === 'callback' ? 0.2 : 0.2);
 }
 
 // ============================================
