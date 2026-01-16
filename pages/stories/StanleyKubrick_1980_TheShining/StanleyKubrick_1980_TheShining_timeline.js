@@ -1097,9 +1097,10 @@ function createLegendWithProgress() {
             .attr('x2', 30)
             .attr('y2', 6)
             .attr('stroke', conn.color)
-            .attr('stroke-width', 1.5)
+            .attr('stroke-width', conn.style === 'dashed' ? 0.5 : 2)
             .attr('stroke-dasharray', conn.style === 'dashed' ? '4,2' : null)
-            .attr('stroke-opacity', 0.6);
+            .attr('stroke-opacity', conn.style === 'dashed' ? 0.5 : 0.8)
+            .style('filter', conn.style === 'dashed' ? 'none' : 'drop-shadow(0 0 2px ' + conn.color + ')');
 
         item.append('span')
             .attr('class', 'legend-text')
@@ -1674,14 +1675,13 @@ function initVisualization() {
             return line(sourcePath);
         })
         .attr('stroke', d => {
-            if (d.type === 'callback') return '#8b0000'; // Dark blood red for callbacks
-            return '#00bcd4'; // Eerie cyan for foreshadowing
+            if (d.type === 'callback') return '#8b0000'; // Dark blood red for callbacks (dashed)
+            return '#00bcd4'; // Eerie cyan for foreshadowing (solid, glowy)
         })
-        .attr('stroke-width', 0.8)
-        .attr('stroke-opacity', 0.25)
+        .attr('stroke-width', d => d.type === 'callback' ? 0.5 : 1.2)
+        .attr('stroke-opacity', d => d.type === 'callback' ? 0.3 : 0.4)
         .attr('stroke-dasharray', d => d.type === 'callback' ? '4,2' : null)
-        .attr('filter', 'url(#spooky-glow)')
-        .style('transition', 'all 0.3s ease');
+        .attr('filter', d => d.type === 'callback' ? null : 'url(#spooky-glow)');
 
     // Draw nodes
     nodeGroup = g.append('g')
