@@ -870,7 +870,7 @@ function createLegendWithProgress() {
         .on('click', function() {
             const content = d3.select(this.nextSibling);
             const isCollapsed = content.style('display') === 'none';
-            content.style('display', isCollapsed ? 'flex' : 'none');
+            content.style('display', isCollapsed ? 'block' : 'none');
             d3.select(this).select('.collapse-icon').text(isCollapsed ? '▼' : '▶');
         });
 
