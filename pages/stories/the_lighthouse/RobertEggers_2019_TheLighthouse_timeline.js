@@ -1326,7 +1326,6 @@ function initLegend() {
             const badge = row.append('div')
                 .attr('class', `tag-badge tag-${tagKey}`)
                 .style('cursor', 'pointer')
-                .style('flex-grow', '1')
                 .attr('title', `Click to filter: ${label}`)
                 .on('click', () => toggleTagFilter(tagKey));
 
