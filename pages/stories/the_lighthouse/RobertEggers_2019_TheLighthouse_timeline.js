@@ -45,551 +45,235 @@ const CONFIG = {
 
     // Layout dimensions
     DIAMETER: 900,
-    STORAGE_KEY: 'lighthouse-viewed-scenes'
+    STORAGE_KEY: 'lighthouse-viewed-scenes',
+    DATA_FILE: 'RobertEggers_2019_TheLighthouse_scenes_analyzed.json?v=2026.01.16.01'
+};
+
+// ============================================
+// DISCUSSION QUESTIONS
+// ============================================
+
+const DISCUSSION_QUESTIONS = [
+    // ACT I
+    { id: 1, question: "What were your first impressions of Pilot Rock? How does the setting establish the film's mood?",
+      category: "Setting & Atmosphere", relatedScenes: [1], tags: ["setting", "atmosphere", "pilot-rock"] },
+    { id: 2, question: "The departing keepers leave without a word. What does their silence foreshadow?",
+      category: "Foreshadowing", relatedScenes: [1, 2], tags: ["foreshadowing", "keepers"] },
+    { id: 3, question: "Young finds the mermaid carving hidden in his mattress. What might this object represent?",
+      category: "Symbolism", relatedScenes: [2], tags: ["mermaid", "symbolism", "desire"] },
+    { id: 4, question: "How does the film portray manual labor? What effect does endless work have on Young's psyche?",
+      category: "Theme", relatedScenes: [3, 7], tags: ["labor", "psychology", "sisyphean"] },
+    { id: 5, question: "How does Old establish dominance over Young? What tactics does he use?",
+      category: "Power Dynamics", relatedScenes: [4, 9], tags: ["power", "dominance", "conflict"] },
+    { id: 6, question: "Old toasts the light like a lover: \"To ye, me beauty!\" What is his relationship with the lighthouse?",
+      category: "The Light", relatedScenes: [5], tags: ["light", "obsession", "worship"] },
+    { id: 7, question: "Young's first vision shows a drowning man in a mackinaw coat. What is the film hinting at?",
+      category: "Guilt & Identity", relatedScenes: [6], tags: ["hallucination", "guilt", "winslow"] },
+    { id: 8, question: "What is the significance of the one-eyed gull? Why does it keep appearing?",
+      category: "Mythology", relatedScenes: [7, 12, 16], tags: ["gull", "mythology", "omen"] },
+    { id: 9, question: "Young falls while whitewashing the tower. Is Old's negligence intentional or accidental?",
+      category: "Ambiguity", relatedScenes: [10], tags: ["power", "ambiguity", "accident"] },
+    { id: 10, question: "Why is Old so protective of the lighthouse lamp? What might it symbolize?",
+      category: "The Light", relatedScenes: [5, 11], tags: ["light", "forbidden", "knowledge"] },
+    { id: 11, question: "\"Bad luck to kill a seabird.\" Why does Old react so violently to Young's dismissal of this belief?",
+      category: "Mythology", relatedScenes: [12], tags: ["gull", "superstition", "curse"] },
+
+    // ACT II
+    { id: 12, question: "Why do Young and Old finally share their names? What does this vulnerability mean?",
+      category: "Character", relatedScenes: [13], tags: ["identity", "bonding", "names"] },
+    { id: 13, question: "Young's cigarette goes out—Old says someone is cursing him. Is this superstition or insight?",
+      category: "Supernatural", relatedScenes: [14], tags: ["supernatural", "curse", "cigarette"] },
+    { id: 14, question: "Young sees tentacles in the lantern room. Are his visions madness or glimpses of truth?",
+      category: "Horror", relatedScenes: [15], tags: ["tentacles", "horror", "lovecraft"] },
+    { id: 15, question: "Young kills the gull and the wind immediately changes. Coincidence or cosmic consequence?",
+      category: "Mythology", relatedScenes: [16, 17], tags: ["gull", "curse", "albatross"] },
+    { id: 16, question: "The last night before relief, they feast and sing together. Does their friendship feel genuine?",
+      category: "Character", relatedScenes: [18], tags: ["bonding", "friendship", "irony"] },
+    { id: 17, question: "The relief tender never arrives. How does this moment change the trajectory of the story?",
+      category: "Turning Point", relatedScenes: [19], tags: ["isolation", "trapped", "storm"] },
+    { id: 18, question: "Old tries to calm the sea with ritual and song. Is he a believer, a performer, or something more?",
+      category: "Mythology", relatedScenes: [20], tags: ["neptune", "ritual", "mythology"] },
+    { id: 19, question: "Time becomes impossible to track. How does the film convey the distortion of reality?",
+      category: "Cinematography", relatedScenes: [21], tags: ["time", "madness", "editing"] },
+    { id: 20, question: "They dig up buried liquor from a grave-sized hole. What does this foreshadow?",
+      category: "Foreshadowing", relatedScenes: [22], tags: ["grave", "burial", "foreshadowing"] },
+    { id: 21, question: "Young encounters the mermaid on the rocks. Is she real, a hallucination, or something in between?",
+      category: "Ambiguity", relatedScenes: [23], tags: ["mermaid", "hallucination", "ambiguity"] },
+
+    // ACT III
+    { id: 22, question: "The men swing between friendship and violence. What drives these mood shifts?",
+      category: "Psychology", relatedScenes: [24, 25], tags: ["violence", "bonding", "psychology"] },
+    { id: 23, question: "Old delivers the Neptune curse. Does he have supernatural power, or is Young simply susceptible?",
+      category: "Mythology", relatedScenes: [26], tags: ["curse", "neptune", "power"] },
+    { id: 24, question: "Young confesses he's actually Thomas Howard. Does this change how you view his earlier actions?",
+      category: "Identity", relatedScenes: [29], tags: ["identity", "confession", "winslow"] },
+    { id: 25, question: "Old claims Young smashed the lifeboat—but did he? How reliable are either man's memories?",
+      category: "Ambiguity", relatedScenes: [33], tags: ["ambiguity", "memory", "gaslighting"] },
+    { id: 26, question: "Young discovers damning entries in Old's logbook. How does written record become a weapon?",
+      category: "Power", relatedScenes: [35], tags: ["logbook", "power", "documentation"] },
+    { id: 27, question: "Old repeatedly calls Young a \"dog.\" What does this dehumanization reveal?",
+      category: "Power", relatedScenes: [36, 38], tags: ["dog", "dehumanization", "power"] },
+    { id: 28, question: "During their fight, Old transforms into mermaid, then tentacles. What do these visions mean?",
+      category: "Horror", relatedScenes: [37], tags: ["hallucination", "mermaid", "tentacles"] },
+    { id: 29, question: "Young finally enters the light. What do you think he witnessed? Was it worth the cost?",
+      category: "The Light", relatedScenes: [40], tags: ["light", "climax", "forbidden"] },
+    { id: 30, question: "The ending echoes the Prometheus myth. What is the film saying about forbidden knowledge?",
+      category: "Mythology", relatedScenes: [41], tags: ["prometheus", "mythology", "punishment"] }
+];
+
+// Make questions accessible globally
+window.DISCUSSION_QUESTIONS = DISCUSSION_QUESTIONS;
+
+// ============================================
+// TAG SYSTEM - Scene Markers
+// ============================================
+
+const TAG_ICONS = {
+    // Characters
+    'young': '🧔',
+    'old': '👴',
+
+    // Key Symbols
+    'light': '💡',
+    'lighthouse': '🗼',
+    'sea': '🌊',
+    'storm': '⛈️',
+    'mermaid': '🧜‍♀️',
+    'gull': '🦅',
+    'tentacles': '🐙',
+    'logbook': '📔',
+
+    // States & Themes
+    'vision': '👁️',
+    'alcohol': '🍺',
+    'violence': '🔪',
+    'labor': '⚒️',
+    'conflict': '⚔️',
+    'atmosphere': '🌫️',
+    'quarters': '🏠',
+
+    // Psychological States
+    'madness': '🌀',
+    'guilt': '😰',
+    'obsession': '👀',
+    'hallucination': '🌀'
+};
+
+const TAG_GROUPS = {
+    'Characters': ['young', 'old'],
+    'Key Symbols': ['light', 'lighthouse', 'mermaid', 'gull', 'tentacles', 'logbook'],
+    'Environment': ['sea', 'storm', 'atmosphere', 'quarters'],
+    'States': ['vision', 'alcohol', 'violence', 'labor', 'conflict'],
+    'Psychology': ['madness', 'guilt', 'obsession', 'hallucination']
+};
+
+function buildTagBadges(tags) {
+    if (!tags || tags.length === 0) return '';
+
+    return tags.map(tag => {
+        const icon = TAG_ICONS[tag] || '🏷️';
+        const label = tag.charAt(0).toUpperCase() + tag.slice(1).replace(/-/g, ' ');
+        return `<span class="tag-badge tag-${tag}" title="${label}">${icon} ${label}</span>`;
+    }).join(' ');
+}
+
+// ============================================
+// CHAPTERS
+// ============================================
+
+const CHAPTERS = {
+    'ch01-crossing': {
+        id: 'ch01-crossing',
+        name: '⛵ The Crossing',
+        act: 'act1',
+        description: 'A lighthouse tender emerges through fog, carrying two men to Pilot Rock.',
+        sceneRange: '1-5'
+    },
+    'ch02-first-steps': {
+        id: 'ch02-first-steps',
+        name: '⚓ First Steps',
+        act: 'act1',
+        description: 'Young discovers the mermaid carving. Old establishes dominance.',
+        sceneRange: '6-12'
+    },
+    'ch03-the-work': {
+        id: 'ch03-the-work',
+        name: '🔥 The Work',
+        act: 'act1',
+        description: 'Brutal labor begins. Old controls the light and the lantern room.',
+        sceneRange: '13-20'
+    },
+    'ch04-bonds': {
+        id: 'ch04-bonds',
+        name: '📚 Bonds & Secrets',
+        act: 'act1',
+        description: 'Tentative rapport forms over meals. Names are revealed. Trust is fragile.',
+        sceneRange: '21-27'
+    },
+    'ch05-dominance': {
+        id: 'ch05-dominance',
+        name: '🔨 Dominance & Danger',
+        act: 'act2',
+        description: 'Young plummets from the tower. Violence lurks beneath every interaction.',
+        sceneRange: '28-41'
+    },
+    'ch06-omens': {
+        id: 'ch06-omens',
+        name: '🐦 Omens & Obsession',
+        act: 'act2',
+        description: 'Dead gulls in the cistern. The one-eyed gull stalks. Reality distorts.',
+        sceneRange: '42-50'
+    },
+    'ch07-storm-arrives': {
+        id: 'ch07-storm-arrives',
+        name: '⛈️ The Storm Arrives',
+        act: 'act2',
+        description: 'The relief tender never comes. They are trapped. Time distorts.',
+        sceneRange: '51-67'
+    },
+    'ch08-neptune': {
+        id: 'ch08-neptune',
+        name: '🌊 Neptune\'s Fury',
+        act: 'act2',
+        description: 'Old attempts to appease Neptune. The storm reaches biblical proportions.',
+        sceneRange: '68-75'
+    },
+    'ch09-visions': {
+        id: 'ch09-visions',
+        name: '👁️ Visions & Violation',
+        act: 'act3',
+        description: 'Young hallucinates mermaids and tentacles. His mind fractures completely.',
+        sceneRange: '76-87'
+    },
+    'ch10-confessions': {
+        id: 'ch10-confessions',
+        name: '🎭 Intoxicated Confessions',
+        act: 'act3',
+        description: 'They dance, almost kiss. Young confesses his stolen identity.',
+        sceneRange: '88-89'
+    },
+    'ch11-ascension': {
+        id: 'ch11-ascension',
+        name: '🌀 The Ascension',
+        act: 'act3',
+        description: 'Young climbs the tower stairs, drawn to the forbidden light.',
+        sceneRange: '90-112'
+    },
+    'ch12-reckoning': {
+        id: 'ch12-reckoning',
+        name: '💀 The Reckoning',
+        act: 'act3',
+        description: 'The light burns him. He falls. Seagulls devour his liver on the rocks.',
+        sceneRange: '113-114'
+    }
 };
 
 // ============================================
 // SCENE DATA
 // ============================================
 
-const SCENES = [
-    // ACT I - ARRIVAL & TENSION
-    { id: 1, act: 'act1', title: 'Arrival on Pilot Rock', types: ['establishing', 'atmosphere'],
-      location: 'EXT. Atlantic Ocean / Pilot Rock',
-      time: 'Day 1 - Sunset',
-      summary: 'Young and Old arrive on a lighthouse tender through thick fog. The crumbling lighthouse tower looms over Pilot Rock, surrounded by screeching seagulls. The departing keepers shuffle past without a word—a grim warning. The foghorn bellows, shaking Young to his core. Old is unfazed; he\'s home.',
-      symbols: ['foghorn', 'seagulls', 'lighthouse', 'fog'],
-      quotes: [],
-      characters: { young: 'Fearful, uncertain', old: 'Comfortable, at home' },
-      imagery: 'Fog swallows the tender. Shadows that might be men or ghosts. Seagulls screeching around the crumbling tower.',
-      themes: ['isolation', 'entrapment', 'fate'],
-      tension: 3,
-      mythologyRef: 'Charon ferrying souls to the underworld',
-      callbacks: [], foreshadowing: [5, 12, 41] },
-
-    { id: 2, act: 'act1', title: 'First Night - Exploration', types: ['character', 'mystery'],
-      location: 'INT. Living Quarters',
-      time: 'Day 1 - Evening',
-      summary: 'Young explores the run-down quarters—coal range, farmhouse sink, rattling stove. He spots a locked roll-top desk with a ship-in-a-bottle. Upstairs, Old pisses into his chamber pot, then farts directly in Young\'s face—a deliberate display of dominance. Young discovers an ivory MERMAID CARVING hidden in his mattress, rubbing it with hungry curiosity.',
-      symbols: ['mermaid carving', 'locked desk', 'chamber pot'],
-      quotes: [],
-      characters: { young: 'Curious, suppressed desire', old: 'Dominant, crude, territorial' },
-      imagery: 'Warped mildewed floorboards. Clock ticking monotonously. Ivory mermaid with scrimshawed scales.',
-      themes: ['power dynamics', 'sexuality', 'secrets'],
-      tension: 4,
-      mythologyRef: 'Siren mythology introduced via carving',
-      callbacks: [], foreshadowing: [8, 22, 35] },
-
-    { id: 3, act: 'act1', title: 'The Foghorn & Furnace', types: ['labor', 'atmosphere'],
-      location: 'INT. Fog Signal House',
-      time: 'Day 1 - Night',
-      summary: 'The steam-powered foghorn engine pumps and whirs. Young shovels coal into the hungry furnace, dripping with sweat, wincing from the heat. The fog siren blows EXCRUCIATINGLY LOUDLY—he reels from the pain. Meanwhile, Old crawls into a cabinet and emerges with a hidden crate of homemade liquor, tremoring with need.',
-      symbols: ['foghorn', 'fire', 'coal', 'liquor'],
-      quotes: [],
-      characters: { young: 'Suffering, laboring', old: 'Alcoholic need, secretive' },
-      imagery: 'Piston pumping, gears grinding, flywheel spinning. Mouth of hungry furnace glowing with fire.',
-      themes: ['labor exploitation', 'addiction', 'hellfire'],
-      tension: 5,
-      mythologyRef: 'Sisyphean labor; hellish furnace',
-      callbacks: [], foreshadowing: [27] },
-
-    { id: 4, act: 'act1', title: 'The First Supper', types: ['conflict', 'power'],
-      location: 'INT. Galley',
-      time: 'Day 1 - Night',
-      summary: 'Old recites his prayer: "Should pale death with treble dread make the ocean caves our bed..." He pours thick homemade grog and offers Young a toast. Young refuses—he\'s read it\'s against regulations. He pours out the liquor and drinks cistern water instead. It tastes TERRIBLE. Old assigns menial duties: polishing, swabbing, fixing. "The light\'s mine."',
-      symbols: ['toast/prayer', 'the light', 'cistern', 'regulations'],
-      quotes: ['"Should pale death with treble dread make the ocean caves our bed..."', '"The light\'s mine."'],
-      characters: { young: 'Defiant, rule-following', old: 'Testing, asserting dominance' },
-      imagery: 'Lukewarm scrod and potatoes. Kerosene lamp bent to one side. Coal-blackened hands staining paper.',
-      themes: ['authority vs rebellion', 'ritual', 'forbidden knowledge'],
-      tension: 6,
-      mythologyRef: 'Prayer echoes maritime superstition',
-      callbacks: [], foreshadowing: [12, 32] },
-
-    { id: 5, act: 'act1', title: 'Old Alone with the Light', types: ['mystery', 'obsession'],
-      location: 'INT. Lantern Room',
-      time: 'Day 1 - Night',
-      summary: 'Old sits mesmerized by the massive FRESNEL LENS, sweating profusely. The heat is immense. He strips to bare-chested, revealing faded ship tattoos glistening with sweat. He pours grog, toasts the light like a lover: "To ye, me beauty!" His eyes are heavy with devotion. The lens rotates hypnotically, casting otherworldly patterns.',
-      symbols: ['the light', 'fresnel lens', 'obsession', 'tattoos'],
-      quotes: ['"To ye, me beauty!"'],
-      characters: { young: 'Absent', old: 'Worshipful, intimate with the light' },
-      imagery: 'Third-order Fresnel lens. Swirling light patterns through ironwork. Faded three-masted ship tattoo.',
-      themes: ['idolatry', 'forbidden love', 'transcendence'],
-      tension: 5,
-      mythologyRef: 'Light as divine/erotic object; Promethean fire',
-      callbacks: [], foreshadowing: [11, 39, 40] },
-
-    { id: 6, act: 'act1', title: 'First Vision - Log Drive', types: ['hallucination', 'foreshadowing'],
-      location: 'EXT. Shore / INT. Bunkroom',
-      time: 'Day 1 - Night',
-      summary: 'Young is drawn hypnotically toward the water, wading deeper despite himself. Suddenly, LOGS float toward him—a river log drive. A BODY floats face-down: a man in a wool mackinaw coat and hobnailed boots. A CANT HOOK (logging tool) floats nearby. The logs jam. A MERMAID swims menacingly toward him underwater. He wakes with water dripping on his face.',
-      symbols: ['logs', 'drowning man', 'mermaid', 'cant hook', 'mackinaw coat'],
-      quotes: [],
-      characters: { young: 'Hypnotized, guilty, terrified', old: 'Absent' },
-      imagery: 'Sea full of logs. Body in mackinaw coat. Mermaid swimming menacingly underwater.',
-      themes: ['guilt', 'repressed memory', 'water as subconscious'],
-      tension: 7,
-      mythologyRef: 'Sirens luring sailors; guilt manifesting as vision',
-      callbacks: [], foreshadowing: [29, 33], isHallucination: true },
-
-    { id: 7, act: 'act1', title: 'Monotonous Labor', types: ['labor', 'montage'],
-      location: 'EXT. Pilot Rock - Various',
-      time: 'Days 2-7',
-      summary: 'Endless grueling work: cleaning the putrid cistern (full of mold and sludge), scraping rotted shingles, hauling coal in a squeaking wheelbarrow, lugging massive oil drums up the tower. Young sees Old humping his mattress in his sleep. The ONE-EYED GULL appears for the first time, blocking his path with its gruesome empty socket—a war wound.',
-      symbols: ['wheelbarrow', 'one-eyed gull', 'cistern', 'labor'],
-      quotes: [],
-      characters: { young: 'Exhausted, observant', old: 'Unconsciously sexual, degraded' },
-      imagery: 'Cistern full of mold and frothy sludge. Squeaking wheelbarrow. Gull with gruesome empty socket.',
-      themes: ['drudgery', 'voyeurism', 'omen'],
-      tension: 4,
-      mythologyRef: 'One-eyed gull as Odin\'s ravens or fate',
-      callbacks: [], foreshadowing: [12, 17] },
-
-    { id: 8, act: 'act1', title: 'Young Watches Old', types: ['voyeurism', 'mystery'],
-      location: 'EXT. Supply Shed / Tower',
-      time: 'Night',
-      summary: 'Young masturbates in the supply shed, holding the mermaid carving. Afterward, smoking, he notices the lighthouse beams have a MAN\'S SILHOUETTE within them. Looking up: is Old EMBRACING the lens? Later, Old appears on the catwalk, pulling on suspenders as if dressing after intimacy. Young hides in the shadows, watching.',
-      symbols: ['mermaid carving', 'the light', 'voyeurism', 'silhouette'],
-      quotes: [],
-      characters: { young: 'Secretive, aroused, suspicious', old: 'Post-coital with the light' },
-      imagery: 'Dark spot in center of light. Man\'s silhouette in rotating beams. Old pulling on suspenders.',
-      themes: ['sexuality', 'forbidden knowledge', 'jealousy'],
-      tension: 6,
-      mythologyRef: 'Peeping Tom; voyeurism as sin',
-      callbacks: [5], foreshadowing: [11, 27] },
-
-    { id: 9, act: 'act1', title: 'Swab, Dog!', types: ['conflict', 'power'],
-      location: 'INT. Galley',
-      time: 'Week 2',
-      summary: 'Old points at the floor in horror—it looks the same as always. He accuses Young of neglecting duties. Young protests he mopped twice. Old erupts: "If I tells ye to yank out every nail and suck off every spec of rust... you\'ll do it! And you\'ll like it \'cause I says you will!" Young is forced to submit. Old sings mockingly: "\'Tis Brasswork."',
-      symbols: ['power', 'dog', 'obedience', 'brasswork'],
-      quotes: ['"If I tells ye to yank out every nail and suck off every spec of rust... you\'ll do it!"', '"\'Tis Brasswork"'],
-      characters: { young: 'Humiliated, submissive', old: 'Tyrannical, sadistic' },
-      imagery: 'Old pointing at floor in horror. Young mopping. Old singing mockingly.',
-      themes: ['power abuse', 'dehumanization', 'master-slave'],
-      tension: 7,
-      mythologyRef: 'Calling him "dog" - dehumanization',
-      callbacks: [4], foreshadowing: [36] },
-
-    { id: 10, act: 'act1', title: 'Whitewashing the Tower', types: ['danger', 'labor'],
-      location: 'EXT. Lighthouse Tower',
-      time: 'Week 2',
-      summary: 'Young hangs 50 feet up on a rickety chair attached to a broken pulley, whitewashing the tower while wind nearly knocks him off. Old controls the rope from above, taunting him. The pulley\'s wheel FLIES OFF—Young plummets to the ground. He wakes covered in whitewash. The one-eyed gull pecks at his leg, scavenging fresh meat.',
-      symbols: ['one-eyed gull', 'fall', 'tower', 'whitewash'],
-      quotes: ['"Keep \'em still, lad."', '"Never been in better hands."'],
-      characters: { young: 'Vulnerable, endangered', old: 'Sadistic, taunting' },
-      imagery: 'Young dangling 50 feet up. Pulley wheel flying off. Gull pecking at leg.',
-      themes: ['trust betrayed', 'death wish', 'predation'],
-      tension: 8,
-      mythologyRef: 'Icarus falling; tower as axis mundi',
-      callbacks: [7], foreshadowing: [40] },
-
-    { id: 11, act: 'act1', title: 'Demands Access to Light', types: ['conflict', 'revelation'],
-      location: 'INT. Machine Room',
-      time: 'Week 2',
-      summary: 'Young hauls an immense oil drum up four stories. Exhausted, he reaches toward the lantern room hatch. Old startles him: "YOU DON\'T GO IN THERE!" Old shows him the proper small brass canister, mocking his effort. Young watches Old unlock the door with BRASS KEYS on his watch chain: "The light\'s mine. See to yer duties."',
-      symbols: ['brass keys', 'the light', 'locked door', 'oil drum'],
-      quotes: ['"YOU DON\'T GO IN THERE!"', '"The light\'s mine. See to yer duties."'],
-      characters: { young: 'Curious, exhausted, mocked', old: 'Protective, secretive, cruel' },
-      imagery: 'Immense oil drum. Brass keys on watch chain. Hatch to forbidden lantern room.',
-      themes: ['forbidden knowledge', 'gatekeeping', 'desire'],
-      tension: 7,
-      mythologyRef: 'Bluebeard\'s locked room; forbidden fruit',
-      callbacks: [5], foreshadowing: [38, 39] },
-
-    { id: 12, act: 'act1', title: 'Bad Luck to Kill a Seabird', types: ['mythology', 'warning'],
-      location: 'INT. Galley',
-      time: 'Week 2 - Night',
-      summary: 'Old reveals his previous assistant "went mad"—believed there was enchantment in the light, raved about sirens and merfolk. When Young laughs at superstition, Old SLAPS HIM HARD: "Bad luck to kill a sea bird." Seagulls contain the souls of dead sailors. Old\'s terror is genuine—he\'s shaken, a shell of himself.',
-      symbols: ['seagull', 'superstition', 'the light', 'previous keeper'],
-      quotes: ['"Bad luck to kill a sea bird."', '"In \'em\'s the souls o\' sailors what met their maker."'],
-      characters: { young: 'Dismissive, shocked', old: 'Terrified, genuine fear' },
-      imagery: 'Old slapping Young hard. Old shaken, shell of himself.',
-      themes: ['superstition', 'fate', 'hubris'],
-      tension: 7,
-      mythologyRef: 'Rime of the Ancient Mariner - albatross curse',
-      callbacks: [7], foreshadowing: [17, 41] },
-
-    // ACT II - THE STORM
-    { id: 13, act: 'act2', title: 'Names Exchanged', types: ['bonding', 'dialogue'],
-      location: 'INT. Galley / Parlor',
-      time: 'End of Week 2',
-      summary: 'Young finally reveals his name: Ephraim Winslow, a timber man from Canada. He claims he\'s looking for a fresh start, to save earnings and raise his own roof. Old is Thomas Wake, thirteen Christmases at sea, abandoned his family. "She never forgave it." A moment of genuine connection between the two lonely men.',
-      symbols: ['identity', 'timber', 'past', 'connection'],
-      quotes: ['"Ephraim Winslow. These last two weeks, I\'d like it if you\'d call me by my name."', '"She never forgave it."'],
-      characters: { young: 'Opening up, seeking humanity', old: 'Regretful, nostalgic' },
-      imagery: 'Two men by firelight. Hardtack clanging like metal. Pipe smoke filling the room.',
-      themes: ['identity', 'loneliness', 'male vulnerability'],
-      tension: 4,
-      mythologyRef: 'Names as power; revealing one\'s true self',
-      callbacks: [], foreshadowing: [29, 33] },
-
-    { id: 14, act: 'act2', title: 'Cigarette Goes Out', types: ['omen', 'supernatural'],
-      location: 'INT. Parlor',
-      time: 'Night',
-      summary: 'Young tries to smoke his freshly-lit cigarette—but it goes out inexplicably. Old warns ominously: "Yer cigarette cinder goes out, there be someone somewhere\'s a-thinkin\' bad thoughts of ye. They be a-cursing yer name." Young re-lights nervously. Old toasts: "Let fear never abandon him."',
-      symbols: ['cigarette', 'curse', 'omen', 'superstition'],
-      quotes: ['"Yer cigarette cinder goes out, there be someone somewhere\'s a-thinkin\' bad thoughts of ye."', '"Let fear never abandon him."'],
-      characters: { young: 'Uneasy, skeptical becoming fearful', old: 'Knowing, ominous' },
-      imagery: 'Cigarette ember dying. Old\'s face in shadow. Stove fire flickering.',
-      themes: ['fate', 'guilt', 'cosmic judgment'],
-      tension: 5,
-      mythologyRef: 'Russian superstition; the dead watching',
-      callbacks: [], foreshadowing: [17, 29] },
-
-    { id: 15, act: 'act2', title: 'Spying - Tentacles', types: ['hallucination', 'horror', 'voyeurism'],
-      location: 'INT. Machine Room',
-      time: 'Night',
-      summary: 'Young retrieves his tobacco pouch from the clockwork machinery. He hears WHISPERING from above—Old, speaking of "the light" and "seed." Through the iron grates, he sees Old\'s sinewy torso vibrating, his arm moving VIGOROUSLY. White, viscous fluid drips from the grates. Then: A HUGE, SLIMY, TRANSLUCENT SQUID TENTACLE slithers across the ironwork and vanishes.',
-      symbols: ['tentacles', 'the light', 'voyeurism', 'slime'],
-      quotes: ['"The light... seed... Veritas..."'],
-      characters: { young: 'Horrified voyeur', old: 'Ecstatic communion with cosmic entity' },
-      imagery: 'Clockwork spinning hypnotically. Viscous fluid dripping. Translucent tentacle slithering.',
-      themes: ['cosmic horror', 'forbidden knowledge', 'sexual transgression'],
-      tension: 9,
-      mythologyRef: 'Lovecraftian tentacles; sexual congress with the divine',
-      callbacks: [5, 8], foreshadowing: [37], isHallucination: true },
-
-    { id: 16, act: 'act2', title: 'Killing the One-Eyed Gull', types: ['violence', 'turning point'],
-      location: 'EXT. Cistern',
-      time: 'Day',
-      summary: 'The cistern hatch is open. Inside: DEAD GULLS float in bloody water. One gull desperately tries to escape with a broken wing. The ONE-EYED GULL stands atop the cistern, raises its wings aggressively, lets out a HORRIFYING LONG-CALL, then swoops at Young\'s face. In wild rage, Young grasps it by the legs and BEATS IT AGAINST THE CISTERN until it\'s a BLOODY PULP OF FEATHERS.',
-      symbols: ['one-eyed gull', 'cistern', 'violence', 'blood'],
-      quotes: [],
-      characters: { young: 'Enraged, violent, guilty', old: 'Absent' },
-      imagery: 'Dead gulls in bloody water. Gull raising wings aggressively. Bloody pulp of feathers.',
-      themes: ['murder', 'curse activation', 'loss of control'],
-      tension: 9,
-      mythologyRef: 'Killing the albatross (Rime of Ancient Mariner)',
-      callbacks: [7, 12], foreshadowing: [17, 41], isViolence: true },
-
-    { id: 17, act: 'act2', title: 'The Wind Changes', types: ['supernatural', 'consequence'],
-      location: 'EXT. Lighthouse Tower',
-      time: 'After gull death',
-      summary: 'Young looks up at the WEATHERVANE atop the tower. The arrow points west... then the wind gusts. The arrow spins around and around wildly, finally settling HARD: EAST. A nor\'easter is coming. Old had warned him: "Bad luck to kill a sea bird." By killing the one-eyed gull, Young has cursed them both.',
-      symbols: ['weathervane', 'wind', 'curse', 'east wind'],
-      quotes: [],
-      characters: { young: 'Dawning horror', old: 'Absent' },
-      imagery: 'Weathervane arrow spinning wildly. Arrow settling hard east.',
-      themes: ['consequence', 'cosmic justice', 'curse fulfilled'],
-      tension: 8,
-      mythologyRef: 'Aeolus and the winds; curse made manifest',
-      callbacks: [12, 16], foreshadowing: [18, 19] },
-
-    { id: 18, act: 'act2', title: 'Last Night Before Relief', types: ['bonding', 'celebration'],
-      location: 'INT. Galley',
-      time: 'End of Week 4',
-      summary: 'Young and Old feast on LOBSTER pulled from Old\'s secret pot—the first good meal. Old offers grog: "\'Tis our last afore relief, I won\'t take no for an answer." Young gives in. "Damn! Like comin\' home." They drink, sing sea shanties, pound on the table: "Hurrah, we\'re homeward bound!" They\'re almost friends now.',
-      symbols: ['lobster', 'drinking', 'shanties', 'relief'],
-      quotes: ['"Damn! Like comin\' home."', '"Hurrah, we\'re homeward bound!"'],
-      characters: { young: 'Joyful, letting go', old: 'Celebratory, paternal' },
-      imagery: 'Mutilated lobster shells piled high. Pounding on table. Singing sea shanties.',
-      themes: ['camaraderie', 'false hope', 'last supper'],
-      tension: 3,
-      mythologyRef: 'Last Supper before betrayal',
-      callbacks: [4], foreshadowing: [20, 21] },
-
-    { id: 19, act: 'act2', title: 'Tender Doesn\'t Come', types: ['dread', 'isolation'],
-      location: 'EXT. Shore / INT. Galley',
-      time: 'Day after Week 4',
-      summary: 'They stand by the shore in full uniform, gunny sacks over shoulders, ditty boxes by their sides. Waiting. The rain pours. Hours pass. Nothing. They sit at the table, drenched, perfectly still. Very, very long pause. "They didn\'t come." The biblical storm has stranded them on the rock.',
-      symbols: ['storm', 'isolation', 'tender', 'waiting'],
-      quotes: ['"They didn\'t come."'],
-      characters: { young: 'Stunned, hopeless', old: 'Resigned, knowing' },
-      imagery: 'Two men in uniform by shore. Rain pouring. Sitting drenched and still.',
-      themes: ['abandonment', 'fate', 'hope destroyed'],
-      tension: 8,
-      mythologyRef: 'Waiting for Godot; purgatory',
-      callbacks: [17], foreshadowing: [20, 24] },
-
-    { id: 20, act: 'act2', title: 'Calming the Sea', types: ['mythology', 'ritual'],
-      location: 'EXT. Shore / Boathouse',
-      time: 'Night - Storm',
-      summary: 'Old stands before the crashing waves like a magician, counting: "Four... Five... Six... Seven... Eight... GO DOWN!" On the ninth wave, he makes the sign of the cross and DOUSES THE SEA with liquor. The wave dies! He sings "Blood Red Roses," invoking Neptune: "ABATE, O YE WAVES!" Then a MASSIVE WAVE CRASHES OVER HIM, knocking him down. The sea cannot be commanded.',
-      symbols: ['Neptune', 'ritual', 'ninth wave', 'Blood Red Roses'],
-      quotes: ['"GO DOWN!"', '"ABATE, O YE WAVES OF FATHER NEPTUNE!"'],
-      characters: { young: 'Absent/watching', old: 'Defiant against nature, then humbled' },
-      imagery: 'Old like a magician before waves. Sign of the cross. Massive wave crashing over him.',
-      themes: ['hubris', 'man vs nature', 'pagan ritual'],
-      tension: 8,
-      mythologyRef: 'King Canute; Neptune worship; ninth wave superstition',
-      callbacks: [12], foreshadowing: [26] },
-
-    { id: 21, act: 'act2', title: 'Time Distorts', types: ['horror', 'psychological'],
-      location: 'INT. Galley',
-      time: 'Unknown',
-      summary: 'Old insists they\'ve been stranded for WEEKS, begging Young to ration food. Young is bewildered—didn\'t they just miss the tender yesterday? "It\'s been weeks ago since we missed her." Old recalls a keeper stranded for SEVEN MONTHS. "The waters were too rageful neither to launch nor land." How long have they really been here? Time has become impossible to track.',
-      symbols: ['time', 'madness', 'provisions', 'confusion'],
-      quotes: ['"It\'s been weeks ago since we missed her."', '"Seven long months, he was."'],
-      characters: { young: 'Confused, questioning reality', old: 'Certain of lost time' },
-      imagery: 'Storm tearing outbuildings apart. Empty provisions. Confusion on faces.',
-      themes: ['unreliable perception', 'madness', 'temporal dislocation'],
-      tension: 7,
-      mythologyRef: 'Time moves differently in the underworld',
-      callbacks: [19], foreshadowing: [24] },
-
-    { id: 22, act: 'act2', title: 'Digging Up Liquor', types: ['dark comedy'],
-      location: 'EXT. Behind Quarters',
-      time: 'Night - Storm',
-      summary: 'Old hands Young a shovel: "DIG." They dig like madmen in the rain, creating a hole about the size of a GRAVE. Old unearths a WOODEN CRATE. Inside: TEN FULL BOTTLES OF BURIED BOOZE. "Rations," Young says ironically. This is their true priority. This hole will return later with darker purpose.',
-      symbols: ['grave', 'liquor', 'burial', 'digging'],
-      quotes: ['"DIG!"', '"Rations."'],
-      characters: { young: 'Ironic, resigned', old: 'Gleeful, addicted' },
-      imagery: 'Digging in rain. Grave-sized hole. Wooden crate of bottles.',
-      themes: ['addiction', 'foreshadowing death', 'dark comedy'],
-      tension: 5,
-      mythologyRef: 'Digging one\'s own grave',
-      callbacks: [2], foreshadowing: [35, 38] },
-
-    { id: 23, act: 'act2', title: 'Mermaid on the Rocks', types: ['hallucination', 'horror', 'sexuality'],
-      location: 'EXT. Shore',
-      time: 'Storm',
-      summary: 'Young sees something WHITE in the black rocks—a BODY. A NUDE WOMAN washed up, entangled in seaweed. The most beautiful woman he\'s ever seen. He touches her cheek, her mouth, moves down her body... Her ribs have wounds that look like GILLS. Below her waist: A FISH\'S TAIL. She opens her eyes and SMILES at him, raising her arms for embrace. THE FOGHORN BLASTS. Young RUNS.',
-      symbols: ['mermaid', 'sexuality', 'death', 'seaweed'],
-      quotes: [],
-      characters: { young: 'Terrified desire', old: 'Absent' },
-      imagery: 'White body in black rocks. Seaweed tangled. Gills in ribs. Fish tail. Smiling mermaid.',
-      themes: ['death and sexuality', 'siren call', 'forbidden desire'],
-      tension: 9,
-      mythologyRef: 'Sirens; mermaid as death figure',
-      callbacks: [6], foreshadowing: [27], isHallucination: true },
-
-    // ACT III - MADNESS & RECKONING
-    { id: 24, act: 'act3', title: 'Drinking and Fighting', types: ['chaos', 'violence', 'bonding'],
-      location: 'INT. Living Quarters',
-      time: 'Undefined - Storm continues',
-      summary: 'Young and Old drink, sing, dance do-si-do, swing each other with linked elbows. The mood swings WILDLY—laughing one moment, fighting the next. They destroy the kitchen, hurling plates, throwing fish bones, smashing the soapbox against the range. Hysterically drunk. Demented. The line between friendship and violence has dissolved.',
-      symbols: ['drinking', 'violence', 'shanties', 'destruction'],
-      quotes: [],
-      characters: { young: 'Manic, volatile', old: 'Manic, volatile' },
-      imagery: 'Do-si-do dance. Hurling plates. Fish bones flying. Soapbox smashing.',
-      themes: ['madness', 'destruction', 'masculine violence'],
-      tension: 8,
-      mythologyRef: 'Dionysian frenzy',
-      callbacks: [18], foreshadowing: [30, 36], isViolence: true },
-
-    { id: 25, act: 'act3', title: 'Almost a Kiss', types: ['intimacy', 'tension'],
-      location: 'INT. Parlor',
-      time: 'Night',
-      summary: 'Old sings a haunting ballad about longing: "If I might give the whole world just to share her pillow, on a Monday morning." They slow dance, arms around each other. Young joins the last line. They lean in, SO CLOSE—it seems like they might KISS. The tension is unbearable. Young pushes Old away. They put up fists and start play-fighting.',
-      symbols: ['intimacy', 'ballad', 'repression', 'homoeroticism'],
-      quotes: ['"If I might give the whole world just to share her pillow, on a Monday morning."'],
-      characters: { young: 'Conflicted desire', old: 'Vulnerable, longing' },
-      imagery: 'Slow dancing. Faces close. Almost kissing. Fists raised.',
-      themes: ['repressed sexuality', 'masculine intimacy', 'fear of vulnerability'],
-      tension: 9,
-      mythologyRef: 'Forbidden love; taboo',
-      callbacks: [18], foreshadowing: [37] },
-
-    { id: 26, act: 'act3', title: 'Neptune\'s Curse', types: ['mythology', 'horror', 'conflict'],
-      location: 'INT. Bunkroom',
-      time: 'Night',
-      summary: 'Young insults Old\'s cooking. Old becomes DREADFULLY SERIOUS and delivers a TERRIFYING CURSE: "Hark, Triton, Hark! Bid our father, the sea king, rise from the depths... to smother this young mouth with pungent slime... choke ye, engorging yer organs till ye turn blue and bloated... his coral-tined trident screeches banshee-like and runs you through the gullet... forgotten to any man, to any god or devil, forgotten even to the sea." Young, terrified: "I like yer cooking."',
-      symbols: ['Neptune', 'Triton', 'curse', 'sea king'],
-      quotes: ['"Hark, Triton, Hark!"', '"Forgotten to any man, to any god or devil, forgotten even to the sea."', '"I like yer cooking."'],
-      characters: { young: 'Terrified into submission', old: 'Possessed by ancient power' },
-      imagery: 'Old speaking in prophetic voice. Eyes wild. Young cowering.',
-      themes: ['divine wrath', 'power of words', 'hubris punished'],
-      tension: 10,
-      mythologyRef: 'Neptune/Poseidon; Triton; Greek sea mythology',
-      callbacks: [12, 20], foreshadowing: [41], isRevelation: true },
-
-    { id: 27, act: 'act3', title: 'Mermaid Visions', types: ['hallucination', 'violence', 'sexuality'],
-      location: 'INT. Supply Shed',
-      time: 'Day - Storm',
-      summary: 'Young masturbates FURIOUSLY in the shed, staring at the mermaid carving. Images FLASH: the mermaid\'s breast, her mouth, the lighthouse as PHALLUS, her slimy vagina, tentacles writhing, a man in a mackinaw coat drowning, her face SCREAMING. He can\'t finish. In WILD RAGE, he THROWS the carving, BREAKING IT IN TWO. Then he STABS it with the dinner knife. "I fixed you. You can\'t git to me."',
-      symbols: ['mermaid carving', 'tentacles', 'sexuality', 'destruction'],
-      quotes: ['"I fixed you. You can\'t git to me."'],
-      characters: { young: 'Frustrated, violent, self-deluded', old: 'Absent' },
-      imagery: 'Flashing images: breast, mouth, lighthouse as phallus, tentacles, drowning man. Broken carving.',
-      themes: ['sexual frustration', 'violence against feminine', 'denial'],
-      tension: 9,
-      mythologyRef: 'Lighthouse as phallus; mermaid as feminine threat',
-      callbacks: [6, 8, 23], foreshadowing: [33], isHallucination: true, isViolence: true },
-
-    { id: 28, act: 'act3', title: 'Head in Lobster Pot', types: ['hallucination', 'horror'],
-      location: 'EXT. Shore',
-      time: 'Day - Storm',
-      summary: 'Young pulls up the lobster pot rope. Inside: THE SHRIVELED CORPSE HEAD OF A MAN WITH ONE EYE. The previous assistant? Small CRABS crawl out of the empty eye socket. A seagull flies by, SQUAWKING. Young nearly falls into the water from TERROR. The one-eyed gull haunts him even in death.',
-      symbols: ['lobster pot', 'one-eyed corpse', 'previous keeper', 'crabs'],
-      quotes: [],
-      characters: { young: 'Terrified', old: 'Absent' },
-      imagery: 'Shriveled corpse head. One eye. Crabs crawling from socket. Seagull squawking.',
-      themes: ['guilt manifested', 'death returns', 'curse'],
-      tension: 9,
-      mythologyRef: 'Head of Orpheus; the dead return',
-      callbacks: [7, 12], foreshadowing: [32], isHallucination: true },
-
-    { id: 29, act: 'act3', title: 'Young\'s Confession', types: ['revelation', 'confession'],
-      location: 'INT. Bunkroom',
-      time: 'Night',
-      summary: 'Young stares into space, feral-eyed: "I\'m Thomas. Tommy. Tom Howard." He confesses: On a log drive, he wanted to kill his foreman Winslow. "I saw him slippin\'... He shouted \'Tom, you dog!\' And I just stood. Just stood and watched \'im git swallowed down by them logs." He stole Winslow\'s identity for a clean slate. "Ephraim Winslow has a spiffy clean slate. Thomas Howard, he don\'t."',
-      symbols: ['identity', 'murder by inaction', 'confession', 'logs'],
-      quotes: ['"I\'m Thomas. Tommy. Tom Howard."', '"I just stood. Just stood and watched \'im git swallowed down by them logs."'],
-      characters: { young: 'Confessing, hollow', old: 'Listening, knowing' },
-      imagery: 'Young staring into space. Feral eyes. Firelight.',
-      themes: ['guilt', 'identity theft', 'confession'],
-      tension: 8,
-      mythologyRef: 'Cain and Abel; stolen identity',
-      callbacks: [6, 13, 14], foreshadowing: [33, 37], isRevelation: true },
-
-    { id: 30, act: 'act3', title: 'Old\'s Eyes Shine', types: ['hallucination', 'horror', 'supernatural'],
-      location: 'EXT. Catwalk',
-      time: 'Night - Storm',
-      summary: 'Young finds a BODY face-down on the catwalk—in a MACKINAW COAT. He turns it over: IT\'S HIS OWN FACE. His DOPPELGANGER, pale and dead. WALK-DRAG footsteps behind him. Old grabs his wrist, NAKED. His eyes are closed. Slowly, Old OPENS HIS EYES—A LIGHT BRIGHTER THAN ANYTHING bathes Young\'s face. Old\'s eyes SHINE LIKE THE LIGHTHOUSE BEACON.',
-      symbols: ['doppelganger', 'the light', 'transformation', 'mackinaw coat'],
-      quotes: [],
-      characters: { young: 'Terrified of himself', old: 'Transformed, godlike' },
-      imagery: 'Body in mackinaw coat. Own face dead. Old naked. Eyes shining like beacon.',
-      themes: ['death of self', 'transcendence', 'the divine terrible'],
-      tension: 10,
-      mythologyRef: 'Prometheus; looking upon god\'s face',
-      callbacks: [5, 6], foreshadowing: [40], isHallucination: true },
-
-    { id: 31, act: 'act3', title: 'Lifeboat Destroyed', types: ['violence', 'entrapment'],
-      location: 'INT/EXT. Boathouse',
-      time: 'Dawn',
-      summary: 'Young desperately tries to launch the DORY, throwing on a cork life vest. Old appears: "DON\'T LEAVE ME!" He SWIPES through the air with a FIRE AXE, SMASHING the boat. Young runs. They chase through the island. Old swings the axe, missing, and BURIES IT DEEP IN THE KITCHEN TABLE. They are now both trapped on this rock forever.',
-      symbols: ['axe', 'lifeboat', 'entrapment', 'life vest'],
-      quotes: ['"DON\'T LEAVE ME!"'],
-      characters: { young: 'Desperate to escape', old: 'Manic, possessive' },
-      imagery: 'Cork life vest. Fire axe swinging. Boat smashed. Axe buried in table.',
-      themes: ['entrapment', 'co-dependency', 'no escape'],
-      tension: 9,
-      mythologyRef: 'Burning bridges; Orpheus looking back',
-      callbacks: [19], foreshadowing: [38, 39], isViolence: true },
-
-    { id: 32, act: 'act3', title: 'Accusation of Murder', types: ['confrontation'],
-      location: 'INT. Parlor',
-      time: 'After chase',
-      summary: 'Young smiles, crazed: "I found him. Yer one-eyed junior man. In the lobster pot. You made him mad with that charm!" He throws the broken mermaid pieces at Old\'s feet, celebrating: "I broke it! I\'m FREE from yer designs!" He does a triumphant jig. Old looks at him with PITY. Young stops jigging.',
-      symbols: ['mermaid carving', 'accusation', 'previous keeper', 'madness'],
-      quotes: ['"I found him. Yer one-eyed junior man."', '"I broke it! I\'m FREE from yer designs!"'],
-      characters: { young: 'Manic, delusional', old: 'Pitying, knowing' },
-      imagery: 'Broken mermaid pieces. Triumphant jig. Old\'s pitying look.',
-      themes: ['false victory', 'delusion', 'projection'],
-      tension: 7,
-      mythologyRef: 'False triumph; hubris before fall',
-      callbacks: [2, 12, 28], foreshadowing: [] },
-
-    { id: 33, act: 'act3', title: 'Gaslighting', types: ['psychological', 'manipulation'],
-      location: 'INT. Parlor',
-      time: 'Continuous',
-      summary: 'Old flips the narrative completely: "YOU made a confession \'twould make a saint swear. It\'s made ye MAD. YOU smashed the life boat, a-chasing ME with an axe." He demands the pocketed dinner knife. Young hands it over like a guilty child. "How long have we been on this rock? Five week? Two days? Who are you, Tommy? Yer probably a figment of yer own imagination."',
-      symbols: ['identity', 'gaslighting', 'reality', 'manipulation'],
-      quotes: ['"YOU smashed the life boat, a-chasing ME with an axe."', '"Yer probably a figment of yer own imagination."'],
-      characters: { young: 'Confused, submissive', old: 'Manipulative, in control' },
-      imagery: 'Old flipping narrative. Young handing over knife. Reality dissolving.',
-      themes: ['gaslighting', 'reality vs perception', 'psychological abuse'],
-      tension: 8,
-      mythologyRef: 'Unreliable narrator; solipsism',
-      callbacks: [29], foreshadowing: [35] },
-
-    { id: 34, act: 'act3', title: 'Thieves\' Oil', types: ['dark comedy', 'desperation'],
-      location: 'INT. Oil Room',
-      time: 'Later',
-      summary: 'Out of liquor, Young drips HONEY into a brass kerosene canister. He pours in TURPENTINE and stirs. "Thieves\' oil." They drink it like giddy children, fighting over the canister. The storm continues. WATER FLOODS the quarters through smashed windows. They LAUGH HYSTERICALLY as waves crash. Laughing... laughing... laughing... until fade to black.',
-      symbols: ['turpentine', 'honey', 'madness', 'laughter'],
-      quotes: ['"Thieves\' oil."'],
-      characters: { young: 'Desperate, manic', old: 'Gleeful, childlike' },
-      imagery: 'Honey dripping. Turpentine mixing. Water flooding. Hysterical laughter.',
-      themes: ['desperation', 'absurdity', 'self-destruction'],
-      tension: 7,
-      mythologyRef: 'Drinking poison; communion with death',
-      callbacks: [22], foreshadowing: [38] },
-
-    { id: 35, act: 'act3', title: 'Reading the Logbook', types: ['revelation', 'betrayal'],
-      location: 'INT. Parlor',
-      time: 'Morning - After storm',
-      summary: 'Young stands in ankle-deep water, pissing into a floating chamber pot. OLD\'S LOGBOOK floats by. He snatches it, reads by the window. Beautiful mementos inside—children\'s hair, tintypes. Then THE LOG ENTRIES: "Assistant slept late. Work below standard." "Attitude Hostile." "Drunk on duty." "Assault." "I do not feel safe. RECOMMEND SEVERANCE WITHOUT PAY." Young SMASHES the clock.',
-      symbols: ['logbook', 'betrayal', 'truth', 'severance'],
-      quotes: ['"Work below standard."', '"RECOMMEND SEVERANCE WITHOUT PAY."'],
-      characters: { young: 'Betrayed, enraged', old: 'Absent (betrayer revealed)' },
-      imagery: 'Ankle-deep water. Floating logbook. Children\'s hair and tintypes. Smashed clock.',
-      themes: ['betrayal', 'written record vs truth', 'institutional power'],
-      tension: 9,
-      mythologyRef: 'Pandora\'s box; forbidden knowledge',
-      callbacks: [2, 9], foreshadowing: [36], isRevelation: true },
-
-    { id: 36, act: 'act3', title: 'You\'re a Liar!', types: ['confrontation', 'rage'],
-      location: 'INT. Galley',
-      time: 'Morning',
-      summary: 'Young EXPLODES with a vile tirade of insults. Old responds by calling him a "painted actress" and demands: "Will y\'kill me like y\'done that gull?" He calls Young a dog repeatedly—the ultimate dehumanization. Young trembles with rage, on the edge of murder.',
-      symbols: ['father', 'dog', 'truth', 'rage'],
-      quotes: ['"You ain\'t my FATHER!"', '"\'Twas YE what damned us, DOG!"'],
-      characters: { young: 'Explosive rage', old: 'Goading, masochistic' },
-      imagery: 'Screaming in each other\'s faces. Spittle flying. Trembling with rage.',
-      themes: ['patricide', 'dehumanization', 'truth revealed'],
-      tension: 10,
-      mythologyRef: 'Oedipus; killing the father',
-      callbacks: [9, 29], foreshadowing: [37] },
-
-    { id: 37, act: 'act3', title: 'Tentacle Fight', types: ['hallucination', 'violence', 'climax'],
-      location: 'INT. Living Quarters',
-      time: 'Continuous',
-      summary: 'They ATTACK each other, going for throats, WRESTLING, breathing, sweating, legs entwined. Young looks down—it\'s no longer Old. It\'s EPHRAIM WINSLOW in his mackinaw. Winslow SPITS in his face. Young strangles him but Winslow becomes THE MERMAID, her tail thrashing. She becomes Old—NAKED, with ENORMOUS SQUID TENTACLES FOR LEGS, wrapping around Young. He punches again and again. Finally: just a bloody old man.',
-      symbols: ['tentacles', 'mermaid', 'Winslow', 'transformation'],
-      quotes: [],
-      characters: { young: 'Murderous, dissociated', old: 'Victim/monster/hallucination' },
-      imagery: 'Wrestling bodies. Winslow\'s face. Mermaid tail. Tentacles wrapping. Bloody old man.',
-      themes: ['identity dissolution', 'violence as intimacy', 'guilt manifested'],
-      tension: 10,
-      mythologyRef: 'Proteus shape-shifting; killing one\'s demons',
-      callbacks: [6, 15, 23, 25, 27], foreshadowing: [38], isHallucination: true, isViolence: true },
-
-    { id: 38, act: 'act3', title: 'Buried Alive', types: ['violence', 'horror', 'revenge'],
-      location: 'EXT. The Grave',
-      time: 'Afternoon',
-      summary: 'Young walks Old on a LEASH like a dog. "Good boy." He forces Old into the grave-sized hole they dug for liquor. "Bark, laddy! Bark!" Old: "Ruff! Ruff!" Young shovels mud onto him. Old prophesies through bloody lips: "Y\'wish to see what\'s in that lantern? So did me last assistant. You\'ll be punished." More mud. Is he dead?',
-      symbols: ['grave', 'dog', 'burial', 'prophecy'],
-      quotes: ['"Good boy."', '"Bark, laddy! Bark!"', '"You\'ll be punished."'],
-      characters: { young: 'Sadistic, triumphant', old: 'Degraded, prophetic' },
-      imagery: 'Old on leash. Barking like dog. Mud shoveled onto face. Prophetic warning.',
-      themes: ['role reversal', 'dehumanization', 'premature burial'],
-      tension: 10,
-      mythologyRef: 'Antigone burying Polyneices; premature burial',
-      callbacks: [9, 22, 36], foreshadowing: [39], isViolence: true },
-
-    { id: 39, act: 'act3', title: 'Old Returns with Axe', types: ['violence', 'horror', 'murder'],
-      location: 'INT. Galley',
-      time: 'Moments later',
-      summary: 'Young retrieves his tobacco pouch. The hole in the table is empty—THE AXE IS GONE. OLD, covered in mud, barely alive, SWINGS THE AXE INTO YOUNG\'S SHOULDER. Blood gushes. Young grabs the IRON KETTLE and BASHES Old\'s face. Then he picks up the axe... lifts it high... DRIVES IT INTO OLD\'S HEAD. He toasts the corpse with the old prayer.',
-      symbols: ['axe', 'murder', 'kettle', 'toast'],
-      quotes: ['"Should pale death..."'],
-      characters: { young: 'Murderer, victorious', old: 'Dead' },
-      imagery: 'Empty axe hole in table. Axe in shoulder. Kettle to face. Axe to head.',
-      themes: ['murder', 'cycle complete', 'ironic prayer'],
-      tension: 10,
-      mythologyRef: 'Cain killing Abel; patricide',
-      callbacks: [31], foreshadowing: [40], isViolence: true },
-
-    { id: 40, act: 'act3', title: 'Into the Light', types: ['climax', 'revelation', 'tragedy'],
-      location: 'INT. Lantern Room',
-      time: 'Night',
-      summary: 'Crawling, trembling, bleeding, Young ascends the tower. He UNLOCKS the hatch with Old\'s BRASS KEYS. The FRESNEL LENS is a massive, six-foot jewel with eight brass legs. It seems to SING. Its rotation decelerates... stops. The lens doors OPEN LIKE WINGS. He reaches into the light. His hand BURNS. He sees something... His face DISTORTS in terror. He FALLS backward down four stories of stairs. THUD.',
-      symbols: ['the light', 'fresnel lens', 'Prometheus', 'fall', 'brass keys'],
-      quotes: [],
-      characters: { young: 'Seeking forbidden knowledge', old: 'Dead' },
-      imagery: 'Crawling up stairs. Six-foot lens like jewel. Lens doors opening like wings. Burning hand. Falling.',
-      themes: ['forbidden knowledge', 'divine punishment', 'Icarus/Prometheus'],
-      tension: 10,
-      mythologyRef: 'Prometheus stealing fire; Icarus flying too close; looking upon God',
-      callbacks: [5, 10, 11, 30], foreshadowing: [], isRevelation: true },
-
-    { id: 41, act: 'act3', title: 'Prometheus Punished', types: ['ending', 'mythology', 'horror'],
-      location: 'EXT. Pilot Rock',
-      time: 'Dawn',
-      summary: 'Young lies NAKED on the rocks, bones broken, splayed out like a sacrifice. His eyes are BURNT-OUT SOCKETS—blind. Seaweed wraps around him. A seabird PECKS at his abdomen. Peck. Peck. Peck. It is THE ONE-EYED GULL. DOZENS of birds descend, eating his LIVER. Prometheus stole fire from the gods and was punished for eternity. Young stole the forbidden light. THE END.',
-      symbols: ['Prometheus', 'seagulls', 'liver', 'punishment', 'mythology'],
-      quotes: [],
-      characters: { young: 'Punished for hubris', old: 'Dead' },
-      imagery: 'Naked on rocks. Burnt-out eye sockets. One-eyed gull. Birds eating liver.',
-      themes: ['divine punishment', 'eternal torment', 'hubris punished'],
-      tension: 10,
-      mythologyRef: 'Prometheus bound; eagle eating liver for eternity',
-      callbacks: [1, 7, 12, 16, 17, 26], foreshadowing: [], isViolence: true }
-];
-
+// Scene data will be loaded from JSON file
+let SCENES = [];
 // Thematic connections
 const THEMATIC_LINKS = [
     { source: 2, target: 35, theme: 'The Logbook' },
@@ -615,7 +299,9 @@ const state = {
     lockedNode: null,
     searchQuery: '',
     activeActs: new Set(),
-    activeMarkers: new Set(),  // Track active scene type filters (hallucination, violence, revelation)
+    activeChapters: new Set(),  // Track active chapter filters
+    activeTags: new Set(),  // Track active tag filters
+    activeMarkers: new Set(),  // Track active scene type filters (hallucination, violence)
     activeConnections: new Set(),  // Track active connection type filters (foreshadowing, callback, thematic)
     viewedScenes: new Set(),
     data: null,
@@ -918,6 +604,11 @@ function showInfoCard(d, event, updateInPlace = false) {
         </div>
         ` : ''}
         <div class="info-card-types">${types}</div>
+        ${scene.tags && scene.tags.length > 0 ? `
+        <div class="info-card-tags">
+            ${buildTagBadges(scene.tags)}
+        </div>
+        ` : ''}
         <div class="info-card-body">
             <p class="info-card-summary">${scene.summary}</p>
             ${scene.quotes && scene.quotes.length > 0 ? `
@@ -1131,8 +822,8 @@ function initVisualization() {
     const diameter = CONFIG.DIAMETER;
     const radius = diameter / 2;
     const innerRadius = radius - 150;
-    const verticalOffset = 50; // Shift diagram down by 50px
-    const padding = 150; // Add padding on all sides to prevent cutoff
+    const verticalOffset = 80; // Shift diagram down
+    const padding = 200; // Add padding on all sides to prevent cutoff
 
     svg = container.append('svg')
         .attr('viewBox', `${-radius - padding} ${-radius - verticalOffset - padding} ${diameter + padding * 2} ${diameter + verticalOffset + padding * 2}`)
@@ -1269,10 +960,7 @@ function initVisualization() {
         .attr('fill', 'var(--viz-text)')
         .attr('font-size', '10px')
         .style('cursor', 'pointer')
-        .text(d => {
-            const title = d.data.title.length > 20 ? d.data.title.substring(0, 20) + '...' : d.data.title;
-            return `${d.data.id}. ${title}`;
-        });
+        .text(d => `${d.data.id}. ${d.data.title}`);
 
 
     // Apply viewed styles for any previously viewed scenes
@@ -1359,20 +1047,35 @@ function initLegend() {
     const grid = legendContainer.append('div')
         .attr('class', 'legend-grid');
 
-    // Section label for Acts
-    grid.append('span')
+    // Separator after header
+    grid.append('div').attr('class', 'legend-separator');
+
+    // Section label for Acts - inline with items
+    const actsContainer = grid.append('div')
+        .style('display', 'flex')
+        .style('align-items', 'center')
+        .style('gap', '0.75rem')
+        .style('flex-wrap', 'wrap')
+        .style('width', '100%');
+
+    actsContainer.append('span')
         .attr('class', 'legend-section-label')
+        .style('margin', '0')
         .text('Filter by Act:');
 
-    // Act colors with scene counts
+    // Act colors with scene counts - inline
+    const actsRow = actsContainer.append('div')
+        .attr('class', 'legend-items-row')
+        .style('margin', '0');
+
     const actDetails = {
-        'act1': { scenes: '1-12', count: 12 },
-        'act2': { scenes: '13-23', count: 11 },
-        'act3': { scenes: '24-41', count: 18 }
+        'act1': { scenes: '1-38', count: 38 },
+        'act2': { scenes: '39-76', count: 38 },
+        'act3': { scenes: '77-114', count: 38 }
     };
 
     Object.entries(CONFIG.ACT_NAMES).forEach(([actId, name]) => {
-        const item = grid.append('div')
+        const item = actsRow.append('div')
             .attr('class', 'legend-item')
             .attr('data-act', actId)
             .attr('title', `Click to filter: ${name} (${actDetails[actId].count} scenes)`)
@@ -1394,10 +1097,133 @@ function initLegend() {
     // Separator
     grid.append('div').attr('class', 'legend-separator');
 
-    // Section label for Scene Types
-    grid.append('span')
+    // Section label for Chapters - collapsible
+    const chaptersHeader = grid.append('div')
+        .attr('class', 'legend-section-label legend-collapsible-header')
+        .style('cursor', 'pointer')
+        .style('user-select', 'none')
+        .on('click', function() {
+            const content = d3.select(this.nextSibling);
+            const isCollapsed = content.style('display') === 'none';
+            content.style('display', isCollapsed ? 'block' : 'none');
+            d3.select(this).select('.collapse-icon').text(isCollapsed ? '▼' : '▶');
+        });
+
+    chaptersHeader.append('span')
+        .attr('class', 'collapse-icon')
+        .text('▼')
+        .style('margin-right', '0.5rem')
+        .style('font-size', '0.7rem');
+
+    chaptersHeader.append('span')
+        .text('📖 Chapters:');
+
+    // Chapters container - 4 column layout
+    const chaptersContainer = grid.append('div')
+        .attr('class', 'legend-categories-container')
+        .style('column-count', '4')
+        .style('column-gap', '2rem')
+        .style('margin-top', '0.5rem')
+        .style('display', 'block')
+        .style('width', '100%');
+
+    // Chapter order
+    const chapterOrder = [
+        'ch01-crossing', 'ch02-first-steps', 'ch03-the-work', 'ch04-bonds',
+        'ch05-dominance', 'ch06-omens', 'ch07-storm-arrives', 'ch08-neptune',
+        'ch09-visions', 'ch10-confessions', 'ch11-ascension', 'ch12-reckoning'
+    ];
+
+    chapterOrder.forEach(chapterId => {
+        const chapter = CHAPTERS[chapterId];
+        if (!chapter) return;
+
+        // Calculate scene count for this chapter
+        const sceneCount = SCENES.filter(s => s.chapter === chapterId).length;
+
+        const chapterNum = chapterId.split('-')[0].replace('ch', '');
+        const nameWithoutIcon = chapter.name.replace(/^[^\s]+\s/, '');
+
+        // Create row container
+        const row = chaptersContainer.append('div')
+            .style('display', 'flex')
+            .style('align-items', 'center')
+            .style('justify-content', 'space-between')
+            .style('width', '100%')
+            .style('margin-bottom', '0.3rem')
+            .style('break-inside', 'avoid');
+
+        const item = row.append('div')
+            .attr('class', 'legend-item legend-chapter-item')
+            .attr('data-chapter', chapterId)
+            .attr('title', `Click to filter: ${chapter.name} - ${chapter.description} (${sceneCount} scenes)`)
+            .style('width', 'fit-content')
+            .on('click', () => toggleChapterFilter(chapterId));
+
+        // Add active indicator (checkmark)
+        item.append('span')
+            .attr('class', 'active-indicator')
+            .text('✓');
+
+        // Chapter number badge
+        item.append('span')
+            .style('background-color', getActColor(chapter.act))
+            .style('color', 'white')
+            .style('font-weight', '700')
+            .style('font-size', '0.65rem')
+            .style('padding', '0.2rem 0.4rem')
+            .style('border-radius', '3px')
+            .style('margin-right', '0.4rem')
+            .style('font-family', 'monospace')
+            .text(String(chapterNum).padStart(2, '0'));
+
+        // Chapter icon (extract from name)
+        const icon = chapter.name.match(/^[^\s]+/)?.[0] || '';
+        item.append('span')
+            .attr('class', 'legend-icon')
+            .text(icon);
+
+        // Chapter name
+        item.append('span')
+            .attr('class', 'legend-text')
+            .text(nameWithoutIcon);
+
+        // Add connecting line
+        row.append('span')
+            .style('flex-grow', '1')
+            .style('border-bottom', '1px dotted #ccc')
+            .style('margin', '0 0.5rem')
+            .style('min-width', '10px');
+
+        // Add scene count (zero-padded)
+        row.append('span')
+            .style('font-size', '0.7rem')
+            .style('color', '#888')
+            .style('font-weight', '500')
+            .style('font-family', 'monospace')
+            .text(`(${String(sceneCount).padStart(2, '0')})`);
+    });
+
+    // Separator
+    grid.append('div').attr('class', 'legend-separator');
+
+    // Section label for Scene Markers - inline with items
+    const markersContainer = grid.append('div')
+        .style('display', 'flex')
+        .style('align-items', 'center')
+        .style('gap', '0.75rem')
+        .style('flex-wrap', 'wrap')
+        .style('width', '100%');
+
+    markersContainer.append('span')
         .attr('class', 'legend-section-label')
+        .style('margin', '0')
         .text('Scene Markers:');
+
+    // Scene markers - inline
+    const markersRow = markersContainer.append('div')
+        .attr('class', 'legend-items-row')
+        .style('margin', '0');
 
     // Special markers with descriptions - now clickable for filtering
     const specialMarkers = [
@@ -1407,7 +1233,7 @@ function initLegend() {
     ];
 
     specialMarkers.forEach(marker => {
-        const item = grid.append('div')
+        const item = markersRow.append('div')
             .attr('class', 'legend-item legend-marker-item')
             .attr('data-marker', marker.key)
             .attr('title', marker.desc)
@@ -1426,10 +1252,23 @@ function initLegend() {
     // Separator
     grid.append('div').attr('class', 'legend-separator');
 
-    // Section label for Connections
-    grid.append('span')
+    // Section label for Connections - inline with items
+    const connectionsContainer = grid.append('div')
+        .style('display', 'flex')
+        .style('align-items', 'center')
+        .style('gap', '0.75rem')
+        .style('flex-wrap', 'wrap')
+        .style('width', '100%');
+
+    connectionsContainer.append('span')
         .attr('class', 'legend-section-label')
+        .style('margin', '0')
         .text('Connection Lines:');
+
+    // Connection lines - inline
+    const connectionsRow = connectionsContainer.append('div')
+        .attr('class', 'legend-items-row')
+        .style('margin', '0');
 
     // Connection type legend - now clickable for filtering
     const connectionTypes = [
@@ -1439,7 +1278,7 @@ function initLegend() {
     ];
 
     connectionTypes.forEach(conn => {
-        const item = grid.append('div')
+        const item = connectionsRow.append('div')
             .attr('class', 'legend-item legend-connection-item')
             .attr('data-connection', conn.key)
             .attr('title', conn.desc)
@@ -1480,6 +1319,23 @@ function toggleActFilter(actId) {
     applyNodeFilters();
 }
 
+function toggleChapterFilter(chapterId) {
+    if (state.activeChapters.has(chapterId)) {
+        state.activeChapters.delete(chapterId);
+    } else {
+        state.activeChapters.add(chapterId);
+    }
+
+    // Update legend item appearance
+    d3.selectAll('.legend-chapter-item')
+        .classed('active', function() {
+            return state.activeChapters.has(this.dataset.chapter);
+        });
+
+    // Apply combined filters
+    applyNodeFilters();
+}
+
 function toggleMarkerFilter(markerKey, field) {
     if (state.activeMarkers.has(markerKey)) {
         state.activeMarkers.delete(markerKey);
@@ -1497,25 +1353,32 @@ function toggleMarkerFilter(markerKey, field) {
     applyNodeFilters();
 }
 
-// Apply both act and marker filters to nodes
+// Apply all filters to nodes
 function applyNodeFilters() {
     if (!nodeGroup) return;
 
     const hasActFilter = state.activeActs.size > 0;
+    const hasChapterFilter = state.activeChapters.size > 0;
     const hasMarkerFilter = state.activeMarkers.size > 0;
 
-    if (!hasActFilter && !hasMarkerFilter) {
+    if (!hasActFilter && !hasChapterFilter && !hasMarkerFilter) {
         // No filters - show all
         nodeGroup.selectAll('.node').classed('filtered', false);
     } else {
         nodeGroup.selectAll('.node')
             .classed('filtered', d => {
                 let passesActFilter = true;
+                let passesChapterFilter = true;
                 let passesMarkerFilter = true;
 
                 // Check act filter
                 if (hasActFilter) {
                     passesActFilter = state.activeActs.has(d.data.act);
+                }
+
+                // Check chapter filter
+                if (hasChapterFilter) {
+                    passesChapterFilter = state.activeChapters.has(d.data.chapter);
                 }
 
                 // Check marker filter (scene must have at least one of the active markers)
@@ -1526,8 +1389,8 @@ function applyNodeFilters() {
                     if (state.activeMarkers.has('revelation') && d.data.isRevelation) passesMarkerFilter = true;
                 }
 
-                // Must pass both filters (if both are active)
-                return !(passesActFilter && passesMarkerFilter);
+                // Must pass all active filters
+                return !(passesActFilter && passesChapterFilter && passesMarkerFilter);
             });
     }
 }
@@ -2235,10 +2098,73 @@ window.sortQuestions = function(sortType) {
 };
 
 // ============================================
+// DATA LOADING
+// ============================================
+
+async function loadSceneData() {
+    try {
+        const response = await fetch(CONFIG.DATA_FILE);
+        const data = await response.json();
+
+        // Load scenes from JSON
+        if (data.scenes && Array.isArray(data.scenes)) {
+            // Transform JSON scenes to match expected format
+            SCENES = data.scenes.map(scene => ({
+                id: scene.id,
+                act: scene.act,
+                chapter: scene.chapter || '',
+                title: scene.title || scene.text?.substring(0, 50),
+                types: scene.tags || [],
+                tags: scene.tags || [],
+                location: scene.location?.primary || '',
+                time: scene.time?.narrative || scene.time?.approximate || '',
+                summary: scene.plotSummary?.detailed || scene.text || '',
+                symbols: scene.tags?.filter(t => ['light', 'mermaid', 'gull', 'tentacles', 'logbook'].includes(t)) || [],
+                quotes: scene.keyDialogue || [],
+                characters: {
+                    young: scene.characterDevelopment?.Young?.state || '',
+                    old: scene.characterDevelopment?.Old?.state || ''
+                },
+                imagery: scene.plotSummary?.brief || '',
+                themes: scene.tags || [],
+                tension: scene.tensionLevel || 5,
+                psychologicalState: scene.psychologicalState || 'stable',
+                mythologyRef: scene.significance || '',
+                callbacks: scene.callbacks || [],
+                foreshadowing: scene.foreshadowing || [],
+                isHallucination: scene.psychologicalState === 'hallucination' || scene.tags?.includes('vision'),
+                isViolence: scene.tags?.includes('violence')
+            }));
+
+            console.log(`✓ Loaded ${SCENES.length} scenes from ${data.metadata?.title || 'The Lighthouse'}`);
+            console.log(`✓ Chapters: ${Object.keys(CHAPTERS).length}`);
+
+            // Log connection stats
+            const totalCallbacks = SCENES.reduce((sum, s) => sum + (s.callbacks?.length || 0), 0);
+            const totalForeshadowing = SCENES.reduce((sum, s) => sum + (s.foreshadowing?.length || 0), 0);
+            console.log(`✓ Connections: ${totalCallbacks} callbacks, ${totalForeshadowing} foreshadowing`);
+        } else {
+            throw new Error('Invalid scene data format');
+        }
+
+        return true;
+    } catch (error) {
+        console.error('Error loading scene data:', error);
+        alert('Failed to load scene data. Please refresh the page.');
+        return false;
+    }
+}
+
+// ============================================
 // INITIALIZATION
 // ============================================
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
+    // Load scene data first
+    const loaded = await loadSceneData();
+    if (!loaded) return;
+
+    // Initialize visualization
     loadProgress();
     initLegend();
     initVisualization();

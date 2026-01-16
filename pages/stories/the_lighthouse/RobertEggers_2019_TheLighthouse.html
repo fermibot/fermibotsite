@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../../../index.css">
 
     <!-- Visualization CSS -->
+    <link href="../../../css/movie_timelines.css?v=2026.01.16.01" rel="stylesheet">
     <link href="RobertEggers_2019_TheLighthouse_custom.css?v=2026.01.16.01" rel="stylesheet">
 
     <!-- Bootstrap JS -->
@@ -41,7 +42,7 @@
 <header class="mb-4">
     <h1 class="text-center mb-3">Stories | Film Analysis | The Lighthouse</h1>
     <p class="text-center text-muted">
-        Interactive visualization of Robert Eggers' screenplay - 41 scenes across 3 acts
+        Interactive visualization of Robert Eggers' screenplay - 114 scenes across 3 acts and 12 chapters
     </p>
 </header>
 
@@ -53,17 +54,43 @@
             <strong>"The Lighthouse" (2019)</strong>—a psychological horror film about two lighthouse keepers
             descending into madness on a remote New England island around 1890.
         </p>
-        <p class="mb-0 text-muted small">
-            <strong>Tips:</strong>
-            Hover over scenes to see connections and summaries.
-            Click to lock the selection and see detailed information.
-            Use the search box to find scenes by title, symbols, or type.
-            Press <kbd>/</kbd> to focus search, <kbd>Esc</kbd> to clear.
-            Connection types:
-            <span style="color: #5a8b5a; font-weight: bold;">—</span> Foreshadowing,
-            <span style="color: #8b5a8b; font-weight: bold;">- -</span> Callbacks,
-            <span style="color: #b8860b; font-weight: bold;">—</span> Thematic Links.
+        <p class="mb-0">
+            The radial layout represents the cyclical, inescapable nature of their imprisonment—
+            time becomes meaningless as Young and Old spiral deeper into madness, obsession, and violence.
         </p>
+    </div>
+</section>
+
+<!-- How to Use -->
+<section class="mb-4">
+    <div class="bg-body-tertiary border rounded-3 p-4">
+        <h5 class="mb-3">How to Use This Visualization</h5>
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>🖱️ Interactions:</strong></p>
+                <ul class="mb-3">
+                    <li><strong>Hover:</strong> Preview scene details and connections</li>
+                    <li><strong>Click:</strong> Open full scene analysis</li>
+                    <li><strong>Navigate:</strong> Use Previous/Next buttons or arrow keys (← →) to browse scenes</li>
+                    <li><strong>Search:</strong> Find scenes by title, symbols, or themes (press <kbd>/</kbd>)</li>
+                    <li><strong>Clear:</strong> Press <kbd>Esc</kbd> to clear selection</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <p><strong>🎨 Color Legend:</strong></p>
+                <ul class="mb-3">
+                    <li><strong>Green:</strong> Act I - Arrival & Tension (Week 1-2)</li>
+                    <li><strong>Purple:</strong> Act II - The Storm (Week 2-3)</li>
+                    <li><strong>Red:</strong> Act III - Madness & Reckoning (Week 4+)</li>
+                </ul>
+                <p><strong>🔗 Connection Lines:</strong></p>
+                <ul class="mb-0">
+                    <li><strong>Solid green:</strong> Foreshadowing (what this scene hints at)</li>
+                    <li><strong>Dashed purple:</strong> Callbacks (what earlier scenes hinted at this)</li>
+                    <li><strong>Dotted gold:</strong> Thematic Links</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -201,501 +228,28 @@
     </div>
 </section>
 
-<!-- Book Club Questions Section -->
+<!-- Discussion Questions Section -->
 <section class="mt-4" id="book-club-section">
     <div class="bg-body-tertiary border rounded-3 p-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h5 class="mb-0">📖 Book Club Discussion Questions</h5>
+            <div class="d-flex align-items-center gap-2">
+                <h5 class="mb-0">📖 Discussion Questions <span id="sort-mode-indicator" class="text-muted small">(Timeline Order)</span></h5>
+                <button class="btn btn-sm btn-outline-danger" id="clear-question-filter" style="display: none;">
+                    Clear Filter
+                </button>
+            </div>
             <div class="question-sort-toggle">
-                <label class="sort-label">Sort by:</label>
-                <button class="sort-btn active" data-sort="chronological" onclick="sortQuestions('chronological')">Chronological</button>
-                <button class="sort-btn" data-sort="thematic" onclick="sortQuestions('thematic')">Thematic</button>
+                <small class="text-muted">Sort by:</small>
+                <button class="btn btn-sm btn-outline-secondary ms-2 active" data-sort="film-order" id="sort-timeline-btn">Timeline</button>
+                <button class="btn btn-sm btn-outline-secondary ms-1" data-sort="theme" id="sort-theme-btn">Theme</button>
             </div>
         </div>
-        <p class="text-muted small mb-3">Click any question to highlight the relevant scenes in the diagram above. Click "Show Answer" for discussion points.</p>
-        <div class="clear-selection-hint">💡 <kbd>ESC</kbd> or <strong>click outside</strong> to clear selections</div>
-        <div class="book-club-grid">
-            <!-- ACT I Questions -->
-            <div class="book-club-question" data-scenes="1">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">1</span>
-                    <p class="question-text">What were your first impressions of Pilot Rock? How does the setting establish the film's mood?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-setting">Setting</span>
-                    <span class="question-tag tag-atmosphere">Atmosphere</span>
-                </div>
-                <span class="question-meta">🚢 Act I · Scene 1</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>The fog, screeching gulls, and crumbling tower create immediate dread. The 1.19:1 aspect ratio mimics old photographs, trapping characters in a claustrophobic frame. The island is a prison before any conflict begins.</p>
-                </div>
-            </div>
+        <p class="text-muted mb-4">
+            Click any question to highlight related scenes in the visualization. Perfect for book clubs, film classes, or deep dives into maritime mythology and psychological horror.
+        </p>
 
-            <div class="book-club-question" data-scenes="1,2">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">2</span>
-                    <p class="question-text">The departing keepers leave without a word. What does their silence foreshadow?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-foreshadowing">Foreshadowing</span>
-                </div>
-                <span class="question-meta">🚢 Act I · Scenes 1-2</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>Their haunted silence suggests they've witnessed something terrible. Like the previous assistant who "went mad," they're escaping with their sanity. Their refusal to speak is a warning Young ignores.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="2">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">3</span>
-                    <p class="question-text">Young finds the mermaid carving hidden in his mattress. What might this object represent?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-symbolism">Symbolism</span>
-                    <span class="question-tag tag-mermaid">Mermaid</span>
-                </div>
-                <span class="question-meta">🧜‍♀️ Act I · Scene 2</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>The carving represents the sea's seductive danger—beautiful but deadly. It was left by the previous keeper who "went mad," connecting desire, obsession, and doom. It becomes Young's talisman and torment.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="3,7">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">4</span>
-                    <p class="question-text">How does the film portray manual labor? What effect does endless work have on Young's psyche?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-theme">Theme</span>
-                    <span class="question-tag tag-psychology">Psychology</span>
-                </div>
-                <span class="question-meta">🚢 Act I · Scenes 3, 7</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>Labor is Sisyphean—endless, degrading, and pointless. The cistern is always foul, the wheelbarrow always squeaks. This monotony breaks down Young's sense of self and time, making him vulnerable to madness.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="4,9">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">5</span>
-                    <p class="question-text">How does Old establish dominance over Young? What tactics does he use?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-power">Power</span>
-                    <span class="question-tag tag-character">Character</span>
-                </div>
-                <span class="question-meta">🚢 Act I · Scenes 4, 9</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>Old uses bodily humiliation, impossible standards, mockery, and control of resources. He withholds the light (knowledge/power), controls food and drink, and uses his position as senior keeper to make Young feel worthless.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="5">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">6</span>
-                    <p class="question-text">Old toasts the light like a lover: "To ye, me beauty!" What is his relationship with the lighthouse?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-light">The Light</span>
-                    <span class="question-tag tag-obsession">Obsession</span>
-                </div>
-                <span class="question-meta">💡 Act I · Scene 5</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>The light is Old's god, lover, and identity. Thirteen years at sea have made it his only meaningful relationship. His devotion borders on worship—he's a priest of an ancient, terrible religion.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="6">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">7</span>
-                    <p class="question-text">Young's first vision shows a drowning man in a mackinaw coat. What is the film hinting at?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-foreshadowing">Foreshadowing</span>
-                    <span class="question-tag tag-guilt">Guilt</span>
-                </div>
-                <span class="question-meta">🧜‍♀️ Act I · Scene 6</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>This foreshadows Young's confession: he's actually Thomas Howard, who watched foreman Ephraim Winslow drown and stole his identity. The vision is guilt made manifest—the dead man he let die.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="7,12,16">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">8</span>
-                    <p class="question-text">What is the significance of the one-eyed gull? Why does it keep appearing?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-symbolism">Symbolism</span>
-                    <span class="question-tag tag-supernatural">Supernatural</span>
-                </div>
-                <span class="question-meta">🦅 Act I · Scenes 7, 12, 16</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>The gull may be the soul of the previous keeper, or a supernatural judge. Its one eye mirrors Odin's ravens. It witnesses, judges, and ultimately exacts revenge—returning to eat Young's liver like Prometheus's eagle.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="10">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">9</span>
-                    <p class="question-text">Young falls while whitewashing the tower. Is Old's negligence intentional or accidental?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-power">Power</span>
-                    <span class="question-tag tag-ambiguity">Ambiguity</span>
-                </div>
-                <span class="question-meta">🚢 Act I · Scene 10</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>The film leaves this ambiguous—like much else. Old's mockery suggests cruelty, but the broken pulley could be simple decay. This ambiguity is the film's method: we never know what's real.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="5,11">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">10</span>
-                    <p class="question-text">Why is Old so protective of the lighthouse lamp? What might it symbolize?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-light">The Light</span>
-                    <span class="question-tag tag-forbidden">Forbidden</span>
-                </div>
-                <span class="question-meta">💡 Act I · Scenes 5, 11</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>The light represents forbidden knowledge, divine truth, or ultimate power. Like Bluebeard's locked room or Eden's forbidden fruit, it promises revelation but delivers destruction. Old guards it because he knows its price.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="12">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">11</span>
-                    <p class="question-text">"Bad luck to kill a seabird." Why does Old react so violently to Young's dismissal of this belief?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-mythology">Mythology</span>
-                    <span class="question-tag tag-supernatural">Supernatural</span>
-                </div>
-                <span class="question-meta">🦅 Act I · Scene 12</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>Old has lived by these superstitions for decades—they're his religion. His terror is genuine: he knows the sea's power and respects its rules. Young's dismissal is blasphemy that will doom them both.</p>
-                </div>
-            </div>
-
-            <!-- ACT II Questions -->
-            <div class="book-club-question" data-scenes="13">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">12</span>
-                    <p class="question-text">Why do Young and Old finally share their names? What does this vulnerability mean?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-character">Character</span>
-                    <span class="question-tag tag-identity">Identity</span>
-                </div>
-                <span class="question-meta">⛈️ Act II · Scene 13</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>Sharing names creates genuine connection—perhaps their only real moment of humanity. But Young's "name" is stolen, making this intimacy built on a lie. Old's confession about abandoning his family shows his own guilt.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="14">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">13</span>
-                    <p class="question-text">Young's cigarette goes out—Old says someone is cursing him. Is this superstition or insight?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-supernatural">Supernatural</span>
-                    <span class="question-tag tag-foreshadowing">Foreshadowing</span>
-                </div>
-                <span class="question-meta">⛈️ Act II · Scene 14</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>Perhaps the real Winslow's ghost is cursing Thomas Howard. Or it's coincidence that paranoid minds interpret as omen. The film refuses to clarify—both men's beliefs shape their reality.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="15">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">14</span>
-                    <p class="question-text">Young sees tentacles in the lantern room. Are his visions madness or glimpses of truth?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-horror">Horror</span>
-                    <span class="question-tag tag-ambiguity">Ambiguity</span>
-                </div>
-                <span class="question-meta">🐙 Act II · Scene 15</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>The tentacles evoke Lovecraftian cosmic horror—the unknowable lurking beyond human comprehension. They might be real entities, or Young's fractured psyche visualizing the incomprehensible nature of Old's devotion to the light.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="16,17">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">15</span>
-                    <p class="question-text">Young kills the gull and the wind immediately changes. Coincidence or cosmic consequence?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-mythology">Mythology</span>
-                    <span class="question-tag tag-turning-point">Turning Point</span>
-                </div>
-                <span class="question-meta">🦅 Act II · Scenes 16-17</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>Like the Ancient Mariner killing the albatross, Young's act seems to trigger supernatural punishment. Whether the storm is coincidence or curse, Young believes he's damned—and belief shapes reality in this film.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="18">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">16</span>
-                    <p class="question-text">The last night before relief, they feast and sing together. Does their friendship feel genuine?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-character">Character</span>
-                    <span class="question-tag tag-irony">Irony</span>
-                </div>
-                <span class="question-meta">⛈️ Act II · Scene 18</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>This is their most human moment—genuine connection over shared hardship. The tragic irony is that this friendship comes just before catastrophe. They almost escape as something like friends.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="19">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">17</span>
-                    <p class="question-text">The relief tender never arrives. How does this moment change the trajectory of the story?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-turning-point">Turning Point</span>
-                    <span class="question-tag tag-isolation">Isolation</span>
-                </div>
-                <span class="question-meta">⛈️ Act II · Scene 19</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>This is the point of no return. Hope of escape dies. The storm that follows—triggered by the gull's death—traps them in an indefinite purgatory where time, sanity, and identity all dissolve.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="20">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">18</span>
-                    <p class="question-text">Old tries to calm the sea with ritual and song. Is he a believer, a performer, or something more?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-mythology">Mythology</span>
-                    <span class="question-tag tag-character">Character</span>
-                </div>
-                <span class="question-meta">🌊 Act II · Scene 20</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>Old genuinely believes—thirteen years at sea have made him part of its mythology. His ritual invokes Neptune, counting waves, singing "Blood Red Roses." When the wave knocks him down, even the sea god rejects him.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="21">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">19</span>
-                    <p class="question-text">Time becomes impossible to track. How does the film convey the distortion of reality?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-cinematography">Cinematography</span>
-                    <span class="question-tag tag-psychology">Psychology</span>
-                </div>
-                <span class="question-meta">⛈️ Act II · Scene 21</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>The film uses contradictory dialogue ("Was it yesterday?" "Weeks ago"), identical shot compositions, and dream-like editing. We lose track of time with the characters, sharing their disorientation.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="22">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">20</span>
-                    <p class="question-text">They dig up buried liquor from a grave-sized hole. What does this foreshadow?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-foreshadowing">Foreshadowing</span>
-                    <span class="question-tag tag-symbolism">Symbolism</span>
-                </div>
-                <span class="question-meta">⛈️ Act II · Scene 22</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>The grave-sized hole returns when Young buries Old alive. Digging for liquor, they're literally digging their own graves. Their addiction will kill them—just not in the way they expect.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="23">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">21</span>
-                    <p class="question-text">Young encounters the mermaid on the rocks. Is she real, a hallucination, or something in between?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-mermaid">Mermaid</span>
-                    <span class="question-tag tag-ambiguity">Ambiguity</span>
-                </div>
-                <span class="question-meta">🧜‍♀️ Act II · Scene 23</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>The film never answers this. She could be real (the supernatural exists here), a projection of Young's guilt and desire, or death itself beckoning. Her smile as she reaches for him is both invitation and threat.</p>
-                </div>
-            </div>
-
-            <!-- ACT III Questions -->
-            <div class="book-club-question" data-scenes="24,25">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">22</span>
-                    <p class="question-text">The men swing between friendship and violence. What drives these mood shifts?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-psychology">Psychology</span>
-                    <span class="question-tag tag-theme">Theme</span>
-                </div>
-                <span class="question-meta">🔥 Act III · Scenes 24-25</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>Alcohol, isolation, and power imbalance create volatile swings. Their relationship has elements of father/son, captor/captive, and reluctant companions. Neither can exist without the other, but neither can they coexist peacefully.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="26">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">23</span>
-                    <p class="question-text">Old delivers the Neptune curse. Does he have supernatural power, or is Young simply susceptible?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-mythology">Mythology</span>
-                    <span class="question-tag tag-power">Power</span>
-                </div>
-                <span class="question-meta">🌊 Act III · Scene 26</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>The curse's power lies in its conviction. Old speaks with prophetic authority, invoking ancient gods. Whether real or psychological, Young believes it—and the ending fulfills every word.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="29">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">24</span>
-                    <p class="question-text">Young confesses he's actually Thomas Howard. Does this change how you view his earlier actions?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-identity">Identity</span>
-                    <span class="question-tag tag-revelation">Revelation</span>
-                </div>
-                <span class="question-meta">🪪 Act III · Scene 29</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>His guilt reframes everything—the visions of the drowning man, his desperate need for a "fresh start," his inability to escape his past. He's been running from himself, and the island won't let him hide.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="33">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">25</span>
-                    <p class="question-text">Old claims Young smashed the lifeboat—but did he? How reliable are either man's memories?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-ambiguity">Ambiguity</span>
-                    <span class="question-tag tag-psychology">Psychology</span>
-                </div>
-                <span class="question-meta">🔥 Act III · Scene 33</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>Neither man's perception can be trusted. Old may be gaslighting Young, or Young may have blacked out. The film deliberately withholds objective truth—we're trapped in unreliable narration.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="35">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">26</span>
-                    <p class="question-text">Young discovers damning entries in Old's logbook. How does written record become a weapon?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-power">Power</span>
-                    <span class="question-tag tag-revelation">Revelation</span>
-                </div>
-                <span class="question-meta">📔 Act III · Scene 35</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>The logbook represents institutional power—Old's word against Young's. His written "truth" would destroy Young's reputation and livelihood. Documentation becomes weaponized, regardless of actual events.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="36,38">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">27</span>
-                    <p class="question-text">Old repeatedly calls Young a "dog." What does this dehumanization reveal?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-power">Power</span>
-                    <span class="question-tag tag-symbolism">Symbolism</span>
-                </div>
-                <span class="question-meta">🔥 Act III · Scenes 36, 38</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>The "dog" epithet strips Young of humanity, making him animal, servant, property. When Young forces Old to bark like a dog before burial, he inverts the power dynamic completely—becoming the master at last.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="37">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">28</span>
-                    <p class="question-text">During their fight, Old transforms into mermaid, then tentacles. What do these visions mean?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-horror">Horror</span>
-                    <span class="question-tag tag-symbolism">Symbolism</span>
-                </div>
-                <span class="question-meta">🐙 Act III · Scene 37</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>Young's visions collapse all his fears and desires into one: Old becomes Winslow (guilt), becomes mermaid (desire), becomes tentacle monster (cosmic horror). He's fighting his own psyche as much as Old.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="40">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">29</span>
-                    <p class="question-text">Young finally enters the light. What do you think he witnessed? Was it worth the cost?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-light">The Light</span>
-                    <span class="question-tag tag-climax">Climax</span>
-                </div>
-                <span class="question-meta">💡 Act III · Scene 40</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>The film never shows us. His face distorts in terror before he falls—suggesting the truth is too terrible to depict. Like Icarus or Prometheus, he reached for the divine and was destroyed by it.</p>
-                </div>
-            </div>
-
-            <div class="book-club-question" data-scenes="41">
-                <div class="question-header" onclick="highlightBookClubScenes(this.parentElement, event)">
-                    <span class="question-number">30</span>
-                    <p class="question-text">The ending echoes the Prometheus myth. What is the film saying about forbidden knowledge?</p>
-                </div>
-                <div class="question-tags">
-                    <span class="question-tag tag-mythology">Mythology</span>
-                    <span class="question-tag tag-theme">Theme</span>
-                </div>
-                <span class="question-meta">⚡ Act III · Scene 41</span>
-                <button class="answer-toggle" onclick="toggleAnswer(event, this)">Show Answer</button>
-                <div class="answer-content">
-                    <p>Prometheus stole fire and was punished eternally. Young stole the light—and identity—and suffers the same fate. Some knowledge destroys the seeker. The pursuit of forbidden truth is humanity's oldest tragedy.</p>
-                </div>
-            </div>
+        <div id="questions-container">
+            <!-- Questions will be generated by JavaScript -->
         </div>
     </div>
 </section>

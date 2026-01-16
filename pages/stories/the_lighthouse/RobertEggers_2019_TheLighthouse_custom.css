@@ -679,10 +679,11 @@
 }
 
 .legend-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
+    gap: 0.5rem;
+    align-items: start;
 }
 
 .legend-item {
@@ -726,11 +727,9 @@
     white-space: nowrap;
 }
 
-.legend-separator {
-    width: 1px;
-    height: 20px;
-    background-color: var(--viz-border);
-    margin: 0 0.5rem;
+/* Force separators to take full width in flex container */
+.legend-grid > .legend-separator {
+    width: 100%;
 }
 
 .legend-section-label {
@@ -1665,8 +1664,36 @@
 
 .legend-item,
 .legend-marker-item,
-.legend-connection-item {
+.legend-connection-item,
+.legend-chapter-item {
     position: relative;
+}
+
+/* Active indicator checkmark for chapters */
+.active-indicator {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 14px;
+    height: 14px;
+    background: #27ae60;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: bold;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.2s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.legend-chapter-item.active .active-indicator {
+    opacity: 1;
+    transform: scale(1);
 }
 
 /* Pulsing green dot indicator for active filters */

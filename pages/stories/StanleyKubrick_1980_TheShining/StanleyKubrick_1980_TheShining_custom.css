@@ -2,6 +2,15 @@
 /* Inspired by Kubrick's visual aesthetic: symmetry, cold colors, deep reds */
 
 /* ============================================
+   LAYOUT ADJUSTMENTS
+   ============================================ */
+
+/* Add gap between controls bar and legend */
+.controls-bar {
+    margin-bottom: 1rem;
+}
+
+/* ============================================
    SCREENPLAY VIEWER - LEFT PANEL
    ============================================ */
 

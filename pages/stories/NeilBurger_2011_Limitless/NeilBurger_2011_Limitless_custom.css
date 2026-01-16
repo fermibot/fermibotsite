@@ -686,6 +686,11 @@
     transform: scale(1);
 }
 
+/* Add gap between controls bar and legend */
+.controls-bar {
+    margin-bottom: 1rem;
+}
+
 /* ============================================
    TAG COLOR SCHEME - THE SHINING THEMES
    ============================================ */
