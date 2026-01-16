@@ -866,16 +866,17 @@ function createLegendWithProgress() {
             .attr('class', 'active-indicator')
             .text('✓');
 
-        // Chapter number (styled as small badge)
+        // Chapter number (styled as small badge, zero-padded)
         item.append('span')
             .style('background-color', chapter.color)
             .style('color', 'white')
             .style('font-weight', '700')
             .style('font-size', '0.65rem')
-            .style('padding', '0.15rem 0.35rem')
+            .style('padding', '0.2rem 0.4rem')
             .style('border-radius', '3px')
             .style('margin-right', '0.4rem')
-            .text(chapterNum);
+            .style('font-family', 'monospace')
+            .text(String(chapterNum).padStart(2, '0'));
 
         // Chapter icon
         item.append('span')
