@@ -1829,16 +1829,12 @@ function highlightConnections(node) {
         .classed('connection-highlighted', d => connectedIds.has(d.data.id) && d.data.id !== node.data.id)  // Connected nodes (not main)
         .classed('connection-dimmed', d => !connectedIds.has(d.data.id));
 
-    // Highlight relevant links with smooth sticky transitions
+    // Highlight relevant links instantly
     linkGroup.selectAll('.link')
-        .transition()
-        .duration(200) // Fast fade-in for new connections
         .style('opacity', d => {
             const isFromNode = (d.source.data.id === node.data.id);
             return isFromNode ? 1 : 0.1;
-        });
-
-    linkGroup.selectAll('.link')
+        })
         .classed('highlighted', d => d.source.data.id === node.data.id)
         .classed('dimmed', d => d.source.data.id !== node.data.id);
 }
@@ -1853,13 +1849,9 @@ function unhighlightAll() {
         .classed('connection-highlighted', false)
         .classed('connection-dimmed', false);
 
-    // Slow fade-out for sticky effect - old connections linger
+    // Remove highlights instantly
     linkGroup.selectAll('.link')
-        .transition()
-        .duration(600) // Slower fade-out creates sticky trailing effect
-        .style('opacity', null);
-
-    linkGroup.selectAll('.link')
+        .style('opacity', null)
         .classed('highlighted', false)
         .classed('dimmed', false);
 }

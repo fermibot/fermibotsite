@@ -1256,30 +1256,27 @@
     66% { opacity: 0.9; transform: translate(1px, -1px); }
 }
 
-/* Apply shake to legend items on hover - faster */
+/* Remove all animations - instant response only */
 .legend-question-item:hover,
 .legend-chapter-item:hover,
 .legend-item[data-act]:hover,
 .legend-marker-item:hover {
-    animation: spooky-shake 0.3s ease-in-out;
+    /* No animation */
 }
 
-/* Apply glitch to icons on hover - faster */
 .legend-question-item:hover .legend-icon,
 .legend-chapter-item:hover .legend-icon,
 .legend-item:hover .legend-icon {
-    animation: spooky-glitch 0.2s ease-in-out infinite;
+    /* No animation */
 }
 
-/* Shake discussion question cards on hover - faster */
 .book-club-question:hover {
-    animation: spooky-shake 0.3s ease-in-out;
+    /* No animation */
 }
 
-/* Shake tags in scene details - faster */
 .tag-badge:hover {
-    animation: spooky-shake 0.25s ease-in-out;
     cursor: pointer;
+    /* No animation */
 }
 
 /* Creepy glow effect on active elements */
@@ -1290,12 +1287,7 @@
     transition: box-shadow 0.3s ease;
 }
 
-/* Subtle pulse on chapter numbers */
+/* No pulse animation on chapter numbers */
 .legend-chapter-item:hover span[style*="background-color"] {
-    animation: spooky-pulse 1s ease-in-out infinite;
-}
-
-@keyframes spooky-pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
+    /* No animation */
 }
