@@ -1097,10 +1097,10 @@ function createLegendWithProgress() {
             .attr('x2', 30)
             .attr('y2', 6)
             .attr('stroke', conn.color)
-            .attr('stroke-width', conn.style === 'dashed' ? 1.5 : 2)
+            .attr('stroke-width', conn.style === 'dashed' ? 0.8 : 1)
             .attr('stroke-dasharray', conn.style === 'dashed' ? '4,2' : null)
-            .attr('stroke-opacity', conn.style === 'dashed' ? 0.7 : 0.8)
-            .style('filter', conn.style === 'dashed' ? 'none' : 'drop-shadow(0 0 2px ' + conn.color + ')');
+            .attr('stroke-opacity', 0.3)
+            .style('filter', conn.style === 'dashed' ? 'none' : 'drop-shadow(0 0 1px ' + conn.color + ')');
 
         item.append('span')
             .attr('class', 'legend-text')
@@ -1678,8 +1678,8 @@ function initVisualization() {
             if (d.type === 'callback') return '#8b0000'; // Dark blood red for callbacks (dashed)
             return '#00bcd4'; // Eerie cyan for foreshadowing (solid, glowy)
         })
-        .attr('stroke-width', d => d.type === 'callback' ? 1.0 : 1.2)
-        .attr('stroke-opacity', d => d.type === 'callback' ? 0.5 : 0.4)
+        .attr('stroke-width', d => d.type === 'callback' ? 0.5 : 0.6)
+        .attr('stroke-opacity', d => d.type === 'callback' ? 0.15 : 0.15)
         .attr('stroke-dasharray', d => d.type === 'callback' ? '4,2' : null)
         .attr('filter', d => d.type === 'callback' ? null : 'url(#spooky-glow)');
 
@@ -1829,22 +1829,22 @@ function highlightConnections(node) {
         .classed('connection-highlighted', d => connectedIds.has(d.data.id) && d.data.id !== node.data.id)  // Connected nodes (not main)
         .classed('connection-dimmed', d => !connectedIds.has(d.data.id));
 
-    // Highlight relevant links instantly - keep all visible, brighten relevant ones
+    // Highlight relevant links instantly - strong contrast
     linkGroup.selectAll('.link')
         .classed('highlighted', d => d.source.data.id === node.data.id)
         .attr('stroke-width', d => {
             const isFromNode = (d.source.data.id === node.data.id);
             if (isFromNode) {
-                return d.type === 'callback' ? 2.0 : 2.5; // Thicker when highlighted
+                return d.type === 'callback' ? 2.5 : 3.0; // Much thicker when highlighted
             }
-            return d.type === 'callback' ? 1.0 : 1.2; // Normal width
+            return d.type === 'callback' ? 0.5 : 0.6; // Thin default
         })
         .attr('stroke-opacity', d => {
             const isFromNode = (d.source.data.id === node.data.id);
             if (isFromNode) {
-                return d.type === 'callback' ? 0.9 : 0.8; // Brighter when highlighted
+                return d.type === 'callback' ? 0.95 : 0.9; // Very bright when highlighted
             }
-            return d.type === 'callback' ? 0.5 : 0.4; // Normal opacity
+            return d.type === 'callback' ? 0.15 : 0.15; // Very dim default
         });
 }
 
@@ -1861,8 +1861,8 @@ function unhighlightAll() {
     // Reset all links to normal state
     linkGroup.selectAll('.link')
         .classed('highlighted', false)
-        .attr('stroke-width', d => d.type === 'callback' ? 1.0 : 1.2)
-        .attr('stroke-opacity', d => d.type === 'callback' ? 0.5 : 0.4);
+        .attr('stroke-width', d => d.type === 'callback' ? 0.5 : 0.6)
+        .attr('stroke-opacity', d => d.type === 'callback' ? 0.15 : 0.15);
 }
 
 // ============================================
