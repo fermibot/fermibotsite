@@ -244,7 +244,7 @@
     border-left: 1px solid var(--viz-border);
     border-radius: 0;
     padding: 0;
-    width: 600px;
+    width: 400px;
     height: 100vh;
     overflow-y: auto;
     overscroll-behavior: contain;
@@ -302,7 +302,7 @@
 @media (max-width: 768px) {
     .info-card-modal {
         width: 90vw;
-        max-width: 600px;
+        max-width: 400px;
     }
 }
 
