@@ -28,7 +28,7 @@ UNIVERSAL_TAGS = {
     "iconic-dialogue", "gaslighting", "dark-humor",
     # Plot progression
     "arrival", "interview", "tour", "closing-day", "isolation-begins",
-    "one-month-later", "escalation", "breaking-point", "crisis", "climax", "resolution",
+    "one-month-later", "escalation", "breaking-point", "crisis", "climax", "resolution", "epilogue",
     # Themes
     "isolation", "family-breakdown", "alcoholism", "violence-history",
     "writer-block", "responsibility", "parent-child", "marriage-strain",
@@ -72,12 +72,16 @@ def smart_tag_scene(scene):
         tags.append('bathroom')
 
     # === SUPERNATURAL ===
-    if 'lloyd' in text and 'bartender' in text:
+    if 'lloyd' in text or (scene_id in [80, 81, 100, 101, 142] and 'bartender' in text):
         tags.append('lloyd')
+        tags.append('dark-humor')
     if 'grady' in text:
         tags.append('grady')
+        if 'bathroom' in text:
+            tags.append('dark-humor')
     if 'twins' in text or 'daughters' in text:
         tags.append('grady-twins')
+        tags.append('twins')
     if 'woman' in text and ('bathtub' in text or '237' in text):
         tags.append('woman-237')
     if 'blood' in text and ('elevator' in text or 'lift' in text):
@@ -155,19 +159,37 @@ def smart_tag_scene(scene):
         tags.append('weapon')
     if 'attack' in text or 'hit' in text or 'slash' in text or 'swing' in text:
         tags.append('physical-violence')
+    if (scene_id in [100, 101, 102, 103, 104, 115, 118, 119, 120, 121] and
+        ('threat' in text or 'menac' in text or 'going to' in text)):
+        tags.append('threatened-violence')
     if 'threat' in text or 'menac' in text or scene_id >= 100:
         tags.append('psychological-horror')
 
     # === THEMES ===
     if scene_id <= 50 or 'alone' in text or 'isolated' in text:
         tags.append('isolation')
-    if 'family' in text and ('tension' in text or 'argument' in text):
+    if (scene_id >= 50 and scene_id <= 120 and
+        ('family' in text or 'wendy' in text and 'jack' in text or 'danny' in text)):
         tags.append('family-breakdown')
+    if ('marriage' in text or 'husband' in text or 'wife' in text or
+        (scene_id in [20, 32, 100, 101, 118, 119, 120, 121])):
+        tags.append('marriage-strain')
+    if (('danny' in text and ('wendy' in text or 'jack' in text)) or
+        'father' in text or 'mother' in text or 'son' in text):
+        tags.append('parent-child')
     if 'alcohol' in text or 'drink' in text or 'sober' in text:
         tags.append('alcoholism')
     if 'typewriter' in text or 'writing' in text:
         tags.append('typewriter')
         tags.append('writer-block')
+    if scene_id in [20, 32, 37] or 'past' in text or 'before' in text or 'history' in text:
+        if 'violent' in text or 'hurt' in text or 'arm' in text or 'injury' in text:
+            tags.append('violence-history')
+    if scene_id in [118, 119, 120, 121] and 'jack' in text:
+        tags.append('gaslighting')
+    if scene_id <= 50 or 'caretaker' in text or 'maintain' in text or 'job' in text:
+        if 'responsibility' in text or 'duty' in text or scene_id in [1, 2, 3, 5, 6]:
+            tags.append('responsibility')
 
     # === OBJECTS ===
     if 'axe' in text:
@@ -184,21 +206,41 @@ def smart_tag_scene(scene):
     # === COMMUNICATION ===
     if 'radio' in text or 'phone' in text or 'call' in text:
         tags.append('outside-contact')
+    if 'phone' in text or 'telephone' in text:
+        if 'call' in text or 'ring' in text or 'dial' in text:
+            tags.append('phone-call')
+    if 'radio' in text and ('call' in text or 'forest' in text or 'ranger' in text):
+        tags.append('radio-call')
+    if scene_id in [59, 60, 61, 62, 63] or ('block' in text and 'contact' in text):
+        if 'cut' in text or 'down' in text or 'out' in text or 'broken' in text:
+            tags.append('contact-blocked')
     if 'storm' in text or 'weather' in text:
         tags.append('storm')
+    if 'snow' in text or 'winter' in text or 'blizzard' in text:
+        tags.append('snow')
+    if scene_id >= 50 and ('trap' in text or 'stuck' in text or 'snow' in text):
+        tags.append('trapped-by-weather')
 
     # === PLOT STRUCTURE ===
+    # Act structure
+    if scene_id <= 40:
+        tags.append('act1')
+    elif scene_id <= 120:
+        tags.append('act2')
+    else:
+        tags.append('act3')
+
     if scene_id <= 10:
         tags.append('arrival')
     if 'interview' in text and scene_id <= 5:
         tags.append('interview')
-    if 'tour' in text and scene_id <= 40:
-        tags.append('tour')
+    if scene_id == 33 or ('tour' in text and scene_id <= 40):
+        tags.append('hotel-tour')
     if scene_id >= 40 and scene_id <= 50:
         tags.append('closing-day')
     if scene_id >= 51 and scene_id <= 70:
         tags.append('isolation-begins')
-    if 'tuesday' in text or 'month later' in text:
+    if 'month later' in text:
         tags.append('one-month-later')
     if scene_id >= 100 and scene_id <= 130:
         tags.append('escalation')
@@ -211,6 +253,12 @@ def smart_tag_scene(scene):
     if scene_id == 142:
         tags.append('resolution')
         tags.append('epilogue')
+
+    # Narrative structure
+    if scene_id in [11, 12, 13, 14, 28, 29, 37, 77, 78, 83]:
+        tags.append('foreshadowing')
+    if scene_id in [57, 90, 92, 116, 117, 140]:
+        tags.append('callback')
 
     # === INTERCUTTING ===
     if 'intercut' in text or 'cut to' in detailed:

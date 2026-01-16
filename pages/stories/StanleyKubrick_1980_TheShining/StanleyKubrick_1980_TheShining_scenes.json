@@ -63,7 +63,8 @@
         "nature",
         "journey",
         "ominous"
-      ]
+      ],
+      "screenplayPage": 3
     },
     {
       "id": 2,
@@ -139,7 +140,8 @@
         "grady",
         "cabin-fever",
         "isolation"
-      ]
+      ],
+      "screenplayPage": 3
     },
     {
       "id": 3,
@@ -210,7 +212,8 @@
         "family-violence",
         "alcoholism",
         "grady-twins"
-      ]
+      ],
+      "screenplayPage": 7
     },
     {
       "id": 4,
@@ -276,7 +279,8 @@
         "maze",
         "grady-twins",
         "indian-burial-ground"
-      ]
+      ],
+      "screenplayPage": 24
     },
     {
       "id": 5,
@@ -351,7 +355,8 @@
         "room-237",
         "warning",
         "psychic"
-      ]
+      ],
+      "screenplayPage": 42
     },
     {
       "id": 6,
@@ -408,7 +413,8 @@
         "routine",
         "deja-vu",
         "attachment"
-      ]
+      ],
+      "screenplayPage": 47
     },
     {
       "id": 7,
@@ -453,7 +459,8 @@
         "isolation",
         "surveillance",
         "family"
-      ]
+      ],
+      "screenplayPage": 50
     },
     {
       "id": 8,
@@ -521,7 +528,8 @@
         "deterioration",
         "marriage",
         "isolation"
-      ]
+      ],
+      "screenplayPage": 56
     },
     {
       "id": 9,
@@ -581,7 +589,8 @@
         "storm",
         "communication",
         "trapped"
-      ]
+      ],
+      "screenplayPage": 57
     },
     {
       "id": 10,
@@ -642,7 +651,8 @@
         "murder",
         "vision",
         "horror"
-      ]
+      ],
+      "screenplayPage": 61
     },
     {
       "id": 11,
@@ -693,7 +703,8 @@
         "routine",
         "tv",
         "calm-before-storm"
-      ]
+      ],
+      "screenplayPage": 63
     },
     {
       "id": 12,
@@ -761,7 +772,8 @@
         "supernatural-influence",
         "foreshadowing",
         "possession"
-      ]
+      ],
+      "screenplayPage": 66
     },
     {
       "id": 13,
@@ -815,7 +827,8 @@
         "trap",
         "danger",
         "horror"
-      ]
+      ],
+      "screenplayPage": 68
     },
     {
       "id": 14,
@@ -877,7 +890,8 @@
         "prophecy",
         "mental-breakdown",
         "grady"
-      ]
+      ],
+      "screenplayPage": 70
     },
     {
       "id": 15,
@@ -938,7 +952,8 @@
         "room-237",
         "family-breakdown",
         "trust"
-      ]
+      ],
+      "screenplayPage": 72
     },
     {
       "id": 16,
@@ -1011,7 +1026,8 @@
         "breakdown",
         "lloyd",
         "gold-room"
-      ]
+      ],
+      "screenplayPage": 73
     },
     {
       "id": 17,
@@ -1084,7 +1100,8 @@
         "abuse",
         "alcohol",
         "lloyd"
-      ]
+      ],
+      "screenplayPage": 75
     },
     {
       "id": 18,
@@ -1141,7 +1158,8 @@
         "attack",
         "woman",
         "investigation"
-      ]
+      ],
+      "screenplayPage": 77
     },
     {
       "id": 19,
@@ -1194,7 +1212,8 @@
         "miami",
         "storm",
         "distance"
-      ]
+      ],
+      "screenplayPage": 79
     },
     {
       "id": 20,
@@ -1243,7 +1262,8 @@
         "woman",
         "corpse",
         "decay"
-      ]
+      ],
+      "screenplayPage": 80
     },
     {
       "id": 21,
@@ -1319,7 +1339,8 @@
         "rage",
         "refusal",
         "family-breakdown"
-      ]
+      ],
+      "screenplayPage": 83
     },
     {
       "id": 22,
@@ -1387,7 +1408,8 @@
         "1920s",
         "lloyd",
         "gold-room"
-      ]
+      ],
+      "screenplayPage": 89
     },
     {
       "id": 23,
@@ -1467,7 +1489,8 @@
         "cyclical-time",
         "always-been-here",
         "correction"
-      ]
+      ],
+      "screenplayPage": 95
     },
     {
       "id": 24,
@@ -1483,9 +1506,9 @@
         "approximate": "Following day"
       },
       "plotSummary": {
-        "brief": "Halloran flies to Colorado and struggles through the snowstorm toward the hotel",
-        "detailed": "Title: THURSDAY. The ranger visits the hotel and reports to Halloran by phone that everything seems fine, though no one answered. Halloran isn't satisfied and flies to Colorado. He rents a Snowcat and begins the difficult journey through the massive snowstorm. Meanwhile, Wendy carries breakfast to Jack in their apartment and finds him sleeping. She sees his manuscript and begins to read it. Page after page contains only one sentence typed repeatedly: 'All work and no play makes Jack a dull boy' in different formats and patterns. She's horrified. Jack wakes up.",
-        "subtext": "Halloran's psychic alarm is so strong he travels across the country in a deadly storm. The ranger saw nothing wrong because the family appeared normal. Jack's 'writing' reveals his complete mental collapse - obsessive, meaningless repetition instead of creativity."
+        "brief": "Hallorann senses danger and flies to Colorado; Wendy discovers Jack's manuscript",
+        "detailed": "Title: THURSDAY. Hallorann, deeply alarmed by Danny's psychic distress call, tries to phone the hotel but gets no answer. He contacts the ranger station, who confirm they cannot reach the hotel by radio. Hallorann immediately flies to Colorado and rents a Snowcat to make the difficult journey through the massive snowstorm. Meanwhile, Wendy carries breakfast to Jack in their apartment and finds him sleeping. She sees his manuscript and begins to read it. Page after page contains only one sentence typed repeatedly: 'All work and no play makes Jack a dull boy' in different formats and patterns. She's horrified. Jack wakes up.",
+        "subtext": "Hallorann's psychic alarm is so strong he travels across the country in a deadly storm. The ranger station confirms the hotel is unreachable, heightening the danger. Jack's 'writing' reveals his complete mental collapse - obsessive, meaningless repetition instead of creativity. Wendy realizes the horrifying truth about Jack's mental state."
       },
       "keyDialogue": [
         {
@@ -1522,7 +1545,8 @@
         "halloran",
         "rescue",
         "revelation"
-      ]
+      ],
+      "screenplayPage": 100
     },
     {
       "id": 25,
@@ -1584,7 +1608,8 @@
         "threat",
         "defense",
         "pantry"
-      ]
+      ],
+      "screenplayPage": 102
     },
     {
       "id": 26,
@@ -1651,7 +1676,8 @@
         "escape",
         "orders",
         "halloran"
-      ]
+      ],
+      "screenplayPage": 104
     },
     {
       "id": 27,
@@ -1707,7 +1733,8 @@
         "tony",
         "mirror",
         "warning"
-      ]
+      ],
+      "screenplayPage": 106
     },
     {
       "id": 28,
@@ -1764,7 +1791,8 @@
         "sabotage",
         "chase",
         "terror"
-      ]
+      ],
+      "screenplayPage": 108
     },
     {
       "id": 29,
@@ -1825,7 +1853,8 @@
         "door",
         "escape",
         "iconic"
-      ]
+      ],
+      "screenplayPage": 110
     },
     {
       "id": 30,
@@ -1877,7 +1906,8 @@
         "murder",
         "axe",
         "rescue-failed"
-      ]
+      ],
+      "screenplayPage": 112
     },
     {
       "id": 31,
@@ -1932,7 +1962,8 @@
         "footprints",
         "clever",
         "escape"
-      ]
+      ],
+      "screenplayPage": 115
     },
     {
       "id": 32,
@@ -1977,7 +2008,8 @@
         "maze",
         "escape",
         "survival"
-      ]
+      ],
+      "screenplayPage": 117
     },
     {
       "id": 33,
@@ -2023,7 +2055,8 @@
         "always-been-here",
         "ambiguous-ending",
         "eternal"
-      ]
+      ],
+      "screenplayPage": 120
     }
   ]
 }
