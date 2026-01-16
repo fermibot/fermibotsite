@@ -46,7 +46,7 @@ const CONFIG = {
     // Layout dimensions
     DIAMETER: 900,
     STORAGE_KEY: 'lighthouse-viewed-scenes',
-    DATA_FILE: 'RobertEggers_2019_TheLighthouse_scenes_analyzed.json?v=2026.01.16.01'
+    DATA_FILE: 'RobertEggers_2019_TheLighthouse_scenes_analyzed.json?v=2026.01.16.02'
 };
 
 // ============================================
