@@ -1829,14 +1829,23 @@ function highlightConnections(node) {
         .classed('connection-highlighted', d => connectedIds.has(d.data.id) && d.data.id !== node.data.id)  // Connected nodes (not main)
         .classed('connection-dimmed', d => !connectedIds.has(d.data.id));
 
-    // Highlight relevant links instantly
+    // Highlight relevant links instantly - keep all visible, brighten relevant ones
     linkGroup.selectAll('.link')
-        .style('opacity', d => {
-            const isFromNode = (d.source.data.id === node.data.id);
-            return isFromNode ? 1 : 0.1;
-        })
         .classed('highlighted', d => d.source.data.id === node.data.id)
-        .classed('dimmed', d => d.source.data.id !== node.data.id);
+        .attr('stroke-width', d => {
+            const isFromNode = (d.source.data.id === node.data.id);
+            if (isFromNode) {
+                return d.type === 'callback' ? 2.0 : 2.5; // Thicker when highlighted
+            }
+            return d.type === 'callback' ? 1.0 : 1.2; // Normal width
+        })
+        .attr('stroke-opacity', d => {
+            const isFromNode = (d.source.data.id === node.data.id);
+            if (isFromNode) {
+                return d.type === 'callback' ? 0.9 : 0.8; // Brighter when highlighted
+            }
+            return d.type === 'callback' ? 0.5 : 0.4; // Normal opacity
+        });
 }
 
 function unhighlightAll() {
@@ -1849,11 +1858,11 @@ function unhighlightAll() {
         .classed('connection-highlighted', false)
         .classed('connection-dimmed', false);
 
-    // Remove highlights instantly
+    // Reset all links to normal state
     linkGroup.selectAll('.link')
-        .style('opacity', null)
         .classed('highlighted', false)
-        .classed('dimmed', false);
+        .attr('stroke-width', d => d.type === 'callback' ? 1.0 : 1.2)
+        .attr('stroke-opacity', d => d.type === 'callback' ? 0.5 : 0.4);
 }
 
 // ============================================
