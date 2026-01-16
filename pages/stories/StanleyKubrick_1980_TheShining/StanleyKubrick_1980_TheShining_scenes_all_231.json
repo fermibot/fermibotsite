@@ -537,7 +537,79 @@
         ],
         "depth": "deep"
       }
-    ]
+    ],
+    "chapters": {
+      "ch1-interview": {
+        "name": "\ud83d\udccb The Interview",
+        "description": "Jack Torrance's job interview at the Overlook Hotel",
+        "color": "#5D4037",
+        "icon": "\ud83d\udccb",
+        "sceneCount": 6
+      },
+      "ch2-arrival": {
+        "name": "\ud83c\udfe8 Welcome to the Overlook",
+        "description": "Family arrives, hotel tour, closing day preparations",
+        "color": "#795548",
+        "icon": "\ud83c\udfe8",
+        "sceneCount": 33
+      },
+      "ch3-month-later": {
+        "name": "\u2744\ufe0f A Month Later",
+        "description": "Winter isolation begins, family alone in the hotel",
+        "color": "#607D8B",
+        "icon": "\u2744\ufe0f",
+        "sceneCount": 17
+      },
+      "ch4-unraveling": {
+        "name": "\ud83d\udcdd All Work and No Play",
+        "description": "Wendy discovers the manuscript, Jack deteriorates",
+        "color": "#455A64",
+        "icon": "\ud83d\udcdd",
+        "sceneCount": 23
+      },
+      "ch5-gold-room": {
+        "name": "\ud83c\udf78 The Gold Room",
+        "description": "Jack meets Lloyd, the Room 237 incident",
+        "color": "#F57F17",
+        "icon": "\ud83c\udf78",
+        "sceneCount": 24
+      },
+      "ch6-grady": {
+        "name": "\ud83d\udc64 Mr. Grady",
+        "description": "Bathroom conversation: 'You've always been the caretaker'",
+        "color": "#6A1B9A",
+        "icon": "\ud83d\udc64",
+        "sceneCount": 10
+      },
+      "ch7-confrontation": {
+        "name": "\u26be The Confrontation",
+        "description": "Baseball bat on stairs, locked in the pantry",
+        "color": "#D32F2F",
+        "icon": "\u26be",
+        "sceneCount": 10
+      },
+      "ch8-heres-johnny": {
+        "name": "\ud83e\ude93 Here's Johnny",
+        "description": "Halloran's rescue attempt, the door scene",
+        "color": "#B71C1C",
+        "icon": "\ud83e\ude93",
+        "sceneCount": 10
+      },
+      "ch9-maze": {
+        "name": "\ud83c\udf32 The Maze",
+        "description": "Final chase through the frozen hedge maze",
+        "color": "#1B5E20",
+        "icon": "\ud83c\udf32",
+        "sceneCount": 8
+      },
+      "ch10-photograph": {
+        "name": "\ud83d\udcf8 July 4th, 1921",
+        "description": "The photograph reveals Jack has always been here",
+        "color": "#424242",
+        "icon": "\ud83d\udcf8",
+        "sceneCount": 1
+      }
+    }
   },
   "scenes": [
     {
@@ -610,7 +682,8 @@
           "category": "Structure",
           "relevance": "key"
         }
-      ]
+      ],
+      "chapter": "ch1-interview"
     },
     {
       "id": 2,
@@ -679,7 +752,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch1-interview"
     },
     {
       "id": 3,
@@ -773,7 +847,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch1-interview"
     },
     {
       "id": 4,
@@ -865,7 +940,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch1-interview"
     },
     {
       "id": 5,
@@ -961,7 +1037,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch1-interview"
     },
     {
       "id": 6,
@@ -1102,7 +1179,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch1-interview"
     },
     {
       "id": 7,
@@ -1325,7 +1403,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 8,
@@ -1482,7 +1561,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 9,
@@ -1607,7 +1687,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 10,
@@ -1744,7 +1825,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 11,
@@ -1843,7 +1925,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 12,
@@ -1938,7 +2021,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 13,
@@ -2075,7 +2159,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 14,
@@ -2198,7 +2283,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 15,
@@ -2309,7 +2395,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 16,
@@ -2405,7 +2492,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 17,
@@ -2503,7 +2591,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 18,
@@ -2644,7 +2733,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 19,
@@ -2830,7 +2920,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 20,
@@ -3089,7 +3180,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 21,
@@ -3165,7 +3257,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 22,
@@ -3330,7 +3423,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 23,
@@ -3495,7 +3589,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 24,
@@ -3575,7 +3670,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 25,
@@ -3795,7 +3891,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 26,
@@ -3953,7 +4050,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 27,
@@ -4051,7 +4149,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 28,
@@ -4149,7 +4248,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 29,
@@ -4280,7 +4380,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 30,
@@ -4432,7 +4533,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 31,
@@ -4545,7 +4647,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 32,
@@ -4755,7 +4858,8 @@
           "category": "Tone",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 33,
@@ -4909,7 +5013,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 34,
@@ -5069,7 +5174,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 35,
@@ -5235,7 +5341,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 36,
@@ -5337,7 +5444,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 37,
@@ -5529,7 +5637,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 38,
@@ -5662,7 +5771,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 39,
@@ -6037,7 +6147,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch2-arrival"
     },
     {
       "id": 40,
@@ -6121,7 +6232,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch3-month-later"
     },
     {
       "id": 41,
@@ -6199,7 +6311,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch3-month-later"
     },
     {
       "id": 42,
@@ -6284,7 +6397,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch3-month-later"
     },
     {
       "id": 43,
@@ -6358,7 +6472,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch3-month-later"
     },
     {
       "id": 44,
@@ -6595,7 +6710,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch3-month-later"
     },
     {
       "id": 45,
@@ -6726,7 +6842,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch3-month-later"
     },
     {
       "id": 46,
@@ -6880,7 +6997,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch3-month-later"
     },
     {
       "id": 47,
@@ -7019,7 +7137,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch3-month-later"
     },
     {
       "id": 48,
@@ -7152,7 +7271,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch3-month-later"
     },
     {
       "id": 49,
@@ -7268,7 +7388,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch3-month-later"
     },
     {
       "id": 50,
@@ -7342,7 +7463,8 @@
           "category": "Structure",
           "relevance": "key"
         }
-      ]
+      ],
+      "chapter": "ch3-month-later"
     },
     {
       "id": 51,
@@ -7496,7 +7618,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch3-month-later"
     },
     {
       "id": 52,
@@ -7622,7 +7745,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch3-month-later"
     },
     {
       "id": 53,
@@ -7833,7 +7957,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch3-month-later"
     },
     {
       "id": 54,
@@ -7950,7 +8075,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch3-month-later"
     },
     {
       "id": 55,
@@ -8036,7 +8162,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch3-month-later"
     },
     {
       "id": 56,
@@ -8107,7 +8234,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch3-month-later"
     },
     {
       "id": 57,
@@ -8180,7 +8308,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch4-unraveling"
     },
     {
       "id": 58,
@@ -8282,7 +8411,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch4-unraveling"
     },
     {
       "id": 59,
@@ -8377,7 +8507,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch4-unraveling"
     },
     {
       "id": 60,
@@ -8493,7 +8624,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch4-unraveling"
     },
     {
       "id": 61,
@@ -8584,7 +8716,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch4-unraveling"
     },
     {
       "id": 62,
@@ -8675,7 +8808,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch4-unraveling"
     },
     {
       "id": 63,
@@ -8795,7 +8929,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch4-unraveling"
     },
     {
       "id": 64,
@@ -8898,7 +9033,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch4-unraveling"
     },
     {
       "id": 65,
@@ -9000,7 +9136,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch4-unraveling"
     },
     {
       "id": 66,
@@ -9075,7 +9212,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch4-unraveling"
     },
     {
       "id": 67,
@@ -9170,7 +9308,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch4-unraveling"
     },
     {
       "id": 68,
@@ -9275,7 +9414,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch4-unraveling"
     },
     {
       "id": 69,
@@ -9431,7 +9571,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch4-unraveling"
     },
     {
       "id": 70,
@@ -9645,7 +9786,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch4-unraveling"
     },
     {
       "id": 71,
@@ -9812,7 +9954,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch4-unraveling"
     },
     {
       "id": 72,
@@ -10074,7 +10217,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch4-unraveling"
     },
     {
       "id": 73,
@@ -10183,7 +10327,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch4-unraveling"
     },
     {
       "id": 74,
@@ -10339,7 +10484,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch4-unraveling"
     },
     {
       "id": 75,
@@ -10427,7 +10573,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch4-unraveling"
     },
     {
       "id": 76,
@@ -10533,7 +10680,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch4-unraveling"
     },
     {
       "id": 77,
@@ -10657,7 +10805,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch4-unraveling"
     },
     {
       "id": 78,
@@ -10836,7 +10985,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch4-unraveling"
     },
     {
       "id": 79,
@@ -11041,7 +11191,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch4-unraveling"
     },
     {
       "id": 80,
@@ -11280,7 +11431,8 @@
           "category": "Tone",
           "relevance": "key"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 81,
@@ -11463,7 +11615,8 @@
           "category": "Tone",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 82,
@@ -11666,7 +11819,8 @@
           "category": "Tone",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 83,
@@ -11904,7 +12058,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 84,
@@ -12065,7 +12220,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 85,
@@ -12200,7 +12356,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 86,
@@ -12318,7 +12475,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 87,
@@ -12466,7 +12624,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 88,
@@ -12588,7 +12747,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 89,
@@ -12750,7 +12910,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 90,
@@ -12877,7 +13038,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 91,
@@ -13031,7 +13193,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 92,
@@ -13186,7 +13349,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 93,
@@ -13336,7 +13500,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 94,
@@ -13509,7 +13674,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 95,
@@ -13717,7 +13883,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 96,
@@ -13840,7 +14007,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 97,
@@ -13935,7 +14103,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 98,
@@ -14045,7 +14214,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 99,
@@ -14212,7 +14382,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 100,
@@ -14418,7 +14589,8 @@
           "category": "Tone",
           "relevance": "key"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 101,
@@ -14635,7 +14807,8 @@
           "category": "Tone",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 102,
@@ -14807,7 +14980,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 103,
@@ -14983,7 +15157,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch5-gold-room"
     },
     {
       "id": 104,
@@ -15149,7 +15324,8 @@
           "category": "Tone",
           "relevance": "key"
         }
-      ]
+      ],
+      "chapter": "ch6-grady"
     },
     {
       "id": 105,
@@ -15330,7 +15506,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch6-grady"
     },
     {
       "id": 106,
@@ -15523,7 +15700,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch6-grady"
     },
     {
       "id": 107,
@@ -15704,7 +15882,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch6-grady"
     },
     {
       "id": 108,
@@ -15835,7 +16014,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch6-grady"
     },
     {
       "id": 109,
@@ -15971,7 +16151,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch6-grady"
     },
     {
       "id": 110,
@@ -16094,7 +16275,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch6-grady"
     },
     {
       "id": 111,
@@ -16205,7 +16387,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch6-grady"
     },
     {
       "id": 112,
@@ -16425,7 +16608,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch6-grady"
     },
     {
       "id": 113,
@@ -16579,7 +16763,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch6-grady"
     },
     {
       "id": 114,
@@ -16761,7 +16946,8 @@
           "category": "Tone",
           "relevance": "key"
         }
-      ]
+      ],
+      "chapter": "ch7-confrontation"
     },
     {
       "id": 115,
@@ -16925,7 +17111,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch7-confrontation"
     },
     {
       "id": 116,
@@ -17049,7 +17236,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch7-confrontation"
     },
     {
       "id": 117,
@@ -17178,7 +17366,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch7-confrontation"
     },
     {
       "id": 118,
@@ -17332,7 +17521,8 @@
           "category": "Tone",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch7-confrontation"
     },
     {
       "id": 119,
@@ -17531,7 +17721,8 @@
           "category": "Tone",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch7-confrontation"
     },
     {
       "id": 120,
@@ -17813,7 +18004,8 @@
           "category": "Tone",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch7-confrontation"
     },
     {
       "id": 121,
@@ -17939,7 +18131,8 @@
           "category": "Tone",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch7-confrontation"
     },
     {
       "id": 122,
@@ -18086,7 +18279,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch7-confrontation"
     },
     {
       "id": 123,
@@ -18216,7 +18410,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch7-confrontation"
     },
     {
       "id": 124,
@@ -18470,7 +18665,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch8-heres-johnny"
     },
     {
       "id": 125,
@@ -18569,7 +18765,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch8-heres-johnny"
     },
     {
       "id": 126,
@@ -18741,7 +18938,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch8-heres-johnny"
     },
     {
       "id": 127,
@@ -18919,7 +19117,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch8-heres-johnny"
     },
     {
       "id": 128,
@@ -19054,7 +19253,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch8-heres-johnny"
     },
     {
       "id": 129,
@@ -19194,7 +19394,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch8-heres-johnny"
     },
     {
       "id": 130,
@@ -19358,7 +19559,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch8-heres-johnny"
     },
     {
       "id": 131,
@@ -19529,7 +19731,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch8-heres-johnny"
     },
     {
       "id": 132,
@@ -19646,7 +19849,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch8-heres-johnny"
     },
     {
       "id": 133,
@@ -19783,7 +19987,8 @@
           "category": "Tone",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch8-heres-johnny"
     },
     {
       "id": 134,
@@ -19914,7 +20119,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch9-maze"
     },
     {
       "id": 135,
@@ -20084,7 +20290,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch9-maze"
     },
     {
       "id": 136,
@@ -20256,7 +20463,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch9-maze"
     },
     {
       "id": 137,
@@ -20437,7 +20645,8 @@
           "category": "Structure",
           "relevance": "related"
         }
-      ]
+      ],
+      "chapter": "ch9-maze"
     },
     {
       "id": 138,
@@ -20540,7 +20749,8 @@
           "category": "Interpretation",
           "relevance": "key"
         }
-      ]
+      ],
+      "chapter": "ch9-maze"
     },
     {
       "id": 139,
@@ -20709,7 +20919,8 @@
           "category": "Interpretation",
           "relevance": "key"
         }
-      ]
+      ],
+      "chapter": "ch9-maze"
     },
     {
       "id": 140,
@@ -20932,7 +21143,8 @@
           "category": "Interpretation",
           "relevance": "key"
         }
-      ]
+      ],
+      "chapter": "ch9-maze"
     },
     {
       "id": 141,
@@ -21140,7 +21352,8 @@
           "category": "Interpretation",
           "relevance": "key"
         }
-      ]
+      ],
+      "chapter": "ch9-maze"
     },
     {
       "id": 142,
@@ -21366,7 +21579,8 @@
           "category": "Interpretation",
           "relevance": "key"
         }
-      ]
+      ],
+      "chapter": "ch10-photograph"
     }
   ]
 }

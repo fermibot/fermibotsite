@@ -435,7 +435,8 @@ async function loadSceneData() {
         const data = await response.json();
         state.scenes = data.scenes;
         state.discussionQuestions = data.metadata?.discussionQuestions || [];
-        console.log(`Loaded ${state.scenes.length} The Shining scenes and ${state.discussionQuestions.length} discussion questions`);
+        state.chapters = data.metadata?.chapters || {};
+        console.log(`Loaded ${state.scenes.length} The Shining scenes, ${state.discussionQuestions.length} discussion questions, and ${Object.keys(state.chapters).length} chapters`);
         return true;
     } catch (error) {
         console.error('Failed to load scene data:', error);
@@ -806,6 +807,86 @@ function createLegendWithProgress() {
     // Separator
     grid.append('div').attr('class', 'legend-separator');
 
+    // Section label for Chapters - collapsible
+    const chaptersHeader = grid.append('div')
+        .attr('class', 'legend-section-label legend-collapsible-header')
+        .style('cursor', 'pointer')
+        .style('user-select', 'none')
+        .on('click', function() {
+            const content = d3.select(this.nextSibling);
+            const isCollapsed = content.style('display') === 'none';
+            content.style('display', isCollapsed ? 'block' : 'none');
+            d3.select(this).select('.collapse-icon').text(isCollapsed ? '▼' : '▶');
+        });
+
+    chaptersHeader.append('span')
+        .attr('class', 'collapse-icon')
+        .text('▼')
+        .style('margin-right', '0.5rem')
+        .style('font-size', '0.7rem');
+
+    chaptersHeader.append('span')
+        .text('📖 Chapters:');
+
+    // Chapters - 2 column layout for readability
+    const chaptersContainer = grid.append('div')
+        .style('display', 'grid')
+        .style('grid-template-columns', 'repeat(2, 1fr)')
+        .style('gap', '0.5rem')
+        .style('margin-top', '0.5rem');
+
+    // Get chapters in order
+    const chapterOrder = ['ch1-interview', 'ch2-arrival', 'ch3-month-later', 'ch4-unraveling', 'ch5-gold-room', 'ch6-grady', 'ch7-confrontation', 'ch8-heres-johnny', 'ch9-maze', 'ch10-photograph'];
+
+    chapterOrder.forEach(chapterId => {
+        const chapter = state.chapters[chapterId];
+        if (!chapter) return;
+
+        const item = chaptersContainer.append('div')
+            .attr('class', 'legend-item legend-chapter-item')
+            .attr('data-chapter', chapterId)
+            .attr('title', `${chapter.description} (${chapter.sceneCount} scenes)`)
+            .style('cursor', 'pointer')
+            .style('padding', '0.4rem 0.6rem')
+            .style('border-radius', '4px')
+            .style('transition', 'all 0.2s ease')
+            .style('display', 'flex')
+            .style('align-items', 'center')
+            .style('gap', '0.5rem')
+            .on('click', () => toggleChapterFilter(chapterId));
+
+        // Chapter number
+        const chapterNum = chapterId.split('-')[0].replace('ch', '');
+        item.append('span')
+            .style('font-weight', '700')
+            .style('color', chapter.color)
+            .style('font-size', '0.75rem')
+            .text(chapterNum);
+
+        // Chapter icon
+        item.append('span')
+            .style('font-size', '1rem')
+            .text(chapter.icon);
+
+        // Chapter name (without icon since we have it separately)
+        const nameWithoutIcon = chapter.name.replace(/^[^\s]+\s/, ''); // Remove first emoji
+        item.append('span')
+            .attr('class', 'legend-text')
+            .style('font-size', '0.8rem')
+            .style('flex', '1')
+            .text(nameWithoutIcon);
+
+        // Scene count
+        item.append('span')
+            .style('font-size', '0.7rem')
+            .style('color', '#888')
+            .style('font-weight', '500')
+            .text(`(${chapter.sceneCount})`);
+    });
+
+    // Separator
+    grid.append('div').attr('class', 'legend-separator');
+
     // Section label for Psychological States - inline with items
     const statesContainer = grid.append('div')
         .style('display', 'flex')
@@ -1016,6 +1097,7 @@ function createLegendWithProgress() {
 
 const legendState = {
     activeActs: new Set(),
+    activeChapters: new Set(),
     activePsychological: new Set(),
     activeTags: new Set(),
     activeQuestions: new Set()
@@ -1032,6 +1114,23 @@ function toggleActFilter(actId) {
     d3.selectAll('.legend-item[data-act]')
         .classed('active', function() {
             return legendState.activeActs.has(this.dataset.act);
+        });
+
+    // Update visualization
+    applyLegendFilters();
+}
+
+function toggleChapterFilter(chapterId) {
+    if (legendState.activeChapters.has(chapterId)) {
+        legendState.activeChapters.delete(chapterId);
+    } else {
+        legendState.activeChapters.add(chapterId);
+    }
+
+    // Update legend item appearance
+    d3.selectAll('.legend-chapter-item')
+        .classed('active', function() {
+            return legendState.activeChapters.has(this.dataset.chapter);
         });
 
     // Update visualization
@@ -1112,6 +1211,7 @@ function applyLegendFilters() {
     if (!allNodes || !nodeGroup) return;
 
     const hasActFilter = legendState.activeActs.size > 0;
+    const hasChapterFilter = legendState.activeChapters.size > 0;
     const hasPsychologicalFilter = legendState.activePsychological.size > 0;
     const hasTagFilter = legendState.activeTags.size > 0;
     const hasQuestionFilter = legendState.activeQuestions.size > 0;
@@ -1124,6 +1224,11 @@ function applyLegendFilters() {
         // Act filter
         if (hasActFilter) {
             visible = visible && legendState.activeActs.has(node.data.act);
+        }
+
+        // Chapter filter
+        if (hasChapterFilter) {
+            visible = visible && legendState.activeChapters.has(node.data.chapter);
         }
 
         // Psychological filter
