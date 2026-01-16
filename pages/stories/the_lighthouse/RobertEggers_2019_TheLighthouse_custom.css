@@ -880,7 +880,7 @@
     font-size: 0.95rem;
 }
 
-.tooltip-types {
+.tooltip-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.3rem;

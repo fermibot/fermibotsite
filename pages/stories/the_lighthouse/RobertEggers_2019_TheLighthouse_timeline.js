@@ -464,9 +464,7 @@ function showTooltip(d, event) {
     if (!d.data.id) return; // Only show for scenes
 
     const scene = d.data;
-    const types = scene.types ? scene.types.map(t =>
-        `<span class="tooltip-type" style="background: ${CONFIG.TYPE_COLORS[t] || '#666'};">${t}</span>`
-    ).join(' ') : '';
+    const tags = scene.tags && scene.tags.length > 0 ? buildTagBadges(scene.tags) : '';
 
     // Location and time info
     const locationTime = scene.location || scene.time ?
@@ -478,9 +476,8 @@ function showTooltip(d, event) {
             <span class="tooltip-title">${scene.id}. ${scene.title}</span>
         </div>
         ${locationTime}
-        <div class="tooltip-types">${types}</div>
+        ${tags ? `<div class="tooltip-tags">${tags}</div>` : ''}
         <div class="tooltip-summary">${scene.summary}</div>
-        ${scene.symbols ? `<div class="tooltip-symbols"><strong>Key Symbols:</strong> ${scene.symbols.join(', ')}</div>` : ''}
         <div class="tooltip-hint">Click for full details & connections</div>
     `);
 
@@ -547,11 +544,6 @@ function showInfoCard(d, event, updateInPlace = false) {
     const actColor = getActColor(scene.act);
     const isViewed = state.viewedScenes.has(scene.id);
 
-
-    const types = scene.types ? scene.types.map(t =>
-        `<span class="info-card-type" style="background: ${CONFIG.TYPE_COLORS[t] || '#666'};">${t}</span>`
-    ).join(' ') : '';
-
     // Build connections HTML
     let connectionsHTML = '';
 
@@ -604,7 +596,6 @@ function showInfoCard(d, event, updateInPlace = false) {
             ${scene.time ? `<span class="time-text">🕐 ${scene.time}</span>` : ''}
         </div>
         ` : ''}
-        <div class="info-card-types">${types}</div>
         ${scene.tags && scene.tags.length > 0 ? `
         <div class="info-card-tags">
             ${buildTagBadges(scene.tags)}
