@@ -1073,8 +1073,8 @@ function createLegendWithProgress() {
 
     // Connection types inline
     const connectionTypes = [
-        { key: 'foreshadowing', label: 'Foreshadows (what this scene hints at)', style: 'solid', color: '#3498db' },
-        { key: 'callback', label: 'Callbacks (what earlier scenes hinted at this)', style: 'dashed', color: '#9b59b6' }
+        { key: 'foreshadowing', label: 'Foreshadows (what this scene hints at)', style: 'solid', color: '#00bcd4' },
+        { key: 'callback', label: 'Callbacks (what earlier scenes hinted at this)', style: 'dashed', color: '#8b0000' }
     ];
 
     connectionTypes.forEach(conn => {
@@ -1097,8 +1097,9 @@ function createLegendWithProgress() {
             .attr('x2', 30)
             .attr('y2', 6)
             .attr('stroke', conn.color)
-            .attr('stroke-width', 2)
-            .attr('stroke-dasharray', conn.style === 'dashed' ? '5,3' : null);
+            .attr('stroke-width', 1.5)
+            .attr('stroke-dasharray', conn.style === 'dashed' ? '4,2' : null)
+            .attr('stroke-opacity', 0.6);
 
         item.append('span')
             .attr('class', 'legend-text')
@@ -1604,6 +1605,32 @@ function initVisualization() {
         .append('feMergeNode')
         .attr('in', d => d);
 
+    // Add spooky glow filter for connection lines
+    const spookyFilter = defs.append('filter')
+        .attr('id', 'spooky-glow')
+        .attr('x', '-50%')
+        .attr('y', '-50%')
+        .attr('width', '200%')
+        .attr('height', '200%');
+
+    spookyFilter.append('feGaussianBlur')
+        .attr('in', 'SourceGraphic')
+        .attr('stdDeviation', '1.5')
+        .attr('result', 'blur');
+
+    spookyFilter.append('feColorMatrix')
+        .attr('in', 'blur')
+        .attr('type', 'matrix')
+        .attr('values', '1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1.5 0')
+        .attr('result', 'glow');
+
+    spookyFilter.append('feMerge')
+        .selectAll('feMergeNode')
+        .data(['glow', 'SourceGraphic'])
+        .enter()
+        .append('feMergeNode')
+        .attr('in', d => d);
+
     g = svg.append('g');
 
     // Build hierarchy
@@ -1647,12 +1674,14 @@ function initVisualization() {
             return line(sourcePath);
         })
         .attr('stroke', d => {
-            if (d.type === 'callback') return '#9b59b6';
-            return '#3498db';
+            if (d.type === 'callback') return '#8b0000'; // Dark blood red for callbacks
+            return '#00bcd4'; // Eerie cyan for foreshadowing
         })
-        .attr('stroke-width', 1.5)
-        .attr('stroke-opacity', 0.3)
-        .attr('stroke-dasharray', d => d.type === 'callback' ? '5,3' : null);
+        .attr('stroke-width', 0.8)
+        .attr('stroke-opacity', 0.25)
+        .attr('stroke-dasharray', d => d.type === 'callback' ? '4,2' : null)
+        .attr('filter', 'url(#spooky-glow)')
+        .style('transition', 'all 0.3s ease');
 
     // Draw nodes
     nodeGroup = g.append('g')
