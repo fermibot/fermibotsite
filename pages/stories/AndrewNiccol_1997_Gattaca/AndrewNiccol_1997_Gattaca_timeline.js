@@ -17,12 +17,12 @@ const CONFIG = {
         'act3': '#90A4AE'   // Silver - Resolution & ascent
     },
 
-    // Identity Risk colors (Gattaca-themed)
+    // Identity Risk colors (Gattaca-themed) - distinct progression
     IDENTITY_RISK_COLORS: {
         'secure': '#4CAF50',     // Green - Identity safe
-        'watchful': '#FFC107',   // Yellow - Heightened awareness
-        'threatened': '#FF9800', // Orange - At risk
-        'crisis': '#F44336'      // Red - Exposure imminent
+        'watchful': '#29B6F6',   // Light blue - Heightened awareness
+        'threatened': '#FF5722', // Deep orange - At risk
+        'crisis': '#E53935'      // Red - Exposure imminent
     },
 
     // Act icons
@@ -42,7 +42,7 @@ const CONFIG = {
     // Layout
     DIAMETER: 900,
     STORAGE_KEY: 'gattaca-viewed-scenes',
-    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.46'
+    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.47'
 };
 
 // ============================================
@@ -974,9 +974,9 @@ function createLegendWithProgress() {
 
     const identityRiskStates = [
         { key: 'secure', label: 'Secure', color: '#4CAF50', description: 'Identity safe, routine deception maintained' },
-        { key: 'watchful', label: 'Watchful', color: '#FFC107', description: 'Heightened awareness, need to be careful' },
-        { key: 'threatened', label: 'Threatened', color: '#FF9800', description: 'Identity at risk, close calls with exposure' },
-        { key: 'crisis', label: 'Crisis', color: '#F44336', description: 'Exposure imminent or direct confrontation' }
+        { key: 'watchful', label: 'Watchful', color: '#29B6F6', description: 'Heightened awareness, need to be careful' },
+        { key: 'threatened', label: 'Threatened', color: '#FF5722', description: 'Identity at risk, close calls with exposure' },
+        { key: 'crisis', label: 'Crisis', color: '#E53935', description: 'Exposure imminent or direct confrontation' }
     ];
 
     identityRiskStates.forEach(riskState => {
