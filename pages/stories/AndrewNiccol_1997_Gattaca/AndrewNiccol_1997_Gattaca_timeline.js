@@ -1966,6 +1966,7 @@ function showTooltip(node, event) {
             <span class="tooltip-title">${scene.id}. ${scene.title}</span>
         </div>
         ${locationTimeHtml}
+        ${summaryText ? `<div class="tooltip-summary">${summaryText}</div>` : ''}
         <div class="tooltip-cognitive">
             ${psychologicalHtml}
         </div>
