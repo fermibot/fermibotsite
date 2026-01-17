@@ -17,12 +17,12 @@ const CONFIG = {
         'act3': '#90A4AE'   // Silver - Resolution & ascent
     },
 
-    // Tension state colors (matching Gattaca's visual palette)
-    PSYCHOLOGICAL_COLORS: {
-        'low': '#4FC3F7',      // Light blue - Safe
-        'medium': '#FFA726',   // Amber - Concern
-        'high': '#EF5350',     // Red - Crisis
-        'critical': '#C62828'  // Dark red - Exposure imminent
+    // Identity Risk colors (Gattaca-themed)
+    IDENTITY_RISK_COLORS: {
+        'secure': '#4CAF50',     // Green - Identity safe
+        'watchful': '#FFC107',   // Yellow - Heightened awareness
+        'threatened': '#FF9800', // Orange - At risk
+        'crisis': '#F44336'      // Red - Exposure imminent
     },
 
     // Act icons
@@ -42,7 +42,7 @@ const CONFIG = {
     // Layout
     DIAMETER: 900,
     STORAGE_KEY: 'gattaca-viewed-scenes',
-    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.42'
+    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.45'
 };
 
 // ============================================
@@ -732,8 +732,8 @@ function getActColor(act) {
     return CONFIG.ACT_COLORS[act] || '#666';
 }
 
-function getPsychologicalColor(enhancementState) {
-    return CONFIG.PSYCHOLOGICAL_COLORS[enhancementState] || '#666';
+function getIdentityRiskColor(identityRisk) {
+    return CONFIG.IDENTITY_RISK_COLORS[identityRisk] || '#666';
 }
 
 function getActIcon(act) {
@@ -969,35 +969,35 @@ function createLegendWithProgress() {
     statesContainer.append('span')
         .attr('class', 'legend-section-label')
         .style('margin', '0')
-        .text('Enhancement States:');
+        .text('Identity Risk:');
 
-    // Enhancement states - inline
+    // Identity risk states - Gattaca themed
     const statesRow = statesContainer.append('div')
         .attr('class', 'legend-items-row')
         .style('margin', '0');
 
-    const enhancementStates = [
-        { key: 'baseline', label: 'Baseline', color: '#757575' },
-        { key: 'enhanced', label: 'Enhanced', color: '#00BCD4' },
-        { key: 'withdrawal', label: 'Withdrawal', color: '#9C27B0' },
-        { key: 'crisis', label: 'Crisis', color: '#F44336' }
+    const identityRiskStates = [
+        { key: 'secure', label: 'Secure', color: '#4CAF50', description: 'Identity safe, routine deception maintained' },
+        { key: 'watchful', label: 'Watchful', color: '#FFC107', description: 'Heightened awareness, need to be careful' },
+        { key: 'threatened', label: 'Threatened', color: '#FF9800', description: 'Identity at risk, close calls with exposure' },
+        { key: 'crisis', label: 'Crisis', color: '#F44336', description: 'Exposure imminent or direct confrontation' }
     ];
 
-    enhancementStates.forEach(state => {
+    identityRiskStates.forEach(riskState => {
         const item = statesRow.append('div')
             .attr('class', 'legend-item legend-marker-item')
-            .attr('data-marker', state.key)
-            .attr('title', `Click to filter: ${state.label}`)
-            .on('click', () => togglePsychologicalFilter(state.key));
+            .attr('data-marker', riskState.key)
+            .attr('title', riskState.description)
+            .on('click', () => togglePsychologicalFilter(riskState.key));
 
         item.append('span')
             .attr('class', 'legend-color')
-            .style('background-color', state.color)
-            .style('border', `2px solid ${state.color}`);
+            .style('background-color', riskState.color)
+            .style('border', `2px solid ${riskState.color}`);
 
         item.append('span')
             .attr('class', 'legend-text')
-            .text(state.label);
+            .text(riskState.label);
     });
 
     // Separator
@@ -1351,7 +1351,7 @@ function applyLegendFilters() {
 
         // Psychological filter
         if (hasPsychologicalFilter) {
-            visible = visible && legendState.activePsychological.has(node.data.enhancementState);
+            visible = visible && legendState.activePsychological.has(node.data.identityRisk);
         }
 
         // Tag filter
@@ -1396,13 +1396,13 @@ function applyLegendFilters() {
 
             const sourceVisible = d.source.data.id &&
                 (!hasActFilter || legendState.activeActs.has(d.source.data.act)) &&
-                (!hasPsychologicalFilter || legendState.activePsychological.has(d.source.data.enhancementState)) &&
+                (!hasPsychologicalFilter || legendState.activePsychological.has(d.source.data.identityRisk)) &&
                 sourceHasMatchingTag &&
                 sourceHasMatchingQuestion;
 
             const targetVisible = d.target.data.id &&
                 (!hasActFilter || legendState.activeActs.has(d.target.data.act)) &&
-                (!hasPsychologicalFilter || legendState.activePsychological.has(d.target.data.enhancementState)) &&
+                (!hasPsychologicalFilter || legendState.activePsychological.has(d.target.data.identityRisk)) &&
                 targetHasMatchingTag &&
                 targetHasMatchingQuestion;
 
@@ -1589,7 +1589,7 @@ function showProgressModal() {
 
         scenes.forEach(scene => {
             const isViewed = state.viewedScenes.has(scene.id);
-            const psychState = scene.enhancementState || 'unknown';
+            const psychState = scene.identityRisk || 'unknown';
 
             modalHTML += `
                 <div class="progress-item ${isViewed ? 'viewed' : ''}" data-scene-id="${scene.id}">
@@ -1598,7 +1598,7 @@ function showProgressModal() {
                            onchange="window.toggleSceneViewed(${scene.id})">
                     <span class="progress-item-number">${scene.id}.</span>
                     <label class="progress-item-label">${scene.title}</label>
-                    <span class="progress-item-cognitive" style="background: ${getPsychologicalColor(psychState)}" title="${psychState}"></span>
+                    <span class="progress-item-cognitive" style="background: ${getIdentityRiskColor(psychState)}" title="${psychState}"></span>
                     <button class="progress-item-info-btn" onclick="window.showSceneFromModal(${scene.id})" title="View details">ℹ️</button>
                 </div>
             `;
@@ -1833,8 +1833,8 @@ function initVisualization() {
         .join('g')
         .attr('class', d => {
             let classes = 'node';
-            if (d.data.enhancementState) {
-                classes += ` ${d.data.enhancementState}`;
+            if (d.data.identityRisk) {
+                classes += ` ${d.data.identityRisk}`;
             }
             return classes;
         })
@@ -1870,7 +1870,7 @@ function initVisualization() {
     // Node circles with psychological state coloring
     nodes.append('circle')
         .attr('r', 6)
-        .attr('fill', d => getPsychologicalColor(d.data.enhancementState))
+        .attr('fill', d => getIdentityRiskColor(d.data.identityRisk))
         .attr('stroke', d => getActColor(d.data.act))
         .attr('stroke-width', 2);
 
@@ -1933,7 +1933,7 @@ function filterVisualization() {
     nodeGroup.selectAll('.node')
         .style('opacity', d => {
             let actMatch = state.currentFilter === 'all' || d.data.act === state.currentFilter;
-            let psychologicalMatch = !state.psychologicalFilter || d.data.enhancementState === state.psychologicalFilter;
+            let psychologicalMatch = !state.psychologicalFilter || d.data.identityRisk === state.psychologicalFilter;
             return (actMatch && psychologicalMatch) ? 1 : 0.2;
         });
 
@@ -1943,8 +1943,8 @@ function filterVisualization() {
                           d.source.data.act === state.currentFilter ||
                           d.target.data.act === state.currentFilter;
             let psychologicalMatch = !state.psychologicalFilter ||
-                                d.source.data.enhancementState === state.psychologicalFilter ||
-                                d.target.data.enhancementState === state.psychologicalFilter;
+                                d.source.data.identityRisk === state.psychologicalFilter ||
+                                d.target.data.identityRisk === state.psychologicalFilter;
             return (actMatch && psychologicalMatch) ? 0.3 : 0.05;
         });
 }
@@ -2052,7 +2052,7 @@ function showTooltip(node, event) {
         `<div class="tooltip-location">${locationTime.join(' • ')}</div>` : '';
 
     // Build psychological state
-    const psychologicalHtml = buildPsychologicalStateTags(scene.enhancementState);
+    const psychologicalHtml = buildIdentityRiskTags(scene.identityRisk);
 
     let html = `
         <div class="tooltip-header">
@@ -2654,36 +2654,45 @@ function buildTensionBar(scene) {
     </div>`;
 }
 
-function buildPsychologicalStateTags(enhancementState) {
-    if (!enhancementState) {
-        return '<span class="info-card-type psychological-unknown">❓ unknown</span>';
+function buildIdentityRiskTags(identityRisk) {
+    if (!identityRisk) {
+        return '<span class="info-card-type identity-risk-unknown">❓ unknown</span>';
     }
 
-    // Map psychological states to appropriate icons
+    // Map identity risk states to icons (Gattaca-themed)
     const stateIcons = {
-        'stable': '😊',
-        'deteriorating': '⚠️',
-        'psychotic': '😱'
+        'secure': '🛡️',
+        'watchful': '👁️',
+        'threatened': '⚠️',
+        'crisis': '🚨'
     };
 
-    const icon = stateIcons[enhancementState] || '❓';
-    const state = enhancementState.replace(/_/g, ' ');
-    return `<span class="info-card-type psychological-${enhancementState}">${icon} ${state}</span>`;
+    const stateLabels = {
+        'secure': 'Secure',
+        'watchful': 'Watchful',
+        'threatened': 'Threatened',
+        'crisis': 'Crisis'
+    };
+
+    const icon = stateIcons[identityRisk] || '❓';
+    const label = stateLabels[identityRisk] || identityRisk;
+    return `<span class="info-card-type identity-risk-${identityRisk}">${icon} ${label}</span>`;
 }
 
-function getPsychologicalStatePrefix(enhancementState) {
-    if (!enhancementState) {
+function getIdentityRiskPrefix(identityRisk) {
+    if (!identityRisk) {
         return '❓';
     }
 
-    // Map psychological states to appropriate icons
+    // Map identity risk states to icons
     const stateIcons = {
-        'stable': '😊',
-        'deteriorating': '⚠️',
-        'psychotic': '😱'
+        'secure': '🛡️',
+        'watchful': '👁️',
+        'threatened': '⚠️',
+        'crisis': '🚨'
     };
 
-    return stateIcons[enhancementState] || '❓';
+    return stateIcons[identityRisk] || '❓';
 }
 
 function buildConnectionsSection(scene) {
@@ -3038,11 +3047,11 @@ filterVisualization = function() {
         }
 
         if (state.psychologicalFilter) {
-            visible = visible && node.data.enhancementState === state.psychologicalFilter;
+            visible = visible && node.data.identityRisk === state.psychologicalFilter;
         }
 
         if (activeMarkers.size > 0) {
-            visible = visible && activeMarkers.has(node.data.enhancementState);
+            visible = visible && activeMarkers.has(node.data.identityRisk);
         }
 
         const nodeElement = nodeGroup.selectAll('.node').filter(d => d === node);
@@ -3055,13 +3064,13 @@ filterVisualization = function() {
         linkGroup.selectAll('.link').style('opacity', d => {
             const sourceVisible = d.source.data.id &&
                 (state.currentFilter === 'all' || d.source.data.act === state.currentFilter) &&
-                (!state.psychologicalFilter || d.source.data.enhancementState === state.psychologicalFilter) &&
-                (activeMarkers.size === 0 || activeMarkers.has(d.source.data.enhancementState));
+                (!state.psychologicalFilter || d.source.data.identityRisk === state.psychologicalFilter) &&
+                (activeMarkers.size === 0 || activeMarkers.has(d.source.data.identityRisk));
 
             const targetVisible = d.target.data.id &&
                 (state.currentFilter === 'all' || d.target.data.act === state.currentFilter) &&
-                (!state.psychologicalFilter || d.target.data.enhancementState === state.psychologicalFilter) &&
-                (activeMarkers.size === 0 || activeMarkers.has(d.target.data.enhancementState));
+                (!state.psychologicalFilter || d.target.data.identityRisk === state.psychologicalFilter) &&
+                (activeMarkers.size === 0 || activeMarkers.has(d.target.data.identityRisk));
 
             return (sourceVisible && targetVisible) ? 0.3 : 0.05;
         });
@@ -3213,7 +3222,7 @@ function initSearch() {
                 d.data.title.toLowerCase().includes(query) ||
                 (d.data.summary && d.data.summary.toLowerCase().includes(query)) ||
                 (d.data.tags && d.data.tags.some(t => t.toLowerCase().includes(query))) ||
-                (d.data.enhancementState && d.data.enhancementState.toLowerCase().includes(query));
+                (d.data.identityRisk && d.data.identityRisk.toLowerCase().includes(query));
 
             d3.select(this)
                 .classed('search-match', matches)
