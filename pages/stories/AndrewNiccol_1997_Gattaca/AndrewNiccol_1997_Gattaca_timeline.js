@@ -42,7 +42,7 @@ const CONFIG = {
     // Layout
     DIAMETER: 900,
     STORAGE_KEY: 'gattaca-viewed-scenes',
-    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.45'
+    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.46'
 };
 
 // ============================================
@@ -874,20 +874,16 @@ function createLegendWithProgress() {
         .style('column-gap', '2rem')
         .style('margin-top', '0.5rem');
 
-    // Get chapters in order
+    // Get chapters in order (Gattaca chapters)
     const chapterOrder = [
-        'ch01-rock-bottom',
-        'ch02-first-pill',
-        'ch03-crash-return',
-        'ch04-transformation',
-        'ch05-dark-side',
-        'ch06-wall-street',
-        'ch07-van-loon-deal',
-        'ch08-threats-multiply',
-        'ch09-desperate-chase',
-        'ch10-withdrawal',
-        'ch11-final-crisis',
-        'ch12-resolution'
+        'ch01-opening-ritual',
+        'ch02-flashback-birth',
+        'ch03-identity-swap',
+        'ch04-gattaca-life',
+        'ch05-murder-investigation',
+        'ch06-closing-in',
+        'ch07-truth-revealed',
+        'ch08-final-launch'
     ];
 
     chapterOrder.forEach(chapterId => {
