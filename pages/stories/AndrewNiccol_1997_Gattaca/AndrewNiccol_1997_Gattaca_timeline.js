@@ -42,7 +42,7 @@ const CONFIG = {
     // Layout
     DIAMETER: 900,
     STORAGE_KEY: 'gattaca-viewed-scenes',
-    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.49'
+    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.50'
 };
 
 // ============================================
@@ -50,126 +50,36 @@ const CONFIG = {
 // ============================================
 
 const DISCUSSION_QUESTIONS = [
-    {
-        id: 1,
-        question: "Is Vincent's deception at Gattaca morally justified given the genetic discrimination he faces?",
-        category: "Ethics",
-        tags: ["vincent", "identity", "genetics", "gattaca-corporation"],
-        relatedScenes: [25, 45, 85],
-        relatedTags: ["identity", "genetics", "vincent"]
-    },
-    {
-        id: 2,
-        question: "Does Vincent's 'borrowed ladder' identity diminish his genuine achievements?",
-        category: "Identity",
-        tags: ["vincent", "jerome-eugene", "identity", "achievement"],
-        relatedScenes: [1, 50, 120],
-        relatedTags: ["identity", "vincent", "jerome-eugene"]
-    },
-    {
-        id: 3,
-        question: "What does Eugene/Jerome's character arc say about the cost of genetic perfection?",
-        category: "Humanity",
-        tags: ["jerome-eugene", "genetics", "perfection"],
-        relatedScenes: [30, 90, 123],
-        relatedTags: ["jerome-eugene", "genetics"]
-    },
-    {
-        id: 4,
-        question: "Is the society in Gattaca's genetic discrimination fundamentally different from other forms of discrimination?",
-        category: "Society",
-        tags: ["genetics", "gattaca-corporation", "discrimination"],
-        relatedScenes: [15, 40, 70],
-        relatedTags: ["genetics", "gattaca-corporation"]
-    },
-    {
-        id: 5,
-        question: "How does the film explore the relationship between genetic potential and actual achievement?",
-        category: "Merit",
-        tags: ["genetics", "achievement", "vincent", "jerome-eugene"],
-        relatedScenes: [2, 60, 125],
-        relatedTags: ["genetics", "vincent"]
-    },
-    {
-        id: 6,
-        question: "What role does the daily deception ritual play in Vincent's psychology and identity?",
-        category: "Identity",
-        tags: ["vincent", "identity", "home"],
-        relatedScenes: [1, 2, 3],
-        relatedTags: ["vincent", "identity", "home"]
-    },
-    {
-        id: 7,
-        question: "Is Irene and Vincent's relationship built on genuine connection or mutual deception?",
-        category: "Relationships",
-        tags: ["irene", "vincent", "romance"],
-        relatedScenes: [51, 75, 110],
-        relatedTags: ["irene", "vincent", "romance"]
-    },
-    {
-        id: 8,
-        question: "How does the film critique our current use of genetic testing and selection?",
-        category: "Society",
-        tags: ["genetics", "ethics"],
-        relatedScenes: [11, 20, 40],
-        relatedTags: ["genetics"]
-    },
-    {
-        id: 9,
-        question: "What is the significance of Vincent beating Anton in swimming despite genetic inferiority?",
-        category: "Will vs. Genetics",
-        tags: ["vincent", "anton"],
-        relatedScenes: [18, 105],
-        relatedTags: ["vincent", "anton"]
-    },
-    {
-        id: 10,
-        question: "Does the film suggest that determination can overcome any genetic limitation?",
-        category: "Philosophy",
-        tags: ["vincent", "genetics", "achievement"],
-        relatedScenes: [5, 100, 125],
-        relatedTags: ["vincent", "genetics"]
-    },
-    {
-        id: 11,
-        question: "How does Doctor Lamar's final revelation reframe the entire film?",
-        category: "Ethics",
-        tags: ["vincent", "gattaca-corporation"],
-        relatedScenes: [124],
-        relatedTags: ["vincent", "gattaca-corporation"]
-    },
-    {
-        id: 12,
-        question: "What does Eugene's final act say about the burden of unfulfilled genetic potential?",
-        category: "Tragedy",
-        tags: ["jerome-eugene", "genetics"],
-        relatedScenes: [123],
-        relatedTags: ["jerome-eugene"]
-    },
-    {
-        id: 13,
-        question: "Is Vincent's heart defect a disability or a symbol of his authentic humanity?",
-        category: "Symbolism",
-        tags: ["vincent", "genetics"],
-        relatedScenes: [8, 95],
-        relatedTags: ["vincent", "genetics"]
-    },
-    {
-        id: 14,
-        question: "How does the film's retro-futuristic aesthetic comment on progress and technology?",
-        category: "Aesthetics",
-        tags: ["gattaca-corporation"],
-        relatedScenes: [4, 20, 30],
-        relatedTags: ["gattaca-corporation"]
-    },
-    {
-        id: 15,
-        question: "What does the film suggest about the relationship between identity and biology?",
-        category: "Identity",
-        tags: ["identity", "genetics", "vincent"],
-        relatedScenes: [1, 50, 125],
-        relatedTags: ["identity", "genetics", "vincent"]
-    }
+    { id: 1, question: "Is Vincent's deception at Gattaca morally justified given the genetic discrimination he faces?", category: "Ethics", theme: "Ethics & Deception", relatedTags: ["identity", "genetics", "vincent"] },
+    { id: 2, question: "Does Vincent's 'borrowed ladder' identity diminish his genuine achievements?", category: "Identity", theme: "Identity & Achievement", relatedTags: ["identity", "vincent", "jerome-eugene"] },
+    { id: 3, question: "What does Eugene/Jerome's character arc say about the cost of genetic perfection?", category: "Humanity", theme: "Perfection & Sacrifice", relatedTags: ["jerome-eugene", "genetics"] },
+    { id: 4, question: "Is the society in Gattaca's genetic discrimination fundamentally different from other forms of discrimination?", category: "Society", theme: "Discrimination & Society", relatedTags: ["genetics", "gattaca-corporation"] },
+    { id: 5, question: "How does the film explore the relationship between genetic potential and actual achievement?", category: "Merit", theme: "Merit & Potential", relatedTags: ["genetics", "vincent"] },
+    { id: 6, question: "What role does the daily deception ritual play in Vincent's psychology and identity?", category: "Identity", theme: "Identity & Achievement", relatedTags: ["vincent", "identity", "home"] },
+    { id: 7, question: "Is Irene and Vincent's relationship built on genuine connection or mutual deception?", category: "Relationships", theme: "Love & Trust", relatedTags: ["irene", "vincent", "romance"] },
+    { id: 8, question: "How does the film critique our current use of genetic testing and selection?", category: "Society", theme: "Discrimination & Society", relatedTags: ["genetics"] },
+    { id: 9, question: "What is the significance of Vincent beating Anton in swimming despite genetic inferiority?", category: "Will vs. Genetics", theme: "Will vs. Destiny", relatedTags: ["vincent", "anton"] },
+    { id: 10, question: "Does the film suggest that determination can overcome any genetic limitation?", category: "Philosophy", theme: "Will vs. Destiny", relatedTags: ["vincent", "genetics"] },
+    { id: 11, question: "How does Doctor Lamar's final revelation reframe the entire film?", category: "Ethics", theme: "Ethics & Deception", relatedTags: ["vincent", "gattaca-corporation", "lamar"] },
+    { id: 12, question: "What does Eugene's final act say about the burden of unfulfilled genetic potential?", category: "Tragedy", theme: "Perfection & Sacrifice", relatedTags: ["jerome-eugene"] },
+    { id: 13, question: "Is Vincent's heart defect a disability or a symbol of his authentic humanity?", category: "Symbolism", theme: "Symbolism & Meaning", relatedTags: ["vincent", "genetics"] },
+    { id: 14, question: "How does the film's retro-futuristic aesthetic comment on progress and technology?", category: "Aesthetics", theme: "Symbolism & Meaning", relatedTags: ["gattaca-corporation"] },
+    { id: 15, question: "What does the film suggest about the relationship between identity and biology?", category: "Identity", theme: "Identity & Achievement", relatedTags: ["identity", "genetics", "vincent"] },
+    { id: 16, question: "Why does Anton become so obsessed with proving Vincent's identity?", category: "Family", theme: "Family & Brotherhood", relatedTags: ["anton", "vincent", "investigation"] },
+    { id: 17, question: "How does the murder investigation create tension while also serving as commentary on surveillance?", category: "Society", theme: "Discrimination & Society", relatedTags: ["investigation", "gattaca-corporation"] },
+    { id: 18, question: "What does the Titan mission represent beyond a physical journey to space?", category: "Symbolism", theme: "Symbolism & Meaning", relatedTags: ["vincent", "gattaca-corporation", "titan-mission"] },
+    { id: 19, question: "How do Vincent and Eugene's trajectories mirror and contrast each other?", category: "Characters", theme: "Perfection & Sacrifice", relatedTags: ["vincent", "jerome-eugene"] },
+    { id: 20, question: "Does Irene truly accept Vincent when she learns the truth, or does she still see him as invalid?", category: "Relationships", theme: "Love & Trust", relatedTags: ["irene", "vincent", "identity"] },
+    { id: 21, question: "How does the film portray the emotional toll of living a double life?", category: "Psychology", theme: "Identity & Achievement", relatedTags: ["vincent", "identity", "deception"] },
+    { id: 22, question: "What parallels exist between Vincent's deception and modern identity fraud?", category: "Ethics", theme: "Ethics & Deception", relatedTags: ["vincent", "identity"] },
+    { id: 23, question: "How does the childhood swimming scene establish the film's central conflict?", category: "Structure", theme: "Family & Brotherhood", relatedTags: ["vincent", "anton", "flashback"] },
+    { id: 24, question: "What role does eugenics history play in understanding Gattaca's warnings?", category: "Society", theme: "Discrimination & Society", relatedTags: ["genetics", "gattaca-corporation"] },
+    { id: 25, question: "How does Eugene's silver medal obsession reflect society's obsession with perfection?", category: "Symbolism", theme: "Perfection & Sacrifice", relatedTags: ["jerome-eugene", "genetics"] },
+    { id: 26, question: "What does Vincent's final voiceover about 'never saving anything for the swim back' mean?", category: "Philosophy", theme: "Will vs. Destiny", relatedTags: ["vincent", "anton"] },
+    { id: 27, question: "How does the film use DNA evidence as both plot device and metaphor?", category: "Structure", theme: "Symbolism & Meaning", relatedTags: ["genetics", "investigation", "identity"] },
+    { id: 28, question: "What does the relationship between Vincent's parents reveal about genetic determinism?", category: "Family", theme: "Family & Brotherhood", relatedTags: ["vincent", "flashback"] },
+    { id: 29, question: "How does the corporate setting of Gattaca enhance the film's dystopian themes?", category: "Setting", theme: "Discrimination & Society", relatedTags: ["gattaca-corporation", "vincent"] },
+    { id: 30, question: "Does the ending represent triumph or tragedy—or both?", category: "Interpretation", theme: "Perfection & Sacrifice", relatedTags: ["vincent", "jerome-eugene", "titan-mission"] }
 ];
 
 // Make questions accessible globally
