@@ -42,7 +42,7 @@ const CONFIG = {
     // Layout
     DIAMETER: 900,
     STORAGE_KEY: 'gattaca-viewed-scenes',
-    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.31'
+    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.32'
 };
 
 // ============================================
@@ -643,24 +643,66 @@ function packageImports(nodes) {
     nodes.forEach(node => {
         const scene = node.data;
 
+        // Standard foreshadowing/callback connections
         if (scene.foreshadowing) {
             scene.foreshadowing.forEach(connection => {
-                // Handle both object format {sceneId: ..., description: ...} and plain ID format
                 const targetId = connection.sceneId || connection;
                 const target = map.get(targetId);
                 if (target) {
-                    // Create foreshadowing link: source → target (solid cyan)
                     imports.push({
                         source: node,
                         target: target,
                         type: 'foreshadowing'
                     });
-
-                    // Also create callback link: target ← source (dashed red)
                     imports.push({
                         source: target,
                         target: node,
                         type: 'callback'
+                    });
+                }
+            });
+        }
+
+        // Genetic Defiance - genes contradicted by outcomes (DNA helix cyan-gold)
+        if (scene.geneticDefiance) {
+            scene.geneticDefiance.forEach(connection => {
+                const targetId = connection.sceneId || connection;
+                const target = map.get(targetId);
+                if (target) {
+                    imports.push({
+                        source: node,
+                        target: target,
+                        type: 'geneticDefiance'
+                    });
+                }
+            });
+        }
+
+        // Invalid Triumph - invalids proving system wrong (rebellious red-gold)
+        if (scene.invalidTriumph) {
+            scene.invalidTriumph.forEach(connection => {
+                const targetId = connection.sceneId || connection;
+                const target = map.get(targetId);
+                if (target) {
+                    imports.push({
+                        source: node,
+                        target: target,
+                        type: 'invalidTriumph'
+                    });
+                }
+            });
+        }
+
+        // Transcendence - rising above limitations (ethereal purple-white)
+        if (scene.transcendence) {
+            scene.transcendence.forEach(connection => {
+                const targetId = connection.sceneId || connection;
+                const target = map.get(targetId);
+                if (target) {
+                    imports.push({
+                        source: node,
+                        target: target,
+                        type: 'transcendence'
                     });
                 }
             });
@@ -1070,10 +1112,13 @@ function createLegendWithProgress() {
         .style('margin-right', '0.5rem')
         .text('Connection Lines:');
 
-    // Connection types inline
+    // Connection types inline - including Gattaca-specific types
     const connectionTypes = [
-        { key: 'foreshadowing', label: 'Foreshadows (what this scene hints at)', style: 'solid', color: '#00bcd4' },
-        { key: 'callback', label: 'Callbacks (what earlier scenes hinted at this)', style: 'dashed', color: '#8b0000' }
+        { key: 'foreshadowing', label: 'Foreshadowing', style: 'solid', color: '#00bcd4' },
+        { key: 'callback', label: 'Callback', style: 'dashed', color: '#8b0000' },
+        { key: 'geneticDefiance', label: 'Genetic Defiance', style: 'solid', color: '#00BCD4', strokeWidth: 2 },
+        { key: 'invalidTriumph', label: 'Invalid Triumph', style: 'solid', color: '#F9A825', strokeWidth: 2 },
+        { key: 'transcendence', label: 'Transcendence', style: 'solid', color: '#9C27B0', strokeWidth: 2 }
     ];
 
     connectionTypes.forEach(conn => {
@@ -1675,11 +1720,25 @@ function initVisualization() {
             return line(sourcePath);
         })
         .attr('stroke', d => {
-            if (d.type === 'callback') return '#8b0000'; // Dark blood red for callbacks
-            return '#00bcd4'; // Eerie cyan for foreshadowing
+            // Gattaca-specific connection colors
+            if (d.type === 'geneticDefiance') return '#00BCD4';   // DNA cyan
+            if (d.type === 'invalidTriumph') return '#F9A825';    // Gold - triumph
+            if (d.type === 'transcendence') return '#9C27B0';     // Purple - spiritual
+            if (d.type === 'callback') return '#8b0000';          // Dark blood red
+            return '#00bcd4';                                      // Cyan for foreshadowing
         })
-        .attr('stroke-width', d => d.type === 'callback' ? 0.5 : 0.6)
-        .attr('stroke-opacity', d => d.type === 'callback' ? 0.2 : 0.2)
+        .attr('stroke-width', d => {
+            if (d.type === 'geneticDefiance') return 1.2;
+            if (d.type === 'invalidTriumph') return 1.2;
+            if (d.type === 'transcendence') return 1.2;
+            return d.type === 'callback' ? 0.5 : 0.6;
+        })
+        .attr('stroke-opacity', d => {
+            if (d.type === 'geneticDefiance') return 0.4;
+            if (d.type === 'invalidTriumph') return 0.4;
+            if (d.type === 'transcendence') return 0.4;
+            return 0.2;
+        })
         .attr('stroke-dasharray', d => d.type === 'callback' ? '4,2' : null);
 
     // Draw nodes
@@ -2506,47 +2565,51 @@ function getPsychologicalStatePrefix(enhancementState) {
 function buildConnectionsSection(scene) {
     const hasForeshadowing = scene.foreshadowing && scene.foreshadowing.length > 0;
     const hasCallbacks = scene.callbacks && scene.callbacks.length > 0;
+    const hasGeneticDefiance = scene.geneticDefiance && scene.geneticDefiance.length > 0;
+    const hasInvalidTriumph = scene.invalidTriumph && scene.invalidTriumph.length > 0;
+    const hasTranscendence = scene.transcendence && scene.transcendence.length > 0;
 
-    if (!hasForeshadowing && !hasCallbacks) return '';
+    if (!hasForeshadowing && !hasCallbacks && !hasGeneticDefiance && !hasInvalidTriumph && !hasTranscendence) return '';
 
     let html = `<div class="info-card-connections">`;
 
-    // Foreshadowing connections (this scene → future scenes)
-    if (hasForeshadowing) {
-        html += `<div class="connections-group">
-            <strong>🔮 Foreshadows:</strong>`;
-        scene.foreshadowing.forEach(connection => {
-            const targetId = connection.sceneId || connection;  // Handle both object and number formats
+    // Helper function to build connection links
+    const buildLinks = (connections, icon, label, color) => {
+        let linksHtml = `<div class="connections-group">
+            <strong style="color: ${color}">${icon} ${label}:</strong>`;
+        connections.forEach(connection => {
+            const targetId = connection.sceneId || connection;
             const description = connection.description || '';
             const targetScene = state.scenes.find(s => s.id === targetId);
             if (targetScene) {
-                html += `<a href="#" class="connection-link"
+                linksHtml += `<a href="#" class="connection-link" style="border-left-color: ${color}"
                     onclick="window.navigateToScene(${targetId}); return false;"
                     title="Scene ${targetId}: ${targetScene.title}">
                     → Scene ${targetId}: ${description || targetScene.title}
                 </a>`;
             }
         });
-        html += `</div>`;
+        linksHtml += `</div>`;
+        return linksHtml;
+    };
+
+    // Standard connections
+    if (hasForeshadowing) {
+        html += buildLinks(scene.foreshadowing, '🔮', 'Foreshadows', '#00bcd4');
+    }
+    if (hasCallbacks) {
+        html += buildLinks(scene.callbacks, '🔙', 'Callbacks', '#8b0000');
     }
 
-    // Callback connections (this scene ← earlier scenes)
-    if (hasCallbacks) {
-        html += `<div class="connections-group">
-            <strong>🔙 Callbacks to:</strong>`;
-        scene.callbacks.forEach(connection => {
-            const sourceId = connection.sceneId || connection;  // Handle both object and number formats
-            const description = connection.description || '';
-            const sourceScene = state.scenes.find(s => s.id === sourceId);
-            if (sourceScene) {
-                html += `<a href="#" class="connection-link"
-                    onclick="window.navigateToScene(${sourceId}); return false;"
-                    title="Scene ${sourceId}: ${sourceScene.title}">
-                    ← Scene ${sourceId}: ${description || sourceScene.title}
-                </a>`;
-            }
-        });
-        html += `</div>`;
+    // Gattaca-specific connections
+    if (hasGeneticDefiance) {
+        html += buildLinks(scene.geneticDefiance, '🧬', 'Genetic Defiance', '#00BCD4');
+    }
+    if (hasInvalidTriumph) {
+        html += buildLinks(scene.invalidTriumph, '🏆', 'Invalid Triumph', '#F9A825');
+    }
+    if (hasTranscendence) {
+        html += buildLinks(scene.transcendence, '✨', 'Transcendence', '#9C27B0');
     }
 
     html += `</div>`;
