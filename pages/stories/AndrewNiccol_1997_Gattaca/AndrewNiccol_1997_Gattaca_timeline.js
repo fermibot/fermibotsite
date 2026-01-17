@@ -42,7 +42,7 @@ const CONFIG = {
     // Layout
     DIAMETER: 900,
     STORAGE_KEY: 'gattaca-viewed-scenes',
-    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.36'
+    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.37'
 };
 
 // ============================================
@@ -1130,7 +1130,6 @@ function createLegendWithProgress() {
         const item = connectionsRow.append('div')
             .attr('class', `legend-item legend-connection-item connection-${conn.key}`)
             .attr('data-connection', conn.key)
-            .attr('title', conn.description)
             .style('cursor', 'pointer')
             .style('display', 'flex')
             .style('align-items', 'center')
@@ -1156,6 +1155,17 @@ function createLegendWithProgress() {
         item.append('span')
             .attr('class', 'legend-text')
             .text(conn.label);
+
+        // Add info icon with tooltip
+        item.append('span')
+            .attr('class', 'connection-info-icon')
+            .attr('title', conn.description)
+            .style('margin-left', '4px')
+            .style('font-size', '0.75rem')
+            .style('opacity', '0.6')
+            .style('cursor', 'help')
+            .text('ℹ️')
+            .on('click', (event) => event.stopPropagation());  // Don't trigger filter on info click
     });
 
     // Add clear selection hint at bottom right of legend
