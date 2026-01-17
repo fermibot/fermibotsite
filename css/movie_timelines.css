@@ -1709,14 +1709,15 @@
 
 /* Theme group headers for discussion questions sorted by theme */
 .theme-group-header {
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.65rem;
+    font-weight: 500;
     color: var(--viz-text-muted);
-    margin: 1rem 0 0.5rem 0;
-    padding-bottom: 0.25rem;
-    border-bottom: 1px solid var(--viz-border);
+    margin: 0.75rem 0 0.4rem 0;
+    padding-bottom: 0.2rem;
+    border-bottom: none;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
+    opacity: 0.7;
 }
 
 .theme-group-header:first-child {
