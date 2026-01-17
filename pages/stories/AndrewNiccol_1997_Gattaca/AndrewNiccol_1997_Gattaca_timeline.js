@@ -42,7 +42,7 @@ const CONFIG = {
     // Layout
     DIAMETER: 900,
     STORAGE_KEY: 'gattaca-viewed-scenes',
-    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.33'
+    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.34'
 };
 
 // ============================================
@@ -1397,7 +1397,7 @@ function applyConnectionFilters() {
             }
             // Check if this link's type is in the active set
             const isActiveType = legendState.activeConnections.has(d.type);
-            return isActiveType ? 0.7 : 0.03;
+            return isActiveType ? 1.0 : 0;  // Full opacity for active, hide others
         })
         .style('stroke-width', d => {
             if (!hasConnectionFilter) {
@@ -1405,13 +1405,13 @@ function applyConnectionFilters() {
                 if (d.type === 'geneticDefiance' || d.type === 'invalidTriumph' || d.type === 'transcendence') return 1.2;
                 return d.type === 'callback' ? 0.5 : 0.6;
             }
-            // Highlight active types
+            // Highlight active types with much thicker lines
             const isActiveType = legendState.activeConnections.has(d.type);
             if (isActiveType) {
-                if (d.type === 'geneticDefiance' || d.type === 'invalidTriumph' || d.type === 'transcendence') return 2.5;
-                return 2;
+                if (d.type === 'geneticDefiance' || d.type === 'invalidTriumph' || d.type === 'transcendence') return 3;
+                return 2.5;
             }
-            return 0.3;
+            return 0;
         });
 }
 
