@@ -42,7 +42,7 @@ const CONFIG = {
     // Layout
     DIAMETER: 900,
     STORAGE_KEY: 'gattaca-viewed-scenes',
-    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.32'
+    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.33'
 };
 
 // ============================================
@@ -1112,22 +1112,29 @@ function createLegendWithProgress() {
         .style('margin-right', '0.5rem')
         .text('Connection Lines:');
 
-    // Connection types inline - including Gattaca-specific types
+    // Connection types inline - including Gattaca-specific types with descriptions
     const connectionTypes = [
-        { key: 'foreshadowing', label: 'Foreshadowing', style: 'solid', color: '#00bcd4' },
-        { key: 'callback', label: 'Callback', style: 'dashed', color: '#8b0000' },
-        { key: 'geneticDefiance', label: 'Genetic Defiance', style: 'solid', color: '#00BCD4', strokeWidth: 2 },
-        { key: 'invalidTriumph', label: 'Invalid Triumph', style: 'solid', color: '#F9A825', strokeWidth: 2 },
-        { key: 'transcendence', label: 'Transcendence', style: 'solid', color: '#9C27B0', strokeWidth: 2 }
+        { key: 'foreshadowing', label: 'Foreshadowing', style: 'solid', color: '#00bcd4',
+          description: 'Hints at future events - this scene plants seeds for what comes later' },
+        { key: 'callback', label: 'Callback', style: 'dashed', color: '#8b0000',
+          description: 'References past events - this scene echoes or resolves earlier moments' },
+        { key: 'geneticDefiance', label: 'Genetic Defiance', style: 'solid', color: '#00BCD4',
+          description: 'Genetic predictions contradicted - outcomes defy what DNA determined' },
+        { key: 'invalidTriumph', label: 'Invalid Triumph', style: 'solid', color: '#F9A825',
+          description: '"Invalids" proving the system wrong - the genetically inferior succeed' },
+        { key: 'transcendence', label: 'Transcendence', style: 'solid', color: '#9C27B0',
+          description: 'Rising above limitations - characters transcend their genetic destiny' }
     ];
 
     connectionTypes.forEach(conn => {
         const item = connectionsRow.append('div')
-            .attr('class', 'legend-item legend-connection-item')
-            .style('cursor', 'default')
-            .style('pointer-events', 'none')
+            .attr('class', `legend-item legend-connection-item connection-${conn.key}`)
+            .attr('data-connection', conn.key)
+            .attr('title', conn.description)
+            .style('cursor', 'pointer')
             .style('display', 'flex')
-            .style('align-items', 'center');
+            .style('align-items', 'center')
+            .on('click', () => toggleConnectionFilter(conn.key));
 
         const svg = item.append('svg')
             .attr('width', 30)
@@ -1166,7 +1173,8 @@ const legendState = {
     activeChapters: new Set(),
     activePsychological: new Set(),
     activeTags: new Set(),
-    activeQuestions: new Set()
+    activeQuestions: new Set(),
+    activeConnections: new Set()
 };
 
 function toggleActFilter(actId) {
@@ -1235,6 +1243,23 @@ function toggleTagFilter(tagKey) {
 
     // Update visualization
     applyLegendFilters();
+}
+
+function toggleConnectionFilter(connectionType) {
+    if (legendState.activeConnections.has(connectionType)) {
+        legendState.activeConnections.delete(connectionType);
+    } else {
+        legendState.activeConnections.add(connectionType);
+    }
+
+    // Update legend item appearance
+    d3.selectAll('.legend-connection-item')
+        .classed('active', function() {
+            return legendState.activeConnections.has(this.dataset.connection);
+        });
+
+    // Update link visibility based on active connection types
+    applyConnectionFilters();
 }
 
 function toggleQuestionFilterById(questionId) {
@@ -1357,6 +1382,37 @@ function applyLegendFilters() {
             return (sourceVisible && targetVisible) ? 0.3 : 0.05;
         });
     }
+}
+
+function applyConnectionFilters() {
+    if (!linkGroup) return;
+
+    const hasConnectionFilter = legendState.activeConnections.size > 0;
+
+    linkGroup.selectAll('.link')
+        .style('opacity', d => {
+            if (!hasConnectionFilter) {
+                // No filter - show all at default opacity
+                return 0.2;
+            }
+            // Check if this link's type is in the active set
+            const isActiveType = legendState.activeConnections.has(d.type);
+            return isActiveType ? 0.7 : 0.03;
+        })
+        .style('stroke-width', d => {
+            if (!hasConnectionFilter) {
+                // Default widths
+                if (d.type === 'geneticDefiance' || d.type === 'invalidTriumph' || d.type === 'transcendence') return 1.2;
+                return d.type === 'callback' ? 0.5 : 0.6;
+            }
+            // Highlight active types
+            const isActiveType = legendState.activeConnections.has(d.type);
+            if (isActiveType) {
+                if (d.type === 'geneticDefiance' || d.type === 'invalidTriumph' || d.type === 'transcendence') return 2.5;
+                return 2;
+            }
+            return 0.3;
+        });
 }
 
 // ============================================
@@ -2983,15 +3039,20 @@ function clearAllSelections() {
             .classed('dimmed', false);
     }
 
-    // Clear legend filters (act, psychological, question)
+    // Clear legend filters (act, psychological, question, connections)
     legendState.activeActs.clear();
     legendState.activePsychological.clear();
     legendState.activeQuestions.clear();
+    legendState.activeConnections.clear();
 
     // Update legend item appearance
     d3.selectAll('.legend-item[data-act]').classed('active', false);
     d3.selectAll('.legend-marker-item').classed('active', false);
     d3.selectAll('.legend-question-item').classed('active', false);
+    d3.selectAll('.legend-connection-item').classed('active', false);
+
+    // Reset connection line visibility
+    applyConnectionFilters();
 
     // Reset tag badges to their original state (active for question's own tags, inactive for others)
     document.querySelectorAll('.book-club-question').forEach(questionCard => {
