@@ -244,6 +244,119 @@
           "titan-mission",
           "achievement"
         ]
+      },
+      {
+        "id": 21,
+        "question": "The film's title 'Gattaca' is made entirely of DNA base letters (G, A, T, C). What does this naming choice suggest about the world?",
+        "category": "Symbolism",
+        "theme": "Symbolism",
+        "relatedTags": [
+          "dna",
+          "symbolism",
+          "title"
+        ]
+      },
+      {
+        "id": 22,
+        "question": "Vincent uses the phrase 'borrowed ladder' to describe his arrangement with Eugene. What are the implications of this metaphor?",
+        "category": "Identity",
+        "theme": "Identity",
+        "relatedTags": [
+          "borrowed-ladder",
+          "identity",
+          "metaphor"
+        ]
+      },
+      {
+        "id": 23,
+        "question": "The film shows both Vincent's parents and the geneticist treating genetic selection as routine. How has society normalized 'genoism'?",
+        "category": "Society",
+        "theme": "Society",
+        "relatedTags": [
+          "genoism",
+          "normalization",
+          "society"
+        ]
+      },
+      {
+        "id": 24,
+        "question": "Vincent's heart is supposedly too weak for space travel, yet he outlasts his 'superior' brother in swimming. What does the film say about medical predictions?",
+        "category": "Science",
+        "theme": "Science Fiction",
+        "relatedTags": [
+          "heart-condition",
+          "prediction",
+          "medical"
+        ]
+      },
+      {
+        "id": 25,
+        "question": "Eugene keeps his silver medal but considers it a symbol of failure. How does society's definition of success damage even the 'winners'?",
+        "category": "Characters",
+        "theme": "Characters",
+        "relatedTags": [
+          "eugene",
+          "silver-medal",
+          "perfectionism"
+        ]
+      },
+      {
+        "id": 26,
+        "question": "The murder mystery subplot drives the investigation, but who really killed the Director, and does it matter to the film's themes?",
+        "category": "Plot",
+        "theme": "Plot",
+        "relatedTags": [
+          "murder",
+          "director",
+          "investigation"
+        ]
+      },
+      {
+        "id": 27,
+        "question": "Irene keeps a strand of Vincent's (Jerome's) hair to have it analyzed. What does this say about trust and love in Gattaca's world?",
+        "category": "Relationships",
+        "theme": "Relationships",
+        "relatedTags": [
+          "irene",
+          "hair",
+          "trust",
+          "love"
+        ]
+      },
+      {
+        "id": 28,
+        "question": "The film uses a muted, sterile color palette. How does the visual design reflect the world's obsession with genetic purity?",
+        "category": "Cinematography",
+        "theme": "Cinematography",
+        "relatedTags": [
+          "color",
+          "design",
+          "sterile"
+        ]
+      },
+      {
+        "id": 29,
+        "question": "Vincent never tells Irene his real name. If their relationship continues, can it survive being built on a false identity?",
+        "category": "Relationships",
+        "theme": "Relationships",
+        "relatedTags": [
+          "irene",
+          "vincent",
+          "identity",
+          "future"
+        ]
+      },
+      {
+        "id": 30,
+        "question": "The closing shot shows Vincent ascending to space while Eugene descends into the incinerator. How do these parallel journeys comment on the meaning of success?",
+        "category": "Symbolism",
+        "theme": "Symbolism",
+        "relatedTags": [
+          "ending",
+          "contrast",
+          "ascent",
+          "descent"
+        ]
       }
     ]
   },
@@ -486,8 +599,9 @@
       "screenplayPage": 1,
       "chapter": "ch01-opening-ritual",
       "discussionQuestions": [
+        10,
         4,
-        10
+        21
       ],
       "text": "INT. INCINERATOR. EARL Y MORNING.\nA naked MAN. thirties. seen in profile. is crouched upon a metal \nfloor inside a small. brushed stainless steel tank. rubbing his \nskin raw with a wire brush. JEROME MORROW. \nHaving completed his scrupulous ablutions. Jerome arches his \nlean. frame through the small. oval door of the metal room \nwith practised ease. \n(CONTINUED) \n.. J \nCCNTINUED \nSecuring tl',e I:hick, fireproof \u00b7 .... ~ndowed door behu'.d h~mselE, :-:e \nI:urns a SW~l:ch 1:0 release gas ~nl:o I:he vacal:ed chamber. 7he gas \n~nsl:anl:~y ignJ..l:es in \u00b7 .... hal: 1S now revealed 1:0 be a g:\"eamJ..ng . \nmodern sl:ainless sl:eel cusl:om-made incineral:or. \nWe refocus on a MAGNIFIED CLOSE UP of his exfolial:ed flesh ~n \nthe incinerator as it blackens, curls and burns. \nJerome covers himself with a silk robe and steps into a pa~r of \nbackless slippers. ",
       "geneticDefiance": [],
@@ -558,8 +672,9 @@
       "screenplayPage": 2,
       "chapter": "ch01-opening-ritual",
       "discussionQuestions": [
+        10,
         4,
-        10
+        21
       ],
       "text": "INT. EUGENE'S CONDOMINIUM. EARLY MORNING.\nJEROME emerges from the incinerator room into a large, luxurious loft-style condo containing a bizarre assortment of equipment -\narranged somewhat like a product~on line. \nLong, scrupulously clean metal work benches are arranged along \none entire wall. Laid out on the benches in neat rows are I . \ndozens of plastic bags -some filled, some unfilled. Instrument, \non trays -various types of t'weezers, scissors and other less \nfamiliar utensils. Round, stainless steel containers filled \nwith hairs of differing lengths and other body matter. \nJEROME approaches another man slumped over one of the benches. \nEUGENE. He clutches an empty vodka bottle. He is snoring \nlightly -sleeping off I:he night before. As JEROME gently \nprises the bottle out of hlS hand, we are struck by the \nslmilarity of Eugene's face to Jerome's. \nJerome pulls Eugene's chair back from the desk with surprising \nease. A wheelchair - a modern, ergonomic design. Jerome wheels \n. ,Eugene to a bedroom and, with some difficulty, hauls the larger \n. 'man onto the bed, Through his alcoholic fog, Eugene feebly co\u00ad\noperates -his paralyzed legs a particular dead weight. \nAfter covering Eugene with a blanket, Jerome enters a bathroom \ncontaining a surgically-clean stainless steel basin, sink, \nshower and toilet. \nBeside the toilet stands a large, industrial-style stalnless \nsteel refrigerator. \nDonning protective gloves, Jerome opens the liquid-nitrogen \ncooled refrigerator. A cloud of condensed water vapor bil.lows \nout. Revealed inside the fridge are racks of labelled jars and \nsilicon pouches -some containing a yellowish liquid, some a \ndeep, red liquid. (CONTINUED) \nCONTlNUEO \nIn fr~nt of one of the jars is a handwritten shopping list -\n\"TRUFFLES, CIGS, VOCKA\". Jerome smiles to himself as he \nretr:eves the note along with one of the Jars. He checks the Jar's label. Satisfied with the date written there, he breaks \nthe seal and pours the contents into the clear, silicon pouch of \nan IV-like device lying on the steel bathroom counter. \nHe seals the pouch and checks the apparatus by open~ng the val'/e \non its fine tube and squirting a small quantity of the liqu~d \ninto the nearby toilet bowl, as one would test a syringe. We \nremain on Jerome's face as he reaches between his legs and \ninserts the pouch. \nReopening the refrigerator, Jerome slides out a tray contai'ning \nneat rows of slim, fingertip-sized plastic sachets filled with a \ndeep, red-colored liquid. He removes his gloves, selects one of \nthe sachets and carefully adheres the sachet to the pad at the \nend of his index finger. He prepares a second sachet for nis \nmiddle finger. Jerome then applies skin-colored cover-up makeup \nto the sachets, blending them in with the color of his fingers .. J \nJEROME, still dressed in hl.S robe, climbs a large,. spiral \nstaircase to the floor above. ",
       "geneticDefiance": [],
@@ -617,7 +732,8 @@
       "screenplayPage": 3,
       "chapter": "ch01-opening-ritual",
       "discussionQuestions": [
-        4
+        4,
+        21
       ],
       "text": "INT. JEROME'S CONDOMINIUM. EARLY MORNING.\nHe emerges at the top of the staircase into a similarly farge, \nloft-style condominium. Through the floor to ceiling window \nthat opens onto a balcony we see that dawn is only just starting \nto leak into the night sky. \nIn the bedroom JEROME removes a shirt from a drycleaning bag. \nPrinted on the bag -\"Confidentiality Guaranteed\". He emerges \n\u00b7.from his bedroom, dressed in a smart albeit unconventionally cut \u00b7\u00b7suit. He adjusts h~s t~e ln the mirror, careful not to disturb \nthe sachets attached to his fingertips. \nIN'!'. INVESTIGATOR'S POOL. MORNING. \nA lone MAN swims a ferocious lap of freestyle in what appears to \nbe a pool of enormous length -yet he never reaches the pool's \nend. We pull wider to reveal that the man is swimming against \nan artificial current in a pool barely larger than himself. \nAbruptly, the man stops and stands up -the fast-flowing currer \ninstantly stilled. We glimpse the face of INVESTIGATOR LUCAS \nThirties, he has a youthful yet rigid face. We have the \nirnpress~on that he does not swim for pleasure. \n.. EXT. C0NDCMINIUM CC::1E.EX. MORNI}IG. \n:t is still early as ~ERCME exits the building's underground \nparking garage in an irrrnaculate Studebaker Avanti and proceeds \ndown the long straight drlveway. He exchanges a wave \u00b7 .... ith a \nGARDENER triImling a lawn. \nThe whir of the car's electric powered engine belies its \nconventional appearance. ",
       "geneticDefiance": [],
@@ -1141,7 +1257,8 @@
       "chapter": "ch02-flashback-birth",
       "discussionQuestions": [
         1,
-        2
+        2,
+        23
       ],
       "text": "INT. FAMILY PLANNING C~:NIC. DAY.\nMARIA, wearing a medical gown, lies on an examining table, feet \nin stirrups. A NURSE, forties, wheels an instrument tray \ntowards her. Maria suddenly disengages her feet from t~e \n. stirrups and sWlng:; her legs of f the table. \nNURSE \n~~at are you do~ng? \nMARIA \n(shaking her head) \nI can't do thls. \nNURSE \n(misinterpreting the problem) \nI told you, the government pays. It's all \ntaken care 0 f . \nt-'.ARIA \nNo, you don't understand. I can 'C. \nThe nurse places a comfortlng hand on Maria's shoulder. \nNURSE \n(reassuring) \nThe doctor will give you something. \n1-' A>I. I A \n(removlng the hand, adamant) \nI'm not dOlng It. \n(CONTINUED I \n'\" ,:8NTIN\"'JED \nIt~/l\"g :0 ~Ke her see reasen) \nHoney I you I Ole :\":',ace ~ne m~stake--:'1 \nThe remark stings ~ar1a. \nNURSE \nIsoftenl\"g her tone) \n--I've read your profile. I don't \nknow about the father but you carry \nenough hereditary factors on your own. \nIpausel \nYou can have other :hildren. \nY.ARIA \nIholclr.g her swollen stomach protectively) \nNot like th~s ene. \nNURSE \nItry1ng to be diplomatic) \nHoney, look around you. ThE: world doesn't\" \nwant one Eke that one. \nMaria gets off the table and reaches for her clothes laying \nacross a chair. \nMARIA \nlirate) \nYou don't know what 1t will be! \nThe nurse watches Maria as she dresses, genuinely bewildered. \nNURSE \n(calling out to Maria as she disappears \nout of the door) \nThe child won't :hank you. ",
       "geneticDefiance": [
@@ -1238,7 +1355,8 @@
       "discussionQuestions": [
         1,
         2,
-        3
+        3,
+        23
       ],
       "text": "INT. DELIVERY ROOM. DAY.\n'\"e focus on a crucifix dangling on a rosary. Tilting up we find \nthe rosary clasped between MARIA and ANTONIO's intertw1ned \nhands. \nJEROME ( VO) \nThose were early days--days when a priest \ncould still persuade someone to put their \nfaith in God's hands rather than those of \nthe local geneci.=lst. (CONTIUUED) \n:'2 \nCONTINUED \nBatr.ed 1:1 s\u00b7 .... eat. Mar~a g~'Jes a final push on the deli\"Jery ~ab~e. \n'~~le still attached to his umbilica~ cord. the heel of the \n~~ORN BABY SOY ~s i~mediately pricked by a masked ~ru~SE. \nminute drop of blood is inserted into an analyz~ng mach~ne. \u2022 .... \nEven as the baby is put into Maria's arms. page after page of \ndata begins to appear on a monitor. pulsing warn~ng signals \nthroughout the spreadsheets. \nTwo assisting NURSES exchange a look. Antonio senses someth~ng \namiss. \nAtlTONIO \n;./hat\u00b7s wrong? \nJEROME (VO) \nOf course, there was nothing wrong with me. \nNoe so long ago\u00b7 I would have been considered \na p.erfectly normal, healehy baby. Ten fingers, \nte,; toes. Thae was all ehae used-co maeeer. \nBue now my immediate well-bei'rig .was not the \nsale concern. \nAntonio turns his attent:on from his baby to the data appearing \non the monitor. We see individual items highlighted amongst the \ndata -\"NERVE CONDITION -PROBABILITY 60t\", :MANIC DEPRESSION -\n42t\", \"OBESITY\" -66t\". \"ATTENTION DEFICIT DISORDER -89t\"--\nJEROME (VO) \nMY destiny was mapped out before me--\nall my flaws, predispositions and \nsusceptibilities -most untreatable to \nthis day. Only minutes old, the date and \ncause of my death was alreadY known. \nAntonio focuses on a final highlighted item on the monitor's \nscreen, \"HEART DISORDER -99t -EARLY FATAL POTENTIAL.\". \n\"LIFE EXPECTANCY -33 YEARS\". \nNURSE \nThe name? \n(typing details in birth certificate) \nFor the cert~ficate. \nMARIA \nAntonio--\n(CONTINUED) \nI . CONTINUED \nANTONIO \n(correcl:. ing her) \n--No, Vincent Anl:.onio. \nWith a computer sl:.ylus he s~gns the nurse's handheld screen. ",
       "geneticDefiance": [
@@ -1311,7 +1429,8 @@
       "chapter": "ch02-flashback-birth",
       "discussionQuestions": [
         1,
-        2
+        2,
+        23
       ],
       "text": "EXT. TRACT HOME -BACKYARD. DAY.\n2-YEAR-OLD JEROME (REFERRED TO BY HIS GIVEN NAME OF \u00b7VINCE:~'7\u00b7 \nFOR MOST OF THE FOLLOWING FLASHBACK) running w~th a I:.oy rockel:. \nfalls more in clumsiness I:.han fal:.igue. MARIA suddenly wh~sks up \nI:.he I:.oddler. \nMARIA \n(hysterical) \nOh, Vincent, Vincenc., V~ncent ... I can't leI:. \nyou out my sighl:.. \nMaria frantically listens 1:.0 her young son's heartbeat. For \nhis part, Vincent appears surprised by the attention. Mar~~ \nplaces a porc.able oxygen mask. over Vincent's mouth. \nJEROME (VO) \nI was born Vincent Antonio Luca. And from \nan early age I came to think of myself as \nothers chought of me -chronically ill. \nEvery skinned knee and runny nose treated \nas if it were life-threatening. ",
       "geneticDefiance": [
@@ -1385,7 +1504,8 @@
       "chapter": "ch02-flashback-birth",
       "discussionQuestions": [
         1,
-        2
+        2,
+        23
       ],
       "text": "INT. DAY CARE CENTER. DAY.\n\u00b7.MARIA and ANTONIO drop off dark-haired, 2-YEAR-OLD VINCENT al:. a \n\"Day Care Cenc.er. \nJEROME (VO) \nAnd my parencs soon realized chat wherever \nI went, my genetic prophecy preceded me. \nNhile HEALTHY CHILDREN play outside on tricycles, clamber over \njungle-gyms and finger-pa~nt, the PRE-SCHOOL TEACHER shows \nVincenc. into a room where CHILDREN WITH OBVIOUS DISABILITIES \nsleep on mats. \nMaria wheels around and marches out of the center with Vincent \nin her arms. Antonio follows close behind, pleading with h~s \nwife to see sense. \n(CONTINUED) \n~-E.\"C,'1E (VO) \n~hey put orr having any more children \nunt~l they could afford not to gamble -\nto bring a ch~~d into the world in what \nhas become the \"natural\" way. ",
       "geneticDefiance": [
@@ -1459,7 +1579,8 @@
       "chapter": "ch02-flashback-birth",
       "discussionQuestions": [
         2,
-        3
+        3,
+        23
       ],
       "text": "EXT. HOME. DAY.\nANTONIO reluctantly shows off his spotless Buick Riviera to a \nprospective BUYER. \nJEROME (VO) \nIt meant selling the beloved Buick. \nThe two men haggle over the price while MARIA, holding VINCENT \nin her arms, looks on. Finally money and a pink slip are \nexchanged. \nJEROME (VO) \nMY father got a good price. \nthe only accident he'd ever \ncar was me. After all, \nhad in chat \nAs the BUYER drives away, Antonio shrugs to Maria to hide his \ndisappointment. ",
       "geneticDefiance": [
@@ -1728,7 +1849,8 @@
       "chapter": "ch02-flashback-birth",
       "discussionQuestions": [
         8,
-        9
+        9,
+        24
       ],
       "text": "INT. TRACT HOME. DAY.\nA red penc.:.l draws a ~4rk on a doorway at the height of a \nchild's head. The child moves away and the name, \"ANTON 11\" .l.S \nwritten beside the mark by proud father, ANTONIO. \nJEROME (VO) \nThat's how my brother, Anton, came into the \nworld -d son my father considered worthy \nof his name. \nThere is little physical similarity between ll-YEAR-OLD ANTON \nand 13-YEAR-OLD VINCENT standing beside him, apart from their \n._ height. In fact Vincent is mortified to see that his younger \n-brother's mark is a fraction of an inch higher than the mark \nbeside his own name, 'VINCENT 13.'. V.:.ncent runs from the room. ",
       "geneticDefiance": [
@@ -1799,7 +1921,8 @@
       "chapter": "ch02-flashback-birth",
       "discussionQuestions": [
         8,
-        9
+        9,
+        24
       ],
       "text": "EXT. BEACH. DAY.\n13-YEAR-OLD VINCENT and ll-YEAR-OLD ANTON sit together on a \nwindswept beach. \nAnton picks up a broken shell and deliberately slices the t.:.p of \nhis thumb with the sharp edge. He hands the shell to 'Jincent \nwho hesitantly follows suit. \n(CONTINUED) \n[ \nI \"\" .... ERC! .. !E '~/O ) \nBy che C~xe we were plaYlng ac blood \nbrochers I ~nderscood chac there was somechlng \nver/ differenc flowlng chrough my veins. \nThe two brothers press their thumbs together, merg~ng the blood. \n_-E.'WME (VO) \nAnd I'd need an awful loc more chan \na drop if I was gOing eo gee anywhere. ",
       "geneticDefiance": [],
@@ -1931,7 +2054,8 @@
       "chapter": "ch02-flashback-birth",
       "discussionQuestions": [
         8,
-        9
+        9,
+        24
       ],
       "text": "EXT. BEACH. LATER IN THE DAY.\nWhile ANTONIO and MARIA doze under a beach umbrella, ANTON and \nVINCENT enter the water, div~ng through the waves. From above \nwe watch their two young bodies swimming beside each other \nbeyond the breakers. \nJEROME (VO) \nOur favorice game was 'chicken'; When our \nparencs weren'e waeching, we used to swim outside \nehe flags, as far oue as we dared. It was abouc \nwho would gee scared and cum back first. \nSuddenly VINCENT Stops sw~mming, pulling up sharply in the \nwater, exhausted and fearf'.ll. \"e watches ANTON swim on into the \ndistance. \nJ EP. CI'{E ( VO) \nOf course, ic was always me. Anton was by far \nche stronger swi.~er and he had no excuse to fail. \n\"INT. SCHOOL -CLASSROOM. DAY. \nA TEACHER gives a phys~cs lesson. \nVINCENT has his arm energetically \n1S never called upon. ~Jentually \nJEROME (VO) The bespectacled i3-YEAR-OLD \nraised at each opportunity but \nhe lowers his arm in defeat. \nMY genecic scarlet letter continued to follow \nme from school co school. When you're told \nYOLl're prone co learning disabilities, it's \nsometimes eaSler not to disappoint anyboqy. \nl EXT. S7REET. NIGHT. \n~3-YEAR-GLD VINCENT st3or.ds at a cul-de-sac at t~e end of a ~c~.~, \nstra~ght deserted street. He places a basketball 1n the ~~dd~e \nof the street to represent the SUN and begins ':.0 '.mw~nd c.he r .. ..;~e \nreel of string attached to the ball. ll-YEAR-OLD ANTON 'Nalks a \npace behind him. Several yards along the trail a bead 15 \nthreaded through the string to represent the planet !1ERC'JRY. \nANTON \nHow many astronauts are there, anyway? \nVincent ignores him and continues to reel out the string. \nANTON \nI bet I co~ld be one. \nVincent stops and regards his younger brother with contempt. \nVINCENT \nYou're standing on Venus . \n. Anton lifts his foot. There is a bead beneath it, \nINTI EXT. CAR I SATELLITE DISH. DUSK. \nVINCENT has developed into a handsome l7-YEAR-OLD. His \nspectacles hidden, he and a YOUNG WOMAN are necking in the front \nseat of a beat-up car, parked overlooking a huge satell~te dish. \nJEROME (VO) \nI was popular enough until it got around \nthat I wasn't a long-term propositlon. \n\u00b7.The love-making intensifies. The YOUNG WOMAN moves down \n.. Vincent's chest and unzips his fly. \nJEROME (VO) \nThose who didn't know already could easily \nfind out for themselves. It was certainly \nno problem coaxing the information out of me. \nWe remain on Vincent's face as he climaxes. The YOUNG WOMAN \nturns her head away from the spent Jerome and, out of his \nview, trickles semen from her mouth into a clear specimen '/lal. \nJEROME (VO) \nI didn't blame them. You need to know if a \nprospective husband can qualify for a mortcrage \nor life insurance or can hold down a dece: ;ob. \nI ::-:7 . HC:-1E. :AY. \n::1 the ~~':~::g r~em ~:: :r.e~= :c,edest home, the dark-haired, : -\u00ad\n'!ear-o~j, bespectacled ':::;:::::.rr s~ts opposl.t:e hl.s PARENTS. -:,r.e \ncrest::,,~~e!'l ':i:1cent r.as \" bcck en hl.s lap ent~tled \"-::AREE?S ::1 \nSPACE\" . \ni:rjl::; :0 break it gently) \nVlncent, you ~ave to be realistl.c. A \nheart cend~t:~c:1 \":ke yours--\n\u00b7:::;CE.'lT \n--I den't care. :'11 take the risk. \n!\u00b7~C7':iER It's net JUSt yeu they have to be concerned \nabout. Perhaps we could get you one of \nthose new pace~~kers. They're not perfect \nbut--\nF.!.TItER \n(let:~:1g hl.s frustration show) \nFat' God's sake, ','lncent, don't you understand. \nThe only way ycu'll see the inside of a space \nshl.p l.S If yeu're cleaning it~ \nVincent looks at hlS fat~er in disbelief. \nOn a dinner table on t~e ether side of the living room, is-YEAR\u00ad\nOLD ANTON, looks up frcm the bl.ological specimen he l.S studYlng \nwl.th a magnifying glass. \n~:.rr. PERSONNEL OFFICE -~AITING ROOM. DAY . \n. i7-YEAR-OLD VINCENT hl.des his glasses in his pocket as he enters \na WAITING ROOM. He ga=es around at other APPLICANTS. \n~\u00b7EROME (VO) \nMY father was right. It didn't matter how \nmuch I lied on ~ resume, my real C.V. was \nin my cells. ~y should anybody invest all \nthat money to Crain me, when there are a \nthousand other applicants with a far cleaner \nprofile? of course, it's illegal to discriminate -\n\"genoism\" it's called -but no one takes the \nlaws seriously. \nAs Jerome enters the o:::ice, \nJust touched. we focus on the doorhandle r.e r,as \n( CONTINUED I \nI \nt , . -CONTINUED \nJEP'C.'!E (VO) \nIf you refuse co d~sclose, chey can always \ncake a sample from a doorhandle ... \nVincent hesitates before shaking the PERSONNEL OFFICER's \noutstretched hand . \nJEROME IVO!' ... or a handsl1ake ... \nWe focus on Jerome's envelope attached to hls application for.n sitting on the Manager's desk. \n~~E;:<OME ( VO) .' . even the saliva off your application form. \nSitting opposite the manager, Jerome's face falls. The manager \nputs a clear, plastic cup In front of Jerome. \nJEROME {VOl \nBut for the most: part lYe know\u00b7 who -we are-. \nAnd if all else fails, a legal drug test \ncan just as easily become an illegal peek \nat your future in the company. \nVincent saves the Manager the trouble and exits the office, \nleaving the cup where it SltS. ",
       "geneticDefiance": [],
@@ -2250,7 +2374,8 @@
       "chapter": "ch03-identity-swap",
       "discussionQuestions": [
         5,
-        13
+        13,
+        22
       ],
       "text": "INT. ASTRONOMY & TELESCQPE SHOP. DAY.\nA forest of telescopes on cn.pods In an astronomy shop. 'JINCE~r. \nenters the store wich a bucket and squeegee and immediately goes \nco clean the storefront window. The STORE OWNER looks up from \nhis tabloid -'STAR\" magaz1ne. \nOWNER \nWhere's Earl? \nJEROME \nHe fell. Lucky 1C was only che second floor. \nThe owner nods and returns to his magazine. When he looks up \nagain one of his tripods 1S missing ics telescope and Jerome 1S \nnowhere to be seen. ",
       "geneticDefiance": [],
@@ -2308,7 +2433,8 @@
       "chapter": "ch03-identity-swap",
       "discussionQuestions": [
         5,
-        13
+        13,
+        22
       ],
       "text": "INT. IN-VALID HOUSING PROJECT. NIGHT.\nJEROME returns to his bare apartment. He removes the cloth \ncovering the bucket to reveal a dumpy-shaped telescope snugly \nwedged inside. He starts to pour over his collection of \ntextbooks. Other tact ered space paraphenalia adorns the ',.,;a ,,1. \n(CONTINUED) \n.. 8\u00a3 cou:-se t.~e tes: :es~ sccre i:1 the wcrld \n','y'asn I t gc~\" ..... g :~ ~e: ,-:-:e ':,,'1 t\"i-;e front deer \nr...:.nless :: .~ad :.':e t':':cd :esc: :0 go wic:.iJ. It . ",
       "geneticDefiance": [],
@@ -2364,7 +2490,8 @@
       "chapter": "ch03-identity-swap",
       "discussionQuestions": [
         5,
-        13
+        13,
+        22
       ],
       "text": "EXT. GATTACA. NIGH\".\nWhile his fellow \u00b7 .... CRKERS 5~t. on t.he st.eps at t.he senllce \nentrance to Gattaca, ~ass~~g around an unlabeled bot.tle of ~iear \nliquor, VINCENT si~s sc~e d~st.ance away studying his text book. \nIn the absence of a ~::;::-.;::'..::er, he practises typl.ng commands cn a \nkeyboard handdrawn ::;~ :~e ::ap of a cardboard box. \nA tiny seedy-looking ::-.an, GEP.MAN, forties, appears from \nnowhere and takes a sea: =es~de him. \nGE:?_'W'J \nlofferlng his hand) \nVincent, I'm German--\nlanticlpatlog Vincent's response) \nThat's my name. . \nHe looks the apprehens 1 'Ie '!lncent up and down, \n'l:~CE~ \n;oJhat do yeu t.hlnk? \nG ::?~v.A.. '.J \n(shru.gs) \nI think I could do something \n(glanclng to t.he t.ext book) \nprovided you knew what you're doing \nand you can meet :he terms. \n'hncent pulls a plastic e-meney card from his overalls. \nGEru'.AN \nYou got a photo of yourself? \n'!lnCent produces a snapshot of hlmself -torn from the farnl.ly \nportral.t. German feeds the snapshot into the pocket-sl.zed \ncomputer he carries. \"he picture is instantly scanned and \nappears on the computer's small color screen. German returns \nthe photograph and hastily departs. \nI CONTI~ruE~ I \n. . ::NTlNUED \n:~\u00a3SAR, :~e elderly ~an~:=~, notices German's ex~t. \n:.;.ESAR \n(to Vlncent) \nI thought I told you not to get any ldeas . ",
       "geneticDefiance": [],
@@ -2425,7 +2552,8 @@
       "chapter": "ch03-identity-swap",
       "discussionQuestions": [
         4,
-        5
+        5,
+        22
       ],
       "text": "EXT. GATTACA. NIGHT. -'\nHigh up the side of a building, washing windows, 'IINCE~IT \"auses \noccasionally to practise typing commands on his cardboard keys -\nviewing a screen in his imagination -or the nlghtsky :tselE. \nHe hears his name belng called. \nGERMAN \n\"incent ... Vincent ... \n'/INCENT \n(staring' through his glasses) \nGer.c~n, is that you? \nGERMAN \nVincent, come down. I've found hlm. ",
       "geneticDefiance": [],
@@ -2606,8 +2734,9 @@
       "screenplayPage": 30,
       "chapter": "ch03-identity-swap",
       "discussionQuestions": [
-        4,
+        25,
         5,
+        4,
         13
       ],
       "text": "INT. IN-VAID HOUSING PROJECT -APARTMENT. DAY.\nGE~~ wheels the dazed EUGENE into the apartment, c~ut:ered \nw~th space parapnenalia. One wheel of his rusting wheelcna:r :5 \nflimsily held on '..Jlth wire. VINCENT follows behind on crut:::--.es. \nboth lower legs ~n casts and cross-braces. Vincent signs che \ncontract German puts in front of him. ",
@@ -2937,6 +3066,7 @@
       "screenplayPage": 35,
       "chapter": "ch03-identity-swap",
       "discussionQuestions": [
+        25,
         5,
         13
       ],
@@ -3563,7 +3693,8 @@
       "chapter": "ch04-gattaca-life",
       "discussionQuestions": [
         10,
-        11
+        11,
+        28
       ],
       "text": "INT. GATTACA -COMPUTER COMPLEX. DAY.\nThe DIRECTOR's corpse is sealed in a plastic bodybag and wheeled \naway on a gurney. The blood and other body matter from the \nmurder scene is sucked up by a portable wet-vac and the sample \nbag appropriately labeled. \n.. A chime sounds over the ?.;. :ollowed by an :lnnouncement. \n;'l~':Ct\"rNCER (OC) \nThank you :or your co-operat1on. Please \nreturn to your \u00b7 ..... ork stations lmmediately. \nThe PROGRAMMERS get to t!1eir feet en masse and begin f illr.g l:-.~:J \nthe work room. \nEMPLOYEE 3 \n(sarcast1c aside) \nWhat, no counselling? ",
       "geneticDefiance": [],
@@ -3604,7 +3735,8 @@
       "chapter": "ch04-gattaca-life",
       "discussionQuestions": [
         10,
-        11
+        11,
+        28
       ],
       "text": "INT. GATIACA COMPUTER C8MPLEX -DIRECTOR'S OFFICE. DAY.\nA WOMAN ASSISTANT whose keyboard was used in the attack has to \npause as a MAINTENANCE ~ORKER gives her work station a final \nspray to return it to its former pristlne condition. A new \nkeyboard is plugged into her mon1tor to replace the one taken as \nevidence. ",
       "geneticDefiance": [],
@@ -3647,6 +3779,7 @@
       "screenplayPage": 47,
       "chapter": "ch04-gattaca-life",
       "discussionQuestions": [
+        28,
         6,
         14
       ],
@@ -3853,7 +3986,8 @@
       "chapter": "ch04-gattaca-life",
       "discussionQuestions": [
         10,
-        11
+        11,
+        28
       ],
       "text": "INT. EUGE~.~\u00b7S CONDOMINIUM. NIGHT.\nThe paraplegic EUGENE. seated by the window, meticulously cuts \na long fingernail lnto n~~erous clippings. He places the \nclippings in small plastic bags and seals them. He then begins \nto fill tiny sachets with blood. He turns as he hears. JEROME \nenter down the spiral stalrcase wlth the groceries. \nE:JGENE \nYou didn't forget the truffles? \nJEROME places the items In the refrigerator in the bathroom and \nretrieves a bottle of vodka -the vodka incongruous-looking \nbeside the blood and urine specimens. Joining Eugene at his \n':workbench, he pours them both a drink. \nEUGENE \n(senslng something amiss, trying \nto keep his humor) \nWho died? \nJEROME \nThe Mission Director. \nEUGENE \n(misinterpreting the deadpan remark) \nYou wish. \n(CONTINUED) \n.. CONTINUED \n,hey fou~d hlID In his office this morn~ng-\u00ad\nbeaten so bad :hey had to check his name~ag. \nEugene takes in the news, a smile broadening across hlS :3ce. \nWhat an act \ncoImtunl.ty. \nbetween you EUGENE \nof benevolence--a service to the \nSo that's It. Now there's nothlng \nand ignition. \nJEROME \nHe was stlll warm when they confirmed. \nEUGENE \n(confused by Jerome's attitude) \nThis calls for a celebration. Doesn't it? \nJEROME \nThe place is crawling with Hoovers. \nEUGENE \nSo what? You didn't kill him, did you? \nJerome shoots hlm a glance for the inappropriate remark. \nJEROME \nThat's not the point. \nEUGE..\"IE \n( scofflng) \nHey, how much of you can be there? Even if the \n\"J. Edgars\" do find something, in a week-\u00ad\n(glancing up to the night sky) \nyou'll be slightly out of their jurisdiction . \n(gently chiding) \nCome on, we've got to get drunk iImtediately. \nJEROME (still tempering Eugene's enthusiasm) \nYou're going to have to earn your supper. I've got \nmy final physical tomorrow. \nJerome wheels Eugene's chair to a specially constructed platform \nthat allows the wheels to spin in mid-air. Jerome tapes an \nelectrode to Eugene's chest and attaches the wire to a slim \nrecording device. Eugene begins to spin the wheel of the chair \n.faster and faster. Jerome monitors Eugene's steady heartbeat \nthrough a set of headphones. ",
       "geneticDefiance": [],
@@ -3962,6 +4096,7 @@
       "screenplayPage": 51,
       "chapter": "ch04-gattaca-life",
       "discussionQuestions": [
+        27,
         6,
         14
       ],
@@ -4011,6 +4146,7 @@
       "screenplayPage": 52,
       "chapter": "ch04-gattaca-life",
       "discussionQuestions": [
+        27,
         6,
         14
       ],
@@ -4580,6 +4716,7 @@
       "screenplayPage": 60,
       "chapter": "ch04-gattaca-life",
       "discussionQuestions": [
+        27,
         6,
         14
       ],
@@ -4628,6 +4765,7 @@
       "screenplayPage": 61,
       "chapter": "ch04-gattaca-life",
       "discussionQuestions": [
+        27,
         6,
         14
       ],
@@ -5039,6 +5177,7 @@
       "screenplayPage": 66,
       "chapter": "ch05-murder-investigation",
       "discussionQuestions": [
+        26,
         12,
         15
       ],
@@ -5084,6 +5223,7 @@
       "screenplayPage": 67,
       "chapter": "ch05-murder-investigation",
       "discussionQuestions": [
+        26,
         12,
         15
       ],
@@ -5139,6 +5279,7 @@
       "screenplayPage": 68,
       "chapter": "ch05-murder-investigation",
       "discussionQuestions": [
+        26,
         12,
         15
       ],
@@ -5808,6 +5949,7 @@
       "screenplayPage": 75,
       "chapter": "ch05-murder-investigation",
       "discussionQuestions": [
+        26,
         12,
         15
       ],
@@ -5858,6 +6000,7 @@
       "screenplayPage": 76,
       "chapter": "ch05-murder-investigation",
       "discussionQuestions": [
+        26,
         12,
         15
       ],
@@ -6402,6 +6545,7 @@
       "chapter": "ch05-murder-investigation",
       "discussionQuestions": [
         4,
+        29,
         6
       ],
       "text": "INT. CR::ME LAB. :AY.\n~he INVESTIGATOR li:~s hlS head from the eyepiece of an \nelectron microscope :hrough whlch he has been examlning a ~~ny \nfragmenc of skin -che skin is idencified as belonglng ~o 20-\nYEAR-OLD VINCENT. CETECTIVE HUGO scands a~ ~he Inves~ 19a~or' s \nside -his acclcude more respeccful In lighc of t:he dlscover/. \nDecective Hugo pOlncs out a location on a computer-genera~ed \nmap. \nDETECTIVE HUGO \n(chagrined) \nThe skin flake was found in Michael's Rescaurant. \nThe employees are all accounted for. \n:NVESTIGATOR \nA customer? Does this Michael's cater to misfits? \nDETECTIVE HUGO \n(shiftin,g the view of the map \nto include the Gattaca complex) \nNo. Buc one or two \"borrowed ladders\" have \nshOwn up there in the pas,t. \nThe Investigator understands the significance. They wander over \nto a blow-up photograph of the 20-YEAR-OLD VINCENT. \nDETECTIVE HUGO \nWe have to consider the possibility' that he's \nplaYlng somebody else\"s hand. \nA smile gradually broadens across the Investigator's face. \nINVESTIGATOR \n(taking a perverse pleasure in the \nslowly dawning revelation) \nOf course. He's a \"de-gene-erate\". \n(glanclng to a photo of the \nGattaca crime scene) \nHe works ac Gatt:aca. Why else would we find \nthe eyelash near the washroom? Nobody stopS to \ntake a leak durlng a murder. \nDETECTIVE HUGO \n(quickly covering himself) It's still possible the eyelash specimen came \nfrom a janitor, delivery man--it could have blown \nin through an open window. \n(CONTINUED) \n, \n.. ~6 \nCONTINUED \n':'l\":e Investigator appears ~.ot ::D be listening, hlos mJ.nd _de up. \n:!iVESTIGATOR \n(mi:\\d ::ac~ng) \nHe was afralod Dr belong exposed. That's why he did ~t. \nCE:-ECTI'VE HUGO \n(puzzled) It loS hard to believe he could be one of their ellote workers. You've seen their \nsecurity sySt~~. They know who works there. \n(referr~ng to 20-year-old Vincent's profile) \nEven if you lognore the man's expiration date, \nhis profile suggests that he doesn't have the \nmathematlocal prcpensloty let alone the stamJ.na \nto pass theJ.r physlocals. \n:tNESTIGATOR \nDon't underest:mate these imposters. \nOE7ECTIVE.HUGO \n(skePtl.cal, referring to a file of \nGattaca employee ID photos) \nNone of the IO photos match the enhancement. \nINVESTIGATOR \n(smJ.ling to himself) \nA man can change his face--but blood is forever. \nSample every ~'1lployee within the parameters r gave you. \n(pause) \nIntravenous. \nHugo's mouth drops open at the mention of \u00b7intravenous\u00b7. \nCE':'ECTI'{JE HUGO \n(immediately protesting) \nYou know their \u00b7 ... orkforce. Two-thirds at \nleast fall into the category. We'll be \nclosing down thelr operation for days. \n(seeking a compromise) \nAt least go wloth a fir4ertip sample or urlne. \nINVESTIGATOR \n(shaking his head) \nBlood. From the veJ.n. \nThe Investigator turns on his heel to prevent further protest. \nThe Detective and his ASSISTANTS exchange looks of exasperatlCn \nbehind the Investigator's back. ",
@@ -6460,6 +6604,7 @@
       "chapter": "ch05-murder-investigation",
       "discussionQuestions": [
         4,
+        29,
         6
       ],
       "text": "INT. G~T7ACA. DAY. ~\u00ad,\nJEROME, drlnk~ng water, stands in front of a large \"ldeo \nbulletin board. Among other things, it displays the elect=onlc \nmugs hot of 20-YEAR-OLD VINCENT alongside the recent computer \ngenerated age enhancement of his face. \nSome distance away, CAESAR, the elderly janitor, discusses the \nmugshots with a YOUNGER JANITOR. \nCAESAR \nLook like anybody to you? \nYOUNGER JANITOR \nNot to me. \nCAESAR \nUgly sonofabitch though, isn't he? \nJerome half-smiles, realizing that the conversation is for his \nbenefit. Having made it clear that they do not intend to expose \ntheir former colleague, the two Janitors continue their rounds. \nJerome crushes his paper cup. Forgetting himself ,. he \ndrops the cup into the wastebasket. ",
@@ -7548,9 +7693,10 @@
       "screenplayPage": 96,
       "chapter": "ch06-mounting-pressure",
       "discussionQuestions": [
-        7,
         8,
-        9
+        9,
+        24,
+        7
       ],
       "text": "INT. GAT7ACA. MORNING.\nThe INVESTIGATOR and DETECT!'/E HUGO keep a wary eye on che \noutfitted DETECTIVES re-vacuuming the empty computer complex \nwith their mini-vacs. \nHUGO \n(reading newspaper) \nMy wife and I--we're thinking of starting a family. \nINVESTIGATOR \n(shrugs, ambivalent) \nWhy not? \nHUGO \nThese new personality corrections I've been \nreading about. \nINVESTIGATOR \nYou worried about the cost? \nHUGO \nNot that. \nINVESTIGATOR \n(regarding Hugo with a condescending smile) \nThey said the same thing about myopia and \nobesity. You th~nk your Children would be \nless human if they were less violent, angry, \nspiteful? Maybe they'd be more human. rrom \nwhere I sit the world could stand a little \nimproving. \nWe dwell on one DETECTIVE in particular, snatching a garbage \nbag from CAESAR, the jan~tor. \nDE7ECTI'IE \nDon't touch that. It'S evidence. \nHe puts a pile of discarded paper cups aside for later testlng. \n:NT. GA~ACA CCRPC~;7:C:J. LA7ER 7~7 MCRNING. \nIn t:he 'last:, ernpt:y Gat: :aca complex I:he I!'NESTIGATOR ~nspec':. 5 3-\nspecunen bag conl:al.nu:g -:erome' s paper cup wl.l:h DIRECTOR -:CSEF \nand :ETEC'T!'/E HUGO. \nDE'TECTI'IE HUGO \nPosil:ive sall.va mal:ch. The cup was \ndefinit:ely used since I:he original sweep. \nIN'IESTIGATOR \nSo we have t:wo choices. Eil:her our suspect \ncame back 1:0 I:he murder scene for a drink of \nwal:er and I don't know anybody that thirsty or ... \nIlooking out over the empty complex) ... he is here. \n(resolul:e) \nWe test again. You're right, Hugo, this was a \ndesperate act. Someone had a lot to lose that \nnl.ght--perhaps \u00b7their place in line. \nIto Dl.rector Josef) \nI'd like the profiles of everyone with an \nupc,;ml.ng ml.SSl.on. \nDIRECTOR JOSEF \n(nervous) \n~Nelve have a ml.ssion within the week. \nINVESTIGATOR \nThis I:ime I will supervise each test personally. \nINT/EXT. GATTACA. MORNING. \nJEROME and IRENE walk towards the entrance to Gattaca. Spying \nthe Homl.cide Investigatl.on trucks parked at the rear of the \n':building and the silhouel:te of t:he IN'lESTIGATOR in the doorway, \nJerome pulls up sharply. Irene notices his unease. \nIRENE \nWhat is it? \nJEROME \nI forgot somel:hing--something at home. I'll see you later. \nJerome kisses her. Irene, also aware of the trucks, \ninterrogates Jerome wl.l:h her eyes. \n:RE.'lE \n:'11 miss you. (CONTINUED) \nCONTINUE!;) \n~erome ~s sc~ll :ocussed en ~he entranceway. \nIRE..\"'JE \n(look~ng skywards) \n--when you go away. \nJEROME \nWe could go together one day. \nIrene considers the idea. She enters Gattaca alone. ",
       "geneticDefiance": [],
@@ -7622,9 +7768,10 @@
       "screenplayPage": 97,
       "chapter": "ch06-mounting-pressure",
       "discussionQuestions": [
-        7,
         8,
-        9
+        9,
+        24,
+        7
       ],
       "text": "INT. GATTACA AEROSPACE CORPORATION -COMPUTER COMPLEX. DAY.\nIRENE prepares a stack of IO photos of CREW MEMBERS for the \nINVESTIGATOR. She closely inspects the doctored photo of \nJEROME, hesitating before adding it to the file. \nThe camera dwells on JEROME's vacant work station. The. \n'INVESTIGATOR curiously regards the empty \u00b7chair. He' is \naccompanied by DETECTIVE HUGO, DIRECTOR JOSEF and IRENE. \nDETECTIVE HUGO \nHe's the only absentee. \nDIREC':'OR JOSEF \nA little nausea. Quite common. \nINVESTIGATOR \nAt least it's noth~ng contagious. \nDIRECTOR JOSEF \n(unduly agitated) \nI will not perm~t any further testing on the \neve of a ~SSlon. We're already counting \nbackwards. \nThe INVESTIGATOR ignores Josef and takes a pocket knife from his \nJacket. He prises out the \"ESC\u00b7 key from Jerome's keyboard, \nplaces the key in a specimen bag and deposlts it in his Jacket. \n(CONTINUED) \n,. CONTINUED \n:RE!IE \n(~icK~ng up a phonel I'll call and ~et h~m know. 13 \nThe Investigator gently but firmly removes the phone from \nIrene's hand and replaces the receiver in the cradle. \n::wESTIGATOR \nLet's not spo~l the surprise. \nIto Irenel \nI understand you can show us the way. \nThe anxious Director Josef calls out to protest one further \ntime but the Invest:gator is on his way out of the door. ",
       "geneticDefiance": [],
@@ -7673,9 +7820,10 @@
       "screenplayPage": 98,
       "chapter": "ch06-mounting-pressure",
       "discussionQuestions": [
-        7,
         8,
-        9
+        9,
+        24,
+        7
       ],
       "text": "EXT. STREET OUTSIDE GATTACA. DAY.\nOutside the entrance to Gattaca, trying to hail a taxi, JEROME is startled to see a car carrying the INVESTIGATOR,. DETECTIVE \nHUGO and IRENE roar out of the driveway. JEROME calls .on his \nportable wristphone. ",
       "geneticDefiance": [],
@@ -7814,9 +7962,10 @@
       "screenplayPage": 100,
       "chapter": "ch07-truth-revealed",
       "discussionQuestions": [
-        7,
         8,
-        9
+        9,
+        29,
+        7
       ],
       "text": "INT. EUGENE'S CONDO I JEROME'S CONDO. DA,{ .\nHaving wheeled his chair out of sight, EUGENE eases himself out \nof his wheelchair and onto the floor. Using his elbows, \ncommando-style, dragging his lifeless legs behind him, he \nproceeds to crawl across the floor and up the first step of the \nlong spiral staircase. We observe his agonizingly slow progress \nup a staircase that, from Eugene's point of view, appears to \nhave doubled In length. ",
       "geneticDefiance": [],
@@ -7860,9 +8009,10 @@
       "screenplayPage": 101,
       "chapter": "ch07-truth-revealed",
       "discussionQuestions": [
-        7,
         19,
-        20
+        20,
+        29,
+        7
       ],
       "text": "EXT. CONDOMINIUM COMPLEX. DAY.\nThe INVt:STIGATOR and DETECTIVE HUGO emerge from their car with \nIRENE in tow. They take in the l.mpressive c,omplex -the \nInvestl.gator gets a glimpse of the empty pool. They approach \nthe intercom at the entrance. ",
       "geneticDefiance": [],
@@ -8215,8 +8365,9 @@
       "screenplayPage": 106,
       "chapter": "ch07-truth-revealed",
       "discussionQuestions": [
-        13,
-        19
+        25,
+        19,
+        13
       ],
       "text": "INT. JEROME'S CONDOMINIUM. DAY. 98\nJEROME, white as \nown condominium. \non the sofa. a ghost, climbs the stairs, emerging into his \nHe embraces the beaming EUGENE, still s~tt~ng \nJEROME \n(numb) \nHow are you, Jerome? \nEUGENE \nNot bad, Jerome. \nJEROME \nHow the hell did you get here? \nEuGENE \n(deadpan) \nI could al\u00b7 .... ays \u00b7 .... alk. I've been faking it. \nJerome almost laughs, desp~te the situation. Only now does he \nnot~ce Irene on the other s~de of the room, her mind racing. \nShe looks at Jerome and Eugene together and runs from the \napartment. \nIrene. JEROME \n(calling after her) \nJerome goes to follow her but Eugene stops him. ",
       "geneticDefiance": [],
@@ -9181,7 +9332,8 @@
       "chapter": "ch08-final-launch",
       "discussionQuestions": [
         19,
-        20
+        20,
+        30
       ],
       "text": "INT. EUGENE'S CONDOMINIUM. NIGHT.\nEUGENE knocks back a vodka. With a certain reverence he places \nhis silver medal around his neck. ",
       "geneticDefiance": [],
@@ -9227,7 +9379,8 @@
       "chapter": "ch08-final-launch",
       "discussionQuestions": [
         19,
-        20
+        20,
+        30
       ],
       "text": "INT. ESCALATOR. NIGHT.\nAt the top of a lon~ escalator, the door to a craft is secured. ",
       "geneticDefiance": [],
@@ -9281,9 +9434,10 @@
       "screenplayPage": 121,
       "chapter": "ch08-final-launch",
       "discussionQuestions": [
-        7,
         19,
-        20
+        20,
+        30,
+        7
       ],
       "text": "INT. EUGENE'S CONDOMINIUM._ -NIGHT.\nEugene's wheelchair. empty, sits beside the door of the \nincinerator, also secured. ",
       "geneticDefiance": [],
@@ -9334,9 +9488,10 @@
       "screenplayPage": 122,
       "chapter": "ch08-final-launch",
       "discussionQuestions": [
-        7,
         19,
-        20
+        20,
+        30,
+        7
       ],
       "text": "EXT. LAUNCHPAD. NIGHT.\nA CLOSE UP of the flame of a rocket's engines igniting -the \nball of fire engulfs the launchpad -filling the screen. ",
       "geneticDefiance": [],
@@ -9393,9 +9548,10 @@
       "screenplayPage": 123,
       "chapter": "ch08-final-launch",
       "discussionQuestions": [
-        7,
         19,
-        20
+        20,
+        30,
+        7
       ],
       "text": "INT. EUGENE' 5 CONDOMINIUM -INCINERATOR. NIGHT .\nInside the incinerator another ball of \nengulfing the unseen figure of EUGENE. \naround his neck, melting In the fierce ",
       "geneticDefiance": [],
@@ -9434,9 +9590,10 @@
       "screenplayPage": 124,
       "chapter": "ch08-final-launch",
       "discussionQuestions": [
-        7,
         19,
-        20
+        20,
+        30,
+        7
       ],
       "text": "EXT. GATTACA -LAUNCHPAD. NIGHT. fire -this\nWe glimpse \nblaze. time \nthe medal \nAs we have seen so often in the past, a rocket launches into \nthe sky over Gattaca -however on this occasion it carries \nJerome. \n\u2022 114 ",
       "geneticDefiance": [],
@@ -9557,7 +9714,8 @@
         17,
         18,
         19,
-        20
+        20,
+        30
       ],
       "text": "INT. SPACECRAFT. NIGHT.\n~e focus on JEROME's face -seeing little if any of the craft. \nJerome's eyes are closed. His head is still -alarrrungly stlil. \nCould the launch itself have been too much for him? He hear the \nthoughts in his head. \nJEROME (VO) \nWe came from che scars so chey say, now ic's cime co go back. If I was conceived \ncoday, I would noc gec beyond eighc cells, \nand yec here I am. In a way chey were \nrighc, I don'c have che hearc for chis world. \n(pause) \nThe quescion is, why I am having so much \ntrouble dying? \nJerome's eyes blink open. He holds the letter from Eugene in \nhis hand. It contains no words, merely a lock of EUGENE'S hair \n-for once preserved solely for its sentimental value. The \nhair, weightless, floats off the page. \nWe focus on a porthole 'looking out upon a starscape. \nA STARSCAPE \nAs we pan across the constellations, a title is superimposed \nupon the starscape: \nIn a few short years, scientists will \nhave completed the Human Genome Project, \nthe mapping of all the genes that make \nup a human being. \nAfter 4 billion years of evolution by the \nslow and clumsy method of natural selection, \nwe have now evolved to the point where we \ncan direct our own evolution. \nThe first title is replaced in the heavens by a second title. \nIf only we had aquired chis knowledge \nsooner, the following people would never \nhave been born: \nA succession of portraits and photographs of RENOWNED and \nHISTORIC FIGURES fades in and out of the constellations -the \naccompanying titles list their affliction rather than their \naccomplishments. \n(CONTINUED) \n.. \n, CONTINUED \nHOMER \n51~\"'ld from blrch \n:;A?OLECN SONAPARTE \nEpllepc~c \nCOLE'!'I'E \nArr:hrir:ic \nLOU GERHIG \nAmyor:rophic Lateral Sclerosis \n(~cu Gerhl g 's Di sease) \nRITA HAYWORTH \nA~zhelmer's Disease \nHELEN KELLER \n51 ~nd and deaf \nSTEPHEN HAWKING \n~ou Gerhig's Disease \n-JACKIE JO.YNER-KERSEE \nAsthmatic \nCHARLES DARWIN \nChronic invalid 1:5 \nThe face of Charles Darwin fades off and anoeher eiele appears \noue of ehe sears. \nEven Charles Darwin, che man who told of \nthe survival of che fictest, numbered \namongst our frailest. \n~e title fades off and is replaced by one final eitle in the \nnl.qht sky. \nOf course. the ocher birth that would \nsurely never have taken place is your own. \nCUT TO BLACK \n",
       "geneticDefiance": [],
