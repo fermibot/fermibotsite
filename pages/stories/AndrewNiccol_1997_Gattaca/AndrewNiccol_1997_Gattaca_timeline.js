@@ -42,7 +42,7 @@ const CONFIG = {
     // Layout
     DIAMETER: 900,
     STORAGE_KEY: 'gattaca-viewed-scenes',
-    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.39'
+    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.40'
 };
 
 // ============================================
@@ -1156,22 +1156,22 @@ function createLegendWithProgress() {
             .attr('class', 'legend-text')
             .text(conn.label);
 
-        // Add info icon with Bootstrap 4 tooltip
+        // Add info icon with custom tooltip
         item.append('span')
             .attr('class', 'connection-info-icon')
-            .attr('data-toggle', 'tooltip')
-            .attr('data-placement', 'top')
-            .attr('title', conn.description)
+            .attr('data-description', conn.description)
             .style('margin-left', '4px')
             .style('font-size', '0.75rem')
             .style('opacity', '0.6')
             .style('cursor', 'help')
             .text('ℹ️')
-            .on('click', (event) => event.stopPropagation());  // Don't trigger filter on info click
+            .on('click', (event) => event.stopPropagation())
+            .on('mouseenter', function(event) {
+                const desc = d3.select(this).attr('data-description');
+                showInfoTooltip(desc, event);
+            })
+            .on('mouseleave', hideInfoTooltip);
     });
-
-    // Initialize Bootstrap 4 tooltips for info icons (uses jQuery)
-    $('.connection-info-icon[data-toggle="tooltip"]').tooltip();
 
     // Add clear selection hint at bottom right of legend
     legendContainer.append('div')
@@ -2092,6 +2092,47 @@ function showTooltip(node, event) {
 function hideTooltip() {
     if (tooltip) {
         tooltip.classed('visible', false)
+            .style('display', 'none')
+            .style('opacity', 0);
+    }
+}
+
+// ============================================
+// INFO TOOLTIP (for connection legend icons)
+// ============================================
+
+let infoTooltip;
+
+function initInfoTooltip() {
+    infoTooltip = d3.select('body').append('div')
+        .attr('class', 'info-tooltip')
+        .style('position', 'fixed')
+        .style('pointer-events', 'none')
+        .style('background', 'rgba(0, 0, 0, 0.9)')
+        .style('color', '#fff')
+        .style('padding', '8px 12px')
+        .style('border-radius', '4px')
+        .style('font-size', '0.85rem')
+        .style('max-width', '280px')
+        .style('z-index', '10000')
+        .style('opacity', 0)
+        .style('display', 'none');
+}
+
+function showInfoTooltip(text, event) {
+    if (!infoTooltip) initInfoTooltip();
+
+    infoTooltip
+        .text(text)
+        .style('display', 'block')
+        .style('opacity', 1)
+        .style('left', (event.clientX + 10) + 'px')
+        .style('top', (event.clientY - 30) + 'px');
+}
+
+function hideInfoTooltip() {
+    if (infoTooltip) {
+        infoTooltip
             .style('display', 'none')
             .style('opacity', 0);
     }
