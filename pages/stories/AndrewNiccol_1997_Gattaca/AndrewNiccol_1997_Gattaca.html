@@ -217,15 +217,15 @@
     <div class="bg-body-tertiary border rounded-3 p-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <div class="d-flex align-items-center gap-2">
-                <h5 class="mb-0">📖 Discussion Questions</h5>
+                <h5 class="mb-0">📖 Discussion Questions <span id="sort-mode-indicator" class="text-muted small">(Timeline Order)</span></h5>
                 <button class="btn btn-sm btn-outline-danger" id="clear-question-filter" style="display: none;">
                     Clear Filter
                 </button>
             </div>
             <div class="question-sort-toggle">
                 <small class="text-muted">Sort by:</small>
-                <button class="btn btn-sm btn-outline-secondary ms-2 active" data-sort="film-order">Timeline</button>
-                <button class="btn btn-sm btn-outline-secondary ms-1" data-sort="theme">Theme</button>
+                <button class="btn btn-sm btn-outline-secondary ms-2 active" data-sort="film-order" id="sort-timeline-btn">Timeline</button>
+                <button class="btn btn-sm btn-outline-secondary ms-1" data-sort="theme" id="sort-theme-btn">Theme</button>
             </div>
         </div>
         <p class="text-muted mb-4">
@@ -242,7 +242,7 @@
 <div id="footer_placeholder"></div>
 
 <!-- Visualization JS (load after DOM) -->
-<script src="AndrewNiccol_1997_Gattaca_timeline.js?v=2026.01.16.04"></script>
+<script src="AndrewNiccol_1997_Gattaca_timeline.js?v=2026.01.16.31"></script>
 
 <!-- Load Header/Footer -->
 <script>
