@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="../../../index.css">
 
     <!-- Visualization CSS -->
-    <link href="../../../css/movie_timelines.css?v=2026.01.16.04" rel="stylesheet">
-    <link href="RobertEggers_2019_TheLighthouse_custom.css?v=2026.01.16.04" rel="stylesheet">
+    <link href="../../../css/movie_timelines.css?v=2026.01.16.30" rel="stylesheet">
+    <link href="RobertEggers_2019_TheLighthouse_custom.css?v=2026.01.16.30" rel="stylesheet">
 
     <!-- Bootstrap JS -->
     <script src="../../../external_libraries/bootstrap/jquery.min.js"></script>
@@ -26,6 +26,7 @@
 
     <!-- D3.js v7 -->
     <script src="../../../d3/d3.v7.min.js"></script>
+
 
     <!-- Site automation -->
     <script src="../../../automation/loadObjects.js"></script>
@@ -142,46 +143,49 @@
     </div>
 </section>
 
-<!-- Main Visualization Wrapper -->
-<div class="visualization-wrapper">
+<!-- Main Visualization Section -->
+<section class="mb-4">
+    <div class="bg-body-tertiary border rounded-3 p-4">
 
-    <!-- Controls Bar -->
-    <div class="controls-bar">
-        <div class="controls-left">
-            <!-- Search -->
-            <div class="search-container">
-                <span class="search-icon">🔍</span>
-                <input type="text"
-                       id="search-input"
-                       class="search-input"
-                       placeholder="Search scenes... (press /)"
-                       autocomplete="off">
-                <span class="search-counter" id="search-counter"></span>
+        <!-- Controls Bar -->
+        <div class="controls-bar">
+            <div class="controls-left">
+                <!-- Search -->
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text"
+                           id="search-input"
+                           class="search-input"
+                           placeholder="Search scenes... (press /)"
+                           autocomplete="off">
+                    <span class="search-counter" id="search-counter"></span>
+                </div>
+            </div>
+            <div class="controls-right">
+                <span class="controls-hint">Click scene to view details</span>
             </div>
         </div>
 
-        <div class="controls-right">
-            <span class="controls-hint">Click scene to view details</span>
+        <!-- Legend at Top -->
+        <div class="legend-top" id="legend-container">
+            <!-- Legend content will be injected by JS -->
         </div>
-    </div>
 
-    <!-- Legend at Top -->
-    <div class="legend-top" id="legend-container">
-        <!-- Legend content will be injected by JS -->
-    </div>
-
-    <!-- Main Content Area -->
-    <div class="visualization-main">
-        <!-- Visualization Container -->
-        <div class="visualization-container" id="visualization-container">
-            <!-- Loading state -->
-            <div class="loading-overlay">
-                <div class="loading-spinner"></div>
-                <p>Loading visualization...</p>
+        <!-- Main Content Area -->
+        <div class="visualization-main">
+            <!-- Visualization Container -->
+            <div class="visualization-container" id="visualization-container">
+                <!-- Loading state -->
+                <div class="loading-overlay text-center text-muted">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-3">Loading The Lighthouse visualization...</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
 <!-- Key Motifs Section -->
 <section class="mt-4">
@@ -262,7 +266,7 @@
 </div>
 
 <!-- Visualization Script -->
-<script src="RobertEggers_2019_TheLighthouse_timeline.js?v=2026.01.16.05"></script>
+<script src="RobertEggers_2019_TheLighthouse_timeline.js?v=2026.01.16.39"></script>
 
 <!-- Load Header/Footer -->
 <script>

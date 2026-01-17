@@ -46,7 +46,7 @@ const CONFIG = {
     // Layout dimensions
     DIAMETER: 900,
     STORAGE_KEY: 'lighthouse-viewed-scenes',
-    DATA_FILE: 'RobertEggers_2019_TheLighthouse_scenes_analyzed.json?v=2026.01.16.04'
+    DATA_FILE: 'RobertEggers_2019_TheLighthouse_scenes_analyzed.json?v=2026.01.16.07'
 };
 
 // ============================================
@@ -143,29 +143,49 @@ const TAG_ICONS = {
     'tentacles': '🐙',
     'logbook': '📔',
 
+    // Environment & Time
+    'night': '🌙',
+    'day': '☀️',
+    'fog': '🌫️',
+    'weather': '🌧️',
+    'atmosphere': '🎭',
+    'quarters': '🏠',
+
     // States & Themes
     'vision': '👁️',
     'alcohol': '🍺',
     'violence': '🔪',
     'labor': '⚒️',
     'conflict': '⚔️',
-    'atmosphere': '🌫️',
-    'quarters': '🏠',
+    'food': '🍽️',
+    'sleep': '😴',
 
     // Psychological States
     'madness': '🌀',
     'guilt': '😰',
     'obsession': '👀',
-    'hallucination': '🌀'
+    'hallucination': '👻',
+    'fear': '😱',
+    'isolation': '🏝️',
+
+    // Story Elements
+    'death': '💀',
+    'secret': '🤫',
+    'identity': '🎭',
+    'mythology': '⚡',
+    'naked': '🚿',
+    'sexual': '💋'
 };
 
 const TAG_GROUPS = {
     'Characters': ['young', 'old'],
-    'Key Symbols': ['mermaid', 'gull', 'logbook', 'tentacles'],
-    'Environment': ['storm', 'quarters', 'atmosphere', 'sea', 'lighthouse'],
-    'Work & Conflict': ['labor', 'violence', 'conflict', 'alcohol'],
-    'Psychological': ['guilt', 'madness', 'vision', 'hallucination', 'obsession'],
-    'Power & Mystery': ['light']
+    'Key Symbols': ['light', 'mermaid', 'gull', 'logbook', 'tentacles'],
+    'Environment': ['storm', 'quarters', 'lighthouse', 'sea', 'fog', 'weather'],
+    'Time': ['night', 'day', 'atmosphere'],
+    'Work & Survival': ['labor', 'food', 'sleep', 'alcohol'],
+    'Conflict': ['violence', 'conflict', 'death', 'fear'],
+    'Psychological': ['guilt', 'madness', 'vision', 'hallucination', 'obsession', 'isolation'],
+    'Story': ['secret', 'identity', 'mythology', 'naked', 'sexual']
 };
 
 function buildTagBadges(tags) {
@@ -275,20 +295,75 @@ const CHAPTERS = {
 
 // Scene data will be loaded from JSON file
 let SCENES = [];
-// Thematic connections
+// Thematic connections - accurate links for 114 scenes
 const THEMATIC_LINKS = [
-    { source: 2, target: 35, theme: 'The Logbook' },
-    { source: 5, target: 40, theme: 'The Forbidden Light' },
-    { source: 6, target: 29, theme: 'Identity & Guilt' },
-    { source: 6, target: 30, theme: 'The Doppelganger' },
-    { source: 7, target: 41, theme: 'The One-Eyed Gull' },
-    { source: 9, target: 36, theme: 'Dog Motif' },
-    { source: 12, target: 17, theme: 'The Curse' },
-    { source: 12, target: 26, theme: 'Neptune\'s Wrath' },
-    { source: 15, target: 37, theme: 'Tentacles' },
-    { source: 22, target: 38, theme: 'The Grave' },
-    { source: 23, target: 37, theme: 'Mermaid Transformations' },
-    { source: 10, target: 40, theme: 'The Fall' }
+    // Light/Obsession theme
+    { source: 3, target: 14, theme: 'Light Obsession' },
+    { source: 14, target: 30, theme: 'Light Obsession' },
+    { source: 30, target: 40, theme: 'Light Obsession' },
+    { source: 40, target: 78, theme: 'Light Obsession' },
+    { source: 78, target: 108, theme: 'Light Obsession' },
+    { source: 108, target: 112, theme: 'Light Obsession' },
+    { source: 112, target: 113, theme: 'Light Obsession' },
+    // Mermaid/Sexual obsession theme
+    { source: 10, target: 32, theme: 'Mermaid Obsession' },
+    { source: 32, target: 33, theme: 'Mermaid Obsession' },
+    { source: 33, target: 67, theme: 'Mermaid Obsession' },
+    { source: 67, target: 68, theme: 'Mermaid Obsession' },
+    { source: 68, target: 86, theme: 'Mermaid Obsession' },
+    { source: 86, target: 103, theme: 'Mermaid Obsession' },
+    // Gull/Curse theme
+    { source: 27, target: 31, theme: 'Gull Curse' },
+    { source: 31, target: 46, theme: 'Gull Curse' },
+    { source: 46, target: 87, theme: 'Gull Curse' },
+    { source: 87, target: 114, theme: 'Gull Curse' },
+    // Identity/Madness theme
+    { source: 15, target: 37, theme: 'Identity Crisis' },
+    { source: 37, target: 75, theme: 'Identity Crisis' },
+    { source: 75, target: 76, theme: 'Identity Crisis' },
+    { source: 76, target: 86, theme: 'Identity Crisis' },
+    { source: 86, target: 90, theme: 'Identity Crisis' },
+    // Power dynamics theme
+    { source: 5, target: 12, theme: 'Power Struggle' },
+    { source: 12, target: 31, theme: 'Power Struggle' },
+    { source: 31, target: 36, theme: 'Power Struggle' },
+    { source: 36, target: 76, theme: 'Power Struggle' },
+    { source: 76, target: 106, theme: 'Power Struggle' },
+    { source: 106, target: 107, theme: 'Power Struggle' },
+    // Isolation/Cabin fever theme
+    { source: 1, target: 6, theme: 'Isolation' },
+    { source: 6, target: 35, theme: 'Isolation' },
+    { source: 35, target: 52, theme: 'Isolation' },
+    { source: 52, target: 56, theme: 'Isolation' },
+    { source: 56, target: 60, theme: 'Isolation' },
+    { source: 60, target: 94, theme: 'Isolation' },
+    // Alcohol/Madness theme
+    { source: 12, target: 56, theme: 'Alcohol & Madness' },
+    { source: 56, target: 71, theme: 'Alcohol & Madness' },
+    { source: 71, target: 72, theme: 'Alcohol & Madness' },
+    { source: 72, target: 94, theme: 'Alcohol & Madness' },
+    { source: 94, target: 95, theme: 'Alcohol & Madness' },
+    // Violence theme
+    { source: 46, target: 73, theme: 'Violence' },
+    { source: 73, target: 78, theme: 'Violence' },
+    { source: 78, target: 90, theme: 'Violence' },
+    { source: 90, target: 104, theme: 'Violence' },
+    { source: 104, target: 106, theme: 'Violence' },
+    // Prometheus/Mythology theme
+    { source: 27, target: 31, theme: 'Prometheus Myth' },
+    { source: 31, target: 107, theme: 'Prometheus Myth' },
+    { source: 107, target: 113, theme: 'Prometheus Myth' },
+    { source: 113, target: 114, theme: 'Prometheus Myth' },
+    // Toast ritual theme
+    { source: 8, target: 12, theme: 'Ritual & Toast' },
+    { source: 12, target: 31, theme: 'Ritual & Toast' },
+    { source: 31, target: 56, theme: 'Ritual & Toast' },
+    { source: 56, target: 109, theme: 'Ritual & Toast' },
+    // Guilt/Secret theme
+    { source: 15, target: 16, theme: 'Guilt & Secrets' },
+    { source: 16, target: 75, theme: 'Guilt & Secrets' },
+    { source: 75, target: 76, theme: 'Guilt & Secrets' },
+    { source: 76, target: 104, theme: 'Guilt & Secrets' }
 ];
 
 // ============================================
@@ -524,8 +599,7 @@ function createInfoCard() {
     if (!infoCardBackdrop) {
         infoCardBackdrop = d3.select('body')
             .append('div')
-            .attr('class', 'info-card-backdrop')
-            .on('click', hideInfoCard);
+            .attr('class', 'info-card-backdrop');
     }
 
     infoCard = d3.select('body')
@@ -599,14 +673,14 @@ function showInfoCard(d, event, updateInPlace = false) {
         <div class="info-card-header">
             <div class="info-card-header-top">
                 <button class="info-card-nav-btn ${!hasPrevious ? 'disabled' : ''}"
-                        onclick="${hasPrevious ? `window.navigateToScene(${previousId})` : 'return false'}"
+                        onclick="${hasPrevious ? `event.stopPropagation(); window.navigateToScene(${previousId})` : 'return false'}"
                         ${!hasPrevious ? 'disabled' : ''}
                         title="${hasPrevious ? 'Previous scene' : 'First scene'}">
                     ← Previous
                 </button>
                 <span class="info-card-icon-centered">${getActIcon(scene.act)}</span>
                 <button class="info-card-nav-btn ${!hasNext ? 'disabled' : ''}"
-                        onclick="${hasNext ? `window.navigateToScene(${nextId})` : 'return false'}"
+                        onclick="${hasNext ? `event.stopPropagation(); window.navigateToScene(${nextId})` : 'return false'}"
                         ${!hasNext ? 'disabled' : ''}
                         title="${hasNext ? 'Next scene' : 'Last scene'}">
                     Next →
@@ -627,7 +701,7 @@ function showInfoCard(d, event, updateInPlace = false) {
             </button>
             <button class="btn btn-sm ${isViewed ? 'btn-success' : 'btn-outline-primary'}"
                     id="toggle-viewed-btn-${scene.id}"
-                    onclick="window.toggleViewedFromCard(${scene.id})">
+                    onclick="event.stopPropagation(); window.toggleViewedFromCard(${scene.id})">
                 ${isViewed ? '✓ Reviewed' : 'Mark as Reviewed'}
             </button>
         </div>
@@ -669,6 +743,7 @@ function showInfoCard(d, event, updateInPlace = false) {
     // Add click handlers for connection links - UPDATE IN PLACE
     infoCard.selectAll('.connection-link').on('click', function(event) {
         event.preventDefault();
+        event.stopPropagation(); // Prevent click from closing the info card
         const sceneId = parseInt(this.dataset.scene);
         const targetScene = state.root.descendants().find(d => d.data.id === sceneId);
         if (targetScene) {
@@ -724,18 +799,24 @@ window.toggleViewedFromCard = function(sceneId) {
 function updateNodeStyles() {
     if (!nodeGroup) return;
 
-    // Update circle styles
-    nodeGroup.selectAll('.node circle')
+    // Update node class
+    nodeGroup.selectAll('.node')
         .classed('viewed', d => state.viewedScenes.has(d.data.id));
+
+    // Update circle styles - gray/faded when viewed
+    nodeGroup.selectAll('.node circle')
+        .attr('stroke-width', d => state.viewedScenes.has(d.data.id) ? 3 : 2)
+        .attr('stroke', d => state.viewedScenes.has(d.data.id) ? '#2ecc71' : '#fff')
+        .style('opacity', d => state.viewedScenes.has(d.data.id) ? 0.25 : 1);
 
     // Update checkmark visibility
     nodeGroup.selectAll('.node .node-checkmark')
         .style('opacity', d => state.viewedScenes.has(d.data.id) ? 1 : 0);
 
-    // Update text label styles - color matches the act when viewed
+    // Update text label styles - faded when viewed
     nodeGroup.selectAll('.node .node-label')
         .classed('viewed-label', d => state.viewedScenes.has(d.data.id))
-        .attr('fill', d => state.viewedScenes.has(d.data.id) ? getActColor(d.data.act) : 'var(--viz-text)');
+        .style('opacity', d => state.viewedScenes.has(d.data.id) ? 0.25 : 1);
 }
 
 function hideInfoCard() {
@@ -768,6 +849,8 @@ function jumpToSceneAndUpdate(sceneId) {
     if (targetNode) {
         // Update info card with new scene
         showInfoCard(targetNode, null, true);
+        // Update screenplay viewer if open
+        updateScreenplayViewer(sceneId);
         // Update node highlighting
         highlightConnections(targetNode);
         // Scroll to top of the card
@@ -799,13 +882,13 @@ function buildCharacterSection(scene) {
 }
 
 function buildDialogueSection(scene) {
-    if (!scene.keyDialogue || scene.keyDialogue.length === 0) return '';
+    if (!scene.quotes || scene.quotes.length === 0) return '';
 
     let html = `<div class="info-card-quotes">
         <strong>💬 Key Dialogue:</strong>
         <div class="quotes-list">`;
 
-    scene.keyDialogue.forEach(dialogue => {
+    scene.quotes.forEach(dialogue => {
         const speaker = dialogue.speaker || '';
         const quote = dialogue.quote || '';
         if (speaker && quote) {
@@ -972,9 +1055,46 @@ function hideScreenplayViewer() {
     screenplayViewer.classed('active', false);
 }
 
+// Update screenplay viewer content without reopening (for navigation)
+function updateScreenplayViewer(sceneId) {
+    if (!screenplayViewer || !screenplayViewer.classed('active')) {
+        return; // Viewer is not open, nothing to update
+    }
+
+    // Get the full scene object from SCENES
+    const scene = SCENES.find(s => s.id === sceneId);
+    if (!scene) {
+        console.error('Scene not found:', sceneId);
+        return;
+    }
+
+    // Get and format screenplay text
+    const formattedText = formatScreenplayText(scene.text);
+
+    // Update header info
+    screenplayViewer.select('.screenplay-scene')
+        .text(`Scene ${scene.id}: ${scene.title}`);
+
+    // Update screenplay text content
+    const content = screenplayViewer.select('.screenplay-viewer-content');
+    if (!content.empty()) {
+        content.html(`
+            <div class="screenplay-text-content">
+                <pre class="screenplay-text">${formattedText}</pre>
+            </div>
+        `);
+
+        // Scroll to top
+        content.node().scrollTop = 0;
+    }
+
+    console.log(`Updated screenplay viewer to Scene ${scene.id}`);
+}
+
 // Expose to window
 window.showScreenplayViewer = showScreenplayViewer;
 window.hideScreenplayViewer = hideScreenplayViewer;
+window.updateScreenplayViewer = updateScreenplayViewer;
 
 function clearAllSelections() {
     // Clear search
@@ -996,20 +1116,36 @@ function clearAllSelections() {
     state.activeActs.clear();
     state.activeMarkers.clear();
     state.activeConnections.clear();
+    state.activeTags.clear();
+    state.activeChapters.clear();
 
-    // Update UI
+    // Update UI - remove active class from all filter items
     d3.selectAll('.legend-item[data-act]').classed('active', false);
     d3.selectAll('.legend-marker-item').classed('active', false);
     d3.selectAll('.legend-connection-item').classed('active', false);
+    d3.selectAll('.legend-question-item').classed('active', false);
+    d3.selectAll('.legend-chapter-item').classed('active', false);
 
     // Clear book club question highlights
     document.querySelectorAll('.book-club-question').forEach(q => {
         q.classList.remove('active');
     });
 
-    // Reset all node visibility
-    updateHighlights();
-    renderTimeline();
+    // Reset all node opacities directly
+    if (nodeGroup) {
+        nodeGroup.selectAll('.node').style('opacity', null);  // Remove inline style
+    }
+
+    // Reset all link opacities - remove inline style to use stroke-opacity attribute
+    if (linkGroup) {
+        linkGroup.selectAll('.link')
+            .style('opacity', null)
+            .classed('highlighted', false)
+            .classed('dimmed', false);
+    }
+
+    // Apply filters (which will now show all since filters are cleared)
+    applyNodeFilters();
 }
 
 window.clearAllSelections = clearAllSelections;
@@ -1093,6 +1229,22 @@ function initVisualization() {
 
     g = svg.append('g');
 
+    // Add invisible background rect for click-to-clear functionality
+    g.append('rect')
+        .attr('class', 'svg-background')
+        .attr('x', -radius - padding)
+        .attr('y', -radius - verticalOffset - padding)
+        .attr('width', diameter + padding * 2)
+        .attr('height', diameter + verticalOffset + padding * 2)
+        .attr('fill', 'transparent')
+        .style('cursor', 'default')
+        .on('click', function(event) {
+            // Only clear if clicking directly on background (not on nodes/links)
+            if (event.target === this) {
+                clearAllSelections();
+            }
+        });
+
     // Build hierarchy
     const hierarchyData = buildHierarchy();
     state.root = d3.hierarchy(hierarchyData);
@@ -1148,19 +1300,24 @@ function initVisualization() {
         .attr('class', 'node')
         .attr('transform', d => `rotate(${d.x - 90}) translate(${d.y},0)`)
         .on('mouseover', function(event, d) {
+            // Always show tooltip for the hovered node
+            showTooltip(d, event);
+            // Only change highlights if no node is locked
             if (!state.lockedNode) {
                 highlightConnections(d);
-                showTooltip(d, event);
             }
         })
         .on('mouseout', function() {
+            // Always hide tooltip on mouseout
+            hideTooltip();
+            // Only reset highlights if no node is locked
             if (!state.lockedNode) {
                 unhighlightAll();
-                hideTooltip();
             }
         })
         .on('click', function(event, d) {
             event.stopPropagation();
+            hideTooltip();  // Hide tooltip when clicking to show info card
             state.lockedNode = d;
             showInfoCard(d, event);
             highlightConnections(d);
@@ -1283,7 +1440,7 @@ function initLegend() {
 
     progressInline.append('span')
         .attr('class', 'progress-text')
-        .text('0/41');
+        .text('0/114');
 
     // Grid of legend items
     const grid = legendContainer.append('div')
@@ -1515,7 +1672,7 @@ function initLegend() {
     tagsHeader.append('span')
         .text('🏷️ Scene Tags:');
 
-    // Build scene tags from TAG_GROUPS - multi-column layout
+    // Build scene tags from TAG_GROUPS - multi-column layout (matching The Shining style)
     const tagsContainer = grid.append('div')
         .attr('class', 'legend-categories-container')
         .style('column-count', '4')
@@ -1565,13 +1722,33 @@ function initLegend() {
                 .style('justify-content', 'space-between')
                 .style('width', '100%');
 
-            const badge = row.append('div')
-                .attr('class', `tag-badge tag-${tagKey}`)
+            const item = row.append('div')
+                .attr('class', `legend-item legend-question-item tag-${tagKey}`)
+                .attr('data-question', tagKey)
+                .attr('title', `Filter scenes with ${label} (${sceneCount} scenes)`)
+                .style('width', 'fit-content')
                 .style('cursor', 'pointer')
-                .attr('title', `Click to filter: ${label}`)
                 .on('click', () => toggleTagFilter(tagKey));
 
-            badge.append('span').text(`${icon} ${label}`);
+            // Add active indicator (checkmark)
+            item.append('span')
+                .attr('class', 'active-indicator')
+                .text('✓');
+
+            item.append('span')
+                .attr('class', 'legend-icon')
+                .text(icon);
+
+            item.append('span')
+                .attr('class', 'legend-text')
+                .text(label);
+
+            // Add connecting dotted line
+            row.append('span')
+                .style('flex-grow', '1')
+                .style('border-bottom', '1px dotted #ccc')
+                .style('margin', '0 0.5rem')
+                .style('min-width', '10px');
 
             // Add count (zero-padded)
             row.append('span')
@@ -1579,7 +1756,6 @@ function initLegend() {
                 .style('color', '#888')
                 .style('font-weight', '500')
                 .style('font-family', 'monospace')
-                .style('margin-left', '0.5rem')
                 .text(`(${String(sceneCount).padStart(2, '0')})`);
         });
     }
@@ -1678,9 +1854,11 @@ function toggleTagFilter(tagKey) {
         state.activeTags.add(tagKey);
     }
 
-    // Update legend tag badge appearance
-    d3.selectAll(`.tag-badge.tag-${tagKey}`)
-        .classed('active', state.activeTags.has(tagKey));
+    // Update legend item appearance (show/hide checkmark)
+    d3.selectAll('.legend-question-item')
+        .classed('active', function() {
+            return state.activeTags.has(this.dataset.question);
+        });
 
     // Apply combined filters
     applyNodeFilters();
@@ -1711,45 +1889,99 @@ function applyNodeFilters() {
     const hasChapterFilter = state.activeChapters.size > 0;
     const hasTagFilter = state.activeTags.size > 0;
     const hasMarkerFilter = state.activeMarkers.size > 0;
+    const hasAnyFilter = hasActFilter || hasChapterFilter || hasTagFilter || hasMarkerFilter;
 
-    if (!hasActFilter && !hasChapterFilter && !hasTagFilter && !hasMarkerFilter) {
-        // No filters - show all
-        nodeGroup.selectAll('.node').classed('filtered', false);
-    } else {
-        nodeGroup.selectAll('.node')
-            .classed('filtered', d => {
-                let passesActFilter = true;
-                let passesChapterFilter = true;
-                let passesTagFilter = true;
-                let passesMarkerFilter = true;
 
-                // Check act filter
-                if (hasActFilter) {
-                    passesActFilter = state.activeActs.has(d.data.act);
-                }
+    const nodes = nodeGroup.selectAll('.node');
+    console.log('Found nodes:', nodes.size());
 
-                // Check chapter filter
-                if (hasChapterFilter) {
-                    passesChapterFilter = state.activeChapters.has(d.data.chapter);
-                }
+    // Apply to each node
+    let visibleCount = 0;
+    let hiddenCount = 0;
 
-                // Check tag filter (scene must have at least one of the active tags)
-                if (hasTagFilter) {
-                    passesTagFilter = d.data.tags && d.data.tags.some(tag => state.activeTags.has(tag));
-                }
+    nodes.each(function(d) {
+        if (!d.data.id) return;
 
-                // Check marker filter (scene must have at least one of the active markers)
-                if (hasMarkerFilter) {
-                    passesMarkerFilter = false;
-                    if (state.activeMarkers.has('hallucination') && d.data.isHallucination) passesMarkerFilter = true;
-                    if (state.activeMarkers.has('violence') && d.data.isViolence) passesMarkerFilter = true;
-                    if (state.activeMarkers.has('revelation') && d.data.isRevelation) passesMarkerFilter = true;
-                }
+        let visible = true;
 
-                // Must pass all active filters
-                return !(passesActFilter && passesChapterFilter && passesTagFilter && passesMarkerFilter);
+        if (hasAnyFilter) {
+            // Act filter
+            if (hasActFilter) {
+                visible = visible && state.activeActs.has(d.data.act);
+            }
+
+            // Chapter filter
+            if (hasChapterFilter) {
+                visible = visible && state.activeChapters.has(d.data.chapter);
+            }
+
+            // Tag filter (scene must have at least one of the active tags)
+            if (hasTagFilter) {
+                const hasMatchingTag = d.data.tags &&
+                    Array.from(state.activeTags).some(tag => d.data.tags.includes(tag));
+                visible = visible && hasMatchingTag;
+            }
+
+            // Marker filter
+            if (hasMarkerFilter) {
+                let hasMatchingMarker = false;
+                if (state.activeMarkers.has('hallucination') && d.data.isHallucination) hasMatchingMarker = true;
+                if (state.activeMarkers.has('violence') && d.data.isViolence) hasMatchingMarker = true;
+                if (state.activeMarkers.has('revelation') && d.data.isRevelation) hasMatchingMarker = true;
+                visible = visible && hasMatchingMarker;
+            }
+        }
+
+        // Apply visibility using opacity directly
+        const opacityValue = visible ? 1 : 0.15;
+        d3.select(this).style('opacity', opacityValue);
+    });
+
+
+    // Update links - use stroke-opacity to avoid compounding with the attribute
+    if (linkGroup) {
+        if (!hasAnyFilter) {
+            // No filter - remove inline styles to use default stroke-opacity
+            linkGroup.selectAll('.link').style('stroke-opacity', null);
+        } else {
+            linkGroup.selectAll('.link').style('stroke-opacity', function(d) {
+                // Check if source and target are both visible
+                const sourceVisible = isNodeVisible(d.source, hasActFilter, hasChapterFilter, hasTagFilter, hasMarkerFilter);
+                const targetVisible = isNodeVisible(d.target, hasActFilter, hasChapterFilter, hasTagFilter, hasMarkerFilter);
+
+                return (sourceVisible && targetVisible) ? 0.3 : 0.05;
             });
+        }
     }
+}
+
+// Helper function to check if a node ID passes all filters
+function isNodeVisible(nodeId, hasActFilter, hasChapterFilter, hasTagFilter, hasMarkerFilter) {
+    const scene = SCENES.find(s => s.id === nodeId);
+    if (!scene) return false;
+
+    let visible = true;
+
+    if (hasActFilter) {
+        visible = visible && state.activeActs.has(scene.act);
+    }
+    if (hasChapterFilter) {
+        visible = visible && state.activeChapters.has(scene.chapter);
+    }
+    if (hasTagFilter) {
+        const hasMatchingTag = scene.tags &&
+            Array.from(state.activeTags).some(tag => scene.tags.includes(tag));
+        visible = visible && hasMatchingTag;
+    }
+    if (hasMarkerFilter) {
+        let hasMatchingMarker = false;
+        if (state.activeMarkers.has('hallucination') && scene.isHallucination) hasMatchingMarker = true;
+        if (state.activeMarkers.has('violence') && scene.isViolence) hasMatchingMarker = true;
+        if (state.activeMarkers.has('revelation') && scene.isRevelation) hasMatchingMarker = true;
+        visible = visible && hasMatchingMarker;
+    }
+
+    return visible;
 }
 
 // Toggle connection type filter (foreshadowing, callback, thematic)
@@ -1846,7 +2078,7 @@ function applyConnectionFilters() {
 }
 
 function updateProgressUI() {
-    const total = 41;
+    const total = SCENES.length;
     const viewed = state.viewedScenes.size;
     const percentage = Math.round((viewed / total) * 100);
 
@@ -1855,9 +2087,16 @@ function updateProgressUI() {
 
     if (!progressWrapper) return;
 
-    // Count by act
+    // Count by act - calculate dynamically
     const viewedByAct = { act1: 0, act2: 0, act3: 0 };
-    const totalByAct = { act1: 12, act2: 11, act3: 18 };
+    const totalByAct = { act1: 0, act2: 0, act3: 0 };
+
+    // Calculate total scenes per act
+    SCENES.forEach(scene => {
+        if (totalByAct[scene.act] !== undefined) {
+            totalByAct[scene.act]++;
+        }
+    });
 
     state.viewedScenes.forEach(id => {
         const scene = SCENES.find(s => s.id === id);
@@ -1923,19 +2162,24 @@ function createProgressTooltip() {
 function showProgressTooltip(event) {
     if (!progressTooltip) createProgressTooltip();
 
-    const total = 41;
+    const total = SCENES.length;
     const viewed = state.viewedScenes.size;
     const percentage = Math.round((viewed / total) * 100);
 
-    // Count by act
+    // Count by act - calculate dynamically
     const viewedByAct = { act1: 0, act2: 0, act3: 0 };
-    const totalByAct = { act1: 12, act2: 11, act3: 18 };
+    const totalByAct = { act1: 0, act2: 0, act3: 0 };
 
     // Count by type
     const viewedByType = { hallucination: 0, violence: 0, revelation: 0 };
     const totalByType = { hallucination: 0, violence: 0, revelation: 0 };
 
     SCENES.forEach(scene => {
+        // Count total per act
+        if (totalByAct[scene.act] !== undefined) {
+            totalByAct[scene.act]++;
+        }
+
         if (scene.isHallucination) totalByType.hallucination++;
         if (scene.isViolence) totalByType.violence++;
         if (scene.isRevelation) totalByType.revelation++;
@@ -2049,7 +2293,7 @@ function showProgressModal() {
     hideProgressTooltip();
     if (!progressModal) createProgressModal();
 
-    const total = 41;
+    const total = SCENES.length;
     const viewed = state.viewedScenes.size;
     const percentage = Math.round((viewed / total) * 100);
 
@@ -2150,7 +2394,7 @@ function closeAllModals() {
 function updateProgressModal() {
     if (!progressModal || !progressModal.classed('visible')) return;
 
-    const total = 41;
+    const total = SCENES.length;
     const viewed = state.viewedScenes.size;
     const percentage = Math.round((viewed / total) * 100);
 
@@ -2348,6 +2592,67 @@ function initSearch() {
 }
 
 // ============================================
+// RENDER DISCUSSION QUESTIONS
+// ============================================
+
+function renderDiscussionQuestions() {
+    const container = document.getElementById('questions-container');
+    if (!container) {
+        console.warn('Questions container not found');
+        return;
+    }
+
+    // Create book-club-grid wrapper
+    const grid = document.createElement('div');
+    grid.className = 'book-club-grid';
+
+    DISCUSSION_QUESTIONS.forEach(q => {
+        const sceneIds = q.relatedScenes || [];
+        if (sceneIds.length === 0) return; // Skip if no scenes
+
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'book-club-question';
+        questionDiv.setAttribute('onclick', 'highlightBookClubScenes(this, event)');
+        questionDiv.setAttribute('data-scenes', sceneIds.join(','));
+        questionDiv.setAttribute('data-question-id', q.id);
+
+        // Question header
+        const header = document.createElement('div');
+        header.className = 'question-header';
+        header.innerHTML = `
+            <span class="question-number">${q.id}</span>
+            <p class="question-text">${q.question}</p>
+        `;
+
+        // Question tags - show related tags as styled badges
+        const tagsDiv = document.createElement('div');
+        tagsDiv.className = 'question-tags';
+        tagsDiv.innerHTML = buildTagBadges(q.tags || []);
+
+        // Find first scene to determine act
+        const firstSceneId = sceneIds[0];
+        const scene = SCENES.find(s => s.id === firstSceneId);
+        const actIcon = scene ? CONFIG.ACT_ICONS[scene.act] : '🎬';
+        const sceneText = sceneIds.length === 1 ? `Scene ${sceneIds[0]}` : `${sceneIds.length} scenes`;
+
+        // Question meta
+        const meta = document.createElement('span');
+        meta.className = 'question-meta';
+        meta.textContent = `${actIcon} ${sceneText} | ${q.category}`;
+
+        // Assemble
+        questionDiv.appendChild(header);
+        questionDiv.appendChild(tagsDiv);
+        questionDiv.appendChild(meta);
+
+        grid.appendChild(questionDiv);
+    });
+
+    container.appendChild(grid);
+    console.log(`Rendered ${DISCUSSION_QUESTIONS.length} discussion questions`);
+}
+
+// ============================================
 // BOOK CLUB QUESTIONS
 // ============================================
 
@@ -2494,11 +2799,12 @@ async function loadSceneData() {
                 act: scene.act,
                 chapter: scene.chapter || '',
                 title: scene.title || scene.text?.substring(0, 50),
+                text: scene.text || '',  // Preserve screenplay text for viewer
                 types: scene.tags || [],
                 tags: scene.tags || [],
                 location: scene.location?.primary || '',
                 time: scene.time?.narrative || scene.time?.approximate || '',
-                summary: scene.plotSummary?.detailed || scene.text || '',
+                summary: scene.summary || scene.plotSummary?.detailed || '',
                 symbols: scene.tags?.filter(t => ['light', 'mermaid', 'gull', 'tentacles', 'logbook'].includes(t)) || [],
                 quotes: scene.keyDialogue || [],
                 characters: {
@@ -2547,7 +2853,35 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Initialize visualization
     loadProgress();
     initLegend();
+    renderDiscussionQuestions();
     initVisualization();
     initSearch();
+
+    // Add click to page background to clear selections
+    document.body.addEventListener('click', function(e) {
+        const target = e.target;
+
+        // Allow clearing when clicking on SVG background elements (rect, svg itself)
+        const isSvgBackground = target.tagName === 'svg' ||
+            (target.tagName === 'rect' && target.classList.contains('svg-background'));
+
+        // Don't clear if clicking on interactive elements
+        const isInteractive = target.closest('.node') ||
+            target.closest('.legend-item') ||
+            target.closest('.legend-question-item') ||
+            target.closest('.legend-category-container') ||
+            target.closest('.book-club-question') ||
+            target.closest('.info-card') ||
+            target.closest('.screenplay-viewer') ||
+            target.closest('.progress-modal') ||
+            target.closest('button') ||
+            target.closest('input') ||
+            target.closest('.controls-bar') ||
+            target.closest('#legend-container');
+
+        if (isSvgBackground || !isInteractive) {
+            clearAllSelections();
+        }
+    });
 });
 

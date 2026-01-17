@@ -1,0 +1,68 @@
+Loaded 114 scenes
+
+Connection Summary:
+- Foreshadowing links: 124
+- Callback links: 87
+- Thematic pairs: 56
+
+Updated RobertEggers_2019_TheLighthouse_scenes_analyzed.json
+
+=== THEMATIC_LINKS for timeline.js ===
+const THEMATIC_LINKS = [
+    { source: 3, target: 14, theme: 'Light Obsession' },
+    { source: 14, target: 30, theme: 'Light Obsession' },
+    { source: 30, target: 40, theme: 'Light Obsession' },
+    { source: 40, target: 78, theme: 'Light Obsession' },
+    { source: 78, target: 108, theme: 'Light Obsession' },
+    { source: 108, target: 112, theme: 'Light Obsession' },
+    { source: 112, target: 113, theme: 'Light Obsession' },
+    { source: 10, target: 32, theme: 'Mermaid Obsession' },
+    { source: 32, target: 33, theme: 'Mermaid Obsession' },
+    { source: 33, target: 67, theme: 'Mermaid Obsession' },
+    { source: 67, target: 68, theme: 'Mermaid Obsession' },
+    { source: 68, target: 86, theme: 'Mermaid Obsession' },
+    { source: 86, target: 103, theme: 'Mermaid Obsession' },
+    { source: 27, target: 31, theme: 'Gull Curse' },
+    { source: 31, target: 46, theme: 'Gull Curse' },
+    { source: 46, target: 87, theme: 'Gull Curse' },
+    { source: 87, target: 114, theme: 'Gull Curse' },
+    { source: 15, target: 37, theme: 'Identity Crisis' },
+    { source: 37, target: 75, theme: 'Identity Crisis' },
+    { source: 75, target: 76, theme: 'Identity Crisis' },
+    { source: 76, target: 86, theme: 'Identity Crisis' },
+    { source: 86, target: 90, theme: 'Identity Crisis' },
+    { source: 5, target: 12, theme: 'Power Struggle' },
+    { source: 12, target: 31, theme: 'Power Struggle' },
+    { source: 31, target: 36, theme: 'Power Struggle' },
+    { source: 36, target: 76, theme: 'Power Struggle' },
+    { source: 76, target: 106, theme: 'Power Struggle' },
+    { source: 106, target: 107, theme: 'Power Struggle' },
+    { source: 1, target: 6, theme: 'Isolation' },
+    { source: 6, target: 35, theme: 'Isolation' },
+    { source: 35, target: 52, theme: 'Isolation' },
+    { source: 52, target: 56, theme: 'Isolation' },
+    { source: 56, target: 60, theme: 'Isolation' },
+    { source: 60, target: 94, theme: 'Isolation' },
+    { source: 12, target: 56, theme: 'Alcohol & Madness' },
+    { source: 56, target: 71, theme: 'Alcohol & Madness' },
+    { source: 71, target: 72, theme: 'Alcohol & Madness' },
+    { source: 72, target: 94, theme: 'Alcohol & Madness' },
+    { source: 94, target: 95, theme: 'Alcohol & Madness' },
+    { source: 46, target: 73, theme: 'Violence' },
+    { source: 73, target: 78, theme: 'Violence' },
+    { source: 78, target: 90, theme: 'Violence' },
+    { source: 90, target: 104, theme: 'Violence' },
+    { source: 104, target: 106, theme: 'Violence' },
+    { source: 27, target: 31, theme: 'Prometheus Myth' },
+    { source: 31, target: 107, theme: 'Prometheus Myth' },
+    { source: 107, target: 113, theme: 'Prometheus Myth' },
+    { source: 113, target: 114, theme: 'Prometheus Myth' },
+    { source: 8, target: 12, theme: 'Ritual & Toast' },
+    { source: 12, target: 31, theme: 'Ritual & Toast' },
+    { source: 31, target: 56, theme: 'Ritual & Toast' },
+    { source: 56, target: 109, theme: 'Ritual & Toast' },
+    { source: 15, target: 16, theme: 'Guilt & Secrets' },
+    { source: 16, target: 75, theme: 'Guilt & Secrets' },
+    { source: 75, target: 76, theme: 'Guilt & Secrets' },
+    { source: 76, target: 104, theme: 'Guilt & Secrets' }
+];

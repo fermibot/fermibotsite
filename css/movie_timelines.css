@@ -1117,8 +1117,10 @@
     gap: 0.75rem;
 }
 
+/* Reserve space for scene title wrapping - keeps buttons at same vertical position */
 .info-card-titles {
     flex: 1;
+    min-height: 70px; /* Accommodates up to 3 lines of title text */
 }
 
 .info-card-scene {

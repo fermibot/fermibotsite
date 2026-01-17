@@ -213,11 +213,6 @@
     min-width: 145px;
 }
 
-/* Reserve space for scene title wrapping - keeps buttons at same vertical position */
-.info-card-titles {
-    min-height: 70px; /* Accommodates up to 3 lines of title text */
-}
-
 /* Adjust spacing since Act is now above Scene title */
 .info-card-act {
     margin: 0 0 0.5rem 0 !important; /* Bottom margin since it's now on top */

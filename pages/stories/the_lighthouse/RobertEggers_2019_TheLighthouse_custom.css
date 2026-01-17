@@ -48,6 +48,200 @@
 }
 
 /* ============================================
+   SCREENPLAY VIEWER - LEFT SIDE PANEL
+   ============================================ */
+
+/* Backdrop - invisible, no blocking */
+.screenplay-viewer-backdrop {
+    display: none;
+    pointer-events: none;
+}
+
+.screenplay-viewer-backdrop.active {
+    display: none;
+    pointer-events: none;
+}
+
+/* Screenplay viewer panel - LEFT SIDE - matches right info card (400px) */
+.screenplay-viewer-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 100vh;
+    background: var(--viz-card-bg);
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
+    border-right: 1px solid var(--viz-border);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.screenplay-viewer-modal.active {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Screenplay header */
+.screenplay-viewer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--viz-border);
+    background: var(--viz-card-bg);
+    flex-shrink: 0;
+}
+
+.screenplay-viewer-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.screenplay-icon {
+    font-size: 1.5rem;
+}
+
+.screenplay-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--viz-text);
+    margin-bottom: 0.25rem;
+}
+
+.screenplay-scene {
+    font-size: 0.85rem;
+    color: var(--viz-text-muted);
+}
+
+.screenplay-close-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--viz-text-muted);
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.screenplay-close-btn:hover {
+    color: var(--viz-text);
+}
+
+/* Screenplay content area - scrollable */
+.screenplay-viewer-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    padding: 1.5rem;
+    background: var(--viz-bg);
+}
+
+/* Text-based screenplay display */
+.screenplay-text-content {
+    width: 100%;
+}
+
+.screenplay-text {
+    font-family: 'Courier Prime', 'Courier New', 'Courier', monospace;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--viz-text);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 0;
+    padding: 2rem 1.5rem;
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.03) 0%,
+        rgba(255, 255, 255, 0.01) 100%);
+    border: none;
+    border-radius: 8px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Dark mode adjustments for screenplay */
+[data-bs-theme="dark"] .screenplay-text {
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.02) 0%,
+        rgba(0, 0, 0, 0.02) 100%);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Screenplay element styling - scene headings */
+.screenplay-text .scene-heading {
+    font-weight: 700;
+    color: #0277BD;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    display: block;
+}
+
+[data-bs-theme="dark"] .screenplay-text .scene-heading {
+    color: #4FC3F7;
+}
+
+/* Character names */
+.screenplay-text .character {
+    font-weight: 600;
+    color: #00897B;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 0.25em;
+    margin-left: 2.5em;
+}
+
+[data-bs-theme="dark"] .screenplay-text .character {
+    color: #4DB6AC;
+}
+
+/* Dialogue */
+.screenplay-text .dialogue {
+    display: block;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+    margin-bottom: 0.5em;
+    color: var(--viz-text);
+}
+
+/* Parentheticals (character directions) */
+.screenplay-text .parenthetical {
+    display: block;
+    margin-left: 2em;
+    font-style: italic;
+    color: var(--viz-text-muted);
+    margin-bottom: 0.25em;
+}
+
+/* Action/description lines */
+.screenplay-text .action {
+    display: block;
+    margin-bottom: 0.75em;
+    color: var(--viz-text);
+}
+
+/* Transitions */
+.screenplay-text .transition {
+    font-weight: 600;
+    text-align: right;
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: var(--viz-text-muted);
+}
+
+/* ============================================
    SUMMARY CARDS
    ============================================ */
 
@@ -1007,10 +1201,6 @@
     flex-shrink: 0;
 }
 
-.info-card-titles {
-    flex: 1;
-}
-
 .info-card-scene {
     margin: 0 0 0.25rem 0;
     font-size: 1.1rem;
@@ -1089,6 +1279,35 @@
 
 .info-card-body {
     padding: 1rem;
+}
+
+/* Info Card Tags Section - 4 columns */
+.info-card-tags-section {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--viz-border);
+}
+
+.info-card-tags-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--viz-text);
+    margin-bottom: 0.5rem;
+}
+
+.info-card-tags {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 0.3rem !important;
+}
+
+.info-card-tags .tag-badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.4rem;
 }
 
 .info-card-summary {
@@ -1669,11 +1888,38 @@
     position: relative;
 }
 
+/* Legend question item (tags) - matching The Shining */
+.legend-question-item {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid #ddd;
+    background: var(--viz-bg);
+    transition: all 0.2s ease;
+}
+
+.legend-question-item:hover {
+    background: var(--viz-bg-secondary);
+    border-color: #aaa;
+}
+
+.legend-question-item .legend-icon {
+    margin-right: 0.3rem;
+}
+
+.legend-question-item .legend-text {
+    white-space: nowrap;
+}
+
 /* Active indicator checkmark for chapters */
 .active-indicator {
     position: absolute;
-    top: 2px;
-    right: 2px;
+    top: -4px;
+    right: -4px;
     width: 14px;
     height: 14px;
     background: #27ae60;
@@ -1691,7 +1937,8 @@
     z-index: 10;
 }
 
-.legend-chapter-item.active .active-indicator {
+.legend-chapter-item.active .active-indicator,
+.legend-question-item.active .active-indicator {
     opacity: 1;
     transform: scale(1);
 }
@@ -1865,7 +2112,109 @@
     border-color: #ba68c8;
 }
 
-/* Category labels in legend */
+/* New Tags - Time */
+.tag-night {
+    background: rgba(63, 81, 181, 0.15);
+    color: #3f51b5;
+    border-color: #3f51b5;
+}
+
+.tag-day {
+    background: rgba(255, 193, 7, 0.15);
+    color: #f9a825;
+    border-color: #f9a825;
+}
+
+.tag-fog {
+    background: rgba(158, 158, 158, 0.15);
+    color: #757575;
+    border-color: #757575;
+}
+
+.tag-weather {
+    background: rgba(0, 188, 212, 0.1);
+    color: #00bcd4;
+    border-color: #00bcd4;
+}
+
+/* New Tags - Survival */
+.tag-food {
+    background: rgba(139, 195, 74, 0.1);
+    color: #8bc34a;
+    border-color: #8bc34a;
+}
+
+.tag-sleep {
+    background: rgba(103, 58, 183, 0.1);
+    color: #673ab7;
+    border-color: #673ab7;
+}
+
+/* New Tags - Conflict */
+.tag-death {
+    background: rgba(33, 33, 33, 0.15);
+    color: #424242;
+    border-color: #424242;
+}
+
+.tag-fear {
+    background: rgba(255, 87, 34, 0.1);
+    color: #ff5722;
+    border-color: #ff5722;
+}
+
+/* New Tags - Psychological */
+.tag-isolation {
+    background: rgba(96, 125, 139, 0.15);
+    color: #546e7a;
+    border-color: #546e7a;
+}
+
+/* New Tags - Story */
+.tag-secret {
+    background: rgba(121, 85, 72, 0.15);
+    color: #6d4c41;
+    border-color: #6d4c41;
+}
+
+.tag-identity {
+    background: rgba(0, 150, 136, 0.1);
+    color: #009688;
+    border-color: #009688;
+}
+
+.tag-mythology {
+    background: rgba(103, 58, 183, 0.15);
+    color: #5e35b1;
+    border-color: #5e35b1;
+}
+
+.tag-naked {
+    background: rgba(255, 138, 128, 0.15);
+    color: #ff8a80;
+    border-color: #ff8a80;
+}
+
+.tag-sexual {
+    background: rgba(233, 30, 99, 0.15);
+    color: #c2185b;
+    border-color: #c2185b;
+}
+
+/* Category labels in legend - matching The Shining style */
+.legend-categories-container {
+    column-count: 4 !important;
+    column-gap: 2rem !important;
+}
+
+.legend-category-container {
+    display: inline-block !important;
+    width: 100% !important;
+    margin-bottom: 1rem;
+    padding-right: 1rem;
+    break-inside: avoid;
+}
+
 .legend-category-label {
     font-weight: 700;
     color: #555;
