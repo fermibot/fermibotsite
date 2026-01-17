@@ -42,7 +42,7 @@ const CONFIG = {
     // Layout
     DIAMETER: 900,
     STORAGE_KEY: 'gattaca-viewed-scenes',
-    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.38'
+    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.39'
 };
 
 // ============================================
@@ -1156,12 +1156,12 @@ function createLegendWithProgress() {
             .attr('class', 'legend-text')
             .text(conn.label);
 
-        // Add info icon with Bootstrap tooltip
+        // Add info icon with Bootstrap 4 tooltip
         item.append('span')
             .attr('class', 'connection-info-icon')
-            .attr('data-bs-toggle', 'tooltip')
-            .attr('data-bs-placement', 'top')
-            .attr('data-bs-title', conn.description)
+            .attr('data-toggle', 'tooltip')
+            .attr('data-placement', 'top')
+            .attr('title', conn.description)
             .style('margin-left', '4px')
             .style('font-size', '0.75rem')
             .style('opacity', '0.6')
@@ -1170,9 +1170,8 @@ function createLegendWithProgress() {
             .on('click', (event) => event.stopPropagation());  // Don't trigger filter on info click
     });
 
-    // Initialize Bootstrap tooltips for info icons
-    const tooltipTriggerList = document.querySelectorAll('.connection-info-icon[data-bs-toggle="tooltip"]');
-    tooltipTriggerList.forEach(el => new bootstrap.Tooltip(el));
+    // Initialize Bootstrap 4 tooltips for info icons (uses jQuery)
+    $('.connection-info-icon[data-toggle="tooltip"]').tooltip();
 
     // Add clear selection hint at bottom right of legend
     legendContainer.append('div')
