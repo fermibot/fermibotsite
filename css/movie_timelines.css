@@ -1707,6 +1707,21 @@
     margin-top: 0.5rem;
 }
 
+/* Theme group headers for discussion questions sorted by theme */
+.theme-group-header {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--viz-text);
+    margin: 1.5rem 0 0.75rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--viz-border);
+    text-transform: capitalize;
+}
+
+.theme-group-header:first-child {
+    margin-top: 0;
+}
+
 .question-tag {
     font-size: 0.75rem;
     padding: 0.25rem 0.5rem;

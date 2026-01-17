@@ -42,7 +42,7 @@ const CONFIG = {
     // Layout
     DIAMETER: 900,
     STORAGE_KEY: 'gattaca-viewed-scenes',
-    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.41'
+    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.42'
 };
 
 // ============================================
@@ -305,6 +305,9 @@ function renderDiscussionQuestions(sortMode = 'film-order') {
         sortedQuestions.sort((a, b) => a.id - b.id);
     }
 
+    // Track current theme for group headers
+    let currentTheme = null;
+
     sortedQuestions.forEach(q => {
         // Find scenes related to this question
         // In Gattaca JSON, discussionQuestions is array of IDs [1, 5, 9], not objects
@@ -314,6 +317,15 @@ function renderDiscussionQuestions(sortMode = 'film-order') {
         const sceneIds = relatedScenes.map(s => s.id);
 
         if (sceneIds.length === 0) return; // Skip if no scenes
+
+        // Add theme group header when theme changes (only in theme sort mode)
+        if (sortMode === 'theme' && q.theme && q.theme !== currentTheme) {
+            currentTheme = q.theme;
+            const themeHeader = document.createElement('div');
+            themeHeader.className = 'theme-group-header';
+            themeHeader.textContent = currentTheme;
+            grid.appendChild(themeHeader);
+        }
 
         const questionDiv = document.createElement('div');
         questionDiv.className = 'book-club-question';

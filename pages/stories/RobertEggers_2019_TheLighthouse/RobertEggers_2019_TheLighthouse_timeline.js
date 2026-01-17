@@ -2595,20 +2595,47 @@ function initSearch() {
 // RENDER DISCUSSION QUESTIONS
 // ============================================
 
-function renderDiscussionQuestions() {
+function renderDiscussionQuestions(sortMode = 'film-order') {
     const container = document.getElementById('questions-container');
     if (!container) {
         console.warn('Questions container not found');
         return;
     }
 
+    // Clear existing content
+    container.innerHTML = '';
+
     // Create book-club-grid wrapper
     const grid = document.createElement('div');
     grid.className = 'book-club-grid';
 
-    DISCUSSION_QUESTIONS.forEach(q => {
+    // Sort questions based on sortMode
+    let sortedQuestions = [...DISCUSSION_QUESTIONS];
+    if (sortMode === 'theme') {
+        sortedQuestions.sort((a, b) => {
+            const themeCompare = (a.theme || a.category || '').localeCompare(b.theme || b.category || '');
+            return themeCompare !== 0 ? themeCompare : a.id - b.id;
+        });
+    } else {
+        sortedQuestions.sort((a, b) => a.id - b.id);
+    }
+
+    // Track current theme for group headers
+    let currentTheme = null;
+
+    sortedQuestions.forEach(q => {
         const sceneIds = q.relatedScenes || [];
         if (sceneIds.length === 0) return; // Skip if no scenes
+
+        // Add theme group header when theme changes (only in theme sort mode)
+        const questionTheme = q.theme || q.category;
+        if (sortMode === 'theme' && questionTheme && questionTheme !== currentTheme) {
+            currentTheme = questionTheme;
+            const themeHeader = document.createElement('div');
+            themeHeader.className = 'theme-group-header';
+            themeHeader.textContent = currentTheme;
+            grid.appendChild(themeHeader);
+        }
 
         const questionDiv = document.createElement('div');
         questionDiv.className = 'book-club-question';
@@ -2650,6 +2677,31 @@ function renderDiscussionQuestions() {
 
     container.appendChild(grid);
     console.log(`Rendered ${DISCUSSION_QUESTIONS.length} discussion questions`);
+}
+
+// Sort discussion questions and update button states
+window.sortQuestions = function(sortType) {
+    // Update button active states
+    document.querySelectorAll('.question-sort-toggle button[data-sort]').forEach(btn => {
+        if (btn.dataset.sort === sortType) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+
+    // Update sort mode indicator
+    const indicator = document.getElementById('sort-mode-indicator');
+    if (indicator) {
+        if (sortType === 'theme') {
+            indicator.textContent = '(Theme Order)';
+        } else {
+            indicator.textContent = '(Timeline Order)';
+        }
+    }
+
+    // Re-render questions with new sort order
+    renderDiscussionQuestions(sortType);
 }
 
 // ============================================
@@ -2749,39 +2801,6 @@ function toggleAnswer(event, button) {
 
 window.toggleAnswer = toggleAnswer;
 
-// Sort book club questions by chronological or thematic order
-window.sortQuestions = function(sortType) {
-    const grid = document.querySelector('.book-club-grid');
-    if (!grid) return;
-
-    // Update button states
-    document.querySelectorAll('.sort-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.sort === sortType);
-    });
-
-    // Get all question elements
-    const questions = Array.from(grid.querySelectorAll('.book-club-question'));
-
-    if (sortType === 'chronological') {
-        // Sort by first scene number
-        questions.sort((a, b) => {
-            const aScenes = a.dataset.scenes.split(',').map(s => parseInt(s.trim()));
-            const bScenes = b.dataset.scenes.split(',').map(s => parseInt(s.trim()));
-            return Math.min(...aScenes) - Math.min(...bScenes);
-        });
-    } else {
-        // Thematic: restore original DOM order by data-question-number
-        questions.sort((a, b) => {
-            const aNum = parseInt(a.querySelector('.question-number').textContent);
-            const bNum = parseInt(b.querySelector('.question-number').textContent);
-            return aNum - bNum;
-        });
-    }
-
-    // Re-append in sorted order
-    questions.forEach(q => grid.appendChild(q));
-};
-
 // ============================================
 // DATA LOADING
 // ============================================
@@ -2856,6 +2875,26 @@ document.addEventListener('DOMContentLoaded', async function() {
     renderDiscussionQuestions();
     initVisualization();
     initSearch();
+
+    // Sort buttons for discussion questions
+    const timelineBtn = document.getElementById('sort-timeline-btn');
+    const themeBtn = document.getElementById('sort-theme-btn');
+
+    if (timelineBtn) {
+        timelineBtn.addEventListener('click', function() {
+            if (typeof window.sortQuestions === 'function') {
+                window.sortQuestions('film-order');
+            }
+        });
+    }
+
+    if (themeBtn) {
+        themeBtn.addEventListener('click', function() {
+            if (typeof window.sortQuestions === 'function') {
+                window.sortQuestions('theme');
+            }
+        });
+    }
 
     // Add click to page background to clear selections
     document.body.addEventListener('click', function(e) {
