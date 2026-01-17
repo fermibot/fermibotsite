@@ -42,7 +42,7 @@ const CONFIG = {
     // Layout
     DIAMETER: 900,
     STORAGE_KEY: 'gattaca-viewed-scenes',
-    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.40'
+    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.41'
 };
 
 // ============================================
@@ -1118,7 +1118,7 @@ function createLegendWithProgress() {
           description: 'Hints at future events - this scene plants seeds for what comes later' },
         { key: 'callback', label: 'Callback', style: 'dashed', color: '#8b0000',
           description: 'References past events - this scene echoes or resolves earlier moments' },
-        { key: 'geneticDefiance', label: 'Genetic Defiance', style: 'solid', color: '#00BCD4',
+        { key: 'geneticDefiance', label: 'Genetic Defiance', style: 'solid', color: '#009688',
           description: 'Genetic predictions contradicted - outcomes defy what DNA determined' },
         { key: 'invalidTriumph', label: 'Invalid Triumph', style: 'solid', color: '#F9A825',
           description: '"Invalids" proving the system wrong - the genetically inferior succeed' },
@@ -1792,7 +1792,7 @@ function initVisualization() {
         })
         .attr('stroke', d => {
             // Gattaca-specific connection colors
-            if (d.type === 'geneticDefiance') return '#00BCD4';   // DNA cyan
+            if (d.type === 'geneticDefiance') return '#009688';   // Teal - genetics
             if (d.type === 'invalidTriumph') return '#F9A825';    // Gold - triumph
             if (d.type === 'transcendence') return '#9C27B0';     // Purple - spiritual
             if (d.type === 'callback') return '#8b0000';          // Dark blood red
@@ -2715,7 +2715,7 @@ function buildConnectionsSection(scene) {
 
     // Gattaca-specific connections
     if (hasGeneticDefiance) {
-        html += buildLinks(scene.geneticDefiance, '🧬', 'Genetic Defiance', '#00BCD4');
+        html += buildLinks(scene.geneticDefiance, '🧬', 'Genetic Defiance', '#009688');
     }
     if (hasInvalidTriumph) {
         html += buildLinks(scene.invalidTriumph, '🏆', 'Invalid Triumph', '#F9A825');
