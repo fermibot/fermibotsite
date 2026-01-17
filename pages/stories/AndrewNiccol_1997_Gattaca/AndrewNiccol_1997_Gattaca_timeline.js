@@ -42,7 +42,7 @@ const CONFIG = {
     // Layout
     DIAMETER: 900,
     STORAGE_KEY: 'gattaca-viewed-scenes',
-    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.47'
+    DATA_FILE: 'AndrewNiccol_1997_Gattaca_scenes_analyzed_final.json?v=2026.01.16.48'
 };
 
 // ============================================
@@ -881,7 +881,7 @@ function createLegendWithProgress() {
         'ch03-identity-swap',
         'ch04-gattaca-life',
         'ch05-murder-investigation',
-        'ch06-closing-in',
+        'ch06-mounting-pressure',
         'ch07-truth-revealed',
         'ch08-final-launch'
     ];
